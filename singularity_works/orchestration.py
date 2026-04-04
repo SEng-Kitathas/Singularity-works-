@@ -49,6 +49,7 @@ class OrchestrationResult:
     escalation_decision: "dict | None" = None  # populated by escalation_gate.evaluate()
     starmap_topology: "dict | None" = None  # populated by forge_starmap.build_evidence_topology()
     lbe_result: "dict | None" = None       # populated by lbe_pilot.analyze() when escalation routes to LBE
+    lbe_blueprint: "dict | None" = None    # color-coded flow map: source→transform→sink + min replacement
 
 
 class Orchestrator:
@@ -1089,6 +1090,15 @@ class Orchestrator:
                                     if _lbe_r.highest_risk_blob else "no_sinks",
                     "blobs":        [b.to_dict() for b in _lbe_r.blobs],
                 }
+
+                # Blueprint — color-coded flow map over LBE results
+                _blueprint_dict = None
+                try:
+                    from .lbe_blueprint import analyze_blueprint as _bp_analyze
+                    _bp = _bp_analyze(candidate_content, artifact_id=_lbe_r.artifact_id)
+                    _blueprint_dict = _bp.to_dict()
+                except Exception:
+                    pass
             except Exception:
                 pass  # Non-fatal — LBE is bonus cartography, not blocking
 
@@ -1113,4 +1123,5 @@ class Orchestrator:
             escalation_decision=escalation_dict,
             starmap_topology=starmap_dict,
             lbe_result=lbe_dict,
+            lbe_blueprint=_blueprint_dict if lbe_dict else None,
         )
