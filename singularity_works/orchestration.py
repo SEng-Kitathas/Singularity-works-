@@ -47,6 +47,7 @@ class OrchestrationResult:
     fact_summary: dict
     genome_bundle: dict
     escalation_decision: "dict | None" = None  # populated by escalation_gate.evaluate()
+    starmap_topology: "dict | None" = None  # populated by forge_starmap.build_evidence_topology()
 
 
 class Orchestrator:
@@ -1006,6 +1007,15 @@ class Orchestrator:
                 except Exception:
                     pass
 
+        # Forge StarMap — build evidence topology over gate results
+        starmap_dict = None
+        try:
+            from .forge_starmap import build_evidence_topology as _starmap_build
+            _starmap_topo = _starmap_build(gate_summary, assurance, audit)
+            starmap_dict = _starmap_topo.to_dict()
+        except Exception:
+            pass  # Non-fatal
+
         # Escalation gate — evaluate before returning result
         escalation_dict = None
         try:
@@ -1044,4 +1054,5 @@ class Orchestrator:
             fact_summary=self.facts.summary(),
             genome_bundle=genome_bundle,
             escalation_decision=escalation_dict,
+            starmap_topology=starmap_dict,
         )
