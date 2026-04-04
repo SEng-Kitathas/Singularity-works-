@@ -46,6 +46,7 @@ class OrchestrationResult:
     applied_transformations: list[dict]
     fact_summary: dict
     genome_bundle: dict
+    escalation_decision: "dict | None" = None  # populated by escalation_gate.evaluate()
 
 
 class Orchestrator:
@@ -1005,6 +1006,25 @@ class Orchestrator:
                 except Exception:
                     pass
 
+        # Escalation gate — evaluate before returning result
+        escalation_dict = None
+        try:
+            from .escalation_gate import evaluate as _escalation_evaluate
+            _esc_result = _escalation_evaluate(
+                # Pass a partial result object for evaluation
+                type('_R', (), {
+                    'assurance': assurance,
+                    'recursive_audit': audit,
+                    'gate_summary': gate_summary,
+                    'risks': risks,
+                })(),
+                candidate_content,
+                requirement,
+            )
+            escalation_dict = _esc_result.to_dict()
+        except Exception:
+            pass  # Non-fatal — gate result is bonus, not blocking
+
         return OrchestrationResult(
             artifact=artifact,
             pattern={
@@ -1023,4 +1043,5 @@ class Orchestrator:
             applied_transformations=applied_transformations,
             fact_summary=self.facts.summary(),
             genome_bundle=genome_bundle,
+            escalation_decision=escalation_dict,
         )

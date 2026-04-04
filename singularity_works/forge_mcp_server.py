@@ -161,6 +161,24 @@ async def list_tools() -> list[types.Tool]:
             },
         ),
         types.Tool(
+            name="forge_get_escalation",
+            description=(
+                "Get the escalation decision for a code artifact. "
+                "Returns whether the code should route to the Logic Blueprint Engine (LBE), "
+                "which escalation classes fired (A=hard, B=strong, E=complexity, "
+                "H=alien, J=domain, K=effect-surface), and a squeaky_clean verdict. "
+                "Use this to understand WHY code needs deeper analysis beyond the front gate."
+            ),
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "code": {"type": "string", "description": "Source code to evaluate"},
+                    "requirement": {"type": "string", "description": "Security requirement text"},
+                },
+                "required": ["code", "requirement"],
+            },
+        ),
+        types.Tool(
             name="forge_commit_verified",
             description=(
                 "Gate: commit only after the forge battery passes. "
@@ -217,6 +235,9 @@ async def call_tool(name: str, arguments: dict) -> list[types.TextContent]:
 
     elif name == "forge_get_live_shadow":
         return _get_live_shadow()
+
+    elif name == "forge_get_escalation":
+        return await _get_escalation(arguments["code"], arguments["requirement"])
 
     elif name == "forge_commit_verified":
         return await _commit_verified(
@@ -381,6 +402,60 @@ def _get_live_shadow() -> list[types.TextContent]:
         Build IDOR monitor → wire PreCompact hook → session startup script
     """).strip()
     return [types.TextContent(type="text", text=text)]
+
+
+async def _get_escalation(code: str, requirement_text: str) -> list[types.TextContent]:
+    """Run escalation gate and return LBE routing decision."""
+    try:
+        import time
+        from singularity_works.escalation_gate import evaluate as esc_evaluate
+
+        orc = _get_orc()
+        orc.facts = FactBus()
+
+        req_lower = requirement_text.lower()
+        tags = ["security", "mcp"]
+        if any(w in req_lower for w in ["sql", "inject", "query", "database"]): tags.append("sql")
+        if any(w in req_lower for w in ["ssrf", "request", "network", "host", "url"]): tags.append("ssrf")
+        if any(w in req_lower for w in ["xss", "template", "render", "html"]): tags.append("xss")
+        if any(w in req_lower for w in ["exec", "command", "shell"]): tags.append("exec")
+        if any(w in req_lower for w in ["deserializ", "pickle", "yaml"]): tags.append("deserialization")
+        if any(w in req_lower for w in ["csrf", "rate limit", "brute force", "session cookie", "login", "logout", "authenticate", "jwt", "oauth"]): tags.append("auth")
+        if any(w in req_lower for w in ["payment", "financial", "decimal", "price"]): tags.append("payment")
+
+        req = Requirement(f"REQ-ESC-{int(time.time())}", requirement_text, tags=tags)
+        result = orc.run(
+            RunContext(f"esc-{int(time.time())}", "qa", "mcp"),
+            req, code,
+        )
+
+        # Use attached escalation_decision if available
+        esc_dict = result.escalation_decision
+        if esc_dict is None:
+            # Fallback: evaluate directly
+            dec = esc_evaluate(result, code, req)
+            esc_dict = dec.to_dict()
+
+        lines = [
+            f"# Forge Escalation Decision",
+            f"squeaky_clean: {esc_dict['squeaky_clean']}",
+            f"route_to_lbe: {esc_dict['route_to_lbe']}",
+            f"priority_class: {esc_dict['priority']}",
+            f"gate_verdict: {result.assurance.status}",
+            f"summary: {esc_dict['summary']}",
+        ]
+        if esc_dict.get("squeaky_clean_failures"):
+            lines.append("squeaky_clean_failures:")
+            for f in esc_dict["squeaky_clean_failures"][:4]:
+                lines.append(f"  - {f}")
+        if esc_dict.get("triggers"):
+            lines.append(f"triggers ({esc_dict['trigger_count']}):")
+            for t in esc_dict["triggers"][:5]:
+                lines.append(f"  [{t['class']}/{t['trigger_id']}] {t['reason'][:80]}")
+        return [types.TextContent(type="text", text="\n".join(lines))]
+
+    except Exception as e:
+        return [types.TextContent(type="text", text=f"Escalation error: {e}")]
 
 
 async def _commit_verified(message: str, require_battery: bool) -> list[types.TextContent]:
