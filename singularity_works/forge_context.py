@@ -966,9 +966,9 @@ class ForgeContext:
         if include_contradictions and self._ctx["contradictions"]:
             # Use graph query for active-roots view (TM-006)
             c_summary = self.contradiction_summary()
-            sections.append(f"## Contradiction Graph\n  {c_summary['summary']}")
+            parts.append(f"## Contradiction Graph\n  {c_summary['summary']}")
             if c_summary["contradicted_beliefs"] > 0:
-                sections.append(f"  ({c_summary['contradicted_beliefs']} beliefs currently contradicted)")
+                parts.append(f"  ({c_summary['contradicted_beliefs']} beliefs currently contradicted)")
             recent_contradictions = self._ctx["contradictions"][-5:]
             parts.append("\n## Open Contradictions (Unresolved)")
             for c in recent_contradictions:
