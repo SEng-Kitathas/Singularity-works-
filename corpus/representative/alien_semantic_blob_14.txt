@@ -1,0 +1,6 @@
+stack alpha
+  read target from query(target)
+  read skin from query(tpl)
+  skin <- weave(skin)
+  target <- tunnel(target)
+  answer <- surface(skin, target)

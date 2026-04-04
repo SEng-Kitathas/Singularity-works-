@@ -1,0 +1,5 @@
+ledger alpha
+  vessel actor <= mold(user)
+  vessel pass <= form(password)
+  actor.secret <= pass
+  settle actor

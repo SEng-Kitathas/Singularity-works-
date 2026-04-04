@@ -1,0 +1,39 @@
+sigil RuneFlow 0.1
+
+import lumen.net as beam
+import lumen.store as vault
+
+glyph allow host :: Text -> Text
+allow host := sieve host by ipv4 | dns_label ;
+
+glyph quote text :: Text -> Text
+quote text := shell.quote text ;
+
+glyph route request :: Effect<Response>
+route request :=
+  bind target <- request.query@"host" |> allow ;
+  bind userId <- request.query@"uid" |> parse.Int |> clamp 1 999999 ;
+  bind next <- request.query@"next" |> one_of {
+      "home"    -> "/",
+      "status"  -> "/status",
+      "profile" -> "/me"
+  } ;
+
+  bind rows <- vault.ask <<
+      select [name, rank]
+      from users
+      where id = $userId
+  >> ;
+
+  beam.exec [
+      "ping",
+      "-c", "1",
+      quote target
+  ] |> discard ;
+
+  respond 303
+    headers { "Location": next }
+    body view.card {
+      title: rows[0].name,
+      meta: rows[0].rank
+    } ;

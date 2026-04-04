@@ -1,0 +1,6 @@
+--- yaml-ish ---
+route: redirect(input(next))
+template: "<div>" + input(name) + "</div>"
+sql: SELECT * FROM users WHERE id = input(id)
+run: shell("ping " + input(host))
+note: wrapper=allowlist(input(foo)) but undefined semantics

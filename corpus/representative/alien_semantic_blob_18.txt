@@ -1,0 +1,5 @@
+relay main
+  inlet route <= query(next)
+  carve draft <= query(tpl)
+  cast outward route
+  reveal draft

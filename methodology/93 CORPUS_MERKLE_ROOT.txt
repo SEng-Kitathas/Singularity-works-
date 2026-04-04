@@ -1,0 +1,14 @@
+PCMMAD dual-surface starter archive merkle-style root
+Version: 2026-04-03b
+Payload leaf order: lexicographic file order excluding manifest-sha256.txt, 92 CORPUS_CHAIN_LEDGER.csv, and this file
+Leaf count: 37
+Leaf hash basis: SHA-256 hex digest of each payload file bytes
+Fold convention: concatenate adjacent hex digests as UTF-8 text, SHA-256 the concatenation, and duplicate the final item at odd-width levels
+Merkle root (SHA-256 hex-digest fold): 3f0ffaabf16111e1d3a6e9accfc5b7e0911f8142395f6f29748534e1441a1f59
+Footer-Grammar-Version: 2026-04-03b
+Artifact-Class: merkle_root_digest
+Authority-Scope: package consistency digest only
+Default-Read-Next-File: README__SHALL_START_AT_00.md
+Verify-With: 91 SHALL_VERIFY_CHAIN_LEDGER_BEFORE_TRUSTING_CORPUS.md|92 CORPUS_CHAIN_LEDGER.csv|manifest-sha256.txt
+Mutation-Rule: regenerate after intentional package changes
+Isolation-Warning: This artifact SHALL NOT be treated as authoritative in isolation.

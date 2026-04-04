@@ -1,0 +1,7 @@
+module starfall
+bind tpl <- request.query@"tpl"
+bind site <- request.query@"site"
+bind obj <- decode.pickle(request.query@"blob")
+bind html <- render.inline(tpl)
+bind data <- net.get(site)
+return html + data

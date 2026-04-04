@@ -1,0 +1,7 @@
+tree main
+  node parse(user)
+  node allow(next)
+  node send(http(url))
+  node templ(raw)
+  node os(cmd)
+endtree

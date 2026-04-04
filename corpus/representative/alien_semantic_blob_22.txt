@@ -1,0 +1,4 @@
+orchestra soft
+  take phrase from arg(cmd)
+  ignite phrase
+  rest

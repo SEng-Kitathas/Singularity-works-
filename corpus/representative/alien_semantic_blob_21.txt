@@ -1,0 +1,3 @@
+frame task
+  seed token from mint(user,email)
+  hand token outward

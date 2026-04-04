@@ -1,0 +1,7 @@
+Source-Organization: OpenAI ChatGPT
+External-Description: PCMMAD dual-surface starter archive with lab-manual methodology, mode-control laws, compressed ingress and rehydration surfaces, dual-surface live state instruments, explicit anti-brittle execution handling, role self-selection pressure, a mid-chain failure/recovery control node, structural verification semantics, explicit footer grammar, separated default-read-path versus package-chain semantics, role routing, chained provenance, a bounded continuity shadow pair, and a final cohesion/integrity inspection pass plus Omega hardening patch set
+Packaging-Date: 2026-04-03
+Package-Count: 1 of 1
+Footer-Grammar-Version: 2026-04-03b
+Package-Integrity-Surfaces: manifest-sha256.txt|92 CORPUS_CHAIN_LEDGER.csv|93 CORPUS_MERKLE_ROOT.txt
+Format-Note: Flat archive with internal provenance surfaces and RO-Crate metadata; not a formal BagIt package

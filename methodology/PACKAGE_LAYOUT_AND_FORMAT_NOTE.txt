@@ -1,0 +1,9 @@
+PCMMAD starter archive packaging note
+Version: 2026-04-03b
+Layout: flat archive
+Formal-BagIt-Compliance: no
+Reason: payload is not stored under a data/ directory and no tag manifest is emitted
+Purpose: preserve package metadata and integrity surfaces without overclaiming external packaging-standard compliance
+Integrity-Surfaces: manifest-sha256.txt|92 CORPUS_CHAIN_LEDGER.csv|93 CORPUS_MERKLE_ROOT.txt
+Traversal-Note: operator/model read order may include alphanumeric insertion nodes such as 06A without changing the package's flat layout
+Isolation-Warning: This artifact is package metadata only and SHALL NOT be treated as authoritative in isolation.

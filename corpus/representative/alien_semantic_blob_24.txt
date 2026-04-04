@@ -1,0 +1,4 @@
+branch mirror
+  source id <= field(id)
+  shape clause <= weave(id)
+  lower clause into store

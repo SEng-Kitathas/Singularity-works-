@@ -1,0 +1,6 @@
+sig lattice 0.2
+input user <- portal.arg@"user"
+decode blob <- relic.unpack(user)
+jump next <- route.pick(portal.arg@"next")
+render view <- forge.page << "<p>" + blob.name + "</p>" >>
+emit http 302 headers { "Location": next } body view

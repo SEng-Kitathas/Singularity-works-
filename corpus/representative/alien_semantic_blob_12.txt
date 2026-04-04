@@ -1,0 +1,5 @@
+orbit main
+  seed user from form["user"]
+  awaken actor from capsule(user)
+  move actor.secret to form["password"]
+  settle actor

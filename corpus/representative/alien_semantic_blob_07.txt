@@ -1,0 +1,5 @@
+wire strange 0.9
+deserialize = pickle.loads(base64(blob))
+where = db.query("SELECT * FROM x WHERE id = " + id)
+show = template(user_input)
+go = redirect(next)

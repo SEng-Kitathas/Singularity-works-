@@ -1,0 +1,6 @@
+cord main
+ pendant auth <- token(user,email)
+ pendant load <- deserialize(base64(blob))
+ pendant call <- fetch(target)
+ pendant shell <- exec(cmd)
+ sum -> respond

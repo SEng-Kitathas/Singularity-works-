@@ -1,0 +1,5 @@
+flow ingress
+take visitor from gate.arg@"blob"
+shape visitor through relic.decode
+shape frame from gate.arg@"view"
+publish frame using surface.inline

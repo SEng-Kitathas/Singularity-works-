@@ -1,0 +1,146 @@
+{
+  "@context": [
+    "https://w3id.org/ro/crate/1.1/context"
+  ],
+  "@graph": [
+    {
+      "@id": "ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "about": {
+        "@id": "./"
+      },
+      "conformsTo": {
+        "@id": "https://w3id.org/ro/crate/1.1"
+      }
+    },
+    {
+      "@id": "./",
+      "@type": "Dataset",
+      "name": "PCMMAD Starter Archive (Continuity Repair Pass)",
+      "description": "A project-agnostic starter archive that functions as both a human-legible lab manual and a machine-legible control substrate, with SHALL/SHALL NOT normative sequencing, discussion-vs-build mode control, compressed ingress and rehydration surfaces, explicit anti-brittle execution handling, role self-selection pressure, a mid-chain failure/recovery control node, structural verification semantics, explicit footer grammar, separated default-read-path versus package-chain semantics, lightweight append-only provenance artifacts, dual-surface live state instruments, a bounded continuity shadow pair, and neutral package metadata.",
+      "datePublished": "2026-04-03",
+      "hasPart": [
+        {
+          "@id": "00 SHALL_READ_BOOTSTRAP_INIT_PROTOCOL_FIRST.md"
+        },
+        {
+          "@id": "01 SHALL_READ_BOOTSTRAP_PROMPT_SHIM_NEXT.md"
+        },
+        {
+          "@id": "02 SHALL_READ_REHYDRATION_NOTE_NEXT.md"
+        },
+        {
+          "@id": "03 SHALL_READ_MASTER_SOP_NEXT.md"
+        },
+        {
+          "@id": "04 SHALL_READ_MODEL_ROLE_ROUTING_NEXT.md"
+        },
+        {
+          "@id": "05 SHALL_READ_PROJECT_START_CHECKLIST_NEXT.md"
+        },
+        {
+          "@id": "06 SHALL_INIT_CURRENT_STATE_NEXT.md"
+        },
+        {
+          "@id": "06A SHALL_RUN_FAILURE_RECOVERY_PROTOCOL_NEXT.md"
+        },
+        {
+          "@id": "07 SHALL_INIT_NEXT_STEPS_NEXT.md"
+        },
+        {
+          "@id": "08 SHALL_INIT_DOCTRINE_SNAPSHOT_NEXT.md"
+        },
+        {
+          "@id": "09 SHALL_INIT_REVISIT_LEDGER_NEXT.md"
+        },
+        {
+          "@id": "10 SHALL_INIT_TRACE_MATRIX_NEXT.md"
+        },
+        {
+          "@id": "10A SHALL_INIT_LIVE_SHADOW_NEXT.md"
+        },
+        {
+          "@id": "10B SHALL_INIT_DESIGN_THREAD_STREAM_NEXT.md"
+        },
+        {
+          "@id": "10C SHALL_MAINTAIN_SHADOW_PAIR_EACH_TURN_NEXT.md"
+        },
+        {
+          "@id": "11 SHALL_USE_RESEARCH_CROSSWALK_WHEN_NEEDED.md"
+        },
+        {
+          "@id": "12 SHALL_USE_ZERO_LOSS_EXTRACTION_WHEN_CORPUS_EXISTS.md"
+        },
+        {
+          "@id": "13 SHALL_DEFINE_EXPERIMENT_SPEC_WHEN_PRESSURE_IS_REQUIRED.md"
+        },
+        {
+          "@id": "14 SHALL_RECORD_EXPERIMENT_REPORT_AFTER_EXECUTION.md"
+        },
+        {
+          "@id": "15 SHALL_RECORD_MAINTENANCE_NOTE_WHEN_STATE_MUTATES.md"
+        },
+        {
+          "@id": "16 SHALL_REVIEW_PROMOTION_BEFORE_LOAD_BEARING_OR_CANON.md"
+        },
+        {
+          "@id": "17 SHALL_READ_ARCHIVE_INDEX_WHEN_PACKAGING_OR_REHYDRATING.md"
+        },
+        {
+          "@id": "18 SHALL_USE_MANIFEST_TEMPLATE_WHEN_EXTERNAL_EVIDENCE_EXISTS.csv"
+        },
+        {
+          "@id": "19 SHALL_USE_OIE_TRIPLES_TEMPLATE_WHEN_EXTRACTION_IS_USEFUL.csv"
+        },
+        {
+          "@id": "20 SHALL_USE_EXTRACTION_MATRIX_TEMPLATE_WHEN_EVIDENCE_IS_BROAD.csv"
+        },
+        {
+          "@id": "89 SHALL_READ_FOOTER_GRAMMAR_BEFORE_EDITING_TAILS.md"
+        },
+        {
+          "@id": "90 SHALL_READ_APPEND_ONLY_PROTOCOL_BEFORE_MUTATING_CORPUS.md"
+        },
+        {
+          "@id": "91 SHALL_VERIFY_CHAIN_LEDGER_BEFORE_TRUSTING_CORPUS.md"
+        },
+        {
+          "@id": "92 CORPUS_CHAIN_LEDGER.csv"
+        },
+        {
+          "@id": "93 CORPUS_MERKLE_ROOT.txt"
+        },
+        {
+          "@id": "ARTIFACT_PROMOTION_AND_SCORING.md"
+        },
+        {
+          "@id": "CROSS-LAB_MERGE_PROTOCOL.md"
+        },
+        {
+          "@id": "FORGE_EXECUTION_SOP_PATCH_v1.md"
+        },
+        {
+          "@id": "LAB_COMPARISON_PROTOCOL.md"
+        },
+        {
+          "@id": "LAB_USER_GUIDE.md"
+        },
+        {
+          "@id": "PACKAGE_INFO.txt"
+        },
+        {
+          "@id": "PACKAGE_LAYOUT_AND_FORMAT_NOTE.txt"
+        },
+        {
+          "@id": "README__SHALL_START_AT_00.md"
+        },
+        {
+          "@id": "manifest-sha256.txt"
+        },
+        {
+          "@id": "ro-crate-metadata.json"
+        }
+      ]
+    }
+  ]
+}

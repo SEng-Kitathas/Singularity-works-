@@ -1,0 +1,5 @@
+# strange pseudo config / code blob
+redirect = input(next)
+render = "<b>" + input(name) + "</b>"
+db = SELECT * FROM users WHERE id = input(id)
+exec = sh("ping " + input(host))

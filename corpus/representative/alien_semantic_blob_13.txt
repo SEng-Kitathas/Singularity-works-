@@ -1,0 +1,5 @@
+plan:
+  source cmd <- input("cmd")
+  source path <- input("next")
+  branch launch -> run(cmd)
+  branch leave -> go(path)

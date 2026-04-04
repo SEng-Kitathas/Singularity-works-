@@ -1,0 +1,11 @@
+artifact_path,artifact_type,source_origin,ingest_date,checksum_sha256,read_status,evidence_role,trust_class,notes
+<fill in>,<file/url/log/chat/spec/repo/etc>,<user/model/web/upload/telemetry/etc>,<fill in>,<fill in>,<unread/partial/read/verified>,<raw evidence/baseline/comparator/context/output>,<seed/working/load-bearing>,<fill in>
+
+# ARTIFACT_ID,18 SHALL_USE_MANIFEST_TEMPLATE_WHEN_EXTERNAL_EVIDENCE_EXISTS.csv
+# ARTIFACT_CLASS,evidence_manifest_template
+# AUTHORITY_SCOPE,external evidence inventory
+# DEFAULT_READ_NEXT_FILE,19 SHALL_USE_OIE_TRIPLES_TEMPLATE_WHEN_EXTRACTION_IS_USEFUL.csv
+# VERIFY_WITH,91 SHALL_VERIFY_CHAIN_LEDGER_BEFORE_TRUSTING_CORPUS.md|92 CORPUS_CHAIN_LEDGER.csv|93 CORPUS_MERKLE_ROOT.txt
+# MUTATION_RULE,direct row updates are allowed during active extraction; retain contradictory evidence state
+# PACKAGE_CHAIN_NOTE,Package seal order is recorded in 92 CORPUS_CHAIN_LEDGER.csv and is not inferred from this tail.
+# NOTE,This template SHALL NOT be treated as authoritative in isolation.

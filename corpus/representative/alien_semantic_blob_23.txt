@@ -1,0 +1,4 @@
+garden render
+  leaf draft <= arg(view)
+  leaf person <= arg(name)
+  stage draft with person

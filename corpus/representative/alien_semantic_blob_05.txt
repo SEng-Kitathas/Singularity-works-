@@ -1,0 +1,5 @@
+root:
+  query: input(id)
+  stmt: "SELECT * FROM users WHERE id = ${query}"
+  sink: db.run(stmt)
+  out: html("<h1>" + input(name) + "</h1>")

@@ -1,0 +1,11 @@
+source,seam,claim,evidence_strength,doctrine_effect,status,next_action,classification,read_scope,promotion_candidate
+<fill in>,<fill in>,<fill in>,<fill in>,<fill in>,<fill in>,<fill in>,<new/reinforcement/contradiction/correction/unresolved>,<full/partial/targeted>,<yes/no>
+
+# ARTIFACT_ID,20 SHALL_USE_EXTRACTION_MATRIX_TEMPLATE_WHEN_EVIDENCE_IS_BROAD.csv
+# ARTIFACT_CLASS,extraction_matrix_template
+# AUTHORITY_SCOPE,broad evidence matrix
+# DEFAULT_READ_NEXT_FILE,89 SHALL_READ_FOOTER_GRAMMAR_BEFORE_EDITING_TAILS.md
+# VERIFY_WITH,91 SHALL_VERIFY_CHAIN_LEDGER_BEFORE_TRUSTING_CORPUS.md|92 CORPUS_CHAIN_LEDGER.csv|93 CORPUS_MERKLE_ROOT.txt
+# MUTATION_RULE,direct row updates are allowed during active extraction; preserve separate seams and contradictory rows
+# PACKAGE_CHAIN_NOTE,Package seal order is recorded in 92 CORPUS_CHAIN_LEDGER.csv and is not inferred from this tail.
+# NOTE,This template SHALL NOT be treated as authoritative in isolation.

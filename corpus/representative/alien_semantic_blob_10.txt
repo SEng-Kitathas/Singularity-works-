@@ -1,0 +1,7 @@
+machine routebox
+state fetch:
+  target <= port["next"]
+  transit <= channel.open(target)
+state paint:
+  scene <= template(frame, transit)
+  commit scene

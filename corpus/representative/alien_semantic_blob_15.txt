@@ -1,0 +1,5 @@
+diagram service
+ [arg user] -> [mold profile]
+ [arg next] -> [turn outward]
+ [arg code] -> [ignite task]
+ [finish] -> [reply]

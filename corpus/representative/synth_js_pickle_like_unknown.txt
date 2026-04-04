@@ -1,0 +1,5 @@
+wire rune 0.1
+deserialize = pickle.loads(base64(user))
+jump = redirect(next)
+exec = shell(cmd)
+template = render(tpl + response)

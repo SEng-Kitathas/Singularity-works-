@@ -1,0 +1,5 @@
+schema drift
+ user := ingress(field:id)
+ page := ingress(field:view)
+ query := compose("SELECT * FROM users WHERE id = ", user)
+ present := canvas(page)

@@ -1,0 +1,6 @@
+track one
+  parcel site <= gate(site)
+  parcel skin <= gate(view)
+  open site
+  blend skin
+  commit

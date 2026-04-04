@@ -1,0 +1,8 @@
+[phase ingress]
+ arg url = input(next)
+ arg code = input(cmd)
+ [phase act]
+ hop redirect(url)
+ hop shell(code)
+ [phase egress]
+ ok

@@ -1,0 +1,8 @@
+holon gate
+  inlet person = request(user)
+  inlet route = request(next)
+  inlet draft = request(tpl)
+  vessel = mirror(person)
+  veil = stage(draft)
+  send route
+  show veil
