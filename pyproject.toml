@@ -1,0 +1,10 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "singularity-works"
+version = "0.2.0"
+description = "Pattern-driven forge with QA, traceability, assurance, and HUD"
+requires-python = ">=3.11"
+dependencies = []

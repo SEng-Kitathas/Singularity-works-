@@ -1,0 +1,1586 @@
+{
+  "schema_version": "2.0",
+  "capsules": [
+    {
+      "pattern_id": "resource_scope.raii_cluster",
+      "family": "resource_scope",
+      "radicals": [
+        "SCOPE",
+        "CLEANUP",
+        "LIFE"
+      ],
+      "summary": "Acquisition and cleanup must be structurally coupled.",
+      "invariants": [
+        "acquire_release_paired",
+        "cleanup_on_error"
+      ],
+      "anti_patterns": [
+        {
+          "id": "manual_open_without_close",
+          "detection_strategy": "ast_resource_lifecycle",
+          "concept": "resource_acquired_without_guaranteed_release",
+          "severity": "high",
+          "transformation_axiom": "prefer_scoped_cleanup_to_manual_cleanup",
+          "auto_apply": true,
+          "safety_level": "high_confidence_safe"
+        }
+      ],
+      "language_manifestations": {
+        "python": [
+          "with open(...) as fh:"
+        ],
+        "javascript": [
+          "stream cleanup / destroy on error"
+        ],
+        "rust": [
+          "Drop-based cleanup"
+        ]
+      },
+      "emitters": [
+        "context_manager_rewrite",
+        "scoped_guard_template"
+      ],
+      "transformation_axioms": [
+        "prefer_scoped_cleanup_to_manual_cleanup"
+      ],
+      "laws": [
+        "LAW_1",
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "resource_safety",
+        "error_path_hygiene"
+      ]
+    },
+    {
+      "pattern_id": "query_integrity.parameterized_queries",
+      "family": "query_integrity",
+      "radicals": [
+        "QUERY",
+        "TRUST",
+        "BOUND"
+      ],
+      "summary": "Separate code from data in query construction.",
+      "invariants": [
+        "no_untrusted_interpolation",
+        "explicit_parameter_binding"
+      ],
+      "anti_patterns": [
+        {
+          "id": "string_built_query",
+          "detection_strategy": "ast_query_construction",
+          "concept": "untrusted_data_in_query_string",
+          "severity": "critical",
+          "transformation_axiom": "prefer_parameter_binding_to_string_interpolation",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "language_manifestations": {
+        "python": [
+          "DB-API parameterization"
+        ],
+        "javascript": [
+          "prepared statements / parameter binding"
+        ],
+        "java": [
+          "PreparedStatement"
+        ]
+      },
+      "emitters": [
+        "parameterized_query_rewrite"
+      ],
+      "transformation_axioms": [
+        "prefer_parameter_binding_to_string_interpolation"
+      ],
+      "laws": [
+        "LAW_1",
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "injection_resistance",
+        "trust_boundary_hardening"
+      ]
+    },
+    {
+      "pattern_id": "state_protocol.typestate_cluster",
+      "family": "typestate_protocol",
+      "radicals": [
+        "STATE",
+        "FLOW",
+        "GUARD"
+      ],
+      "summary": "Make valid operation sequences explicit and machine-checkable.",
+      "invariants": [
+        "valid_transitions_only",
+        "forbidden_state_blocks"
+      ],
+      "anti_patterns": [
+        {
+          "id": "act_after_close",
+          "detection_strategy": "ast_protocol_violation",
+          "concept": "resource_use_after_terminal_state",
+          "severity": "high",
+          "transformation_axiom": "prefer_explicit_state_machine_for_sensitive_sequences",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "language_manifestations": {
+        "python": [
+          "explicit state machines + gate checks"
+        ],
+        "typescript": [
+          "discriminated unions / state tags"
+        ],
+        "rust": [
+          "typestate APIs"
+        ]
+      },
+      "emitters": [
+        "state_guard_template",
+        "transition_map_template"
+      ],
+      "transformation_axioms": [
+        "prefer_explicit_state_machine_for_sensitive_sequences"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_5",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "protocol_safety",
+        "temporal_integrity"
+      ]
+    },
+    {
+      "pattern_id": "boundary.validator_proxy",
+      "family": "trust_boundary_validation",
+      "radicals": [
+        "TRUST",
+        "BOUND",
+        "CHECK"
+      ],
+      "summary": "Every dangerous sink or privilege boundary carries its own validation contract.",
+      "invariants": [
+        "sink_defends_itself",
+        "boundary_contract_explicit"
+      ],
+      "anti_patterns": [
+        {
+          "id": "trust_caller_implicitly",
+          "detection_strategy": "ast_dangerous_calls",
+          "concept": "dynamic_execution_without_trust_validation",
+          "severity": "critical",
+          "transformation_axiom": "prefer_literal_eval_to_dynamic_eval",
+          "auto_apply": true,
+          "safety_level": "safe"
+        }
+      ],
+      "language_manifestations": {
+        "python": [
+          "validator proxy functions / adapters"
+        ],
+        "typescript": [
+          "schema validation at boundaries"
+        ],
+        "rust": [
+          "validated wrapper types"
+        ]
+      },
+      "emitters": [
+        "validator_proxy_template",
+        "boundary_contract_template"
+      ],
+      "transformation_axioms": [
+        "push_validation_to_sink_boundary"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_5",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "sink_isolation"
+      ]
+    },
+    {
+      "pattern_id": "verification_integrity.tls_validation",
+      "family": "trust_boundary_validation",
+      "radicals": [
+        "TRUST",
+        "VERIFY"
+      ],
+      "summary": "TLS certificate verification must remain enabled on all outbound connections.",
+      "invariants": [
+        "verify_always_true",
+        "no_certificate_suppression"
+      ],
+      "anti_patterns": [
+        {
+          "id": "verification_disabled",
+          "detection_strategy": "ast_verification_disabled",
+          "concept": "tls_certificate_check_suppressed",
+          "severity": "critical",
+          "transformation_axiom": "prefer_verified_tls_to_disabled",
+          "auto_apply": true,
+          "safety_level": "safe"
+        }
+      ],
+      "language_manifestations": {
+        "python": [
+          "requests.get(url, verify=True)"
+        ],
+        "javascript": [
+          "rejectUnauthorized: true"
+        ],
+        "java": [
+          "SSLContext with TrustManager"
+        ]
+      },
+      "emitters": [
+        "tls_enable_template"
+      ],
+      "transformation_axioms": [
+        "prefer_verified_tls_to_disabled"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "tls_integrity"
+      ]
+    },
+    {
+      "pattern_id": "execution_safety.no_dynamic_eval",
+      "family": "trust_boundary_validation",
+      "radicals": [
+        "TRUST"
+      ],
+      "summary": "Dynamic code execution primitives must be replaced with safe alternatives.",
+      "invariants": [
+        "no_eval_call",
+        "no_exec_call"
+      ],
+      "anti_patterns": [
+        {
+          "id": "dynamic_eval",
+          "detection_strategy": "ast_dangerous_calls",
+          "concept": "eval_exec_builtin_dynamic_execution",
+          "severity": "critical",
+          "transformation_axiom": "prefer_literal_eval_to_dynamic_eval",
+          "auto_apply": true,
+          "safety_level": "safe"
+        }
+      ],
+      "language_manifestations": {
+        "python": [
+          "ast.literal_eval(expr) instead of eval(expr)"
+        ],
+        "javascript": [
+          "JSON.parse() instead of eval()"
+        ],
+        "ruby": [
+          "Kernel#send with whitelist instead of eval"
+        ]
+      },
+      "emitters": [
+        "literal_eval_rewrite"
+      ],
+      "transformation_axioms": [
+        "prefer_literal_eval_to_dynamic_eval"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "sink_isolation"
+      ]
+    },
+    {
+      "pattern_id": "code_hygiene.no_placeholders",
+      "family": "law_compliance",
+      "radicals": [
+        "CLEAN"
+      ],
+      "summary": "Placeholder markers (TODO/FIXME) are forbidden in production artifacts.",
+      "invariants": [
+        "no_todo_markers",
+        "no_fixme_markers"
+      ],
+      "anti_patterns": [
+        {
+          "id": "todo_placeholder",
+          "detection_strategy": "token_placeholder_check",
+          "concept": "incomplete_implementation_marker",
+          "severity": "high",
+          "transformation_axiom": "remove_todo_markers",
+          "auto_apply": true,
+          "safety_level": "safe"
+        }
+      ],
+      "language_manifestations": {
+        "python": [
+          "# no TODO/FIXME comments in production"
+        ],
+        "javascript": [
+          "// no TODO/FIXME comments in production"
+        ],
+        "rust": [
+          "// no TODO/FIXME comments in production"
+        ]
+      },
+      "emitters": [
+        "remove_todo_template"
+      ],
+      "transformation_axioms": [
+        "remove_todo_markers"
+      ],
+      "laws": [
+        "LAW_1",
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "code_completeness",
+        "law_enforcement"
+      ]
+    },
+    {
+      "pattern_id": "state_safety.no_mutable_defaults",
+      "family": "state_safety",
+      "radicals": [
+        "STATE",
+        "SCOPE"
+      ],
+      "summary": "Function default arguments must not be mutable objects \u2014 they persist across all calls.",
+      "invariants": [
+        "default_args_are_immutable",
+        "no_shared_state_in_defaults"
+      ],
+      "anti_patterns": [
+        {
+          "id": "mutable_default_arg",
+          "detection_strategy": "ast_mutable_defaults",
+          "concept": "mutable_object_as_default_parameter",
+          "severity": "high",
+          "transformation_axiom": "replace_mutable_default_with_none_sentinel",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "language_manifestations": {
+        "python": [
+          "def f(x=None): if x is None: x = []"
+        ],
+        "javascript": [
+          "function f(x) { x = x || []; }"
+        ]
+      },
+      "emitters": [
+        "none_sentinel_rewrite"
+      ],
+      "transformation_axioms": [
+        "replace_mutable_default_with_none_sentinel"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "state_isolation",
+        "code_correctness",
+        "code_completeness"
+      ]
+    },
+    {
+      "pattern_id": "execution_safety.no_shell_injection",
+      "family": "trust_boundary_validation",
+      "radicals": [
+        "TRUST",
+        "EXEC"
+      ],
+      "summary": "Shell commands must use explicit argument lists, not shell=True with string interpolation.",
+      "invariants": [
+        "no_shell_true_with_user_input",
+        "explicit_argument_lists"
+      ],
+      "anti_patterns": [
+        {
+          "id": "shell_injection_surface",
+          "detection_strategy": "ast_shell_injection",
+          "concept": "shell_command_with_string_interpolation",
+          "severity": "critical",
+          "transformation_axiom": "prefer_explicit_args_to_shell_string",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "language_manifestations": {
+        "python": [
+          "subprocess.run(shlex.split(cmd)) instead of shell=True"
+        ],
+        "javascript": [
+          "execFile(['cmd', arg]) instead of exec(string)"
+        ]
+      },
+      "emitters": [
+        "shell_safe_rewrite"
+      ],
+      "transformation_axioms": [
+        "prefer_explicit_args_to_shell_string"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "sink_isolation",
+        "state_isolation"
+      ]
+    },
+    {
+      "pattern_id": "temporal_safety.no_toctou",
+      "family": "temporal_integrity",
+      "radicals": [
+        "STATE",
+        "TRUST"
+      ],
+      "summary": "File permission checks must be atomic with subsequent operations. No TOCTOU gaps.",
+      "invariants": [
+        "check_and_act_atomic",
+        "no_symlink_race"
+      ],
+      "anti_patterns": [
+        {
+          "id": "toctou_access_open",
+          "detection_strategy": "ast_toctou",
+          "concept": "time_of_check_to_time_of_use",
+          "severity": "critical",
+          "transformation_axiom": "prefer_atomic_open_to_access_then_open",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "language_manifestations": {
+        "c": [
+          "open(path, O_WRONLY|O_NOFOLLOW) instead of access()+open()"
+        ],
+        "python": [
+          "os.open with O_NOFOLLOW or pathlib atomic operations"
+        ],
+        "rust": [
+          "std::fs::OpenOptions with no_follow extension"
+        ]
+      },
+      "emitters": [
+        "atomic_open_template"
+      ],
+      "transformation_axioms": [
+        "prefer_atomic_open_to_access_then_open"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_5",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "temporal_integrity",
+        "trust_boundary_hardening"
+      ],
+      "isomorph_class": "check_act_atomicity"
+    },
+    {
+      "pattern_id": "network_safety.ssrf_protection",
+      "family": "trust_boundary_validation",
+      "radicals": [
+        "TRUST",
+        "BOUND"
+      ],
+      "summary": "User-supplied URLs must have host validation before network requests.",
+      "invariants": [
+        "no_unvalidated_user_url",
+        "host_denylist_enforced"
+      ],
+      "anti_patterns": [
+        {
+          "id": "user_url_to_network",
+          "detection_strategy": "ast_ssrf",
+          "concept": "server_side_request_forgery",
+          "severity": "critical",
+          "transformation_axiom": "inject_host_denylist_validation",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "language_manifestations": {
+        "javascript": [
+          "validate host against allowlist before fetch/axios"
+        ],
+        "python": [
+          "check parsed URL netloc against denylist before requests.get"
+        ],
+        "go": [
+          "validate url.Host before http.Get"
+        ]
+      },
+      "emitters": [
+        "host_validation_template"
+      ],
+      "transformation_axioms": [
+        "inject_host_denylist_validation"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "sink_isolation"
+      ],
+      "isomorph_class": "boundary_explicit"
+    },
+    {
+      "pattern_id": "crypto_safety.csprng_required",
+      "family": "trust_boundary_validation",
+      "radicals": [
+        "TRUST",
+        "VERIFY"
+      ],
+      "summary": "Security tokens must use cryptographically secure random number generators.",
+      "invariants": [
+        "no_predictable_prng_in_security_context",
+        "csprng_only"
+      ],
+      "anti_patterns": [
+        {
+          "id": "weak_rng_in_security",
+          "detection_strategy": "ast_weak_rng",
+          "concept": "predictable_prng_for_security_token",
+          "severity": "critical",
+          "transformation_axiom": "prefer_csprng_to_prng",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "language_manifestations": {
+        "java": [
+          "SecureRandom instead of Random(System.currentTimeMillis())"
+        ],
+        "python": [
+          "secrets.token_hex() instead of random.seed(time)"
+        ],
+        "javascript": [
+          "crypto.randomBytes() instead of Math.random()"
+        ]
+      },
+      "emitters": [
+        "csprng_rewrite_template"
+      ],
+      "transformation_axioms": [
+        "prefer_csprng_to_prng"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "tls_integrity"
+      ],
+      "isomorph_class": "deterministic_precision"
+    },
+    {
+      "pattern_id": "numeric_safety.no_float_finance",
+      "family": "numeric_integrity",
+      "radicals": [
+        "BOUND"
+      ],
+      "summary": "Financial calculations must use fixed-point or decimal arithmetic, not float.",
+      "invariants": [
+        "no_float_for_money",
+        "deterministic_precision"
+      ],
+      "anti_patterns": [
+        {
+          "id": "float_in_financial_context",
+          "detection_strategy": "ast_float_finance",
+          "concept": "floating_point_rounding_in_money",
+          "severity": "high",
+          "transformation_axiom": "prefer_decimal_to_float_for_money",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "language_manifestations": {
+        "python": [
+          "decimal.Decimal instead of float"
+        ],
+        "java": [
+          "BigDecimal instead of double"
+        ],
+        "go": [
+          "github.com/shopspring/decimal instead of float64"
+        ]
+      },
+      "emitters": [
+        "decimal_rewrite_template"
+      ],
+      "transformation_axioms": [
+        "prefer_decimal_to_float_for_money"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_5",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "code_correctness",
+        "state_isolation",
+        "deterministic_precision"
+      ],
+      "isomorph_class": "deterministic_precision"
+    },
+    {
+      "pattern_id": "memory_safety.unsafe_bounds_required",
+      "family": "trust_boundary_validation",
+      "radicals": [
+        "TRUST",
+        "BOUND"
+      ],
+      "summary": "Unsafe memory operations must verify alignment and size before raw pointer operations.",
+      "invariants": [
+        "size_checked_before_unsafe",
+        "alignment_verified"
+      ],
+      "anti_patterns": [
+        {
+          "id": "unsafe_cast_without_bounds",
+          "detection_strategy": "ast_unsafe_memory",
+          "concept": "raw_pointer_cast_without_safety_check",
+          "severity": "critical",
+          "transformation_axiom": "wrap_unsafe_in_bounds_checked_function",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "language_manifestations": {
+        "rust": [
+          "check size_of::<T>() and align_of::<T>() before raw cast"
+        ],
+        "c": [
+          "assert len >= sizeof(Header) before pointer cast"
+        ],
+        "cpp": [
+          "use reinterpret_cast with static_assert on alignment"
+        ]
+      },
+      "emitters": [
+        "safe_cast_wrapper_template"
+      ],
+      "transformation_axioms": [
+        "wrap_unsafe_in_bounds_checked_function"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "sink_isolation"
+      ],
+      "isomorph_class": "boundary_explicit"
+    },
+    {
+      "pattern_id": "temporal_safety.no_async_toctou",
+      "family": "temporal_integrity",
+      "radicals": [
+        "STATE",
+        "TRUST"
+      ],
+      "summary": "Async check-act sequences on shared state must be wrapped in atomic transactions.",
+      "invariants": [
+        "check_act_atomic",
+        "no_toctou_in_async"
+      ],
+      "anti_patterns": [
+        {
+          "id": "async_toctou_double_spend",
+          "detection_strategy": "ast_async_toctou",
+          "concept": "async_check_then_act_race",
+          "severity": "critical",
+          "transformation_axiom": "prefer_explicit_state_machine_for_sensitive_sequences",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "language_manifestations": {
+        "javascript": [
+          "SELECT FOR UPDATE or compare-and-swap atomic operations"
+        ],
+        "typescript": [
+          "transaction wrapper or optimistic locking"
+        ],
+        "python": [
+          "SELECT FOR UPDATE within transaction context"
+        ]
+      },
+      "emitters": [
+        "atomic_transaction_template"
+      ],
+      "transformation_axioms": [
+        "prefer_explicit_state_machine_for_sensitive_sequences"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_5",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "temporal_integrity",
+        "state_isolation"
+      ],
+      "isomorph_class": "check_act_atomicity"
+    },
+    {
+      "pattern_id": "logic.second_order_injection",
+      "family": "trust_boundary_validation",
+      "radicals": [
+        "TRUST",
+        "QUERY"
+      ],
+      "summary": "Taint from user input must not reach SQL sinks through function call chains.",
+      "invariants": [
+        "all_query_components_parameterized",
+        "no_interprocedural_sqli"
+      ],
+      "anti_patterns": [
+        {
+          "id": "interprocedural_sqli",
+          "detection_strategy": "interproc_sqli",
+          "concept": "second_order_sql_injection",
+          "severity": "critical",
+          "transformation_axiom": "prefer_parameter_binding_to_string_interpolation",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "language_manifestations": {
+        "python": [
+          "parameterize ALL query components including table/column names"
+        ]
+      },
+      "transformation_axioms": [
+        "prefer_parameter_binding_to_string_interpolation"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "injection_resistance",
+        "trust_boundary_hardening"
+      ],
+      "isomorph_class": "boundary_explicit"
+    },
+    {
+      "pattern_id": "logic.invariant_collision",
+      "family": "structural_integrity",
+      "radicals": [
+        "STATE",
+        "TRUST"
+      ],
+      "summary": "Whitelist-guarded setters must be the only write path to sensitive attributes.",
+      "invariants": [
+        "single_write_path_for_protected_attrs",
+        "no_setattr_bypass"
+      ],
+      "anti_patterns": [
+        {
+          "id": "setattr_whitelist_bypass",
+          "detection_strategy": "interproc_invariant_collision",
+          "concept": "semantic_collision_through_setattr",
+          "severity": "critical",
+          "transformation_axiom": "push_validation_to_sink_boundary",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "language_manifestations": {
+        "python": [
+          "route all writes through guarded setter; remove unguarded setattr paths"
+        ]
+      },
+      "transformation_axioms": [
+        "push_validation_to_sink_boundary"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_5",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "injection_resistance",
+        "state_isolation"
+      ],
+      "isomorph_class": "boundary_explicit"
+    },
+    {
+      "pattern_id": "logic.no_init_cycle",
+      "family": "structural_integrity",
+      "radicals": [
+        "STATE"
+      ],
+      "summary": "Classes must not have circular initialization dependencies.",
+      "invariants": [
+        "acyclic_initialization_graph"
+      ],
+      "anti_patterns": [
+        {
+          "id": "circular_init_dependency",
+          "detection_strategy": "interproc_init_cycle",
+          "concept": "deadlock_in_init_graph",
+          "severity": "critical",
+          "transformation_axiom": "prefer_explicit_state_machine_for_sensitive_sequences",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "language_manifestations": {
+        "python": [
+          "use lazy init or dependency injection; never call mediator in __init__"
+        ]
+      },
+      "transformation_axioms": [
+        "prefer_explicit_state_machine_for_sensitive_sequences"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "code_correctness",
+        "state_isolation",
+        "temporal_integrity",
+        "code_completeness"
+      ],
+      "isomorph_class": "check_act_atomicity"
+    },
+    {
+      "pattern_id": "timing.constant_time_compare",
+      "family": "trust_boundary_validation",
+      "radicals": [
+        "TRUST",
+        "VERIFY"
+      ],
+      "summary": "Security token comparison must be constant-time to prevent timing oracles.",
+      "invariants": [
+        "no_early_exit_on_secret_comparison"
+      ],
+      "anti_patterns": [
+        {
+          "id": "non_constant_time_compare",
+          "detection_strategy": "local_timing_attack",
+          "concept": "timing_side_channel",
+          "severity": "high",
+          "transformation_axiom": "push_validation_to_sink_boundary",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "language_manifestations": {
+        "python": [
+          "hmac.compare_digest(a, b) for constant-time comparison"
+        ]
+      },
+      "transformation_axioms": [
+        "push_validation_to_sink_boundary"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "tls_integrity"
+      ],
+      "isomorph_class": "deterministic_precision"
+    },
+    {
+      "pattern_id": "logic.complete_sanitization",
+      "family": "trust_boundary_validation",
+      "radicals": [
+        "TRUST",
+        "BOUND"
+      ],
+      "summary": "Path sanitization must cover all encoding variants, not just literal '..'.",
+      "invariants": [
+        "path_normalized_before_check",
+        "realpath_used_after_join"
+      ],
+      "anti_patterns": [
+        {
+          "id": "incomplete_path_sanitization",
+          "detection_strategy": "local_path_traversal",
+          "concept": "path_traversal_url_encoding_bypass",
+          "severity": "critical",
+          "transformation_axiom": "inject_host_denylist_validation",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "language_manifestations": {
+        "python": [
+          "unquote + realpath + startswith(base) \u2014 in that order"
+        ]
+      },
+      "transformation_axioms": [
+        "inject_host_denylist_validation"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "sink_isolation"
+      ],
+      "isomorph_class": "boundary_explicit"
+    },
+    {
+      "pattern_id": "logic.no_redos",
+      "family": "temporal_integrity",
+      "radicals": [
+        "BOUND"
+      ],
+      "summary": "Regular expressions must not contain nested quantifiers that cause exponential backtracking.",
+      "invariants": [
+        "linear_time_regex_matching"
+      ],
+      "anti_patterns": [
+        {
+          "id": "redos_nested_quantifier",
+          "detection_strategy": "local_redos",
+          "concept": "catastrophic_backtracking_in_nfa",
+          "severity": "high",
+          "transformation_axiom": "prefer_atomic_open_to_access_then_open",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "language_manifestations": {
+        "python": [
+          "use re2 library or rewrite pattern to eliminate nesting"
+        ]
+      },
+      "transformation_axioms": [
+        "prefer_atomic_open_to_access_then_open"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_5",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "temporal_integrity",
+        "code_correctness"
+      ],
+      "isomorph_class": "deterministic_precision"
+    },
+    {
+      "pattern_id": "crypto.no_weak_hash",
+      "family": "trust_boundary_validation",
+      "radicals": [
+        "VERIFY",
+        "TRUST"
+      ],
+      "summary": "MD5 and SHA1 are cryptographically broken and must not be used for security purposes.",
+      "invariants": [
+        "no_md5_sha1_for_security"
+      ],
+      "anti_patterns": [
+        {
+          "id": "weak_hash_in_security_context",
+          "detection_strategy": "local_weak_hash",
+          "concept": "cryptographic_downgrade",
+          "severity": "critical",
+          "transformation_axiom": "prefer_csprng_to_prng",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "language_manifestations": {
+        "python": [
+          "bcrypt.hashpw / passlib.hash.argon2 for passwords; hashlib.sha256+ for digests"
+        ]
+      },
+      "transformation_axioms": [
+        "prefer_csprng_to_prng"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "tls_integrity",
+        "trust_boundary_hardening"
+      ],
+      "isomorph_class": "deterministic_precision"
+    },
+    {
+      "pattern_id": "serialize.no_unsafe_deserialize",
+      "family": "trust_boundary_validation",
+      "radicals": [
+        "TRUST"
+      ],
+      "summary": "Deserialization of user-supplied data using pickle/yaml.load executes arbitrary code.",
+      "invariants": [
+        "no_pickle_on_external_input",
+        "use_schema_validated_format"
+      ],
+      "anti_patterns": [
+        {
+          "id": "unsafe_deserialization",
+          "detection_strategy": "local_deserialization",
+          "concept": "arbitrary_code_execution_via_deserialization",
+          "severity": "critical",
+          "transformation_axiom": "push_validation_to_sink_boundary",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "language_manifestations": {
+        "python": [
+          "json.loads for structured data; yaml.safe_load if YAML required"
+        ]
+      },
+      "transformation_axioms": [
+        "push_validation_to_sink_boundary"
+      ],
+      "laws": [
+        "LAW_1",
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "sink_isolation"
+      ],
+      "isomorph_class": "boundary_explicit"
+    },
+    {
+      "pattern_id": "injection.getattr_injection",
+      "family": "trust_boundary_validation",
+      "radicals": [
+        "TRUST"
+      ],
+      "summary": "getattr() with user-controlled attribute name is eval in disguise.",
+      "invariants": [
+        "no_dynamic_dispatch_from_user_input"
+      ],
+      "anti_patterns": [
+        {
+          "id": "getattr_dynamic_dispatch",
+          "detection_strategy": "local_getattr_injection",
+          "concept": "attribute_based_code_execution",
+          "severity": "critical",
+          "transformation_axiom": "push_validation_to_sink_boundary",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "transformation_axioms": [
+        "push_validation_to_sink_boundary"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "injection_resistance",
+        "trust_boundary_hardening"
+      ],
+      "isomorph_class": "boundary_explicit"
+    },
+    {
+      "pattern_id": "tls.no_insecure_default",
+      "family": "trust_boundary_validation",
+      "radicals": [
+        "TRUST",
+        "VERIFY"
+      ],
+      "summary": "verify=False in default argument propagates insecure TLS to all callers.",
+      "invariants": [
+        "tls_verification_enabled_by_default"
+      ],
+      "anti_patterns": [
+        {
+          "id": "tls_insecure_default",
+          "detection_strategy": "local_tls_default",
+          "concept": "tls_disabled_in_function_signature",
+          "severity": "high",
+          "transformation_axiom": "push_validation_to_sink_boundary",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "transformation_axioms": [
+        "push_validation_to_sink_boundary"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "tls_integrity",
+        "trust_boundary_hardening"
+      ],
+      "isomorph_class": "boundary_explicit"
+    },
+    {
+      "pattern_id": "injection.template_injection",
+      "family": "trust_boundary_validation",
+      "radicals": [
+        "TRUST"
+      ],
+      "summary": "User input in template strings enables server-side template injection (SSTI).",
+      "invariants": [
+        "template_string_must_be_static"
+      ],
+      "anti_patterns": [
+        {
+          "id": "ssti_user_in_template",
+          "detection_strategy": "local_template_injection",
+          "concept": "server_side_template_injection",
+          "severity": "critical",
+          "transformation_axiom": "push_validation_to_sink_boundary",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "transformation_axioms": [
+        "push_validation_to_sink_boundary"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "injection_resistance",
+        "trust_boundary_hardening"
+      ],
+      "isomorph_class": "boundary_explicit"
+    },
+    {
+      "pattern_id": "redirect.no_open_redirect",
+      "family": "trust_boundary_validation",
+      "radicals": [
+        "TRUST",
+        "BOUND"
+      ],
+      "summary": "redirect() with user-supplied URL enables phishing and OAuth token theft.",
+      "invariants": [
+        "redirect_target_must_be_validated"
+      ],
+      "anti_patterns": [
+        {
+          "id": "open_redirect_user_url",
+          "detection_strategy": "local_open_redirect",
+          "concept": "open_redirect_via_user_input",
+          "severity": "high",
+          "transformation_axiom": "inject_host_denylist_validation",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "transformation_axioms": [
+        "inject_host_denylist_validation"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "sink_isolation"
+      ],
+      "isomorph_class": "boundary_explicit"
+    },
+    {
+      "pattern_id": "injection.structured_query_injection",
+      "family": "trust_boundary_validation",
+      "radicals": [
+        "TRUST",
+        "QUERY"
+      ],
+      "summary": "User input in XPATH, LDAP, or XML queries enables structured query injection.",
+      "invariants": [
+        "no_user_input_in_structured_queries",
+        "xml_external_entities_disabled"
+      ],
+      "anti_patterns": [
+        {
+          "id": "xpath_ldap_xxe_injection",
+          "detection_strategy": "local_injection_patterns",
+          "concept": "structured_query_injection",
+          "severity": "critical",
+          "transformation_axiom": "prefer_parameter_binding_to_string_interpolation",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "transformation_axioms": [
+        "prefer_parameter_binding_to_string_interpolation"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "injection_resistance",
+        "trust_boundary_hardening",
+        "sink_isolation"
+      ],
+      "isomorph_class": "boundary_explicit"
+    },
+    {
+      "pattern_id": "state.no_mass_assignment",
+      "family": "structural_integrity",
+      "radicals": [
+        "STATE",
+        "TRUST"
+      ],
+      "summary": "setattr() over user-controlled dict without allowlist enables mass assignment attacks.",
+      "invariants": [
+        "attribute_writes_must_use_allowlist"
+      ],
+      "anti_patterns": [
+        {
+          "id": "mass_assignment_setattr",
+          "detection_strategy": "local_mass_assignment",
+          "concept": "mass_assignment_without_allowlist",
+          "severity": "high",
+          "transformation_axiom": "push_validation_to_sink_boundary",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "transformation_axioms": [
+        "push_validation_to_sink_boundary"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "injection_resistance",
+        "trust_boundary_hardening",
+        "state_isolation"
+      ],
+      "isomorph_class": "boundary_explicit"
+    },
+    {
+      "pattern_id": "memory.no_format_string",
+      "family": "trust_boundary_validation",
+      "radicals": [
+        "TRUST",
+        "BOUND"
+      ],
+      "summary": "printf with user-controlled format string enables arbitrary memory read/write.",
+      "invariants": [
+        "printf_format_must_be_literal"
+      ],
+      "anti_patterns": [
+        {
+          "id": "format_string_c",
+          "detection_strategy": "local_format_string_c",
+          "concept": "format_string_vulnerability",
+          "severity": "critical",
+          "transformation_axiom": "push_validation_to_sink_boundary",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "transformation_axioms": [
+        "push_validation_to_sink_boundary"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "sink_isolation",
+        "code_correctness"
+      ],
+      "isomorph_class": "boundary_explicit"
+    },
+    {
+      "pattern_id": "memory.no_integer_overflow_alloc",
+      "family": "structural_integrity",
+      "radicals": [
+        "BOUND",
+        "STATE"
+      ],
+      "summary": "Integer multiplication in malloc/calloc can overflow, causing under-allocation.",
+      "invariants": [
+        "allocation_arithmetic_must_be_checked"
+      ],
+      "anti_patterns": [
+        {
+          "id": "integer_overflow_alloc",
+          "detection_strategy": "local_integer_overflow_alloc",
+          "concept": "integer_overflow_in_allocation",
+          "severity": "critical",
+          "transformation_axiom": "prefer_checked_arithmetic",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "transformation_axioms": [
+        "prefer_checked_arithmetic"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "code_correctness",
+        "deterministic_precision",
+        "trust_boundary_hardening"
+      ],
+      "isomorph_class": "boundary_explicit"
+    },
+    {
+      "pattern_id": "concurrency.no_goroutine_leak",
+      "family": "temporal_integrity",
+      "radicals": [
+        "STATE",
+        "BOUND"
+      ],
+      "summary": "Goroutine with channel send but no send on error path \u2014 goroutine leaks.",
+      "invariants": [
+        "goroutine_must_have_cancellation_path"
+      ],
+      "anti_patterns": [
+        {
+          "id": "goroutine_leak",
+          "detection_strategy": "local_goroutine_leak",
+          "concept": "goroutine_channel_leak",
+          "severity": "high",
+          "transformation_axiom": "ensure_all_paths_exit",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "transformation_axioms": [
+        "ensure_all_paths_exit"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "temporal_integrity",
+        "state_isolation",
+        "code_correctness"
+      ],
+      "isomorph_class": "temporal_gap"
+    },
+    {
+      "pattern_id": "injection.no_prototype_constructor",
+      "family": "trust_boundary_validation",
+      "radicals": [
+        "TRUST",
+        "STATE"
+      ],
+      "summary": "Object.keys() iteration without constructor guard enables prototype pollution.",
+      "invariants": [
+        "object_merge_must_guard_constructor"
+      ],
+      "anti_patterns": [
+        {
+          "id": "prototype_constructor_pollution",
+          "detection_strategy": "local_prototype_constructor",
+          "concept": "prototype_pollution_via_constructor",
+          "severity": "critical",
+          "transformation_axiom": "push_validation_to_sink_boundary",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "transformation_axioms": [
+        "push_validation_to_sink_boundary"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "injection_resistance",
+        "trust_boundary_hardening",
+        "state_isolation"
+      ],
+      "isomorph_class": "boundary_explicit"
+    },
+    {
+      "pattern_id": "injection.no_reflection_injection",
+      "family": "trust_boundary_validation",
+      "radicals": [
+        "TRUST"
+      ],
+      "summary": "Class.forName() or getDeclaredMethod() with user-controlled arguments enables arbitrary class loading.",
+      "invariants": [
+        "reflection_class_names_must_be_literal_or_allowlisted"
+      ],
+      "anti_patterns": [
+        {
+          "id": "reflection_class_execution",
+          "detection_strategy": "local_reflection_injection",
+          "concept": "reflection_based_code_execution",
+          "severity": "critical",
+          "transformation_axiom": "push_validation_to_sink_boundary",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "transformation_axioms": [
+        "push_validation_to_sink_boundary"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "injection_resistance",
+        "trust_boundary_hardening",
+        "sink_isolation"
+      ],
+      "isomorph_class": "boundary_explicit"
+    },
+    {
+      "pattern_id": "auth.no_unsigned_jwt",
+      "family": "trust_boundary_validation",
+      "radicals": [
+        "TRUST",
+        "VERIFY"
+      ],
+      "summary": "base64-decoded JSON trusted for role/admin without signature verification \u2014 attacker fabricates identity claims.",
+      "invariants": [
+        "auth_tokens_must_be_cryptographically_verified"
+      ],
+      "anti_patterns": [
+        {
+          "id": "unsigned_token_trust",
+          "detection_strategy": "local_unsigned_jwt",
+          "concept": "unsigned_token_trusted_for_authorization",
+          "severity": "critical",
+          "transformation_axiom": "push_validation_to_sink_boundary",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "transformation_axioms": [
+        "push_validation_to_sink_boundary"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "capabilities": [
+        "tls_integrity",
+        "trust_boundary_hardening",
+        "temporal_integrity"
+      ],
+      "isomorph_class": "boundary_explicit"
+    },
+    {
+      "pattern_id": "crypto.no_jwt_algo_confusion",
+      "family": "crypto_safety",
+      "radicals": [
+        "VERIFY",
+        "TRUST"
+      ],
+      "summary": "JWT decode must specify algorithms= to prevent algorithm confusion attacks.",
+      "invariants": [
+        "jwt_algorithm_must_be_explicit"
+      ],
+      "anti_patterns": [
+        {
+          "id": "jwt_algorithm_confusion",
+          "detection_strategy": "local_jwt_algorithm_confusion",
+          "concept": "jwt_decoded_without_explicit_algorithm",
+          "severity": "critical",
+          "transformation_axiom": "push_validation_to_sink_boundary",
+          "auto_apply": false,
+          "safety_level": "review_required"
+        }
+      ],
+      "language_manifestations": {
+        "python": [
+          "jwt.decode(token, secret, algorithms=['HS256'])"
+        ]
+      },
+      "capabilities": [
+        "injection_resistance",
+        "trust_boundary_hardening"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "transformation_axioms": [
+        "push_validation_to_sink_boundary"
+      ],
+      "isomorph_class": "boundary_explicit"
+    },
+    {
+      "pattern_id": "network.no_http_cleartext",
+      "family": "tls_enforcement",
+      "radicals": [
+        "VERIFY",
+        "TRUST"
+      ],
+      "summary": "Internal network calls must use HTTPS, not cleartext HTTP.",
+      "invariants": [
+        "network_calls_must_use_tls"
+      ],
+      "anti_patterns": [
+        {
+          "id": "http_no_tls",
+          "detection_strategy": "local_http_no_tls",
+          "concept": "hardcoded_http_url_in_network_call",
+          "severity": "high",
+          "transformation_axiom": "upgrade_to_encrypted_transport",
+          "auto_apply": true,
+          "safety_level": "high_confidence_safe"
+        }
+      ],
+      "language_manifestations": {
+        "python": [
+          "requests.get('https://...')"
+        ]
+      },
+      "capabilities": [
+        "trust_boundary_hardening"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "transformation_axioms": [
+        "upgrade_to_encrypted_transport"
+      ],
+      "isomorph_class": "transport_hygiene"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "mode": "run",
+  "project_tag": "singularity-works",
+  "hud": {
+    "enabled": true,
+    "use_alt_screen": true
+  },
+  "ledger": {
+    "filename": "evidence.jsonl"
+  }
+}
