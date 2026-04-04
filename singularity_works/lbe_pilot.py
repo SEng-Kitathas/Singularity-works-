@@ -297,6 +297,16 @@ _SINK_MAP = {
     "raw": "QueryExec",
     "system": "CommandExec",
     "popen": "CommandExec",
+    # Deserialization
+    "open": "UnknownEffect",
+    "search": "LDAPQuery",
+    "xpath": "XPathExec",
+    # File ops
+    "rename": "FileWrite",
+    "write": "FileWrite",
+    "write_text": "FileWrite",
+    # Dynamic dispatch
+    "getattr": "DynamicDispatch",
     "render_template_string": "RenderInline",
     "render": "RenderInline",
     "redirect": "Redirect",
@@ -313,7 +323,13 @@ _NAMESPACED_SINKS = {
     "yaml":     {"load": "UnknownEffect"},
     "subprocess": {"run": "CommandExec", "call": "CommandExec",
                    "Popen": "CommandExec", "check_output": "CommandExec"},
-    "os":       {"system": "CommandExec", "popen": "CommandExec"},
+    "os":       {"system": "CommandExec", "popen": "CommandExec",
+                 "rename": "FileWrite", "unlink": "FileWrite"},
+    "shelve":   {"open": "UnknownEffect"},
+    "etree":    {"xpath": "XPathExec", "fromstring": "UnknownEffect"},
+    "conn":     {"search": "LDAPQuery"},
+    "db":       {"execute": "QueryExec"},
+    "cursor":   {"execute": "QueryExec"},
 }
 
 # Transform operations
@@ -480,6 +496,44 @@ def lower(code: str, artifact_id: str = "") -> ForgeIR:
                             "key": (ast.unparse(child.args[0])
                                    if child.args else "?"),
                         },
+                    )
+                    ir.nodes.append(n)
+                    ir.sources.append(n)
+
+                # os.environ.get() — externally controllable
+                if (isinstance(func, ast.Attribute)
+                        and func.attr == "get"
+                        and isinstance(func.value, ast.Attribute)
+                        and isinstance(func.value.value, ast.Name)
+                        and func.value.value.id == "os"
+                        and func.value.attr == "environ"):
+                    n = IRNode(
+                        node_id=_node_id("Src", child.lineno, counter),
+                        node_kind="EnvRead",
+                        callable_id=c_id,
+                        line=child.lineno,
+                        properties={"source": "os.environ",
+                                    "key": ast.unparse(child.args[0]) if child.args else "?"},
+                    )
+                    ir.nodes.append(n)
+                    ir.sources.append(n)
+
+                # request.headers.get() — auth bypass surface
+                if (isinstance(func, ast.Attribute)
+                        and func.attr in ("get", "getlist")
+                        and isinstance(func.value, ast.Attribute)
+                        and isinstance(func.value.value, ast.Name)
+                        and func.value.value.id == "request"
+                        and func.value.attr in ("headers", "cookies", "files")):
+                    n = IRNode(
+                        node_id=_node_id("Src", child.lineno, counter),
+                        node_kind="HeaderRead"
+                            if func.value.attr == "headers" else "CookieRead"
+                            if func.value.attr == "cookies" else "BodyRead",
+                        callable_id=c_id,
+                        line=child.lineno,
+                        properties={"source": f"request.{func.value.attr}",
+                                    "key": ast.unparse(child.args[0]) if child.args else "?"},
                     )
                     ir.nodes.append(n)
                     ir.sources.append(n)
@@ -963,6 +1017,43 @@ def analyze(code: str, artifact_id: str = "", starmap_metrics=None) -> LBEResult
     blobs = emit_blobs(ir, paths, starmap_metrics=starmap_metrics)
 
     elapsed_ms = (time.perf_counter() - t0) * 1000
+
+    # Universal lowering fallback — first-principles structural reasoning
+    # Runs when Python AST path produces no blobs.
+    # Works on ANY language/syntax by reasoning from universal axioms:
+    #   source → transform → sink + trust gap + obligation accounting
+    if not blobs:
+        try:
+            from .lbe_universal import analyze_universal as _universal_analyze
+            _generic_blobs_raw = _universal_analyze(code, artifact_id)
+            if _generic_blobs_raw:
+                # Convert generic dicts to Blob objects for consistent interface
+                for _gd in _generic_blobs_raw:
+                    blobs.append(Blob(
+                        blob_id=_gd["blob_id"],
+                        path_id="P-generic",
+                        checkpoint_kind="sink_boundary",
+                        callable_id=_gd.get("language", "unknown"),
+                        module_id=artifact_id,
+                        entry_sources=_gd.get("entry_sources", []),
+                        transform_chain=_gd.get("transform_chain", []),
+                        effects=_gd.get("effects", []),
+                        sinks=_gd.get("sinks", []),
+                        trust_claims=_gd.get("trust_claims", []),
+                        trust_earned=_gd.get("trust_earned", []),
+                        trust_state=_gd.get("trust_state", "untrusted"),
+                        wrapper_theater=_gd.get("wrapper_theater", False),
+                        risk_score=_gd.get("risk_score", 0.0),
+                        deception_score=_gd.get("deception_score", 0.0),
+                        legitimacy_score=_gd.get("legitimacy_score", 0.0),
+                        ambiguity_score=_gd.get("ambiguity_score", 0.0),
+                        suspicious_clean_score=_gd.get("suspicious_clean_score", 0.0),
+                        confidence_class=_gd.get("confidence_class", "high-confidence inferred"),
+                        verdict=_gd.get("verdict", ""),
+                        notes=_gd.get("notes", []),
+                    ))
+        except Exception:
+            pass  # Generic lowering is best-effort
 
     return LBEResult(
         artifact_id=artifact_id,
