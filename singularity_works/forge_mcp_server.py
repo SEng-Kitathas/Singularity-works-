@@ -179,6 +179,25 @@ async def list_tools() -> list[types.Tool]:
             },
         ),
         types.Tool(
+            name="forge_get_blueprint",
+            description=(
+                "Get the LBE Blueprint for a code artifact — a color-coded flow map "
+                "showing WHAT the code does: every source→transform→sink path with "
+                "RED (tainted/dangerous), YELLOW (wrapper theater), GREEN (validated), "
+                "PURPLE (obligation violated). Includes Mermaid flowchart and the "
+                "minimum replacement annotation — the exact surgical change that turns "
+                "each red path green. Works on any language."
+            ),
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "code": {"type": "string", "description": "Source code to map"},
+                    "requirement": {"type": "string", "description": "Security requirement context"},
+                },
+                "required": ["code"],
+            },
+        ),
+        types.Tool(
             name="forge_commit_verified",
             description=(
                 "Gate: commit only after the forge battery passes. "
@@ -238,6 +257,12 @@ async def call_tool(name: str, arguments: dict) -> list[types.TextContent]:
 
     elif name == "forge_get_escalation":
         return await _get_escalation(arguments["code"], arguments["requirement"])
+
+    elif name == "forge_get_blueprint":
+        return await _get_blueprint(
+            arguments["code"],
+            arguments.get("requirement", "Security analysis"),
+        )
 
     elif name == "forge_commit_verified":
         return await _commit_verified(
@@ -456,6 +481,61 @@ async def _get_escalation(code: str, requirement_text: str) -> list[types.TextCo
 
     except Exception as e:
         return [types.TextContent(type="text", text=f"Escalation error: {e}")]
+
+
+async def _get_blueprint(code: str, requirement_text: str) -> list[types.TextContent]:
+    """Build and return the color-coded LBE Blueprint for any code artifact."""
+    try:
+        import time
+        from singularity_works.lbe_blueprint import analyze_blueprint
+
+        t0 = time.perf_counter()
+        bp = analyze_blueprint(code, artifact_id=f"mcp-{hash(code) & 0xFFFFFF:06x}")
+        elapsed = (time.perf_counter() - t0) * 1000
+
+        lines = [
+            f"# LBE Blueprint — {bp.language.upper()} ({bp.parse_confidence})",
+            f"artifact: {bp.artifact_id}  elapsed: {elapsed:.1f}ms",
+            f"",
+            f"## Flow Summary",
+            f"  RED    (tainted → dangerous):  {bp.red_paths}",
+            f"  YELLOW (wrapper theater):       {bp.yellow_paths}",
+            f"  GREEN  (validated paths):       {bp.green_paths}",
+            f"  PURPLE (obligation violated):   {bp.purple_paths}",
+            f"",
+        ]
+
+        if bp.source_kinds:
+            lines.append(f"sources:  {', '.join(bp.source_kinds[:5])}")
+        if bp.sink_kinds:
+            lines.append(f"sinks:    {', '.join(bp.sink_kinds[:5])}")
+        if bp.risk_surface:
+            rs = ', '.join(f"{k}={v:.2f}" for k,v in sorted(
+                bp.risk_surface.items(), key=lambda x: -x[1])[:4])
+            lines.append(f"risk:     {rs}")
+        if bp.obligation_kinds:
+            lines.append(f"obligations: {', '.join(bp.obligation_kinds[:4])}")
+        lines.append("")
+
+        # Flows with min replacement
+        for f in bp.flows:
+            icon = {"red":"🔴","yellow":"🟡","green":"🟢","purple":"🟣"}.get(f.color,"⚪")
+            lines.append(f"{icon} [{f.color.upper()}] {f.verdict[:70]}")
+            if f.minimum_replacement:
+                mr = f.minimum_replacement
+                lines.append(f"  ★ L{mr.line}: {mr.what_to_do[:65]}")
+                lines.append(f"    → {mr.safe_alternative[:72]}")
+
+        lines.append("")
+        lines.append("## Mermaid Flowchart")
+        lines.append("```mermaid")
+        lines.append(bp.to_mermaid())
+        lines.append("```")
+
+        return [types.TextContent(type="text", text="\n".join(lines))]
+
+    except Exception as e:
+        return [types.TextContent(type="text", text=f"Blueprint error: {e}")]
 
 
 async def _commit_verified(message: str, require_battery: bool) -> list[types.TextContent]:
