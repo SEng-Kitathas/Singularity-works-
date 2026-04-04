@@ -361,7 +361,9 @@ def family_alignment_gate() -> Gate:
                     "medium",
                 )
             )
-        if any(k in req for k in ["resource", "close", "cleanup"]) and "RESOURCE" not in radicals:
+        if (any(k in req for k in ["resource", "close", "cleanup"])
+                and not any(k in req for k in ["ownership", "idor", "own", "authorize", "access control"])
+                and "RESOURCE" not in radicals):
             findings.append(
                 GateFinding(
                     "radical_gap",

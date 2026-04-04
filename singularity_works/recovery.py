@@ -372,7 +372,7 @@ class RecoveryEngine:
         return {
             "protocol": any(k in low for k in ["protocol", "state", "transition", "handshake"]),
             "parser": any(k in low for k in ["parse", "parser", "parsing", "grammar", "input", "literal_eval"]),
-            "resource": any(k in low for k in ["resource", "close", "release", "cleanup", "file"]),
+            "resource": any(k in low for k in ["close", "release", "cleanup", "file", "file handle", "connection pool", "socket", "open file"]),
             "danger": any(k in low for k in ["dangerous", "eval", "exec", "unsafe"]),
             "verification": any(k in low for k in ["verify", "verification", "certificate", "tls", "ssl"]),
             "todo_forbidden": "todo" in low,
@@ -380,6 +380,7 @@ class RecoveryEngine:
             "transaction": any(k in low for k in ["transaction", "commit", "rollback", "database", "db write", "atomic", "sql"]),
             "recovery_token": any(k in low for k in ["password reset", "reset token", "email verification", "verify email", "activation token", "one-time token", "recovery token", "password change", "account verification"]),
             "rate_limit": any(k in low for k in ["rate limit", "rate-limit", "brute force", "brute-force", "throttle", "slow down", "attempts", "lockout"]),
+            "idor": any(k in low for k in ["idor", "insecure direct object", "object ownership", "ownership", "access control", "authorization", "owns", "owner", "belong", "permission"]),
         }
 
     def _append_structure(
@@ -931,6 +932,18 @@ class RecoveryEngine:
                     "auth-rate-limiting",
                     "high",
                     f"claim:{requirement.requirement_id}:auth_rate_limiting",
+                )
+            )
+
+        if flags.get("idor"):
+            monitor_seeds.append(
+                self._monitor_seed(
+                    requirement,
+                    "object_ownership",
+                    "must_enforce_object_ownership",
+                    "object-ownership",
+                    "high",
+                    f"claim:{requirement.requirement_id}:object_ownership",
                 )
             )
 

@@ -1581,6 +1581,94 @@
         "upgrade_to_encrypted_transport"
       ],
       "isomorph_class": "transport_hygiene"
+    },
+    {
+      "pattern_id": "access_control.no_idor",
+      "family": "access_control",
+      "radicals": [
+        "AUTHORIZE",
+        "VERIFY",
+        "BOUNDARY",
+        "RESOURCE"
+      ],
+      "summary": "Resource access via externally-supplied ID must enforce object-level ownership. Prevents IDOR \u2014 user can reach the action but may not own the object.",
+      "invariants": [
+        "resource_id_from_request_requires_ownership_check",
+        "route_path_id_requires_ownership_scope"
+      ],
+      "anti_patterns": [
+        {
+          "id": "idor_no_ownership_check",
+          "detection_strategy": "must_enforce_object_ownership",
+          "concept": "resource_id_from_request_without_ownership_verification",
+          "severity": "high",
+          "transformation_axiom": "add_ownership_check_before_resource_access",
+          "auto_apply": false,
+          "safety_level": "requires_review"
+        }
+      ],
+      "language_manifestations": {
+        "python": [
+          "doc = db.query(Document).filter_by(id=doc_id, owner_id=current_user.id).first_or_404()",
+          "if resource.owner_id != current_user.id: abort(403)"
+        ]
+      },
+      "capabilities": [
+        "access_control_enforcement",
+        "authorization_boundary"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "transformation_axioms": [
+        "add_ownership_check_before_resource_access"
+      ],
+      "isomorph_class": "authorization_boundary"
+    },
+    {
+      "pattern_id": "access_control.ownership_scoped_query",
+      "family": "access_control",
+      "radicals": [
+        "AUTHORIZE",
+        "SCOPE",
+        "TRUST",
+        "RESOURCE"
+      ],
+      "summary": "Database queries accepting external IDs must scope results to the authenticated user to prevent horizontal privilege escalation.",
+      "invariants": [
+        "db_query_with_external_id_must_include_user_scope",
+        "filter_must_bind_owner_to_current_user"
+      ],
+      "anti_patterns": [
+        {
+          "id": "ownership_scope_bypass",
+          "detection_strategy": "must_enforce_object_ownership",
+          "concept": "unscoped_query_with_external_id",
+          "severity": "high",
+          "transformation_axiom": "scope_query_to_current_user",
+          "auto_apply": false,
+          "safety_level": "requires_review"
+        }
+      ],
+      "language_manifestations": {
+        "python": [
+          "db.query(Item).filter(Item.id == item_id, Item.owner_id == current_user.id).first()",
+          "Item.objects.get(id=item_id, user=request.user)"
+        ]
+      },
+      "capabilities": [
+        "query_scope_enforcement",
+        "horizontal_privilege_prevention"
+      ],
+      "laws": [
+        "LAW_4",
+        "LAW_OMEGA"
+      ],
+      "transformation_axioms": [
+        "scope_query_to_current_user"
+      ],
+      "isomorph_class": "authorization_boundary"
     }
   ]
 }

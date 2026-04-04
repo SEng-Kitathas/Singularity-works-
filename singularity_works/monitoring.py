@@ -1161,3 +1161,105 @@ def _must_rate_limit_auth_endpoint(artifact: "Artifact", seed: "MonitorSeed") ->
 
 
 _MONITOR_RUNNERS["must_rate_limit_auth_endpoint"] = _must_rate_limit_auth_endpoint
+
+
+# ── IDOR / Object Ownership Monitor ──────────────────────────────────────────
+#
+# Detects: functions that accept a resource ID from an external source
+# (request args, route path params) and perform a database access
+# without an ownership check — the canonical IDOR pattern.
+#
+# "User can reach the action" ≠ "User owns the object being acted on."
+#
+# Ownership signals accepted:
+#   - current_user.id comparison
+#   - owner_id in DB query filter
+#   - abort(403) / PermissionDenied raise
+#   - @owner_required decorator
+#   - g.user / request.user check
+
+import re as _re
+
+_IDOR_REQUEST_ID = _re.compile(
+    r'\b(?:request\.(?:args|form|json|view_args|data|values)\s*'
+    r'(?:\.|\.get\s*\(|\[)|request\.get_json\s*\(\s*\))',
+    _re.IGNORECASE,
+)
+
+_IDOR_ROUTE_DECORATOR = _re.compile(
+    r'@(?:app|bp|router|api)\.(?:route|get|post|put|patch|delete)\b|'
+    r'@require_http_methods\b',
+    _re.IGNORECASE,
+)
+
+_IDOR_ROUTE_ID_PARAM = _re.compile(r'\b\w+_id\b')
+
+_IDOR_DB_ACCESS = _re.compile(
+    r'\b(?:\.get\s*\(|\.filter_by\s*\(|\.filter\s*\(|'
+    r'\.find\s*\(|\.find_one\s*\(|\.query\s*\(|'
+    r'\.objects\s*\.|SELECT\b)',
+    _re.IGNORECASE,
+)
+
+_IDOR_OWNERSHIP = _re.compile(
+    r'\b(?:current_user\.id\b|'
+    r'g\.user(?:\.id)?\b|'
+    r'request\.user(?:\.id)?\b|'
+    r'owner_id\b|'
+    r'user_id\s*==|'
+    r'=\s*current_user\b|'
+    r'filter_by\s*\(.*owner|'
+    r'\.filter\s*\(.*owner_id\s*==\s*current_user|'
+    r'check_ownership\b|verify_ownership\b|is_owner\b|'
+    r'@owner_required\b|'
+    r'abort\s*\(\s*403\b|'
+    r'raise\s+(?:Forbidden|PermissionDenied|Http403|HTTPException))',
+    _re.IGNORECASE,
+)
+
+
+def _object_ownership_enforced(content: str) -> tuple[bool, str]:
+    """
+    Resource access via external ID must enforce object-level ownership.
+
+    Fires when a function:
+    1. Receives a resource ID from request args/form/json OR a route path param
+    2. Performs a database access
+    3. Does NOT have a visible ownership check
+
+    Returns (True, reason) if ownership is enforced or not applicable.
+    Returns (False, reason) if IDOR pattern is detected.
+    """
+    # Quick pass — if no DB access at all, not applicable
+    if not _IDOR_DB_ACCESS.search(content):
+        return True, "no database access detected"
+
+    has_request_id = bool(_IDOR_REQUEST_ID.search(content))
+    has_route_id = (bool(_IDOR_ROUTE_DECORATOR.search(content)) and
+                    bool(_IDOR_ROUTE_ID_PARAM.search(content)))
+
+    resource_id_surface = has_request_id or has_route_id
+
+    if not resource_id_surface:
+        return True, "no externally-supplied resource ID detected"
+
+    has_ownership = bool(_IDOR_OWNERSHIP.search(content))
+    if has_ownership:
+        return True, "object-level ownership check detected"
+
+    source = "request parameter" if has_request_id else "route path parameter"
+    return (
+        False,
+        f"resource ID from {source} used in database access "
+        f"without visible ownership check — "
+        f"any authenticated user may access any object (IDOR)"
+    )
+
+
+def _must_enforce_object_ownership(
+    artifact: "Artifact", seed: "MonitorSeed"
+) -> tuple[bool, str]:
+    return _object_ownership_enforced(artifact.content)
+
+
+_MONITOR_RUNNERS["must_enforce_object_ownership"] = _must_enforce_object_ownership
