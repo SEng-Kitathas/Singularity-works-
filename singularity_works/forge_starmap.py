@@ -155,11 +155,23 @@ class StarMapMetrics:
         """
         Geometric risk multiplier for LBE blob scoring.
         Replaces hand-tuned multipliers in lbe_pilot.py _score_risk().
+
+        Requires node_count >= 3 to activate — sparse graphs return 1.0 (neutral).
+        This prevents the formula from reducing risk when metrics are meaningless.
+
+        At node_count >= 3:
+          fiedler > 0.3 → systemic amplification (connected findings)
+          interference → slight reduction (contradictory evidence = less certain)
+          cross_domain → cross-family amplification (broader attack surface)
+          wrapper_theater → deception already captured in interference
         """
-        amp = (1.0 + self.fiedler_value) * (0.5 + self.integrity)
+        if self.node_count < 3:
+            return 1.0  # not enough evidence for geometric amplification
+
+        amp = (1.0 + self.fiedler_value) * (0.5 + 0.5 * self.integrity)
         amp *= (1.0 - 0.3 * self.interference)
         amp *= (1.0 + 0.1 * self.cross_domain_count)
-        return round(min(2.5, max(0.1, amp)), 3)
+        return round(min(2.5, max(0.5, amp)), 3)
 
 
 # ── ForgeStarMap --------------------------------------------------------------
@@ -219,7 +231,7 @@ class ForgeStarMap:
     def from_blobs(cls, blobs) -> "ForgeStarMap":
         sm = cls()
         for blob in blobs:
-            for sink in blob.sinks_reached:
+            for sink in blob.sinks:
                 fam = _sink_to_family(sink.get("sink_kind", "UnknownEffect"))
                 sm._add(
                     f"{sink.get('sink_kind')}@{blob.callable_id}",
@@ -239,6 +251,27 @@ class ForgeStarMap:
         if blobs:
             for n in cls.from_blobs(blobs).nodes:
                 sm.nodes.append(n)
+        return sm
+
+    @classmethod
+    def from_result(cls, result) -> "ForgeStarMap":
+        """
+        Full construction from OrchestrationResult.
+        Includes gate_summary + assurance + monitor_events (IDOR/rate-limit monitors).
+        Monitor failures that don't appear in gate_summary.results still carry risk signal.
+        """
+        sm = cls.from_gate_summary(result.gate_summary, result.assurance)
+
+        # Add monitor event failures as evidence nodes
+        for ev in getattr(result, 'monitor_events', []):
+            if ev.status == 'fail':
+                # Extract family from monitor kind
+                fam = _monitor_to_family(ev.monitor_id)
+                sm._add(f"monitor:{ev.monitor_id[-30:]}", fam, 0.8, "finding")
+            elif ev.status == 'warn':
+                fam = _monitor_to_family(ev.monitor_id)
+                sm._add(f"monitor:{ev.monitor_id[-30:]}", fam, 0.5, "finding")
+
         return sm
 
     def _add(self, label: str, family: str, weight: float, kind: str) -> None:
@@ -263,9 +296,10 @@ class ForgeStarMap:
         """
         findings = [n for n in self.nodes if n.kind in ("finding", "blob_sink", "residual")]
         if len(findings) < 2:
-            # No security findings — clean artifact. Don't fall back to discharge nodes
-            # (discharges are noise for Fiedler/interference computation).
-            return StarMapMetrics(node_count=len(self.nodes), trust_tier="T1")
+            # Sparse findings — not enough for geometric computation.
+            # Infer trust_tier from finding presence: any finding = T4, none = T1.
+            tier = "T4" if len(findings) == 1 else "T1"
+            return StarMapMetrics(node_count=len(self.nodes), trust_tier=tier)
 
         vecs = np.stack([n.vec for n in findings])
 
@@ -407,6 +441,22 @@ def _trust_tier(integrity: float, interference: float,
 
 # ── Helpers -------------------------------------------------------------------
 
+def _monitor_to_family(monitor_id: str) -> str:
+    """Map monitor ID to capsule family."""
+    lower = monitor_id.lower()
+    if "object_ownership" in lower or "idor" in lower:
+        return "access_control"
+    if "rate_limit" in lower or "auth" in lower:
+        return "auth"
+    if "transaction" in lower or "commit" in lower:
+        return "query_integrity"
+    if "cookie" in lower or "session" in lower:
+        return "auth"
+    if "ssrf" in lower or "network" in lower or "url" in lower:
+        return "network_safety"
+    return "Safety & Risk"
+
+
 def _extract_family(gate_id: str) -> str:
     lower = gate_id.lower().replace("-", "_")
     for fam in _FAMILY_DOMAIN:
@@ -482,4 +532,23 @@ def curvature_penalty(domain_vectors: list) -> float:
 def analyze_result(result) -> StarMapMetrics:
     """One-call: OrchestrationResult → StarMapMetrics."""
     sm = ForgeStarMap.from_gate_summary(result.gate_summary, result.assurance)
+    return sm.analyze()
+
+
+def build_evidence_topology(gate_summary, assurance, audit=None) -> StarMapMetrics:
+    """
+    Entry point called by orchestration.py.
+    Builds evidence topology from gate summary + assurance.
+    audit is reserved for future confidence integration.
+    """
+    sm = ForgeStarMap.from_gate_summary(gate_summary, assurance)
+    return sm.analyze()
+
+
+def build_evidence_topology_full(result) -> StarMapMetrics:
+    """
+    Full-fidelity entry point: gate_summary + assurance + monitor_events.
+    Use when full OrchestrationResult is available.
+    """
+    sm = ForgeStarMap.from_result(result)
     return sm.analyze()

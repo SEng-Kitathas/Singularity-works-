@@ -779,7 +779,7 @@ def _build_taint_map(code: str) -> dict[str, list[str]]:
 
 # ── Blob Emitter ──────────────────────────────────────────────────────────
 
-def emit_blobs(ir: ForgeIR, paths: list[PathState]) -> list[Blob]:
+def emit_blobs(ir: ForgeIR, paths: list[PathState], starmap_metrics=None) -> list[Blob]:
     """Emit blobs at each sink boundary in each path."""
     blobs: list[Blob] = []
     blob_counter = [0]
@@ -793,9 +793,22 @@ def emit_blobs(ir: ForgeIR, paths: list[PathState]) -> list[Blob]:
 
             # Score computation
             risk = _score_risk(sink_kind, tainted, ps)
+
+            # StarMap geometric amplifier: apply systemic risk modifier
+            # Uses Fiedler connectivity + evidence coherence + cross-domain signals
+            # Replaces hand-tuned multipliers with geometric evidence synthesis
+            if starmap_metrics is not None:
+                amp = starmap_metrics.risk_amplifier
+                risk = round(min(1.0, risk * amp), 3)
             deception = _score_deception(ps)
+            # StarMap interference augments deception (contradictory evidence = higher deception signal)
+            if starmap_metrics is not None and starmap_metrics.interference > 0:
+                deception = round(min(1.0, deception + starmap_metrics.interference * 0.3), 3)
             legitimacy = _score_legitimacy(ps)
             ambiguity = _score_ambiguity(ps)
+            # StarMap curvature augments ambiguity (diffuse findings = harder to localize)
+            if starmap_metrics is not None and starmap_metrics.curvature > 0:
+                ambiguity = round(min(1.0, ambiguity + starmap_metrics.curvature * 2.0), 3)
             suspicious_clean = _score_suspicious_clean(risk, ps)
 
             # Confidence class
@@ -935,7 +948,7 @@ def _build_notes(sink_kind: str, tainted: bool, ps: PathState) -> list[str]:
 
 # ── Main Entry Point ──────────────────────────────────────────────────────
 
-def analyze(code: str, artifact_id: str = "") -> LBEResult:
+def analyze(code: str, artifact_id: str = "", starmap_metrics=None) -> LBEResult:
     """
     Complete LBE analysis round-trip.
     Returns LBEResult with IR, paths, blobs, and timing.
@@ -947,7 +960,7 @@ def analyze(code: str, artifact_id: str = "") -> LBEResult:
 
     ir = lower(code, artifact_id)
     paths = walk_paths(ir, code)
-    blobs = emit_blobs(ir, paths)
+    blobs = emit_blobs(ir, paths, starmap_metrics=starmap_metrics)
 
     elapsed_ms = (time.perf_counter() - t0) * 1000
 

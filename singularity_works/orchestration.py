@@ -1007,11 +1007,17 @@ class Orchestrator:
                 except Exception:
                     pass
 
-        # Forge StarMap — build evidence topology over gate results
+        # Forge StarMap — build evidence topology over gate results + monitor events
         starmap_dict = None
         try:
-            from .forge_starmap import build_evidence_topology as _starmap_build
-            _starmap_topo = _starmap_build(gate_summary, assurance, audit)
+            from .forge_starmap import build_evidence_topology_full as _starmap_build
+            # Build a lightweight proxy result for from_result() — includes monitor_events
+            _proxy = type('_R', (), {
+                'gate_summary': gate_summary,
+                'assurance': assurance,
+                'monitor_events': monitor_events,
+            })()
+            _starmap_topo = _starmap_build(_proxy)
             starmap_dict = _starmap_topo.to_dict()
         except Exception:
             pass  # Non-fatal
