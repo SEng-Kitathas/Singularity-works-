@@ -48,6 +48,7 @@ class OrchestrationResult:
     genome_bundle: dict
     escalation_decision: "dict | None" = None  # populated by escalation_gate.evaluate()
     starmap_topology: "dict | None" = None  # populated by forge_starmap.build_evidence_topology()
+    lbe_result: "dict | None" = None       # populated by lbe_pilot.analyze() when escalation routes to LBE
 
 
 class Orchestrator:
@@ -1041,6 +1042,56 @@ class Orchestrator:
         except Exception:
             pass  # Non-fatal — gate result is bonus, not blocking
 
+        # LBE Pilot — run if escalation gate routed to LBE
+        # Attaches blobs to result; rebuilds StarMap with combined gate+blob evidence
+        lbe_dict = None
+        if escalation_dict and escalation_dict.get("route_to_lbe"):
+            try:
+                from .lbe_pilot import analyze as _lbe_analyze
+                from .forge_starmap import ForgeStarMap
+
+                # First pass: build StarMap from gate evidence only (already computed above)
+                _sm_gate_obj = ForgeStarMap.from_gate_summary(gate_summary, assurance)
+                for ev in monitor_events:
+                    if ev.status in ("fail", "warn"):
+                        from .forge_starmap import _monitor_to_family
+                        _fam = _monitor_to_family(ev.monitor_id)
+                        _w = 0.8 if ev.status == "fail" else 0.5
+                        _sm_gate_obj._add(f"monitor:{ev.monitor_id[-30:]}", _fam, _w, "finding")
+                _sm_gate_metrics = _sm_gate_obj.analyze()
+
+                # LBE analysis with gate-derived StarMap metrics
+                _lbe_r = _lbe_analyze(
+                    candidate_content,
+                    artifact_id=artifact.artifact_id,
+                    starmap_metrics=_sm_gate_metrics,
+                )
+
+                # Second pass: rebuild StarMap with blobs included (richer evidence)
+                if _lbe_r.blobs:
+                    _sm_full = ForgeStarMap.from_combined(gate_summary, assurance, _lbe_r.blobs)
+                    for ev in monitor_events:
+                        if ev.status in ("fail", "warn"):
+                            from .forge_starmap import _monitor_to_family
+                            _fam = _monitor_to_family(ev.monitor_id)
+                            _w = 0.8 if ev.status == "fail" else 0.5
+                            _sm_full._add(f"monitor:{ev.monitor_id[-30:]}", _fam, _w, "finding")
+                    starmap_dict = _sm_full.analyze().to_dict()
+
+                lbe_dict = {
+                    "artifact_id":  _lbe_r.artifact_id,
+                    "elapsed_ms":   round(_lbe_r.elapsed_ms, 2),
+                    "path_count":   len(_lbe_r.paths),
+                    "blob_count":   len(_lbe_r.blobs),
+                    "highest_risk": round(_lbe_r.highest_risk_blob.risk_score, 3)
+                                    if _lbe_r.highest_risk_blob else 0.0,
+                    "verdict":      _lbe_r.highest_risk_blob.verdict
+                                    if _lbe_r.highest_risk_blob else "no_sinks",
+                    "blobs":        [b.to_dict() for b in _lbe_r.blobs],
+                }
+            except Exception:
+                pass  # Non-fatal — LBE is bonus cartography, not blocking
+
         return OrchestrationResult(
             artifact=artifact,
             pattern={
@@ -1061,4 +1112,5 @@ class Orchestrator:
             genome_bundle=genome_bundle,
             escalation_decision=escalation_dict,
             starmap_topology=starmap_dict,
+            lbe_result=lbe_dict,
         )
