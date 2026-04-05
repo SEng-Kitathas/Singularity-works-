@@ -349,8 +349,8 @@ def _detect_query_construction(content: str, _spec: dict, *, semantic_ir: "Any |
     and variable-assigned: q = f"... {var} ..."; cursor.execute(q)
     """
     tree = _parse(content)
-    if tree is None:
-        return []
+    # Do NOT early-return on tree=None — non-Python content (Rust, Go, etc.)
+    # reaches the IR fallback below which reads heuristic trust_boundaries.
     detections: list[_Detection] = []
 
     _EXECUTE_NAMES = frozenset({"execute", "executemany", "executescript", "raw", "query"})
@@ -384,7 +384,7 @@ def _detect_query_construction(content: str, _spec: dict, *, semantic_ir: "Any |
                     tainted_names[node.target.id] = node.lineno
             self.generic_visit(node)
 
-    _AssignVisitor().visit(tree)
+    _AssignVisitor().visit(tree) if tree is not None else None
 
     # Second pass: detect execute() with tainted args (direct or via variable)
     class _ExecuteVisitor(ast.NodeVisitor):
@@ -423,7 +423,30 @@ def _detect_query_construction(content: str, _spec: dict, *, semantic_ir: "Any |
                         ))
             self.generic_visit(node)
 
-    _ExecuteVisitor().visit(tree)
+    _ExecuteVisitor().visit(tree) if tree is not None else None
+
+    # IR fallback — non-Python SQL injection (Rust format!, Go fmt.Sprintf, etc.)
+    # The heuristic front door populates DB_QUERY TrustBoundary with
+    # tainted_input="string_construction" for format!("SELECT...{}", var) patterns.
+    if not detections and semantic_ir is not None:
+        for tb in getattr(semantic_ir, "trust_boundaries", []):
+            if (tb.boundary_type == "DB_QUERY"
+                    and getattr(tb, "tainted_input", "") == "string_construction"):
+                detections.append(_Detection(
+                    lineno=tb.sink_line,
+                    message=(
+                        f"String-built SQL query '{tb.sink_name}' at line {tb.sink_line} — "
+                        f"format-string interpolation bypasses parameterization"
+                    ),
+                    evidence={
+                        "rewrite_candidate": (
+                            "Use parameterized queries: sqlx::query(\"SELECT * FROM users "
+                            "WHERE id = ?\").bind(id) — never interpolate user input into SQL"
+                        ),
+                        "sink_name": tb.sink_name,
+                    },
+                ))
+
     return detections
 
 

@@ -45,6 +45,19 @@ _TIER1_CONFIRMS: list[tuple[str, str]] = [
     ("as_ptr()", "rust"),
     ("copy_nonoverlapping", "rust"),
     ("mem::transmute", "rust"),
+    # Rust signals that appear in real Rust code without std — e.g. sqlx, actix.
+    # "format!(" is a Rust macro invocation — unique syntax, no false positives
+    # in any other supported language.  "fn " covers function defs in non-main
+    # crates (safe here because Python is confirmed by ast.parse step 0).
+    ("format!(", "rust"),
+    ("fn ", "rust"),
+    ("::<", "rust"),     # turbofish — e.g. Vec::<u8>::new()
+    ("use crate::", "rust"),
+    ("use sqlx::", "rust"),
+    ("use actix", "rust"),
+    ("use tokio::", "rust"),
+    ("-> String", "rust"),
+    ("-> Vec<", "rust"),
     # Go
     ("package main", "go"),
     ("package ", "go"),
@@ -115,17 +128,31 @@ def detect_language(content: str) -> str:
     Determine source language from content.
     Returns a language string — never returns 'unknown'.
     Decision tree:
+      0. Python structural pre-check: if ast.parse() succeeds it IS Python.
+         No other supported language produces valid Python AST. This closes
+         the self-referential FP where detection literal strings embedded in
+         Python source (e.g. _HEURISTIC_PATTERNS) vote the file as the
+         language they are written to detect.
       1. Tier-1 unambiguous confirms (single token, no false positives)
       2. If tie or no match, fall back to Python (the forge's substrate)
     """
+    # Step 0 — Python structural proof (zero false positives).
+    # ast.parse() raises SyntaxError immediately on the first non-Python token
+    # so the cost for Rust/Go/Java/C/JS is one failed parse attempt, not a
+    # full walk.  For Python the cost is already paid again in _build_python_ir.
+    try:
+        ast.parse(content)
+        return "python"
+    except SyntaxError:
+        pass
+    # Step 1 — Non-Python: token voting over tier-1 confirms.
     votes: dict[str, int] = {}
     for token, lang in _TIER1_CONFIRMS:
         if token in content:
             votes[lang] = votes.get(lang, 0) + _LANG_SPECIFICITY.get(lang, 1)
     if not votes:
         return "python"  # Structural nativity: default to primary substrate
-    winner = max(votes, key=lambda k: votes[k])
-    return winner
+    return max(votes, key=lambda k: votes[k])
 
 
 # ---------------------------------------------------------------------------
@@ -445,6 +472,11 @@ _HEURISTIC_PATTERNS: dict[str, list[tuple[str, re.Pattern]]] = {
         ("format_execute",   re.compile(r'execute\s*\([^)]*\.format\s*\(')),
         ("concat_execute",   re.compile(r'execute\s*\([^)]*\+\s*\w+')),
         ("template_literal", re.compile(r'execute\s*\(`[^`]*\$\{')),
+        # Rust: format!("SELECT ... {}", var) — query string built before call
+        ("rust_format_sql",  re.compile(
+            r'format!\s*\(\s*["\'](?:SELECT|INSERT|UPDATE|DELETE|DROP|ALTER|CREATE)\b',
+            re.IGNORECASE,
+        )),
     ],
     "db_calls": [
         ("execute", re.compile(r'\.(execute|query|executeQuery|executemany)\s*\(')),
