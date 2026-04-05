@@ -547,7 +547,10 @@ class Orchestrator:
         if self.genome is not None:
             for gate in genome_gates_from_bundle(genome_bundle, self.genome):
                 enforcement.register(gate)
-        gate_summary = enforcement.run(subject, bus=self.facts)
+        # Fixed-point enforcement: iterates until convergence or budget exhaustion.
+        # max_iter=3 allows 2-hop derivation (iter 0 detects, 1 derives, 2 confirms)
+        # without unbounded computation. Falls back to single-pass if bus is stable.
+        gate_summary = enforcement.run_fixed_point(subject, bus=self.facts, max_iter=3)
         for result in gate_summary.results:
             self._record(
                 "gate_result",
