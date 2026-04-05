@@ -1868,6 +1868,265 @@
         "injection_resistance",
         "trust_boundary_hardening"
       ]
+    },
+    {
+      "pattern_id": "resource.no_insecure_tempfile",
+      "family": "resource",
+      "radicals": [
+        "RESOURCE",
+        "TRUST"
+      ],
+      "summary": "tempfile.mktemp is a TOCTOU race \u2014 use tempfile.mkstemp or NamedTemporaryFile",
+      "invariants": [
+        "temp_files_must_use_atomic_creation"
+      ],
+      "capabilities": [
+        "resource_safety",
+        "trust_boundary_hardening"
+      ],
+      "anti_patterns": [
+        {
+          "id": "mktemp_race_condition",
+          "detection_strategy": "local_insecure_tempfile",
+          "concept": "tempfile_mktemp_toctou_race",
+          "severity": "medium",
+          "transformation_axiom": "replace_mktemp_with_mkstemp",
+          "auto_apply": true,
+          "safety_level": "safe",
+          "language": "python",
+          "signal": "tempfile.mktemp_call"
+        }
+      ],
+      "laws": [
+        "Law1"
+      ]
+    },
+    {
+      "pattern_id": "crypto.no_unverified_ssl_context",
+      "family": "crypto",
+      "radicals": [
+        "VERIFY",
+        "TRUST"
+      ],
+      "summary": "ssl._create_unverified_context disables certificate verification \u2014 susceptible to MITM",
+      "invariants": [
+        "ssl_context_must_verify_certificates"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "tls_integrity"
+      ],
+      "anti_patterns": [
+        {
+          "id": "unverified_ssl_context",
+          "detection_strategy": "local_unverified_ssl_context",
+          "concept": "ssl_certificate_verification_disabled_via_context",
+          "severity": "critical",
+          "transformation_axiom": "prefer_verified_tls_to_disabled",
+          "auto_apply": true,
+          "safety_level": "safe",
+          "language": "python",
+          "signal": "ssl_create_unverified_context_call"
+        }
+      ],
+      "laws": [
+        "Law1",
+        "LawOmega"
+      ]
+    },
+    {
+      "pattern_id": "network.no_cleartext_protocols",
+      "family": "network",
+      "radicals": [
+        "TRUST",
+        "BOUNDARY"
+      ],
+      "summary": "telnetlib/ftplib transmit credentials in cleartext \u2014 use SSH/SFTP",
+      "invariants": [
+        "network_protocols_must_be_encrypted"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "tls_integrity"
+      ],
+      "anti_patterns": [
+        {
+          "id": "cleartext_protocol_import",
+          "detection_strategy": "local_cleartext_protocol",
+          "concept": "telnet_or_ftp_import_transmits_credentials_plaintext",
+          "severity": "high",
+          "transformation_axiom": "replace_cleartext_with_encrypted_protocol",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "telnetlib_or_ftplib_import"
+        }
+      ],
+      "laws": [
+        "Law1"
+      ]
+    },
+    {
+      "pattern_id": "crypto.no_broken_hash_pycrypto",
+      "family": "crypto",
+      "radicals": [
+        "VERIFY",
+        "TRUST"
+      ],
+      "summary": "pycrypto/Crypto library has known vulnerabilities \u2014 use cryptography package",
+      "invariants": [
+        "cryptographic_primitives_must_use_maintained_library"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "tls_integrity"
+      ],
+      "anti_patterns": [
+        {
+          "id": "pycrypto_import",
+          "detection_strategy": "local_pycrypto_import",
+          "concept": "broken_cryptography_library_import",
+          "severity": "high",
+          "transformation_axiom": "replace_pycrypto_with_cryptography_package",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "Crypto_Cipher_import"
+        }
+      ],
+      "laws": [
+        "Law1"
+      ]
+    },
+    {
+      "pattern_id": "temporal.no_file_toctou",
+      "family": "temporal",
+      "radicals": [
+        "STATE",
+        "RESOURCE"
+      ],
+      "summary": "os.access() + open() is a TOCTOU race \u2014 check and act must be atomic",
+      "invariants": [
+        "file_access_check_and_use_must_be_atomic"
+      ],
+      "capabilities": [
+        "temporal_integrity",
+        "resource_safety"
+      ],
+      "anti_patterns": [
+        {
+          "id": "access_then_open_race",
+          "detection_strategy": "ast_toctou",
+          "concept": "os_access_followed_by_open_race_window",
+          "severity": "medium",
+          "transformation_axiom": "replace_check_then_act_with_atomic_open",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "os_access_W_OK_before_open"
+        }
+      ],
+      "laws": [
+        "Law1"
+      ]
+    },
+    {
+      "pattern_id": "injection.no_django_mark_safe",
+      "family": "injection",
+      "radicals": [
+        "TRUST",
+        "PARSE"
+      ],
+      "summary": "django mark_safe() bypasses template escaping \u2014 stored XSS if user data reaches it",
+      "invariants": [
+        "html_output_must_not_bypass_autoescaping"
+      ],
+      "capabilities": [
+        "injection_resistance",
+        "trust_boundary_hardening"
+      ],
+      "anti_patterns": [
+        {
+          "id": "mark_safe_xss_bypass",
+          "detection_strategy": "local_django_mark_safe",
+          "concept": "django_mark_safe_disables_html_escaping",
+          "severity": "high",
+          "transformation_axiom": "remove_mark_safe_use_template_instead",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "django_mark_safe_call_with_variable"
+        }
+      ],
+      "laws": [
+        "Law1"
+      ]
+    },
+    {
+      "pattern_id": "injection.no_raw_sql_orm",
+      "family": "injection",
+      "radicals": [
+        "PARSE",
+        "TRUST"
+      ],
+      "summary": "ORM .raw() and .extra() with user input bypasses parameterization",
+      "invariants": [
+        "orm_raw_queries_must_not_contain_user_input"
+      ],
+      "capabilities": [
+        "injection_resistance",
+        "trust_boundary_hardening"
+      ],
+      "anti_patterns": [
+        {
+          "id": "orm_raw_with_user_input",
+          "detection_strategy": "local_orm_raw_injection",
+          "concept": "django_raw_extra_queryset_with_string_interpolation",
+          "severity": "critical",
+          "transformation_axiom": "replace_raw_with_parameterized_queryset",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "queryset_raw_or_extra_with_format_string"
+        }
+      ],
+      "laws": [
+        "Law1",
+        "LawOmega"
+      ]
+    },
+    {
+      "pattern_id": "serialize.no_marshal_deserialize",
+      "family": "serialize",
+      "radicals": [
+        "PARSE",
+        "TRUST"
+      ],
+      "summary": "marshal.loads can execute arbitrary code on untrusted data",
+      "invariants": [
+        "marshal_must_not_deserialize_untrusted_data"
+      ],
+      "capabilities": [
+        "injection_resistance",
+        "trust_boundary_hardening",
+        "sink_isolation"
+      ],
+      "anti_patterns": [
+        {
+          "id": "marshal_loads_untrusted",
+          "detection_strategy": "local_marshal_deserialize",
+          "concept": "marshal_deserialize_arbitrary_code_execution",
+          "severity": "high",
+          "transformation_axiom": "replace_marshal_with_json_schema_validated",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "marshal_load_or_loads_call"
+        }
+      ],
+      "laws": [
+        "Law1"
+      ]
     }
   ]
 }

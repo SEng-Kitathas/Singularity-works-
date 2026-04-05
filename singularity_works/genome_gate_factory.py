@@ -2978,3 +2978,312 @@ def _detect_idor_missing_ownership(
 
 _STRATEGIES["must_enforce_object_ownership"] = _detect_idor_missing_ownership
 
+
+
+# ---------------------------------------------------------------------------
+# Bandit-derived detectors v1.32.1 (Apache-2.0 pattern concepts)
+# ---------------------------------------------------------------------------
+
+def _detect_insecure_tempfile(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect tempfile.mktemp — TOCTOU race between name generation and open.
+    Safe alternatives: tempfile.mkstemp() or tempfile.NamedTemporaryFile().
+    (Bandit B306 equivalent)
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+    if tree is not None:
+        class _V(ast.NodeVisitor):
+            def visit_Call(self, node: ast.Call) -> None:
+                func = node.func
+                if (isinstance(func, ast.Attribute) and func.attr == "mktemp"
+                        and isinstance(func.value, ast.Name)
+                        and func.value.id == "tempfile"):
+                    detections.append(_Detection(
+                        lineno=node.lineno,
+                        message=(
+                            f"tempfile.mktemp() at line {node.lineno} is a TOCTOU race — "
+                            f"the name is returned before the file is created"
+                        ),
+                        evidence={
+                            "rewrite_candidate":
+                                "fd, path = tempfile.mkstemp()  # atomic creation"
+                        },
+                    ))
+                self.generic_visit(node)
+        _V().visit(tree)
+    return detections
+
+
+_STRATEGIES["local_insecure_tempfile"] = _detect_insecure_tempfile
+
+
+def _detect_unverified_ssl_context(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect ssl._create_unverified_context() — disables certificate verification.
+    (Bandit B323 equivalent)
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+    if tree is not None:
+        class _V(ast.NodeVisitor):
+            def visit_Call(self, node: ast.Call) -> None:
+                func = node.func
+                if isinstance(func, ast.Attribute) and func.attr in (
+                    "_create_unverified_context", "create_default_context"
+                ):
+                    if isinstance(func.value, ast.Name) and func.value.id == "ssl":
+                        # create_default_context is safe; _create_unverified_context is not
+                        if func.attr == "_create_unverified_context":
+                            detections.append(_Detection(
+                                lineno=node.lineno,
+                                message=(
+                                    f"ssl._create_unverified_context() at line {node.lineno} — "
+                                    f"certificate verification disabled, MITM possible"
+                                ),
+                                evidence={
+                                    "rewrite_candidate":
+                                        "ssl.create_default_context()  # verifies by default"
+                                },
+                            ))
+                self.generic_visit(node)
+        _V().visit(tree)
+    return detections
+
+
+_STRATEGIES["local_unverified_ssl_context"] = _detect_unverified_ssl_context
+
+
+def _detect_cleartext_protocol(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect import of cleartext protocol modules: telnetlib, ftplib.
+    These transmit credentials unencrypted. (Bandit B401/B402 equivalent)
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+    _CLEARTEXT_MODS = {"telnetlib": "SSH/paramiko", "ftplib": "paramiko SFTP or ftplib with TLS"}
+    if tree is not None:
+        class _V(ast.NodeVisitor):
+            def visit_Import(self, node: ast.Import) -> None:
+                for alias in node.names:
+                    mod = alias.name.split(".")[0]
+                    if mod in _CLEARTEXT_MODS:
+                        detections.append(_Detection(
+                            lineno=node.lineno,
+                            message=(
+                                f"Cleartext protocol module '{alias.name}' imported at "
+                                f"line {node.lineno} — credentials transmitted unencrypted"
+                            ),
+                            evidence={
+                                "rewrite_candidate":
+                                    f"Use {_CLEARTEXT_MODS[mod]} for encrypted transport"
+                            },
+                        ))
+                self.generic_visit(node)
+
+            def visit_ImportFrom(self, node: ast.ImportFrom) -> None:
+                mod = (node.module or "").split(".")[0]
+                if mod in _CLEARTEXT_MODS:
+                    detections.append(_Detection(
+                        lineno=node.lineno,
+                        message=(
+                            f"Cleartext protocol '{node.module}' imported at line {node.lineno}"
+                        ),
+                        evidence={
+                            "rewrite_candidate":
+                                f"Use {_CLEARTEXT_MODS.get(mod, 'an encrypted alternative')}"
+                        },
+                    ))
+                self.generic_visit(node)
+        _V().visit(tree)
+    return detections
+
+
+_STRATEGIES["local_cleartext_protocol"] = _detect_cleartext_protocol
+
+
+def _detect_pycrypto_import(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect import of pycrypto/Crypto — unmaintained library with known CVEs.
+    Cryptodome (pycryptodome) is an acceptable fork; cryptography package is preferred.
+    (Bandit B413 equivalent)
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+    if tree is not None:
+        class _V(ast.NodeVisitor):
+            def _check_mod(self, mod: str, lineno: int) -> None:
+                if mod.startswith("Crypto.") and not mod.startswith("Cryptodome"):
+                    detections.append(_Detection(
+                        lineno=lineno,
+                        message=(
+                            f"pycrypto/Crypto module '{mod}' at line {lineno} — "
+                            f"unmaintained library with known CVEs"
+                        ),
+                        evidence={
+                            "rewrite_candidate":
+                                "from cryptography.hazmat.primitives import ...  "
+                                "# actively maintained"
+                        },
+                    ))
+
+            def visit_Import(self, node: ast.Import) -> None:
+                for alias in node.names:
+                    self._check_mod(alias.name, node.lineno)
+                self.generic_visit(node)
+
+            def visit_ImportFrom(self, node: ast.ImportFrom) -> None:
+                self._check_mod(node.module or "", node.lineno)
+                self.generic_visit(node)
+        _V().visit(tree)
+    return detections
+
+
+_STRATEGIES["local_pycrypto_import"] = _detect_pycrypto_import
+
+
+def _detect_django_mark_safe(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect django.utils.safestring.mark_safe() with non-constant argument.
+    Bypasses Django's auto-escaping — stored XSS if user data reaches it.
+    (Bandit B308 equivalent, extended with variable argument check)
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+    if tree is not None:
+        class _V(ast.NodeVisitor):
+            def visit_Call(self, node: ast.Call) -> None:
+                func = node.func
+                name = (
+                    func.id if isinstance(func, ast.Name)
+                    else func.attr if isinstance(func, ast.Attribute)
+                    else ""
+                )
+                if name == "mark_safe" and node.args:
+                    arg = node.args[0]
+                    # Constant string is usually safe; variable arg is the risk
+                    if not isinstance(arg, ast.Constant):
+                        detections.append(_Detection(
+                            lineno=node.lineno,
+                            message=(
+                                f"mark_safe() with non-constant argument at line {node.lineno} — "
+                                f"bypasses Django auto-escaping; XSS if user data reaches this"
+                            ),
+                            evidence={
+                                "rewrite_candidate":
+                                    "Use template tags instead of mark_safe(); "
+                                    "if unavoidable, escape first: mark_safe(escape(user_input))"
+                            },
+                        ))
+                self.generic_visit(node)
+        _V().visit(tree)
+    return detections
+
+
+_STRATEGIES["local_django_mark_safe"] = _detect_django_mark_safe
+
+
+def _detect_orm_raw_injection(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect Django ORM .raw() and .extra() with format-string / f-string arguments.
+    Bypasses Django's ORM parameterization.
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+    if tree is not None:
+        class _V(ast.NodeVisitor):
+            def visit_Call(self, node: ast.Call) -> None:
+                func = node.func
+                method = func.attr if isinstance(func, ast.Attribute) else ""
+                if method in ("raw", "extra") and node.args:
+                    arg = node.args[0]
+                    is_dynamic = (
+                        isinstance(arg, ast.JoinedStr)
+                        or (isinstance(arg, ast.BinOp)
+                            and isinstance(arg.op, (ast.Add, ast.Mod)))
+                        or (isinstance(arg, ast.Call)
+                            and isinstance(arg.func, ast.Attribute)
+                            and arg.func.attr == "format")
+                    )
+                    if is_dynamic:
+                        detections.append(_Detection(
+                            lineno=node.lineno,
+                            message=(
+                                f"ORM.{method}() with string interpolation at line "
+                                f"{node.lineno} — bypasses parameterization, SQL injection risk"
+                            ),
+                            evidence={
+                                "rewrite_candidate":
+                                    f"Use .{method}('SELECT ... WHERE id = %s', [user_id]) "
+                                    f"with params argument"
+                            },
+                        ))
+                self.generic_visit(node)
+        _V().visit(tree)
+
+    # IR fallback: DB_QUERY boundary from heuristic path
+    if not detections and semantic_ir is not None:
+        for tb in getattr(semantic_ir, "trust_boundaries", []):
+            if tb.boundary_type == "DB_QUERY":
+                detections.append(_Detection(
+                    lineno=tb.sink_line,
+                    message=(
+                        f"Raw SQL construction at line {tb.sink_line} — "
+                        f"parameterize all user-supplied values"
+                    ),
+                    evidence={"rewrite_candidate": "Use parameterized queries"},
+                ))
+    return detections
+
+
+_STRATEGIES["local_orm_raw_injection"] = _detect_orm_raw_injection
+
+
+def _detect_marshal_deserialize(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect marshal.load / marshal.loads — arbitrary code execution on untrusted data.
+    (Bandit B302 equivalent)
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+    if tree is not None:
+        class _V(ast.NodeVisitor):
+            def visit_Call(self, node: ast.Call) -> None:
+                func = node.func
+                if (isinstance(func, ast.Attribute)
+                        and func.attr in ("load", "loads")
+                        and isinstance(func.value, ast.Name)
+                        and func.value.id == "marshal"):
+                    detections.append(_Detection(
+                        lineno=node.lineno,
+                        message=(
+                            f"marshal.{func.attr}() at line {node.lineno} — "
+                            f"deserializes arbitrary Python bytecode; use json with schema"
+                        ),
+                        evidence={
+                            "rewrite_candidate":
+                                "import json; data = json.loads(raw)  "
+                                "# with schema validation"
+                        },
+                    ))
+                self.generic_visit(node)
+        _V().visit(tree)
+    return detections
+
+
+_STRATEGIES["local_marshal_deserialize"] = _detect_marshal_deserialize
+
