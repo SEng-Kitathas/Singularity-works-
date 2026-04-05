@@ -4441,10 +4441,18 @@ def _detect_paramiko_auto_add_policy(
                 if (isinstance(func, ast.Attribute)
                         and func.attr == "set_missing_host_key_policy"):
                     for arg in node.args:
-                        name = (
-                            arg.attr if isinstance(arg, ast.Attribute)
-                            else arg.id if isinstance(arg, ast.Name) else ""
-                        )
+                        # arg can be: Attribute (paramiko.AutoAddPolicy),
+                        #             Name (AutoAddPolicy), or
+                        #             Call (paramiko.AutoAddPolicy())
+                        name = ""
+                        if isinstance(arg, ast.Attribute):
+                            name = arg.attr
+                        elif isinstance(arg, ast.Name):
+                            name = arg.id
+                        elif isinstance(arg, ast.Call):
+                            fn = arg.func
+                            name = (fn.attr if isinstance(fn, ast.Attribute)
+                                    else fn.id if isinstance(fn, ast.Name) else "")
                         if "AutoAddPolicy" in name:
                             detections.append(_Detection(
                                 lineno=node.lineno,

@@ -213,17 +213,23 @@ def _monitor_claims(monitor_events: list[MonitorEvent], requirement_id: str, par
     claims: list[AssuranceClaim] = []
     for event in monitor_events:
         claim_id = event.claim_id or f"claim:{requirement_id}:monitor:{event.monitor_id}"
+        mon_status = "monitored" if event.status == "pass" else "falsified"
+        mon_warrant = (
+            f"Monitor '{event.monitor_id}' observed this property at runtime and "
+            f"{'confirmed it holds' if event.status == 'pass' else 'detected a violation'}"
+        )
         claims.append(
             _make_claim(
                 claim_id=claim_id,
                 claim_text=f"Monitor claim for {event.monitor_id}",
-                status="monitored" if event.status == "pass" else "falsified",
+                status=mon_status,
                 claim_type="monitor",
                 confidence=("high" if event.status == "pass" else "low"),
                 monitored_by=[event.monitor_id],
                 residual_risks=([event.monitor_id] if event.status == "fail" else []),
                 evidence_refs=[event.monitor_id],
                 parent_claim_id=parent_id,
+                warrant=mon_warrant,
             )
         )
     return claims
@@ -232,16 +238,23 @@ def _monitor_claims(monitor_events: list[MonitorEvent], requirement_id: str, par
 def _residual_claims(residuals: list[str], requirement_id: str, parent_id: str) -> list[AssuranceClaim]:
     claims: list[AssuranceClaim] = []
     for residual in residuals:
+        # Residual warrant: names the open obligation and its security implication
+        res_warrant = (
+            f"Obligation '{residual}' is open — "
+            f"the corresponding security invariant has not been fully discharged; "
+            f"manual review or remediation required before deployment"
+        )
         claims.append(
             _make_claim(
                 claim_id=f"claim:{requirement_id}:residual:{residual}",
-                claim_text=f"Residual obligation {residual}",
+                claim_text=f"Residual obligation: {residual}",
                 status="residual",
                 claim_type="residual",
                 confidence="moderate",
                 residual_risks=[residual],
                 evidence_refs=[residual],
                 parent_claim_id=parent_id,
+                warrant=res_warrant,
             )
         )
     return claims
@@ -266,6 +279,13 @@ def _law_claims(
     )
     for law_id in linked_laws:
         law = IMMUTABLE_LAWS.get(law_id, {"name": law_id, "principle": ""})
+        principle = law.get("principle", "")
+        law_warrant = (
+            f"Law '{law['name']}' is structurally enforced: {principle}"
+            if law_status == "discharged"
+            else f"Law '{law['name']}' compliance is residual — "
+                 f"principle not fully verified: {principle}"
+        )
         claims.append(
             _make_claim(
                 claim_id=f"claim:{requirement_id}:law:{law_id}",
@@ -275,10 +295,11 @@ def _law_claims(
                 confidence=_confidence_for_status(law_status),
                 supported_by=( ["structural.law_compliance"] if law_status == "discharged" else [] ),
                 residual_risks=( [] if law_status == "discharged" else ["law_compliance"] ),
-                assumptions=[law.get('principle', '')],
+                assumptions=[principle],
                 evidence_refs=[law_id, "structural.law_compliance"],
                 parent_claim_id=parent_id,
                 responsibility_boundary="forge_runtime",
+                warrant=law_warrant,
             )
         )
     return claims
@@ -328,6 +349,13 @@ def rollup(
     graph_id = f"claim:{requirement_id}:assurance_graph"
     primary_status = _primary_status(out)
 
+    _primary_warrant = (
+        f"Primary trust claim is {'supported' if primary_status == 'discharged' else 'CHALLENGED'} "
+        f"by {len(out.discharged)} discharged gate families and "
+        f"{len(out.monitored)} monitored properties. "
+        + (f"FALSIFIED: {len(out.falsified)} security findings require remediation."
+           if out.falsified else "No security falsifications detected.")
+    )
     primary = _make_claim(
         claim_id=primary_id,
         claim_text="Primary artifact trust claim",
@@ -338,6 +366,7 @@ def rollup(
         monitored_by=out.monitored,
         residual_risks=out.residual + out.falsified,
         evidence_refs=["gate_summary", "monitor_events"],
+        warrant=_primary_warrant,
     )
     graph_claim = _make_claim(
         claim_id=graph_id,
@@ -348,8 +377,18 @@ def rollup(
         supported_by=["family_claims", "monitor_claims", "residual_claims", "law_claims"],
         evidence_refs=["assurance_graph"],
         parent_claim_id=primary_id,
+        warrant=(
+            "Assurance graph structure verified: family claims → primary claim → "
+            "law claims form a complete argument with traceable evidence chain"
+        ),
     )
     coverage_status = "discharged" if monitor_events else "residual"
+    _monitor_warrant = (
+        f"Runtime monitoring covers {len(monitor_events)} properties"
+        if monitor_events
+        else "No runtime monitors seeded — runtime behavior unobserved; "
+             "static analysis only"
+    )
     monitor_claim = _make_claim(
         claim_id=f"claim:{requirement_id}:monitor_coverage",
         claim_text="Monitor coverage exists for tracked runtime properties",
@@ -360,6 +399,7 @@ def rollup(
         residual_risks=([] if monitor_events else ["monitor_coverage_absent"]),
         evidence_refs=[event.monitor_id for event in monitor_events] or ["monitor_coverage_absent"],
         parent_claim_id=primary_id,
+        warrant=_monitor_warrant,
     )
 
     claims = [primary, graph_claim, monitor_claim]
