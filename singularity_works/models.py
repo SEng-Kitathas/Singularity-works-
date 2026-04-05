@@ -81,6 +81,12 @@ class AssuranceClaim:
     evidence_refs: list[str] = field(default_factory=_list)
     parent_claim_id: str = ""
     child_claim_ids: list[str] = field(default_factory=_list)
+    # Warrant: semantic reason WHY this evidence constitutes support for the claim.
+    # Without a warrant, confidence inflation is possible — gates can discharge
+    # claims without actually verifying the relevant invariant.
+    # Format: "[gate/monitor_id] verifies [invariant] required by [claim]"
+    # Empty warrant = legacy/shallow claim (still counted but flagged in audit)
+    warrant: str = ""
 
 
 @dataclass

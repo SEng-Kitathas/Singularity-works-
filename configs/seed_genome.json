@@ -2127,6 +2127,687 @@
       "laws": [
         "Law1"
       ]
+    },
+    {
+      "pattern_id": "serialize.no_yaml_unsafe_load",
+      "family": "serialize",
+      "radicals": [
+        "PARSE",
+        "TRUST"
+      ],
+      "summary": "yaml.load() without Loader executes arbitrary Python via YAML tags",
+      "invariants": [
+        "yaml_load_must_specify_safe_loader"
+      ],
+      "capabilities": [
+        "injection_resistance",
+        "trust_boundary_hardening",
+        "sink_isolation"
+      ],
+      "anti_patterns": [
+        {
+          "id": "yaml_load_no_loader",
+          "detection_strategy": "local_yaml_unsafe_load",
+          "concept": "yaml_load_without_loader_arbitrary_code",
+          "severity": "high",
+          "transformation_axiom": "replace_yaml_load_with_safe_load",
+          "auto_apply": true,
+          "safety_level": "safe",
+          "language": "python",
+          "signal": "yaml_load_call_without_Loader_kwarg"
+        }
+      ],
+      "laws": [
+        "Law1"
+      ]
+    },
+    {
+      "pattern_id": "execution_safety.no_subprocess_shell_string",
+      "family": "execution_safety",
+      "radicals": [
+        "TRUST",
+        "PARSE"
+      ],
+      "summary": "subprocess with shell=True and string arg enables shell injection via metacharacters",
+      "invariants": [
+        "subprocess_must_use_list_args_not_shell_string"
+      ],
+      "capabilities": [
+        "injection_resistance",
+        "trust_boundary_hardening"
+      ],
+      "anti_patterns": [
+        {
+          "id": "subprocess_shell_true_string",
+          "detection_strategy": "local_subprocess_shell",
+          "concept": "shell_injection_via_subprocess_shell_true",
+          "severity": "critical",
+          "transformation_axiom": "prefer_explicit_args_to_shell_string",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "subprocess_call_with_shell_true_and_string_arg"
+        }
+      ],
+      "laws": [
+        "Law1",
+        "LawOmega"
+      ]
+    },
+    {
+      "pattern_id": "crypto.no_deprecated_tls_version",
+      "family": "crypto",
+      "radicals": [
+        "VERIFY",
+        "TRUST"
+      ],
+      "summary": "SSLv2/v3/TLS1.0/1.1 are cryptographically broken \u2014 POODLE, BEAST, DROWN",
+      "invariants": [
+        "tls_version_must_be_1_2_minimum"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "tls_integrity"
+      ],
+      "anti_patterns": [
+        {
+          "id": "broken_ssl_tls_version",
+          "detection_strategy": "local_ssl_version_pinned",
+          "concept": "deprecated_ssl_tls_protocol_version_pinned",
+          "severity": "high",
+          "transformation_axiom": "upgrade_to_tls_1_2_minimum",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "ssl_PROTOCOL_SSLv_or_TLSv1_attribute_access"
+        }
+      ],
+      "laws": [
+        "Law1"
+      ]
+    },
+    {
+      "pattern_id": "injection.nosql_injection",
+      "family": "injection",
+      "radicals": [
+        "PARSE",
+        "TRUST"
+      ],
+      "summary": "NoSQL operator injection via user-controlled $where/$ne/$gt in MongoDB queries",
+      "invariants": [
+        "nosql_queries_must_use_typed_parameters"
+      ],
+      "capabilities": [
+        "injection_resistance",
+        "trust_boundary_hardening"
+      ],
+      "anti_patterns": [
+        {
+          "id": "nosql_injection",
+          "detection_strategy": "local_nosql_injection",
+          "concept": "NoSQL operator injection via user-controlled $where/$ne/$gt ",
+          "severity": "critical",
+          "transformation_axiom": "fix_injection_nosql_injection",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "nosql_injection_user_input_in_find_aggregate"
+        }
+      ],
+      "laws": [
+        "Law1",
+        "LawOmega"
+      ]
+    },
+    {
+      "pattern_id": "security.trojan_source",
+      "family": "security",
+      "radicals": [
+        "TRUST",
+        "PARSE"
+      ],
+      "summary": "Bidirectional Unicode control characters disguise malicious logic (CVE-2021-42574)",
+      "invariants": [
+        "source_files_must_not_contain_bidi_control_characters"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "injection_resistance"
+      ],
+      "anti_patterns": [
+        {
+          "id": "trojan_source",
+          "detection_strategy": "local_trojan_source",
+          "concept": "Bidirectional Unicode control characters disguise malicious ",
+          "severity": "high",
+          "transformation_axiom": "fix_security_trojan_source",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "bidi_unicode_in_source_file"
+        }
+      ],
+      "laws": [
+        "Law1"
+      ]
+    },
+    {
+      "pattern_id": "injection.zip_slip",
+      "family": "injection",
+      "radicals": [
+        "RESOURCE",
+        "TRUST"
+      ],
+      "summary": ".extractall() without path sanitization allows Zip Slip \u2014 write to arbitrary paths",
+      "invariants": [
+        "archive_extraction_must_validate_member_paths"
+      ],
+      "capabilities": [
+        "injection_resistance",
+        "resource_safety"
+      ],
+      "anti_patterns": [
+        {
+          "id": "zip_slip",
+          "detection_strategy": "local_zip_slip",
+          "concept": ".extractall() without path sanitization allows Zip Slip \u2014 wr",
+          "severity": "critical",
+          "transformation_axiom": "fix_injection_zip_slip",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "extractall_without_path_validation"
+        }
+      ],
+      "laws": [
+        "Law1",
+        "LawOmega"
+      ]
+    },
+    {
+      "pattern_id": "auth.jwt_none_algorithm",
+      "family": "auth",
+      "radicals": [
+        "VERIFY",
+        "TRUST"
+      ],
+      "summary": "JWT decoded with algorithms=['none'] bypasses signature verification entirely",
+      "invariants": [
+        "jwt_must_specify_expected_algorithm_not_none"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "tls_integrity"
+      ],
+      "anti_patterns": [
+        {
+          "id": "jwt_none_algorithm",
+          "detection_strategy": "local_jwt_none_algorithm",
+          "concept": "JWT decoded with algorithms=['none'] bypasses signature veri",
+          "severity": "critical",
+          "transformation_axiom": "fix_auth_jwt_none_algorithm",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "jwt_decode_with_none_or_empty_algorithm"
+        }
+      ],
+      "laws": [
+        "Law1",
+        "LawOmega"
+      ]
+    },
+    {
+      "pattern_id": "injection.ssti_render_template",
+      "family": "injection",
+      "radicals": [
+        "PARSE",
+        "TRUST"
+      ],
+      "summary": "render_template_string with user-controlled template enables SSTI \u2014 arbitrary code execution",
+      "invariants": [
+        "template_string_must_not_accept_user_input"
+      ],
+      "capabilities": [
+        "injection_resistance",
+        "trust_boundary_hardening"
+      ],
+      "anti_patterns": [
+        {
+          "id": "ssti_render_template",
+          "detection_strategy": "local_ssti_render_template",
+          "concept": "render_template_string with user-controlled template enables",
+          "severity": "critical",
+          "transformation_axiom": "fix_injection_ssti_render_template",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "render_template_string_tainted_argument"
+        }
+      ],
+      "laws": [
+        "Law1",
+        "LawOmega"
+      ]
+    },
+    {
+      "pattern_id": "crypto.weak_rsa_key",
+      "family": "crypto",
+      "radicals": [
+        "VERIFY",
+        "TRUST"
+      ],
+      "summary": "RSA keys below 2048 bits are brute-forceable \u2014 minimum 2048, prefer 4096",
+      "invariants": [
+        "rsa_key_size_must_be_2048_bits_minimum"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "tls_integrity"
+      ],
+      "anti_patterns": [
+        {
+          "id": "weak_rsa_key",
+          "detection_strategy": "local_weak_rsa_key",
+          "concept": "RSA keys below 2048 bits are brute-forceable \u2014 minimum 2048,",
+          "severity": "high",
+          "transformation_axiom": "fix_crypto_weak_rsa_key",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "rsa_generate_private_key_with_small_bit_size"
+        }
+      ],
+      "laws": [
+        "Law1"
+      ]
+    },
+    {
+      "pattern_id": "network.graphql_introspection",
+      "family": "network",
+      "radicals": [
+        "TRUST",
+        "BOUNDARY"
+      ],
+      "summary": "GraphQL introspection=True in production leaks full schema to attackers",
+      "invariants": [
+        "graphql_introspection_must_be_disabled_in_production"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "network_safety"
+      ],
+      "anti_patterns": [
+        {
+          "id": "graphql_introspection",
+          "detection_strategy": "local_graphql_introspection",
+          "concept": "GraphQL introspection=True in production leaks full schema t",
+          "severity": "high",
+          "transformation_axiom": "fix_network_graphql_introspection",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "graphql_schema_introspection_enabled"
+        }
+      ],
+      "laws": [
+        "Law1"
+      ]
+    },
+    {
+      "pattern_id": "crypto.secret_serialization",
+      "family": "crypto",
+      "radicals": [
+        "TRUST",
+        "STATE"
+      ],
+      "summary": "Serializing structs with credential fields to JSON/YAML leaks secrets in responses/logs",
+      "invariants": [
+        "serialized_output_must_not_include_credential_fields"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "tls_integrity"
+      ],
+      "anti_patterns": [
+        {
+          "id": "secret_serialization",
+          "detection_strategy": "local_secret_serialization",
+          "concept": "Serializing structs with credential fields to JSON/YAML leak",
+          "severity": "high",
+          "transformation_axiom": "fix_crypto_secret_serialization",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "credential_field_in_json_dumps"
+        }
+      ],
+      "laws": [
+        "Law1"
+      ]
+    },
+    {
+      "pattern_id": "auth.csrf_exempt",
+      "family": "auth",
+      "radicals": [
+        "TRUST",
+        "STATE"
+      ],
+      "summary": "@csrf_exempt removes CSRF protection from endpoints that modify server state",
+      "invariants": [
+        "state_mutating_endpoints_must_enforce_csrf_protection"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "injection_resistance"
+      ],
+      "anti_patterns": [
+        {
+          "id": "csrf_exempt",
+          "detection_strategy": "local_csrf_exempt",
+          "concept": "@csrf_exempt removes CSRF protection from endpoints that mod",
+          "severity": "high",
+          "transformation_axiom": "fix_auth_csrf_exempt",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "csrf_exempt_decorator_on_view"
+        }
+      ],
+      "laws": [
+        "Law1"
+      ]
+    },
+    {
+      "pattern_id": "execution_safety.flask_debug",
+      "family": "execution_safety",
+      "radicals": [
+        "TRUST",
+        "STATE"
+      ],
+      "summary": "Flask debug=True exposes Werkzeug interactive debugger (RCE via PIN bypass)",
+      "invariants": [
+        "production_apps_must_not_run_with_debug_enabled"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "injection_resistance"
+      ],
+      "anti_patterns": [
+        {
+          "id": "flask_debug",
+          "detection_strategy": "local_flask_debug",
+          "concept": "Flask debug=True exposes Werkzeug interactive debugger (RCE ",
+          "severity": "critical",
+          "transformation_axiom": "fix_execution_safety_flask_debug",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "flask_run_debug_true"
+        }
+      ],
+      "laws": [
+        "Law1",
+        "LawOmega"
+      ]
+    },
+    {
+      "pattern_id": "network.bind_all_interfaces",
+      "family": "network",
+      "radicals": [
+        "TRUST",
+        "BOUNDARY"
+      ],
+      "summary": "Binding to 0.0.0.0 exposes service on all interfaces including public network",
+      "invariants": [
+        "services_must_bind_to_specific_interface_not_0_0_0_0"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "network_safety"
+      ],
+      "anti_patterns": [
+        {
+          "id": "bind_all_interfaces",
+          "detection_strategy": "local_bind_all_interfaces",
+          "concept": "Binding to 0.0.0.0 exposes service on all interfaces includi",
+          "severity": "medium",
+          "transformation_axiom": "fix_network_bind_all_interfaces",
+          "auto_apply": true,
+          "safety_level": "safe",
+          "language": "python",
+          "signal": "server_bind_all_network_interfaces"
+        }
+      ],
+      "laws": [
+        "Law1"
+      ]
+    },
+    {
+      "pattern_id": "injection.ldap_injection",
+      "family": "injection",
+      "radicals": [
+        "PARSE",
+        "TRUST"
+      ],
+      "summary": "User input in LDAP filter enables auth bypass via )(uid=*))(|(uid=*",
+      "invariants": [
+        "ldap_filters_must_escape_user_input"
+      ],
+      "capabilities": [
+        "injection_resistance",
+        "trust_boundary_hardening"
+      ],
+      "anti_patterns": [
+        {
+          "id": "ldap_injection",
+          "detection_strategy": "local_ldap_injection",
+          "concept": "User input in LDAP filter enables auth bypass via )(uid=*))(",
+          "severity": "critical",
+          "transformation_axiom": "fix_injection_ldap_injection",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "ldap_search_with_user_controlled_filter"
+        }
+      ],
+      "laws": [
+        "Law1",
+        "LawOmega"
+      ]
+    },
+    {
+      "pattern_id": "injection.csv_injection",
+      "family": "injection",
+      "radicals": [
+        "PARSE",
+        "TRUST"
+      ],
+      "summary": "User data in CSV without sanitizing =,+,-,@ allows formula injection in Excel/Sheets",
+      "invariants": [
+        "csv_output_must_prefix_formula_characters"
+      ],
+      "capabilities": [
+        "injection_resistance",
+        "trust_boundary_hardening"
+      ],
+      "anti_patterns": [
+        {
+          "id": "csv_injection",
+          "detection_strategy": "local_csv_injection",
+          "concept": "User data in CSV without sanitizing =,+,-,@ allows formula i",
+          "severity": "high",
+          "transformation_axiom": "fix_injection_csv_injection",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "csv_writerow_with_user_controlled_data"
+        }
+      ],
+      "laws": [
+        "Law1"
+      ]
+    },
+    {
+      "pattern_id": "network.paramiko_auto_add",
+      "family": "network",
+      "radicals": [
+        "VERIFY",
+        "TRUST"
+      ],
+      "summary": "paramiko AutoAddPolicy blindly accepts any SSH host key \u2014 MITM possible",
+      "invariants": [
+        "ssh_clients_must_verify_host_keys_against_known_hosts"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "tls_integrity"
+      ],
+      "anti_patterns": [
+        {
+          "id": "paramiko_auto_add",
+          "detection_strategy": "local_paramiko_auto_add",
+          "concept": "paramiko AutoAddPolicy blindly accepts any SSH host key \u2014 MI",
+          "severity": "high",
+          "transformation_axiom": "fix_network_paramiko_auto_add",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "paramiko_set_missing_host_key_policy_auto_add"
+        }
+      ],
+      "laws": [
+        "Law1"
+      ]
+    },
+    {
+      "pattern_id": "crypto.urllib3_disable_warnings",
+      "family": "crypto",
+      "radicals": [
+        "VERIFY",
+        "TRUST"
+      ],
+      "summary": "urllib3.disable_warnings() suppresses InsecureRequestWarning, hiding TLS failures",
+      "invariants": [
+        "tls_warnings_must_not_be_suppressed"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "tls_integrity"
+      ],
+      "anti_patterns": [
+        {
+          "id": "urllib3_disable_warnings",
+          "detection_strategy": "local_urllib3_disable_warnings",
+          "concept": "urllib3.disable_warnings() suppresses InsecureRequestWarning",
+          "severity": "medium",
+          "transformation_axiom": "fix_crypto_urllib3_disable_warnings",
+          "auto_apply": true,
+          "safety_level": "safe",
+          "language": "python",
+          "signal": "urllib3_disable_warnings_called"
+        }
+      ],
+      "laws": [
+        "Law1"
+      ]
+    },
+    {
+      "pattern_id": "execution_safety.sqlite_load_extension",
+      "family": "execution_safety",
+      "radicals": [
+        "TRUST",
+        "PARSE"
+      ],
+      "summary": "enable_load_extension(True) allows SQL to load shared libraries \u2014 code execution",
+      "invariants": [
+        "sqlite_load_extension_must_remain_disabled"
+      ],
+      "capabilities": [
+        "injection_resistance",
+        "trust_boundary_hardening"
+      ],
+      "anti_patterns": [
+        {
+          "id": "sqlite_load_extension",
+          "detection_strategy": "local_sqlite_load_extension",
+          "concept": "enable_load_extension(True) allows SQL to load shared librar",
+          "severity": "critical",
+          "transformation_axiom": "fix_execution_safety_sqlite_load_extension",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "sqlite_enable_load_extension_true"
+        }
+      ],
+      "laws": [
+        "Law1",
+        "LawOmega"
+      ]
+    },
+    {
+      "pattern_id": "crypto.weak_cipher",
+      "family": "crypto",
+      "radicals": [
+        "VERIFY",
+        "TRUST"
+      ],
+      "summary": "DES/3DES/RC4/RC2 are cryptographically broken \u2014 use AES-256-GCM",
+      "invariants": [
+        "symmetric_encryption_must_use_aes256_or_stronger"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "tls_integrity"
+      ],
+      "anti_patterns": [
+        {
+          "id": "weak_cipher",
+          "detection_strategy": "local_weak_cipher",
+          "concept": "DES/3DES/RC4/RC2 are cryptographically broken \u2014 use AES-256-",
+          "severity": "high",
+          "transformation_axiom": "fix_crypto_weak_cipher",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "broken_cipher_DES_RC4_used"
+        }
+      ],
+      "laws": [
+        "Law1"
+      ]
+    },
+    {
+      "pattern_id": "resource.decompression_bomb",
+      "family": "resource",
+      "radicals": [
+        "RESOURCE",
+        "TRUST"
+      ],
+      "summary": "Decompression without size limit allows DoS via crafted archive (Zip bomb)",
+      "invariants": [
+        "decompressed_data_must_have_size_limit"
+      ],
+      "capabilities": [
+        "resource_safety",
+        "trust_boundary_hardening"
+      ],
+      "anti_patterns": [
+        {
+          "id": "decompression_bomb",
+          "detection_strategy": "local_decompression_bomb",
+          "concept": "Decompression without size limit allows DoS via crafted arch",
+          "severity": "high",
+          "transformation_axiom": "fix_resource_decompression_bomb",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "copyfileobj_without_length_on_compressed_reader"
+        }
+      ],
+      "laws": [
+        "Law1"
+      ]
     }
   ]
 }

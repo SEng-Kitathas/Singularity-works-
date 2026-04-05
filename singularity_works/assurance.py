@@ -43,6 +43,13 @@ class AssuranceRollup:
         return "green"
 
     def to_dict(self) -> dict:
+        # Warrant coverage: fraction of claims that carry a semantic warrant.
+        # A high warrant_coverage means the assurance argument is explanatory —
+        # each discharge has a stated reason, not just a boolean flag.
+        # Low warrant_coverage signals shallow assurance (legacy or heuristic claims).
+        total_claims = len(self.claims)
+        warranted = sum(1 for c in self.claims if c.warrant)
+        warrant_coverage = round(warranted / total_claims, 3) if total_claims else 0.0
         return {
             "status": self.status,
             "discharged": self.discharged,
@@ -53,6 +60,9 @@ class AssuranceRollup:
             "assumptions": self.assumptions,
             "graph_depth": _graph_depth(self.claims),
             "graph_edges": _graph_edges(self.claims),
+            "warrant_coverage": warrant_coverage,
+            "warranted_claims": warranted,
+            "total_claims": total_claims,
         }
 
 
@@ -107,6 +117,63 @@ def _primary_status(out: AssuranceRollup) -> str:
     return "discharged"
 
 
+# ── Warrant generation helpers ────────────────────────────────────────────────
+
+# Maps gate family → the invariant property the family verifies.
+# This is the semantic warrant: WHY a passing gate in this family
+# constitutes evidence for the primary security claim.
+_FAMILY_INVARIANTS: dict[str, str] = {
+    "injection":              "no untrusted input reaches injection sinks without sanitization",
+    "injection_resistance":   "injection surface is parameterized and bounded",
+    "boundary":               "trust boundaries enforce input validation before sensitive operations",
+    "auth":                   "authentication tokens and sessions are cryptographically secure",
+    "network_safety":         "network calls enforce TLS and restrict SSRF attack surface",
+    "resource_safety":        "resource lifecycle is bounded: acquire → use → release is atomic",
+    "crypto":                 "cryptographic operations use maintained algorithms at safe versions",
+    "crypto_safety":          "CSPRNG, current cipher suites, and key management standards are met",
+    "temporal_integrity":     "check-then-act sequences are atomic; no TOCTOU race windows",
+    "state_isolation":        "concurrent state is guarded; no data race or shared-mutable hazard",
+    "verification_integrity": "TLS certificate verification is not suppressed",
+    "execution_safety":       "dynamic code execution does not accept untrusted input",
+    "numeric_safety":         "financial and index arithmetic uses deterministic fixed-point types",
+    "access_control":         "object-level authorization enforces ownership on every resource access",
+    "serialize":              "deserialization validates schema and rejects executable payloads",
+    "memory_safety":          "pointer arithmetic and casts are bounds-checked and alignment-verified",
+    "timing":                 "secret comparisons use constant-time algorithms",
+    "logic":                  "application logic invariants are maintained across all code paths",
+    "structural":             "code structure satisfies immutable law compliance and hygiene",
+    "code_hygiene":           "no placeholder or stub code in production paths",
+}
+
+_DEFAULT_INVARIANT = "security properties of this gate family are preserved"
+
+
+def _warrant_for_family(
+    family: str,
+    gate_ids: list[str],
+    status: str,
+) -> str:
+    """Generate a semantic warrant string for a family-level claim."""
+    invariant = _FAMILY_INVARIANTS.get(family, _DEFAULT_INVARIANT)
+    if status == "discharged":
+        gate_list = ", ".join(g.split(":")[-1] for g in gate_ids[:3])
+        suffix = f" (+{len(gate_ids)-3} more)" if len(gate_ids) > 3 else ""
+        return (
+            f"Gates [{gate_list}{suffix}] verify that {invariant} — "
+            f"evidence: all {family} checks pass with no findings"
+        )
+    elif status == "falsified":
+        return (
+            f"FALSIFIED: {invariant} — "
+            f"one or more {family} gates produced security findings"
+        )
+    else:
+        return (
+            f"RESIDUAL: {invariant} — "
+            f"partial discharge; some {family} gates produced warnings"
+        )
+
+
 def _family_claims(gates: GateRunSummary, requirement_id: str, parent_id: str) -> list[AssuranceClaim]:
     family_status: dict[str, list[str]] = {}
     claims: list[AssuranceClaim] = []
@@ -114,25 +181,29 @@ def _family_claims(gates: GateRunSummary, requirement_id: str, parent_id: str) -
         family_status.setdefault(result.gate_family, []).append(result.status)
     for family, statuses in sorted(family_status.items()):
         family_claim_status = _claim_status(statuses)
+        passing_gates = [
+            result.gate_id
+            for result in gates.results
+            if result.gate_family == family and result.status == "pass"
+        ]
+        failing_gates = [
+            result.gate_id
+            for result in gates.results
+            if result.gate_family == family and result.status in {"warn", "fail"}
+        ]
+        warrant = _warrant_for_family(family, passing_gates, family_claim_status)
         claims.append(
             _make_claim(
                 claim_id=f"claim:{requirement_id}:gate_family:{family}",
-                claim_text=f"Gate family {family} compliance claim",
+                claim_text=f"Gate family '{family}' verifies: {_FAMILY_INVARIANTS.get(family, _DEFAULT_INVARIANT)}",
                 status=family_claim_status,
                 claim_type="gate_family",
                 confidence=_confidence_for_status(family_claim_status),
-                supported_by=[
-                    result.gate_id
-                    for result in gates.results
-                    if result.gate_family == family and result.status == "pass"
-                ],
-                residual_risks=[
-                    result.gate_id
-                    for result in gates.results
-                    if result.gate_family == family and result.status in {"warn", "fail"}
-                ],
+                supported_by=passing_gates,
+                residual_risks=failing_gates,
                 evidence_refs=[f"gate_family:{family}"],
                 parent_claim_id=parent_id,
+                warrant=warrant,
             )
         )
     return claims

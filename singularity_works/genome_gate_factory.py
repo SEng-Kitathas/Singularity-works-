@@ -2497,10 +2497,29 @@ _STRATEGIES["local_xxe"] = _detect_xxe
 
 # ── Hardcoded Secrets / Credentials ────────────────────────────────────────
 
+# Expanded from detect-secrets DENYLIST (MIT/Apache-2.0) + forge additions.
+# Covers multi-language variable naming patterns including Spanish (contraseña).
 _SECRET_NAMES = _re_ext.compile(
-    r'\b(?:password|passwd|secret|api_key|apikey|access_token|auth_token|'
-    r'private_key|client_secret|database_url|db_password|jwt_secret|'
-    r'encryption_key|signing_key|bearer_token|credentials)\b',
+    r'\b(?:'
+    # Core credential names (detect-secrets denylist)
+    r'api_?key|auth_?key|service_?key|account_?key|db_?key|database_?key|'
+    r'priv_?key|private_?key|client_?key|'
+    r'db_?pass|database_?pass|key_?pass|'
+    r'password|passwd|pwd|secret|'
+    # Spanish/multilingual (detect-secrets)
+    r'contrase[ñn]a|'
+    # Extended forge additions
+    r'apikey|access_token|auth_token|'
+    r'client_secret|database_url|db_password|'
+    r'jwt_secret|encryption_key|signing_key|'
+    r'bearer_token|credentials|'
+    # Common env var patterns
+    r'secret_key|app_secret|master_key|'
+    r'stripe_key|twilio_token|sendgrid_key|'
+    r'github_token|gitlab_token|slack_token|'
+    r'aws_secret|gcp_key|azure_key|'
+    r'oauth_secret|refresh_token|session_secret'
+    r')\b',
     _re_ext.IGNORECASE,
 )
 _SECRET_VALUE = _re_ext.compile(
@@ -3286,4 +3305,1409 @@ def _detect_marshal_deserialize(
 
 
 _STRATEGIES["local_marshal_deserialize"] = _detect_marshal_deserialize
+
+
+
+# ---------------------------------------------------------------------------
+# Remaining bandit-derived detectors (B506, B602/603, B503/504)
+# ---------------------------------------------------------------------------
+
+def _detect_yaml_unsafe_load(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect yaml.load() without Loader= argument — executes arbitrary Python.
+    yaml.safe_load() or yaml.load(data, Loader=yaml.SafeLoader) is safe.
+    (Bandit B506 equivalent)
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+    if tree is not None:
+        class _V(ast.NodeVisitor):
+            def visit_Call(self, node: ast.Call) -> None:
+                func = node.func
+                if (isinstance(func, ast.Attribute) and func.attr == "load"
+                        and isinstance(func.value, ast.Name)
+                        and func.value.id == "yaml"):
+                    # Check if Loader kwarg is present
+                    has_loader = any(kw.arg == "Loader" for kw in node.keywords)
+                    if not has_loader:
+                        detections.append(_Detection(
+                            lineno=node.lineno,
+                            message=(
+                                f"yaml.load() without Loader= at line {node.lineno} — "
+                                f"deserializes arbitrary Python via YAML tags"
+                            ),
+                            evidence={
+                                "rewrite_candidate":
+                                    "yaml.safe_load(data)  # or yaml.load(data, Loader=yaml.SafeLoader)"
+                            },
+                        ))
+                self.generic_visit(node)
+        _V().visit(tree)
+    return detections
+
+
+_STRATEGIES["local_yaml_unsafe_load"] = _detect_yaml_unsafe_load
+
+
+def _detect_subprocess_shell(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect subprocess calls with shell=True and string argument (not list).
+    String + shell=True enables shell injection via metacharacters.
+    List + shell=True is lower risk but still flagged.
+    (Bandit B602/B603 equivalent)
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+    if tree is not None:
+        _SUBPROCESS_FNS = frozenset({
+            "call", "run", "Popen", "check_call", "check_output",
+        })
+        class _V(ast.NodeVisitor):
+            def visit_Call(self, node: ast.Call) -> None:
+                func = node.func
+                fn_name = (
+                    func.attr if isinstance(func, ast.Attribute) else
+                    func.id if isinstance(func, ast.Name) else ""
+                )
+                is_subprocess = (
+                    fn_name in _SUBPROCESS_FNS and (
+                        (isinstance(func, ast.Attribute) and
+                         isinstance(func.value, ast.Name) and
+                         func.value.id == "subprocess")
+                        or isinstance(func, ast.Name)
+                    )
+                )
+                if not is_subprocess:
+                    self.generic_visit(node)
+                    return
+                shell_true = any(
+                    kw.arg == "shell" and isinstance(kw.value, ast.Constant)
+                    and kw.value.value is True
+                    for kw in node.keywords
+                )
+                if shell_true and node.args:
+                    arg0 = node.args[0]
+                    # String arg with shell=True is the worst case
+                    is_string_arg = isinstance(arg0, (ast.Constant, ast.JoinedStr,
+                                                       ast.BinOp))
+                    severity = "critical" if is_string_arg else "high"
+                    detections.append(_Detection(
+                        lineno=node.lineno,
+                        message=(
+                            f"subprocess.{fn_name}(..., shell=True) at line {node.lineno}"
+                            + (" with string arg — shell injection if any part is user-controlled"
+                               if is_string_arg else " — prefer list args to avoid shell injection")
+                        ),
+                        evidence={
+                            "rewrite_candidate":
+                                f"subprocess.{fn_name}(['cmd', arg1, arg2])  "
+                                f"# list avoids shell; omit shell=True",
+                        },
+                    ))
+                self.generic_visit(node)
+        _V().visit(tree)
+    return detections
+
+
+_STRATEGIES["local_subprocess_shell"] = _detect_subprocess_shell
+
+
+def _detect_ssl_version_pinned(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect pinned deprecated SSL/TLS versions: SSLv2, SSLv3, TLSv1, TLSv1_1.
+    These are cryptographically broken. Use ssl.PROTOCOL_TLS_CLIENT.
+    (Bandit B503/B504 equivalent)
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+    _BROKEN_PROTOCOLS = frozenset({
+        "PROTOCOL_SSLv2", "PROTOCOL_SSLv3",
+        "PROTOCOL_TLSv1", "PROTOCOL_TLSv1_1",
+        "PROTOCOL_SSLv23",   # deprecated alias — negotiates down to SSLv3
+    })
+    if tree is not None:
+        class _V(ast.NodeVisitor):
+            def visit_Attribute(self, node: ast.Attribute) -> None:
+                if (node.attr in _BROKEN_PROTOCOLS
+                        and isinstance(node.value, ast.Name)
+                        and node.value.id == "ssl"):
+                    detections.append(_Detection(
+                        lineno=node.lineno,
+                        message=(
+                            f"Deprecated SSL/TLS version ssl.{node.attr} at line {node.lineno} — "
+                            f"cryptographically broken; use ssl.PROTOCOL_TLS_CLIENT"
+                        ),
+                        evidence={
+                            "rewrite_candidate":
+                                "ssl.PROTOCOL_TLS_CLIENT  # negotiates best mutual version"
+                        },
+                    ))
+                self.generic_visit(node)
+        _V().visit(tree)
+
+    # Heuristic fallback for non-Python (Go, Java TLS config).
+    # Gate behind tree is None — Python files contain these strings as literals
+    # inside _BROKEN_PROTOCOLS frozenset, which would produce self-referential FPs.
+    if not detections and tree is None:
+        broken_pat = _re_ext.compile(
+            r'SSLv[23]|TLSv1[^._]|TLSv1_1|PROTOCOL_TLS_?v1\b|'
+            r'tls\.VersionTLS10|tls\.VersionTLS11|'
+            r'SSLContext\.TLSv1_1',
+            _re_ext.IGNORECASE,
+        )
+        for i, line in enumerate(content.splitlines(), 1):
+            if broken_pat.search(line):
+                detections.append(_Detection(
+                    lineno=i,
+                    message=(
+                        f"Deprecated TLS version reference at line {i} — "
+                        f"TLS 1.0/1.1 and SSLv3 are cryptographically broken"
+                    ),
+                    evidence={
+                        "rewrite_candidate": "Use TLS 1.2 minimum; prefer TLS 1.3"
+                    },
+                ))
+    return detections
+
+
+_STRATEGIES["local_ssl_version_pinned"] = _detect_ssl_version_pinned
+
+
+
+# ===========================================================================
+# Research loop v1.34 — 18 new detectors
+# Sources: gosec (Apache-2.0), eslint-plugin-security (Apache-2.0),
+#          njsscan (MIT), graudit (MIT), PayloadsAllTheThings (MIT)
+# ===========================================================================
+
+import re as _re2  # second alias for patterns with complex escaping
+
+
+# ── 1. NoSQL Injection ──────────────────────────────────────────────────────
+
+def _detect_nosql_injection(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect NoSQL injection: user-controlled input flowing into MongoDB
+    operator position ($where, $ne, $gt, $nin) or find/aggregate calls.
+    Sources: njsscan nosql_injection.yaml (MIT), PayloadsAllTheThings (MIT).
+    Pattern: request input assigned to a dict used in .find()/.find_one()/
+             .aggregate()/.update*() without sanitization.
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+
+    _NOSQL_SINKS = frozenset({
+        "find", "find_one", "find_one_and_update", "find_one_and_delete",
+        "find_one_and_replace", "aggregate", "update", "update_one",
+        "update_many", "delete_one", "delete_many", "replace_one",
+        "count_documents", "distinct",
+    })
+    _REQUEST_SOURCES = frozenset({"request", "req"})
+    _REQUEST_ATTRS   = frozenset({
+        "args", "form", "json", "data", "get_json", "params", "values",
+    })
+    _NOSQL_OPERATORS = {"$where", "$ne", "$gt", "$lt", "$gte", "$lte",
+                        "$nin", "$in", "$exists", "$regex", "$expr"}
+
+    if tree is not None:
+        tainted: dict[str, int] = {}
+
+        def _is_req(node: ast.AST) -> bool:
+            if not isinstance(node, ast.Call):
+                return False
+            f = node.func
+            if isinstance(f, ast.Attribute):
+                v = f.value
+                if isinstance(v, ast.Attribute):
+                    return (isinstance(v.value, ast.Name)
+                            and v.value.id in _REQUEST_SOURCES
+                            and v.attr in _REQUEST_ATTRS)
+                if isinstance(v, ast.Name) and v.id in _REQUEST_SOURCES:
+                    return True
+            return False
+
+        def _has_taint(node: ast.AST) -> bool:
+            return _is_req(node) or any(
+                isinstance(ch, ast.Name) and ch.id in tainted
+                for ch in ast.walk(node)
+            )
+
+        class _Taint(ast.NodeVisitor):
+            def visit_Assign(self, node: ast.Assign) -> None:
+                if _has_taint(node.value):
+                    for t in node.targets:
+                        if isinstance(t, ast.Name):
+                            tainted[t.id] = node.lineno
+                self.generic_visit(node)
+
+        class _Sink(ast.NodeVisitor):
+            def visit_Call(self, node: ast.Call) -> None:
+                func = node.func
+                method = func.attr if isinstance(func, ast.Attribute) else ""
+                if method in _NOSQL_SINKS and node.args:
+                    arg = node.args[0]
+                    if _has_taint(arg):
+                        detections.append(_Detection(
+                            lineno=node.lineno,
+                            message=(
+                                f"NoSQL injection: user-controlled value reaches "
+                                f".{method}() at line {node.lineno} — "
+                                f"attacker can inject $where/$ne/$gt operators"
+                            ),
+                            evidence={
+                                "rewrite_candidate": (
+                                    "from bson import ObjectId\n"
+                                    "# Validate type and use typed parameters:\n"
+                                    "db.col.find({'_id': ObjectId(user_id)})  "
+                                    "# never pass raw user dicts"
+                                ),
+                            },
+                        ))
+                self.generic_visit(node)
+
+        _Taint().visit(tree)
+        _Sink().visit(tree)
+
+    # Heuristic fallback for non-Python content only.
+    if not detections and tree is None:
+        nosql_pat = _re2.compile(
+            r'["\'](\$where|\$ne|\$gt|\$lt|\$nin|\$regex)["\']'
+            r'.*(?:request|req|input|user|param)',
+            _re2.IGNORECASE | _re2.DOTALL,
+        )
+        for i, line in enumerate(content.splitlines(), 1):
+            if _re2.search(r'["\'](\$where|\$ne|\$gt|\$nin)["\']', line):
+                detections.append(_Detection(
+                    lineno=i,
+                    message=(
+                        f"NoSQL operator literal at line {i} — "
+                        f"verify value is not user-controlled"
+                    ),
+                    evidence={
+                        "rewrite_candidate":
+                            "Validate and cast user input before use in queries"
+                    },
+                ))
+                break
+    return detections
+
+
+_STRATEGIES["local_nosql_injection"] = _detect_nosql_injection
+
+
+# ── 2. Trojan Source — Bidirectional Unicode ────────────────────────────────
+
+_BIDI_CHARS = frozenset({
+    "\u202a", "\u202b", "\u202c", "\u202d", "\u202e",  # LRE/RLE/PDF/LRO/RLO
+    "\u2066", "\u2067", "\u2068", "\u2069",              # LRI/RLI/FSI/PDI
+    "\u200e", "\u200f",                                   # LRM/RLM
+})
+
+
+def _detect_trojan_source(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect bidirectional Unicode characters that can disguise malicious code.
+    CVE-2021-42574 — affects all languages.
+    Source: gosec trojansource.go (Apache-2.0), eslint detect-bidi-characters (Apache-2.0).
+    """
+    detections: list[_Detection] = []
+    for i, line in enumerate(content.splitlines(), 1):
+        for ch in line:
+            if ch in _BIDI_CHARS:
+                detections.append(_Detection(
+                    lineno=i,
+                    message=(
+                        f"Trojan source: bidirectional Unicode character "
+                        f"U+{ord(ch):04X} at line {i} — "
+                        f"can disguise logic so reviewers see different code than compiler"
+                    ),
+                    evidence={
+                        "rewrite_candidate":
+                            "Remove all bidirectional control characters from source files; "
+                            "configure editor to display/reject them"
+                    },
+                ))
+                break  # one detection per line is enough
+    return detections
+
+
+_STRATEGIES["local_trojan_source"] = _detect_trojan_source
+
+
+# ── 3. Zip Slip ─────────────────────────────────────────────────────────────
+
+def _detect_zip_slip(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect unsafe archive extraction: zipfile.extractall() or tarfile.extractall()
+    without path sanitization — allows writing to arbitrary filesystem paths.
+    Source: graudit python.db (MIT), njsscan zip_path_overwrite.yaml (MIT).
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+    _SAFE_GUARDS = frozenset({"basename", "abspath", "realpath", "commonpath", "commonprefix"})
+
+    if tree is not None:
+        class _V(ast.NodeVisitor):
+            def visit_Call(self, node: ast.Call) -> None:
+                func = node.func
+                if isinstance(func, ast.Attribute) and func.attr == "extractall":
+                    # Check if there's a members/filter arg with path checking
+                    has_filter = any(
+                        kw.arg in ("members", "filter", "path")
+                        for kw in node.keywords
+                    )
+                    # Check surrounding context for path.basename etc
+                    # (simple heuristic — no full control flow)
+                    detections.append(_Detection(
+                        lineno=node.lineno,
+                        message=(
+                            f".extractall() at line {node.lineno} without verified path "
+                            f"sanitization — Zip Slip allows writing outside target directory"
+                        ),
+                        evidence={
+                            "rewrite_candidate": (
+                                "for member in archive.namelist():\n"
+                                "    dest = os.path.realpath(os.path.join(target, member))\n"
+                                "    if not dest.startswith(os.path.realpath(target)):\n"
+                                "        raise ValueError('Zip Slip detected')\n"
+                                "archive.extract(member, target)"
+                            ),
+                        },
+                    ))
+                self.generic_visit(node)
+        _V().visit(tree)
+
+    # Heuristic: detect extractall in non-Python
+    if not detections and tree is None:
+        for i, line in enumerate(content.splitlines(), 1):
+            if _re2.search(r'\.extractall\s*\(', line):
+                detections.append(_Detection(
+                    lineno=i,
+                    message=f".extractall() at line {i} — verify path sanitization (Zip Slip)",
+                    evidence={"rewrite_candidate": "Validate each member path before extraction"},
+                ))
+    return detections
+
+
+_STRATEGIES["local_zip_slip"] = _detect_zip_slip
+
+
+# ── 4. JWT None Algorithm ───────────────────────────────────────────────────
+
+def _detect_jwt_none_algorithm(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect JWT decoded/verified with algorithms=['none'] or no algorithm check.
+    Also catches UnsafeAllowNoneSignatureType, verify=False, verify_signature=False.
+    Sources: graudit jwt.db (MIT), PayloadsAllTheThings JWT (MIT).
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+
+    _NONE_VARIANTS = frozenset({"none", "None", "NONE"})
+
+    if tree is not None:
+        class _V(ast.NodeVisitor):
+            def visit_Call(self, node: ast.Call) -> None:
+                func = node.func
+                call_name = (
+                    func.attr if isinstance(func, ast.Attribute)
+                    else func.id if isinstance(func, ast.Name)
+                    else ""
+                )
+                if call_name in ("decode", "verify"):
+                    for kw in node.keywords:
+                        # algorithms=['none'] or algorithms=[]
+                        if kw.arg == "algorithms":
+                            val = kw.value
+                            if isinstance(val, ast.List):
+                                for elt in val.elts:
+                                    if (isinstance(elt, ast.Constant)
+                                            and str(elt.value).lower() == "none"):
+                                        detections.append(_Detection(
+                                            lineno=node.lineno,
+                                            message=(
+                                                f"JWT decoded with algorithms=['none'] at "
+                                                f"line {node.lineno} — "
+                                                f"signature verification bypassed completely"
+                                            ),
+                                            evidence={
+                                                "rewrite_candidate":
+                                                    "jwt.decode(token, key, algorithms=['HS256'])"
+                                                    "  # always specify expected algorithm"
+                                            },
+                                        ))
+                            if isinstance(val, ast.List) and not val.elts:
+                                detections.append(_Detection(
+                                    lineno=node.lineno,
+                                    message=(
+                                        f"JWT decoded with algorithms=[] at line {node.lineno} "
+                                        f"— empty algorithm list disables verification"
+                                    ),
+                                    evidence={
+                                        "rewrite_candidate":
+                                            "jwt.decode(token, key, algorithms=['HS256'])"
+                                    },
+                                ))
+                        # options={'verify_signature': False}
+                        if kw.arg == "options" and isinstance(kw.value, ast.Dict):
+                            for k, v in zip(kw.value.keys, kw.value.values):
+                                if (isinstance(k, ast.Constant)
+                                        and k.value == "verify_signature"
+                                        and isinstance(v, ast.Constant)
+                                        and v.value is False):
+                                    detections.append(_Detection(
+                                        lineno=node.lineno,
+                                        message=(
+                                            f"JWT signature verification disabled via "
+                                            f"options at line {node.lineno}"
+                                        ),
+                                        evidence={
+                                            "rewrite_candidate":
+                                                "Remove options={'verify_signature': False}; "
+                                                "always verify"
+                                        },
+                                    ))
+                self.generic_visit(node)
+
+        _V().visit(tree)
+
+    # Heuristic — multi-language (graudit jwt.db patterns, MIT).
+    # Gate behind tree is None: Python files contain these pattern strings
+    # as literals in the detector source, causing self-referential FPs.
+    if not detections and tree is None:
+        patterns = [
+            (_re2.compile(r'algorithms?\s*=\s*\[?\s*["\']none["\']', _re2.IGNORECASE),
+             "JWT algorithm set to 'none'"),
+            (_re2.compile(r'UnsafeAllowNoneSignatureType', _re2.IGNORECASE),
+             "JWT UnsafeAllowNoneSignatureType used"),
+            (_re2.compile(r'verify_signature["\']?\s*[=:]\s*[Ff]alse'),
+             "JWT verify_signature disabled"),
+            (_re2.compile(r'ValidateLifetime\s*=\s*false', _re2.IGNORECASE),
+             "JWT lifetime validation disabled"),
+            (_re2.compile(r'ParseUnverified\s*\('),
+             "JWT ParseUnverified called — token not verified"),
+        ]
+        for i, line in enumerate(content.splitlines(), 1):
+            for pat, msg in patterns:
+                if pat.search(line):
+                    detections.append(_Detection(
+                        lineno=i,
+                        message=f"{msg} at line {i}",
+                        evidence={
+                            "rewrite_candidate": "Always verify JWT with expected algorithm and secret"
+                        },
+                    ))
+                    break
+
+    return detections
+
+
+_STRATEGIES["local_jwt_none_algorithm"] = _detect_jwt_none_algorithm
+
+
+# ── 5. SSTI — Jinja2 render_template_string ────────────────────────────────
+
+def _detect_ssti_render_template_string(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect Server-Side Template Injection via render_template_string() with
+    non-literal argument (user input flows into template engine).
+    Also catches Jinja2 Environment with autoescape=False.
+    Source: graudit python.db (MIT), PayloadsAllTheThings SSTI (MIT).
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+
+    _REQUEST_SOURCES = frozenset({"request", "req"})
+    _REQUEST_ATTRS   = frozenset({"args", "form", "json", "data", "params", "values"})
+
+    if tree is not None:
+        tainted: dict[str, int] = {}
+
+        def _is_req(node: ast.AST) -> bool:
+            if not isinstance(node, ast.Call):
+                return False
+            f = node.func
+            if isinstance(f, ast.Attribute):
+                v = f.value
+                if isinstance(v, ast.Attribute):
+                    return (isinstance(v.value, ast.Name)
+                            and v.value.id in _REQUEST_SOURCES
+                            and v.attr in _REQUEST_ATTRS)
+                if isinstance(v, ast.Name) and v.id in _REQUEST_SOURCES:
+                    return True
+            return False
+
+        def _is_tainted(node: ast.AST) -> bool:
+            return _is_req(node) or any(
+                isinstance(ch, ast.Name) and ch.id in tainted
+                for ch in ast.walk(node)
+            )
+
+        class _Taint(ast.NodeVisitor):
+            def visit_Assign(self, node: ast.Assign) -> None:
+                if _is_tainted(node.value):
+                    for t in node.targets:
+                        if isinstance(t, ast.Name):
+                            tainted[t.id] = node.lineno
+                self.generic_visit(node)
+
+        class _Sink(ast.NodeVisitor):
+            def visit_Call(self, node: ast.Call) -> None:
+                func = node.func
+                fn = (func.attr if isinstance(func, ast.Attribute)
+                      else func.id if isinstance(func, ast.Name) else "")
+                # render_template_string with tainted arg
+                if fn == "render_template_string" and node.args:
+                    if _is_tainted(node.args[0]):
+                        detections.append(_Detection(
+                            lineno=node.lineno,
+                            message=(
+                                f"SSTI: render_template_string() with user-controlled "
+                                f"template at line {node.lineno} — "
+                                f"attacker can execute arbitrary code via {{{{7*7}}}}"
+                            ),
+                            evidence={
+                                "rewrite_candidate": (
+                                    "Never pass user input as the template string itself.\n"
+                                    "Use: render_template('fixed_template.html', value=user_input)"
+                                ),
+                            },
+                        ))
+                # Jinja2 Environment with autoescape=False
+                if fn == "Environment":
+                    for kw in node.keywords:
+                        if (kw.arg == "autoescape"
+                                and isinstance(kw.value, ast.Constant)
+                                and kw.value.value is False):
+                            detections.append(_Detection(
+                                lineno=node.lineno,
+                                message=(
+                                    f"Jinja2 Environment(autoescape=False) at line "
+                                    f"{node.lineno} — XSS if any user data rendered"
+                                ),
+                                evidence={
+                                    "rewrite_candidate":
+                                        "Environment(autoescape=True)  # or use select_autoescape()"
+                                },
+                            ))
+                self.generic_visit(node)
+
+        _Taint().visit(tree)
+        _Sink().visit(tree)
+
+    # Heuristic
+    if not detections:
+        for i, line in enumerate(content.splitlines(), 1):
+            if _re2.search(r'render_template_string\s*\(', line):
+                if _re2.search(r'request\.|req\.', line):
+                    detections.append(_Detection(
+                        lineno=i,
+                        message=f"Potential SSTI: render_template_string with request data at line {i}",
+                        evidence={"rewrite_candidate": "Use render_template() with a fixed template file"},
+                    ))
+    return detections
+
+
+_STRATEGIES["local_ssti_render_template"] = _detect_ssti_render_template_string
+
+
+# ── 6. RSA Key < 2048 bits ──────────────────────────────────────────────────
+
+def _detect_weak_rsa_key(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect RSA key generation with fewer than 2048 bits.
+    Source: gosec rsa.go (Apache-2.0) G403.
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+    _MIN_RSA_BITS = 2048
+
+    if tree is not None:
+        class _V(ast.NodeVisitor):
+            def visit_Call(self, node: ast.Call) -> None:
+                func = node.func
+                # rsa.generate_private_key(public_exponent=65537, key_size=1024, ...)
+                # Crypto.PublicKey.RSA.generate(1024)
+                if isinstance(func, ast.Attribute) and func.attr in (
+                    "generate_private_key", "generate", "generate_key"
+                ):
+                    # Check positional args
+                    for arg in node.args:
+                        if (isinstance(arg, ast.Constant)
+                                and isinstance(arg.value, int)
+                                and 0 < arg.value < _MIN_RSA_BITS):
+                            detections.append(_Detection(
+                                lineno=node.lineno,
+                                message=(
+                                    f"RSA key size {arg.value} bits at line {node.lineno} "
+                                    f"is below minimum 2048 bits — brute-forceable"
+                                ),
+                                evidence={
+                                    "rewrite_candidate":
+                                        "rsa.generate_private_key(public_exponent=65537, key_size=4096)"
+                                },
+                            ))
+                    # Check key_size kwarg
+                    for kw in node.keywords:
+                        if (kw.arg in ("key_size", "bits", "keysize")
+                                and isinstance(kw.value, ast.Constant)
+                                and isinstance(kw.value.value, int)
+                                and 0 < kw.value.value < _MIN_RSA_BITS):
+                            detections.append(_Detection(
+                                lineno=node.lineno,
+                                message=(
+                                    f"RSA key_size={kw.value.value} bits at line "
+                                    f"{node.lineno} — minimum is 2048"
+                                ),
+                                evidence={
+                                    "rewrite_candidate":
+                                        "key_size=4096  # 2048 minimum, 4096 recommended"
+                                },
+                            ))
+                self.generic_visit(node)
+        _V().visit(tree)
+
+    # Heuristic — non-Python only
+    if not detections and tree is None:
+        for i, line in enumerate(content.splitlines(), 1):
+            if _re2.search(r'(?:RSA|rsa|generate_key|GenerateKey)', line):
+                m = _re2.search(r'\b(512|768|1024)\b', line)
+                if m:
+                    detections.append(_Detection(
+                        lineno=i,
+                        message=(
+                            f"RSA key size {m.group(1)} bits at line {i} — "
+                            f"below 2048-bit minimum"
+                        ),
+                        evidence={"rewrite_candidate": "Use minimum 2048 bits (4096 recommended)"},
+                    ))
+    return detections
+
+
+_STRATEGIES["local_weak_rsa_key"] = _detect_weak_rsa_key
+
+
+# ── 7. GraphQL Introspection Enabled ───────────────────────────────────────
+
+def _detect_graphql_introspection(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect GraphQL configured with introspection enabled in production.
+    Introspection leaks the full schema to attackers.
+    Source: PayloadsAllTheThings GraphQL Injection (MIT).
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+
+    if tree is not None:
+        class _V(ast.NodeVisitor):
+            def visit_Call(self, node: ast.Call) -> None:
+                func = node.func
+                fn = (func.id if isinstance(func, ast.Name)
+                      else func.attr if isinstance(func, ast.Attribute) else "")
+                # GraphQL(schema, introspection=True) or GraphQLSchema without middleware
+                if fn in ("GraphQL", "GraphQLSchema", "Ariadne", "strawberry"):
+                    for kw in node.keywords:
+                        if (kw.arg == "introspection"
+                                and isinstance(kw.value, ast.Constant)
+                                and kw.value.value is True):
+                            detections.append(_Detection(
+                                lineno=node.lineno,
+                                message=(
+                                    f"GraphQL introspection=True at line {node.lineno} — "
+                                    f"leaks full schema to unauthenticated attackers"
+                                ),
+                                evidence={
+                                    "rewrite_candidate": (
+                                        "GraphQL(schema, introspection=os.getenv('DEBUG')=='true')\n"
+                                        "# Disable in production; enable only in development"
+                                    ),
+                                },
+                            ))
+                self.generic_visit(node)
+        _V().visit(tree)
+
+    # Heuristic — non-Python only
+    if not detections and tree is None:
+        for i, line in enumerate(content.splitlines(), 1):
+            if _re2.search(r'introspection\s*[=:]\s*[Tt]rue', line):
+                detections.append(_Detection(
+                    lineno=i,
+                    message=f"GraphQL introspection enabled at line {i} — disable in production",
+                    evidence={"rewrite_candidate": "Set introspection=False or gate on DEBUG env var"},
+                ))
+    return detections
+
+
+_STRATEGIES["local_graphql_introspection"] = _detect_graphql_introspection
+
+
+# ── 8. Secret Serialization ─────────────────────────────────────────────────
+
+def _detect_secret_serialization(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect structs/dicts with credential-named fields being serialized to
+    JSON/YAML/XML — leaks secrets in API responses or log files.
+    Source: gosec G117 secret_serialization.go (Apache-2.0).
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+
+    _SERIAL_FNS = frozenset({"dumps", "dump", "encode", "Marshal", "serialize"})
+    _SERIAL_MODS = frozenset({"json", "yaml", "xml", "pickle", "marshal"})
+    # Require full credential term — avoid substring matches like 'max_tokens'→'token'
+    _CRED_NAMES  = _re2.compile(
+        r'\b(?:password|passwd|secret|api_key|private_key|auth_token|'
+        r'access_token|bearer_token|client_secret|credentials|'
+        r'jwt_secret|signing_key|encryption_key)\b',
+        _re2.IGNORECASE,
+    )
+
+    if tree is not None:
+        class _V(ast.NodeVisitor):
+            def visit_Call(self, node: ast.Call) -> None:
+                func = node.func
+                fn   = func.attr if isinstance(func, ast.Attribute) else ""
+                mod  = (func.value.id if isinstance(func, ast.Attribute)
+                        and isinstance(func.value, ast.Name) else "")
+                if fn in _SERIAL_FNS and mod in _SERIAL_MODS and node.args:
+                    arg = node.args[0]
+                    # Check if a dict literal with credential key is being serialized
+                    if isinstance(arg, ast.Dict):
+                        for key in arg.keys:
+                            if (isinstance(key, ast.Constant)
+                                    and isinstance(key.value, str)
+                                    and _CRED_NAMES.search(key.value)):
+                                detections.append(_Detection(
+                                    lineno=node.lineno,
+                                    message=(
+                                        f"{mod}.{fn}() serializes credential field "
+                                        f"'{key.value}' at line {node.lineno} — "
+                                        f"may expose secrets in API responses or logs"
+                                    ),
+                                    evidence={
+                                        "rewrite_candidate": (
+                                            f"Remove '{key.value}' from serialized output; "
+                                            f"use a safe schema that excludes sensitive fields"
+                                        ),
+                                    },
+                                ))
+                self.generic_visit(node)
+        _V().visit(tree)
+
+    return detections
+
+
+_STRATEGIES["local_secret_serialization"] = _detect_secret_serialization
+
+
+# ── 9. CSRF Exempt Decorator ───────────────────────────────────────────────
+
+def _detect_csrf_exempt(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect @csrf_exempt / @csrf.exempt — disables CSRF protection on endpoint.
+    Source: graudit python.db (MIT).
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+
+    if tree is not None:
+        class _V(ast.NodeVisitor):
+            def _check_decorator(self, dec: ast.AST, lineno: int) -> None:
+                name = ""
+                if isinstance(dec, ast.Name):
+                    name = dec.id
+                elif isinstance(dec, ast.Attribute):
+                    name = dec.attr
+                elif isinstance(dec, ast.Call):
+                    fn = dec.func
+                    name = (fn.attr if isinstance(fn, ast.Attribute)
+                            else fn.id if isinstance(fn, ast.Name) else "")
+                if "csrf_exempt" in name or ("csrf" in name and "exempt" in name):
+                    detections.append(_Detection(
+                        lineno=lineno,
+                        message=(
+                            f"@csrf_exempt at line {lineno} — "
+                            f"disables CSRF protection; endpoint accepts cross-site requests"
+                        ),
+                        evidence={
+                            "rewrite_candidate": (
+                                "Remove @csrf_exempt. If required for API endpoints, "
+                                "use token-based authentication (JWT/OAuth) instead of session cookies"
+                            ),
+                        },
+                    ))
+
+            def visit_FunctionDef(self, node: ast.FunctionDef) -> None:
+                for dec in node.decorator_list:
+                    self._check_decorator(dec, node.lineno)
+                self.generic_visit(node)
+
+            def visit_AsyncFunctionDef(self, node: ast.AsyncFunctionDef) -> None:
+                for dec in node.decorator_list:
+                    self._check_decorator(dec, node.lineno)
+                self.generic_visit(node)
+
+        _V().visit(tree)
+
+    # Heuristic — non-Python only
+    if not detections and tree is None:
+        for i, line in enumerate(content.splitlines(), 1):
+            if _re2.search(r'csrf[_\.]exempt', line):
+                detections.append(_Detection(
+                    lineno=i,
+                    message=f"CSRF exempt at line {i} — disables CSRF protection",
+                    evidence={"rewrite_candidate": "Remove csrf_exempt; use token auth for APIs"},
+                ))
+    return detections
+
+
+_STRATEGIES["local_csrf_exempt"] = _detect_csrf_exempt
+
+
+# ── 10. Flask Debug Mode ────────────────────────────────────────────────────
+
+def _detect_flask_debug(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect Flask/Django app running with debug=True in production code.
+    Debug mode exposes interactive debugger with remote code execution.
+    Source: graudit python.db (MIT).
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+
+    if tree is not None:
+        class _V(ast.NodeVisitor):
+            def visit_Call(self, node: ast.Call) -> None:
+                func = node.func
+                fn = (func.attr if isinstance(func, ast.Attribute)
+                      else func.id if isinstance(func, ast.Name) else "")
+                if fn == "run":
+                    for kw in node.keywords:
+                        if (kw.arg == "debug"
+                                and isinstance(kw.value, ast.Constant)
+                                and kw.value.value is True):
+                            detections.append(_Detection(
+                                lineno=node.lineno,
+                                message=(
+                                    f"app.run(debug=True) at line {node.lineno} — "
+                                    f"exposes Werkzeug interactive debugger "
+                                    f"(remote code execution)"
+                                ),
+                                evidence={
+                                    "rewrite_candidate":
+                                        "app.run(debug=os.getenv('FLASK_DEBUG', 'false') == 'true')"
+                                        "  # never hardcode debug=True"
+                                },
+                            ))
+                self.generic_visit(node)
+        _V().visit(tree)
+
+    # Heuristic — non-Python only
+    if not detections and tree is None:
+        for i, line in enumerate(content.splitlines(), 1):
+            if _re2.search(r'\.run\s*\(.*debug\s*=\s*True', line):
+                detections.append(_Detection(
+                    lineno=i,
+                    message=f"debug=True in app.run() at line {i} — RCE via Werkzeug debugger",
+                    evidence={"rewrite_candidate": "Gate on environment variable, never hardcode"},
+                ))
+    return detections
+
+
+_STRATEGIES["local_flask_debug"] = _detect_flask_debug
+
+
+# ── 11. Bind All Interfaces ─────────────────────────────────────────────────
+
+def _detect_bind_all_interfaces(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect server bound to 0.0.0.0 — exposes service on all network interfaces.
+    Source: gosec bind.go (Apache-2.0) G102.
+    """
+    detections: list[_Detection] = []
+    bind_pat = _re2.compile(
+        r'(?:listen|bind|serve|run)\s*\(\s*["\']'
+        r'(?:0\.0\.0\.0|::)(?::\d+)?["\']',
+        _re2.IGNORECASE,
+    )
+    host_pat = _re2.compile(
+        r'host\s*[=:]\s*["\']0\.0\.0\.0["\']',
+        _re2.IGNORECASE,
+    )
+    for i, line in enumerate(content.splitlines(), 1):
+        if bind_pat.search(line) or host_pat.search(line):
+            detections.append(_Detection(
+                lineno=i,
+                message=(
+                    f"Service bound to 0.0.0.0 at line {i} — "
+                    f"exposed on all network interfaces including external"
+                ),
+                evidence={
+                    "rewrite_candidate":
+                        "Bind to 127.0.0.1 for local services; "
+                        "use a reverse proxy for external access"
+                },
+            ))
+    return detections
+
+
+_STRATEGIES["local_bind_all_interfaces"] = _detect_bind_all_interfaces
+
+
+# ── 12. LDAP Injection ──────────────────────────────────────────────────────
+
+def _detect_ldap_injection(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect LDAP queries constructed with user input — allows auth bypass via
+    )(uid=*))(|(uid=* injection. Source: PayloadsAllTheThings LDAP (MIT).
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+
+    _LDAP_SINKS = frozenset({"search", "search_s", "search_st", "search_ext",
+                              "search_ext_s", "simple_bind_s", "bind_s"})
+    _REQUEST_SOURCES = frozenset({"request", "req"})
+
+    if tree is not None:
+        tainted: dict[str, int] = {}
+
+        def _is_req(node: ast.AST) -> bool:
+            return any(
+                isinstance(ch, ast.Name) and ch.id in _REQUEST_SOURCES
+                for ch in ast.walk(node)
+            )
+
+        def _is_tainted(node: ast.AST) -> bool:
+            return _is_req(node) or any(
+                isinstance(ch, ast.Name) and ch.id in tainted
+                for ch in ast.walk(node)
+            )
+
+        class _Taint(ast.NodeVisitor):
+            def visit_Assign(self, node: ast.Assign) -> None:
+                if _is_tainted(node.value) or isinstance(node.value, (ast.JoinedStr, ast.BinOp)):
+                    if _is_tainted(node.value):
+                        for t in node.targets:
+                            if isinstance(t, ast.Name):
+                                tainted[t.id] = node.lineno
+                self.generic_visit(node)
+
+        class _Sink(ast.NodeVisitor):
+            def visit_Call(self, node: ast.Call) -> None:
+                func = node.func
+                method = func.attr if isinstance(func, ast.Attribute) else ""
+                if method in _LDAP_SINKS:
+                    for arg in node.args:
+                        if _is_tainted(arg):
+                            detections.append(_Detection(
+                                lineno=node.lineno,
+                                message=(
+                                    f"LDAP injection: user-controlled value in "
+                                    f".{method}() at line {node.lineno} — "
+                                    f"auth bypass via )(uid=*))(|(uid=*"
+                                ),
+                                evidence={
+                                    "rewrite_candidate": (
+                                        "from ldap3.utils.conv import escape_filter_chars\n"
+                                        "safe_user = escape_filter_chars(username)\n"
+                                        "conn.search(base, f'(uid={safe_user})')"
+                                    ),
+                                },
+                            ))
+                self.generic_visit(node)
+
+        _Taint().visit(tree)
+        _Sink().visit(tree)
+
+    return detections
+
+
+_STRATEGIES["local_ldap_injection"] = _detect_ldap_injection
+
+
+# ── 13. CSV / Formula Injection ─────────────────────────────────────────────
+
+def _detect_csv_injection(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect CSV formula injection: user data written to CSV without sanitizing
+    leading =, +, -, @ characters that Excel/Sheets execute as formulas.
+    Source: PayloadsAllTheThings CSV Injection (MIT).
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+
+    _CSV_WRITE_METHODS = frozenset({"writerow", "writerows", "write"})
+    _REQUEST_SOURCES   = frozenset({"request", "req"})
+
+    if tree is not None:
+        tainted: dict[str, int] = {}
+
+        def _is_tainted(node: ast.AST) -> bool:
+            return any(
+                isinstance(ch, ast.Name)
+                and (ch.id in tainted or ch.id in _REQUEST_SOURCES)
+                for ch in ast.walk(node)
+            )
+
+        class _Taint(ast.NodeVisitor):
+            def visit_Assign(self, node: ast.Assign) -> None:
+                if _is_tainted(node.value):
+                    for t in node.targets:
+                        if isinstance(t, ast.Name):
+                            tainted[t.id] = node.lineno
+                self.generic_visit(node)
+
+        class _Sink(ast.NodeVisitor):
+            def visit_Call(self, node: ast.Call) -> None:
+                func = node.func
+                method = func.attr if isinstance(func, ast.Attribute) else ""
+                if method in _CSV_WRITE_METHODS and node.args:
+                    if _is_tainted(node.args[0]):
+                        detections.append(_Detection(
+                            lineno=node.lineno,
+                            message=(
+                                f"CSV injection: user-controlled data written to CSV "
+                                f"at line {node.lineno} — "
+                                f"Excel/Sheets executes values starting with =,+,-,@"
+                            ),
+                            evidence={
+                                "rewrite_candidate": (
+                                    "def sanitize_csv(value):\n"
+                                    "    if str(value).startswith(('=','+','-','@','\\t','\\r')):\n"
+                                    "        return \"'\" + str(value)  # prefix with single quote\n"
+                                    "    return value"
+                                ),
+                            },
+                        ))
+                self.generic_visit(node)
+
+        _Taint().visit(tree)
+        _Sink().visit(tree)
+
+    return detections
+
+
+_STRATEGIES["local_csv_injection"] = _detect_csv_injection
+
+
+# ── 14. Paramiko AutoAddPolicy ──────────────────────────────────────────────
+
+def _detect_paramiko_auto_add_policy(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect paramiko SSH client with AutoAddPolicy — blindly accepts any host key,
+    susceptible to MITM. Source: graudit python.db (MIT), gosec ssh.go (Apache-2.0).
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+
+    if tree is not None:
+        class _V(ast.NodeVisitor):
+            def visit_Call(self, node: ast.Call) -> None:
+                func = node.func
+                if (isinstance(func, ast.Attribute)
+                        and func.attr == "set_missing_host_key_policy"):
+                    for arg in node.args:
+                        name = (
+                            arg.attr if isinstance(arg, ast.Attribute)
+                            else arg.id if isinstance(arg, ast.Name) else ""
+                        )
+                        if "AutoAddPolicy" in name:
+                            detections.append(_Detection(
+                                lineno=node.lineno,
+                                message=(
+                                    f"paramiko AutoAddPolicy at line {node.lineno} — "
+                                    f"SSH host key not verified, MITM possible"
+                                ),
+                                evidence={
+                                    "rewrite_candidate": (
+                                        "client.set_missing_host_key_policy(paramiko.RejectPolicy())\n"
+                                        "client.load_host_keys(os.path.expanduser('~/.ssh/known_hosts'))"
+                                    ),
+                                },
+                            ))
+                self.generic_visit(node)
+        _V().visit(tree)
+
+    # Heuristic — non-Python only
+    if not detections and tree is None:
+        for i, line in enumerate(content.splitlines(), 1):
+            if "AutoAddPolicy" in line:
+                detections.append(_Detection(
+                    lineno=i,
+                    message=f"SSH AutoAddPolicy at line {i} — host key not verified",
+                    evidence={"rewrite_candidate": "Use RejectPolicy and load known_hosts"},
+                ))
+    return detections
+
+
+_STRATEGIES["local_paramiko_auto_add"] = _detect_paramiko_auto_add_policy
+
+
+# ── 15. urllib3 disable_warnings ───────────────────────────────────────────
+
+def _detect_urllib3_disable_warnings(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect urllib3.disable_warnings() — suppresses InsecureRequestWarning,
+    hiding TLS verification failures from logs. Source: graudit python.db (MIT).
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+
+    if tree is not None:
+        class _V(ast.NodeVisitor):
+            def visit_Call(self, node: ast.Call) -> None:
+                func = node.func
+                if isinstance(func, ast.Attribute) and func.attr == "disable_warnings":
+                    if isinstance(func.value, ast.Name) and func.value.id == "urllib3":
+                        detections.append(_Detection(
+                            lineno=node.lineno,
+                            message=(
+                                f"urllib3.disable_warnings() at line {node.lineno} — "
+                                f"suppresses InsecureRequestWarning, hides TLS failures"
+                            ),
+                            evidence={
+                                "rewrite_candidate": (
+                                    "Fix the underlying TLS issue instead of silencing warnings.\n"
+                                    "If using self-signed certs in dev: pass verify='/path/to/ca-bundle.crt'"
+                                ),
+                            },
+                        ))
+                self.generic_visit(node)
+        _V().visit(tree)
+
+    if not detections and tree is None:
+        for i, line in enumerate(content.splitlines(), 1):
+            if "urllib3.disable_warnings" in line or "disable_warnings()" in line:
+                detections.append(_Detection(
+                    lineno=i,
+                    message=f"urllib3.disable_warnings() at line {i} — hides TLS errors",
+                    evidence={"rewrite_candidate": "Fix the TLS configuration instead"},
+                ))
+    return detections
+
+
+_STRATEGIES["local_urllib3_disable_warnings"] = _detect_urllib3_disable_warnings
+
+
+# ── 16. SQLite enable_load_extension ───────────────────────────────────────
+
+def _detect_sqlite_load_extension(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect sqlite3.enable_load_extension(True) — allows loading shared libraries
+    via SQL, enabling code execution. Source: graudit python.db (MIT).
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+
+    if tree is not None:
+        class _V(ast.NodeVisitor):
+            def visit_Call(self, node: ast.Call) -> None:
+                func = node.func
+                if isinstance(func, ast.Attribute) and func.attr == "enable_load_extension":
+                    for arg in node.args:
+                        if isinstance(arg, ast.Constant) and arg.value is True:
+                            detections.append(_Detection(
+                                lineno=node.lineno,
+                                message=(
+                                    f"enable_load_extension(True) at line {node.lineno} — "
+                                    f"allows SQL to load shared libraries (code execution)"
+                                ),
+                                evidence={
+                                    "rewrite_candidate":
+                                        "Never enable load_extension in production; "
+                                        "use Python functions registered via create_function() instead"
+                                },
+                            ))
+                self.generic_visit(node)
+        _V().visit(tree)
+    return detections
+
+
+_STRATEGIES["local_sqlite_load_extension"] = _detect_sqlite_load_extension
+
+
+# ── 17. DES / RC4 Cipher Usage ─────────────────────────────────────────────
+
+def _detect_weak_cipher(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect DES, 3DES, RC4, RC2 cipher usage — all cryptographically broken.
+    Source: gosec weakcrypto.go (Apache-2.0) G405.
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+    _WEAK_CIPHERS = frozenset({
+        "DES", "TripleDES", "ARC2", "ARC4", "RC2", "RC4",
+        "Blowfish", "CAST",
+    })
+
+    if tree is not None:
+        class _V(ast.NodeVisitor):
+            def visit_Attribute(self, node: ast.Attribute) -> None:
+                if node.attr in _WEAK_CIPHERS:
+                    detections.append(_Detection(
+                        lineno=node.lineno,
+                        message=(
+                            f"Weak cipher '{node.attr}' at line {node.lineno} — "
+                            f"cryptographically broken; use AES-256-GCM"
+                        ),
+                        evidence={
+                            "rewrite_candidate":
+                                "from cryptography.hazmat.primitives.ciphers.aead import AESGCM\n"
+                                "key = AESGCM.generate_key(bit_length=256)"
+                        },
+                    ))
+                self.generic_visit(node)
+        _V().visit(tree)
+
+    if not detections and tree is None:
+        pat = _re2.compile(
+            r'\b(?:DES|TripleDES|3DES|RC4|ARC4|RC2|ARC2|Blowfish)\b',
+        )
+        for i, line in enumerate(content.splitlines(), 1):
+            if pat.search(line):
+                m = pat.search(line)
+                detections.append(_Detection(
+                    lineno=i,
+                    message=f"Weak cipher '{m.group()}' at line {i} — use AES-256-GCM",
+                    evidence={"rewrite_candidate": "Use AES-256-GCM from the cryptography package"},
+                ))
+    return detections
+
+
+_STRATEGIES["local_weak_cipher"] = _detect_weak_cipher
+
+
+# ── 18. Decompression Bomb ─────────────────────────────────────────────────
+
+def _detect_decompression_bomb(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect shutil.copyfileobj / io.copy without size limit after opening
+    a compressed reader — decompression bomb allows DoS.
+    Source: gosec decompression_bomb.go (Apache-2.0) G110.
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+
+    _DECOMPRESSOR_OPENS = frozenset({
+        "GzipFile", "open", "BZ2File", "LZMAFile", "ZipFile",
+    })
+    _COPY_FNS = frozenset({"copyfileobj", "copy", "copy2", "copyfile"})
+
+    if tree is not None:
+        opened_decompressed: set[str] = set()
+
+        class _OpenVisitor(ast.NodeVisitor):
+            def _check_call(self, call: ast.Call, target_name: str) -> None:
+                fn = call.func
+                name = (fn.attr if isinstance(fn, ast.Attribute)
+                        else fn.id if isinstance(fn, ast.Name) else "")
+                mod = (fn.value.id if isinstance(fn, ast.Attribute)
+                       and isinstance(fn.value, ast.Name) else "")
+                if name in _DECOMPRESSOR_OPENS and mod in (
+                    "gzip", "bz2", "lzma", "zipfile", "tarfile"
+                ):
+                    opened_decompressed.add(target_name)
+
+            def visit_Assign(self, node: ast.Assign) -> None:
+                if isinstance(node.value, ast.Call):
+                    for tgt in node.targets:
+                        if isinstance(tgt, ast.Name):
+                            self._check_call(node.value, tgt.id)
+                # Propagate: gz = src where src is already tracked
+                elif isinstance(node.value, ast.Name):
+                    if node.value.id in opened_decompressed:
+                        for tgt in node.targets:
+                            if isinstance(tgt, ast.Name):
+                                opened_decompressed.add(tgt.id)
+                self.generic_visit(node)
+
+            def visit_With(self, node: ast.With) -> None:
+                # with gzip.open(path) as src:
+                for item in node.items:
+                    if (isinstance(item.context_expr, ast.Call)
+                            and item.optional_vars is not None
+                            and isinstance(item.optional_vars, ast.Name)):
+                        self._check_call(item.context_expr, item.optional_vars.id)
+                self.generic_visit(node)
+
+        class _CopyVisitor(ast.NodeVisitor):
+            def visit_Call(self, node: ast.Call) -> None:
+                func = node.func
+                fn   = (func.attr if isinstance(func, ast.Attribute)
+                        else func.id if isinstance(func, ast.Name) else "")
+                if fn in _COPY_FNS:
+                    # Check if any arg is a decompressed reader
+                    for arg in node.args:
+                        if isinstance(arg, ast.Name) and arg.id in opened_decompressed:
+                            # Check if length arg provided (copyfileobj has length param)
+                            has_length = any(
+                                kw.arg == "length" for kw in node.keywords
+                            ) or len(node.args) >= 3
+                            if not has_length:
+                                detections.append(_Detection(
+                                    lineno=node.lineno,
+                                    message=(
+                                        f"{fn}() with decompressed reader at line "
+                                        f"{node.lineno} without size limit — "
+                                        f"decompression bomb allows DoS"
+                                    ),
+                                    evidence={
+                                        "rewrite_candidate": (
+                                            "shutil.copyfileobj(src, dst, length=65536)  "
+                                            "# limit chunk size\n"
+                                            "# Or track total bytes and raise if > threshold"
+                                        ),
+                                    },
+                                ))
+                self.generic_visit(node)
+
+        _OpenVisitor().visit(tree)
+        _CopyVisitor().visit(tree)
+
+    return detections
+
+
+_STRATEGIES["local_decompression_bomb"] = _detect_decompression_bomb
 
