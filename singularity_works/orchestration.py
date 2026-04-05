@@ -129,7 +129,10 @@ class Orchestrator:
         # Keyword-based inference (fast path)
         if any(t in low for t in ["open(", "close", "resource", "file", "stream", "handle"]):
             capabilities.append("resource_safety")
-        if any(t in low for t in ["query", "select ", "insert ", "sql", "db", "execute"]):
+        if any(t in low for t in ["query", "select ", "insert ", "sql", "db", "execute",
+                                   "redirect", "header", "location", "cors", "xml", "etree",
+                                   "elementtree", "minidom", "parsecreate", "fromstring",
+                                   "set_cookie", "access-control", "idor", "owner"]):
             capabilities.append("injection_resistance")
         if any(t in low for t in ["state", "protocol", "transition", "eval", "verify", "atomic",
                                    "await ", "async ", "concurrent", "race", "mutex", "lock",
@@ -138,8 +141,10 @@ class Orchestrator:
             capabilities.append("temporal_integrity")
             capabilities.append("state_isolation")
         if any(t in low for t in ["verify", "boundary", "trust", "auth", "token", "session",
-                                   "cookie", "secret", "password", "crypt", "hash", "rng",
-                                   "random", "ssrf", "request", "host", "url", "webhook"]):
+                                   "cookie", "secret", "password", "api_key", "apikey",
+                                   "crypt", "hash", "rng", "random", "ssrf", "request",
+                                   "host", "url", "webhook", "cors", "xml.etree", "xml.sax",
+                                   "set_cookie", "httponly", "samesite"]):
             capabilities.append("trust_boundary_hardening")
         if any(t in low for t in ["float", "decimal", "money", "currency", "financial",
                                    "balance", "amount", "rate", "interest", "price"]):

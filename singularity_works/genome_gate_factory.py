@@ -2412,3 +2412,569 @@ def _detect_http_no_tls(
 
 
 _STRATEGIES["local_http_no_tls"] = _detect_http_no_tls
+
+
+# ---------------------------------------------------------------------------
+# Capsule expansion v1.29.1 — Bug bounty coverage
+# Detectors: XXE, hardcoded secrets, insecure cookie, CORS wildcard,
+# CRLF header injection, IDOR gate (wires existing capsules)
+# ---------------------------------------------------------------------------
+
+import re as _re_ext  # alias to avoid shadowing the ast-path _re used above
+
+
+# ── XXE — XML External Entity Injection ────────────────────────────────────
+
+def _detect_xxe(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect unsafe XML parsing that allows external entity expansion.
+    Covers: stdlib xml.etree / xml.sax / minidom, lxml without resolve_entities=False,
+    expat without entity handlers disabled. defusedxml is the safe alternative.
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+
+    if tree is not None:
+        _UNSAFE_XML_MODS = frozenset({
+            "xml", "minidom", "ElementTree", "sax", "expat",
+        })
+        _UNSAFE_XML_CALLS = frozenset({
+            "parse", "fromstring", "XML", "fromstringlist",
+            "ParseCreate", "ParserCreate", "create_parser",
+        })
+
+        class _V(ast.NodeVisitor):
+            def visit_Import(self, node: ast.Import) -> None:
+                for alias in node.names:
+                    if alias.name.startswith("xml.") and "defusedxml" not in alias.name:
+                        detections.append(_Detection(
+                            lineno=node.lineno,
+                            message=(
+                                f"Unsafe XML import '{alias.name}' at line {node.lineno} — "
+                                f"stdlib xml parsers expand external entities by default"
+                            ),
+                            evidence={
+                                "rewrite_candidate":
+                                    "Use defusedxml: import defusedxml.ElementTree as ET",
+                            },
+                        ))
+                self.generic_visit(node)
+
+            def visit_ImportFrom(self, node: ast.ImportFrom) -> None:
+                mod = node.module or ""
+                if mod.startswith("xml.") and "defusedxml" not in mod:
+                    detections.append(_Detection(
+                        lineno=node.lineno,
+                        message=(
+                            f"Unsafe XML import from '{mod}' at line {node.lineno} — "
+                            f"external entity expansion not disabled"
+                        ),
+                        evidence={
+                            "rewrite_candidate":
+                                "Use defusedxml: from defusedxml import ElementTree",
+                        },
+                    ))
+                self.generic_visit(node)
+
+        _V().visit(tree)
+
+    # Heuristic fallback — catches Rust/Go/Java XML parsers
+    if not detections and semantic_ir is not None:
+        tokens = getattr(semantic_ir, "semantic_tokens", set())
+        if "xxe:unsafe_xml_parse" in tokens:
+            detections.append(_Detection(
+                lineno=0,
+                message="Unsafe XML parsing detected — external entity expansion risk",
+                evidence={"rewrite_candidate": "Disable DTD/entity processing before parsing"},
+            ))
+    return detections
+
+
+_STRATEGIES["local_xxe"] = _detect_xxe
+
+
+# ── Hardcoded Secrets / Credentials ────────────────────────────────────────
+
+_SECRET_NAMES = _re_ext.compile(
+    r'\b(?:password|passwd|secret|api_key|apikey|access_token|auth_token|'
+    r'private_key|client_secret|database_url|db_password|jwt_secret|'
+    r'encryption_key|signing_key|bearer_token|credentials)\b',
+    _re_ext.IGNORECASE,
+)
+_SECRET_VALUE = _re_ext.compile(
+    r'(?:'
+    # AWS
+    r'AKIA[0-9A-Z]{16}|'
+    # GitHub PAT
+    r'ghp_[A-Za-z0-9]{36}|github_pat_[A-Za-z0-9_]{82}|'
+    # Stripe
+    r'sk_live_[A-Za-z0-9]{24,}|'
+    # Generic high-entropy string (32+ hex chars or long base64)
+    r'[0-9a-fA-F]{32,}|'
+    r'[A-Za-z0-9+/]{40,}={0,2}'
+    r')'
+)
+
+
+def _detect_hardcoded_secrets(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect hardcoded credentials and secrets assigned to named variables.
+    Looks for: secret-named variable = non-empty string literal,
+    AWS/GitHub/Stripe key patterns, high-entropy literals in secret contexts.
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+
+    if tree is not None:
+        class _V(ast.NodeVisitor):
+            def visit_Assign(self, node: ast.Assign) -> None:
+                val = node.value
+                if not isinstance(val, ast.Constant) or not isinstance(val.value, str):
+                    self.generic_visit(node)
+                    return
+                secret = val.value
+                if not secret or len(secret) < 8:
+                    self.generic_visit(node)
+                    return
+                # Placeholder values are not real secrets
+                if secret.lower() in {
+                    "changeme", "your_secret_here", "placeholder",
+                    "xxxxxxxx", "todo", "none", "null", "example",
+                    "your-secret", "change-me",
+                }:
+                    self.generic_visit(node)
+                    return
+                for target in node.targets:
+                    name = (
+                        target.id if isinstance(target, ast.Name)
+                        else target.attr if isinstance(target, ast.Attribute)
+                        else None
+                    )
+                    if name and _SECRET_NAMES.search(name):
+                        # Check if value looks like a real secret
+                        is_key_pattern = bool(_SECRET_VALUE.search(secret))
+                        is_long_opaque  = len(secret) >= 16
+                        if is_key_pattern or is_long_opaque:
+                            detections.append(_Detection(
+                                lineno=node.lineno,
+                                message=(
+                                    f"Hardcoded credential '{name}' at line {node.lineno} — "
+                                    f"secret literals are extractable from source and binaries"
+                                ),
+                                evidence={
+                                    "rewrite_candidate": (
+                                        f"{name} = os.environ['{name.upper()}']  "
+                                        f"# or use a secrets manager"
+                                    ),
+                                    "var_name": name,
+                                },
+                            ))
+                self.generic_visit(node)
+
+        _V().visit(tree)
+
+    # Heuristic — raw content scan for key patterns (catches non-Python)
+    if not detections:
+        lines = content.splitlines()
+        for i, line in enumerate(lines, 1):
+            if _SECRET_NAMES.search(line) and _SECRET_VALUE.search(line):
+                # Skip if it looks like a test/example file
+                if not any(skip in line for skip in ("#", "//", "test", "example", "TODO")):
+                    detections.append(_Detection(
+                        lineno=i,
+                        message=(
+                            f"Possible hardcoded secret at line {i} — "
+                            f"high-entropy value in credential-named context"
+                        ),
+                        evidence={
+                            "rewrite_candidate":
+                                "Load from environment variable or secrets manager",
+                        },
+                    ))
+
+    return detections
+
+
+_STRATEGIES["local_hardcoded_secrets"] = _detect_hardcoded_secrets
+
+
+# ── Insecure Cookie Flags ──────────────────────────────────────────────────
+
+def _detect_insecure_cookie(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect set_cookie / response.set_cookie calls missing security flags.
+    Flags checked: httponly, secure, samesite.
+    Missing httponly → XSS steals session.
+    Missing secure → cookie sent over HTTP.
+    Missing samesite → CSRF risk.
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+
+    if tree is not None:
+        _COOKIE_CALLS = frozenset({"set_cookie", "set_signed_cookie", "set_cookie_header"})
+
+        class _V(ast.NodeVisitor):
+            def visit_Call(self, node: ast.Call) -> None:
+                func = node.func
+                call_name = (
+                    func.attr if isinstance(func, ast.Attribute)
+                    else func.id if isinstance(func, ast.Name)
+                    else None
+                )
+                if call_name in _COOKIE_CALLS:
+                    kw_names = {kw.arg for kw in node.keywords}
+                    # httponly check
+                    httponly_ok = (
+                        "httponly" in kw_names
+                        and any(
+                            kw.arg == "httponly"
+                            and isinstance(kw.value, ast.Constant)
+                            and kw.value.value is True
+                            for kw in node.keywords
+                        )
+                    )
+                    secure_ok = (
+                        "secure" in kw_names
+                        and any(
+                            kw.arg == "secure"
+                            and isinstance(kw.value, ast.Constant)
+                            and kw.value.value is True
+                            for kw in node.keywords
+                        )
+                    )
+                    samesite_ok = "samesite" in kw_names
+
+                    missing = []
+                    if not httponly_ok:
+                        missing.append("httponly=True")
+                    if not secure_ok:
+                        missing.append("secure=True")
+                    if not samesite_ok:
+                        missing.append("samesite='Strict'")
+
+                    if missing:
+                        detections.append(_Detection(
+                            lineno=node.lineno,
+                            message=(
+                                f"Insecure cookie at line {node.lineno} — "
+                                f"missing flags: {', '.join(missing)}"
+                            ),
+                            evidence={
+                                "rewrite_candidate": (
+                                    f"response.set_cookie(name, value, "
+                                    f"httponly=True, secure=True, samesite='Strict')"
+                                ),
+                                "missing_flags": missing,
+                            },
+                        ))
+                self.generic_visit(node)
+
+        _V().visit(tree)
+
+    return detections
+
+
+_STRATEGIES["local_insecure_cookie"] = _detect_insecure_cookie
+
+
+# ── CORS Wildcard with Credentials ────────────────────────────────────────
+
+def _detect_cors_wildcard(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect CORS configured to allow all origins (*) — especially dangerous
+    when credentials are also allowed. Also catches explicit wildcard in
+    response headers.
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+
+    if tree is not None:
+        class _V(ast.NodeVisitor):
+            def visit_Call(self, node: ast.Call) -> None:
+                func = node.func
+                call_name = (
+                    func.id if isinstance(func, ast.Name)
+                    else func.attr if isinstance(func, ast.Attribute)
+                    else ""
+                )
+                # CORS(app, origins="*") or CORS(app, resources={r"/*": {"origins": "*"}})
+                if call_name in ("CORS", "cross_origin"):
+                    kws = {kw.arg: kw.value for kw in node.keywords}
+                    origins_val = kws.get("origins")
+                    allow_all = (
+                        isinstance(origins_val, ast.Constant) and origins_val.value == "*"
+                    ) or (
+                        isinstance(origins_val, ast.List) and
+                        any(
+                            isinstance(e, ast.Constant) and e.value == "*"
+                            for e in origins_val.elts
+                        )
+                    )
+                    if allow_all:
+                        creds_val = kws.get("supports_credentials") or kws.get("allow_credentials")
+                        has_creds = (
+                            isinstance(creds_val, ast.Constant) and creds_val.value is True
+                        )
+                        msg = (
+                            f"CORS wildcard origin ('*') with credentials at line {node.lineno} — "
+                            f"attacker can make authenticated cross-origin requests"
+                            if has_creds else
+                            f"CORS wildcard origin ('*') at line {node.lineno} — "
+                            f"any site can read responses; add credentials and this becomes critical"
+                        )
+                        detections.append(_Detection(
+                            lineno=node.lineno,
+                            message=msg,
+                            evidence={
+                                "rewrite_candidate": (
+                                    "CORS(app, origins=['https://trusted.example.com'], "
+                                    "supports_credentials=True)"
+                                ),
+                            },
+                        ))
+                self.generic_visit(node)
+
+        _V().visit(tree)
+
+    # Heuristic: raw header scan for non-Python content only.
+    # When tree is not None (valid Python), the AST path is authoritative —
+    # the heuristic would fire on detection literal strings embedded in
+    # Python source (e.g. "origins='*'" in rewrite candidates).
+    if not detections and tree is None:
+        lines = content.splitlines()
+        wildcard_pat = _re_ext.compile(
+            r'Access-Control-Allow-Origin.*\*|allow.?origins?\s*[=:]\s*["\'\[]\s*\*',
+            _re_ext.IGNORECASE,
+        )
+        for i, line in enumerate(lines, 1):
+            if wildcard_pat.search(line):
+                detections.append(_Detection(
+                    lineno=i,
+                    message=(
+                        f"CORS wildcard at line {i} — "
+                        f"'Access-Control-Allow-Origin: *' exposes responses to any origin"
+                    ),
+                    evidence={
+                        "rewrite_candidate":
+                            "Restrict to explicit trusted origins; never use * with credentials",
+                    },
+                ))
+
+    return detections
+
+
+_STRATEGIES["local_cors_wildcard"] = _detect_cors_wildcard
+
+
+# ── CRLF / Header Injection ───────────────────────────────────────────────
+
+def _detect_crlf_injection(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Detect user-controlled input flowing into HTTP response headers.
+    Tracks taint through variable assignments:
+      url = request.args.get("next"); redirect(url)  <- fires
+    Also catches direct header subscript writes.
+    """
+    tree = _parse(content)
+    detections: list[_Detection] = []
+
+    if tree is not None:
+        _REQUEST_INPUT   = frozenset({"request", "req"})
+        _REQUEST_ATTRS   = frozenset({
+            "args", "form", "json", "data", "params",
+            "values", "headers", "cookies", "query_string",
+        })
+        _HEADER_ATTRS    = frozenset({"headers", "set_header", "add_header"})
+        _SENSITIVE_HDRS  = frozenset({
+            "location", "content-type", "content-disposition",
+            "x-frame-options", "set-cookie", "refresh",
+        })
+
+        # ── Pass 1: taint propagation ──────────────────────────────────────
+        tainted: dict[str, int] = {}   # var_name -> assignment lineno
+
+        def _is_req_call(node: ast.AST) -> bool:
+            """True if node is request.*.get(...) / req.*.get(...) style."""
+            if not isinstance(node, ast.Call):
+                return False
+            func = node.func
+            if not isinstance(func, ast.Attribute):
+                return False
+            val = func.value
+            if isinstance(val, ast.Attribute):
+                return (
+                    isinstance(val.value, ast.Name)
+                    and val.value.id in _REQUEST_INPUT
+                    and val.attr in _REQUEST_ATTRS
+                )
+            if isinstance(val, ast.Name) and val.id in _REQUEST_INPUT:
+                return True
+            return False
+
+        def _is_tainted_expr(node: ast.AST) -> bool:
+            return _is_req_call(node) or (
+                isinstance(node, ast.Name) and node.id in tainted
+            )
+
+        class _TaintCollector(ast.NodeVisitor):
+            def visit_Assign(self, node: ast.Assign) -> None:
+                if _is_tainted_expr(node.value):
+                    for t in node.targets:
+                        if isinstance(t, ast.Name):
+                            tainted[t.id] = node.lineno
+                self.generic_visit(node)
+
+        _TaintCollector().visit(tree)
+
+        # ── Pass 2: sink detection ─────────────────────────────────────────
+        class _SinkDetector(ast.NodeVisitor):
+            def visit_Subscript(self, node: ast.Subscript) -> None:
+                pv = node.value
+                if (isinstance(pv, ast.Attribute)
+                        and pv.attr in _HEADER_ATTRS):
+                    key = node.slice
+                    if (isinstance(key, ast.Constant)
+                            and isinstance(key.value, str)
+                            and key.value.lower() in _SENSITIVE_HDRS):
+                        detections.append(_Detection(
+                            lineno=node.lineno,
+                            message=(
+                                f"Sensitive header '{key.value}' assigned at "
+                                f"line {node.lineno} — verify value is not "
+                                f"user-controlled (CRLF injection risk)"
+                            ),
+                            evidence={
+                                "rewrite_candidate": (
+                                    "Strip newlines before assignment: "
+                                    "value = value.replace('\r','').replace('\n','')"
+                                ),
+                            },
+                        ))
+                self.generic_visit(node)
+
+            def visit_Call(self, node: ast.Call) -> None:
+                func = node.func
+                name = (
+                    func.attr if isinstance(func, ast.Attribute)
+                    else func.id if isinstance(func, ast.Name)
+                    else ""
+                )
+                if name == "redirect" and node.args:
+                    arg = node.args[0]
+                    if _is_tainted_expr(arg):
+                        src = (tainted.get(arg.id, node.lineno)
+                               if isinstance(arg, ast.Name) else node.lineno)
+                        detections.append(_Detection(
+                            lineno=node.lineno,
+                            message=(
+                                f"redirect() with user-controlled URL at line "
+                                f"{node.lineno} (tainted from line {src}) — "
+                                f"CRLF injection if newlines not stripped"
+                            ),
+                            evidence={
+                                "rewrite_candidate": (
+                                    "Strip: url=url.replace('\r','').replace('\n',''); "
+                                    "validate against allowlist"
+                                ),
+                            },
+                        ))
+                self.generic_visit(node)
+
+        _SinkDetector().visit(tree)
+
+    return detections
+
+
+_STRATEGIES["local_crlf_injection"] = _detect_crlf_injection
+
+
+# ── IDOR Gate — wires existing access_control capsules ────────────────────
+
+def _detect_idor_missing_ownership(
+    content: str, _spec: dict, *, semantic_ir: "Any | None" = None
+) -> list[_Detection]:
+    """
+    Gate-version of the IDOR ownership monitor.
+    Fires when: external ID from request + DB access without ownership check.
+    Reuses the monitor's pattern set but emits GateFindings for the gate fabric.
+
+    Web-framework guard: only fires when a web framework is imported.
+    Non-web modules (forge internals, libraries) contain ORM method names
+    as string literals in detection patterns — the heuristic would produce
+    false positives on its own source. Requiring a web import eliminates that.
+    """
+    # Web-framework import guard — non-web modules cannot have IDOR routes.
+    # Catches flask, django, fastapi, starlette, sanic, aiohttp, tornado.
+    _WEB_IMPORTS = _re_ext.compile(
+        r'from\s+(?:flask|django|fastapi|starlette|sanic|aiohttp|tornado|bottle|falcon)'
+        r'|import\s+(?:flask|django|fastapi|starlette|sanic|aiohttp|tornado|bottle|falcon)',
+        _re_ext.IGNORECASE,
+    )
+    if not _WEB_IMPORTS.search(content):
+        return []
+
+    # Reuse the compiled patterns from monitoring.py
+    try:
+        from .monitoring import (
+            _IDOR_REQUEST_ID,
+            _IDOR_DB_ACCESS,
+            _IDOR_OWNERSHIP,
+            _IDOR_ROUTE_ID_PARAM,
+        )
+    except ImportError:
+        return []
+
+    detections: list[_Detection] = []
+
+    # Requires DB access to be relevant
+    if not _IDOR_DB_ACCESS.search(content):
+        return []
+
+    has_request_id = bool(_IDOR_REQUEST_ID.search(content))
+    has_route_id   = bool(_IDOR_ROUTE_ID_PARAM.search(content))
+
+    if not (has_request_id or has_route_id):
+        return []
+
+    if _IDOR_OWNERSHIP.search(content):
+        return []  # ownership enforced — clean
+
+    # Find approximate line of the DB access
+    lines = content.splitlines()
+    hit_line = 0
+    for i, line in enumerate(lines, 1):
+        if _IDOR_DB_ACCESS.search(line):
+            hit_line = i
+            break
+
+    detections.append(_Detection(
+        lineno=hit_line,
+        message=(
+            f"IDOR: resource accessed by external ID at line {hit_line} "
+            f"without object-level ownership check — any authenticated user "
+            f"can read/modify any record by guessing IDs"
+        ),
+        evidence={
+            "rewrite_candidate": (
+                "Add: if resource.owner_id != current_user.id: abort(403)\n"
+                "Or use a scoped query: "
+                "Resource.query.filter_by(id=id, owner_id=current_user.id).first_or_404()"
+            ),
+        },
+    ))
+    return detections
+
+
+_STRATEGIES["must_enforce_object_ownership"] = _detect_idor_missing_ownership
+

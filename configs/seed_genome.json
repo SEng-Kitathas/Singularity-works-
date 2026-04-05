@@ -1669,6 +1669,205 @@
         "scope_query_to_current_user"
       ],
       "isomorph_class": "authorization_boundary"
+    },
+    {
+      "pattern_id": "injection.xml_external_entity",
+      "family": "injection",
+      "radicals": [
+        "PARSE",
+        "TRUST",
+        "EXTERNAL"
+      ],
+      "summary": "XML parsers that expand external entities allow XXE attacks \u2014 read local files, SSRF, DoS",
+      "invariants": [
+        "xml_input_must_use_defusedxml_or_disable_dtd"
+      ],
+      "anti_patterns": [
+        {
+          "id": "unsafe_xml_parse",
+          "detection_strategy": "local_xxe",
+          "concept": "stdlib_xml_parser_with_external_entities_enabled",
+          "severity": "critical",
+          "transformation_axiom": "replace_stdlib_xml_with_defusedxml",
+          "auto_apply": true,
+          "safety_level": "safe",
+          "language": "python",
+          "signal": "xml_etree_or_sax_or_expat_import_without_defusedxml"
+        }
+      ],
+      "laws": [
+        "Law1",
+        "LawOmega"
+      ],
+      "capabilities": [
+        "injection_resistance",
+        "trust_boundary_hardening",
+        "sink_isolation"
+      ]
+    },
+    {
+      "pattern_id": "crypto.no_hardcoded_secrets",
+      "family": "crypto",
+      "radicals": [
+        "TRUST",
+        "STATE"
+      ],
+      "summary": "Hardcoded credentials in source are extractable from binaries, version control, and memory dumps",
+      "invariants": [
+        "secrets_must_come_from_environment_or_secrets_manager"
+      ],
+      "anti_patterns": [
+        {
+          "id": "credential_literal_in_code",
+          "detection_strategy": "local_hardcoded_secrets",
+          "concept": "secret_value_assigned_as_string_literal",
+          "severity": "critical",
+          "transformation_axiom": "replace_literal_secret_with_env_var",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "secret_named_var_assigned_opaque_string"
+        }
+      ],
+      "laws": [
+        "Law1",
+        "LawOmega"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "tls_integrity"
+      ]
+    },
+    {
+      "pattern_id": "auth.secure_cookie_flags",
+      "family": "auth",
+      "radicals": [
+        "STATE",
+        "TRUST"
+      ],
+      "summary": "Cookies without HttpOnly/Secure/SameSite expose sessions to XSS, network sniffing, and CSRF",
+      "invariants": [
+        "session_cookies_must_have_httponly_secure_samesite"
+      ],
+      "anti_patterns": [
+        {
+          "id": "cookie_missing_security_flags",
+          "detection_strategy": "local_insecure_cookie",
+          "concept": "set_cookie_without_httponly_secure_samesite",
+          "severity": "high",
+          "transformation_axiom": "add_httponly_secure_samesite_to_cookie",
+          "auto_apply": true,
+          "safety_level": "safe",
+          "language": "python",
+          "signal": "set_cookie_call_without_full_security_flags"
+        }
+      ],
+      "laws": [
+        "Law1"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "tls_integrity"
+      ]
+    },
+    {
+      "pattern_id": "network.no_wildcard_cors",
+      "family": "network",
+      "radicals": [
+        "TRUST",
+        "BOUNDARY"
+      ],
+      "summary": "CORS wildcard (*) allows any origin to read responses; combined with credentials this is critical",
+      "invariants": [
+        "cors_must_restrict_to_explicit_trusted_origins"
+      ],
+      "anti_patterns": [
+        {
+          "id": "cors_allow_all_origins",
+          "detection_strategy": "local_cors_wildcard",
+          "concept": "cors_wildcard_origin_configuration",
+          "severity": "high",
+          "transformation_axiom": "replace_cors_wildcard_with_explicit_allowlist",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "cors_origins_set_to_wildcard_or_star"
+        }
+      ],
+      "laws": [
+        "Law1"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "sink_isolation"
+      ]
+    },
+    {
+      "pattern_id": "injection.crlf_header",
+      "family": "injection",
+      "radicals": [
+        "PARSE",
+        "TRUST",
+        "BOUNDARY"
+      ],
+      "summary": "User input in HTTP headers enables CRLF injection, response splitting, and cookie injection",
+      "invariants": [
+        "http_header_values_must_strip_crlf_before_assignment"
+      ],
+      "anti_patterns": [
+        {
+          "id": "user_input_in_response_header",
+          "detection_strategy": "local_crlf_injection",
+          "concept": "user_controlled_value_in_location_or_sensitive_header",
+          "severity": "high",
+          "transformation_axiom": "sanitize_crlf_before_header_assignment",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "location_or_sensitive_header_set_from_request_input"
+        }
+      ],
+      "laws": [
+        "Law1"
+      ],
+      "capabilities": [
+        "injection_resistance",
+        "trust_boundary_hardening"
+      ]
+    },
+    {
+      "pattern_id": "access_control.idor_ownership_gate",
+      "family": "access_control",
+      "radicals": [
+        "TRUST",
+        "STATE",
+        "BOUNDARY"
+      ],
+      "summary": "Resource access by external ID without ownership check enables IDOR \u2014 any user can access any record",
+      "invariants": [
+        "resource_access_must_verify_caller_owns_resource"
+      ],
+      "anti_patterns": [
+        {
+          "id": "missing_object_ownership_check",
+          "detection_strategy": "must_enforce_object_ownership",
+          "concept": "db_access_by_external_id_without_ownership_check",
+          "severity": "critical",
+          "transformation_axiom": "add_ownership_scope_to_db_query",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "request_id_param_reaches_db_without_ownership_filter"
+        }
+      ],
+      "laws": [
+        "Law1",
+        "LawOmega"
+      ],
+      "capabilities": [
+        "injection_resistance",
+        "trust_boundary_hardening"
+      ]
     }
   ]
 }
