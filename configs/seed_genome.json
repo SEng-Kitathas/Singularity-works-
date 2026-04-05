@@ -2808,6 +2808,167 @@
       "laws": [
         "Law1"
       ]
+    },
+    {
+      "pattern_id": "network.http_request_smuggling",
+      "family": "network",
+      "radicals": [
+        "TRUST",
+        "BOUNDARY"
+      ],
+      "summary": "CL+TE coexistence enables HTTP request smuggling to backend servers",
+      "invariants": [
+        "network_http_request_smuggling_invariant"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "network_safety"
+      ],
+      "anti_patterns": [
+        {
+          "id": "http_request_smuggling",
+          "detection_strategy": "local_http_request_smuggling",
+          "concept": "CL+TE coexistence enables HTTP request smuggling to backend ",
+          "severity": "high",
+          "transformation_axiom": "fix_network_http_request_smuggling",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "local_http_request_smuggling_signal"
+        }
+      ],
+      "laws": [
+        "Law1"
+      ]
+    },
+    {
+      "pattern_id": "auth.weak_jwt_secret",
+      "family": "auth",
+      "radicals": [
+        "TRUST",
+        "VERIFY"
+      ],
+      "summary": "JWT signed with short/guessable secret is brute-forceable with hashcat",
+      "invariants": [
+        "auth_weak_jwt_secret_invariant"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "tls_integrity"
+      ],
+      "anti_patterns": [
+        {
+          "id": "weak_jwt_secret",
+          "detection_strategy": "local_weak_jwt_secret",
+          "concept": "JWT signed with short/guessable secret is brute-forceable wi",
+          "severity": "critical",
+          "transformation_axiom": "fix_auth_weak_jwt_secret",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "local_weak_jwt_secret_signal"
+        }
+      ],
+      "laws": [
+        "Law1",
+        "LawOmega"
+      ]
+    },
+    {
+      "pattern_id": "auth.account_enumeration",
+      "family": "auth",
+      "radicals": [
+        "STATE",
+        "TRUST"
+      ],
+      "summary": "Auth functions with multiple return paths leak valid username existence",
+      "invariants": [
+        "auth_account_enumeration_invariant"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "injection_resistance"
+      ],
+      "anti_patterns": [
+        {
+          "id": "account_enumeration",
+          "detection_strategy": "local_account_enumeration",
+          "concept": "Auth functions with multiple return paths leak valid usernam",
+          "severity": "medium",
+          "transformation_axiom": "fix_auth_account_enumeration",
+          "auto_apply": true,
+          "safety_level": "safe",
+          "language": "python",
+          "signal": "local_account_enumeration_signal"
+        }
+      ],
+      "laws": [
+        "Law1"
+      ]
+    },
+    {
+      "pattern_id": "resource.insecure_file_permissions",
+      "family": "resource",
+      "radicals": [
+        "RESOURCE",
+        "TRUST"
+      ],
+      "summary": "World-writable file permissions allow any user to modify sensitive files",
+      "invariants": [
+        "resource_insecure_file_permissions_invariant"
+      ],
+      "capabilities": [
+        "resource_safety",
+        "trust_boundary_hardening"
+      ],
+      "anti_patterns": [
+        {
+          "id": "insecure_file_permissions",
+          "detection_strategy": "local_insecure_file_permissions",
+          "concept": "World-writable file permissions allow any user to modify sen",
+          "severity": "medium",
+          "transformation_axiom": "fix_resource_insecure_file_permissions",
+          "auto_apply": true,
+          "safety_level": "safe",
+          "language": "python",
+          "signal": "local_insecure_file_permissions_signal"
+        }
+      ],
+      "laws": [
+        "Law1"
+      ]
+    },
+    {
+      "pattern_id": "auth.oauth_token_in_url",
+      "family": "auth",
+      "radicals": [
+        "TRUST",
+        "BOUNDARY"
+      ],
+      "summary": "OAuth/API tokens in URL query parameters are leaked via Referer and logs",
+      "invariants": [
+        "auth_oauth_token_in_url_invariant"
+      ],
+      "capabilities": [
+        "trust_boundary_hardening",
+        "tls_integrity"
+      ],
+      "anti_patterns": [
+        {
+          "id": "oauth_token_in_url",
+          "detection_strategy": "local_oauth_token_in_url",
+          "concept": "OAuth/API tokens in URL query parameters are leaked via Refe",
+          "severity": "high",
+          "transformation_axiom": "fix_auth_oauth_token_in_url",
+          "auto_apply": false,
+          "safety_level": "review_required",
+          "language": "python",
+          "signal": "local_oauth_token_in_url_signal"
+        }
+      ],
+      "laws": [
+        "Law1"
+      ]
     }
   ]
 }
