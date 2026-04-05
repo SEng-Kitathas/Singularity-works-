@@ -183,6 +183,9 @@ def _build_python_ir(artifact_id: str, content: str) -> UniversalSemanticIR:
             self.pickle_loads_found = False
             self.re_compile_found = False
             self.hmac_compare_found = False
+            # Taint source tracker: var_name → lineno where request input assigned.
+            # Populated in visit_Assign. Used to set source_line on TrustBoundary.
+            self._taint_sources: dict[str, int] = {}
 
         def _nid(self) -> str:
             self._nc += 1
@@ -258,6 +261,7 @@ def _build_python_ir(artifact_id: str, content: str) -> UniversalSemanticIR:
                 for target in node.targets:
                     if isinstance(target, ast.Name):
                         ir.semantic_tokens.add(f"REQUEST_INPUT:{target.id}")
+                        self._taint_sources[target.id] = node.lineno
                         if isinstance(val, ast.JoinedStr) or _is_string_build(val):
                             ir.semantic_tokens.add(f"TAINTED_STRING:{target.id}")
             self.generic_visit(node)
@@ -361,12 +365,27 @@ def _build_python_ir(artifact_id: str, content: str) -> UniversalSemanticIR:
                         and f"TAINTED_STRING:{arg.id}" in ir.semantic_tokens
                     )
                     if tainted and not has_params:
+                        _src_ln = 0
+                        _src_ty = "UNKNOWN"
+                        _xforms: list[int] = []
+                        if isinstance(arg, ast.Name):
+                            _src_ln = self._taint_sources.get(arg.id, 0)
+                            if _src_ln > 0:
+                                _src_ty = "USER_INPUT"
+                                if _src_ln != node.lineno:
+                                    _xforms = [node.lineno]  # construction is the transform
+                        elif _is_string_build(arg):
+                            _src_ln = node.lineno
+                            _src_ty = "USER_INPUT"
                         ir.trust_boundaries.append(TrustBoundary(
                             boundary_type="DB_QUERY",
                             sink_name=f"{func.attr}",
                             sink_line=node.lineno,
                             tainted_input="string_built_query",
                             confidence="high",
+                            source_line=_src_ln,
+                            source_type=_src_ty,
+                            transforms=_xforms,
                         ))
 
             # requests / httpx (network)
@@ -396,10 +415,13 @@ def _build_python_ir(artifact_id: str, content: str) -> UniversalSemanticIR:
                         tainted_name = url_arg.id
                     if tainted_name or self._is_request_input_expr(url_arg) or self._expr_has_request_taint(url_arg):
                         ir.semantic_tokens.add("ssrf:user_url_to_network")
+                        _ssrf_src = self._taint_sources.get(tainted_name, 0) if tainted_name else 0
                         ir.trust_boundaries.append(TrustBoundary(
                             boundary_type="NETWORK", sink_name=f"{func.value.id}.{func.attr}",
                             sink_line=node.lineno,
                             tainted_input=tainted_name or "user_supplied_url", confidence="high",
+                            source_line=_ssrf_src,
+                            source_type="USER_INPUT" if _ssrf_src > 0 else "UNKNOWN",
                         ))
 
             # Track request.args.get / request.json.get → tainted variable / direct input presence

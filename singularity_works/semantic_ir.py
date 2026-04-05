@@ -66,9 +66,19 @@ class StateMachine:
 @dataclass
 class TrustBoundary:
     """
-    A point where untrusted or external data reaches a dangerous sink.
+    A directed taint record: source → [transforms] → sink.
+
     boundary_type classifies the sink surface.
     confidence reflects analysis depth: high=AST, medium=heuristic, low=regex.
+
+    Directionality fields (populated when source is known):
+      source_line:  line where taint enters the program (e.g. request.args.get)
+      source_type:  USER_INPUT | ENV | FILE | NETWORK | DB_RESULT | UNKNOWN
+      transforms:   intermediate lines where taint is modified before the sink
+                    (e.g. format string construction, concatenation)
+
+    A boundary with source_line=0 is a legacy/heuristic record — sink is known
+    but source was not traced.  The forge treats these as lower-confidence.
     """
     boundary_type: str      # DB_QUERY | SHELL | TLS | EVAL_EXEC | FILE | NETWORK
     sink_name: str
@@ -76,6 +86,35 @@ class TrustBoundary:
     tainted_input: str | None = None    # what reaches the sink
     validated: bool = False
     confidence: str = "high"
+    # Directed chain (source → transforms → sink)
+    source_line: int = 0                # 0 = unknown / not traced
+    source_type: str = "UNKNOWN"        # USER_INPUT | ENV | FILE | NETWORK | DB_RESULT
+    transforms: list[int] = None        # intermediate transform line numbers
+
+    def __post_init__(self) -> None:
+        if self.transforms is None:
+            self.transforms = []
+
+    def is_directed(self) -> bool:
+        """True if source was successfully traced — not just sink-only."""
+        return self.source_line > 0
+
+    def chain_length(self) -> int:
+        """Number of hops: 1 = source→sink directly, 2 = source→transform→sink, etc."""
+        return 1 + len(self.transforms)
+
+    def to_chain_dict(self) -> dict:
+        """Serialize the directed chain for FactBus publication."""
+        return {
+            "source_line":  self.source_line,
+            "source_type":  self.source_type,
+            "transforms":   list(self.transforms),
+            "sink_line":    self.sink_line,
+            "sink_name":    self.sink_name,
+            "boundary_type": self.boundary_type,
+            "hops":         self.chain_length(),
+            "directed":     self.is_directed(),
+        }
 
 
 # ---------------------------------------------------------------------------

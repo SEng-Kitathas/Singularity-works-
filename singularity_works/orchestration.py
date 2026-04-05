@@ -498,23 +498,44 @@ class Orchestrator:
                 confidence=semantic_ir.confidence,
                 linked_laws=pattern.evidence_hooks.linked_laws,
             )
-            # Publish IR-derived trust boundaries for non-Python languages
-            # (Python gets these from recovery structures above)
-            if semantic_ir.language != "python" and semantic_ir.trust_boundaries:
-                for tb in semantic_ir.unvalidated_boundaries():
-                    self._publish_fact(
-                        "trust_boundary_crossed",
-                        artifact.artifact_id,
-                        {
-                            "source": "semantic_ir",
-                            "boundary_type": tb.boundary_type,
-                            "sink_name": tb.sink_name,
-                            "sink_line": tb.sink_line,
-                            "tainted_input": tb.tainted_input,
-                        },
-                        confidence=tb.confidence,
-                        linked_laws=pattern.evidence_hooks.linked_laws,
+            # Publish IR-derived trust boundaries for all languages.
+            # Python trust boundaries now carry source_line from the AST taint tracker.
+            # Non-Python boundaries carry sink info from heuristic patterns.
+            for tb in semantic_ir.unvalidated_boundaries():
+                # Publish trust_boundary_crossed with directed chain info
+                chain = tb.to_chain_dict()
+                self._publish_fact(
+                    "trust_boundary_crossed",
+                    artifact.artifact_id,
+                    {
+                        "source": "semantic_ir",
+                        "boundary_type": tb.boundary_type,
+                        "sink_name": tb.sink_name,
+                        "sink_line": tb.sink_line,
+                        "tainted_input": tb.tainted_input,
+                        "directed": chain["directed"],
+                        "source_line": chain["source_line"],
+                        "source_type": chain["source_type"],
+                        "hops": chain["hops"],
+                    },
+                    confidence=tb.confidence,
+                    linked_laws=pattern.evidence_hooks.linked_laws,
+                )
+                # Publish directed taint_chain fact for multi-hop derivation
+                if tb.is_directed():
+                    from .facts import Fact as _Fact
+                    fact_id = (
+                        f"taint_chain:{artifact.artifact_id}:"
+                        f"{tb.source_line}:{tb.sink_line}:{tb.boundary_type}"
                     )
+                    self.facts.publish(_Fact(
+                        fact_id=fact_id,
+                        fact_type="taint_chain",
+                        scope=artifact.artifact_id,
+                        confidence=tb.confidence,
+                        payload=chain,
+                        linked_laws=list(pattern.evidence_hooks.linked_laws),
+                    ))
             # Publish tainted query construction for switchboard derivation
             if any(tb.boundary_type == "DB_QUERY" for tb in semantic_ir.trust_boundaries):
                 self._publish_fact(
