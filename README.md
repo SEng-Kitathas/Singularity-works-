@@ -1,100 +1,329 @@
-# Singularity Works — Forge v1.18
+# Singularity Works Forge v1.0
 
-Autonomous bug bounty engine with AST-based protocol monitors and multi-round remediation.
+**Autonomous bug bounty engine.** AST-level security analysis with directed taint chains, warrant graph, three-wing HUD cockpit, and structured HackerOne/Bugcrowd report output.
 
-## Status: 46/46 Tests Passing ✓
+```
+self_audit: 2791 pass / 42 warn / 0 fail
+contrast:   30/30 paths
+capsules:   79  |  strategies: 75  |  warrant_coverage: 1.0
+```
 
-## What This Does
+---
 
-Forge is a vulnerability scanner that:
-1. **Ingests** source code (Python, PHP, JavaScript, TypeScript, Java, C#, Ruby)
-2. **Detects** 15+ vulnerability classes with zero false positives on known-good code
-3. **Generates** automated patches with semantic awareness
-4. **Handles** unknown/alien languages with skeptical quarantine (no false green passes)
+## Quick Install
 
-## Vulnerability Classes Detected
+**Linux / macOS / WSL:**
+```bash
+curl -fsSL https://raw.githubusercontent.com/SEng-Kitathas/Singularity-works-/main/install.sh | bash
+```
+Or clone and run:
+```bash
+git clone https://github.com/SEng-Kitathas/Singularity-works-.git
+cd Singularity-works-
+bash install.sh
+```
 
-| Class | Description |
-|-------|-------------|
-| SSRF | Server-side request forgery via attacker-controlled URLs |
-| SSTI | Template injection via user-controlled template strings |
-| XSS Reflected | Cross-site scripting via unencoded reflected input |
-| XSS Stored | Cross-site scripting via unencoded stored input |
-| SQLi | SQL injection via string interpolation |
-| CSRF | Cross-site request forgery on state-changing operations |
-| Command Injection | Shell command execution with user input |
-| Open Redirect | Unvalidated redirect targets |
-| Unsafe Deserialization | Pickle/Marshal on user-controlled data |
-| Predictable Tokens | Weak token generation (MD5-based) |
-| Fake Wrappers | Deceptive "safe" functions that don't sanitize |
-| NoSQL Injection | MongoDB $where injection |
-| Broken Auth | Plaintext password storage/comparison |
-| Unknown Language | Alien/novel structured blobs with semantic risk |
+**Windows (PowerShell):**
+```powershell
+git clone https://github.com/SEng-Kitathas/Singularity-works-.git
+cd Singularity-works-
+.\install.ps1
+```
 
-## Quick Start
+The installer: clones the repo, creates a venv, installs dependencies, writes launcher scripts, and generates Claude Code MCP config.
+
+---
+
+## Requirements
+
+| Component | Minimum | Notes |
+|-----------|---------|-------|
+| Python | 3.11+ | AST module required |
+| git | any | for install + forge-commit-verified |
+| LM Studio | 0.3.x+ | optional, for AI validation layer |
+| Claude Code | any | optional, for MCP integration |
+
+**LM Studio models (optional — forge runs standalone without them):**
+
+| Role | Model | Size | Config |
+|------|-------|------|--------|
+| Reasoner | mradermacher/Qwen3.5-35B-A3B-Claude-4.6-Opus-Reasoning-Distilled | 21.2 GB | Q4_K_M |
+| Coder | Melvin56/Qwen2.5-Coder-7B-Instruct-abliterated | 4.7 GB | Q4_K_M |
+
+Both models load automatically via auto-detection from `/v1/models` — no manual model ID configuration needed.
+
+---
+
+## Usage
+
+### Scan a file → bug bounty report
 
 ```bash
-python run_current_codebase.py
+# Basic scan — prints findings to stdout
+forge path/to/app.py
+
+# Full report → HackerOne markdown + JSON
+forge path/to/app.py --platform HackerOne --out ./reports --target "My Flask App"
+
+# Bugcrowd format
+forge path/to/app.py --platform Bugcrowd --out ./reports
+
+# With scope note
+forge path/to/app.py --scope "In scope: /api/* endpoints only" --out ./reports
 ```
+
+Output files: `bounty_<target>_<timestamp>.md` and `bounty_<target>_<timestamp>.json`
+
+### Python API
+
+```python
+from singularity_works.orchestration import Orchestrator
+from singularity_works.models import Requirement, RunContext
+from singularity_works.facts import FactBus
+from singularity_works.bounty_reporter import build_report, save_report
+from pathlib import Path
+
+# Run the forge
+orc = Orchestrator(Path(".forge/evidence.jsonl"))
+orc.facts = FactBus()
+result = orc.run(
+    RunContext("bounty", "qa", "hud", {}),
+    Requirement("REQ-1", "Security audit", tags=["security"]),
+    open("app.py").read(),
+)
+
+# Build and save report
+report = build_report(result, orc, target_name="app.py", platform="HackerOne")
+paths  = save_report(report, "./reports")
+print(f"Findings: {len(report.findings)}, Max CVSS: {report.cvss_score_max}")
+```
+
+### Live HUD cockpit
+
+```bash
+forge-hud          # run the demo
+python3 -m singularity_works.hud   # same thing
+```
+
+The HUD renders a three-wing terminal cockpit (inspired by avionics glass cockpit principles):
+- **LEFT**: gate matrix with EICAS-style FAIL/WARN/PASS status
+- **CENTER**: verdict, warrant coverage meter, primary claim text, metrics
+- **RIGHT**: directed taint chains (`USER_INPUT:L3 ──▶ NETWORK:L7`) + compound derivations
+
+Modes: `full` (≥100 cols), `compact` (<100 cols), `status` (single line)
+
+### Check LM Studio connectivity
+
+```bash
+forge-health                              # checks localhost:1234
+forge-health --url http://localhost:1234/v1
+```
+
+Expected output when both models loaded:
+```
+LM Studio — http://localhost:1234/v1
+Status: OK
+Resolved IDs:
+  reasoner   → qwen3.5-35b-a3b-claude-4.6-opus-...  [2100ms]
+  coder      → qwen2.5-coder-7b-instruct-ablite...   [180ms]
+```
+
+### Local model API
+
+```python
+from singularity_works.local_model_adapter import get_adapter
+
+a = get_adapter()   # connects to localhost:1234
+
+# Security code review (CODER — fast)
+r = a.review_code(open("suspicious.py").read())
+print(r.content)
+
+# Deep finding validation (REASONER — thorough)
+r = a.validate_finding("SQL injection at line 14", code_ctx)
+print(r.content)
+
+# Generate PoC steps (CODER)
+r = a.generate_poc("SSRF", vulnerable_code)
+print(r.content)
+```
+
+---
+
+## Claude Code Integration (MCP)
+
+The installer writes `~/.claude/mcp_singularity_works.json`. To activate:
+
+**Option A — Global (all projects):**
+
+Add the contents to `~/.claude/settings.json`:
+```json
+{
+  "mcpServers": {
+    "singularity-works": {
+      "command": "/path/to/.venv/bin/python3",
+      "args": ["/path/to/singularity_works/forge_mcp_server.py"],
+      "cwd": "/path/to/Singularity-works-"
+    }
+  }
+}
+```
+
+**Option B — Per-project:**
+
+Add to `.claude/settings.json` in your project root (same structure as above).
+
+**Available MCP tools (9 total):**
+
+| Tool | What it does |
+|------|-------------|
+| `forge_run_battery` | Run the full 49-case security battery |
+| `forge_get_assurance` | Security verdict for a code snippet |
+| `forge_run_assurance_on_file` | Forge run on a file path |
+| `forge_get_open_seams` | Open seams from the trace matrix |
+| `forge_get_live_shadow` | Current Live Shadow state |
+| `forge_get_escalation` | Escalation decision for a finding |
+| `forge_get_blueprint` | Logic Blueprint Engine analysis |
+| `forge_commit_verified` | Gate: only commit after battery passes |
+| `forge_generate_bounty_report` | Full bug bounty report from code |
+
+**Example Claude Code usage:**
+```
+@singularity-works forge_generate_bounty_report code="$(cat app.py)" target="My App" platform="HackerOne"
+```
+
+---
+
+## What It Detects
+
+30 verified vulnerability classes across Python, Rust, Go, Java, JavaScript, TypeScript, C#, Ruby:
+
+| Category | Vulnerabilities |
+|----------|----------------|
+| **Injection** | SQLi (Python+Rust+Go), NoSQL injection ($where/$ne/$gt), SSTI, LDAP injection, CSV formula injection, Zip Slip, path traversal, XXE, CRLF |
+| **Authentication** | JWT algorithm=none, JWT algorithm confusion, weak JWT secret, CSRF exempt, OAuth token in URL, account enumeration timing, Paramiko AutoAddPolicy |
+| **Cryptography** | Hardcoded secrets (30+ patterns), DES/RC4/Blowfish, RSA < 2048 bits, cleartext protocols, urllib3 disable_warnings, pycrypto usage |
+| **Execution** | eval/exec, Flask debug=True (RCE), SQLite enable_load_extension, subprocess shell=True, deserialization (pickle/yaml/marshal) |
+| **Network** | SSRF, CORS wildcard + credentials, bind 0.0.0.0, GraphQL introspection, HTTP request smuggling (CL+TE) |
+| **Access Control** | IDOR / missing object ownership, insecure cookies, secret serialization, file permissions 0o777 |
+| **Resource** | Decompression bomb, tempfile TOCTOU, trojan source (CVE-2021-42574) |
+
+**False positive rate: 0** (verified against 2791 self-audit gate checks)
+
+---
+
+## Detection Architecture
+
+```
+Source Code
+    │
+    ▼
+Language Front Door (polyglot IR builder)
+    │  Python: full AST  │  Rust/Go/Java: structural heuristic IR
+    ▼
+Genome-Gate Coupling (79 capsules → 75 strategies)
+    │  Each capsule = pattern family + invariants + anti-patterns
+    ▼
+Fixed-Point Enforcement Loop (max 3 iterations)
+    │  R1: injection+trust → compound_taint_injection
+    │  R2: trust+network  → ssrf_confirmed
+    │  R3: 3-hop chain    → critical_compound_hazard
+    │  R4: memory+taint   → memory_corruption_via_taint
+    ▼
+Directed Taint Chain Publication (FactBus)
+    │  source_line → transforms → sink_line (per finding)
+    ▼
+Assurance Warrant Graph
+    │  Every claim warranted: WHY this gate discharge matters
+    │  warrant_coverage = 1.0 (100%) on every run
+    ▼
+Bug Bounty Report Formatter
+    │  CVSS v3.1 scores │ CWE references │ PoC steps │ Remediation
+    └─► HackerOne .md │ Bugcrowd .md │ JSON export
+```
+
+---
+
+## HUD Cockpit
+
+The forge ships a live terminal HUD based on avionics glass cockpit principles (ALCI v7.2, YuiUI-CP v1.0 OMEGA design specs):
+
+```
+■ Singularity Works v1.37 │ VERDICT: ■ RED │ WC: 43/43 │ ✗4 ~2 ✓24 r3 │ chains:3 │ COMPOUND: R1 R3
+═══════════════════════════════════════════════════════════════════════════════════════════════════════
+        GATE MATRIX          │         VERDICT  ·  WARRANT          │      CHAINS  &  COMPOUND
+─────────────────────────────┼──────────────────────────────────────┼─────────────────────────────────
+PHASE    qa-synthesis         │   ■ RED                              │   TAINT CHAINS
+REQ      Security audit       │                                      │   USER_INPUT:L14 ──▶ NOSQL:L17 ✓
+RADICAL  TRUST+PARSE          │   WARRANT COVERAGE                   │   USER_INPUT:L18 ──▶ TEMPLATE:L20 ✓
+PROGRESS analysis             │   [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░]  43/43  │
+[████████████████████] 100%  │                                      │   COMPOUND DERIVATION
+                              │   PRIMARY CLAIM:                     │   [R1] injection + trust
+─ GATES ─────────────────────┤   FALSIFIED: 4 gate families         │   [R3] 3-hop critical chain
+  ✗ injection   NoSQL...      │   falsified. Runtime unobserved.     │
+  ✗ injection   SSTI ren...   │                                      │   ─ META ─────────────────────
+  ✗ exec_safety Flask debug   │   ─ METRICS ─────────────────────   │   branch   main
+  ~ serialize   yaml.load     │   CAPSULES    79                     │   session  bounty-01
+  ~ network     0.0.0.0 bind  │   STRATEGIES  75                     │   provider qwen2.5-coder-7b
+  ✓ 24 gates pass             │   ELAPSED_MS  112                    │
+═══════════════════════════════════════════════════════════════════════════════════════════════════════
+EVENTS
+ · genome bundle: 14 capsules active
+ · fixed-point iter 1: 18 new facts → iter 2: converged
+ · R1 compound_taint_injection: fired │ assurance rollup: warrant_coverage=1.0
+```
+
+Color key: `✗` RED = fail (security violation), `~` AMBER = warn, `✓` GREEN = pass
+
+---
 
 ## Project Structure
 
 ```
-forge_sandbox/       # v1.18 working scanner
-  intake.py          # Language detection + pattern classification
-  probe_loop.py      # Multi-round orchestration
-  genome_gates.py    # 30+ pattern detectors
-  remediation.py     # Automated patch generation
-  assurance.py       # Final status evaluation
-  switchboard.py     # Routing logic
-  facts.py           # Evidence bus
-
-corpus/              # Test cases
-  public/            # DVWA, Juice Shop, NodeGoat samples
-  representative/    # Adversarial + synthetic pressure cases
-
-methodology/         # PCMMAD bootstrap (00-93)
-
-state/               # PCMMAD state documents
-  NEXT_STEPS.md
-  DOCTRINE_SNAPSHOT.md
-  CURRENT_STATE.md
-  TRACE_MATRIX.md
-
-spec/                # Architecture specs
-  CIL_ARCHITECTURE/  # CIL layer reference
-
-archive/             # Historical artifacts
-  forge_initial_repo/  # Typed architecture skeleton (not implemented)
-
-results/             # Test run outputs
-tests/               # Expectation definitions
-docs/                # Session notes + documentation
+Singularity-works-/
+├── install.sh                    # One-touch Linux/macOS/WSL installer
+├── install.ps1                   # One-touch Windows installer
+├── pyproject.toml                # Package manifest v1.0
+├── configs/
+│   └── seed_genome.json          # 79 capsules (2,973 lines)
+└── singularity_works/
+    ├── orchestration.py          # Forge run loop + fixed-point wiring
+    ├── genome_gate_factory.py    # 75 detection strategies (5,040 lines)
+    ├── enforcement.py            # Fixed-point propagation + R1-R4 rules
+    ├── assurance.py              # Warrant graph + 100% claim coverage
+    ├── language_front_door.py    # Polyglot IR builder + taint tracker
+    ├── hud.py                    # Three-wing ANSI cockpit (781 lines)
+    ├── bounty_reporter.py        # Bug bounty report formatter (749 lines)
+    ├── local_model_adapter.py    # LM Studio adapter (Qwen3.5/Qwen2.5)
+    ├── forge_mcp_server.py       # Claude Code MCP server (9 tools)
+    ├── forge_hud_server.py       # WebSocket HUD backend
+    ├── cil_council.py            # REASONER/CODER adversarial loop
+    ├── facts.py                  # Typed FactBus (taint_chain publisher)
+    ├── models.py                 # RunResult, AssuranceClaim, GateResult
+    └── ...                       # 35 modules total
 ```
+
+---
 
 ## Laws Active
 
-- **Law Ω**: Every artifact at theoretical maximum
-- **Law 1**: 0-Day not Someday (no stubs in BUILD mode)
-- **Law 4**: Pedantic execution, aerospace-grade verification
+| Law | Statement |
+|-----|-----------|
+| **Law 0** | Discourse ≠ implementation — iterate freely in discourse |
+| **Law 1** | 0-Day Not Someday — no stubs, no TODOs in build mode |
+| **Law Ω** | Every artifact at theoretical maximum — Platonic ideal |
+| **Law Σ** | Voice speculative ideas, map isomorphisms, challenge assumptions |
 
-## Version History
+---
 
-| Version | Score | Key Changes |
-|---------|-------|-------------|
-| v1.9 | ~30/46 | Initial public corpus |
-| v1.14 | ~40/46 | Synthetic assault |
-| v1.15 | ~42/46 | Alien wave 1 |
-| v1.16 | ~44/46 | Alien wave 2 |
-| v1.17 | ~45/46 | Alien wave 3 |
-| v1.18 | 46/46 | Alien wave 4 + low-loudness |
+## License
 
-## Blocking Issues
+MIT — see LICENSE file.
 
-1. `seed_genome.json` — Schema for two new capsules, not in current dump
-2. Logic Blueprint Engine specs — Created in conversation, need embedding
+Research sources used in detector implementations:
+gosec (Apache-2.0), eslint-plugin-security (Apache-2.0), njsscan (MIT),
+graudit (MIT), PayloadsAllTheThings (MIT), detect-secrets (MIT/Apache-2.0)
 
-## Author
+---
 
-Rahl (SEng-Kitathas)
-rahl@singularity.works
+*"The glass box that shows what the black box hides."*

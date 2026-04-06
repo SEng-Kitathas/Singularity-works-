@@ -4,7 +4,33 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "singularity-works"
-version = "0.2.0"
-description = "Pattern-driven forge with QA, traceability, assurance, and HUD"
+version = "1.0.0"
+description = "Autonomous bug bounty engine — AST-level security forge with warrant graph, taint chains, and HUD cockpit"
+readme = "README.md"
 requires-python = ">=3.11"
-dependencies = []
+license = {text = "MIT"}
+keywords = ["security", "bug-bounty", "sast", "vulnerability-scanner", "forge"]
+
+dependencies = [
+    "flask>=3.0",
+    "flask-cors>=4.0",
+    "flask-socketio>=5.3",
+    "mcp>=0.9",
+    "watchdog>=3.0",
+]
+
+[project.optional-dependencies]
+rich = ["rich>=13.0"]
+dev  = ["pytest>=7.0", "mypy>=1.0"]
+
+[project.scripts]
+forge          = "singularity_works.bounty_reporter:__main__"
+forge-health   = "singularity_works.local_model_adapter:__main__"
+forge-hud      = "singularity_works.hud:__main__"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["singularity_works*"]
+
+[tool.setuptools.package-data]
+"singularity_works" = ["../configs/*.json"]

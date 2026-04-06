@@ -40,6 +40,7 @@ import mcp.types as types
 # Forge
 sys.path.insert(0, str(Path(__file__).parent.parent))
 from singularity_works.orchestration import Orchestrator
+from singularity_works.bounty_reporter import build_report, save_report, format_hackerone
 from singularity_works.models import Requirement, RunContext
 from singularity_works.facts import FactBus
 
@@ -198,6 +199,25 @@ async def list_tools() -> list[types.Tool]:
             },
         ),
         types.Tool(
+            name="forge_generate_bounty_report",
+            description=(
+                "Run forge on a code artifact and generate a structured bug bounty report "
+                "(HackerOne/Bugcrowd/Generic) with CVSS scores, CWE references, directed "
+                "taint chains, PoC reproduction steps, and remediation. Returns markdown."
+            ),
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "code":     {"type": "string",  "description": "Source code to analyze"},
+                    "target":   {"type": "string",  "description": "Target app/file name"},
+                    "platform": {"type": "string",  "description": "HackerOne | Bugcrowd | Generic"},
+                    "scope":    {"type": "string",  "description": "Optional scope note"},
+                    "save_to":  {"type": "string",  "description": "Optional output directory"},
+                },
+                "required": ["code"],
+            },
+        ),
+        types.Tool(
             name="forge_commit_verified",
             description=(
                 "Gate: commit only after the forge battery passes. "
@@ -263,6 +283,42 @@ async def call_tool(name: str, arguments: dict) -> list[types.TextContent]:
             arguments["code"],
             arguments.get("requirement", "Security analysis"),
         )
+
+    elif name == "forge_generate_bounty_report":
+        code = arguments.get("code", "")
+        if not code:
+            return [types.TextContent(type="text", text="ERROR: code required")]
+        orc = _get_orc()
+        orc.facts = FactBus()
+        r = orc.run(
+            RunContext("bounty", "qa", "hud", {}),
+            Requirement("REQ-bounty",
+                        "Bug bounty: " + arguments.get("target", "artifact"),
+                        tags=["security"]),
+            code,
+        )
+        rpt = build_report(
+            r, orc,
+            target_name=arguments.get("target", "artifact"),
+            scope_note=arguments.get("scope", ""),
+            platform=arguments.get("platform", "HackerOne"),
+        )
+        md = format_hackerone(rpt)
+        header = (
+            "Forge verdict: " + rpt.verdict.upper() + "\n"
+            + "Findings: " + str(len(rpt.findings)) + "\n"
+            + "Max CVSS: " + str(rpt.cvss_score_max)
+            + " (" + rpt.severity_max + ")\n"
+            + "Taint chains: " + str(rpt.taint_chains_detected) + "\n"
+            + "Warrant coverage: "
+            + str(round(rpt.warrant_coverage * 100)) + "%\n\n"
+        )
+        out = header + md
+        save_to = arguments.get("save_to", "")
+        if save_to:
+            written = save_report(rpt, save_to)
+            out += "\nSaved: " + ", ".join(str(p) for p in written)
+        return [types.TextContent(type="text", text=out)]
 
     elif name == "forge_commit_verified":
         return await _commit_verified(
@@ -582,6 +638,8 @@ async def _commit_verified(message: str, require_battery: bool) -> list[types.Te
                 text=f"Commit failed: {result.stderr.strip()}")]
     except Exception as e:
         return [types.TextContent(type="text", text=f"Commit error: {e}")]
+
+
 
 
 # ── Entry point ───────────────────────────────────────────────────────────

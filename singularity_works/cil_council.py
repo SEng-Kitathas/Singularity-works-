@@ -54,9 +54,13 @@ class Role:
     CODER = "coder"
 
 
+# Model fingerprints — auto-matched against LM Studio /v1/models by substring
+# Actual loaded models (from LM Studio screenshot):
+#   mradermacher/Qwen3.5-35B-A3B-Claude-4.6-Opus-Reasoning-Distilled (Q4_K_M, 21.2GB)
+#   Melvin56/Qwen2.5-Coder-7B-Instruct-abliterated (Q4_K_M, 4.7GB)
 ROLE_MODELS = {
-    Role.REASONER: "qwen3.5-35b",   # hypothesis, isomorphism, challenge
-    Role.CODER: "qwen2.5-coder-7b", # implementation, concreteness, adversarial verify
+    Role.REASONER: "qwen3.5-35b",   # matches 35B-A3B MoE reasoner
+    Role.CODER: "qwen2.5-coder",    # matches 7B coder instruct
 }
 
 ROLE_SYSTEM_PROMPTS = {
