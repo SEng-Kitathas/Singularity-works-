@@ -1120,6 +1120,36 @@ class Orchestrator:
                     "blobs":        [b.to_dict() for b in _lbe_r.blobs],
                 }
 
+                # Bridge Law Omega sink confirmations into assurance.
+                _lbe_verdict = str(lbe_dict.get("verdict", ""))
+                _lbe_risk = float(lbe_dict.get("highest_risk", 0.0) or 0.0)
+                _danger_markers = (
+                    "TAINTED INPUT REACHES COMMAND SINK",
+                    "TAINTED INPUT REACHES SQL SINK",
+                    "TAINTED INPUT REACHES Redirect",
+                    "STRUCTURAL OBLIGATION VIOLATED",
+                    "command injection path confirmed",
+                    "injection path confirmed",
+                )
+                _lbe_confirmed_danger = any(m in _lbe_verdict for m in _danger_markers) or _lbe_risk >= 0.35
+                if _lbe_confirmed_danger:
+                    _falsifier = f"law_omega:{_lbe_verdict}"
+                    if _falsifier not in assurance.falsified:
+                        assurance.falsified.append(_falsifier)
+                    for _claim in assurance.claims:
+                        if getattr(_claim, "claim_type", "") == "primary":
+                            _claim.status = "falsified"
+                            _claim.confidence = "low"
+                            if _falsifier not in _claim.residual_risks:
+                                _claim.residual_risks.append(_falsifier)
+                            _claim.warrant = (
+                                f"Primary trust claim is CHALLENGED by {len(assurance.discharged)} discharged gate families and "
+                                f"{len(assurance.monitored)} monitored properties. "
+                                f"FALSIFIED: Law Omega confirmed dangerous sink evidence: {_lbe_verdict}"
+                            )
+                            break
+
+
                 # Blueprint — color-coded flow map over LBE results
                 _blueprint_dict = None
                 try:
@@ -1131,7 +1161,7 @@ class Orchestrator:
             except Exception:
                 pass  # Non-fatal — LBE is bonus cartography, not blocking
 
-        return OrchestrationResult(
+        result = OrchestrationResult(
             artifact=artifact,
             pattern={
                 "pattern_id": pattern.pattern_id,
@@ -1154,3 +1184,20 @@ class Orchestrator:
             lbe_result=lbe_dict,
             lbe_blueprint=_blueprint_dict if lbe_dict else None,
         )
+        try:
+            from dataclasses import asdict as _dc_asdict
+            from .hud import snapshot_from_run_result as _snapshot_from_run_result
+            result.hud_snapshot = _dc_asdict(
+                _snapshot_from_run_result(
+                    result,
+                    self,
+                    app_name="Singularity Works",
+                    version="v1.37",
+                    branch="main",
+                    uptime_s=0.0,
+                    display_mode="full",
+                )
+            )
+        except Exception:
+            result.hud_snapshot = None
+        return result

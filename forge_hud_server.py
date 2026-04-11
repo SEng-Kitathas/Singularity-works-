@@ -129,6 +129,15 @@ def _run_forge(code: str, requirement: str, tags: list[str],
         )
         elapsed = round((time.perf_counter() - t0) * 1000, 1)
 
+        hud_snapshot = getattr(r, "hud_snapshot", None)
+        if hud_snapshot is None:
+            try:
+                from dataclasses import asdict as _dc_asdict
+                from singularity_works.hud import snapshot_from_run_result as _snapshot_from_run_result
+                hud_snapshot = _dc_asdict(_snapshot_from_run_result(r, orc))
+            except Exception:
+                hud_snapshot = None
+
     # ── Serialize gate results ─────────────────────────────────────────────
     gate_results = []
     for gr in r.gate_summary.results:
@@ -218,6 +227,7 @@ def _run_forge(code: str, requirement: str, tags: list[str],
         "gate_pass":           g_pass,
         "gate_fail":           g_fail,
         "gate_warn":           g_warn,
+        "hud_snapshot":        hud_snapshot,
         "lbe_result":          lbe,
         "lbe_blueprint":       bp,
         "starmap_topology":    sm,
