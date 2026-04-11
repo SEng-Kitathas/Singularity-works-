@@ -135,6 +135,35 @@ class EmbodimentTrace:
     applied_transformations: list[AppliedTransformation] = field(default_factory=_list)
 
 @dataclass
+class TransformationSuggestion:
+    suggestion_id: str
+    summary: str
+    rationale: str
+    rewrite_candidate: str = ""
+    transformation_axiom: str = ""
+    target_spans: list[list[int]] = field(default_factory=_list)
+    confidence: str = "moderate"
+    linked_laws: list[str] = field(default_factory=_list)
+    safety_level: str = "review_required"
+    auto_apply: bool = False
+
+    def to_candidate(self, *, source_gate: str) -> "TransformationCandidate":
+        return TransformationCandidate(
+            candidate_id=self.suggestion_id,
+            summary=self.summary,
+            rationale=self.rationale,
+            rewrite_candidate=self.rewrite_candidate,
+            target_spans=self.target_spans,
+            source_gate=source_gate,
+            confidence=self.confidence,
+            safety_level=self.safety_level,
+            auto_apply=self.auto_apply,
+            linked_laws=self.linked_laws,
+            transformation_axiom=self.transformation_axiom,
+        )
+
+
+@dataclass
 class TransformationCandidate:
     candidate_id: str
     summary: str

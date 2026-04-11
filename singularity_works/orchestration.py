@@ -23,7 +23,7 @@ from .gates import (
     simplification_gate,
     syntax_gate,
 )
-from .models import Artifact, AppliedTransformation, EmbodimentTrace, Requirement, Risk, RunContext, TransformationCandidate, VerificationFacet, VerificationTrace
+from .models import Artifact, AppliedTransformation, EmbodimentTrace, Requirement, Risk, RunContext, TransformationCandidate, TransformationSuggestion, VerificationFacet, VerificationTrace
 from .monitoring import MonitorEngine
 from .pattern_ir import PatternIR, default_pattern_for_requirement
 from .recovery import RecoveryEngine
@@ -348,60 +348,60 @@ class Orchestrator:
             link.to_dict() | {"linked_requirements": linked_requirements},
         )
 
+    def _suggestion_from_evidence(self, result, finding, evidence: dict) -> TransformationSuggestion | None:
+        if not evidence.get("rewrite_candidate"):
+            return None
+        transformation_axiom = evidence.get("transformation_axiom", "")
+        inferred_auto = bool(evidence.get("auto_apply", False))
+        if transformation_axiom and not inferred_auto:
+            inferred_auto = is_auto_applicable(transformation_axiom)
+        return TransformationSuggestion(
+            suggestion_id=f"auto:{result.gate_id}:{finding.code}",
+            summary=evidence.get("suggested_fix", finding.message),
+            rationale=finding.message,
+            rewrite_candidate=evidence.get("rewrite_candidate", ""),
+            transformation_axiom=transformation_axiom,
+            target_spans=evidence.get("target_spans", []),
+            confidence=evidence.get("confidence", "moderate"),
+            linked_laws=list(evidence.get("linked_laws", [])),
+            safety_level=evidence.get("safety_level", "review_required"),
+            auto_apply=inferred_auto,
+        )
+
+    def _coerce_suggestion(self, item: dict, result, finding, evidence: dict) -> TransformationSuggestion:
+        return TransformationSuggestion(
+            suggestion_id=item.get("suggestion_id") or f"{result.gate_id}:{finding.code}",
+            summary=item.get("summary", finding.message),
+            rationale=item.get("rationale", finding.message),
+            rewrite_candidate=item.get("rewrite_candidate", ""),
+            transformation_axiom=item.get("transformation_axiom", ""),
+            target_spans=item.get("target_spans", evidence.get("target_spans", [])),
+            confidence=item.get("confidence", "moderate"),
+            linked_laws=item.get("linked_laws", []),
+            safety_level=item.get("safety_level", "review_required"),
+            auto_apply=bool(item.get("auto_apply", False)),
+        )
+
     def _transformation_plan(self, gate_summary: GateRunSummary) -> list[TransformationCandidate]:
         plan: list[TransformationCandidate] = []
         seen: set[str] = set()
         for result in gate_summary.results:
             for finding in result.findings:
                 evidence = finding.evidence or {}
-                suggestions = list(evidence.get("suggestions", []))
-                if not suggestions and evidence.get("rewrite_candidate"):
-                    # Genome-derived gates carry transformation_axiom in evidence.
-                    # Use the registry to resolve auto_apply and safety_level rather
-                    # than branching on gate_id — that was the old hardcoded coupling.
-                    transformation_axiom = evidence.get("transformation_axiom", "")
-                    rewrite_candidate = evidence.get("rewrite_candidate", "")
-                    inferred_laws = list(evidence.get("linked_laws", []))
-                    inferred_safety = evidence.get("safety_level", "review_required")
-                    # If the evidence already carries auto_apply from the genome capsule, honour it.
-                    # Only fall through to registry check if not set.
-                    inferred_auto = bool(evidence.get("auto_apply", False))
-                    if transformation_axiom and not inferred_auto:
-                        inferred_auto = is_auto_applicable(transformation_axiom)
-                    suggestions.append(
-                        {
-                            "suggestion_id": f"auto:{result.gate_id}:{finding.code}",
-                            "summary": evidence.get("suggested_fix", finding.message),
-                            "rationale": finding.message,
-                            "rewrite_candidate": rewrite_candidate,
-                            "transformation_axiom": transformation_axiom,
-                            "target_spans": evidence.get("target_spans", []),
-                            "confidence": evidence.get("confidence", "moderate"),
-                            "linked_laws": inferred_laws,
-                            "safety_level": inferred_safety,
-                            "auto_apply": inferred_auto,
-                        }
-                    )
-                for item in suggestions:
-                    cid = item.get("suggestion_id") or f"{result.gate_id}:{finding.code}"
-                    if cid in seen:
+                suggestion_dicts = list(evidence.get("suggestions", []))
+                suggestions = [
+                    self._coerce_suggestion(item, result, finding, evidence)
+                    for item in suggestion_dicts
+                ]
+                if not suggestions:
+                    inferred = self._suggestion_from_evidence(result, finding, evidence)
+                    if inferred is not None:
+                        suggestions.append(inferred)
+                for suggestion in suggestions:
+                    if suggestion.suggestion_id in seen:
                         continue
-                    seen.add(cid)
-                    plan.append(
-                        TransformationCandidate(
-                            candidate_id=cid,
-                            summary=item.get("summary", finding.message),
-                            rationale=item.get("rationale", finding.message),
-                            rewrite_candidate=item.get("rewrite_candidate", ""),
-                            target_spans=item.get("target_spans", evidence.get("target_spans", [])),
-                            source_gate=result.gate_id,
-                            confidence=item.get("confidence", "moderate"),
-                            safety_level=item.get("safety_level", "review_required"),
-                            auto_apply=bool(item.get("auto_apply", False)),
-                            linked_laws=item.get("linked_laws", []),
-                            transformation_axiom=item.get("transformation_axiom", ""),
-                        )
-                    )
+                    seen.add(suggestion.suggestion_id)
+                    plan.append(suggestion.to_candidate(source_gate=result.gate_id))
         return plan
 
     def _recursive_audit(
