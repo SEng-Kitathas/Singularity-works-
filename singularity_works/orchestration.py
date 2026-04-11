@@ -91,6 +91,26 @@ def _classify_lbe_verdict(verdict: str, risk: float) -> dict[str, object]:
 
 
 @dataclass
+class DerivedEvaluation:
+    gate_summary: GateRunSummary
+    monitor_events: list
+    assurance: AssuranceRollup
+    risks: list[Risk]
+    recursive_audit: dict
+    transformation_plan: list[TransformationCandidate]
+
+    def to_trace(self) -> dict:
+        return {
+            "gate_count": len(self.gate_summary.results),
+            "monitor_count": len(self.monitor_events),
+            "risk_count": len(self.risks),
+            "transformation_candidates": len(self.transformation_plan),
+            "assurance": self.assurance.status,
+            "recursive_depth": self.recursive_audit.get("implementation_depth"),
+        }
+
+
+@dataclass
 class OrchestrationResult:
     artifact: Artifact
     pattern: dict
@@ -109,6 +129,7 @@ class OrchestrationResult:
     lbe_result: "dict | None" = None       # populated by lbe_pilot.analyze() when escalation routes to LBE
     lbe_blueprint: "dict | None" = None    # color-coded flow map: source→transform→sink + min replacement
     fractal_cycle: "dict | None" = None    # PROBE→DERIVE→VERIFY→EMBODY→RECURSE runtime trace
+    derivation_trace: "dict | None" = None # typed derive surface summary for the evaluated artifact
     embodiment_trace: "dict | None" = None # typed embodiment/execution trace for transformation application
     verification_trace: "dict | None" = None # typed verification surface across gates/assurance/LBE/embodiment
 
@@ -726,7 +747,14 @@ class Orchestrator:
         )
         risks = self._risk_records(requirement, artifact, gate_summary, monitor_events, claim_ids)
         audit = self._recursive_audit(gate_summary, assurance, recovery.confidence)
-        return gate_summary, monitor_events, assurance, risks, audit, transformation_plan
+        return DerivedEvaluation(
+            gate_summary=gate_summary,
+            monitor_events=monitor_events,
+            assurance=assurance,
+            risks=risks,
+            recursive_audit=audit,
+            transformation_plan=transformation_plan,
+        )
 
     def _persist_assurance(
         self,
@@ -945,24 +973,25 @@ class Orchestrator:
                 "high",
             )
         )
-        gate_summary, monitor_events, assurance, risks, audit, transformation_plan = (
-            self._evaluate_subject(
-                requirement,
-                artifact,
-                recovery,
-                pattern,
-                genome_bundle,
-                ctx.session_id,
-                semantic_ir=semantic_ir,
-            )
+        derived = self._evaluate_subject(
+            requirement,
+            artifact,
+            recovery,
+            pattern,
+            genome_bundle,
+            ctx.session_id,
+            semantic_ir=semantic_ir,
         )
+        gate_summary = derived.gate_summary
+        monitor_events = derived.monitor_events
+        assurance = derived.assurance
+        risks = derived.risks
+        audit = derived.recursive_audit
+        transformation_plan = derived.transformation_plan
         fractal_cycle.mark(
             FractalStage.DERIVE,
             "complete",
-            gate_count=len(gate_summary.results),
-            monitor_count=len(monitor_events),
-            transformation_candidates=len(transformation_plan),
-            risk_count=len(risks),
+            **derived.to_trace(),
         )
         applied_transformations: list[AppliedTransformation] = []
         embodiment_trace = EmbodimentTrace(
@@ -1033,23 +1062,25 @@ class Orchestrator:
                         "applied_transformations": [_dc_asdict(item) for item in applied_transformations],
                     },
                 )
-                gate_summary, monitor_events, assurance, risks, audit, transformation_plan = (
-                    self._evaluate_subject(
-                        requirement,
-                        artifact,
-                        transformed_recovery,
-                        pattern,
-                        genome_bundle,
-                        f"{ctx.session_id}:transformed",
-                        semantic_ir=None,
-                    )
+                derived = self._evaluate_subject(
+                    requirement,
+                    artifact,
+                    transformed_recovery,
+                    pattern,
+                    genome_bundle,
+                    f"{ctx.session_id}:transformed",
+                    semantic_ir=None,
                 )
+                gate_summary = derived.gate_summary
+                monitor_events = derived.monitor_events
+                assurance = derived.assurance
+                risks = derived.risks
+                audit = derived.recursive_audit
+                transformation_plan = derived.transformation_plan
                 fractal_cycle.mark(
                     FractalStage.DERIVE,
                     "rederived",
-                    gate_count=len(gate_summary.results),
-                    monitor_count=len(monitor_events),
-                    transformation_candidates=len(transformation_plan),
+                    **derived.to_trace(),
                 )
                 recovery = transformed_recovery
         # ── IRIS escalation — low-conf IR + no static findings ──────
@@ -1350,6 +1381,7 @@ class Orchestrator:
             lbe_result=lbe_dict,
             lbe_blueprint=_blueprint_dict if lbe_dict else None,
             fractal_cycle=fractal_cycle.to_dict(),
+            derivation_trace=derived.to_trace(),
             embodiment_trace=_dc_asdict(embodiment_trace),
             verification_trace=_dc_asdict(verification_trace),
         )
