@@ -55,6 +55,12 @@ class CompoundDerivationPayload:
 
 
 @dataclass
+class GateStatusPayload:
+    gate_id: str = ""
+    status: str = "pass"
+
+
+@dataclass
 class GateFindingPayload:
     gate_id: str = ""
     code: str = ""
@@ -163,6 +169,29 @@ class Fact:
             evidence_refs=evidence_refs or [],
             linked_laws=linked_laws or [],
             upstream_facts=upstream_facts or [],
+        )
+
+    @classmethod
+    def from_gate_status(
+        cls,
+        *,
+        fact_id: str,
+        scope: str,
+        confidence: str,
+        payload: GateStatusPayload,
+        linked_laws: list[str] | None = None,
+        evidence_refs: list[str] | None = None,
+        upstream_facts: list[str] | None = None,
+    ) -> "Fact":
+        return cls._from_payload(
+            fact_id=fact_id,
+            fact_type="gate_status",
+            scope=scope,
+            confidence=confidence,
+            payload=payload,
+            linked_laws=linked_laws,
+            evidence_refs=evidence_refs,
+            upstream_facts=upstream_facts,
         )
 
     @classmethod
@@ -507,6 +536,9 @@ class FactBus:
 
     def gate_findings_typed(self) -> list[GateFindingPayload]:
         return self._decode_many("gate_finding", GateFindingPayload)
+
+    def gate_statuses_typed(self) -> list[GateStatusPayload]:
+        return self._decode_many("gate_status", GateStatusPayload)
 
     def dangerous_sinks(self) -> list[DangerousSinkPayload]:
         return self._decode_many("dangerous_sink_present", DangerousSinkPayload)

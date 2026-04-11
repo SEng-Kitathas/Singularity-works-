@@ -75,6 +75,7 @@ def _summary(base_dir: Path, ctx: RunContext, result, req: Requirement, orchestr
         ctx.session_id,
     )
     bus = getattr(orchestrator, "facts", None)
+    gate_statuses_typed = [asdict(item) for item in (bus.gate_statuses_typed() if bus and hasattr(bus, "gate_statuses_typed") else [])]
     gate_fact_results = [asdict(item) for item in (bus.gate_results_typed() if bus and hasattr(bus, "gate_results_typed") else [])]
     gate_findings_typed = [asdict(item) for item in (bus.gate_findings_typed() if bus and hasattr(bus, "gate_findings_typed") else [])]
     monitor_fact_events = [asdict(item) for item in (bus.monitor_events_typed() if bus and hasattr(bus, "monitor_events_typed") else [])]
@@ -100,6 +101,7 @@ def _summary(base_dir: Path, ctx: RunContext, result, req: Requirement, orchestr
         "embodiment_trace": result.embodiment_trace,
         "verification_trace": result.verification_trace,
         "fractal_cycle": result.fractal_cycle,
+        "gate_statuses_typed": gate_statuses_typed,
         "gate_fact_results": gate_fact_results,
         "gate_findings_typed": gate_findings_typed,
         "monitor_fact_events": monitor_fact_events,

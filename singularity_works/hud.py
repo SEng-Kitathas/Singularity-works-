@@ -146,6 +146,12 @@ class GateRecord:
 
 
 @dataclass
+class GateStatusRecord:
+    gate_id: str = ""
+    status: str = "pass"
+
+
+@dataclass
 class GateFindingRecord:
     gate_id: str = ""
     code: str = ""
@@ -277,6 +283,7 @@ class HudSnapshot:
     # Gate fabric
     gates: list[GateRecord] = field(default_factory=list)
     counts: dict[str, int]  = field(default_factory=dict)  # pass/warn/fail/residual
+    gate_statuses_typed: list[GateStatusRecord] = field(default_factory=list)
     gate_fact_results: list[GateFactRecord] = field(default_factory=list)
     gate_findings_typed: list[GateFindingRecord] = field(default_factory=list)
 
@@ -628,6 +635,15 @@ class ConsoleHUD:
     def _right_wing(self, snap: HudSnapshot, width: int) -> list[str]:
         rows: list[str] = []
 
+        # Gate statuses
+        rows.append(_c(_C.FG_ACCENT, self._crop("  GATE STATUSES", width)))
+        if snap.gate_statuses_typed:
+            for gs in snap.gate_statuses_typed[:6]:
+                rows.append(self._crop(f"  {gs.gate_id} [{gs.status}]", width))
+        else:
+            rows.append(_c(_C.FG_DIM, "  (none active)"))
+        rows.append("")
+
         # Gate fact results
         rows.append(_c(_C.FG_ACCENT, self._crop("  GATE FACT RESULTS", width)))
         if snap.gate_fact_results:
@@ -930,6 +946,14 @@ def snapshot_from_run_result(
 
     if orchestrator is not None and hasattr(orchestrator, "facts"):
         bus = orchestrator.facts
+
+        # Gate status facts
+        gate_statuses = bus.gate_statuses_typed() if hasattr(bus, "gate_statuses_typed") else []
+        for gate_status in gate_statuses:
+            snap.gate_statuses_typed.append(GateStatusRecord(
+                gate_id=gate_status.gate_id,
+                status=gate_status.status,
+            ))
 
         # Gate result facts
         gate_results = bus.gate_results_typed() if hasattr(bus, "gate_results_typed") else []

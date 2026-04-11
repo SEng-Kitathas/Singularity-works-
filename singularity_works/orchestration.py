@@ -681,12 +681,18 @@ class Orchestrator:
                 f"{result.gate_id}:{session_key}",
                 self._gate_payload(requirement, artifact, result, claim_ids),
             )
-            self._publish_fact(
-                "gate_status",
-                artifact.artifact_id,
-                {"gate_id": result.gate_id, "status": result.status},
-                confidence="high",
-                linked_laws=pattern.evidence_hooks.linked_laws,
+            from .facts import Fact as _Fact, GateStatusPayload as _GateStatusPayload
+            self.facts.publish(
+                _Fact.from_gate_status(
+                    fact_id=f"{artifact.artifact_id}:gate_status:{result.gate_id}:{result.status}",
+                    scope=artifact.artifact_id,
+                    confidence="high",
+                    payload=_GateStatusPayload(
+                        gate_id=result.gate_id,
+                        status=result.status,
+                    ),
+                    linked_laws=pattern.evidence_hooks.linked_laws,
+                )
             )
             for finding in result.findings:
                 from .facts import Fact as _Fact, GateFindingPayload as _GateFindingPayload
