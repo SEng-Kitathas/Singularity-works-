@@ -146,6 +146,15 @@ class GateRecord:
 
 
 @dataclass
+class PropagationRecord:
+    fact_type: str
+    rule_id: str = ""
+    severity: str = "medium"
+    rationale: str = ""
+    upstream_types: list[str] = field(default_factory=list)
+
+
+@dataclass
 class CompoundRecord:
     rule: str         # R1 | R2 | R3 | R4
     fact_type: str
@@ -232,8 +241,9 @@ class HudSnapshot:
     dangerous_sinks: list[DangerousSinkRecord] = field(default_factory=list)
     resource_lifecycle: list[ResourceLifecycleRecord] = field(default_factory=list)
 
-    # Compound derivations (from fixed-point loop R1-R4)
+    # Compound derivations and propagated switchboard hazards
     compound: list[CompoundRecord] = field(default_factory=list)
+    propagations: list[PropagationRecord] = field(default_factory=list)
 
     # Warrant text for primary claim
     primary_warrant: str = ""
@@ -631,6 +641,15 @@ class ConsoleHUD:
             rows.append(_c(_C.FG_DIM, "  (no compound chains)"))
         rows.append("")
 
+        # Propagated hazards
+        rows.append(_c(_C.GREEN, self._crop("  PROPAGATED HAZARDS", width)))
+        if snap.propagations:
+            for pr in snap.propagations[:4]:
+                rows.append(self._crop(f"  {pr.fact_type} [{pr.severity}]", width))
+        else:
+            rows.append(_c(_C.FG_DIM, "  (none active)"))
+        rows.append("")
+
         # Phase / branch / session meta
         rows.append(_c(_C.FG_DIM, self._crop("  ─ META ─" + "─" * width, width)))
         rows.append(_c(_C.FG_DIM, self._crop(f"  branch   {snap.branch}", width)))
@@ -867,6 +886,17 @@ def snapshot_from_run_result(
                 description=compound.description,
                 trust_signal=compound.trust_signal,
                 injection_families=compound.injection_families,
+            ))
+
+        # Switchboard propagation outputs
+        propagations = bus.propagations() if hasattr(bus, "propagations") else []
+        for propagation in propagations:
+            snap.propagations.append(PropagationRecord(
+                fact_type=propagation.fact_type,
+                rule_id=propagation.rule_id,
+                severity=propagation.severity,
+                rationale=propagation.rationale,
+                upstream_types=propagation.upstream_types,
             ))
 
     return snap

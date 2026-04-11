@@ -8,7 +8,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 
-from .facts import Fact, FactBus
+from .facts import Fact, FactBus, PropagationPayload
 from .models import TransformationCandidate
 
 
@@ -115,17 +115,17 @@ class Switchboard:
                 for f in bus.by_type(t)
             ]
             scope = upstream[0].split(":")[0] if upstream else "switchboard"
-            bus.publish(Fact(
+            bus.publish(Fact.from_propagation(
                 fact_id=f"{scope}:{rule.output_type}:derived",
-                fact_type=rule.output_type,
                 scope=scope,
                 confidence=rule.confidence,
-                payload={
-                    "rule_id": rule.rule_id,
-                    "severity": rule.severity,
-                    "rationale": rule.rationale,
-                    "upstream_types": rule.antecedents,
-                },
+                payload=PropagationPayload(
+                    rule_id=rule.rule_id,
+                    fact_type=rule.output_type,
+                    severity=rule.severity,
+                    rationale=rule.rationale,
+                    upstream_types=rule.antecedents,
+                ),
                 upstream_facts=upstream,
                 linked_laws=rule.linked_laws,
             ))
@@ -189,7 +189,9 @@ def _tier_for(candidate: TransformationCandidate, bus: FactBus) -> tuple[int, st
     safety_ok = candidate.safety_level in _SAFETY_AUTO
     auto_flagged = candidate.auto_apply
 
-    if bus.has_type("trust_sensitive_sink_hazard") or bus.has_type("sql_injection_confirmed"):
+    propagations = bus.propagations() if hasattr(bus, "propagations") else []
+    propagation_types = {p.fact_type for p in propagations}
+    if {"trust_sensitive_sink_hazard", "sql_injection_confirmed"} & propagation_types:
         if "trust" in candidate.source_gate.lower() or "dangerous" in candidate.rationale.lower():
             return TIER_ESCALATE, "compound hazard derived — escalate to human review"
 

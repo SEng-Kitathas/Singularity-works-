@@ -55,6 +55,15 @@ class CompoundDerivationPayload:
 
 
 @dataclass
+class PropagationPayload:
+    rule_id: str = ""
+    fact_type: str = ""
+    severity: str = "medium"
+    rationale: str = ""
+    upstream_types: list[str] = field(default_factory=_list)
+
+
+@dataclass
 class DangerousSinkPayload:
     sink_type: str = "unknown"
     structure_id: str = ""
@@ -101,6 +110,29 @@ class Fact:
             evidence_refs=evidence_refs or [],
             linked_laws=linked_laws or [],
             upstream_facts=upstream_facts or [],
+        )
+
+    @classmethod
+    def from_propagation(
+        cls,
+        *,
+        fact_id: str,
+        scope: str,
+        confidence: str,
+        payload: PropagationPayload,
+        linked_laws: list[str] | None = None,
+        evidence_refs: list[str] | None = None,
+        upstream_facts: list[str] | None = None,
+    ) -> "Fact":
+        return cls._from_payload(
+            fact_id=fact_id,
+            fact_type=payload.fact_type,
+            scope=scope,
+            confidence=confidence,
+            payload=payload,
+            linked_laws=linked_laws,
+            evidence_refs=evidence_refs,
+            upstream_facts=upstream_facts,
         )
 
     @classmethod
@@ -264,6 +296,28 @@ class FactBus:
                 )
             )
         return compounds
+
+    def propagations(self) -> list[PropagationPayload]:
+        fact_types = {
+            "trust_sensitive_sink_hazard",
+            "sql_injection_confirmed",
+            "resource_trust_compound_hazard",
+        }
+        props: list[PropagationPayload] = []
+        for fact in self.facts:
+            if fact.fact_type not in fact_types:
+                continue
+            payload = fact.payload or {}
+            props.append(
+                PropagationPayload(
+                    rule_id=payload.get("rule_id", ""),
+                    fact_type=fact.fact_type,
+                    severity=payload.get("severity", "medium"),
+                    rationale=payload.get("rationale", ""),
+                    upstream_types=list(payload.get("upstream_types", [])),
+                )
+            )
+        return props
 
     def dangerous_sinks(self) -> list[DangerousSinkPayload]:
         return self._decode_many("dangerous_sink_present", DangerousSinkPayload)
