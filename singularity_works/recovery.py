@@ -3,19 +3,9 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 import ast
 
+from .ast_primitives import const_str, is_open_call, is_session_target
 from .models import MonitorSeed, RecoveryArtifact, Requirement
 
-
-
-def _is_open_call(node: ast.AST) -> bool:
-    if not isinstance(node, ast.Call):
-        return False
-    func = node.func
-    return (
-        isinstance(func, ast.Name) and func.id == "open"
-    ) or (
-        isinstance(func, ast.Attribute) and func.attr == "open"
-    )
 
 
 @dataclass
@@ -61,35 +51,17 @@ class _ProtocolVisitor(ast.NodeVisitor):
         self.state_validation_lines: list[int] = []
         self.state_sensitive_use_lines: list[int] = []
 
-    def _is_session_target(self, node: ast.AST) -> bool:
-        if isinstance(node, ast.Name) and node.id == "session":
-            return True
-        if isinstance(node, ast.Attribute) and node.attr == "session":
-            return True
-        if isinstance(node, ast.Subscript):
-            val = node.value
-            if isinstance(val, ast.Name) and val.id == "session":
-                return True
-            if isinstance(val, ast.Attribute) and val.attr == "session":
-                return True
-        return False
-
-    def _const_str(self, node: ast.AST | None) -> str | None:
-        if isinstance(node, ast.Constant) and isinstance(node.value, str):
-            return node.value
-        return None
-
     def _is_request_state_get(self, call: ast.Call) -> bool:
         func = call.func
         if not (isinstance(func, ast.Attribute) and func.attr == "get"):
             return False
         key = None
         if call.args:
-            key = self._const_str(call.args[0])
+            key = const_str(call.args[0])
         if key is None:
             for kw in call.keywords:
                 if kw.arg in {"key", "name"}:
-                    key = self._const_str(kw.value)
+                    key = const_str(kw.value)
                     if key is not None:
                         break
         if not (isinstance(key, str) and key.lower() in {"state", "csrf", "csrf_token"}):
@@ -100,18 +72,18 @@ class _ProtocolVisitor(ast.NodeVisitor):
         return False
 
     def _is_session_state_read(self, node: ast.AST) -> bool:
-        if isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute) and node.func.attr == "get" and self._is_session_target(node.func.value):
+        if isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute) and node.func.attr == "get" and is_session_target(node.func.value):
             key = None
             if node.args:
-                key = self._const_str(node.args[0])
+                key = const_str(node.args[0])
             if key is None:
                 for kw in node.keywords:
                     if kw.arg in {"key", "name"}:
-                        key = self._const_str(kw.value)
+                        key = const_str(kw.value)
                         if key is not None:
                             break
             return isinstance(key, str) and any(bit in key.lower() for bit in ("state", "csrf"))
-        if isinstance(node, ast.Subscript) and self._is_session_target(node.value):
+        if isinstance(node, ast.Subscript) and is_session_target(node.value, include_direct=True):
             sl = node.slice
             if isinstance(sl, ast.Constant) and isinstance(sl.value, str):
                 return any(bit in sl.value.lower() for bit in ("state", "csrf"))
@@ -142,7 +114,7 @@ class _ProtocolVisitor(ast.NodeVisitor):
     def visit_With(self, node: ast.With) -> None:
         for item in node.items:
             ctx = item.context_expr
-            if _is_open_call(ctx):
+            if is_open_call(ctx):
                 self.has_with_open = True
                 self.has_open = True
                 if isinstance(item.optional_vars, ast.Name):
@@ -174,7 +146,7 @@ class _ProtocolVisitor(ast.NodeVisitor):
                 if isinstance(target, ast.Name):
                     self._record(target.id, "open", node.lineno)
         for target in node.targets:
-            if self._is_session_target(target):
+            if is_session_target(target, include_direct=True):
                 self.session_lines.append(node.lineno)
                 self.tokens.add("session_write")
             if isinstance(target, ast.Name) and any(bit in target.id.lower() for bit in ("token", "reset", "verify", "activation", "code")):
@@ -271,7 +243,7 @@ class _ProtocolVisitor(ast.NodeVisitor):
             if action == "redirect":
                 self.redirect_lines.append(node.lineno)
                 self.tokens.add("redirect")
-            if action in {"clear", "pop"} and self._is_session_target(func.value):
+            if action in {"clear", "pop"} and is_session_target(func.value, include_direct=True):
                 self.session_clear_lines.append(node.lineno)
                 self.logout_lines.append(node.lineno)
                 self.tokens.add("auth_clear")

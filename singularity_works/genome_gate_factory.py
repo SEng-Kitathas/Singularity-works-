@@ -3,7 +3,7 @@ from __future__ import annotations
 # Every structured anti_pattern in a capsule generates a Gate here.
 # This closes the DERIVE loop: genome selection (PROBE) -> genome gates (DERIVE).
 
-from __future__ import annotations
+from .ast_primitives import is_open_call
 from .interprocedural import analyze as _interproc_analyze
 import ast
 import io
@@ -106,15 +106,6 @@ def _safe_dotall_finditer(pattern, content: str, flags=0):
         pos += chunk - overlap
 
 
-def _is_open_call(node: ast.AST) -> bool:
-    if not isinstance(node, ast.Call):
-        return False
-    func = node.func
-    return (isinstance(func, ast.Name) and func.id == "open") or (
-        isinstance(func, ast.Attribute) and func.attr == "open"
-    )
-
-
 def _todo_hits(content: str) -> list[tuple[int, str]]:
     hits: list[tuple[int, str]] = []
     try:
@@ -149,13 +140,13 @@ def _detect_resource_lifecycle(content: str, _spec: dict, *, semantic_ir: "Any |
 
         def visit_With(self, node: ast.With) -> None:
             for item in node.items:
-                if _is_open_call(item.context_expr):
+                if is_open_call(item.context_expr):
                     if isinstance(item.optional_vars, ast.Name):
                         self.with_managed.add(item.optional_vars.id)
             self.generic_visit(node)
 
         def visit_Assign(self, node: ast.Assign) -> None:
-            if isinstance(node.value, ast.Call) and _is_open_call(node.value):
+            if isinstance(node.value, ast.Call) and is_open_call(node.value):
                 for target in node.targets:
                     if isinstance(target, ast.Name):
                         self.opened[target.id] = node.lineno

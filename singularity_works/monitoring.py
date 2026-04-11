@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 import ast
 
+from .ast_primitives import close_name_from_call, const_str, is_open_call, is_session_target
 from .models import Artifact, MonitorSeed
 
 
@@ -25,29 +26,8 @@ def _safe_parse(content: str):
 
 
 
-def _is_open_call(node: ast.AST) -> bool:
-    if not isinstance(node, ast.Call):
-        return False
-    func = node.func
-    return (
-        isinstance(func, ast.Name) and func.id == "open"
-    ) or (
-        isinstance(func, ast.Attribute) and func.attr == "open"
-    )
-
-
-def _close_name_from_call(node: ast.Call) -> str | None:
-    func = node.func
-    if not isinstance(func, ast.Attribute):
-        return None
-    if func.attr != "close":
-        return None
-    value = func.value
-    return value.id if isinstance(value, ast.Name) else None
-
-
 def _with_open(node: ast.With) -> bool:
-    return any(_is_open_call(item.context_expr) for item in node.items)
+    return any(is_open_call(item.context_expr) for item in node.items)
 
 
 def _assigned_open_names(node: ast.Assign) -> list[str]:
@@ -55,7 +35,7 @@ def _assigned_open_names(node: ast.Assign) -> list[str]:
     if not isinstance(value, ast.Call):
         return []
     func = value.func
-    if not _is_open_call(value):
+    if not is_open_call(value):
         return []
     return [target.id for target in node.targets if isinstance(target, ast.Name)]
 
@@ -64,7 +44,7 @@ def _iter_close_names(nodes) -> set[str]:
     closes: set[str] = set()
     for child in ast.walk(ast.Module(body=list(nodes), type_ignores=[])):
         if isinstance(child, ast.Call):
-            name = _close_name_from_call(child)
+            name = close_name_from_call(child)
             if name:
                 closes.add(name)
     return closes
@@ -87,7 +67,7 @@ def _resource_closed(content: str) -> bool:
         elif isinstance(node, ast.Assign):
             open_names.update(_assigned_open_names(node))
         elif isinstance(node, ast.Call):
-            name = _close_name_from_call(node)
+            name = close_name_from_call(node)
             if name:
                 close_names.add(name)
 
@@ -146,16 +126,6 @@ def _must_close_resource(artifact: Artifact, seed: MonitorSeed) -> tuple[bool, s
     return _resource_closed(artifact.content), "opened resources must be closed or context-managed"
 
 
-def _is_session_target(node: ast.AST) -> bool:
-    if isinstance(node, ast.Subscript):
-        val = node.value
-        if isinstance(val, ast.Name) and val.id == "session":
-            return True
-        if isinstance(val, ast.Attribute) and val.attr == "session":
-            return True
-    return False
-
-
 def _is_redirect_call(node: ast.AST) -> bool:
     if not isinstance(node, ast.Call):
         return False
@@ -191,7 +161,7 @@ def _session_established_before_redirect(content: str) -> tuple[bool, str]:
         for child in ast.walk(node):
             if isinstance(child, ast.Assign):
                 for target in child.targets:
-                    if _is_session_target(target):
+                    if is_session_target(target):
                         session_lines.add(getattr(child, 'lineno', 0))
                 if isinstance(child.value, ast.Call):
                     func = child.value.func
@@ -342,11 +312,6 @@ def _auth_cookies_hardened(content: str) -> tuple[bool, str]:
     def _kw_map(call: ast.Call) -> dict[str, ast.AST]:
         return {kw.arg: kw.value for kw in call.keywords if kw.arg}
 
-    def _const_str(node: ast.AST) -> str | None:
-        if isinstance(node, ast.Constant) and isinstance(node.value, str):
-            return node.value
-        return None
-
     def _bool_true(node: ast.AST | None) -> bool:
         return isinstance(node, ast.Constant) and node.value is True
 
@@ -358,9 +323,9 @@ def _auth_cookies_hardened(content: str) -> tuple[bool, str]:
             continue
         cookie_name = None
         if child.args:
-            cookie_name = _const_str(child.args[0])
+            cookie_name = const_str(child.args[0])
         if cookie_name is None:
-            cookie_name = _const_str(_kw_map(child).get("key"))
+            cookie_name = const_str(_kw_map(child).get("key"))
         body_text = " ".join(
             [cookie_name.lower() if isinstance(cookie_name, str) else ""]
             + [n.id.lower() for n in ast.walk(child) if isinstance(n, ast.Name)]
@@ -404,7 +369,7 @@ def _auth_state_cleared_on_logout(content: str) -> tuple[bool, str]:
     failures: list[str] = []
     relevant_seen = False
 
-    def _is_session_target(node: ast.AST) -> bool:
+    def is_session_target(node: ast.AST) -> bool:
         if isinstance(node, ast.Name) and node.id == "session":
             return True
         if isinstance(node, ast.Attribute) and node.attr == "session":
@@ -429,7 +394,7 @@ def _auth_state_cleared_on_logout(content: str) -> tuple[bool, str]:
                 if isinstance(func, ast.Attribute):
                     if func.attr in {"delete_cookie", "unset_jwt_cookies", "revoke", "revoke_token"}:
                         return True
-                    if func.attr in {"clear", "pop"} and _is_session_target(func.value):
+                    if func.attr in {"clear", "pop"} and is_session_target(func.value):
                         return True
         return False
 
@@ -456,7 +421,7 @@ def _auth_state_cleared_on_logout(content: str) -> tuple[bool, str]:
                         auth_clear_lines.append(line)
                         if func.attr == "delete_cookie" and isinstance(func.value, ast.Name):
                             response_delete_cookie_lines.setdefault(func.value.id, []).append(line)
-                    elif func.attr in {"clear", "pop"} and _is_session_target(func.value):
+                    elif func.attr in {"clear", "pop"} and is_session_target(func.value):
                         auth_clear_lines.append(line)
             elif isinstance(child, ast.Return):
                 value = child.value
@@ -498,18 +463,18 @@ def _callback_state_token_validated(content: str) -> tuple[bool, str]:
     failures: list[str] = []
     relevant_seen = False
 
-    def _const_str(node: ast.AST | None) -> str | None:
+    def const_str(node: ast.AST | None) -> str | None:
         if isinstance(node, ast.Constant) and isinstance(node.value, str):
             return node.value
         return None
 
-    def _is_session_target(node: ast.AST) -> bool:
+    def is_session_target(node: ast.AST) -> bool:
         if isinstance(node, ast.Name) and node.id == "session":
             return True
         if isinstance(node, ast.Attribute) and node.attr == "session":
             return True
         if isinstance(node, ast.Subscript):
-            return _is_session_target(node.value)
+            return is_session_target(node.value)
         return False
 
     def _is_request_state_get(call: ast.Call) -> bool:
@@ -518,11 +483,11 @@ def _callback_state_token_validated(content: str) -> tuple[bool, str]:
             return False
         key = None
         if call.args:
-            key = _const_str(call.args[0])
+            key = const_str(call.args[0])
         if key is None:
             for kw in call.keywords:
                 if kw.arg in {"key", "name"}:
-                    key = _const_str(kw.value)
+                    key = const_str(kw.value)
                     if key is not None:
                         break
         if not (isinstance(key, str) and key.lower() in {"state", "csrf", "csrf_token"}):
@@ -531,18 +496,18 @@ def _callback_state_token_validated(content: str) -> tuple[bool, str]:
         return isinstance(val, ast.Attribute) and val.attr in {"args", "form", "values", "cookies", "query_params"}
 
     def _is_session_state_read(node: ast.AST) -> bool:
-        if isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute) and node.func.attr == "get" and _is_session_target(node.func.value):
+        if isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute) and node.func.attr == "get" and is_session_target(node.func.value):
             key = None
             if node.args:
-                key = _const_str(node.args[0])
+                key = const_str(node.args[0])
             if key is None:
                 for kw in node.keywords:
                     if kw.arg in {"key", "name"}:
-                        key = _const_str(kw.value)
+                        key = const_str(kw.value)
                         if key is not None:
                             break
             return isinstance(key, str) and any(bit in key.lower() for bit in ("state", "csrf"))
-        if isinstance(node, ast.Subscript) and _is_session_target(node.value):
+        if isinstance(node, ast.Subscript) and is_session_target(node.value):
             sl = node.slice
             return isinstance(sl, ast.Constant) and isinstance(sl.value, str) and any(bit in sl.value.lower() for bit in ("state", "csrf"))
         return False
@@ -652,7 +617,7 @@ def _refresh_token_family_integrity(content: str) -> tuple[bool, str]:
     def _kw_map(call: ast.Call) -> dict[str, ast.AST]:
         return {kw.arg: kw.value for kw in call.keywords if kw.arg}
 
-    def _const_str(node: ast.AST | None) -> str | None:
+    def const_str(node: ast.AST | None) -> str | None:
         if isinstance(node, ast.Constant) and isinstance(node.value, str):
             return node.value
         return None
@@ -662,9 +627,9 @@ def _refresh_token_family_integrity(content: str) -> tuple[bool, str]:
         if isinstance(func, ast.Attribute) and func.attr == "get":
             key = None
             if call.args:
-                key = _const_str(call.args[0])
+                key = const_str(call.args[0])
             if key is None:
-                key = _const_str(_kw_map(call).get("key"))
+                key = const_str(_kw_map(call).get("key"))
             if isinstance(key, str) and "refresh" in key.lower():
                 base = func.value
                 if isinstance(base, ast.Attribute) and base.attr in {"cookies", "headers", "args", "form", "json"}:
@@ -704,9 +669,9 @@ def _refresh_token_family_integrity(content: str) -> tuple[bool, str]:
             if func.attr == "set_cookie":
                 key = None
                 if call.args:
-                    key = _const_str(call.args[0])
+                    key = const_str(call.args[0])
                 if key is None:
-                    key = _const_str(_kw_map(call).get("key"))
+                    key = const_str(_kw_map(call).get("key"))
                 return isinstance(key, str) and "refresh" in key.lower()
         return False
 
@@ -720,9 +685,9 @@ def _refresh_token_family_integrity(content: str) -> tuple[bool, str]:
             if func.attr == "delete_cookie":
                 key = None
                 if call.args:
-                    key = _const_str(call.args[0])
+                    key = const_str(call.args[0])
                 if key is None:
-                    key = _const_str(_kw_map(call).get("key"))
+                    key = const_str(_kw_map(call).get("key"))
                 return isinstance(key, str) and "refresh" in key.lower()
         return False
 
@@ -793,7 +758,7 @@ def _refresh_tokens_rotated_or_revoked(content: str) -> tuple[bool, str]:
     def _kw_map(call: ast.Call) -> dict[str, ast.AST]:
         return {kw.arg: kw.value for kw in call.keywords if kw.arg}
 
-    def _const_str(node: ast.AST | None) -> str | None:
+    def const_str(node: ast.AST | None) -> str | None:
         if isinstance(node, ast.Constant) and isinstance(node.value, str):
             return node.value
         return None
@@ -803,9 +768,9 @@ def _refresh_tokens_rotated_or_revoked(content: str) -> tuple[bool, str]:
             return False
         key = None
         if call.args:
-            key = _const_str(call.args[0])
+            key = const_str(call.args[0])
         if key is None:
-            key = _const_str(_kw_map(call).get("key"))
+            key = const_str(_kw_map(call).get("key"))
         return isinstance(key, str) and "refresh" in key.lower()
 
     def _is_refresh_delete_call(call: ast.Call) -> bool:
@@ -813,9 +778,9 @@ def _refresh_tokens_rotated_or_revoked(content: str) -> tuple[bool, str]:
             return False
         key = None
         if call.args:
-            key = _const_str(call.args[0])
+            key = const_str(call.args[0])
         if key is None:
-            key = _const_str(_kw_map(call).get("key"))
+            key = const_str(_kw_map(call).get("key"))
         return isinstance(key, str) and "refresh" in key.lower()
 
     for node in ast.walk(tree):
