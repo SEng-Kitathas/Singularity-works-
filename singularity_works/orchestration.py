@@ -8,6 +8,7 @@ from .evidence_ledger import EvidenceLedger, EvidenceRecord
 from .enforcement import EnforcementEngine, GateRunSummary
 from .forge_context import ForgeContext
 from .facts import Fact, FactBus
+from .fractal_cycle import FractalCycle, FractalStage
 from .genome import RadicalMapGenome
 from .genome_gate_factory import genome_gates_from_bundle, iris_escalate, DynamicCapsule
 from .cil_council import CILCouncil
@@ -107,6 +108,7 @@ class OrchestrationResult:
     starmap_topology: "dict | None" = None  # populated by forge_starmap.build_evidence_topology()
     lbe_result: "dict | None" = None       # populated by lbe_pilot.analyze() when escalation routes to LBE
     lbe_blueprint: "dict | None" = None    # color-coded flow map: source→transform→sink + min replacement
+    fractal_cycle: "dict | None" = None    # PROBE→DERIVE→VERIFY→EMBODY→RECURSE runtime trace
 
 
 class Orchestrator:
@@ -803,6 +805,7 @@ class Orchestrator:
             },
         )
         self.facts = FactBus()
+        fractal_cycle = FractalCycle(cycle_id=ctx.session_id)
         # Build Universal Semantic IR — the substrate all gates reason over.
         # Language-agnostic: full AST fidelity for Python, structural heuristics
         # for other languages with explicit confidence annotation.
@@ -868,6 +871,15 @@ class Orchestrator:
                 linked_laws=selected.get("laws", []),
             )
         recovery = self.recovery.derive(requirement, candidate_content)
+        fractal_cycle.mark(
+            FractalStage.PROBE,
+            "complete",
+            language=(getattr(semantic_ir, "language", "unknown") if semantic_ir is not None else "unknown"),
+            ir_confidence=(getattr(semantic_ir, "confidence", None) if semantic_ir is not None else None),
+            recovered_structures=len(recovery.structures),
+            monitor_seed_count=len(recovery.monitor_seeds),
+            recovery_confidence=recovery.confidence,
+        )
         for structure in recovery.structures:
             self._publish_fact(
                 "recovered_structure",
@@ -942,6 +954,14 @@ class Orchestrator:
                 semantic_ir=semantic_ir,
             )
         )
+        fractal_cycle.mark(
+            FractalStage.DERIVE,
+            "complete",
+            gate_count=len(gate_summary.results),
+            monitor_count=len(monitor_events),
+            transformation_candidates=len(transformation_plan),
+            risk_count=len(risks),
+        )
         applied_transformations: list[dict] = []
         # Switchboard routes transformation_candidate facts through the autonomy
         # tiering matrix and publishes switchboard_decision facts back onto the bus.
@@ -952,12 +972,30 @@ class Orchestrator:
         self.switchboard.route(self.facts)
         eligible_plan: list[TransformationCandidate] = []
         if ctx.metadata.get("apply_transformations") and transformation_plan:
+            fractal_cycle.mark(
+                FractalStage.EMBODY,
+                "authorized",
+                requested=True,
+                candidate_count=len(transformation_plan),
+            )
             # Policy authorized: apply all auto-eligible candidates
             auto_apply_ids = {c.candidate_id for c in transformation_plan if c.auto_apply}
             eligible_plan = [c for c in transformation_plan if c.candidate_id in auto_apply_ids]
             transformed_content, applied = apply_transformations(artifact.content, eligible_plan)
             applied_transformations = [item.__dict__ for item in applied if item.applied]
             if transformed_content != artifact.content:
+                fractal_cycle.mark(
+                    FractalStage.EMBODY,
+                    "applied",
+                    eligible_count=len(eligible_plan),
+                    applied_count=len(applied_transformations),
+                )
+                fractal_cycle.mark(
+                    FractalStage.RECURSE,
+                    "entered",
+                    source_session=ctx.session_id,
+                    applied_count=len(applied_transformations),
+                )
                 transformed_recovery = self.recovery.derive(requirement, transformed_content)
                 artifact = Artifact(
                     artifact_id=f"{artifact.artifact_id}:transformed",
@@ -993,8 +1031,31 @@ class Orchestrator:
                         semantic_ir=None,
                     )
                 )
+                fractal_cycle.mark(
+                    FractalStage.DERIVE,
+                    "rederived",
+                    gate_count=len(gate_summary.results),
+                    monitor_count=len(monitor_events),
+                    transformation_candidates=len(transformation_plan),
+                )
                 recovery = transformed_recovery
         # ── IRIS escalation — low-conf IR + no static findings ──────
+        if not (ctx.metadata.get("apply_transformations") and transformation_plan):
+            fractal_cycle.mark(
+                FractalStage.EMBODY,
+                "skipped",
+                requested=bool(ctx.metadata.get("apply_transformations")),
+                candidate_count=len(transformation_plan),
+            )
+            fractal_cycle.mark(FractalStage.RECURSE, "not_needed", reason="no_embodiment_cycle")
+        elif applied_transformations == []:
+            fractal_cycle.mark(
+                FractalStage.EMBODY,
+                "no_effect",
+                eligible_count=len(eligible_plan),
+                applied_count=0,
+            )
+            fractal_cycle.mark(FractalStage.RECURSE, "not_needed", reason="no_transformed_artifact")
         _ir_low = (semantic_ir is not None and
                    getattr(semantic_ir, "confidence", "high") == "low")
         _static_clean = not any(
@@ -1213,6 +1274,24 @@ class Orchestrator:
             except Exception:
                 pass  # Non-fatal — LBE is bonus cartography, not blocking
 
+        fractal_cycle.mark(
+            FractalStage.VERIFY,
+            "complete",
+            assurance=assurance.status,
+            falsified_count=len(assurance.falsified),
+            monitor_count=len(monitor_events),
+            recursive_depth=audit.get("implementation_depth"),
+            lbe_verdict=(lbe_dict or {}).get("verdict"),
+        )
+        self._record(
+            "fractal_cycle",
+            f"fractal:{ctx.session_id}",
+            {
+                "requirement_id": requirement.requirement_id,
+                "artifact_id": artifact.artifact_id,
+                **fractal_cycle.to_dict(),
+            },
+        )
         result = OrchestrationResult(
             artifact=artifact,
             pattern={
@@ -1235,6 +1314,7 @@ class Orchestrator:
             starmap_topology=starmap_dict,
             lbe_result=lbe_dict,
             lbe_blueprint=_blueprint_dict if lbe_dict else None,
+            fractal_cycle=fractal_cycle.to_dict(),
         )
         try:
             from dataclasses import asdict as _dc_asdict
