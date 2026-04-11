@@ -279,7 +279,17 @@ def _suggestion_dict(suggestion: SimplificationSuggestion) -> dict[str, Any]:
 def required_fields_gate() -> Gate:
     def run(subject: dict[str, Any], bus: "FactBus | None" = None) -> GateResult:
         required = ["artifact_id", "requirement_id", "content", "family"]
-        missing = [key for key in required if not subject.get(key)]
+        missing = []
+        for key in required:
+            if key not in subject:
+                missing.append(key)
+                continue
+            value = subject.get(key)
+            if value is None:
+                missing.append(key)
+                continue
+            if key != "content" and value == "":
+                missing.append(key)
         if missing:
             finding = GateFinding("missing_fields", f"Missing required fields: {missing}", "high")
             return GateResult(
