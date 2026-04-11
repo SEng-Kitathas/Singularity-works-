@@ -1291,14 +1291,24 @@ class Orchestrator:
                     artifact_id=artifact.artifact_id,
                 ),
             )
+        from .evidence_ledger import FractalCycleLedgerPayload, GateCountLedger, RecursiveAuditLedgerPayload
         self._record(
             "recursive_audit",
             f"audit:{ctx.session_id}",
-            {
-                "requirement_id": requirement.requirement_id,
-                "artifact_id": artifact.artifact_id,
-                **audit,
-            },
+            RecursiveAuditLedgerPayload(
+                requirement_id=requirement.requirement_id,
+                artifact_id=artifact.artifact_id,
+                gate_counts=GateCountLedger(
+                    pass_count=int(audit.get("gate_counts", {}).get("pass", 0) or 0),
+                    warn_count=int(audit.get("gate_counts", {}).get("warn", 0) or 0),
+                    fail_count=int(audit.get("gate_counts", {}).get("fail", 0) or 0),
+                    residual_count=int(audit.get("gate_counts", {}).get("residual", 0) or 0),
+                ),
+                recovery_confidence=audit.get("recovery_confidence", "moderate"),
+                naivety_flags=list(audit.get("naivety_flags", [])),
+                implementation_depth=audit.get("implementation_depth", "thin"),
+                assurance_status=audit.get("assurance_status", assurance.status),
+            ),
         )
         # Auto-consolidate CIL memory after each run
         if self._forge_ctx is not None:
@@ -1463,11 +1473,12 @@ class Orchestrator:
         self._record(
             "fractal_cycle",
             f"fractal:{ctx.session_id}",
-            {
-                "requirement_id": requirement.requirement_id,
-                "artifact_id": artifact.artifact_id,
-                **fractal_cycle.to_dict(),
-            },
+            FractalCycleLedgerPayload(
+                requirement_id=requirement.requirement_id,
+                artifact_id=artifact.artifact_id,
+                cycle_id=fractal_cycle.cycle_id,
+                events=fractal_cycle.events[:],
+            ),
         )
         result = OrchestrationResult(
             artifact=artifact,

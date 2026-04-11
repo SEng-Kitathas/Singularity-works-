@@ -6,7 +6,35 @@ from typing import Any, Iterable
 import json
 import time
 
+from .fractal_cycle import FractalEvent, FractalStage
 from .models import AppliedTransformation, AssuranceClaim, TransformationCandidate
+
+
+@dataclass
+class GateCountLedger:
+    pass_count: int = 0
+    warn_count: int = 0
+    fail_count: int = 0
+    residual_count: int = 0
+
+
+@dataclass
+class RecursiveAuditLedgerPayload:
+    requirement_id: str = ""
+    artifact_id: str = ""
+    gate_counts: GateCountLedger = field(default_factory=GateCountLedger)
+    recovery_confidence: str = "moderate"
+    naivety_flags: list[str] = field(default_factory=list)
+    implementation_depth: str = "thin"
+    assurance_status: str = "unknown"
+
+
+@dataclass
+class FractalCycleLedgerPayload:
+    requirement_id: str = ""
+    artifact_id: str = ""
+    cycle_id: str = ""
+    events: list[FractalEvent] = field(default_factory=list)
 
 
 @dataclass
@@ -164,6 +192,30 @@ def _decode_trace_link_payload(payload: dict[str, Any] | None) -> TraceLinkLedge
     return TraceLinkLedgerPayload(**(payload or {}))
 
 
+def _decode_recursive_audit_payload(payload: dict[str, Any] | None) -> RecursiveAuditLedgerPayload:
+    raw = dict(payload or {})
+    raw["gate_counts"] = GateCountLedger(
+        pass_count=int((raw.get("gate_counts") or {}).get("pass", 0) or 0),
+        warn_count=int((raw.get("gate_counts") or {}).get("warn", 0) or 0),
+        fail_count=int((raw.get("gate_counts") or {}).get("fail", 0) or 0),
+        residual_count=int((raw.get("gate_counts") or {}).get("residual", 0) or 0),
+    )
+    return RecursiveAuditLedgerPayload(**raw)
+
+
+def _decode_fractal_cycle_payload(payload: dict[str, Any] | None) -> FractalCycleLedgerPayload:
+    raw = dict(payload or {})
+    raw["events"] = [
+        FractalEvent(
+            stage=FractalStage(item.get("stage", "PROBE")),
+            status=item.get("status", "unknown"),
+            details=item.get("details", {}),
+        )
+        for item in raw.get("events", [])
+    ]
+    return FractalCycleLedgerPayload(**raw)
+
+
 def _decode_transformation_plan_payload(payload: dict[str, Any] | None) -> TransformationPlanLedgerPayload:
     raw = dict(payload or {})
     raw["candidates"] = [TransformationCandidate(**item) for item in raw.get("candidates", [])]
@@ -283,6 +335,20 @@ class EvidenceLedger:
             if rec.get("record_type") == "transformation_application"
         ]
 
+    def recursive_audits_typed(self, session_id: str | None = None) -> list[RecursiveAuditLedgerPayload]:
+        return [
+            _decode_recursive_audit_payload(rec.get("payload", {}))
+            for rec in self._session_records(session_id)
+            if rec.get("record_type") == "recursive_audit"
+        ]
+
+    def fractal_cycles_typed(self, session_id: str | None = None) -> list[FractalCycleLedgerPayload]:
+        return [
+            _decode_fractal_cycle_payload(rec.get("payload", {}))
+            for rec in self._session_records(session_id)
+            if rec.get("record_type") == "fractal_cycle"
+        ]
+
     def rollup_status_counts(self, session_id: str | None = None) -> dict[str, int]:
         counts = {"pass": 0, "warn": 0, "fail": 0, "residual": 0}
         for payload in self.gate_results_typed(session_id):
@@ -339,6 +405,8 @@ class EvidenceLedger:
                     else asdict(trace_link_payload) if trace_link_payload is not None
                     else asdict(transformation_plan_payload) if transformation_plan_payload is not None
                     else asdict(transformation_application_payload) if transformation_application_payload is not None
+                    else asdict(recursive_audit_payload) if recursive_audit_payload is not None
+                    else asdict(fractal_cycle_payload) if fractal_cycle_payload is not None
                     else payload
                 )
         if any(x.get("status") == "fail" for x in out["monitor_events"]):
@@ -369,6 +437,8 @@ class EvidenceLedger:
             "trace_links": [],
             "transformation_plans": [],
             "transformation_applications": [],
+            "recursive_audits": [],
+            "fractal_cycles": [],
             "claim_rollups": [],
         }
         claim_ids: set[str] = set()
@@ -381,6 +451,8 @@ class EvidenceLedger:
             "trace_link": "trace_links",
             "transformation_plan": "transformation_plans",
             "transformation_application": "transformation_applications",
+            "recursive_audit": "recursive_audits",
+            "fractal_cycle": "fractal_cycles",
         }
         for rec in self._session_records(session_id):
             payload = rec.get("payload", {})
@@ -392,6 +464,8 @@ class EvidenceLedger:
             trace_link_payload = _decode_trace_link_payload(payload) if rec.get("record_type") == "trace_link" else None
             transformation_plan_payload = _decode_transformation_plan_payload(payload) if rec.get("record_type") == "transformation_plan" else None
             transformation_application_payload = _decode_transformation_application_payload(payload) if rec.get("record_type") == "transformation_application" else None
+            recursive_audit_payload = _decode_recursive_audit_payload(payload) if rec.get("record_type") == "recursive_audit" else None
+            fractal_cycle_payload = _decode_fractal_cycle_payload(payload) if rec.get("record_type") == "fractal_cycle" else None
             linked_requirements = (
                 gate_payload.linked_requirements if gate_payload is not None
                 else monitor_payload.linked_requirements if monitor_payload is not None
@@ -400,7 +474,7 @@ class EvidenceLedger:
                 else assurance_rollup_payload.linked_requirements if assurance_rollup_payload is not None
                 else trace_link_payload.linked_requirements if trace_link_payload is not None
                 else transformation_plan_payload.linked_requirements if transformation_plan_payload is not None
-                else payload.get("linked_requirements", [])
+                else [recursive_audit_payload.requirement_id] if recursive_audit_payload is not None and recursive_audit_payload.requirement_id else [fractal_cycle_payload.requirement_id] if fractal_cycle_payload is not None and fractal_cycle_payload.requirement_id else payload.get("linked_requirements", [])
             )
             payload_requirement_id = (
                 gate_payload.requirement_id if gate_payload is not None
@@ -409,6 +483,8 @@ class EvidenceLedger:
                 else assurance_rollup_payload.requirement_id if assurance_rollup_payload is not None
                 else transformation_plan_payload.requirement_id if transformation_plan_payload is not None
                 else transformation_application_payload.requirement_id if transformation_application_payload is not None
+                else recursive_audit_payload.requirement_id if recursive_audit_payload is not None
+                else fractal_cycle_payload.requirement_id if fractal_cycle_payload is not None
                 else payload.get("requirement_id")
             )
             if payload_requirement_id != requirement_id and requirement_id not in linked_requirements:
@@ -452,6 +528,8 @@ class EvidenceLedger:
             "risks": [],
             "transformation_plans": [],
             "transformation_applications": [],
+            "recursive_audits": [],
+            "fractal_cycles": [],
         }
         for rec in self.load_all():
             payload = rec.get("payload", {})
@@ -460,12 +538,16 @@ class EvidenceLedger:
             risk_payload = _decode_risk_payload(payload) if rec.get("record_type") == "risk" else None
             transformation_plan_payload = _decode_transformation_plan_payload(payload) if rec.get("record_type") == "transformation_plan" else None
             transformation_application_payload = _decode_transformation_application_payload(payload) if rec.get("record_type") == "transformation_application" else None
+            recursive_audit_payload = _decode_recursive_audit_payload(payload) if rec.get("record_type") == "recursive_audit" else None
+            fractal_cycle_payload = _decode_fractal_cycle_payload(payload) if rec.get("record_type") == "fractal_cycle" else None
             linked_artifact_id = payload.get("linked_artifact_id")
             payload_artifact_id = (
                 gate_payload.artifact_id if gate_payload is not None
                 else risk_payload.artifact_id if risk_payload is not None
                 else transformation_plan_payload.artifact_id if transformation_plan_payload is not None
                 else transformation_application_payload.transformed_artifact_id if transformation_application_payload is not None
+                else recursive_audit_payload.artifact_id if recursive_audit_payload is not None
+                else fractal_cycle_payload.artifact_id if fractal_cycle_payload is not None
                 else payload.get("artifact_id")
             )
             if payload_artifact_id != artifact_id and linked_artifact_id != artifact_id:
@@ -476,6 +558,8 @@ class EvidenceLedger:
                 "risk": "risks",
                 "transformation_plan": "transformation_plans",
                 "transformation_application": "transformation_applications",
+                "recursive_audit": "recursive_audits",
+                "fractal_cycle": "fractal_cycles",
             }.get(rec.get("record_type"))
             if bucket:
                 out[bucket].append(
@@ -484,6 +568,8 @@ class EvidenceLedger:
                     else asdict(risk_payload) if risk_payload is not None
                     else asdict(transformation_plan_payload) if transformation_plan_payload is not None
                     else asdict(transformation_application_payload) if transformation_application_payload is not None
+                    else asdict(recursive_audit_payload) if recursive_audit_payload is not None
+                    else asdict(fractal_cycle_payload) if fractal_cycle_payload is not None
                     else payload
                 )
         return out
