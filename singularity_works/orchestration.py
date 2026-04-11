@@ -462,9 +462,18 @@ class Orchestrator:
             linked_claims=claim_ids,
         )
 
-    def _monitor_payload(self, requirement: Requirement, event) -> dict:
+    def _monitor_payload(self, requirement: Requirement, event):
+        from .evidence_ledger import MonitorLedgerPayload
         linked_claims = [event.claim_id] if event.claim_id else []
-        return event.__dict__ | {"linked_requirements": [requirement.requirement_id], "linked_claims": linked_claims}
+        return MonitorLedgerPayload(
+            monitor_id=event.monitor_id,
+            status=event.status,
+            claim_id=event.claim_id or "",
+            message=event.message,
+            severity=event.severity,
+            linked_requirements=[requirement.requirement_id],
+            linked_claims=linked_claims,
+        )
 
     def _risk_records(
         self,

@@ -8,6 +8,17 @@ import time
 
 
 @dataclass
+class MonitorLedgerPayload:
+    monitor_id: str = ""
+    status: str = "unknown"
+    claim_id: str = ""
+    message: str = ""
+    severity: str = "medium"
+    linked_requirements: list[str] = field(default_factory=list)
+    linked_claims: list[str] = field(default_factory=list)
+
+
+@dataclass
 class GateLedgerFinding:
     code: str = ""
     message: str = ""
@@ -53,6 +64,10 @@ def _decode_gate_payload(payload: dict[str, Any] | None) -> GateLedgerPayload:
     ]
     raw["findings"] = findings
     return GateLedgerPayload(**raw)
+
+
+def _decode_monitor_payload(payload: dict[str, Any] | None) -> MonitorLedgerPayload:
+    return MonitorLedgerPayload(**(payload or {}))
 
 
 class EvidenceLedger:
@@ -107,6 +122,13 @@ class EvidenceLedger:
             if rec.get("record_type") == "gate_result"
         ]
 
+    def monitor_events_typed(self, session_id: str | None = None) -> list[MonitorLedgerPayload]:
+        return [
+            _decode_monitor_payload(rec.get("payload", {}))
+            for rec in self._session_records(session_id)
+            if rec.get("record_type") == "monitor_event"
+        ]
+
     def rollup_status_counts(self, session_id: str | None = None) -> dict[str, int]:
         counts = {"pass": 0, "warn": 0, "fail": 0, "residual": 0}
         for payload in self.gate_results_typed(session_id):
@@ -124,12 +146,18 @@ class EvidenceLedger:
         for rec in self._session_records(session_id):
             payload = rec.get("payload", {})
             gate_payload = _decode_gate_payload(payload) if rec.get("record_type") == "gate_result" else None
-            linked_claims = gate_payload.linked_claims if gate_payload is not None else payload.get("linked_claims", [])
+            monitor_payload = _decode_monitor_payload(payload) if rec.get("record_type") == "monitor_event" else None
+            linked_claims = (
+                gate_payload.linked_claims if gate_payload is not None
+                else monitor_payload.linked_claims if monitor_payload is not None
+                else payload.get("linked_claims", [])
+            )
             discharged_claims = gate_payload.discharged_claims if gate_payload is not None else payload.get("discharged_claims", [])
+            payload_claim_id = monitor_payload.claim_id if monitor_payload is not None else payload.get("claim_id")
             matches = (
                 claim_id in discharged_claims
                 or claim_id in linked_claims
-                or payload.get("claim_id") == claim_id
+                or payload_claim_id == claim_id
             )
             if not matches:
                 continue
@@ -139,7 +167,11 @@ class EvidenceLedger:
                 "assurance_claim": "assurance_claims",
             }.get(rec.get("record_type"))
             if bucket:
-                out[bucket].append(asdict(gate_payload) if gate_payload is not None else payload)
+                out[bucket].append(
+                    asdict(gate_payload) if gate_payload is not None
+                    else asdict(monitor_payload) if monitor_payload is not None
+                    else payload
+                )
         if any(x.get("status") == "fail" for x in out["monitor_events"]):
             out["status"] = "falsified"
         elif any(x.get("status") == "falsified" for x in out["assurance_claims"]):
@@ -180,16 +212,30 @@ class EvidenceLedger:
         for rec in self._session_records(session_id):
             payload = rec.get("payload", {})
             gate_payload = _decode_gate_payload(payload) if rec.get("record_type") == "gate_result" else None
-            linked_requirements = gate_payload.linked_requirements if gate_payload is not None else payload.get("linked_requirements", [])
+            monitor_payload = _decode_monitor_payload(payload) if rec.get("record_type") == "monitor_event" else None
+            linked_requirements = (
+                gate_payload.linked_requirements if gate_payload is not None
+                else monitor_payload.linked_requirements if monitor_payload is not None
+                else payload.get("linked_requirements", [])
+            )
             payload_requirement_id = gate_payload.requirement_id if gate_payload is not None else payload.get("requirement_id")
             if payload_requirement_id != requirement_id and requirement_id not in linked_requirements:
                 continue
             bucket = buckets.get(rec.get("record_type"))
             if bucket:
-                out[bucket].append(asdict(gate_payload) if gate_payload is not None else payload)
-            claim_ids.update(gate_payload.linked_claims if gate_payload is not None else payload.get("linked_claims", []))
-            if payload.get("claim_id"):
-                claim_ids.add(payload["claim_id"])
+                out[bucket].append(
+                    asdict(gate_payload) if gate_payload is not None
+                    else asdict(monitor_payload) if monitor_payload is not None
+                    else payload
+                )
+            claim_ids.update(
+                gate_payload.linked_claims if gate_payload is not None
+                else monitor_payload.linked_claims if monitor_payload is not None
+                else payload.get("linked_claims", [])
+            )
+            payload_claim_id = monitor_payload.claim_id if monitor_payload is not None else payload.get("claim_id")
+            if payload_claim_id:
+                claim_ids.add(payload_claim_id)
         out["claim_rollups"] = [
             self.rollup_claim(claim_id, session_id)
             for claim_id in sorted(claim_ids)
@@ -206,6 +252,7 @@ class EvidenceLedger:
         for rec in self.load_all():
             payload = rec.get("payload", {})
             gate_payload = _decode_gate_payload(payload) if rec.get("record_type") == "gate_result" else None
+            monitor_payload = _decode_monitor_payload(payload) if rec.get("record_type") == "monitor_event" else None
             linked_artifact_id = payload.get("linked_artifact_id")
             payload_artifact_id = gate_payload.artifact_id if gate_payload is not None else payload.get("artifact_id")
             if payload_artifact_id != artifact_id and linked_artifact_id != artifact_id:
@@ -216,7 +263,11 @@ class EvidenceLedger:
                 "risk": "risks",
             }.get(rec.get("record_type"))
             if bucket:
-                out[bucket].append(asdict(gate_payload) if gate_payload is not None else payload)
+                out[bucket].append(
+                    asdict(gate_payload) if gate_payload is not None
+                    else asdict(monitor_payload) if 'monitor_payload' in locals() and monitor_payload is not None
+                    else payload
+                )
         return out
 
     def rollup_session(self, session_id: str) -> dict[str, Any]:
