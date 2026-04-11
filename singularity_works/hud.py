@@ -131,6 +131,48 @@ class CompoundRecord:
 
 
 @dataclass
+class DerivationTraceRecord:
+    gate_count: int = 0
+    monitor_count: int = 0
+    risk_count: int = 0
+    transformation_candidates: int = 0
+    assurance: str = "unknown"
+    recursive_depth: str = "unknown"
+
+
+@dataclass
+class VerificationFacetRecord:
+    status: str = "unknown"
+    detail: str = ""
+
+
+@dataclass
+class VerificationTraceRecord:
+    gate_verification: VerificationFacetRecord = field(default_factory=VerificationFacetRecord)
+    assurance_verification: VerificationFacetRecord = field(default_factory=VerificationFacetRecord)
+    lbe_verification: VerificationFacetRecord = field(default_factory=VerificationFacetRecord)
+    embodiment_verification: VerificationFacetRecord = field(default_factory=VerificationFacetRecord)
+
+
+@dataclass
+class EmbodimentTraceRecord:
+    requested: bool = False
+    authorized: bool = False
+    eligible_count: int = 0
+    applied_count: int = 0
+    transformed: bool = False
+    source_artifact_id: str = ""
+    transformed_artifact_id: str = ""
+
+
+@dataclass
+class FractalEventRecord:
+    stage: str = "UNKNOWN"
+    status: str = "unknown"
+    details: dict[str, object] = field(default_factory=dict)
+
+
+@dataclass
 class HudSnapshot:
     # Identity
     app_name: str     = "Singularity Works"
@@ -174,6 +216,12 @@ class HudSnapshot:
     risks: list[str]       = field(default_factory=list)
     warnings: list[str]    = field(default_factory=list)
     events: list[str]      = field(default_factory=list)
+
+    # Typed doctrine-aligned runtime traces
+    derivation: DerivationTraceRecord = field(default_factory=DerivationTraceRecord)
+    verification: VerificationTraceRecord = field(default_factory=VerificationTraceRecord)
+    embodiment: EmbodimentTraceRecord = field(default_factory=EmbodimentTraceRecord)
+    fractal_events: list[FractalEventRecord] = field(default_factory=list)
 
     # Display mode: "full" | "compact" | "status"
     display_mode: str = "full"
@@ -533,6 +581,25 @@ class ConsoleHUD:
         rows.append(_c(_C.FG_DIM, self._crop(f"  provider {snap.provider}", width)))
         rows.append(_c(_C.FG_DIM, self._crop(f"  project  {snap.project_tag}", width)))
 
+        # Derive / verify / embody summaries
+        rows.append("")
+        rows.append(_c(_C.FG_ACCENT, self._crop("  DERIVE · VERIFY · EMBODY", width)))
+        rows.append(_c(_C.FG_SECONDARY, self._crop(
+            f"  derive g={snap.derivation.gate_count} m={snap.derivation.monitor_count} r={snap.derivation.risk_count}", width)))
+        rows.append(_c(_C.FG_SECONDARY, self._crop(
+            f"  verify gates={snap.verification.gate_verification.status} assurance={snap.verification.assurance_verification.status}", width)))
+        rows.append(_c(_C.FG_SECONDARY, self._crop(
+            f"  embody {snap.verification.embodiment_verification.status} eligible={snap.embodiment.eligible_count} applied={snap.embodiment.applied_count}", width)))
+
+        # Fractal lifecycle events
+        if snap.fractal_events:
+            rows.append("")
+            rows.append(_c(_C.FG_DIM, self._crop("  ─ FRACTAL CYCLE ─" + "─" * width, width)))
+            for event in snap.fractal_events[:5]:
+                label = _c(_C.CYAN, event.stage)
+                status = _c(_C.FG_DIM, event.status)
+                rows.append(self._crop(f"  {label}  {status}", width))
+
         # Warnings
         if snap.warnings:
             rows.append("")
@@ -659,6 +726,37 @@ def snapshot_from_run_result(
             ))
 
     # ── FactBus — taint chains + compound derivations ─────────────────────────
+    # ── Typed runtime traces ───────────────────────────────────────────────────
+    if result is not None:
+        dt = getattr(result, "derivation_trace", None) or {}
+        snap.derivation = DerivationTraceRecord(
+            gate_count=int(dt.get("gate_count", 0) or 0),
+            monitor_count=int(dt.get("monitor_count", 0) or 0),
+            risk_count=int(dt.get("risk_count", 0) or 0),
+            transformation_candidates=int(dt.get("transformation_candidates", 0) or 0),
+            assurance=str(dt.get("assurance", "unknown")),
+            recursive_depth=str(dt.get("recursive_depth", "unknown")),
+        )
+        vt = getattr(result, "verification_trace", None) or {}
+        snap.verification = VerificationTraceRecord(
+            gate_verification=VerificationFacetRecord(**(vt.get("gate_verification", {}) or {})),
+            assurance_verification=VerificationFacetRecord(**(vt.get("assurance_verification", {}) or {})),
+            lbe_verification=VerificationFacetRecord(**(vt.get("lbe_verification", {}) or {})),
+            embodiment_verification=VerificationFacetRecord(**(vt.get("embodiment_verification", {}) or {})),
+        )
+        et = getattr(result, "embodiment_trace", None) or {}
+        snap.embodiment = EmbodimentTraceRecord(
+            requested=bool(et.get("requested", False)),
+            authorized=bool(et.get("authorized", False)),
+            eligible_count=int(et.get("eligible_count", 0) or 0),
+            applied_count=int(et.get("applied_count", 0) or 0),
+            transformed=bool(et.get("transformed", False)),
+            source_artifact_id=str(et.get("source_artifact_id", "")),
+            transformed_artifact_id=str(et.get("transformed_artifact_id", "")),
+        )
+        fc = getattr(result, "fractal_cycle", None) or {}
+        snap.fractal_events = [FractalEventRecord(**event) for event in (fc.get("events", []) or [])]
+
     if orchestrator is not None and hasattr(orchestrator, "facts"):
         bus = orchestrator.facts
 

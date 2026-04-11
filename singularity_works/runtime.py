@@ -6,7 +6,7 @@ import json
 import time
 
 from .evidence_ledger import EvidenceLedger
-from .hud import ConsoleHUD, HudSnapshot
+from .hud import ConsoleHUD, snapshot_from_run_result
 from .models import Requirement, RunContext
 from .orchestration import Orchestrator
 
@@ -99,33 +99,44 @@ def _summary(base_dir: Path, ctx: RunContext, result, req: Requirement) -> dict:
     }
 
 
-def _render_summary(ctx: RunContext, req: Requirement, result) -> None:
-    snap = HudSnapshot(
-        mode=ctx.mode,
-        provider="local",
-        session_id=ctx.session_id,
-        project_tag=ctx.project_tag,
-        phase="complete",
-        requirement=req.requirement_id,
-        radical="+".join(result.pattern.get("radicals", [])) or "TRUST",
-        validator="gate-pack",
-        progress_label="demo run",
-        progress_value=1.0,
-        counts=result.gate_summary.counts,
-        stats={
-            "assurance": result.assurance.status,
-            "family": result.artifact.family,
-            "monitors": str(len(result.monitor_events)),
-            "depth": result.recursive_audit["implementation_depth"],
-        },
-        risks=result.assurance.residual + result.assurance.falsified,
-        warnings=result.recursive_audit["naivety_flags"],
-        events=[
-            "orchestration complete",
-            f"artifact={result.artifact.artifact_id}",
-            f"assurance={result.assurance.status}",
-        ],
+def _render_summary(ctx: RunContext, req: Requirement, result, orchestrator: Orchestrator) -> None:
+    snap = snapshot_from_run_result(
+        result,
+        orchestrator,
+        app_name="Singularity Works",
+        version="v1.36",
+        branch="main",
+        uptime_s=0.0,
+        display_mode="full",
     )
+    snap.mode = ctx.mode
+    snap.provider = "local"
+    snap.session_id = ctx.session_id
+    snap.project_tag = ctx.project_tag
+    snap.phase = "complete"
+    snap.requirement = req.requirement_id
+    snap.radical = "+".join(result.pattern.get("radicals", [])) or "TRUST"
+    snap.validator = "gate-pack"
+    snap.progress_label = "demo run"
+    snap.progress_value = 1.0
+    snap.stats = {
+        "assurance": result.assurance.status,
+        "family": result.artifact.family,
+        "monitors": str(len(result.monitor_events)),
+        "depth": result.recursive_audit["implementation_depth"],
+        "derive": f"g{result.derivation_trace.get('gate_count',0)}/m{result.derivation_trace.get('monitor_count',0)}",
+        "verify": result.verification_trace.get('assurance_verification',{}).get('status','unknown'),
+        "embody": result.verification_trace.get('embodiment_verification',{}).get('status','unknown'),
+    }
+    snap.risks = result.assurance.residual + result.assurance.falsified
+    snap.warnings = result.recursive_audit["naivety_flags"]
+    snap.events = [
+        "orchestration complete",
+        f"artifact={result.artifact.artifact_id}",
+        f"assurance={result.assurance.status}",
+        f"derive={result.derivation_trace.get('gate_count',0)} gates/{result.derivation_trace.get('monitor_count',0)} monitors",
+        f"verify={result.verification_trace.get('gate_verification',{}).get('status','unknown')}",
+    ]
     hud = ConsoleHUD()
     with hud:
         hud.render(snap)
@@ -176,5 +187,5 @@ def demo_run(
         json.dumps(summary, indent=2)
     )
     if show_hud:
-        _render_summary(ctx, req, result)
+        _render_summary(ctx, req, result, orchestrator)
     return summary
