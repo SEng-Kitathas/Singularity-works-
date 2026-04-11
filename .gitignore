@@ -38,3 +38,11 @@ Thumbs.db
 *.log
 .env
 secrets/
+
+# Forge generated runtime artifacts
+evidence.jsonl
+build_verification_summary.json
+BUILD_VERIFICATION_REPORT_v0_7.md
+demo-session-*_summary.json
+run_current_codebase.py.bak_*
+.forge/
