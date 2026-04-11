@@ -55,6 +55,14 @@ class CompoundDerivationPayload:
 
 
 @dataclass
+class SwitchboardDecisionPayload:
+    candidate_id: str = ""
+    tier: int = 0
+    apply: bool = False
+    rationale: str = ""
+
+
+@dataclass
 class PropagationPayload:
     rule_id: str = ""
     fact_type: str = ""
@@ -110,6 +118,29 @@ class Fact:
             evidence_refs=evidence_refs or [],
             linked_laws=linked_laws or [],
             upstream_facts=upstream_facts or [],
+        )
+
+    @classmethod
+    def from_switchboard_decision(
+        cls,
+        *,
+        fact_id: str,
+        scope: str,
+        confidence: str,
+        payload: SwitchboardDecisionPayload,
+        linked_laws: list[str] | None = None,
+        evidence_refs: list[str] | None = None,
+        upstream_facts: list[str] | None = None,
+    ) -> "Fact":
+        return cls._from_payload(
+            fact_id=fact_id,
+            fact_type="switchboard_decision",
+            scope=scope,
+            confidence=confidence,
+            payload=payload,
+            linked_laws=linked_laws,
+            evidence_refs=evidence_refs,
+            upstream_facts=upstream_facts,
         )
 
     @classmethod
@@ -318,6 +349,9 @@ class FactBus:
                 )
             )
         return props
+
+    def switchboard_decisions(self) -> list[SwitchboardDecisionPayload]:
+        return self._decode_many("switchboard_decision", SwitchboardDecisionPayload)
 
     def dangerous_sinks(self) -> list[DangerousSinkPayload]:
         return self._decode_many("dangerous_sink_present", DangerousSinkPayload)

@@ -8,7 +8,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 
-from .facts import Fact, FactBus, PropagationPayload
+from .facts import Fact, FactBus, PropagationPayload, SwitchboardDecisionPayload
 from .models import TransformationCandidate
 
 
@@ -71,13 +71,13 @@ class SwitchboardDecision:
     rationale: str
     upstream_fact_ids: list[str] = field(default_factory=list)
 
-    def fact_payload(self) -> dict[str, Any]:
-        return {
-            "candidate_id": self.candidate_id,
-            "tier": self.tier,
-            "apply": self.apply,
-            "rationale": self.rationale,
-        }
+    def fact_payload(self) -> SwitchboardDecisionPayload:
+        return SwitchboardDecisionPayload(
+            candidate_id=self.candidate_id,
+            tier=self.tier,
+            apply=self.apply,
+            rationale=self.rationale,
+        )
 
 
 @dataclass
@@ -146,8 +146,8 @@ class Switchboard:
         self.derive(bus)
         candidates = bus.by_type("transformation_candidate")
         already_decided: set[str] = {
-            f.payload.get("candidate_id", "")
-            for f in bus.by_type("switchboard_decision")
+            d.candidate_id
+            for d in (bus.switchboard_decisions() if hasattr(bus, "switchboard_decisions") else [])
         }
         decisions: list[SwitchboardDecision] = []
         for fact in candidates:
@@ -164,9 +164,8 @@ class Switchboard:
                 upstream_fact_ids=[fact.fact_id],
             )
             decisions.append(decision)
-            bus.publish(Fact(
+            bus.publish(Fact.from_switchboard_decision(
                 fact_id=f"{fact.scope}:switchboard_decision:{cid}",
-                fact_type="switchboard_decision",
                 scope=fact.scope,
                 confidence=fact.confidence,
                 payload=decision.fact_payload(),
@@ -178,9 +177,9 @@ class Switchboard:
 
     def auto_apply_candidates(self, bus: FactBus) -> list[str]:
         return [
-            f.payload["candidate_id"]
-            for f in bus.by_type("switchboard_decision")
-            if f.payload.get("apply", False)
+            d.candidate_id
+            for d in (bus.switchboard_decisions() if hasattr(bus, "switchboard_decisions") else [])
+            if d.apply
         ]
 
 

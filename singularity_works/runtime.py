@@ -68,12 +68,15 @@ def _demo_requirement(good: bool | None = None, scenario: str | None = None) -> 
     return Requirement(requirement_id=req_id, text=text, tags=["quality"])
 
 
-def _summary(base_dir: Path, ctx: RunContext, result, req: Requirement) -> dict:
+def _summary(base_dir: Path, ctx: RunContext, result, req: Requirement, orchestrator: Orchestrator) -> dict:
     ledger = EvidenceLedger(base_dir / "evidence.jsonl")
     primary_claim = ledger.rollup_claim(
         f"claim:{req.requirement_id}:primary",
         ctx.session_id,
     )
+    bus = getattr(orchestrator, "facts", None)
+    switchboard_decisions = [asdict(item) for item in (bus.switchboard_decisions() if bus and hasattr(bus, "switchboard_decisions") else [])]
+    propagations = [asdict(item) for item in (bus.propagations() if bus and hasattr(bus, "propagations") else [])]
     return {
         "session_id": ctx.session_id,
         "artifact_id": result.artifact.artifact_id,
@@ -93,6 +96,8 @@ def _summary(base_dir: Path, ctx: RunContext, result, req: Requirement) -> dict:
         "embodiment_trace": result.embodiment_trace,
         "verification_trace": result.verification_trace,
         "fractal_cycle": result.fractal_cycle,
+        "switchboard_decisions": switchboard_decisions,
+        "propagations": propagations,
         "linked_laws": result.pattern.get("linked_laws", []),
         "genome_bundle": result.genome_bundle,
         "fact_summary": result.fact_summary,
@@ -181,7 +186,7 @@ def demo_run(
     else:
         content = GOOD_CONTENT if good else BAD_CONTENT
     result = orchestrator.run(ctx, req, content)
-    summary = _summary(base_dir, ctx, result, req)
+    summary = _summary(base_dir, ctx, result, req, orchestrator)
     summary["good"] = good
     (base_dir / f"{ctx.session_id}_summary.json").write_text(
         json.dumps(summary, indent=2)

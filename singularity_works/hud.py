@@ -146,6 +146,14 @@ class GateRecord:
 
 
 @dataclass
+class SwitchboardDecisionRecord:
+    candidate_id: str = ""
+    tier: int = 0
+    apply: bool = False
+    rationale: str = ""
+
+
+@dataclass
 class PropagationRecord:
     fact_type: str
     rule_id: str = ""
@@ -241,9 +249,10 @@ class HudSnapshot:
     dangerous_sinks: list[DangerousSinkRecord] = field(default_factory=list)
     resource_lifecycle: list[ResourceLifecycleRecord] = field(default_factory=list)
 
-    # Compound derivations and propagated switchboard hazards
+    # Compound derivations and switchboard surfaces
     compound: list[CompoundRecord] = field(default_factory=list)
     propagations: list[PropagationRecord] = field(default_factory=list)
+    switchboard_decisions: list[SwitchboardDecisionRecord] = field(default_factory=list)
 
     # Warrant text for primary claim
     primary_warrant: str = ""
@@ -650,6 +659,16 @@ class ConsoleHUD:
             rows.append(_c(_C.FG_DIM, "  (none active)"))
         rows.append("")
 
+        # Switchboard decisions
+        rows.append(_c(_C.CYAN, self._crop("  SWITCHBOARD DECISIONS", width)))
+        if snap.switchboard_decisions:
+            for sd in snap.switchboard_decisions[:4]:
+                mode = 'AUTO' if sd.apply else f'T{sd.tier}'
+                rows.append(self._crop(f"  {sd.candidate_id} -> {mode}", width))
+        else:
+            rows.append(_c(_C.FG_DIM, "  (none active)"))
+        rows.append("")
+
         # Phase / branch / session meta
         rows.append(_c(_C.FG_DIM, self._crop("  ─ META ─" + "─" * width, width)))
         rows.append(_c(_C.FG_DIM, self._crop(f"  branch   {snap.branch}", width)))
@@ -897,6 +916,16 @@ def snapshot_from_run_result(
                 severity=propagation.severity,
                 rationale=propagation.rationale,
                 upstream_types=propagation.upstream_types,
+            ))
+
+        # Switchboard decisions
+        decisions = bus.switchboard_decisions() if hasattr(bus, "switchboard_decisions") else []
+        for decision in decisions:
+            snap.switchboard_decisions.append(SwitchboardDecisionRecord(
+                candidate_id=decision.candidate_id,
+                tier=decision.tier,
+                apply=decision.apply,
+                rationale=decision.rationale,
             ))
 
     return snap
