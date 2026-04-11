@@ -336,7 +336,7 @@ class Orchestrator:
             budget_weights=budget_weights,
         )
 
-    def _record(self, record_type: str, record_id: str, payload: dict) -> None:
+    def _record(self, record_type: str, record_id: str, payload) -> None:
         self.ledger.append(EvidenceRecord(record_type, record_id, payload))
 
     def _append_trace(self, link: TraceLink) -> None:
@@ -439,19 +439,28 @@ class Orchestrator:
             "assurance_status": assurance.status,
         }
 
-    def _gate_payload(self, requirement: Requirement, artifact: Artifact, result, claim_ids: list[str]) -> dict:
-        return {
-            "requirement_id": requirement.requirement_id,
-            "artifact_id": artifact.artifact_id,
-            "status": result.status,
-            "gate_id": result.gate_id,
-            "gate_family": result.gate_family,
-            "discharged_claims": result.discharged_claims,
-            "residual_obligations": result.residual_obligations,
-            "findings": [finding.__dict__ for finding in result.findings],
-            "linked_requirements": [requirement.requirement_id],
-            "linked_claims": claim_ids,
-        }
+    def _gate_payload(self, requirement: Requirement, artifact: Artifact, result, claim_ids: list[str]):
+        from .evidence_ledger import GateLedgerFinding, GateLedgerPayload
+        return GateLedgerPayload(
+            requirement_id=requirement.requirement_id,
+            artifact_id=artifact.artifact_id,
+            status=result.status,
+            gate_id=result.gate_id,
+            gate_family=result.gate_family,
+            discharged_claims=result.discharged_claims,
+            residual_obligations=result.residual_obligations,
+            findings=[
+                GateLedgerFinding(
+                    code=finding.code,
+                    message=finding.message,
+                    severity=finding.severity,
+                    evidence=finding.evidence,
+                )
+                for finding in result.findings
+            ],
+            linked_requirements=[requirement.requirement_id],
+            linked_claims=claim_ids,
+        )
 
     def _monitor_payload(self, requirement: Requirement, event) -> dict:
         linked_claims = [event.claim_id] if event.claim_id else []
