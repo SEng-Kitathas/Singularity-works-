@@ -204,6 +204,146 @@ class ContradictionBlock:
 # SBUF — Volatile Session Buffer
 # ---------------------------------------------------------------------------
 
+def _encode_temporal(block: BiTemporalBlock) -> dict[str, Any]:
+    return {
+        "t_created": block.t_created,
+        "t_expired": block.t_expired,
+        "valid_from": block.valid_from,
+        "valid_until": block.valid_until,
+    }
+
+
+def _decode_temporal(payload: dict[str, Any] | None) -> BiTemporalBlock:
+    raw = dict(payload or {})
+    return BiTemporalBlock(
+        t_created=raw.get("t_created", _now()),
+        t_expired=raw.get("t_expired"),
+        valid_from=raw.get("valid_from", _now()),
+        valid_until=raw.get("valid_until"),
+    )
+
+
+def _encode_witness(witness: WitnessBlock) -> dict[str, Any]:
+    return {
+        "witness_id": witness.witness_id,
+        "session_id": witness.session_id,
+        "artifact_id": witness.artifact_id,
+        "gate_id": witness.gate_id,
+        "status": witness.status,
+        "severity": witness.severity,
+        "finding_codes": witness.finding_codes,
+        "finding_messages": witness.finding_messages[:3],
+        "radical_tags": witness.radical_tags,
+        "capsule_id": witness.capsule_id,
+        "language": witness.language,
+        "confidence": witness.confidence,
+        "provenance_score": witness.provenance_score,
+        "temporal": _encode_temporal(witness.temporal),
+        "block_hash": witness.block_hash,
+    }
+
+
+def _decode_witness(payload: dict[str, Any]) -> WitnessBlock:
+    raw = dict(payload)
+    return WitnessBlock(
+        witness_id=raw.get("witness_id", ""),
+        session_id=raw.get("session_id", ""),
+        artifact_id=raw.get("artifact_id", ""),
+        gate_id=raw.get("gate_id", ""),
+        status=raw.get("status", ""),
+        severity=raw.get("severity", ""),
+        finding_codes=list(raw.get("finding_codes", [])),
+        finding_messages=list(raw.get("finding_messages", [])),
+        radical_tags=list(raw.get("radical_tags", [])),
+        capsule_id=raw.get("capsule_id", ""),
+        language=raw.get("language", ""),
+        confidence=raw.get("confidence", ""),
+        provenance_score=float(raw.get("provenance_score", 1.0) or 1.0),
+        temporal=_decode_temporal(raw.get("temporal", {
+            "t_created": raw.get("t_created"),
+            "t_expired": raw.get("t_expired"),
+            "valid_from": raw.get("valid_from"),
+            "valid_until": raw.get("valid_until"),
+        })),
+        block_hash=raw.get("block_hash", ""),
+    )
+
+
+def _encode_semantic(block: SemanticBlock) -> dict[str, Any]:
+    return {
+        "semantic_id": block.semantic_id,
+        "claim": block.claim,
+        "claim_type": block.claim_type,
+        "radical_family": block.radical_family,
+        "capsule_family": block.capsule_family,
+        "status": block.status.value if isinstance(block.status, EpistemicStatus) else str(block.status),
+        "confidence": block.confidence,
+        "support_count": block.support_count,
+        "contradiction_count": block.contradiction_count,
+        "support_ids": block.support_ids,
+        "contradiction_ids": block.contradiction_ids,
+        "provenance_score": block.provenance_score,
+        "distortion_budget": block.distortion_budget,
+        "temporal": _encode_temporal(block.temporal),
+        "promotion_justification": block.promotion_justification,
+        "block_hash": block.block_hash,
+    }
+
+
+def _decode_semantic(payload: dict[str, Any]) -> SemanticBlock:
+    raw = dict(payload)
+    return SemanticBlock(
+        semantic_id=raw.get("semantic_id", ""),
+        claim=raw.get("claim", ""),
+        claim_type=raw.get("claim_type", ""),
+        radical_family=raw.get("radical_family", ""),
+        capsule_family=raw.get("capsule_family", ""),
+        status=EpistemicStatus(raw.get("status", EpistemicStatus.HYPOTHESIS.value)),
+        confidence=float(raw.get("confidence", 0.5) or 0.5),
+        support_count=int(raw.get("support_count", 0) or 0),
+        contradiction_count=int(raw.get("contradiction_count", 0) or 0),
+        support_ids=list(raw.get("support_ids", [])),
+        contradiction_ids=list(raw.get("contradiction_ids", [])),
+        provenance_score=float(raw.get("provenance_score", 1.0) or 1.0),
+        distortion_budget=float(raw.get("distortion_budget", 0.20) or 0.20),
+        temporal=_decode_temporal(raw.get("temporal", {})),
+        promotion_justification=raw.get("promotion_justification", ""),
+        block_hash=raw.get("block_hash", ""),
+    )
+
+
+def _encode_contradiction(block: ContradictionBlock) -> dict[str, Any]:
+    return {
+        "contradiction_id": block.contradiction_id,
+        "contradicts_semantic_id": block.contradicts_semantic_id,
+        "contradicts_claim": block.contradicts_claim,
+        "contradicting_witness_id": block.contradicting_witness_id,
+        "new_claim": block.new_claim,
+        "contradiction_type": block.contradiction_type,
+        "confidence": block.confidence,
+        "temporal": _encode_temporal(block.temporal),
+        "block_hash": block.block_hash,
+    }
+
+
+def _decode_contradiction(payload: dict[str, Any]) -> ContradictionBlock:
+    raw = dict(payload)
+    return ContradictionBlock(
+        contradiction_id=raw.get("contradiction_id", ""),
+        contradicts_semantic_id=raw.get("contradicts_semantic_id", ""),
+        contradicts_claim=raw.get("contradicts_claim", ""),
+        contradicting_witness_id=raw.get("contradicting_witness_id", ""),
+        new_claim=raw.get("new_claim", ""),
+        contradiction_type=raw.get("contradiction_type", ""),
+        confidence=float(raw.get("confidence", 1.0) or 1.0),
+        temporal=_decode_temporal(raw.get("temporal", {
+            "t_created": raw.get("t_created"),
+            "valid_from": raw.get("valid_from"),
+        })),
+        block_hash=raw.get("block_hash", ""),
+    )
+
+
 class SBUF:
     """
     Hippocampal fast-write working memory.
@@ -329,6 +469,15 @@ class ForgeContext:
         self.sbuf = SBUF()
 
     # ── Persistence ───────────────────────────────────────────────────
+
+    def _epmem_blocks(self) -> list[WitnessBlock]:
+        return [_decode_witness(entry) for entry in self._ctx.get("epmem", [])]
+
+    def _smem_blocks(self) -> list[SemanticBlock]:
+        return [_decode_semantic(entry) for entry in self._ctx.get("smem", [])]
+
+    def _contradiction_blocks(self) -> list[ContradictionBlock]:
+        return [_decode_contradiction(entry) for entry in self._ctx.get("contradictions", [])]
 
     def init(
         self,
@@ -485,28 +634,8 @@ class ForgeContext:
 
     def epmem_commit(self, witness: WitnessBlock) -> None:
         """Commit a WitnessBlock to durable EPMEM. Append-only."""
-        entry = {
-            "witness_id": witness.witness_id,
-            "session_id": witness.session_id,
-            "artifact_id": witness.artifact_id,
-            "gate_id": witness.gate_id,
-            "status": witness.status,
-            "severity": witness.severity,
-            "finding_codes": witness.finding_codes,
-            "finding_messages": witness.finding_messages[:3],  # trim for storage
-            "radical_tags": witness.radical_tags,
-            "capsule_id": witness.capsule_id,
-            "language": witness.language,
-            "confidence": witness.confidence,
-            "provenance_score": witness.provenance_score,
-            "t_created": witness.temporal.t_created,
-            "t_expired": witness.temporal.t_expired,
-            "valid_from": witness.temporal.valid_from,
-            "valid_until": witness.temporal.valid_until,
-            "block_hash": witness.block_hash,
-        }
         epmem = self._ctx["epmem"]
-        epmem.append(entry)
+        epmem.append(_encode_witness(witness))
         # Rolling window: keep last N entries
         max_e = self.CONSOLIDATION_CONFIG["max_epmem_entries"]
         if len(epmem) > max_e:
@@ -518,15 +647,15 @@ class ForgeContext:
         capsule_id: str | None = None,
         status: str | None = None,
         limit: int = 20,
-    ) -> list[dict]:
+    ) -> list[WitnessBlock]:
         """Query EPMEM by radical family, capsule, or status."""
-        results = []
-        for entry in reversed(self._ctx["epmem"]):
-            if radical_family and radical_family not in entry.get("radical_tags", []):
+        results: list[WitnessBlock] = []
+        for entry in reversed(self._epmem_blocks()):
+            if radical_family and radical_family not in entry.radical_tags:
                 continue
-            if capsule_id and entry.get("capsule_id") != capsule_id:
+            if capsule_id and entry.capsule_id != capsule_id:
                 continue
-            if status and entry.get("status") != status:
+            if status and entry.status != status:
                 continue
             results.append(entry)
             if len(results) >= limit:
@@ -561,28 +690,15 @@ class ForgeContext:
             temporal=BiTemporalBlock(valid_from=_now()),
             promotion_justification=justification,
         )
-        self._ctx["smem"].append({
-            **vars(block),
-            "status": block.status.value,
-            "temporal": {
-                "t_created": block.temporal.t_created,
-                "t_expired": block.temporal.t_expired,
-                "valid_from": block.temporal.valid_from,
-                "valid_until": block.temporal.valid_until,
-            },
-        })
+        self._ctx["smem"].append(_encode_semantic(block))
         return block
 
     def smem_advance(self, semantic_id: str, new_status: EpistemicStatus, justification: str = "") -> bool:
         """Advance a SMEM block to the next epistemic state."""
-        for block in self._ctx["smem"]:
-            if block.get("semantic_id") == semantic_id:
-                block["status"] = new_status.value
-                block["promotion_justification"] = justification
-                block["block_hash"] = _block_hash({
-                    "semantic_id": semantic_id,
-                    "status": new_status.value,
-                })
+        for idx, block in enumerate(self._smem_blocks()):
+            if block.semantic_id == semantic_id:
+                block.promote(new_status, justification)
+                self._ctx["smem"][idx] = _encode_semantic(block)
                 return True
         return False
 
@@ -591,20 +707,20 @@ class ForgeContext:
         radical_family: str | None = None,
         status: EpistemicStatus | None = None,
         limit: int = 20,
-    ) -> list[dict]:
+    ) -> list[SemanticBlock]:
         """Query SMEM by radical family and/or epistemic status."""
-        results = []
+        results: list[SemanticBlock] = []
         active_statuses = {
-            EpistemicStatus.STABLE_SEMANTIC.value,
-            EpistemicStatus.PROVISIONAL_SEMANTIC.value,
-            EpistemicStatus.HYPOTHESIS.value,
+            EpistemicStatus.STABLE_SEMANTIC,
+            EpistemicStatus.PROVISIONAL_SEMANTIC,
+            EpistemicStatus.HYPOTHESIS,
         }
-        for block in self._ctx["smem"]:
-            if block.get("status") not in active_statuses:
+        for block in self._smem_blocks():
+            if block.status not in active_statuses:
                 continue
-            if radical_family and block.get("radical_family") != radical_family:
+            if radical_family and block.radical_family != radical_family:
                 continue
-            if status and block.get("status") != status.value:
+            if status and block.status != status:
                 continue
             results.append(block)
             if len(results) >= limit:
@@ -623,19 +739,19 @@ class ForgeContext:
         priors: dict[str, dict] = {}
 
         # Calibrate per radical family
-        family_groups: dict[str, list] = {}
-        for block in self._ctx["smem"]:
-            if block.get("status") in (
-                EpistemicStatus.STABLE_SEMANTIC.value,
-                EpistemicStatus.PROVISIONAL_SEMANTIC.value,
+        family_groups: dict[str, list[SemanticBlock]] = {}
+        for block in self._smem_blocks():
+            if block.status in (
+                EpistemicStatus.STABLE_SEMANTIC,
+                EpistemicStatus.PROVISIONAL_SEMANTIC,
             ):
-                fam = block.get("radical_family", "UNKNOWN")
+                fam = block.radical_family or "UNKNOWN"
                 family_groups.setdefault(fam, []).append(block)
 
         calibrated: dict[str, float] = {}
         for fam, blocks in family_groups.items():
-            supports = [b.get("support_count", 1) for b in blocks]
-            confs = [b.get("confidence", 0.5) for b in blocks]
+            supports = [b.support_count or 1 for b in blocks]
+            confs = [b.confidence or 0.5 for b in blocks]
             avg_sup = sum(supports) / len(supports)
             mean_c = sum(confs) / len(confs)
             std_dev = (_math.sqrt(sum((c - mean_c) ** 2 for c in confs) / len(confs))
@@ -644,19 +760,19 @@ class ForgeContext:
             spread_factor = 1.0 + std_dev * 0.5
             calibrated[fam] = max(0.05, min(0.50, 0.20 * density_factor * spread_factor))
 
-        for block in self._ctx["smem"]:
-            if block.get("status") in (
-                EpistemicStatus.STABLE_SEMANTIC.value,
-                EpistemicStatus.PROVISIONAL_SEMANTIC.value,
+        for block in self._smem_blocks():
+            if block.status in (
+                EpistemicStatus.STABLE_SEMANTIC,
+                EpistemicStatus.PROVISIONAL_SEMANTIC,
             ):
-                cid = block.get("capsule_family", "")
+                cid = block.capsule_family
                 if cid:
-                    fam = block.get("radical_family", "UNKNOWN")
+                    fam = block.radical_family or "UNKNOWN"
                     priors[cid] = {
-                        "fires": block.get("support_count", 1),
-                        "confidence": block.get("confidence", 0.5),
-                        "status": block.get("status"),
-                        "claim": block.get("claim", ""),
+                        "fires": block.support_count or 1,
+                        "confidence": block.confidence or 0.5,
+                        "status": block.status.value,
+                        "claim": block.claim,
                         "radical_family": fam,
                         "distortion_budget": calibrated.get(fam, 0.20),
                     }
@@ -682,15 +798,13 @@ class ForgeContext:
         sets valid_until of old belief = valid_from of new evidence.
         """
         contradicts_claim = ""
-        for block in self._ctx["smem"]:
-            if block.get("semantic_id") == contradicts_semantic_id:
-                contradicts_claim = block.get("claim", "")
-                # Zep mechanism: set valid_until = now (valid_from of contradicting evidence)
-                if "temporal" in block:
-                    block["temporal"]["valid_until"] = _now()
-                    block["temporal"]["t_expired"] = _now()
-                block["status"] = EpistemicStatus.CONTRADICTED.value
-                block["contradiction_count"] = block.get("contradiction_count", 0) + 1
+        for idx, block in enumerate(self._smem_blocks()):
+            if block.semantic_id == contradicts_semantic_id:
+                contradicts_claim = block.claim
+                block.temporal.expire()
+                block.status = EpistemicStatus.CONTRADICTED
+                block.contradiction_count += 1
+                self._ctx["smem"][idx] = _encode_semantic(block)
                 break
 
         cb = ContradictionBlock(
@@ -700,18 +814,7 @@ class ForgeContext:
             new_claim=new_claim,
             contradiction_type=contradiction_type,
         )
-        self._ctx["contradictions"].append({
-            "contradiction_id": cb.contradiction_id,
-            "contradicts_semantic_id": cb.contradicts_semantic_id,
-            "contradicts_claim": cb.contradicts_claim,
-            "contradicting_witness_id": cb.contradicting_witness_id,
-            "new_claim": cb.new_claim,
-            "contradiction_type": cb.contradiction_type,
-            "confidence": cb.confidence,
-            "t_created": cb.temporal.t_created,
-            "valid_from": cb.temporal.valid_from,
-            "block_hash": cb.block_hash,
-        })
+        self._ctx["contradictions"].append(_encode_contradiction(cb))
         return cb
 
     # ── Contradiction Graph queries (TM-006) ─────────────────────────
@@ -720,45 +823,40 @@ class ForgeContext:
     # These methods provide the same query interface as the Rust ContradictionGraph,
     # enabling drop-in replacement once a proper DiGraph is warranted.
 
-    def contradiction_active_roots(self) -> list[dict]:
+    def contradiction_active_roots(self) -> list[SemanticBlock]:
         """
         Return SMEM blocks that have no incoming contradiction edges AND are not
         contradicted. These represent the current worldview — what CIL believes now.
         Mirrors Rust ContradictionGraph.active_roots().
         """
-        contradicted_ids = {
-            c["contradicts_semantic_id"]
-            for c in self._ctx.get("contradictions", [])
-        }
+        contradicted_ids = {c.contradicts_semantic_id for c in self._contradiction_blocks()}
         return [
-            b for b in self._ctx.get("smem", [])
-            if b.get("semantic_id") not in contradicted_ids
-            and b.get("status") != EpistemicStatus.CONTRADICTED.value
+            b for b in self._smem_blocks()
+            if b.semantic_id not in contradicted_ids
+            and b.status != EpistemicStatus.CONTRADICTED
         ]
 
-    def contradiction_chain(self, semantic_id: str) -> list[dict]:
+    def contradiction_chain(self, semantic_id: str) -> list[ContradictionBlock]:
         """
         Return all contradictions reachable from a given semantic_id
         (full refutation ancestry via DFS over the contradiction list).
         Mirrors Rust ContradictionGraph.contradiction_chain().
         """
         visited: set[str] = set()
-        result: list[dict] = []
+        result: list[ContradictionBlock] = []
         queue = [semantic_id]
-        contradictions = self._ctx.get("contradictions", [])
+        contradictions = self._contradiction_blocks()
         while queue:
             sid = queue.pop()
             if sid in visited:
                 continue
             visited.add(sid)
             for c in contradictions:
-                if c.get("contradicts_semantic_id") == sid:
+                if c.contradicts_semantic_id == sid:
                     result.append(c)
-                    # Follow chain: the contradicting_witness may point to a newer belief
-                    # Look for any SMEM block that introduced this contradicting witness
-                    for b in self._ctx.get("smem", []):
-                        if b.get("semantic_id") == c.get("contradicting_witness_id"):
-                            queue.append(b["semantic_id"])
+                    for b in self._smem_blocks():
+                        if b.semantic_id == c.contradicting_witness_id:
+                            queue.append(b.semantic_id)
         return result
 
     def contradiction_summary(self) -> dict:
@@ -766,10 +864,10 @@ class ForgeContext:
         Return a summary suitable for the compile_context Retrieval Compiler.
         Mirrors Rust ContradictionGraph.summary().
         """
-        contradictions = self._ctx.get("contradictions", [])
-        smem = self._ctx.get("smem", [])
+        contradictions = self._contradiction_blocks()
+        smem = self._smem_blocks()
         active_roots = self.contradiction_active_roots()
-        contradicted = [b for b in smem if b.get("status") == EpistemicStatus.CONTRADICTED.value]
+        contradicted = [b for b in smem if b.status == EpistemicStatus.CONTRADICTED]
         return {
             "total_beliefs": len(smem),
             "active_beliefs": len(active_roots),
@@ -797,14 +895,7 @@ class ForgeContext:
         if not witnesses:
             return {"committed": 0, "promoted": 0, "contradictions": 0}
 
-        existing_smem = [
-            SemanticBlock(**{
-                k: (EpistemicStatus(v) if k == "status" else v)
-                for k, v in b.items()
-                if k not in ("temporal", "block_hash")
-            })
-            for b in self._ctx["smem"]
-        ]
+        existing_smem = self._smem_blocks()
 
         committed = 0
         promoted = 0
@@ -876,18 +967,16 @@ class ForgeContext:
                 promoted += 1
             else:
                 # Strengthen existing belief
-                for block in self._ctx["smem"]:
-                    if block.get("capsule_family") == capsule_id:
-                        block["support_count"] = block.get("support_count", 0) + len(witness_ids)
-                        block["support_ids"] = block.get("support_ids", []) + witness_ids
-                        # Advance to stable if enough support
-                        if (block.get("status") == EpistemicStatus.HYPOTHESIS.value and
-                                block["support_count"] >= min_support):
-                            block["status"] = EpistemicStatus.PROVISIONAL_SEMANTIC.value
+                for idx, block in enumerate(self._smem_blocks()):
+                    if block.capsule_family == capsule_id:
+                        block.support_count += len(witness_ids)
+                        block.support_ids.extend(witness_ids)
+                        if block.status == EpistemicStatus.HYPOTHESIS and block.support_count >= min_support:
+                            block.status = EpistemicStatus.PROVISIONAL_SEMANTIC
                             promoted += 1
-                        elif (block.get("status") == EpistemicStatus.PROVISIONAL_SEMANTIC.value and
-                                block["support_count"] >= min_support * 2):
-                            block["status"] = EpistemicStatus.STABLE_SEMANTIC.value
+                        elif block.status == EpistemicStatus.PROVISIONAL_SEMANTIC and block.support_count >= min_support * 2:
+                            block.status = EpistemicStatus.STABLE_SEMANTIC
+                        self._ctx["smem"][idx] = _encode_semantic(block)
 
         # Update legacy genome_priors (backward compat)
         for w in witnesses:
@@ -937,30 +1026,30 @@ class ForgeContext:
         if radical_hints:
             stable = [
                 b for b in stable
-                if b.get("radical_family") in radical_hints
+                if b.radical_family in radical_hints
             ]
         if stable:
             parts.append("## Project Semantic Memory (Stable Beliefs)")
             for b in stable[:max_semantic]:
-                status_tag = "✓ STABLE" if b["status"] == EpistemicStatus.STABLE_SEMANTIC.value else "~ PROVISIONAL"
+                status_tag = "✓ STABLE" if b.status == EpistemicStatus.STABLE_SEMANTIC else "~ PROVISIONAL"
                 parts.append(
-                    f"  [{status_tag}] {b['claim']} "
-                    f"(family={b.get('radical_family','?')}, "
-                    f"confidence={b.get('confidence',0):.2f}, "
-                    f"support={b.get('support_count',0)})"
+                    f"  [{status_tag}] {b.claim} "
+                    f"(family={b.radical_family or '?'}, "
+                    f"confidence={b.confidence:.2f}, "
+                    f"support={b.support_count})"
                 )
 
         # 2. Recent EPMEM witnesses (what the forge has actually seen)
-        recent_epmem = list(reversed(self._ctx["epmem"]))[:max_witnesses]
+        recent_epmem = list(reversed(self._epmem_blocks()))[:max_witnesses]
         if recent_epmem:
             parts.append("\n## Recent Episodic Witnesses (Gate Results)")
             for e in recent_epmem:
-                codes = ", ".join(e.get("finding_codes", []))
+                codes = ", ".join(e.finding_codes)
                 parts.append(
-                    f"  [{e.get('status','?').upper()}] {e.get('gate_id','?')} "
+                    f"  [{e.status.upper() if e.status else '?'}] {e.gate_id or '?'} "
                     f"| codes: {codes or 'none'} "
-                    f"| capsule: {e.get('capsule_id','?')} "
-                    f"| lang: {e.get('language','?')}"
+                    f"| capsule: {e.capsule_id or '?'} "
+                    f"| lang: {e.language or '?'}"
                 )
 
         # 3. Open contradictions (unresolved tensions)
@@ -970,12 +1059,12 @@ class ForgeContext:
             parts.append(f"## Contradiction Graph\n  {c_summary['summary']}")
             if c_summary["contradicted_beliefs"] > 0:
                 parts.append(f"  ({c_summary['contradicted_beliefs']} beliefs currently contradicted)")
-            recent_contradictions = self._ctx["contradictions"][-5:]
+            recent_contradictions = self._contradiction_blocks()[-5:]
             parts.append("\n## Open Contradictions (Unresolved)")
             for c in recent_contradictions:
                 parts.append(
-                    f"  [CONTRADICTION] {c.get('contradiction_type','?')}: "
-                    f"'{c.get('contradicts_claim','?')[:80]}'"
+                    f"  [CONTRADICTION] {c.contradiction_type or '?'}: "
+                    f"'{c.contradicts_claim[:80]}'"
                 )
 
         # 4. Top genome priors
