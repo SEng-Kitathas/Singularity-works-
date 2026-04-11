@@ -6,6 +6,7 @@ from __future__ import annotations
 from collections.abc import Mapping
 
 from .ast_primitives import is_open_call
+from .genome import AntiPatternSpec, GenomeBundle, GenomePatternSelection
 from .interprocedural import analyze as _interproc_analyze
 import ast
 import io
@@ -73,41 +74,6 @@ class _Detection:
     def __post_init__(self) -> None:
         if not isinstance(self.evidence, DetectionEvidence):
             self.evidence = DetectionEvidence.from_raw(self.evidence)
-
-
-@dataclass(frozen=True)
-class AntiPatternSpec:
-    anti_pattern_id: str
-    detection_strategy: str
-    severity: str = "medium"
-    transformation_axiom: str = ""
-    auto_apply: bool = False
-    safety_level: str = "review_required"
-
-    @classmethod
-    def from_raw(cls, raw: dict[str, Any]) -> "AntiPatternSpec | None":
-        anti_pattern_id = str(raw.get("id", "") or "")
-        detection_strategy = str(raw.get("detection_strategy", "") or "")
-        if not anti_pattern_id or not detection_strategy:
-            return None
-        return cls(
-            anti_pattern_id=anti_pattern_id,
-            detection_strategy=detection_strategy,
-            severity=str(raw.get("severity", "medium") or "medium"),
-            transformation_axiom=str(raw.get("transformation_axiom", "") or ""),
-            auto_apply=bool(raw.get("auto_apply", False)),
-            safety_level=str(raw.get("safety_level", "review_required") or "review_required"),
-        )
-
-
-@dataclass(frozen=True)
-class BundlePatternSelection:
-    pattern_id: str
-
-    @classmethod
-    def from_raw(cls, raw: dict[str, Any]) -> "BundlePatternSelection | None":
-        pattern_id = str(raw.get("pattern_id", "") or "")
-        return cls(pattern_id=pattern_id) if pattern_id else None
 
 
 @dataclass(frozen=True)
@@ -1300,19 +1266,16 @@ def genome_gate_factory(capsule: "GenomeCapsule") -> list[Gate]:
     """
     gates: list[Gate] = []
     for ap in capsule.anti_patterns:
-        if not isinstance(ap, dict):
+        if not isinstance(ap, AntiPatternSpec):
             continue
-        spec = AntiPatternSpec.from_raw(ap)
-        if spec is None:
-            continue
-        gate = _build_gate(capsule, spec)
+        gate = _build_gate(capsule, ap)
         if gate is not None:
             gates.append(gate)
     return gates
 
 
 def genome_gates_from_bundle(
-    bundle: dict,
+    bundle: GenomeBundle,
     genome: "RadicalMapGenome",
 ) -> list[Gate]:
     """
@@ -1322,12 +1285,7 @@ def genome_gates_from_bundle(
     """
     gates: list[Gate] = []
     seen_gate_ids: set[str] = set()
-    for pattern_summary in bundle.get("selected_patterns", []):
-        if not isinstance(pattern_summary, dict):
-            continue
-        selection = BundlePatternSelection.from_raw(pattern_summary)
-        if selection is None:
-            continue
+    for selection in bundle.selected_patterns:
         capsule = genome.by_id.get(selection.pattern_id)
         if capsule is None:
             continue

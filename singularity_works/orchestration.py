@@ -9,7 +9,7 @@ from .enforcement import EnforcementEngine, GateRunSummary
 from .forge_context import ForgeContext
 from .facts import Fact, FactBus
 from .fractal_cycle import FractalCycle, FractalStage
-from .genome import RadicalMapGenome
+from .genome import GenomeBundle, RadicalMapGenome
 from .genome_gate_factory import genome_gates_from_bundle, iris_escalate, DynamicCapsule
 from .cil_council import CILCouncil
 from .language_front_door import build_ir
@@ -123,7 +123,7 @@ class OrchestrationResult:
     transformation_plan: list[TransformationCandidate]
     applied_transformations: list[AppliedTransformation]
     fact_summary: dict
-    genome_bundle: dict
+    genome_bundle: GenomeBundle
     escalation_decision: "dict | None" = None  # populated by escalation_gate.evaluate()
     starmap_topology: "dict | None" = None  # populated by forge_starmap.build_evidence_topology()
     lbe_result: "dict | None" = None       # populated by lbe_pilot.analyze() when escalation routes to LBE
@@ -309,9 +309,9 @@ class Orchestrator:
         content: str,
         pattern: PatternIR,
         semantic_ir: "UniversalSemanticIR | None" = None,
-    ) -> dict:
+    ) -> GenomeBundle:
         if self.genome is None:
-            return {"selected_patterns": []}
+            return GenomeBundle.empty()
         capabilities = self._task_capabilities(requirement, content, pattern, semantic_ir=semantic_ir)
         # Use detected language from semantic IR — structural nativity.
         # "python" was the wrong default; the forge is language-agnostic.
@@ -524,7 +524,7 @@ class Orchestrator:
         artifact: Artifact,
         recovery,
         pattern,
-        genome_bundle: dict,
+        genome_bundle: GenomeBundle,
         session_key: str,
         semantic_ir: "UniversalSemanticIR | None" = None,
     ):
@@ -546,7 +546,7 @@ class Orchestrator:
             "claim_ids": claim_ids,
             "protocol_model": protocol_model,
             "pattern": pattern.to_dict(),
-            "genome_bundle": genome_bundle,
+            "genome_bundle": genome_bundle.to_legacy_dict(),
             # Universal Semantic IR: language-agnostic substrate for all gates.
             # Gates that need richer semantic structure pull from here.
             # None means IR was not built (e.g. post-transformation re-evaluation).
@@ -979,7 +979,7 @@ class Orchestrator:
                 radicals=pattern.radicals,
                 requirement_id=requirement.requirement_id,
                 linked_laws=pattern.evidence_hooks.linked_laws,
-                genome_bundle=genome_bundle,
+                genome_bundle=genome_bundle.to_legacy_dict(),
                 linked_requirements=[requirement.requirement_id],
             ),
         )
@@ -994,18 +994,18 @@ class Orchestrator:
             confidence="high",
             linked_laws=pattern.evidence_hooks.linked_laws,
         )
-        for selected in genome_bundle.get("selected_patterns", []):
+        for selected in genome_bundle.selected_patterns:
             self._publish_fact(
                 "genome_pattern_selected",
                 ctx.session_id,
                 {
-                    "pattern_id": selected["pattern_id"],
-                    "family": selected["family"],
-                    "radicals": selected["radicals"],
-                    "emitters": selected["emitters"],
+                    "pattern_id": selected.pattern_id,
+                    "family": selected.family,
+                    "radicals": selected.radicals,
+                    "emitters": selected.emitters,
                 },
                 confidence="moderate",
-                linked_laws=selected.get("laws", []),
+                linked_laws=selected.laws,
             )
         recovery = self.recovery.derive(requirement, candidate_content)
         fractal_cycle.mark(
@@ -1060,7 +1060,7 @@ class Orchestrator:
             metadata={
                 "recovery_confidence": recovery.confidence,
                 "recovery_rationale": recovery.rationale,
-                "genome_bundle": genome_bundle,
+                "genome_bundle": genome_bundle.to_legacy_dict(),
             },
         )
         self._publish_fact(
@@ -1156,7 +1156,7 @@ class Orchestrator:
                     metadata={
                         "recovery_confidence": transformed_recovery.confidence,
                         "recovery_rationale": transformed_recovery.rationale,
-                        "genome_bundle": genome_bundle,
+                        "genome_bundle": genome_bundle.to_legacy_dict(),
                     },
                 )
                 embodiment_trace.transformed_artifact_id = artifact.artifact_id

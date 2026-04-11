@@ -110,7 +110,7 @@ def _summary(base_dir: Path, ctx: RunContext, result, req: Requirement, orchestr
         "switchboard_decisions": switchboard_decisions,
         "propagations": propagations,
         "linked_laws": result.pattern.get("linked_laws", []),
-        "genome_bundle": result.genome_bundle,
+        "genome_bundle": result.genome_bundle.to_legacy_dict(),
         "fact_summary": result.fact_summary,
     }
 

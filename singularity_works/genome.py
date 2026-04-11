@@ -14,6 +14,135 @@ def _dict() -> dict:
     return {}
 
 
+@dataclass(frozen=True)
+class AntiPatternSpec:
+    anti_pattern_id: str
+    detection_strategy: str
+    severity: str = "medium"
+    transformation_axiom: str = ""
+    auto_apply: bool = False
+    safety_level: str = "review_required"
+
+    @classmethod
+    def from_raw(cls, raw: str | dict[str, Any] | "AntiPatternSpec") -> str | "AntiPatternSpec" | None:
+        if isinstance(raw, cls):
+            return raw
+        if isinstance(raw, str):
+            return raw
+        anti_pattern_id = str(raw.get("id", "") or "")
+        detection_strategy = str(raw.get("detection_strategy", "") or "")
+        if not anti_pattern_id or not detection_strategy:
+            return None
+        return cls(
+            anti_pattern_id=anti_pattern_id,
+            detection_strategy=detection_strategy,
+            severity=str(raw.get("severity", "medium") or "medium"),
+            transformation_axiom=str(raw.get("transformation_axiom", "") or ""),
+            auto_apply=bool(raw.get("auto_apply", False)),
+            safety_level=str(raw.get("safety_level", "review_required") or "review_required"),
+        )
+
+    def to_legacy_dict(self) -> dict[str, Any]:
+        return {
+            "id": self.anti_pattern_id,
+            "detection_strategy": self.detection_strategy,
+            "severity": self.severity,
+            "transformation_axiom": self.transformation_axiom,
+            "auto_apply": self.auto_apply,
+            "safety_level": self.safety_level,
+        }
+
+
+@dataclass(frozen=True)
+class GenomePatternSelection:
+    pattern_id: str
+    family: str
+    radicals: list[str]
+    summary: str
+    emitters: list[str]
+    transformation_axioms: list[str]
+    laws: list[str]
+    capabilities: list[str]
+
+    @classmethod
+    def from_capsule(cls, capsule: "GenomeCapsule") -> "GenomePatternSelection":
+        return cls(
+            pattern_id=capsule.pattern_id,
+            family=capsule.family,
+            radicals=capsule.radicals[:],
+            summary=capsule.summary,
+            emitters=capsule.emitters[:],
+            transformation_axioms=capsule.transformation_axioms[:],
+            laws=capsule.laws[:],
+            capabilities=capsule.capabilities[:],
+        )
+
+    @classmethod
+    def from_raw(cls, raw: dict[str, Any]) -> "GenomePatternSelection | None":
+        pattern_id = str(raw.get("pattern_id", "") or "")
+        if not pattern_id:
+            return None
+        return cls(
+            pattern_id=pattern_id,
+            family=str(raw.get("family", "") or ""),
+            radicals=list(raw.get("radicals", [])),
+            summary=str(raw.get("summary", "") or ""),
+            emitters=list(raw.get("emitters", [])),
+            transformation_axioms=list(raw.get("transformation_axioms", [])),
+            laws=list(raw.get("laws", [])),
+            capabilities=list(raw.get("capabilities", [])),
+        )
+
+    def to_legacy_dict(self) -> dict[str, Any]:
+        return {
+            "pattern_id": self.pattern_id,
+            "family": self.family,
+            "radicals": self.radicals,
+            "summary": self.summary,
+            "emitters": self.emitters,
+            "transformation_axioms": self.transformation_axioms,
+            "laws": self.laws,
+            "capabilities": self.capabilities,
+        }
+
+
+@dataclass(frozen=True)
+class GenomeBundle:
+    language: str
+    capabilities: list[str]
+    preferred_radicals: list[str]
+    budget_weights: dict[str, float]
+    selected_patterns: list[GenomePatternSelection]
+
+    @classmethod
+    def empty(cls) -> "GenomeBundle":
+        return cls(language="", capabilities=[], preferred_radicals=[], budget_weights={}, selected_patterns=[])
+
+    @classmethod
+    def from_raw(cls, raw: dict[str, Any]) -> "GenomeBundle":
+        return cls(
+            language=str(raw.get("language", "") or ""),
+            capabilities=list(raw.get("capabilities", [])),
+            preferred_radicals=list(raw.get("preferred_radicals", [])),
+            budget_weights={str(k): float(v) for k, v in dict(raw.get("budget_weights", {})).items()},
+            selected_patterns=[
+                selection for item in raw.get("selected_patterns", [])
+                if isinstance(item, dict)
+                for selection in [GenomePatternSelection.from_raw(item)]
+                if selection is not None
+            ],
+        )
+
+    def to_legacy_dict(self) -> dict[str, Any]:
+        return {
+            "language": self.language,
+            "capabilities": self.capabilities,
+            "preferred_radicals": self.preferred_radicals,
+            "budget_weights": self.budget_weights,
+            "selected_patterns": [item.to_legacy_dict() for item in self.selected_patterns],
+        }
+
+
 @dataclass
 class GenomeCapsule:
     pattern_id: str
@@ -21,7 +150,7 @@ class GenomeCapsule:
     radicals: list[str]
     summary: str
     invariants: list[str] = field(default_factory=_list)
-    anti_patterns: list[str | dict] = field(default_factory=_list)
+    anti_patterns: list[str | AntiPatternSpec] = field(default_factory=_list)
     language_manifestations: dict[str, list[str]] = field(default_factory=_dict)
     emitters: list[str] = field(default_factory=_list)
     transformation_axioms: list[str] = field(default_factory=_list)
@@ -31,6 +160,15 @@ class GenomeCapsule:
     # e.g. "ownership_linearity_capability" — same pattern appearing as
     # Rust borrow checking, linear types, capability systems, RAII etc.
     isomorph_class: str = ""
+
+    def __post_init__(self) -> None:
+        normalized: list[str | AntiPatternSpec] = []
+        for anti_pattern in self.anti_patterns:
+            parsed = AntiPatternSpec.from_raw(anti_pattern)
+            if parsed is None:
+                continue
+            normalized.append(parsed)
+        self.anti_patterns = normalized
 
 
 class RadicalMap:
@@ -155,7 +293,7 @@ class RadicalMapGenome:
         capabilities: list[str],
         preferred_radicals: list[str] | None = None,
         budget_weights: "dict[str, float] | None" = None,
-    ) -> dict[str, Any]:
+    ) -> GenomeBundle:
         # Use RadicalMap for scored, ranked selection.
         # Capability overlap is the primary filter; radical overlap is a boost.
         # budget_weights: maps capsule_id → calibrated distortion_budget.
@@ -181,22 +319,10 @@ class RadicalMapGenome:
                 # Lower budget → higher priority (invert and normalize to 0–1)
                 return 1.0 - budget
             selected.sort(key=_priority, reverse=True)
-        return {
-            "language": language,
-            "capabilities": capabilities,
-            "preferred_radicals": preferred_radicals or [],
-            "budget_weights": budget_weights or {},
-            "selected_patterns": [
-                {
-                    "pattern_id": capsule.pattern_id,
-                    "family": capsule.family,
-                    "radicals": capsule.radicals,
-                    "summary": capsule.summary,
-                    "emitters": capsule.emitters,
-                    "transformation_axioms": capsule.transformation_axioms,
-                    "laws": capsule.laws,
-                    "capabilities": capsule.capabilities,
-                }
-                for capsule in selected
-            ],
-        }
+        return GenomeBundle(
+            language=language,
+            capabilities=capabilities[:],
+            preferred_radicals=(preferred_radicals or [])[:],
+            budget_weights=dict(budget_weights or {}),
+            selected_patterns=[GenomePatternSelection.from_capsule(capsule) for capsule in selected],
+        )
