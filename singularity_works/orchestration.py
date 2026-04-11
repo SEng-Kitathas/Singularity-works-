@@ -341,11 +341,20 @@ class Orchestrator:
 
     def _append_trace(self, link: TraceLink) -> None:
         self.traces.add(link)
+        from .evidence_ledger import TraceLinkLedgerPayload
         linked_requirements = [link.source_id] if link.source_id.startswith("REQ") else []
         self._record(
             "trace_link",
             f"{link.source_id}->{link.target_id}:{link.link_type}",
-            link.to_dict() | {"linked_requirements": linked_requirements},
+            TraceLinkLedgerPayload(
+                source_id=link.source_id,
+                target_id=link.target_id,
+                link_type=link.link_type,
+                confidence=link.confidence,
+                evidence_refs=link.evidence_refs,
+                metadata=link.metadata,
+                linked_requirements=linked_requirements,
+            ),
         )
 
     def _suggestion_from_evidence(self, result, finding, evidence: dict) -> TransformationSuggestion | None:

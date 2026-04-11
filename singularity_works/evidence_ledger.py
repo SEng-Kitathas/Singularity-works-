@@ -10,6 +10,17 @@ from .models import AssuranceClaim
 
 
 @dataclass
+class TraceLinkLedgerPayload:
+    source_id: str = ""
+    target_id: str = ""
+    link_type: str = ""
+    confidence: str = "moderate"
+    evidence_refs: list[str] = field(default_factory=list)
+    metadata: dict[str, Any] = field(default_factory=dict)
+    linked_requirements: list[str] = field(default_factory=list)
+
+
+@dataclass
 class AssuranceClaimLedgerPayload:
     claim_id: str = ""
     claim_text: str = ""
@@ -133,6 +144,10 @@ def _decode_assurance_claim_payload(payload: dict[str, Any] | None) -> Assurance
     return AssuranceClaimLedgerPayload(**(payload or {}))
 
 
+def _decode_trace_link_payload(payload: dict[str, Any] | None) -> TraceLinkLedgerPayload:
+    return TraceLinkLedgerPayload(**(payload or {}))
+
+
 def _decode_assurance_rollup_payload(payload: dict[str, Any] | None) -> AssuranceRollupLedgerPayload:
     raw = dict(payload or {})
     raw["claims"] = [AssuranceClaim(**item) for item in raw.get("claims", [])]
@@ -219,6 +234,13 @@ class EvidenceLedger:
             if rec.get("record_type") == "assurance_claim"
         ]
 
+    def trace_links_typed(self, session_id: str | None = None) -> list[TraceLinkLedgerPayload]:
+        return [
+            _decode_trace_link_payload(rec.get("payload", {}))
+            for rec in self._session_records(session_id)
+            if rec.get("record_type") == "trace_link"
+        ]
+
     def rollup_status_counts(self, session_id: str | None = None) -> dict[str, int]:
         counts = {"pass": 0, "warn": 0, "fail": 0, "residual": 0}
         for payload in self.gate_results_typed(session_id):
@@ -272,6 +294,7 @@ class EvidenceLedger:
                     else asdict(risk_payload) if risk_payload is not None
                     else asdict(assurance_claim_payload) if assurance_claim_payload is not None
                     else asdict(assurance_rollup_payload) if assurance_rollup_payload is not None
+                    else asdict(trace_link_payload) if trace_link_payload is not None
                     else payload
                 )
         if any(x.get("status") == "fail" for x in out["monitor_events"]):
@@ -318,12 +341,14 @@ class EvidenceLedger:
             risk_payload = _decode_risk_payload(payload) if rec.get("record_type") == "risk" else None
             assurance_claim_payload = _decode_assurance_claim_payload(payload) if rec.get("record_type") == "assurance_claim" else None
             assurance_rollup_payload = _decode_assurance_rollup_payload(payload) if rec.get("record_type") == "assurance_rollup" else None
+            trace_link_payload = _decode_trace_link_payload(payload) if rec.get("record_type") == "trace_link" else None
             linked_requirements = (
                 gate_payload.linked_requirements if gate_payload is not None
                 else monitor_payload.linked_requirements if monitor_payload is not None
                 else risk_payload.linked_requirements if risk_payload is not None
                 else assurance_claim_payload.linked_requirements if assurance_claim_payload is not None
                 else assurance_rollup_payload.linked_requirements if assurance_rollup_payload is not None
+                else trace_link_payload.linked_requirements if trace_link_payload is not None
                 else payload.get("linked_requirements", [])
             )
             payload_requirement_id = (
