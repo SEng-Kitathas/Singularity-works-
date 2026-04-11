@@ -26,6 +26,24 @@ class TaintChainPayload:
 
 
 @dataclass
+class TrustBoundaryPayload:
+    source: str = "unknown"
+    boundary_type: str = "UNKNOWN"
+    sink_name: str = ""
+    sink_line: int = 0
+    tainted_input: str | None = None
+    directed: bool = False
+    source_line: int = 0
+    source_type: str = "UNKNOWN"
+    hops: int = 0
+    structure_id: str = ""
+    dangerous_calls: list[str] = field(default_factory=_list)
+
+    def to_payload(self) -> dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass
 class Fact:
     fact_id: str
     fact_type: str
@@ -38,6 +56,29 @@ class Fact:
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
+
+    @classmethod
+    def from_trust_boundary(
+        cls,
+        *,
+        fact_id: str,
+        scope: str,
+        confidence: str,
+        payload: TrustBoundaryPayload,
+        linked_laws: list[str] | None = None,
+        evidence_refs: list[str] | None = None,
+        upstream_facts: list[str] | None = None,
+    ) -> "Fact":
+        return cls(
+            fact_id=fact_id,
+            fact_type="trust_boundary_crossed",
+            scope=scope,
+            confidence=confidence,
+            payload=payload.to_payload(),
+            evidence_refs=evidence_refs or [],
+            linked_laws=linked_laws or [],
+            upstream_facts=upstream_facts or [],
+        )
 
     @classmethod
     def from_taint_chain(
@@ -92,6 +133,27 @@ class FactBus:
                 )
             )
         return chains
+
+    def trust_boundaries(self) -> list[TrustBoundaryPayload]:
+        boundaries: list[TrustBoundaryPayload] = []
+        for fact in self.by_type("trust_boundary_crossed"):
+            payload = fact.payload or {}
+            boundaries.append(
+                TrustBoundaryPayload(
+                    source=payload.get("source", "unknown"),
+                    boundary_type=payload.get("boundary_type", "UNKNOWN"),
+                    sink_name=payload.get("sink_name", ""),
+                    sink_line=int(payload.get("sink_line", 0) or 0),
+                    tainted_input=payload.get("tainted_input"),
+                    directed=bool(payload.get("directed", False)),
+                    source_line=int(payload.get("source_line", 0) or 0),
+                    source_type=payload.get("source_type", "UNKNOWN"),
+                    hops=int(payload.get("hops", 0) or 0),
+                    structure_id=payload.get("structure_id", ""),
+                    dangerous_calls=list(payload.get("dangerous_calls", [])),
+                )
+            )
+        return boundaries
 
     def all_types(self) -> set[str]:
         return {f.fact_type for f in self.facts}

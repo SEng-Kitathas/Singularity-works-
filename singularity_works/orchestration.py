@@ -532,15 +532,19 @@ class Orchestrator:
         for structure in recovery.structures:
             if structure.structure_type == "trust_boundary":
                 # Content analysis found dangerous calls or verify=False — real signal
-                self._publish_fact(
-                    "trust_boundary_crossed",
-                    artifact.artifact_id,
-                    {
-                        "structure_id": structure.structure_id,
-                        "dangerous_calls": structure.payload.get("dangerous_calls", []),
-                    },
-                    confidence=structure.confidence,
-                    linked_laws=pattern.evidence_hooks.linked_laws,
+                from .facts import Fact as _Fact, TrustBoundaryPayload as _TrustBoundaryPayload
+                self.facts.publish(
+                    _Fact.from_trust_boundary(
+                        fact_id=f"{artifact.artifact_id}:trust_boundary_crossed:{len(self.facts.facts)}",
+                        scope=artifact.artifact_id,
+                        confidence=structure.confidence,
+                        payload=_TrustBoundaryPayload(
+                            source="recovery",
+                            structure_id=structure.structure_id,
+                            dangerous_calls=list(structure.payload.get("dangerous_calls", [])),
+                        ),
+                        linked_laws=pattern.evidence_hooks.linked_laws,
+                    )
                 )
             elif structure.structure_type == "resource_protocol":
                 # Only flag as dangerous sink if resource is genuinely unclosed
@@ -586,22 +590,25 @@ class Orchestrator:
             for tb in semantic_ir.unvalidated_boundaries():
                 # Publish trust_boundary_crossed with directed chain info
                 chain = tb.to_chain_dict()
-                self._publish_fact(
-                    "trust_boundary_crossed",
-                    artifact.artifact_id,
-                    {
-                        "source": "semantic_ir",
-                        "boundary_type": tb.boundary_type,
-                        "sink_name": tb.sink_name,
-                        "sink_line": tb.sink_line,
-                        "tainted_input": tb.tainted_input,
-                        "directed": chain["directed"],
-                        "source_line": chain["source_line"],
-                        "source_type": chain["source_type"],
-                        "hops": chain["hops"],
-                    },
-                    confidence=tb.confidence,
-                    linked_laws=pattern.evidence_hooks.linked_laws,
+                from .facts import Fact as _Fact, TrustBoundaryPayload as _TrustBoundaryPayload
+                self.facts.publish(
+                    _Fact.from_trust_boundary(
+                        fact_id=f"{artifact.artifact_id}:trust_boundary_crossed:{len(self.facts.facts)}",
+                        scope=artifact.artifact_id,
+                        confidence=tb.confidence,
+                        payload=_TrustBoundaryPayload(
+                            source="semantic_ir",
+                            boundary_type=tb.boundary_type,
+                            sink_name=tb.sink_name,
+                            sink_line=int(tb.sink_line or 0),
+                            tainted_input=tb.tainted_input,
+                            directed=bool(chain["directed"]),
+                            source_line=int(chain["source_line"] or 0),
+                            source_type=chain["source_type"],
+                            hops=int(chain["hops"] or 0),
+                        ),
+                        linked_laws=pattern.evidence_hooks.linked_laws,
+                    )
                 )
                 # Publish directed taint_chain fact for multi-hop derivation
                 if tb.is_directed():

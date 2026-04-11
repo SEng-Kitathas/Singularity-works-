@@ -245,9 +245,10 @@ def _apply_propagation_rules(bus: FactBus, results: list[GateResult]) -> None:
                 fail_families.add(gid)
 
     has_injection = bool(fail_families & _INJECTION_FAMILIES)
+    trust_boundaries = bus.trust_boundaries() if hasattr(bus, "trust_boundaries") else []
     has_trust     = (
         bool(fail_families & _TRUST_FAMILIES)
-        or bus.has_type("trust_boundary_crossed")
+        or bool(trust_boundaries)
     )
     has_network   = bool(fail_families & _NETWORK_FAMILIES)
     has_memory    = bool(fail_families & _MEMORY_FAMILIES)
@@ -263,7 +264,7 @@ def _apply_propagation_rules(bus: FactBus, results: list[GateResult]) -> None:
             payload={
                 "rule": "R1",
                 "injection_families": sorted(fail_families & _INJECTION_FAMILIES),
-                "trust_signal": "trust_boundary_crossed" in bus.all_types(),
+                "trust_signal": bool(trust_boundaries),
             },
             upstream_facts=["gate_fail", "trust_boundary_crossed"],
         ))

@@ -105,6 +105,18 @@ def _gate_icon(status: str) -> str:
 # ===========================================================================
 
 @dataclass
+class TrustBoundaryRecord:
+    boundary_type: str = "UNKNOWN"
+    sink_name: str = ""
+    sink_line: int = 0
+    source: str = "unknown"
+    directed: bool = False
+    source_line: int = 0
+    source_type: str = "UNKNOWN"
+    hops: int = 0
+
+
+@dataclass
 class TaintChainRecord:
     source_type: str  = "USER_INPUT"
     source_line: int  = 0
@@ -202,7 +214,8 @@ class HudSnapshot:
     gates: list[GateRecord] = field(default_factory=list)
     counts: dict[str, int]  = field(default_factory=dict)  # pass/warn/fail/residual
 
-    # Directed taint chains (from FactBus taint_chain facts)
+    # Trust boundaries and directed taint chains (from FactBus)
+    trust_boundaries: list[TrustBoundaryRecord] = field(default_factory=list)
     taint_chains: list[TaintChainRecord] = field(default_factory=list)
 
     # Compound derivations (from fixed-point loop R1-R4)
@@ -543,6 +556,16 @@ class ConsoleHUD:
     def _right_wing(self, snap: HudSnapshot, width: int) -> list[str]:
         rows: list[str] = []
 
+        # Trust boundaries
+        rows.append(_c(_C.AMBER, self._crop("  TRUST BOUNDARIES", width)))
+        if snap.trust_boundaries:
+            for tb in snap.trust_boundaries[:4]:
+                src = f"{tb.source_type}:L{tb.source_line}" if tb.directed and tb.source_line > 0 else tb.source
+                rows.append(self._crop(f"  {src} -> {tb.boundary_type}:L{tb.sink_line} {tb.sink_name}", width))
+        else:
+            rows.append(_c(_C.FG_DIM, "  (none detected)"))
+        rows.append("")
+
         # Directed taint chains
         rows.append(_c(_C.CYAN, self._crop("  TAINT CHAINS", width)))
         if snap.taint_chains:
@@ -759,6 +782,20 @@ def snapshot_from_run_result(
 
     if orchestrator is not None and hasattr(orchestrator, "facts"):
         bus = orchestrator.facts
+
+        # Trust boundaries
+        boundaries = bus.trust_boundaries() if hasattr(bus, "trust_boundaries") else []
+        for boundary in boundaries:
+            snap.trust_boundaries.append(TrustBoundaryRecord(
+                boundary_type=boundary.boundary_type,
+                sink_name=boundary.sink_name,
+                sink_line=boundary.sink_line,
+                source=boundary.source,
+                directed=boundary.directed,
+                source_line=boundary.source_line,
+                source_type=boundary.source_type,
+                hops=boundary.hops,
+            ))
 
         # Taint chains
         chains = bus.taint_chains() if hasattr(bus, "taint_chains") else []
