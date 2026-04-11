@@ -499,9 +499,9 @@ def _line_length_finding(significant_long: list[tuple[int, str]]):
 
 
 def _duplication_finding(lines_raw: list[str], duplicate_lines: int, declarative_module: bool, schema_like_surface: bool = False):
-    base_floor = 180 if schema_like_surface else (60 if declarative_module else 12)
+    base_floor = 220 if schema_like_surface else (60 if declarative_module else 12)
     threshold_base = max(base_floor, len(lines_raw) // (3 if schema_like_surface else 4))
-    ratio_limit = 0.35 if schema_like_surface else 0.20
+    ratio_limit = 0.40 if schema_like_surface else 0.20
     duplicate_ratio = duplicate_lines / max(1, len(lines_raw))
     if duplicate_lines <= threshold_base and duplicate_ratio <= ratio_limit:
         return None

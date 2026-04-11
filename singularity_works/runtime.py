@@ -76,6 +76,7 @@ def _summary(base_dir: Path, ctx: RunContext, result, req: Requirement, orchestr
     )
     bus = getattr(orchestrator, "facts", None)
     gate_fact_results = [asdict(item) for item in (bus.gate_results_typed() if bus and hasattr(bus, "gate_results_typed") else [])]
+    gate_findings_typed = [asdict(item) for item in (bus.gate_findings_typed() if bus and hasattr(bus, "gate_findings_typed") else [])]
     monitor_fact_events = [asdict(item) for item in (bus.monitor_events_typed() if bus and hasattr(bus, "monitor_events_typed") else [])]
     transformation_candidates = [asdict(item) for item in (bus.transformation_candidates() if bus and hasattr(bus, "transformation_candidates") else [])]
     switchboard_decisions = [asdict(item) for item in (bus.switchboard_decisions() if bus and hasattr(bus, "switchboard_decisions") else [])]
@@ -100,6 +101,7 @@ def _summary(base_dir: Path, ctx: RunContext, result, req: Requirement, orchestr
         "verification_trace": result.verification_trace,
         "fractal_cycle": result.fractal_cycle,
         "gate_fact_results": gate_fact_results,
+        "gate_findings_typed": gate_findings_typed,
         "monitor_fact_events": monitor_fact_events,
         "transformation_candidates": transformation_candidates,
         "switchboard_decisions": switchboard_decisions,

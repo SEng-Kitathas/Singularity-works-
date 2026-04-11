@@ -689,17 +689,22 @@ class Orchestrator:
                 linked_laws=pattern.evidence_hooks.linked_laws,
             )
             for finding in result.findings:
-                self._publish_fact(
-                    "gate_finding",
-                    artifact.artifact_id,
-                    {
-                        "gate_id": result.gate_id,
-                        "code": finding.code,
-                        "message": finding.message,
-                        "severity": finding.severity,
-                    },
-                    confidence="high",
-                    linked_laws=list((finding.evidence or {}).get("linked_laws", [])),
+                from .facts import Fact as _Fact, GateFindingPayload as _GateFindingPayload
+                _linked_laws = list((finding.evidence or {}).get("linked_laws", []))
+                self.facts.publish(
+                    _Fact.from_gate_finding(
+                        fact_id=f"{artifact.artifact_id}:gate_finding:{result.gate_id}:{finding.code}",
+                        scope=artifact.artifact_id,
+                        confidence="high",
+                        payload=_GateFindingPayload(
+                            gate_id=result.gate_id,
+                            code=finding.code,
+                            message=finding.message,
+                            severity=finding.severity,
+                            linked_laws=_linked_laws,
+                        ),
+                        linked_laws=_linked_laws,
+                    )
                 )
         transformation_plan = self._transformation_plan(gate_summary)
         if transformation_plan:

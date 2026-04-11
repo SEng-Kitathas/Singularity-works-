@@ -146,6 +146,14 @@ class GateRecord:
 
 
 @dataclass
+class GateFindingRecord:
+    gate_id: str = ""
+    code: str = ""
+    message: str = ""
+    severity: str = "medium"
+
+
+@dataclass
 class GateFactRecord:
     gate_id: str = ""
     gate_family: str = ""
@@ -270,6 +278,7 @@ class HudSnapshot:
     gates: list[GateRecord] = field(default_factory=list)
     counts: dict[str, int]  = field(default_factory=dict)  # pass/warn/fail/residual
     gate_fact_results: list[GateFactRecord] = field(default_factory=list)
+    gate_findings_typed: list[GateFindingRecord] = field(default_factory=list)
 
     # Trust boundaries and directed taint chains (from FactBus)
     trust_boundaries: list[TrustBoundaryRecord] = field(default_factory=list)
@@ -628,6 +637,15 @@ class ConsoleHUD:
             rows.append(_c(_C.FG_DIM, "  (none active)"))
         rows.append("")
 
+        # Gate findings
+        rows.append(_c(_C.FG_SECONDARY, self._crop("  GATE FINDINGS", width)))
+        if snap.gate_findings_typed:
+            for gf in snap.gate_findings_typed[:6]:
+                rows.append(self._crop(f"  {gf.gate_id}:{gf.code} [{gf.severity}]", width))
+        else:
+            rows.append(_c(_C.FG_DIM, "  (none active)"))
+        rows.append("")
+
         # Trust boundaries
         rows.append(_c(_C.AMBER, self._crop("  TRUST BOUNDARIES", width)))
         if snap.trust_boundaries:
@@ -922,6 +940,16 @@ def snapshot_from_run_result(
                 status=gate_result.status,
                 finding_codes=gate_result.finding_codes,
                 severity=gate_result.severity,
+            ))
+
+        # Gate findings
+        gate_findings = bus.gate_findings_typed() if hasattr(bus, "gate_findings_typed") else []
+        for gate_finding in gate_findings:
+            snap.gate_findings_typed.append(GateFindingRecord(
+                gate_id=gate_finding.gate_id,
+                code=gate_finding.code,
+                message=gate_finding.message,
+                severity=gate_finding.severity,
             ))
 
         # Trust boundaries
