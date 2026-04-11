@@ -9,6 +9,7 @@ from .evidence_ledger import EvidenceLedger
 from .hud import ConsoleHUD, snapshot_from_run_result
 from .models import Requirement, RunContext
 from .orchestration import Orchestrator
+from .window_anchor import maybe_apply_runtime_anchor
 
 GOOD_CONTENT = """from pathlib import Path
 
@@ -152,6 +153,9 @@ def _render_summary(ctx: RunContext, req: Requirement, result, orchestrator: Orc
         f"derive={result.derivation_trace.get('gate_count',0)} gates/{result.derivation_trace.get('monitor_count',0)} monitors",
         f"verify={result.verification_trace.get('gate_verification',{}).get('status','unknown')}",
     ]
+    anchor_plan = maybe_apply_runtime_anchor("Claude")
+    if anchor_plan is not None:
+        snap.events.append(f"window_anchor={anchor_plan.get('note','none')}")
     hud = ConsoleHUD()
     with hud:
         hud.render(snap)

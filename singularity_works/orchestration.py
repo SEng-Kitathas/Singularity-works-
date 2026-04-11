@@ -949,15 +949,16 @@ class Orchestrator:
         # adversarial inputs can cause ReDoS, stack overflow, or memory pressure.
         _ORCH_MAX_BYTES = 2 * 1024 * 1024  # 2 MB
         if len(candidate_content.encode("utf-8", errors="replace")) > _ORCH_MAX_BYTES:
+            from .evidence_ledger import SubstrateGateRejectLedgerPayload
             self._record(
                 "substrate_gate_reject",
                 f"oversized:{ctx.session_id}",
-                {
-                    "reason": "content_too_large",
-                    "size_bytes": len(candidate_content.encode("utf-8", errors="replace")),
-                    "limit_bytes": _ORCH_MAX_BYTES,
-                    "requirement_id": requirement.requirement_id,
-                },
+                SubstrateGateRejectLedgerPayload(
+                    reason="content_too_large",
+                    size_bytes=len(candidate_content.encode("utf-8", errors="replace")),
+                    limit_bytes=_ORCH_MAX_BYTES,
+                    requirement_id=requirement.requirement_id,
+                ),
             )
             # Truncate to limit — analyze the beginning of the file.
             # Better than rejecting outright: real vulns often appear near top.
@@ -1225,13 +1226,18 @@ class Orchestrator:
                 if _dc is not None:
                     _iris_dets = _dc.to_detections(candidate_content)
                     if _iris_dets:
+                        from .evidence_ledger import CouncilValidationLedgerPayload, IrisEscalationLedgerPayload
                         self._record("iris_escalation",
                             f"iris:{ctx.session_id}",
-                            {"artifact_id": f"artifact:{ctx.session_id}",
-                             "classes": _dc.vulnerability_classes,
-                             "confidence": _dc.confidence,
-                             "count": len(_iris_dets),
-                             "reasoning": _dc.reasoning[:200]})
+                            IrisEscalationLedgerPayload(
+                                artifact_id=f"artifact:{ctx.session_id}",
+                                requirement_id=requirement.requirement_id,
+                                classes=_dc.vulnerability_classes,
+                                confidence=_dc.confidence,
+                                count=len(_iris_dets),
+                                reasoning=_dc.reasoning[:200],
+                                linked_requirements=[requirement.requirement_id],
+                            ))
                         from .gates import GateResult, GateFinding
                         # ── Council validation (TM-019) ─────────────────────
                         # Run quick_validate() on the top IRIS detection.
@@ -1252,13 +1258,15 @@ class Orchestrator:
                                 self._record(
                                     "council_validation",
                                     f"council:{ctx.session_id}",
-                                    {
-                                        "artifact_id": f"artifact:{ctx.session_id}",
-                                        "consensus": "AGREE" if _is_valid else "CHALLENGE",
-                                        "confidence": _council_conf,
-                                        "downgraded": _iris_severity == "medium",
-                                        "synthesis": _council_synthesis[:200],
-                                    },
+                                    CouncilValidationLedgerPayload(
+                                        artifact_id=f"artifact:{ctx.session_id}",
+                                        requirement_id=requirement.requirement_id,
+                                        consensus="AGREE" if _is_valid else "CHALLENGE",
+                                        confidence=_council_conf,
+                                        downgraded=_iris_severity == "medium",
+                                        synthesis=_council_synthesis[:200],
+                                        linked_requirements=[requirement.requirement_id],
+                                    ),
                                 )
                             except Exception:
                                 pass  # Council validation is always best-effort

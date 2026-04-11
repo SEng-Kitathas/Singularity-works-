@@ -19,6 +19,36 @@ class GateCountLedger:
 
 
 @dataclass
+class IrisEscalationLedgerPayload:
+    artifact_id: str = ""
+    requirement_id: str = ""
+    classes: list[str] = field(default_factory=list)
+    confidence: str = "moderate"
+    count: int = 0
+    reasoning: str = ""
+    linked_requirements: list[str] = field(default_factory=list)
+
+
+@dataclass
+class CouncilValidationLedgerPayload:
+    artifact_id: str = ""
+    requirement_id: str = ""
+    consensus: str = "CHALLENGE"
+    confidence: float = 0.0
+    downgraded: bool = False
+    synthesis: str = ""
+    linked_requirements: list[str] = field(default_factory=list)
+
+
+@dataclass
+class SubstrateGateRejectLedgerPayload:
+    reason: str = ""
+    size_bytes: int = 0
+    limit_bytes: int = 0
+    requirement_id: str = ""
+
+
+@dataclass
 class SessionStartLedgerPayload:
     mode: str = "run"
     project_tag: str = ""
@@ -221,6 +251,18 @@ def _decode_trace_link_payload(payload: dict[str, Any] | None) -> TraceLinkLedge
     return TraceLinkLedgerPayload(**(payload or {}))
 
 
+def _decode_iris_escalation_payload(payload: dict[str, Any] | None) -> IrisEscalationLedgerPayload:
+    return IrisEscalationLedgerPayload(**(payload or {}))
+
+
+def _decode_council_validation_payload(payload: dict[str, Any] | None) -> CouncilValidationLedgerPayload:
+    return CouncilValidationLedgerPayload(**(payload or {}))
+
+
+def _decode_substrate_gate_reject_payload(payload: dict[str, Any] | None) -> SubstrateGateRejectLedgerPayload:
+    return SubstrateGateRejectLedgerPayload(**(payload or {}))
+
+
 def _decode_session_start_payload(payload: dict[str, Any] | None) -> SessionStartLedgerPayload:
     return SessionStartLedgerPayload(**(payload or {}))
 
@@ -376,6 +418,27 @@ class EvidenceLedger:
             if rec.get("record_type") == "transformation_application"
         ]
 
+    def iris_escalations_typed(self, session_id: str | None = None) -> list[IrisEscalationLedgerPayload]:
+        return [
+            _decode_iris_escalation_payload(rec.get("payload", {}))
+            for rec in self._session_records(session_id)
+            if rec.get("record_type") == "iris_escalation"
+        ]
+
+    def council_validations_typed(self, session_id: str | None = None) -> list[CouncilValidationLedgerPayload]:
+        return [
+            _decode_council_validation_payload(rec.get("payload", {}))
+            for rec in self._session_records(session_id)
+            if rec.get("record_type") == "council_validation"
+        ]
+
+    def substrate_gate_rejections_typed(self, session_id: str | None = None) -> list[SubstrateGateRejectLedgerPayload]:
+        return [
+            _decode_substrate_gate_reject_payload(rec.get("payload", {}))
+            for rec in self._session_records(session_id)
+            if rec.get("record_type") == "substrate_gate_reject"
+        ]
+
     def session_starts_typed(self, session_id: str | None = None) -> list[SessionStartLedgerPayload]:
         return [
             _decode_session_start_payload(rec.get("payload", {}))
@@ -465,6 +528,9 @@ class EvidenceLedger:
                     else asdict(assurance_claim_payload) if assurance_claim_payload is not None
                     else asdict(assurance_rollup_payload) if assurance_rollup_payload is not None
                     else asdict(trace_link_payload) if trace_link_payload is not None
+                    else asdict(iris_escalation_payload) if iris_escalation_payload is not None
+                    else asdict(council_validation_payload) if council_validation_payload is not None
+                    else asdict(substrate_gate_reject_payload) if substrate_gate_reject_payload is not None
                     else asdict(pattern_selected_payload) if pattern_selected_payload is not None
                     else asdict(recovered_structure_payload) if recovered_structure_payload is not None
                     else asdict(transformation_plan_payload) if transformation_plan_payload is not None
@@ -499,6 +565,9 @@ class EvidenceLedger:
             "risks": [],
             "assurance": [],
             "trace_links": [],
+            "iris_escalations": [],
+            "council_validations": [],
+            "substrate_gate_rejections": [],
             "pattern_selections": [],
             "recovered_structures": [],
             "transformation_plans": [],
@@ -515,6 +584,9 @@ class EvidenceLedger:
             "assurance_rollup": "assurance",
             "assurance_claim": "assurance",
             "trace_link": "trace_links",
+            "iris_escalation": "iris_escalations",
+            "council_validation": "council_validations",
+            "substrate_gate_reject": "substrate_gate_rejections",
             "pattern_selected": "pattern_selections",
             "recovered_structure": "recovered_structures",
             "transformation_plan": "transformation_plans",
@@ -530,6 +602,9 @@ class EvidenceLedger:
             assurance_claim_payload = _decode_assurance_claim_payload(payload) if rec.get("record_type") == "assurance_claim" else None
             assurance_rollup_payload = _decode_assurance_rollup_payload(payload) if rec.get("record_type") == "assurance_rollup" else None
             trace_link_payload = _decode_trace_link_payload(payload) if rec.get("record_type") == "trace_link" else None
+            iris_escalation_payload = _decode_iris_escalation_payload(payload) if rec.get("record_type") == "iris_escalation" else None
+            council_validation_payload = _decode_council_validation_payload(payload) if rec.get("record_type") == "council_validation" else None
+            substrate_gate_reject_payload = _decode_substrate_gate_reject_payload(payload) if rec.get("record_type") == "substrate_gate_reject" else None
             pattern_selected_payload = _decode_pattern_selected_payload(payload) if rec.get("record_type") == "pattern_selected" else None
             recovered_structure_payload = _decode_recovered_structure_payload(payload) if rec.get("record_type") == "recovered_structure" else None
             transformation_plan_payload = _decode_transformation_plan_payload(payload) if rec.get("record_type") == "transformation_plan" else None
@@ -543,16 +618,24 @@ class EvidenceLedger:
                 else assurance_claim_payload.linked_requirements if assurance_claim_payload is not None
                 else assurance_rollup_payload.linked_requirements if assurance_rollup_payload is not None
                 else trace_link_payload.linked_requirements if trace_link_payload is not None
+                else iris_escalation_payload.linked_requirements if iris_escalation_payload is not None
+                else council_validation_payload.linked_requirements if council_validation_payload is not None
+                else [substrate_gate_reject_payload.requirement_id] if substrate_gate_reject_payload is not None and substrate_gate_reject_payload.requirement_id
                 else pattern_selected_payload.linked_requirements if pattern_selected_payload is not None
                 else recovered_structure_payload.linked_requirements if recovered_structure_payload is not None
                 else transformation_plan_payload.linked_requirements if transformation_plan_payload is not None
-                else [recursive_audit_payload.requirement_id] if recursive_audit_payload is not None and recursive_audit_payload.requirement_id else [fractal_cycle_payload.requirement_id] if fractal_cycle_payload is not None and fractal_cycle_payload.requirement_id else payload.get("linked_requirements", [])
+                else [recursive_audit_payload.requirement_id] if recursive_audit_payload is not None and recursive_audit_payload.requirement_id
+                else [fractal_cycle_payload.requirement_id] if fractal_cycle_payload is not None and fractal_cycle_payload.requirement_id
+                else payload.get("linked_requirements", [])
             )
             payload_requirement_id = (
                 gate_payload.requirement_id if gate_payload is not None
                 else risk_payload.requirement_id if risk_payload is not None
                 else assurance_claim_payload.requirement_id if assurance_claim_payload is not None
                 else assurance_rollup_payload.requirement_id if assurance_rollup_payload is not None
+                else iris_escalation_payload.requirement_id if iris_escalation_payload is not None
+                else council_validation_payload.requirement_id if council_validation_payload is not None
+                else substrate_gate_reject_payload.requirement_id if substrate_gate_reject_payload is not None
                 else pattern_selected_payload.requirement_id if pattern_selected_payload is not None
                 else recovered_structure_payload.requirement_id if recovered_structure_payload is not None
                 else transformation_plan_payload.requirement_id if transformation_plan_payload is not None
@@ -600,6 +683,9 @@ class EvidenceLedger:
             "gate_results": [],
             "monitor_events": [],
             "risks": [],
+            "iris_escalations": [],
+            "council_validations": [],
+            "substrate_gate_rejections": [],
             "transformation_plans": [],
             "transformation_applications": [],
             "recursive_audits": [],
@@ -612,12 +698,17 @@ class EvidenceLedger:
             risk_payload = _decode_risk_payload(payload) if rec.get("record_type") == "risk" else None
             transformation_plan_payload = _decode_transformation_plan_payload(payload) if rec.get("record_type") == "transformation_plan" else None
             transformation_application_payload = _decode_transformation_application_payload(payload) if rec.get("record_type") == "transformation_application" else None
+            iris_escalation_payload = _decode_iris_escalation_payload(payload) if rec.get("record_type") == "iris_escalation" else None
+            council_validation_payload = _decode_council_validation_payload(payload) if rec.get("record_type") == "council_validation" else None
+            substrate_gate_reject_payload = _decode_substrate_gate_reject_payload(payload) if rec.get("record_type") == "substrate_gate_reject" else None
             recursive_audit_payload = _decode_recursive_audit_payload(payload) if rec.get("record_type") == "recursive_audit" else None
             fractal_cycle_payload = _decode_fractal_cycle_payload(payload) if rec.get("record_type") == "fractal_cycle" else None
             linked_artifact_id = payload.get("linked_artifact_id")
             payload_artifact_id = (
                 gate_payload.artifact_id if gate_payload is not None
                 else risk_payload.artifact_id if risk_payload is not None
+                else iris_escalation_payload.artifact_id if iris_escalation_payload is not None
+                else council_validation_payload.artifact_id if council_validation_payload is not None
                 else transformation_plan_payload.artifact_id if transformation_plan_payload is not None
                 else transformation_application_payload.transformed_artifact_id if transformation_application_payload is not None
                 else recursive_audit_payload.artifact_id if recursive_audit_payload is not None
@@ -630,6 +721,9 @@ class EvidenceLedger:
                 "gate_result": "gate_results",
                 "monitor_event": "monitor_events",
                 "risk": "risks",
+                "iris_escalation": "iris_escalations",
+                "council_validation": "council_validations",
+                "substrate_gate_reject": "substrate_gate_rejections",
                 "transformation_plan": "transformation_plans",
                 "transformation_application": "transformation_applications",
                 "recursive_audit": "recursive_audits",
@@ -640,6 +734,9 @@ class EvidenceLedger:
                     asdict(gate_payload) if gate_payload is not None
                     else asdict(monitor_payload) if monitor_payload is not None
                     else asdict(risk_payload) if risk_payload is not None
+                    else asdict(iris_escalation_payload) if iris_escalation_payload is not None
+                    else asdict(council_validation_payload) if council_validation_payload is not None
+                    else asdict(substrate_gate_reject_payload) if substrate_gate_reject_payload is not None
                     else asdict(transformation_plan_payload) if transformation_plan_payload is not None
                     else asdict(transformation_application_payload) if transformation_application_payload is not None
                     else asdict(recursive_audit_payload) if recursive_audit_payload is not None
@@ -661,6 +758,9 @@ class EvidenceLedger:
             "session_starts": 0,
             "pattern_selections": 0,
             "recovered_structures": 0,
+            "iris_escalations": 0,
+            "council_validations": 0,
+            "substrate_gate_rejections": 0,
         }
         for rec in records:
             rtype = rec.get("record_type")
@@ -680,4 +780,10 @@ class EvidenceLedger:
                 counts["pattern_selections"] += 1
             elif rtype == "recovered_structure":
                 counts["recovered_structures"] += 1
+            elif rtype == "iris_escalation":
+                counts["iris_escalations"] += 1
+            elif rtype == "council_validation":
+                counts["council_validations"] += 1
+            elif rtype == "substrate_gate_reject":
+                counts["substrate_gate_rejections"] += 1
         return counts
