@@ -714,17 +714,27 @@ class Orchestrator:
                 },
             )
             for candidate in transformation_plan:
-                self._publish_fact(
-                    "transformation_candidate",
-                    artifact.artifact_id,
-                    {
-                        "candidate_id": candidate.candidate_id,
-                        "summary": candidate.summary,
-                        "auto_apply": candidate.auto_apply,
-                        "safety_level": candidate.safety_level,
-                    },
-                    confidence=candidate.confidence,
-                    linked_laws=candidate.linked_laws,
+                from .facts import Fact as _Fact, TransformationCandidatePayload as _TransformationCandidatePayload
+                self.facts.publish(
+                    _Fact.from_transformation_candidate(
+                        fact_id=f"{artifact.artifact_id}:transformation_candidate:{candidate.candidate_id}",
+                        scope=artifact.artifact_id,
+                        confidence=candidate.confidence,
+                        payload=_TransformationCandidatePayload(
+                            candidate_id=candidate.candidate_id,
+                            summary=candidate.summary,
+                            rationale=candidate.rationale,
+                            rewrite_candidate=candidate.rewrite_candidate,
+                            target_spans=candidate.target_spans,
+                            source_gate=candidate.source_gate,
+                            confidence=candidate.confidence,
+                            safety_level=candidate.safety_level,
+                            auto_apply=bool(candidate.auto_apply),
+                            linked_laws=candidate.linked_laws,
+                            transformation_axiom=candidate.transformation_axiom,
+                        ),
+                        linked_laws=candidate.linked_laws,
+                    )
                 )
         monitor_events = self.monitors.run(artifact, recovery.monitor_seeds)
         for event in monitor_events:

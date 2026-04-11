@@ -75,6 +75,7 @@ def _summary(base_dir: Path, ctx: RunContext, result, req: Requirement, orchestr
         ctx.session_id,
     )
     bus = getattr(orchestrator, "facts", None)
+    transformation_candidates = [asdict(item) for item in (bus.transformation_candidates() if bus and hasattr(bus, "transformation_candidates") else [])]
     switchboard_decisions = [asdict(item) for item in (bus.switchboard_decisions() if bus and hasattr(bus, "switchboard_decisions") else [])]
     propagations = [asdict(item) for item in (bus.propagations() if bus and hasattr(bus, "propagations") else [])]
     return {
@@ -96,6 +97,7 @@ def _summary(base_dir: Path, ctx: RunContext, result, req: Requirement, orchestr
         "embodiment_trace": result.embodiment_trace,
         "verification_trace": result.verification_trace,
         "fractal_cycle": result.fractal_cycle,
+        "transformation_candidates": transformation_candidates,
         "switchboard_decisions": switchboard_decisions,
         "propagations": propagations,
         "linked_laws": result.pattern.get("linked_laws", []),

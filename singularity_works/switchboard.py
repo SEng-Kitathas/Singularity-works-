@@ -8,7 +8,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 
-from .facts import Fact, FactBus, PropagationPayload, SwitchboardDecisionPayload
+from .facts import Fact, FactBus, PropagationPayload, SwitchboardDecisionPayload, TransformationCandidatePayload
 from .models import TransformationCandidate
 
 
@@ -144,34 +144,33 @@ class Switchboard:
         Phase 1 derive, Phase 2 route. Returns routing decisions.
         """
         self.derive(bus)
-        candidates = bus.by_type("transformation_candidate")
+        candidate_payloads = bus.transformation_candidates() if hasattr(bus, "transformation_candidates") else []
         already_decided: set[str] = {
             d.candidate_id
             for d in (bus.switchboard_decisions() if hasattr(bus, "switchboard_decisions") else [])
         }
         decisions: list[SwitchboardDecision] = []
-        for fact in candidates:
-            cid = fact.payload.get("candidate_id", fact.fact_id)
+        for payload in candidate_payloads:
+            cid = payload.candidate_id
             if cid in already_decided:
                 continue
-            candidate = _candidate_from_fact(fact)
+            candidate = _candidate_from_payload(payload)
             tier, rationale = _tier_for(candidate, bus)
             decision = SwitchboardDecision(
                 candidate_id=cid,
                 tier=tier,
                 apply=(tier >= TIER_AUTO),
                 rationale=rationale,
-                upstream_fact_ids=[fact.fact_id],
+                upstream_fact_ids=[f"transformation_candidate:{cid}"],
             )
             decisions.append(decision)
             bus.publish(Fact.from_switchboard_decision(
-                fact_id=f"{fact.scope}:switchboard_decision:{cid}",
-                scope=fact.scope,
-                confidence=fact.confidence,
+                fact_id=f"switchboard:switchboard_decision:{cid}",
+                scope="switchboard",
+                confidence=payload.confidence,
                 payload=decision.fact_payload(),
-                evidence_refs=fact.evidence_refs,
-                linked_laws=fact.linked_laws,
-                upstream_facts=[fact.fact_id],
+                linked_laws=payload.linked_laws,
+                upstream_facts=[f"transformation_candidate:{cid}"],
             ))
         return decisions
 
@@ -203,17 +202,17 @@ def _tier_for(candidate: TransformationCandidate, bus: FactBus) -> tuple[int, st
     return TIER_REFUSE, "insufficient confidence or unsafe transformation → refuse"
 
 
-def _candidate_from_fact(fact: Fact) -> TransformationCandidate:
-    p = fact.payload
+def _candidate_from_payload(payload: TransformationCandidatePayload) -> TransformationCandidate:
     return TransformationCandidate(
-        candidate_id=p.get("candidate_id", fact.fact_id),
-        summary=p.get("summary", ""),
-        rationale=p.get("rationale", ""),
-        rewrite_candidate=p.get("rewrite_candidate", ""),
-        target_spans=p.get("target_spans", []),
-        source_gate=p.get("source_gate", ""),
-        confidence=p.get("confidence", fact.confidence),
-        safety_level=p.get("safety_level", "review_required"),
-        auto_apply=bool(p.get("auto_apply", False)),
-        linked_laws=p.get("linked_laws", fact.linked_laws),
+        candidate_id=payload.candidate_id,
+        summary=payload.summary,
+        rationale=payload.rationale,
+        rewrite_candidate=payload.rewrite_candidate,
+        target_spans=payload.target_spans,
+        source_gate=payload.source_gate,
+        confidence=payload.confidence,
+        safety_level=payload.safety_level,
+        auto_apply=bool(payload.auto_apply),
+        linked_laws=payload.linked_laws,
+        transformation_axiom=payload.transformation_axiom,
     )

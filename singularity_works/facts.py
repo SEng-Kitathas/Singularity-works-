@@ -55,6 +55,21 @@ class CompoundDerivationPayload:
 
 
 @dataclass
+class TransformationCandidatePayload:
+    candidate_id: str = ""
+    summary: str = ""
+    rationale: str = ""
+    rewrite_candidate: str = ""
+    target_spans: list[list[int]] = field(default_factory=_list)
+    source_gate: str = ""
+    confidence: str = "moderate"
+    safety_level: str = "review_required"
+    auto_apply: bool = False
+    linked_laws: list[str] = field(default_factory=_list)
+    transformation_axiom: str = ""
+
+
+@dataclass
 class SwitchboardDecisionPayload:
     candidate_id: str = ""
     tier: int = 0
@@ -118,6 +133,29 @@ class Fact:
             evidence_refs=evidence_refs or [],
             linked_laws=linked_laws or [],
             upstream_facts=upstream_facts or [],
+        )
+
+    @classmethod
+    def from_transformation_candidate(
+        cls,
+        *,
+        fact_id: str,
+        scope: str,
+        confidence: str,
+        payload: TransformationCandidatePayload,
+        linked_laws: list[str] | None = None,
+        evidence_refs: list[str] | None = None,
+        upstream_facts: list[str] | None = None,
+    ) -> "Fact":
+        return cls._from_payload(
+            fact_id=fact_id,
+            fact_type="transformation_candidate",
+            scope=scope,
+            confidence=confidence,
+            payload=payload,
+            linked_laws=linked_laws,
+            evidence_refs=evidence_refs,
+            upstream_facts=upstream_facts,
         )
 
     @classmethod
@@ -352,6 +390,9 @@ class FactBus:
 
     def switchboard_decisions(self) -> list[SwitchboardDecisionPayload]:
         return self._decode_many("switchboard_decision", SwitchboardDecisionPayload)
+
+    def transformation_candidates(self) -> list[TransformationCandidatePayload]:
+        return self._decode_many("transformation_candidate", TransformationCandidatePayload)
 
     def dangerous_sinks(self) -> list[DangerousSinkPayload]:
         return self._decode_many("dangerous_sink_present", DangerousSinkPayload)

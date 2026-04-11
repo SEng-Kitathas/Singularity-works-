@@ -146,6 +146,15 @@ class GateRecord:
 
 
 @dataclass
+class TransformationCandidateRecord:
+    candidate_id: str = ""
+    summary: str = ""
+    auto_apply: bool = False
+    safety_level: str = "review_required"
+    source_gate: str = ""
+
+
+@dataclass
 class SwitchboardDecisionRecord:
     candidate_id: str = ""
     tier: int = 0
@@ -252,6 +261,7 @@ class HudSnapshot:
     # Compound derivations and switchboard surfaces
     compound: list[CompoundRecord] = field(default_factory=list)
     propagations: list[PropagationRecord] = field(default_factory=list)
+    transformation_candidates: list[TransformationCandidateRecord] = field(default_factory=list)
     switchboard_decisions: list[SwitchboardDecisionRecord] = field(default_factory=list)
 
     # Warrant text for primary claim
@@ -659,6 +669,16 @@ class ConsoleHUD:
             rows.append(_c(_C.FG_DIM, "  (none active)"))
         rows.append("")
 
+        # Transformation candidates
+        rows.append(_c(_C.CYAN, self._crop("  TRANSFORMATION CANDIDATES", width)))
+        if snap.transformation_candidates:
+            for tc in snap.transformation_candidates[:4]:
+                mode = 'AUTO' if tc.auto_apply else 'REVIEW'
+                rows.append(self._crop(f"  {tc.candidate_id} [{mode}/{tc.safety_level}]", width))
+        else:
+            rows.append(_c(_C.FG_DIM, "  (none active)"))
+        rows.append("")
+
         # Switchboard decisions
         rows.append(_c(_C.CYAN, self._crop("  SWITCHBOARD DECISIONS", width)))
         if snap.switchboard_decisions:
@@ -916,6 +936,17 @@ def snapshot_from_run_result(
                 severity=propagation.severity,
                 rationale=propagation.rationale,
                 upstream_types=propagation.upstream_types,
+            ))
+
+        # Transformation candidates
+        candidates = bus.transformation_candidates() if hasattr(bus, "transformation_candidates") else []
+        for candidate in candidates:
+            snap.transformation_candidates.append(TransformationCandidateRecord(
+                candidate_id=candidate.candidate_id,
+                summary=candidate.summary,
+                auto_apply=bool(candidate.auto_apply),
+                safety_level=candidate.safety_level,
+                source_gate=candidate.source_gate,
             ))
 
         # Switchboard decisions
