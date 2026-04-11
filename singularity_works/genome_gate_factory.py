@@ -3,12 +3,14 @@ from __future__ import annotations
 # Every structured anti_pattern in a capsule generates a Gate here.
 # This closes the DERIVE loop: genome selection (PROBE) -> genome gates (DERIVE).
 
+from collections.abc import Mapping
+
 from .ast_primitives import is_open_call
 from .interprocedural import analyze as _interproc_analyze
 import ast
 import io
 import tokenize
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any
 
 from .gates import Gate, GateFinding, GateResult
@@ -24,10 +26,53 @@ if TYPE_CHECKING:
 # ---------------------------------------------------------------------------
 
 @dataclass
+class DetectionEvidence(Mapping[str, Any]):
+    details: dict[str, Any] = field(default_factory=dict)
+
+    @classmethod
+    def from_raw(cls, raw: dict[str, Any] | None) -> "DetectionEvidence":
+        return cls(details=dict(raw or {}))
+
+    def to_gate_evidence(
+        self,
+        *,
+        transformation_axiom: str,
+        auto_apply: bool,
+        safety_level: str,
+        linked_laws: list[str],
+    ) -> dict[str, Any]:
+        rewrite_candidate = str(self.details.get("rewrite_candidate", "") or "")
+        return {
+            **self.details,
+            "transformation_axiom": transformation_axiom,
+            "auto_apply": auto_apply,
+            "safety_level": safety_level,
+            "linked_laws": linked_laws,
+            "suggested_fix": rewrite_candidate,
+        }
+
+    def __getitem__(self, key: str) -> Any:
+        return self.details[key]
+
+    def __iter__(self):
+        return iter(self.details)
+
+    def __len__(self) -> int:
+        return len(self.details)
+
+    def get(self, key: str, default: Any = None) -> Any:
+        return self.details.get(key, default)
+
+
+@dataclass
 class _Detection:
     lineno: int
     message: str
-    evidence: dict[str, Any]
+    evidence: DetectionEvidence
+
+    def __post_init__(self) -> None:
+        if not isinstance(self.evidence, DetectionEvidence):
+            self.evidence = DetectionEvidence.from_raw(self.evidence)
 
 
 @dataclass(frozen=True)
@@ -1228,14 +1273,12 @@ def _build_gate(capsule: "GenomeCapsule", ap: AntiPatternSpec) -> Gate | None:
                 code=ap.anti_pattern_id,
                 message=det.message,
                 severity=ap.severity,
-                evidence={
-                    **det.evidence,
-                    "transformation_axiom": transformation_axiom,
-                    "auto_apply": auto_apply_base,
-                    "safety_level": ap.safety_level,
-                    "linked_laws": capsule.laws,
-                    "suggested_fix": det.evidence.get("rewrite_candidate", ""),
-                },
+                evidence=det.evidence.to_gate_evidence(
+                    transformation_axiom=transformation_axiom,
+                    auto_apply=auto_apply_base,
+                    safety_level=ap.safety_level,
+                    linked_laws=capsule.laws,
+                ),
             )
             for det in detections
         ]
