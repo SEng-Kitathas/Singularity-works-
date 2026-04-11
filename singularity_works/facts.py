@@ -55,6 +55,16 @@ class CompoundDerivationPayload:
 
 
 @dataclass
+class GateResultPayload:
+    gate_id: str = ""
+    gate_family: str = ""
+    status: str = "pass"
+    finding_codes: list[str] = field(default_factory=_list)
+    finding_messages: list[str] = field(default_factory=_list)
+    severity: str = "medium"
+
+
+@dataclass
 class MonitorEventPayload:
     monitor_id: str = ""
     status: str = "unknown"
@@ -144,6 +154,30 @@ class Fact:
             evidence_refs=evidence_refs or [],
             linked_laws=linked_laws or [],
             upstream_facts=upstream_facts or [],
+        )
+
+    @classmethod
+    def from_gate_result(
+        cls,
+        *,
+        fact_id: str,
+        fact_type: str,
+        scope: str,
+        confidence: str,
+        payload: GateResultPayload,
+        linked_laws: list[str] | None = None,
+        evidence_refs: list[str] | None = None,
+        upstream_facts: list[str] | None = None,
+    ) -> "Fact":
+        return cls._from_payload(
+            fact_id=fact_id,
+            fact_type=fact_type,
+            scope=scope,
+            confidence=confidence,
+            payload=payload,
+            linked_laws=linked_laws,
+            evidence_refs=evidence_refs,
+            upstream_facts=upstream_facts,
         )
 
     @classmethod
@@ -430,6 +464,14 @@ class FactBus:
 
     def monitor_events_typed(self) -> list[MonitorEventPayload]:
         return self._decode_many("monitor_event", MonitorEventPayload)
+
+    def gate_results_typed(self) -> list[GateResultPayload]:
+        fact_types = {"gate_pass", "gate_warn", "gate_fail"}
+        return [
+            _decode(GateResultPayload, fact.payload | {"status": fact.fact_type.removeprefix("gate_")})
+            for fact in self.facts
+            if fact.fact_type in fact_types
+        ]
 
     def dangerous_sinks(self) -> list[DangerousSinkPayload]:
         return self._decode_many("dangerous_sink_present", DangerousSinkPayload)

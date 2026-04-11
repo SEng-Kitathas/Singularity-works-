@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any
 from .gates import Gate, GateResult
-from .facts import CompoundDerivationPayload, Fact, FactBus
+from .facts import CompoundDerivationPayload, Fact, FactBus, GateResultPayload
 
 if TYPE_CHECKING:
     pass
@@ -165,12 +165,16 @@ def _publish_gate_fact(bus: FactBus, result: GateResult, iteration: int) -> None
         # Pass facts: lightweight, only publish once (iter 0)
         if iteration == 0:
             fact_id = f"gate_pass:{result.gate_id}"
-            bus.publish(Fact(
+            bus.publish(Fact.from_gate_result(
                 fact_id=fact_id,
                 fact_type="gate_pass",
                 scope=result.gate_id,
                 confidence="high",
-                payload={"gate_id": result.gate_id, "family": result.gate_family},
+                payload=GateResultPayload(
+                    gate_id=result.gate_id,
+                    gate_family=result.gate_family,
+                    status="pass",
+                ),
             ))
         return
 
@@ -179,18 +183,19 @@ def _publish_gate_fact(bus: FactBus, result: GateResult, iteration: int) -> None
     # are published as distinct facts rather than deduplicated with earlier pass.
     finding_sig = ":".join(f.code for f in result.findings[:3])
     fact_id = f"{fact_type}:{result.gate_id}:{finding_sig}"
-    bus.publish(Fact(
+    bus.publish(Fact.from_gate_result(
         fact_id=fact_id,
         fact_type=fact_type,
         scope=result.gate_id,
         confidence="high",
-        payload={
-            "gate_id": result.gate_id,
-            "gate_family": result.gate_family,
-            "finding_codes": [f.code for f in result.findings],
-            "finding_messages": [f.message[:120] for f in result.findings[:3]],
-            "severity": result.findings[0].severity if result.findings else "medium",
-        },
+        payload=GateResultPayload(
+            gate_id=result.gate_id,
+            gate_family=result.gate_family,
+            status=status,
+            finding_codes=[f.code for f in result.findings],
+            finding_messages=[f.message[:120] for f in result.findings[:3]],
+            severity=result.findings[0].severity if result.findings else "medium",
+        ),
     ))
 
 

@@ -146,6 +146,15 @@ class GateRecord:
 
 
 @dataclass
+class GateFactRecord:
+    gate_id: str = ""
+    gate_family: str = ""
+    status: str = "pass"
+    finding_codes: list[str] = field(default_factory=list)
+    severity: str = "medium"
+
+
+@dataclass
 class MonitorEventRecord:
     monitor_id: str = ""
     status: str = "unknown"
@@ -260,6 +269,7 @@ class HudSnapshot:
     # Gate fabric
     gates: list[GateRecord] = field(default_factory=list)
     counts: dict[str, int]  = field(default_factory=dict)  # pass/warn/fail/residual
+    gate_fact_results: list[GateFactRecord] = field(default_factory=list)
 
     # Trust boundaries and directed taint chains (from FactBus)
     trust_boundaries: list[TrustBoundaryRecord] = field(default_factory=list)
@@ -609,6 +619,15 @@ class ConsoleHUD:
     def _right_wing(self, snap: HudSnapshot, width: int) -> list[str]:
         rows: list[str] = []
 
+        # Gate fact results
+        rows.append(_c(_C.FG_ACCENT, self._crop("  GATE FACT RESULTS", width)))
+        if snap.gate_fact_results:
+            for gf in snap.gate_fact_results[:6]:
+                rows.append(self._crop(f"  {gf.gate_id} [{gf.status}/{gf.severity}]", width))
+        else:
+            rows.append(_c(_C.FG_DIM, "  (none active)"))
+        rows.append("")
+
         # Trust boundaries
         rows.append(_c(_C.AMBER, self._crop("  TRUST BOUNDARIES", width)))
         if snap.trust_boundaries:
@@ -893,6 +912,17 @@ def snapshot_from_run_result(
 
     if orchestrator is not None and hasattr(orchestrator, "facts"):
         bus = orchestrator.facts
+
+        # Gate result facts
+        gate_results = bus.gate_results_typed() if hasattr(bus, "gate_results_typed") else []
+        for gate_result in gate_results:
+            snap.gate_fact_results.append(GateFactRecord(
+                gate_id=gate_result.gate_id,
+                gate_family=gate_result.gate_family,
+                status=gate_result.status,
+                finding_codes=gate_result.finding_codes,
+                severity=gate_result.severity,
+            ))
 
         # Trust boundaries
         boundaries = bus.trust_boundaries() if hasattr(bus, "trust_boundaries") else []
