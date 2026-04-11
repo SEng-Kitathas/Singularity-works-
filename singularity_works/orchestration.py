@@ -743,15 +743,22 @@ class Orchestrator:
                 f"{event.monitor_id}:{session_key}",
                 self._monitor_payload(requirement, event),
             )
-            self._publish_fact(
-                "monitor_event",
-                artifact.artifact_id,
-                {
-                    "monitor_id": event.monitor_id,
-                    "status": event.status,
-                    "claim_id": event.claim_id,
-                },
-                confidence="high",
+            from .facts import Fact as _Fact, MonitorEventPayload as _MonitorEventPayload
+            self.facts.publish(
+                _Fact.from_monitor_event(
+                    fact_id=f"{artifact.artifact_id}:monitor_event:{event.monitor_id}",
+                    scope=artifact.artifact_id,
+                    confidence="high",
+                    payload=_MonitorEventPayload(
+                        monitor_id=event.monitor_id,
+                        status=event.status,
+                        claim_id=event.claim_id or "",
+                        message=event.message,
+                        severity=event.severity,
+                        linked_requirements=[requirement.requirement_id],
+                        linked_claims=([event.claim_id] if event.claim_id else []),
+                    ),
+                )
             )
             self._append_trace(
                 TraceLink(

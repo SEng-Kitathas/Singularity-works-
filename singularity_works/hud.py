@@ -146,6 +146,15 @@ class GateRecord:
 
 
 @dataclass
+class MonitorEventRecord:
+    monitor_id: str = ""
+    status: str = "unknown"
+    claim_id: str = ""
+    message: str = ""
+    severity: str = "medium"
+
+
+@dataclass
 class TransformationCandidateRecord:
     candidate_id: str = ""
     summary: str = ""
@@ -261,6 +270,7 @@ class HudSnapshot:
     # Compound derivations and switchboard surfaces
     compound: list[CompoundRecord] = field(default_factory=list)
     propagations: list[PropagationRecord] = field(default_factory=list)
+    monitor_events_typed: list[MonitorEventRecord] = field(default_factory=list)
     transformation_candidates: list[TransformationCandidateRecord] = field(default_factory=list)
     switchboard_decisions: list[SwitchboardDecisionRecord] = field(default_factory=list)
 
@@ -669,6 +679,15 @@ class ConsoleHUD:
             rows.append(_c(_C.FG_DIM, "  (none active)"))
         rows.append("")
 
+        # Monitor events
+        rows.append(_c(_C.AMBER, self._crop("  MONITOR EVENTS", width)))
+        if snap.monitor_events_typed:
+            for me in snap.monitor_events_typed[:4]:
+                rows.append(self._crop(f"  {me.monitor_id} [{me.status}/{me.severity}]", width))
+        else:
+            rows.append(_c(_C.FG_DIM, "  (none active)"))
+        rows.append("")
+
         # Transformation candidates
         rows.append(_c(_C.CYAN, self._crop("  TRANSFORMATION CANDIDATES", width)))
         if snap.transformation_candidates:
@@ -936,6 +955,17 @@ def snapshot_from_run_result(
                 severity=propagation.severity,
                 rationale=propagation.rationale,
                 upstream_types=propagation.upstream_types,
+            ))
+
+        # Monitor events
+        monitor_events = bus.monitor_events_typed() if hasattr(bus, "monitor_events_typed") else []
+        for event in monitor_events:
+            snap.monitor_events_typed.append(MonitorEventRecord(
+                monitor_id=event.monitor_id,
+                status=event.status,
+                claim_id=event.claim_id,
+                message=event.message,
+                severity=event.severity,
             ))
 
         # Transformation candidates

@@ -55,6 +55,17 @@ class CompoundDerivationPayload:
 
 
 @dataclass
+class MonitorEventPayload:
+    monitor_id: str = ""
+    status: str = "unknown"
+    claim_id: str = ""
+    message: str = ""
+    severity: str = "medium"
+    linked_requirements: list[str] = field(default_factory=_list)
+    linked_claims: list[str] = field(default_factory=_list)
+
+
+@dataclass
 class TransformationCandidatePayload:
     candidate_id: str = ""
     summary: str = ""
@@ -133,6 +144,29 @@ class Fact:
             evidence_refs=evidence_refs or [],
             linked_laws=linked_laws or [],
             upstream_facts=upstream_facts or [],
+        )
+
+    @classmethod
+    def from_monitor_event(
+        cls,
+        *,
+        fact_id: str,
+        scope: str,
+        confidence: str,
+        payload: MonitorEventPayload,
+        linked_laws: list[str] | None = None,
+        evidence_refs: list[str] | None = None,
+        upstream_facts: list[str] | None = None,
+    ) -> "Fact":
+        return cls._from_payload(
+            fact_id=fact_id,
+            fact_type="monitor_event",
+            scope=scope,
+            confidence=confidence,
+            payload=payload,
+            linked_laws=linked_laws,
+            evidence_refs=evidence_refs,
+            upstream_facts=upstream_facts,
         )
 
     @classmethod
@@ -393,6 +427,9 @@ class FactBus:
 
     def transformation_candidates(self) -> list[TransformationCandidatePayload]:
         return self._decode_many("transformation_candidate", TransformationCandidatePayload)
+
+    def monitor_events_typed(self) -> list[MonitorEventPayload]:
+        return self._decode_many("monitor_event", MonitorEventPayload)
 
     def dangerous_sinks(self) -> list[DangerousSinkPayload]:
         return self._decode_many("dangerous_sink_present", DangerousSinkPayload)
