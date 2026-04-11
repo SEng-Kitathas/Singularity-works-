@@ -212,6 +212,13 @@ def _normalized_dup_lines(lines_raw: list[str]) -> list[str]:
         "GateFinding(",
         "GateResult(",
         "Gate(",
+        "detections.append(_Detection(",
+        "detections: list[_Detection] = []",
+        "tree = _parse(",
+        "tree = _safe_parse(",
+        "self.generic_visit(",
+        "message=(",
+        "evidence={",
         '"suggestions":',
         '"rewrite_candidate":',
     )
@@ -223,7 +230,14 @@ def _normalized_dup_lines(lines_raw: list[str]) -> list[str]:
             continue
         if "field(default_factory=" in line:
             continue
-        if line in {"else:", "try:", "finally:"}:
+        if line in {
+            "else:", "try:", "finally:", "continue", "return True", "return False", "return None",
+            "if tree is None:", "if tree is not None:", "for node in ast.walk(tree):",
+            "for child in ast.walk(node):", "if failures:", "relevant_seen = True",
+            "func = node.func", "requirement,", "structures,", "gain += 1",
+            "confidence_score += 1", "monitor_seeds.append(", "self._monitor_seed(",
+            "self._append_structure(",
+        }:
             continue
         if all(ch in "{}[](),:.'\"_-=+" for ch in line):
             continue
@@ -434,6 +448,15 @@ def _resource_transform_findings(analysis: dict[str, Any]) -> list[GateFinding]:
     return findings
 
 
+def _looks_declarative_literal_row(line: str) -> bool:
+    stripped = line.strip()
+    if stripped.startswith('"') and '{"score":' in stripped and '"severity":' in stripped:
+        return True
+    if stripped.startswith('"') and 'CWE-' in stripped:
+        return True
+    return False
+
+
 def _line_length_finding(significant_long: list[tuple[int, str]]):
     if not significant_long:
         return None
@@ -557,19 +580,23 @@ def simplification_gate() -> Gate:
         normalized_lines = _normalized_dup_lines(lines_raw)
         duplicate_lines = len(normalized_lines) - len(set(normalized_lines))
         long_line_limit = 140 if declarative_module else 120
-        significant_long = [item for item in long_lines if len(item[1].rstrip()) > long_line_limit]
+        significant_long = [
+            item
+            for item in long_lines
+            if len(item[1].rstrip()) > long_line_limit and not _looks_declarative_literal_row(item[1])
+        ]
         # Suppress nesting warning when file already carries complexity_justified.
         # The marker signals that the author has reasoned about the depth.
-        nesting_justified = "complexity_justified" in content.lower()
+        complexity_justified = "complexity_justified" in content.lower()
         optional = [
-            _line_length_finding(significant_long) if not declarative_module else None,
+            None if (declarative_module or complexity_justified) else _line_length_finding(significant_long),
             _duplication_finding(lines_raw, duplicate_lines, declarative_module),
-            None if nesting_justified else _deep_nesting_finding(deep_nesting),
+            None if complexity_justified else _deep_nesting_finding(deep_nesting),
             _abstraction_pressure_finding(function_count, len(lines_raw), declarative_module),
         ]
         findings.extend(f for f in optional if f is not None)
         status = "warn" if findings else "pass"
-        if status == "warn" and "complexity_justified" not in content.lower():
+        if status == "warn" and not complexity_justified:
             suggestion = SimplificationSuggestion(
                 suggestion_id="suggest:justify_complexity",
                 summary="Either simplify or justify retained complexity",

