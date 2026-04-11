@@ -832,26 +832,53 @@ class Orchestrator:
         gate_summary: "GateRunSummary | None" = None,
         semantic_ir: "Any | None" = None,
     ) -> None:
+        from .evidence_ledger import AssuranceClaimLedgerPayload, AssuranceRollupLedgerPayload
+        _assurance_dict = assurance.to_dict()
         self._record(
             "assurance_rollup",
             f"assurance:{session_key}",
-            {
-                "requirement_id": requirement.requirement_id,
-                "artifact_id": artifact.artifact_id,
-                **assurance.to_dict(),
-                "linked_requirements": [requirement.requirement_id],
-            },
+            AssuranceRollupLedgerPayload(
+                requirement_id=requirement.requirement_id,
+                artifact_id=artifact.artifact_id,
+                status=_assurance_dict["status"],
+                discharged=_assurance_dict["discharged"],
+                monitored=_assurance_dict["monitored"],
+                residual=_assurance_dict["residual"],
+                falsified=_assurance_dict["falsified"],
+                claims=assurance.claims,
+                assumptions=_assurance_dict["assumptions"],
+                graph_depth=_assurance_dict["graph_depth"],
+                graph_edges=_assurance_dict["graph_edges"],
+                warrant_coverage=_assurance_dict["warrant_coverage"],
+                warranted_claims=_assurance_dict["warranted_claims"],
+                total_claims=_assurance_dict["total_claims"],
+                linked_requirements=[requirement.requirement_id],
+            ),
         )
         for claim in assurance.claims:
             self._record(
                 "assurance_claim",
                 f"{claim.claim_id}:{session_key}",
-                claim.__dict__ | {
-                    "requirement_id": requirement.requirement_id,
-                    "artifact_id": artifact.artifact_id,
-                    "linked_requirements": [requirement.requirement_id],
-                    "linked_claims": [claim.claim_id],
-                },
+                AssuranceClaimLedgerPayload(
+                    claim_id=claim.claim_id,
+                    claim_text=claim.claim_text,
+                    status=claim.status,
+                    claim_type=claim.claim_type,
+                    confidence=claim.confidence,
+                    supported_by=claim.supported_by,
+                    monitored_by=claim.monitored_by,
+                    residual_risks=claim.residual_risks,
+                    assumptions=claim.assumptions,
+                    responsibility_boundary=claim.responsibility_boundary,
+                    evidence_refs=claim.evidence_refs,
+                    parent_claim_id=claim.parent_claim_id,
+                    child_claim_ids=claim.child_claim_ids,
+                    warrant=claim.warrant,
+                    requirement_id=requirement.requirement_id,
+                    artifact_id=artifact.artifact_id,
+                    linked_requirements=[requirement.requirement_id],
+                    linked_claims=[claim.claim_id],
+                ),
             )
 
         # ── CIL Memory (v4.0) ──────────────────────────────────────────

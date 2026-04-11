@@ -6,6 +6,49 @@ from typing import Any, Iterable
 import json
 import time
 
+from .models import AssuranceClaim
+
+
+@dataclass
+class AssuranceClaimLedgerPayload:
+    claim_id: str = ""
+    claim_text: str = ""
+    status: str = "residual"
+    claim_type: str = "generic"
+    confidence: str = "moderate"
+    supported_by: list[str] = field(default_factory=list)
+    monitored_by: list[str] = field(default_factory=list)
+    residual_risks: list[str] = field(default_factory=list)
+    assumptions: list[str] = field(default_factory=list)
+    responsibility_boundary: str = "software"
+    evidence_refs: list[str] = field(default_factory=list)
+    parent_claim_id: str = ""
+    child_claim_ids: list[str] = field(default_factory=list)
+    warrant: str = ""
+    requirement_id: str = ""
+    artifact_id: str = ""
+    linked_requirements: list[str] = field(default_factory=list)
+    linked_claims: list[str] = field(default_factory=list)
+
+
+@dataclass
+class AssuranceRollupLedgerPayload:
+    requirement_id: str = ""
+    artifact_id: str = ""
+    status: str = "green"
+    discharged: list[str] = field(default_factory=list)
+    monitored: list[str] = field(default_factory=list)
+    residual: list[str] = field(default_factory=list)
+    falsified: list[str] = field(default_factory=list)
+    claims: list[AssuranceClaim] = field(default_factory=list)
+    assumptions: list[str] = field(default_factory=list)
+    graph_depth: int = 0
+    graph_edges: int = 0
+    warrant_coverage: float = 0.0
+    warranted_claims: int = 0
+    total_claims: int = 0
+    linked_requirements: list[str] = field(default_factory=list)
+
 
 @dataclass
 class RiskLedgerPayload:
@@ -86,6 +129,16 @@ def _decode_risk_payload(payload: dict[str, Any] | None) -> RiskLedgerPayload:
     return RiskLedgerPayload(**(payload or {}))
 
 
+def _decode_assurance_claim_payload(payload: dict[str, Any] | None) -> AssuranceClaimLedgerPayload:
+    return AssuranceClaimLedgerPayload(**(payload or {}))
+
+
+def _decode_assurance_rollup_payload(payload: dict[str, Any] | None) -> AssuranceRollupLedgerPayload:
+    raw = dict(payload or {})
+    raw["claims"] = [AssuranceClaim(**item) for item in raw.get("claims", [])]
+    return AssuranceRollupLedgerPayload(**raw)
+
+
 class EvidenceLedger:
     def __init__(self, path: str | Path) -> None:
         self.path = Path(path)
@@ -152,6 +205,20 @@ class EvidenceLedger:
             if rec.get("record_type") == "risk"
         ]
 
+    def assurance_rollups_typed(self, session_id: str | None = None) -> list[AssuranceRollupLedgerPayload]:
+        return [
+            _decode_assurance_rollup_payload(rec.get("payload", {}))
+            for rec in self._session_records(session_id)
+            if rec.get("record_type") == "assurance_rollup"
+        ]
+
+    def assurance_claims_typed(self, session_id: str | None = None) -> list[AssuranceClaimLedgerPayload]:
+        return [
+            _decode_assurance_claim_payload(rec.get("payload", {}))
+            for rec in self._session_records(session_id)
+            if rec.get("record_type") == "assurance_claim"
+        ]
+
     def rollup_status_counts(self, session_id: str | None = None) -> dict[str, int]:
         counts = {"pass": 0, "warn": 0, "fail": 0, "residual": 0}
         for payload in self.gate_results_typed(session_id):
@@ -171,14 +238,21 @@ class EvidenceLedger:
             gate_payload = _decode_gate_payload(payload) if rec.get("record_type") == "gate_result" else None
             monitor_payload = _decode_monitor_payload(payload) if rec.get("record_type") == "monitor_event" else None
             risk_payload = _decode_risk_payload(payload) if rec.get("record_type") == "risk" else None
+            assurance_claim_payload = _decode_assurance_claim_payload(payload) if rec.get("record_type") == "assurance_claim" else None
+            assurance_rollup_payload = _decode_assurance_rollup_payload(payload) if rec.get("record_type") == "assurance_rollup" else None
             linked_claims = (
                 gate_payload.linked_claims if gate_payload is not None
                 else monitor_payload.linked_claims if monitor_payload is not None
                 else risk_payload.linked_claims if risk_payload is not None
+                else assurance_claim_payload.linked_claims if assurance_claim_payload is not None
                 else payload.get("linked_claims", [])
             )
             discharged_claims = gate_payload.discharged_claims if gate_payload is not None else payload.get("discharged_claims", [])
-            payload_claim_id = monitor_payload.claim_id if monitor_payload is not None else payload.get("claim_id")
+            payload_claim_id = (
+                monitor_payload.claim_id if monitor_payload is not None
+                else assurance_claim_payload.claim_id if assurance_claim_payload is not None
+                else payload.get("claim_id")
+            )
             matches = (
                 claim_id in discharged_claims
                 or claim_id in linked_claims
@@ -196,6 +270,8 @@ class EvidenceLedger:
                     asdict(gate_payload) if gate_payload is not None
                     else asdict(monitor_payload) if monitor_payload is not None
                     else asdict(risk_payload) if risk_payload is not None
+                    else asdict(assurance_claim_payload) if assurance_claim_payload is not None
+                    else asdict(assurance_rollup_payload) if assurance_rollup_payload is not None
                     else payload
                 )
         if any(x.get("status") == "fail" for x in out["monitor_events"]):
@@ -240,13 +316,23 @@ class EvidenceLedger:
             gate_payload = _decode_gate_payload(payload) if rec.get("record_type") == "gate_result" else None
             monitor_payload = _decode_monitor_payload(payload) if rec.get("record_type") == "monitor_event" else None
             risk_payload = _decode_risk_payload(payload) if rec.get("record_type") == "risk" else None
+            assurance_claim_payload = _decode_assurance_claim_payload(payload) if rec.get("record_type") == "assurance_claim" else None
+            assurance_rollup_payload = _decode_assurance_rollup_payload(payload) if rec.get("record_type") == "assurance_rollup" else None
             linked_requirements = (
                 gate_payload.linked_requirements if gate_payload is not None
                 else monitor_payload.linked_requirements if monitor_payload is not None
                 else risk_payload.linked_requirements if risk_payload is not None
+                else assurance_claim_payload.linked_requirements if assurance_claim_payload is not None
+                else assurance_rollup_payload.linked_requirements if assurance_rollup_payload is not None
                 else payload.get("linked_requirements", [])
             )
-            payload_requirement_id = gate_payload.requirement_id if gate_payload is not None else payload.get("requirement_id")
+            payload_requirement_id = (
+                gate_payload.requirement_id if gate_payload is not None
+                else risk_payload.requirement_id if risk_payload is not None
+                else assurance_claim_payload.requirement_id if assurance_claim_payload is not None
+                else assurance_rollup_payload.requirement_id if assurance_rollup_payload is not None
+                else payload.get("requirement_id")
+            )
             if payload_requirement_id != requirement_id and requirement_id not in linked_requirements:
                 continue
             bucket = buckets.get(rec.get("record_type"))
@@ -255,15 +341,22 @@ class EvidenceLedger:
                     asdict(gate_payload) if gate_payload is not None
                     else asdict(monitor_payload) if monitor_payload is not None
                     else asdict(risk_payload) if risk_payload is not None
+                    else asdict(assurance_claim_payload) if assurance_claim_payload is not None
+                    else asdict(assurance_rollup_payload) if assurance_rollup_payload is not None
                     else payload
                 )
             claim_ids.update(
                 gate_payload.linked_claims if gate_payload is not None
                 else monitor_payload.linked_claims if monitor_payload is not None
                 else risk_payload.linked_claims if risk_payload is not None
+                else assurance_claim_payload.linked_claims if assurance_claim_payload is not None
                 else payload.get("linked_claims", [])
             )
-            payload_claim_id = monitor_payload.claim_id if monitor_payload is not None else payload.get("claim_id")
+            payload_claim_id = (
+                monitor_payload.claim_id if monitor_payload is not None
+                else assurance_claim_payload.claim_id if assurance_claim_payload is not None
+                else payload.get("claim_id")
+            )
             if payload_claim_id:
                 claim_ids.add(payload_claim_id)
         out["claim_rollups"] = [
@@ -320,11 +413,12 @@ class EvidenceLedger:
         for rec in records:
             rtype = rec.get("record_type")
             payload = rec.get("payload", {})
+            assurance_rollup_payload = _decode_assurance_rollup_payload(payload) if rtype == "assurance_rollup" else None
             if rtype == "risk":
                 counts["risks"] += 1
             elif rtype == "monitor_event" and payload.get("status") == "fail":
                 counts["monitor_failures"] += 1
-            elif rtype == "assurance_rollup" and payload.get("status") == "red":
+            elif rtype == "assurance_rollup" and assurance_rollup_payload is not None and assurance_rollup_payload.status == "red":
                 counts["assurance_red"] += 1
             elif rtype == "assurance_claim":
                 counts["assurance_claims"] += 1
