@@ -30,6 +30,53 @@ class _Detection:
     evidence: dict[str, Any]
 
 
+@dataclass(frozen=True)
+class AntiPatternSpec:
+    anti_pattern_id: str
+    detection_strategy: str
+    severity: str = "medium"
+    transformation_axiom: str = ""
+    auto_apply: bool = False
+    safety_level: str = "review_required"
+
+    @classmethod
+    def from_raw(cls, raw: dict[str, Any]) -> "AntiPatternSpec | None":
+        anti_pattern_id = str(raw.get("id", "") or "")
+        detection_strategy = str(raw.get("detection_strategy", "") or "")
+        if not anti_pattern_id or not detection_strategy:
+            return None
+        return cls(
+            anti_pattern_id=anti_pattern_id,
+            detection_strategy=detection_strategy,
+            severity=str(raw.get("severity", "medium") or "medium"),
+            transformation_axiom=str(raw.get("transformation_axiom", "") or ""),
+            auto_apply=bool(raw.get("auto_apply", False)),
+            safety_level=str(raw.get("safety_level", "review_required") or "review_required"),
+        )
+
+
+@dataclass(frozen=True)
+class BundlePatternSelection:
+    pattern_id: str
+
+    @classmethod
+    def from_raw(cls, raw: dict[str, Any]) -> "BundlePatternSelection | None":
+        pattern_id = str(raw.get("pattern_id", "") or "")
+        return cls(pattern_id=pattern_id) if pattern_id else None
+
+
+@dataclass(frozen=True)
+class SubjectView:
+    content: str
+    semantic_ir: Any | None = None
+
+    @classmethod
+    def from_subject(cls, subject: dict[str, Any]) -> "SubjectView":
+        return cls(
+            content=str(subject.get("content", "") or ""),
+            semantic_ir=subject.get("semantic_ir"),
+        )
+
 # ---------------------------------------------------------------------------
 # Shared AST utilities
 # ---------------------------------------------------------------------------
@@ -1154,26 +1201,19 @@ _STRATEGIES: dict[str, Any] = {
 # Gate builder
 # ---------------------------------------------------------------------------
 
-def _build_gate(capsule: "GenomeCapsule", ap: dict) -> Gate | None:
-    strategy_name = ap.get("detection_strategy", "")
-    detect_fn = _STRATEGIES.get(strategy_name)
+def _build_gate(capsule: "GenomeCapsule", ap: AntiPatternSpec) -> Gate | None:
+    detect_fn = _STRATEGIES.get(ap.detection_strategy)
     if detect_fn is None:
         return None  # unknown strategy — skip, don't fail
 
-    gate_id = f"genome:{capsule.pattern_id}:{ap['id']}"
-    severity = ap.get("severity", "medium")
-    transformation_axiom = ap.get("transformation_axiom", "")
-    auto_apply_base = ap.get("auto_apply", False) and is_auto_applicable(transformation_axiom)
-    safety_level = ap.get("safety_level", "review_required")
-    discharge_claim = f"capsule:{capsule.pattern_id}:{ap['id']}"
+    gate_id = f"genome:{capsule.pattern_id}:{ap.anti_pattern_id}"
+    transformation_axiom = ap.transformation_axiom
+    auto_apply_base = ap.auto_apply and is_auto_applicable(transformation_axiom)
+    discharge_claim = f"capsule:{capsule.pattern_id}:{ap.anti_pattern_id}"
 
     def run(subject: dict[str, Any], bus: "FactBus | None" = None) -> GateResult:
-        content: str = subject.get("content", "")
-        # Pass semantic_ir so strategies can use IR tokens as fallback for
-        # non-Python content — the IR holds heuristic signals from the
-        # polyglot front door that the Python-AST path cannot see.
-        semantic_ir = subject.get("semantic_ir")
-        detections = detect_fn(content, ap, semantic_ir=semantic_ir)
+        subject_view = SubjectView.from_subject(subject)
+        detections = detect_fn(subject_view.content, ap, semantic_ir=subject_view.semantic_ir)
 
         if not detections:
             return GateResult(
@@ -1183,22 +1223,16 @@ def _build_gate(capsule: "GenomeCapsule", ap: dict) -> Gate | None:
                 discharged_claims=[discharge_claim],
             )
 
-        # Taint-aware compound escalation (trust_boundary + dangerous_exec) deferred
-        # until source-to-sink flow tracking exists. Without it, escalation creates
-        # circular self-escalation from the same artifact's own signals.
-        effective_auto = auto_apply_base
-        effective_safety = safety_level
-
         findings = [
             GateFinding(
-                code=ap["id"],
+                code=ap.anti_pattern_id,
                 message=det.message,
-                severity=severity,
+                severity=ap.severity,
                 evidence={
                     **det.evidence,
                     "transformation_axiom": transformation_axiom,
-                    "auto_apply": effective_auto,
-                    "safety_level": effective_safety,
+                    "auto_apply": auto_apply_base,
+                    "safety_level": ap.safety_level,
                     "linked_laws": capsule.laws,
                     "suggested_fix": det.evidence.get("rewrite_candidate", ""),
                 },
@@ -1211,15 +1245,10 @@ def _build_gate(capsule: "GenomeCapsule", ap: dict) -> Gate | None:
             capsule.family,
             "fail",
             findings=findings,
-            residual_obligations=[f"{ap['id']}_correction"],
+            residual_obligations=[f"{ap.anti_pattern_id}_correction"],
         )
 
-    return Gate(gate_id, capsule.family, f"{capsule.summary} — {ap['id']}", run)
-
-
-# ---------------------------------------------------------------------------
-# Public API
-# ---------------------------------------------------------------------------
+    return Gate(gate_id, capsule.family, f"{capsule.summary} — {ap.anti_pattern_id}", run)
 
 def genome_gate_factory(capsule: "GenomeCapsule") -> list[Gate]:
     """
@@ -1230,7 +1259,10 @@ def genome_gate_factory(capsule: "GenomeCapsule") -> list[Gate]:
     for ap in capsule.anti_patterns:
         if not isinstance(ap, dict):
             continue
-        gate = _build_gate(capsule, ap)
+        spec = AntiPatternSpec.from_raw(ap)
+        if spec is None:
+            continue
+        gate = _build_gate(capsule, spec)
         if gate is not None:
             gates.append(gate)
     return gates
@@ -1248,8 +1280,12 @@ def genome_gates_from_bundle(
     gates: list[Gate] = []
     seen_gate_ids: set[str] = set()
     for pattern_summary in bundle.get("selected_patterns", []):
-        pid = pattern_summary.get("pattern_id", "")
-        capsule = genome.by_id.get(pid)
+        if not isinstance(pattern_summary, dict):
+            continue
+        selection = BundlePatternSelection.from_raw(pattern_summary)
+        if selection is None:
+            continue
+        capsule = genome.by_id.get(selection.pattern_id)
         if capsule is None:
             continue
         for gate in genome_gate_factory(capsule):
