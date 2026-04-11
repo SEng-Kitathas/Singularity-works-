@@ -125,7 +125,9 @@ class GateRecord:
 @dataclass
 class CompoundRecord:
     rule: str         # R1 | R2 | R3 | R4
-    fact_type: str    # compound_taint_injection | ssrf_confirmed | critical_compound_hazard | memory_corruption_via_taint
+    # compound_taint_injection | ssrf_confirmed | critical_compound_hazard |
+    # memory_corruption_via_taint
+    fact_type: str
 
 
 @dataclass
@@ -281,7 +283,8 @@ class ConsoleHUD:
 
         # Verdict block
         lines.append(f"  VERDICT    {_colored_verdict(snap.verdict)}")
-        lines.append(f"  WARRANT    {_c(_C.FG_SECONDARY, f'{snap.warranted_claims}/{snap.total_claims} claims covered')}")
+        warrant_text = f"{snap.warranted_claims}/{snap.total_claims} claims covered"
+        lines.append(f"  WARRANT    {_c(_C.FG_SECONDARY, warrant_text)}")
         if snap.primary_warrant:
             for wline in textwrap.wrap(snap.primary_warrant, cols - 13)[:3]:
                 lines.append(f"             {_c(_C.FG_DIM, wline)}")
@@ -696,12 +699,42 @@ if __name__ == "__main__":
 
     # Simulate a realistic forge run result
     demo_gates = [
-        GateRecord("genome:injection.nosql_injection:nosql",          "injection",        "fail",  "NoSQL injection: user-controlled value reaches .find()"),
-        GateRecord("genome:injection.ssti_render_template:ssti",      "injection",        "fail",  "SSTI: render_template_string with user-controlled template"),
-        GateRecord("genome:execution_safety.flask_debug:flask_debug",  "execution_safety", "fail",  "app.run(debug=True) exposes Werkzeug debugger (RCE)"),
-        GateRecord("genome:crypto.no_hardcoded_secrets:credential",   "crypto",           "fail",  "Hardcoded credential 'SECRET_KEY' extractable from binary"),
-        GateRecord("genome:serialize.no_yaml_unsafe_load:yaml",       "serialize",        "warn",  "yaml.load() without Loader — fires both capsules"),
-        GateRecord("genome:network.bind_all_interfaces:bind",         "network",          "warn",  "Service bound to 0.0.0.0 — all interfaces exposed"),
+        GateRecord(
+            "genome:injection.nosql_injection:nosql",
+            "injection",
+            "fail",
+            "NoSQL injection: user-controlled value reaches .find()",
+        ),
+        GateRecord(
+            "genome:injection.ssti_render_template:ssti",
+            "injection",
+            "fail",
+            "SSTI: render_template_string with user-controlled template",
+        ),
+        GateRecord(
+            "genome:execution_safety.flask_debug:flask_debug",
+            "execution_safety",
+            "fail",
+            "app.run(debug=True) exposes Werkzeug debugger (RCE)",
+        ),
+        GateRecord(
+            "genome:crypto.no_hardcoded_secrets:credential",
+            "crypto",
+            "fail",
+            "Hardcoded credential 'SECRET_KEY' extractable from binary",
+        ),
+        GateRecord(
+            "genome:serialize.no_yaml_unsafe_load:yaml",
+            "serialize",
+            "warn",
+            "yaml.load() without Loader — fires both capsules",
+        ),
+        GateRecord(
+            "genome:network.bind_all_interfaces:bind",
+            "network",
+            "warn",
+            "Service bound to 0.0.0.0 — all interfaces exposed",
+        ),
         GateRecord("genome:auth.csrf_exempt:csrf",                    "auth",             "pass",  ""),
         GateRecord("genome:crypto.weak_rsa_key:rsa",                  "crypto",           "pass",  ""),
         GateRecord("genome:trust_boundary_validation.ssrf:ssrf",      "trust_boundary",   "pass",  ""),

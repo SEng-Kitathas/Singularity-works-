@@ -1,4 +1,4 @@
-# complexity_justified: escalation routing keeps coupled risk thresholds in one place to prevent split-brain security policy.
+# complexity_justified: coupled escalation thresholds kept together to avoid split policy.
 """
 Singularity Works — Escalation Gate
 Version: 2026-04-04 · v1.21
