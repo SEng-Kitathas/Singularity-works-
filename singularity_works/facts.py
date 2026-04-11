@@ -44,6 +44,18 @@ class TrustBoundaryPayload:
 
 
 @dataclass
+class CompoundDerivationPayload:
+    rule: str = ""
+    fact_type: str = ""
+    description: str = ""
+    injection_families: list[str] = field(default_factory=_list)
+    trust_signal: bool = False
+
+    def to_payload(self) -> dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass
 class Fact:
     fact_id: str
     fact_type: str
@@ -56,6 +68,29 @@ class Fact:
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
+
+    @classmethod
+    def from_compound_derivation(
+        cls,
+        *,
+        fact_id: str,
+        scope: str,
+        confidence: str,
+        payload: CompoundDerivationPayload,
+        linked_laws: list[str] | None = None,
+        evidence_refs: list[str] | None = None,
+        upstream_facts: list[str] | None = None,
+    ) -> "Fact":
+        return cls(
+            fact_id=fact_id,
+            fact_type=payload.fact_type,
+            scope=scope,
+            confidence=confidence,
+            payload=payload.to_payload(),
+            evidence_refs=evidence_refs or [],
+            linked_laws=linked_laws or [],
+            upstream_facts=upstream_facts or [],
+        )
 
     @classmethod
     def from_trust_boundary(
@@ -154,6 +189,29 @@ class FactBus:
                 )
             )
         return boundaries
+
+    def compound_derivations(self) -> list[CompoundDerivationPayload]:
+        fact_types = {
+            "compound_taint_injection",
+            "ssrf_confirmed",
+            "critical_compound_hazard",
+            "memory_corruption_via_taint",
+        }
+        compounds: list[CompoundDerivationPayload] = []
+        for fact in self.facts:
+            if fact.fact_type not in fact_types:
+                continue
+            payload = fact.payload or {}
+            compounds.append(
+                CompoundDerivationPayload(
+                    rule=payload.get("rule", ""),
+                    fact_type=fact.fact_type,
+                    description=payload.get("description", ""),
+                    injection_families=list(payload.get("injection_families", [])),
+                    trust_signal=bool(payload.get("trust_signal", False)),
+                )
+            )
+        return compounds
 
     def all_types(self) -> set[str]:
         return {f.fact_type for f in self.facts}

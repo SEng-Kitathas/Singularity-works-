@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any
 from .gates import Gate, GateResult
-from .facts import Fact, FactBus
+from .facts import CompoundDerivationPayload, Fact, FactBus
 
 if TYPE_CHECKING:
     pass
@@ -256,52 +256,58 @@ def _apply_propagation_rules(bus: FactBus, results: list[GateResult]) -> None:
 
     # R1 — 2-hop: tainted input → injection sink
     if has_injection and has_trust:
-        bus.publish(Fact(
+        bus.publish(Fact.from_compound_derivation(
             fact_id="compound:taint_injection",
-            fact_type="compound_taint_injection",
             scope="compound",
             confidence="high",
-            payload={
-                "rule": "R1",
-                "injection_families": sorted(fail_families & _INJECTION_FAMILIES),
-                "trust_signal": bool(trust_boundaries),
-            },
+            payload=CompoundDerivationPayload(
+                rule="R1",
+                fact_type="compound_taint_injection",
+                injection_families=sorted(fail_families & _INJECTION_FAMILIES),
+                trust_signal=bool(trust_boundaries),
+            ),
             upstream_facts=["gate_fail", "trust_boundary_crossed"],
         ))
 
     # R2 — 2-hop: trust violation + network sink
     if has_trust and has_network:
-        bus.publish(Fact(
+        bus.publish(Fact.from_compound_derivation(
             fact_id="compound:ssrf_confirmed",
-            fact_type="ssrf_confirmed",
             scope="compound",
             confidence="high",
-            payload={"rule": "R2"},
+            payload=CompoundDerivationPayload(
+                rule="R2",
+                fact_type="ssrf_confirmed",
+            ),
             upstream_facts=["gate_fail", "trust_boundary_crossed"],
         ))
 
     # R3 — 3-hop: injection + trust + dangerous sink (all three)
     if has_injection and has_trust and has_sink:
-        bus.publish(Fact(
+        bus.publish(Fact.from_compound_derivation(
             fact_id="compound:critical_hazard",
-            fact_type="critical_compound_hazard",
             scope="compound",
             confidence="high",
-            payload={
-                "rule": "R3",
-                "description": "tainted input reaches injection sink through trust boundary "
-                               "with confirmed dangerous side-effect",
-            },
+            payload=CompoundDerivationPayload(
+                rule="R3",
+                fact_type="critical_compound_hazard",
+                description=(
+                    "tainted input reaches injection sink through trust boundary "
+                    "with confirmed dangerous side-effect"
+                ),
+            ),
             upstream_facts=["gate_fail", "trust_boundary_crossed", "dangerous_sink_present"],
         ))
 
     # R4 — 2-hop: tainted input + unsafe memory operation
     if has_memory and has_trust:
-        bus.publish(Fact(
+        bus.publish(Fact.from_compound_derivation(
             fact_id="compound:memory_corruption_via_taint",
-            fact_type="memory_corruption_via_taint",
             scope="compound",
             confidence="high",
-            payload={"rule": "R4"},
+            payload=CompoundDerivationPayload(
+                rule="R4",
+                fact_type="memory_corruption_via_taint",
+            ),
             upstream_facts=["gate_fail", "trust_boundary_crossed"],
         ))

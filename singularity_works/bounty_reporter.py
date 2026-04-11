@@ -262,10 +262,11 @@ def build_report(
             finding.taint_chain = chain
 
         # Compound derivations
-        for ft in ["compound_taint_injection", "ssrf_confirmed",
-                   "critical_compound_hazard", "memory_corruption_via_taint"]:
-            if bus.has_type(ft) if hasattr(bus, "has_type") else False:
-                compounds.append(ft.replace("_", " ").title())
+        typed_compounds = bus.compound_derivations() if hasattr(bus, "compound_derivations") else []
+        for compound in typed_compounds:
+            label = compound.fact_type.replace("_", " ").title()
+            if label not in compounds:
+                compounds.append(label)
 
     # ── Assurance summary ─────────────────────────────────────────────────────
     assurance = getattr(run_result, "assurance", None)

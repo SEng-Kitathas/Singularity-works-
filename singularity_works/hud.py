@@ -137,9 +137,10 @@ class GateRecord:
 @dataclass
 class CompoundRecord:
     rule: str         # R1 | R2 | R3 | R4
-    # compound_taint_injection | ssrf_confirmed | critical_compound_hazard |
-    # memory_corruption_via_taint
     fact_type: str
+    description: str = ""
+    trust_signal: bool = False
+    injection_families: list[str] = field(default_factory=list)
 
 
 @dataclass
@@ -591,7 +592,8 @@ class ConsoleHUD:
                 shown.add(cr.rule)
                 label, color, desc = rule_labels.get(cr.rule, (cr.rule, _C.FG_DIM, ""))
                 icon = _c(color + _C.BOLD, f"[{cr.rule}]")
-                dstr = _c(_C.FG_SECONDARY, self._crop(desc, width - 8))
+                effective_desc = cr.description or desc
+                dstr = _c(_C.FG_SECONDARY, self._crop(effective_desc, width - 8))
                 rows.append(f"  {icon} {dstr}")
         else:
             rows.append(_c(_C.FG_DIM, "  (no compound chains)"))
@@ -810,16 +812,15 @@ def snapshot_from_run_result(
             ))
 
         # Compound derivations (R1-R4 from fixed-point loop)
-        compound_fact_types = {
-            "compound_taint_injection":   "R1",
-            "ssrf_confirmed":             "R2",
-            "critical_compound_hazard":   "R3",
-            "memory_corruption_via_taint":"R4",
-        }
-        for fact_type, rule in compound_fact_types.items():
-            facts = bus.by_type(fact_type) if hasattr(bus, "by_type") else []
-            if facts:
-                snap.compound.append(CompoundRecord(rule=rule, fact_type=fact_type))
+        compounds = bus.compound_derivations() if hasattr(bus, "compound_derivations") else []
+        for compound in compounds:
+            snap.compound.append(CompoundRecord(
+                rule=compound.rule,
+                fact_type=compound.fact_type,
+                description=compound.description,
+                trust_signal=compound.trust_signal,
+                injection_families=compound.injection_families,
+            ))
 
     return snap
 
