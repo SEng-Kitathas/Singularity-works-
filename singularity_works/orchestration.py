@@ -605,19 +605,27 @@ class Orchestrator:
                 )
                 # Publish directed taint_chain fact for multi-hop derivation
                 if tb.is_directed():
-                    from .facts import Fact as _Fact
+                    from .facts import Fact as _Fact, TaintChainPayload as _TaintChainPayload
                     fact_id = (
                         f"taint_chain:{artifact.artifact_id}:"
                         f"{tb.source_line}:{tb.sink_line}:{tb.boundary_type}"
                     )
-                    self.facts.publish(_Fact(
-                        fact_id=fact_id,
-                        fact_type="taint_chain",
-                        scope=artifact.artifact_id,
-                        confidence=tb.confidence,
-                        payload=chain,
-                        linked_laws=list(pattern.evidence_hooks.linked_laws),
-                    ))
+                    self.facts.publish(
+                        _Fact.from_taint_chain(
+                            fact_id=fact_id,
+                            scope=artifact.artifact_id,
+                            confidence=tb.confidence,
+                            payload=_TaintChainPayload(
+                                source_type=chain.get("source_type", "USER_INPUT"),
+                                source_line=int(chain.get("source_line", 0) or 0),
+                                boundary_type=tb.boundary_type,
+                                sink_line=int(tb.sink_line or 0),
+                                hops=int(chain.get("hops", 1) or 1),
+                                directed=bool(chain.get("directed", True)),
+                            ),
+                            linked_laws=list(pattern.evidence_hooks.linked_laws),
+                        )
+                    )
             # Publish tainted query construction for switchboard derivation
             if any(tb.boundary_type == "DB_QUERY" for tb in semantic_ir.trust_boundaries):
                 self._publish_fact(

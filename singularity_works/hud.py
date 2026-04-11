@@ -761,15 +761,15 @@ def snapshot_from_run_result(
         bus = orchestrator.facts
 
         # Taint chains
-        for fact in bus.by_type("taint_chain") if hasattr(bus, "by_type") else []:
-            p = fact.payload or {}
+        chains = bus.taint_chains() if hasattr(bus, "taint_chains") else []
+        for chain in chains:
             snap.taint_chains.append(TaintChainRecord(
-                source_type=p.get("source_type", "USER_INPUT"),
-                source_line=p.get("source_line", 0),
-                sink_type=p.get("boundary_type", "UNKNOWN"),
-                sink_line=p.get("sink_line", 0),
-                hops=p.get("hops", 1),
-                directed=p.get("directed", True),
+                source_type=chain.source_type,
+                source_line=chain.source_line,
+                sink_type=chain.boundary_type,
+                sink_line=chain.sink_line,
+                hops=chain.hops,
+                directed=chain.directed,
             ))
 
         # Compound derivations (R1-R4 from fixed-point loop)

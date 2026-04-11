@@ -13,6 +13,19 @@ def _dict() -> dict:
 
 
 @dataclass
+class TaintChainPayload:
+    source_type: str = "USER_INPUT"
+    source_line: int = 0
+    boundary_type: str = "UNKNOWN"
+    sink_line: int = 0
+    hops: int = 1
+    directed: bool = True
+
+    def to_payload(self) -> dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass
 class Fact:
     fact_id: str
     fact_type: str
@@ -25,6 +38,29 @@ class Fact:
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
+
+    @classmethod
+    def from_taint_chain(
+        cls,
+        *,
+        fact_id: str,
+        scope: str,
+        confidence: str,
+        payload: TaintChainPayload,
+        linked_laws: list[str] | None = None,
+        evidence_refs: list[str] | None = None,
+        upstream_facts: list[str] | None = None,
+    ) -> "Fact":
+        return cls(
+            fact_id=fact_id,
+            fact_type="taint_chain",
+            scope=scope,
+            confidence=confidence,
+            payload=payload.to_payload(),
+            evidence_refs=evidence_refs or [],
+            linked_laws=linked_laws or [],
+            upstream_facts=upstream_facts or [],
+        )
 
 
 class FactBus:
@@ -40,6 +76,22 @@ class FactBus:
 
     def by_type(self, fact_type: str) -> list[Fact]:
         return [fact for fact in self.facts if fact.fact_type == fact_type]
+
+    def taint_chains(self) -> list[TaintChainPayload]:
+        chains: list[TaintChainPayload] = []
+        for fact in self.by_type("taint_chain"):
+            payload = fact.payload or {}
+            chains.append(
+                TaintChainPayload(
+                    source_type=payload.get("source_type", "USER_INPUT"),
+                    source_line=int(payload.get("source_line", 0) or 0),
+                    boundary_type=payload.get("boundary_type", "UNKNOWN"),
+                    sink_line=int(payload.get("sink_line", 0) or 0),
+                    hops=int(payload.get("hops", 1) or 1),
+                    directed=bool(payload.get("directed", True)),
+                )
+            )
+        return chains
 
     def all_types(self) -> set[str]:
         return {f.fact_type for f in self.facts}
