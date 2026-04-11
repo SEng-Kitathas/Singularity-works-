@@ -1,7 +1,7 @@
 # Doctrine Snapshot
 
 ## Governing Law
-**PROBE → DERIVE → EMBODY → VERIFY → RECURSE**
+**PROBE → DERIVE → VERIFY → EMBODY → RECURSE**
 
 ## Forge Pipeline
 ```
@@ -55,3 +55,11 @@ assurance.py (final status)
 - Law 4: Pedantic execution, aerospace-grade verification
 - Law Ω: Every artifact at theoretical maximum
 - Law Σ: Voice speculative ideas, challenge assumptions
+
+
+## Shape Rules
+- Dict is presumptively suspect for Forge semantics
+- Parse early, type early, stay typed internally, serialize late
+- Re-architect when the current module shape is weaker than the doctrine
+- Typed runtime and ledger carriers outrank anonymous payload blobs
+- Update doctrine when embodied standards outpace written docs
