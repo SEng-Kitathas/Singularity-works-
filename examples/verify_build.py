@@ -72,6 +72,15 @@ if __name__ == '__main__':
     execution = demo_run(base, show_hud=False, scenario="execution")
     execution_remediated = demo_run(base, show_hud=False, apply_transformations=True, scenario="execution")
     self_report = self_audit(base)
+    self_totals = self_report.get('totals', {})
+    self_verification = {
+        'passed': self_totals.get('fail', 0) == 0,
+        'clean': self_totals.get('fail', 0) == 0 and self_totals.get('warn', 0) == 0,
+        'fail_count': self_totals.get('fail', 0),
+        'warn_count': self_totals.get('warn', 0),
+        'failing_files': self_report.get('failing_files', []),
+        'warning_files': self_report.get('warning_files', []),
+    }
     report = {
         'compile_ok': compile_ok,
         'good_assurance': good['assurance']['status'],
@@ -107,7 +116,8 @@ if __name__ == '__main__':
         'good_transformations': len(good.get('transformation_plan', [])),
         'bad_transformations': len(bad.get('transformation_plan', [])),
         'self_audit': self_report,
-        'expected': {'compile_ok': True, 'good_assurance': 'green', 'bad_assurance': 'red', 'bad_remediated_assurance': 'green', 'security_assurance': 'red', 'security_remediated_assurance': 'green', 'execution_assurance': 'red', 'execution_remediated_assurance': 'green'}
+        'self_verification': self_verification,
+        'expected': {'compile_ok': True, 'good_assurance': 'green', 'bad_assurance': 'red', 'bad_remediated_assurance': 'green', 'security_assurance': 'red', 'security_remediated_assurance': 'green', 'execution_assurance': 'red', 'execution_remediated_assurance': 'green', 'self_verification_passed': True}
     }
     (base / 'build_verification_summary.json').write_text(json.dumps(report, indent=2))
     md = []
@@ -123,6 +133,8 @@ if __name__ == '__main__':
     md.append(f"- good_claim_count: **{len(good['requirement_rollup']['claim_rollups'])}**")
     md.append(f"- bad_claim_count: **{len(bad['requirement_rollup']['claim_rollups'])}**")
     md.append(f"- self_audit_totals: `{self_report['totals']}`")
+    md.append(f"- self_verification_passed: **{self_verification['passed']}**")
+    md.append(f"- self_verification_clean: **{self_verification['clean']}**")
     md.append(f"- self_audit_failing_files: `{self_report['failing_files']}`")
     md.append(f"- self_audit_warning_files: `{self_report['warning_files']}`")
     md.append('')

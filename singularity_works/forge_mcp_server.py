@@ -346,6 +346,11 @@ async def _run_battery() -> list[types.TextContent]:
 
         data = json.loads(result.stdout)
         sa = data.get("self_audit", {}).get("totals", {})
+        sv = data.get("self_verification", {})
+        sv_passed = bool(sv.get("passed", sa.get("fail", 0) == 0))
+        sv_clean = bool(sv.get("clean", sv_passed and sa.get("warn", 0) == 0))
+        sv_failing = list(sv.get("failing_files", data.get("self_audit", {}).get("failing_files", [])))
+        sv_warning = list(sv.get("warning_files", data.get("self_audit", {}).get("warning_files", [])))
 
         lines = [
             "# Forge Battery Results",
@@ -353,8 +358,17 @@ async def _run_battery() -> list[types.TextContent]:
             f"good_path: {data.get('good_assurance','?')}",
             f"bad_path: {data.get('bad_assurance','?')} → remediated: {data.get('bad_remediated_assurance','?')}",
             f"security_path: {data.get('security_assurance','?')} → remediated: {data.get('security_remediated_assurance','?')}",
-            f"self_audit: {sa.get('pass',0)} pass / {sa.get('warn',0)} warn / {sa.get('fail',0)} fail",
+            f"self_verification: {'PASS' if sv_passed else 'FAIL'} ({sa.get('pass',0)} pass / {sa.get('warn',0)} warn / {sa.get('fail',0)} fail)",
+            f"self_verification_clean: {'YES' if sv_clean else 'NO'}",
         ]
+        if sv_failing:
+            lines.append("self_verification_failing_files:")
+            for f in sv_failing[:8]:
+                lines.append(f"  - {f}")
+        if sv_warning:
+            lines.append("self_verification_warning_files:")
+            for f in sv_warning[:8]:
+                lines.append(f"  - {f}")
 
         # Battery cases if present
         battery = data.get("battery", {})
@@ -608,12 +622,20 @@ async def _commit_verified(message: str, require_battery: bool) -> list[types.Te
             battery = data.get("battery", {})
             total = battery.get("total", 0)
             passed = battery.get("passed", 0)
+            sv = data.get("self_verification", {})
+            sv_passed = bool(sv.get("passed", data.get("self_audit", {}).get("totals", {}).get("fail", 0) == 0))
+            sv_failing = list(sv.get("failing_files", data.get("self_audit", {}).get("failing_files", [])))
 
             if total > 0 and passed < total:
                 failures = battery.get("failures", [])
                 return [types.TextContent(type="text",
                     text=f"COMMIT BLOCKED: battery {passed}/{total}\n" +
                          "\n".join(f"  - {f}" for f in failures[:5]))]
+
+            if not sv_passed:
+                return [types.TextContent(type="text",
+                    text="COMMIT BLOCKED: self verification failed\n" +
+                         "\n".join(f"  - {f}" for f in sv_failing[:8]))]
 
             # Also check compile
             if not data.get("compile_ok", True):
