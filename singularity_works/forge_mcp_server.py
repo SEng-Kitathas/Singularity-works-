@@ -1,3 +1,4 @@
+# complexity_justified: MCP routing and commit/battery gates are intentionally centralized for operator visibility.
 """
 Singularity Works Forge — MCP Server
 Version: 2026-04-03 · v1.20
@@ -357,8 +358,14 @@ async def _run_battery() -> list[types.TextContent]:
             f"compile: {'✓' if data.get('compile_ok') else '✗'}",
             f"good_path: {data.get('good_assurance','?')}",
             f"bad_path: {data.get('bad_assurance','?')} → remediated: {data.get('bad_remediated_assurance','?')}",
-            f"security_path: {data.get('security_assurance','?')} → remediated: {data.get('security_remediated_assurance','?')}",
-            f"self_verification: {'PASS' if sv_passed else 'FAIL'} ({sa.get('pass',0)} pass / {sa.get('warn',0)} warn / {sa.get('fail',0)} fail)",
+            (
+                f"security_path: {data.get('security_assurance','?')} → "
+                f"remediated: {data.get('security_remediated_assurance','?')}"
+            ),
+            (
+                f"self_verification: {'PASS' if sv_passed else 'FAIL'} ("
+                f"{sa.get('pass',0)} pass / {sa.get('warn',0)} warn / {sa.get('fail',0)} fail)"
+            ),
             f"self_verification_clean: {'YES' if sv_clean else 'NO'}",
         ]
         if sv_failing:
@@ -515,7 +522,14 @@ async def _get_escalation(code: str, requirement_text: str) -> list[types.TextCo
         if any(w in req_lower for w in ["xss", "template", "render", "html"]): tags.append("xss")
         if any(w in req_lower for w in ["exec", "command", "shell"]): tags.append("exec")
         if any(w in req_lower for w in ["deserializ", "pickle", "yaml"]): tags.append("deserialization")
-        if any(w in req_lower for w in ["csrf", "rate limit", "brute force", "session cookie", "login", "logout", "authenticate", "jwt", "oauth"]): tags.append("auth")
+        if any(
+            w in req_lower
+            for w in [
+                "csrf", "rate limit", "brute force", "session cookie",
+                "login", "logout", "authenticate", "jwt", "oauth",
+            ]
+        ):
+            tags.append("auth")
         if any(w in req_lower for w in ["payment", "financial", "decimal", "price"]): tags.append("payment")
 
         req = Requirement(f"REQ-ESC-{int(time.time())}", requirement_text, tags=tags)

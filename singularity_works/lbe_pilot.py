@@ -1,3 +1,4 @@
+# complexity_justified: pilot LBE flow keeps experimental path reasoning together for auditability during active iteration.
 """
 Logic Blueprint Engine — Python Lowering Pilot
 Version: 2026-04-04 · v1.23

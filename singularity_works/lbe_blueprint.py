@@ -709,10 +709,16 @@ def _obligation_fix(kind: str) -> str:
 
 def _obligation_safe_alt(kind: str) -> str:
     alts = {
-        "GOROUTINE_CANCELLATION":    "func fetchData(ctx context.Context, url string) string { ... select { case <-ctx.Done(): return '' } }",
+        "GOROUTINE_CANCELLATION": (
+            "func fetchData(ctx context.Context, url string) string { ... "
+            "select { case <-ctx.Done(): return '' } }"
+        ),
         "NO_REUSE_AFTER_FREE":       "let val = Arc::new(data); // use Arc<T> instead of raw ptr after drop",
         "SAFE_MEMORY_ARITHMETIC":    "size_t total; if (__builtin_umul_overflow(count, elem_size, &total)) abort();",
-        "PROTOTYPE_GUARD":           "Use hasOwnProperty + prototype key check. See OWASP prototype pollution prevention guide.",
+        "PROTOTYPE_GUARD": (
+            "Use hasOwnProperty + prototype key check. "
+            "See OWASP prototype pollution prevention guide."
+        ),
         "CONSTANT_TIME_COMPARE":     "return hmac.compare_digest(expected.encode(), candidate.encode())",
         "COMMIT_AFTER_WRITE":        "with db.session.begin(): db.add(user)  # auto-commits on exit",
         "CSRF_TOKEN_IN_CALLBACK":    "if request.args.get('state') != session.pop('oauth_state', None): abort(403)",

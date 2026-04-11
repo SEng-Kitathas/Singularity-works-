@@ -1143,9 +1143,11 @@ class Orchestrator:
                             if _falsifier not in _claim.residual_risks:
                                 _claim.residual_risks.append(_falsifier)
                             _claim.warrant = (
-                                f"Primary trust claim is CHALLENGED by {len(assurance.discharged)} discharged gate families and "
+                                "Primary trust claim is CHALLENGED by "
+                                f"{len(assurance.discharged)} discharged gate families and "
                                 f"{len(assurance.monitored)} monitored properties. "
-                                f"FALSIFIED: Law Omega confirmed dangerous sink evidence: {_lbe_verdict}"
+                                "FALSIFIED: Law Omega confirmed dangerous sink evidence: "
+                                f"{_lbe_verdict}"
                             )
                             break
 

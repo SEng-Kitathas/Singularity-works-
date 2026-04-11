@@ -167,7 +167,10 @@ _PATTERNS: list[Pattern] = [
             re.compile(r'@\s*SuppressWarnings\s*\(\s*"unchecked"\s*\)'),
         ],
         source_signals=[re.compile(r'\bString\s+(?:className|methodName|clazz)\b')],
-        verdict_template="REFLECTION — reflective class loading via user-controlled name (enables arbitrary instantiation)",
+        verdict_template=(
+            "REFLECTION — reflective class loading via user-controlled name "
+            "(enables arbitrary instantiation)"
+        ),
         note="className/methodName from external source enables remote code execution via reflection",
     ),
 

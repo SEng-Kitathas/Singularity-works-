@@ -1,3 +1,4 @@
+# complexity_justified: forge_context preserves bi-temporal memory, contradiction tracking, and retrieval compilation in one audited module.
 #!/usr/bin/env python3
 """
 Singularity Works — Forge Context Manager v4.0
