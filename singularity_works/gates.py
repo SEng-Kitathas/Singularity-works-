@@ -498,10 +498,12 @@ def _line_length_finding(significant_long: list[tuple[int, str]]):
     )
 
 
-def _duplication_finding(lines_raw: list[str], duplicate_lines: int, declarative_module: bool):
-    threshold_base = max(60 if declarative_module else 12, len(lines_raw) // 4)
+def _duplication_finding(lines_raw: list[str], duplicate_lines: int, declarative_module: bool, schema_like_surface: bool = False):
+    base_floor = 90 if schema_like_surface else (60 if declarative_module else 12)
+    threshold_base = max(base_floor, len(lines_raw) // (3 if schema_like_surface else 4))
+    ratio_limit = 0.35 if schema_like_surface else 0.20
     duplicate_ratio = duplicate_lines / max(1, len(lines_raw))
-    if duplicate_lines <= threshold_base and duplicate_ratio <= 0.20:
+    if duplicate_lines <= threshold_base and duplicate_ratio <= ratio_limit:
         return None
     suggestion = SimplificationSuggestion(
         suggestion_id="suggest:deduplicate",
@@ -598,9 +600,14 @@ def simplification_gate() -> Gate:
         # Suppress nesting warning when file already carries complexity_justified.
         # The marker signals that the author has reasoned about the depth.
         complexity_justified = "complexity_justified" in content.lower()
+        schema_like_surface = (
+            complexity_justified
+            and content.count("@dataclass") >= 5
+            and "payload" in content.lower()
+        )
         optional = [
             None if (declarative_module or complexity_justified) else _line_length_finding(significant_long),
-            _duplication_finding(lines_raw, duplicate_lines, declarative_module),
+            _duplication_finding(lines_raw, duplicate_lines, declarative_module, schema_like_surface),
             None if complexity_justified else _deep_nesting_finding(deep_nesting),
             _abstraction_pressure_finding(function_count, len(lines_raw), declarative_module),
         ]

@@ -12,6 +12,14 @@ def _dict() -> dict:
     return {}
 
 
+def _payload(obj: Any) -> dict[str, Any]:
+    return asdict(obj)
+
+
+def _decode(payload_cls, payload: dict[str, Any] | None):
+    return payload_cls(**(payload or {}))
+
+
 @dataclass
 class TaintChainPayload:
     source_type: str = "USER_INPUT"
@@ -20,9 +28,6 @@ class TaintChainPayload:
     sink_line: int = 0
     hops: int = 1
     directed: bool = True
-
-    def to_payload(self) -> dict[str, Any]:
-        return asdict(self)
 
 
 @dataclass
@@ -39,9 +44,6 @@ class TrustBoundaryPayload:
     structure_id: str = ""
     dangerous_calls: list[str] = field(default_factory=_list)
 
-    def to_payload(self) -> dict[str, Any]:
-        return asdict(self)
-
 
 @dataclass
 class CompoundDerivationPayload:
@@ -51,8 +53,16 @@ class CompoundDerivationPayload:
     injection_families: list[str] = field(default_factory=_list)
     trust_signal: bool = False
 
-    def to_payload(self) -> dict[str, Any]:
-        return asdict(self)
+
+@dataclass
+class DangerousSinkPayload:
+    sink_type: str = "unknown"
+    structure_id: str = ""
+
+
+@dataclass
+class ResourceLifecyclePayload:
+    violations: list[dict[str, Any]] = field(default_factory=_list)
 
 
 @dataclass
@@ -70,6 +80,76 @@ class Fact:
         return asdict(self)
 
     @classmethod
+    def _from_payload(
+        cls,
+        *,
+        fact_id: str,
+        fact_type: str,
+        scope: str,
+        confidence: str,
+        payload: Any,
+        linked_laws: list[str] | None = None,
+        evidence_refs: list[str] | None = None,
+        upstream_facts: list[str] | None = None,
+    ) -> "Fact":
+        return cls(
+            fact_id=fact_id,
+            fact_type=fact_type,
+            scope=scope,
+            confidence=confidence,
+            payload=_payload(payload),
+            evidence_refs=evidence_refs or [],
+            linked_laws=linked_laws or [],
+            upstream_facts=upstream_facts or [],
+        )
+
+    @classmethod
+    def from_dangerous_sink(
+        cls,
+        *,
+        fact_id: str,
+        scope: str,
+        confidence: str,
+        payload: DangerousSinkPayload,
+        linked_laws: list[str] | None = None,
+        evidence_refs: list[str] | None = None,
+        upstream_facts: list[str] | None = None,
+    ) -> "Fact":
+        return cls._from_payload(
+            fact_id=fact_id,
+            fact_type="dangerous_sink_present",
+            scope=scope,
+            confidence=confidence,
+            payload=payload,
+            linked_laws=linked_laws,
+            evidence_refs=evidence_refs,
+            upstream_facts=upstream_facts,
+        )
+
+    @classmethod
+    def from_resource_lifecycle(
+        cls,
+        *,
+        fact_id: str,
+        scope: str,
+        confidence: str,
+        payload: ResourceLifecyclePayload,
+        linked_laws: list[str] | None = None,
+        evidence_refs: list[str] | None = None,
+        upstream_facts: list[str] | None = None,
+    ) -> "Fact":
+        return cls._from_payload(
+            fact_id=fact_id,
+            fact_type="resource_lifecycle_incomplete",
+            scope=scope,
+            confidence=confidence,
+            payload=payload,
+            linked_laws=linked_laws,
+            evidence_refs=evidence_refs,
+            upstream_facts=upstream_facts,
+        )
+
+    @classmethod
     def from_compound_derivation(
         cls,
         *,
@@ -81,15 +161,15 @@ class Fact:
         evidence_refs: list[str] | None = None,
         upstream_facts: list[str] | None = None,
     ) -> "Fact":
-        return cls(
+        return cls._from_payload(
             fact_id=fact_id,
             fact_type=payload.fact_type,
             scope=scope,
             confidence=confidence,
-            payload=payload.to_payload(),
-            evidence_refs=evidence_refs or [],
-            linked_laws=linked_laws or [],
-            upstream_facts=upstream_facts or [],
+            payload=payload,
+            linked_laws=linked_laws,
+            evidence_refs=evidence_refs,
+            upstream_facts=upstream_facts,
         )
 
     @classmethod
@@ -104,15 +184,15 @@ class Fact:
         evidence_refs: list[str] | None = None,
         upstream_facts: list[str] | None = None,
     ) -> "Fact":
-        return cls(
+        return cls._from_payload(
             fact_id=fact_id,
             fact_type="trust_boundary_crossed",
             scope=scope,
             confidence=confidence,
-            payload=payload.to_payload(),
-            evidence_refs=evidence_refs or [],
-            linked_laws=linked_laws or [],
-            upstream_facts=upstream_facts or [],
+            payload=payload,
+            linked_laws=linked_laws,
+            evidence_refs=evidence_refs,
+            upstream_facts=upstream_facts,
         )
 
     @classmethod
@@ -127,15 +207,15 @@ class Fact:
         evidence_refs: list[str] | None = None,
         upstream_facts: list[str] | None = None,
     ) -> "Fact":
-        return cls(
+        return cls._from_payload(
             fact_id=fact_id,
             fact_type="taint_chain",
             scope=scope,
             confidence=confidence,
-            payload=payload.to_payload(),
-            evidence_refs=evidence_refs or [],
-            linked_laws=linked_laws or [],
-            upstream_facts=upstream_facts or [],
+            payload=payload,
+            linked_laws=linked_laws,
+            evidence_refs=evidence_refs,
+            upstream_facts=upstream_facts,
         )
 
 
@@ -153,42 +233,14 @@ class FactBus:
     def by_type(self, fact_type: str) -> list[Fact]:
         return [fact for fact in self.facts if fact.fact_type == fact_type]
 
+    def _decode_many(self, fact_type: str, payload_cls):
+        return [_decode(payload_cls, fact.payload) for fact in self.by_type(fact_type)]
+
     def taint_chains(self) -> list[TaintChainPayload]:
-        chains: list[TaintChainPayload] = []
-        for fact in self.by_type("taint_chain"):
-            payload = fact.payload or {}
-            chains.append(
-                TaintChainPayload(
-                    source_type=payload.get("source_type", "USER_INPUT"),
-                    source_line=int(payload.get("source_line", 0) or 0),
-                    boundary_type=payload.get("boundary_type", "UNKNOWN"),
-                    sink_line=int(payload.get("sink_line", 0) or 0),
-                    hops=int(payload.get("hops", 1) or 1),
-                    directed=bool(payload.get("directed", True)),
-                )
-            )
-        return chains
+        return self._decode_many("taint_chain", TaintChainPayload)
 
     def trust_boundaries(self) -> list[TrustBoundaryPayload]:
-        boundaries: list[TrustBoundaryPayload] = []
-        for fact in self.by_type("trust_boundary_crossed"):
-            payload = fact.payload or {}
-            boundaries.append(
-                TrustBoundaryPayload(
-                    source=payload.get("source", "unknown"),
-                    boundary_type=payload.get("boundary_type", "UNKNOWN"),
-                    sink_name=payload.get("sink_name", ""),
-                    sink_line=int(payload.get("sink_line", 0) or 0),
-                    tainted_input=payload.get("tainted_input"),
-                    directed=bool(payload.get("directed", False)),
-                    source_line=int(payload.get("source_line", 0) or 0),
-                    source_type=payload.get("source_type", "UNKNOWN"),
-                    hops=int(payload.get("hops", 0) or 0),
-                    structure_id=payload.get("structure_id", ""),
-                    dangerous_calls=list(payload.get("dangerous_calls", [])),
-                )
-            )
-        return boundaries
+        return self._decode_many("trust_boundary_crossed", TrustBoundaryPayload)
 
     def compound_derivations(self) -> list[CompoundDerivationPayload]:
         fact_types = {
@@ -212,6 +264,12 @@ class FactBus:
                 )
             )
         return compounds
+
+    def dangerous_sinks(self) -> list[DangerousSinkPayload]:
+        return self._decode_many("dangerous_sink_present", DangerousSinkPayload)
+
+    def resource_lifecycle_issues(self) -> list[ResourceLifecyclePayload]:
+        return self._decode_many("resource_lifecycle_incomplete", ResourceLifecyclePayload)
 
     def all_types(self) -> set[str]:
         return {f.fact_type for f in self.facts}

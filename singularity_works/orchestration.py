@@ -555,15 +555,18 @@ class Orchestrator:
                     or structure.payload.get("try_finally_close_seen")
                 )
                 if not is_safe:
-                    self._publish_fact(
-                        "dangerous_sink_present",
-                        artifact.artifact_id,
-                        {
-                            "structure_id": structure.structure_id,
-                            "sink_type": "unclosed_resource",
-                        },
-                        confidence=structure.confidence,
-                        linked_laws=pattern.evidence_hooks.linked_laws,
+                    from .facts import DangerousSinkPayload as _DangerousSinkPayload, Fact as _Fact
+                    self.facts.publish(
+                        _Fact.from_dangerous_sink(
+                            fact_id=f"{artifact.artifact_id}:dangerous_sink_present:{len(self.facts.facts)}",
+                            scope=artifact.artifact_id,
+                            confidence=structure.confidence,
+                            payload=_DangerousSinkPayload(
+                                sink_type="unclosed_resource",
+                                structure_id=structure.structure_id,
+                            ),
+                            linked_laws=pattern.evidence_hooks.linked_laws,
+                        )
                     )
         # Publish Universal Semantic IR — derived facts from the polyglot front door.
         # These supplement the recovery-derived facts above and enable cross-gate
@@ -644,17 +647,20 @@ class Orchestrator:
                 )
             # Publish resource lifecycle incompleteness if IR detected violations
             if semantic_ir.resource_violations:
-                self._publish_fact(
-                    "resource_lifecycle_incomplete",
-                    artifact.artifact_id,
-                    {
-                        "violations": [
-                            {"resource": v.resource, "violation": v.violation}
-                            for v in semantic_ir.resource_violations
-                        ]
-                    },
-                    confidence=semantic_ir.confidence,
-                    linked_laws=["LAW_1", "LAW_4"],
+                from .facts import Fact as _Fact, ResourceLifecyclePayload as _ResourceLifecyclePayload
+                self.facts.publish(
+                    _Fact.from_resource_lifecycle(
+                        fact_id=f"{artifact.artifact_id}:resource_lifecycle_incomplete:{len(self.facts.facts)}",
+                        scope=artifact.artifact_id,
+                        confidence=semantic_ir.confidence,
+                        payload=_ResourceLifecyclePayload(
+                            violations=[
+                                {"resource": v.resource, "violation": v.violation}
+                                for v in semantic_ir.resource_violations
+                            ]
+                        ),
+                        linked_laws=["LAW_1", "LAW_4"],
+                    )
                 )
         # Build per-evaluation enforcement engine:
         # base gates (always) + genome-derived gates (task-scoped from bundle).

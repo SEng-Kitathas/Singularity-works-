@@ -105,6 +105,17 @@ def _gate_icon(status: str) -> str:
 # ===========================================================================
 
 @dataclass
+class DangerousSinkRecord:
+    sink_type: str = "unknown"
+    structure_id: str = ""
+
+
+@dataclass
+class ResourceLifecycleRecord:
+    violations: list[dict[str, object]] = field(default_factory=list)
+
+
+@dataclass
 class TrustBoundaryRecord:
     boundary_type: str = "UNKNOWN"
     sink_name: str = ""
@@ -218,6 +229,8 @@ class HudSnapshot:
     # Trust boundaries and directed taint chains (from FactBus)
     trust_boundaries: list[TrustBoundaryRecord] = field(default_factory=list)
     taint_chains: list[TaintChainRecord] = field(default_factory=list)
+    dangerous_sinks: list[DangerousSinkRecord] = field(default_factory=list)
+    resource_lifecycle: list[ResourceLifecycleRecord] = field(default_factory=list)
 
     # Compound derivations (from fixed-point loop R1-R4)
     compound: list[CompoundRecord] = field(default_factory=list)
@@ -567,6 +580,25 @@ class ConsoleHUD:
             rows.append(_c(_C.FG_DIM, "  (none detected)"))
         rows.append("")
 
+        # Dangerous sinks
+        rows.append(_c(_C.RED, self._crop("  DANGEROUS SINKS", width)))
+        if snap.dangerous_sinks:
+            for ds in snap.dangerous_sinks[:4]:
+                rows.append(self._crop(f"  {ds.sink_type} ({ds.structure_id or 'runtime'})", width))
+        else:
+            rows.append(_c(_C.FG_DIM, "  (none detected)"))
+        rows.append("")
+
+        # Resource lifecycle issues
+        rows.append(_c(_C.MAGENTA, self._crop("  RESOURCE LIFECYCLE", width)))
+        if snap.resource_lifecycle:
+            for rl in snap.resource_lifecycle[:2]:
+                for v in rl.violations[:3]:
+                    rows.append(self._crop(f"  {v.get('resource','?')} -> {v.get('violation','UNKNOWN')}", width))
+        else:
+            rows.append(_c(_C.FG_DIM, "  (none detected)"))
+        rows.append("")
+
         # Directed taint chains
         rows.append(_c(_C.CYAN, self._crop("  TAINT CHAINS", width)))
         if snap.taint_chains:
@@ -797,6 +829,21 @@ def snapshot_from_run_result(
                 source_line=boundary.source_line,
                 source_type=boundary.source_type,
                 hops=boundary.hops,
+            ))
+
+        # Dangerous sinks
+        dangerous_sinks = bus.dangerous_sinks() if hasattr(bus, "dangerous_sinks") else []
+        for sink in dangerous_sinks:
+            snap.dangerous_sinks.append(DangerousSinkRecord(
+                sink_type=sink.sink_type,
+                structure_id=sink.structure_id,
+            ))
+
+        # Resource lifecycle issues
+        lifecycle_issues = bus.resource_lifecycle_issues() if hasattr(bus, "resource_lifecycle_issues") else []
+        for issue in lifecycle_issues:
+            snap.resource_lifecycle.append(ResourceLifecycleRecord(
+                violations=issue.violations,
             ))
 
         # Taint chains

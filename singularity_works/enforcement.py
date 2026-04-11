@@ -252,7 +252,8 @@ def _apply_propagation_rules(bus: FactBus, results: list[GateResult]) -> None:
     )
     has_network   = bool(fail_families & _NETWORK_FAMILIES)
     has_memory    = bool(fail_families & _MEMORY_FAMILIES)
-    has_sink      = bus.has_type("dangerous_sink_present")
+    dangerous_sinks = bus.dangerous_sinks() if hasattr(bus, "dangerous_sinks") else []
+    has_sink      = bool(dangerous_sinks)
 
     # R1 — 2-hop: tainted input → injection sink
     if has_injection and has_trust:
