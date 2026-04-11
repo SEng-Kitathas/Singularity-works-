@@ -19,6 +19,35 @@ class GateCountLedger:
 
 
 @dataclass
+class SessionStartLedgerPayload:
+    mode: str = "run"
+    project_tag: str = ""
+    requirement_id: str = ""
+
+
+@dataclass
+class PatternSelectedLedgerPayload:
+    pattern_id: str = ""
+    family: str = ""
+    radicals: list[str] = field(default_factory=list)
+    requirement_id: str = ""
+    linked_laws: list[str] = field(default_factory=list)
+    genome_bundle: dict[str, Any] = field(default_factory=dict)
+    linked_requirements: list[str] = field(default_factory=list)
+
+
+@dataclass
+class RecoveredStructureLedgerPayload:
+    structure_id: str = ""
+    requirement_id: str = ""
+    type: str = ""
+    confidence: str = "moderate"
+    radicals: list[str] = field(default_factory=list)
+    payload: dict[str, Any] = field(default_factory=dict)
+    linked_requirements: list[str] = field(default_factory=list)
+
+
+@dataclass
 class RecursiveAuditLedgerPayload:
     requirement_id: str = ""
     artifact_id: str = ""
@@ -192,6 +221,18 @@ def _decode_trace_link_payload(payload: dict[str, Any] | None) -> TraceLinkLedge
     return TraceLinkLedgerPayload(**(payload or {}))
 
 
+def _decode_session_start_payload(payload: dict[str, Any] | None) -> SessionStartLedgerPayload:
+    return SessionStartLedgerPayload(**(payload or {}))
+
+
+def _decode_pattern_selected_payload(payload: dict[str, Any] | None) -> PatternSelectedLedgerPayload:
+    return PatternSelectedLedgerPayload(**(payload or {}))
+
+
+def _decode_recovered_structure_payload(payload: dict[str, Any] | None) -> RecoveredStructureLedgerPayload:
+    return RecoveredStructureLedgerPayload(**(payload or {}))
+
+
 def _decode_recursive_audit_payload(payload: dict[str, Any] | None) -> RecursiveAuditLedgerPayload:
     raw = dict(payload or {})
     raw["gate_counts"] = GateCountLedger(
@@ -335,6 +376,27 @@ class EvidenceLedger:
             if rec.get("record_type") == "transformation_application"
         ]
 
+    def session_starts_typed(self, session_id: str | None = None) -> list[SessionStartLedgerPayload]:
+        return [
+            _decode_session_start_payload(rec.get("payload", {}))
+            for rec in self._session_records(session_id)
+            if rec.get("record_type") == "session_start"
+        ]
+
+    def pattern_selections_typed(self, session_id: str | None = None) -> list[PatternSelectedLedgerPayload]:
+        return [
+            _decode_pattern_selected_payload(rec.get("payload", {}))
+            for rec in self._session_records(session_id)
+            if rec.get("record_type") == "pattern_selected"
+        ]
+
+    def recovered_structures_typed(self, session_id: str | None = None) -> list[RecoveredStructureLedgerPayload]:
+        return [
+            _decode_recovered_structure_payload(rec.get("payload", {}))
+            for rec in self._session_records(session_id)
+            if rec.get("record_type") == "recovered_structure"
+        ]
+
     def recursive_audits_typed(self, session_id: str | None = None) -> list[RecursiveAuditLedgerPayload]:
         return [
             _decode_recursive_audit_payload(rec.get("payload", {}))
@@ -403,6 +465,8 @@ class EvidenceLedger:
                     else asdict(assurance_claim_payload) if assurance_claim_payload is not None
                     else asdict(assurance_rollup_payload) if assurance_rollup_payload is not None
                     else asdict(trace_link_payload) if trace_link_payload is not None
+                    else asdict(pattern_selected_payload) if pattern_selected_payload is not None
+                    else asdict(recovered_structure_payload) if recovered_structure_payload is not None
                     else asdict(transformation_plan_payload) if transformation_plan_payload is not None
                     else asdict(transformation_application_payload) if transformation_application_payload is not None
                     else asdict(recursive_audit_payload) if recursive_audit_payload is not None
@@ -435,6 +499,8 @@ class EvidenceLedger:
             "risks": [],
             "assurance": [],
             "trace_links": [],
+            "pattern_selections": [],
+            "recovered_structures": [],
             "transformation_plans": [],
             "transformation_applications": [],
             "recursive_audits": [],
@@ -449,6 +515,8 @@ class EvidenceLedger:
             "assurance_rollup": "assurance",
             "assurance_claim": "assurance",
             "trace_link": "trace_links",
+            "pattern_selected": "pattern_selections",
+            "recovered_structure": "recovered_structures",
             "transformation_plan": "transformation_plans",
             "transformation_application": "transformation_applications",
             "recursive_audit": "recursive_audits",
@@ -462,6 +530,8 @@ class EvidenceLedger:
             assurance_claim_payload = _decode_assurance_claim_payload(payload) if rec.get("record_type") == "assurance_claim" else None
             assurance_rollup_payload = _decode_assurance_rollup_payload(payload) if rec.get("record_type") == "assurance_rollup" else None
             trace_link_payload = _decode_trace_link_payload(payload) if rec.get("record_type") == "trace_link" else None
+            pattern_selected_payload = _decode_pattern_selected_payload(payload) if rec.get("record_type") == "pattern_selected" else None
+            recovered_structure_payload = _decode_recovered_structure_payload(payload) if rec.get("record_type") == "recovered_structure" else None
             transformation_plan_payload = _decode_transformation_plan_payload(payload) if rec.get("record_type") == "transformation_plan" else None
             transformation_application_payload = _decode_transformation_application_payload(payload) if rec.get("record_type") == "transformation_application" else None
             recursive_audit_payload = _decode_recursive_audit_payload(payload) if rec.get("record_type") == "recursive_audit" else None
@@ -473,6 +543,8 @@ class EvidenceLedger:
                 else assurance_claim_payload.linked_requirements if assurance_claim_payload is not None
                 else assurance_rollup_payload.linked_requirements if assurance_rollup_payload is not None
                 else trace_link_payload.linked_requirements if trace_link_payload is not None
+                else pattern_selected_payload.linked_requirements if pattern_selected_payload is not None
+                else recovered_structure_payload.linked_requirements if recovered_structure_payload is not None
                 else transformation_plan_payload.linked_requirements if transformation_plan_payload is not None
                 else [recursive_audit_payload.requirement_id] if recursive_audit_payload is not None and recursive_audit_payload.requirement_id else [fractal_cycle_payload.requirement_id] if fractal_cycle_payload is not None and fractal_cycle_payload.requirement_id else payload.get("linked_requirements", [])
             )
@@ -481,6 +553,8 @@ class EvidenceLedger:
                 else risk_payload.requirement_id if risk_payload is not None
                 else assurance_claim_payload.requirement_id if assurance_claim_payload is not None
                 else assurance_rollup_payload.requirement_id if assurance_rollup_payload is not None
+                else pattern_selected_payload.requirement_id if pattern_selected_payload is not None
+                else recovered_structure_payload.requirement_id if recovered_structure_payload is not None
                 else transformation_plan_payload.requirement_id if transformation_plan_payload is not None
                 else transformation_application_payload.requirement_id if transformation_application_payload is not None
                 else recursive_audit_payload.requirement_id if recursive_audit_payload is not None
@@ -584,6 +658,9 @@ class EvidenceLedger:
             "monitor_failures": 0,
             "assurance_red": 0,
             "assurance_claims": 0,
+            "session_starts": 0,
+            "pattern_selections": 0,
+            "recovered_structures": 0,
         }
         for rec in records:
             rtype = rec.get("record_type")
@@ -597,4 +674,10 @@ class EvidenceLedger:
                 counts["assurance_red"] += 1
             elif rtype == "assurance_claim":
                 counts["assurance_claims"] += 1
+            elif rtype == "session_start":
+                counts["session_starts"] += 1
+            elif rtype == "pattern_selected":
+                counts["pattern_selections"] += 1
+            elif rtype == "recovered_structure":
+                counts["recovered_structures"] += 1
         return counts

@@ -929,14 +929,15 @@ class Orchestrator:
         requirement: Requirement,
         candidate_content: str,
     ) -> OrchestrationResult:
+        from .evidence_ledger import PatternSelectedLedgerPayload, RecoveredStructureLedgerPayload, SessionStartLedgerPayload
         self._record(
             "session_start",
             ctx.session_id,
-            {
-                "mode": ctx.mode,
-                "project_tag": ctx.project_tag,
-                "requirement_id": requirement.requirement_id,
-            },
+            SessionStartLedgerPayload(
+                mode=ctx.mode,
+                project_tag=ctx.project_tag,
+                requirement_id=requirement.requirement_id,
+            ),
         )
         self.facts = FactBus()
         fractal_cycle = FractalCycle(cycle_id=ctx.session_id)
@@ -971,14 +972,15 @@ class Orchestrator:
         self._record(
             "pattern_selected",
             f"pattern:{ctx.session_id}",
-            {
-                "pattern_id": pattern.pattern_id,
-                "family": pattern.family,
-                "radicals": pattern.radicals,
-                "requirement_id": requirement.requirement_id,
-                "linked_laws": pattern.evidence_hooks.linked_laws,
-                "genome_bundle": genome_bundle,
-            },
+            PatternSelectedLedgerPayload(
+                pattern_id=pattern.pattern_id,
+                family=pattern.family,
+                radicals=pattern.radicals,
+                requirement_id=requirement.requirement_id,
+                linked_laws=pattern.evidence_hooks.linked_laws,
+                genome_bundle=genome_bundle,
+                linked_requirements=[requirement.requirement_id],
+            ),
         )
         self._publish_fact(
             "pattern_selected",
@@ -1028,14 +1030,15 @@ class Orchestrator:
             self._record(
                 "recovered_structure",
                 f"{structure.structure_id}:{ctx.session_id}",
-                {
-                    "requirement_id": requirement.requirement_id,
-                    "type": structure.structure_type,
-                    "confidence": structure.confidence,
-                    "radicals": structure.supports_radicals,
-                    "payload": structure.payload,
-                    "linked_requirements": [requirement.requirement_id],
-                },
+                RecoveredStructureLedgerPayload(
+                    structure_id=structure.structure_id,
+                    requirement_id=requirement.requirement_id,
+                    type=structure.structure_type,
+                    confidence=structure.confidence,
+                    radicals=structure.supports_radicals,
+                    payload=structure.payload,
+                    linked_requirements=[requirement.requirement_id],
+                ),
             )
             self._append_trace(
                 TraceLink(
