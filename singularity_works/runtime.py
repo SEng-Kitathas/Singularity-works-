@@ -90,6 +90,7 @@ def _summary(base_dir: Path, ctx: RunContext, result, req: Requirement) -> dict:
         "transformation_plan": [asdict(candidate) for candidate in result.transformation_plan],
         "applied_transformations": [asdict(item) for item in result.applied_transformations],
         "embodiment_trace": result.embodiment_trace,
+        "verification_trace": result.verification_trace,
         "linked_laws": result.pattern.get("linked_laws", []),
         "genome_bundle": result.genome_bundle,
         "fact_summary": result.fact_summary,

@@ -147,3 +147,17 @@ class TransformationCandidate:
     auto_apply: bool = False
     linked_laws: list[str] = field(default_factory=_list)
     transformation_axiom: str = ""
+
+
+@dataclass
+class VerificationFacet:
+    status: str = "unknown"
+    detail: str = ""
+
+
+@dataclass
+class VerificationTrace:
+    gate_verification: VerificationFacet = field(default_factory=VerificationFacet)
+    assurance_verification: VerificationFacet = field(default_factory=VerificationFacet)
+    lbe_verification: VerificationFacet = field(default_factory=VerificationFacet)
+    embodiment_verification: VerificationFacet = field(default_factory=VerificationFacet)

@@ -23,7 +23,7 @@ from .gates import (
     simplification_gate,
     syntax_gate,
 )
-from .models import Artifact, AppliedTransformation, EmbodimentTrace, Requirement, Risk, RunContext, TransformationCandidate
+from .models import Artifact, AppliedTransformation, EmbodimentTrace, Requirement, Risk, RunContext, TransformationCandidate, VerificationFacet, VerificationTrace
 from .monitoring import MonitorEngine
 from .pattern_ir import PatternIR, default_pattern_for_requirement
 from .recovery import RecoveryEngine
@@ -110,6 +110,7 @@ class OrchestrationResult:
     lbe_blueprint: "dict | None" = None    # color-coded flow map: source→transform→sink + min replacement
     fractal_cycle: "dict | None" = None    # PROBE→DERIVE→VERIFY→EMBODY→RECURSE runtime trace
     embodiment_trace: "dict | None" = None # typed embodiment/execution trace for transformation application
+    verification_trace: "dict | None" = None # typed verification surface across gates/assurance/LBE/embodiment
 
 
 class Orchestrator:
@@ -968,6 +969,7 @@ class Orchestrator:
             requested=bool(ctx.metadata.get("apply_transformations")),
             source_artifact_id=artifact.artifact_id,
         )
+        verification_trace = VerificationTrace()
         # Switchboard routes transformation_candidate facts through the autonomy
         # tiering matrix and publishes switchboard_decision facts back onto the bus.
         # Routing ALWAYS happens — switchboard_decision facts are available for
@@ -1285,6 +1287,28 @@ class Orchestrator:
             except Exception:
                 pass  # Non-fatal — LBE is bonus cartography, not blocking
 
+        verification_trace.gate_verification = VerificationFacet(
+            status=("failing" if gate_summary.counts.get("fail", 0) else "clean"),
+            detail=(
+                f"fail={gate_summary.counts.get('fail',0)} warn={gate_summary.counts.get('warn',0)} pass={gate_summary.counts.get('pass',0)}"
+            ),
+        )
+        verification_trace.assurance_verification = VerificationFacet(
+            status=assurance.status,
+            detail=f"falsified={len(assurance.falsified)} residual={len(assurance.residual)}",
+        )
+        _lbe_verdict_text = (lbe_dict or {}).get("verdict", "no_lbe")
+        _lbe_policy = (lbe_dict or {}).get("bridge_policy", {}) if lbe_dict else {}
+        verification_trace.lbe_verification = VerificationFacet(
+            status=("falsifying" if _lbe_policy.get("falsify") else "non_falsifying"),
+            detail=f"verdict={_lbe_verdict_text}; kind={_lbe_policy.get('kind','none')}",
+        )
+        verification_trace.embodiment_verification = VerificationFacet(
+            status=("transformed" if embodiment_trace.transformed else ("authorized" if embodiment_trace.authorized else "not_requested")),
+            detail=(
+                f"eligible={embodiment_trace.eligible_count} applied={embodiment_trace.applied_count} transformed={embodiment_trace.transformed}"
+            ),
+        )
         fractal_cycle.mark(
             FractalStage.VERIFY,
             "complete",
@@ -1327,6 +1351,7 @@ class Orchestrator:
             lbe_blueprint=_blueprint_dict if lbe_dict else None,
             fractal_cycle=fractal_cycle.to_dict(),
             embodiment_trace=_dc_asdict(embodiment_trace),
+            verification_trace=_dc_asdict(verification_trace),
         )
         try:
             from .hud import snapshot_from_run_result as _snapshot_from_run_result
