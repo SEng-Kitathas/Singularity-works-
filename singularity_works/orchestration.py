@@ -32,6 +32,63 @@ from .transformer import apply_transformations
 from .transformer_registry import apply_by_axiom, is_auto_applicable
 
 
+
+_LBE_CONFIRMED_DANGER_MARKERS = (
+    "TAINTED INPUT REACHES",
+    "STRUCTURAL OBLIGATION VIOLATED",
+    "WITHOUT VALIDATED TRUST",
+)
+_LBE_MITIGATED_MARKERS = (
+    "sanitization verified",
+    "verified_verify",
+)
+_LBE_NO_FLOW_MARKERS = (
+    "no taint flow detected",
+    "no_sinks",
+    "no sinks",
+)
+
+
+def _classify_lbe_verdict(verdict: str, risk: float) -> dict[str, object]:
+    text = (verdict or "").strip()
+    low = text.lower()
+    if not text or low in {"no_sinks", "no sinks"}:
+        return {
+            "kind": "no_sinks",
+            "falsify": False,
+            "reason": "LBE found no dangerous sinks for this artifact.",
+        }
+    if any(marker in low for marker in _LBE_NO_FLOW_MARKERS):
+        return {
+            "kind": "no_taint_flow",
+            "falsify": False,
+            "reason": "LBE found a candidate path but no taint flow to the sink.",
+        }
+    if any(marker in low for marker in _LBE_MITIGATED_MARKERS):
+        return {
+            "kind": "mitigated_path",
+            "falsify": False,
+            "reason": "LBE found a path, but mitigation/sanitization was explicitly verified.",
+        }
+    if any(marker in text for marker in _LBE_CONFIRMED_DANGER_MARKERS):
+        return {
+            "kind": "confirmed_danger",
+            "falsify": True,
+            "reason": "LBE confirmed dangerous logic-path evidence at a sink or obligation boundary.",
+        }
+    if risk >= 0.95:
+        return {
+            "kind": "extreme_risk_inference",
+            "falsify": True,
+            "reason": "LBE reported extreme residual risk without a mitigating path classification.",
+        }
+    return {
+        "kind": "informational",
+        "falsify": False,
+        "reason": "LBE produced a result, but not a falsifying verdict class.",
+    }
+
+
 @dataclass
 class OrchestrationResult:
     artifact: Artifact
@@ -1120,20 +1177,13 @@ class Orchestrator:
                     "blobs":        [b.to_dict() for b in _lbe_r.blobs],
                 }
 
-                # Bridge Law Omega sink confirmations into assurance.
+                # Bridge LBE verdict classes into assurance using explicit semantics.
                 _lbe_verdict = str(lbe_dict.get("verdict", ""))
                 _lbe_risk = float(lbe_dict.get("highest_risk", 0.0) or 0.0)
-                _danger_markers = (
-                    "TAINTED INPUT REACHES COMMAND SINK",
-                    "TAINTED INPUT REACHES SQL SINK",
-                    "TAINTED INPUT REACHES Redirect",
-                    "STRUCTURAL OBLIGATION VIOLATED",
-                    "command injection path confirmed",
-                    "injection path confirmed",
-                )
-                _lbe_confirmed_danger = any(m in _lbe_verdict for m in _danger_markers) or _lbe_risk >= 0.35
-                if _lbe_confirmed_danger:
-                    _falsifier = f"law_omega:{_lbe_verdict}"
+                _lbe_policy = _classify_lbe_verdict(_lbe_verdict, _lbe_risk)
+                lbe_dict["bridge_policy"] = _lbe_policy
+                if _lbe_policy.get("falsify"):
+                    _falsifier = f"lbe:{_lbe_verdict}"
                     if _falsifier not in assurance.falsified:
                         assurance.falsified.append(_falsifier)
                     for _claim in assurance.claims:
@@ -1146,7 +1196,7 @@ class Orchestrator:
                                 "Primary trust claim is CHALLENGED by "
                                 f"{len(assurance.discharged)} discharged gate families and "
                                 f"{len(assurance.monitored)} monitored properties. "
-                                "FALSIFIED: Law Omega confirmed dangerous sink evidence: "
+                                "FALSIFIED: LBE confirmed dangerous logic-path evidence: "
                                 f"{_lbe_verdict}"
                             )
                             break
