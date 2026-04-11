@@ -110,6 +110,30 @@ class RunContext:
     project_tag: str = "default"
     metadata: dict[str, Any] = field(default_factory=_dict)
 
+
+@dataclass
+class AppliedTransformation:
+    candidate_id: str
+    summary: str
+    applied: bool
+    before_snippet: str = ""
+    after_snippet: str = ""
+    transformation_axiom: str = ""
+    source_gate: str = ""
+    safety_level: str = "review_required"
+
+
+@dataclass
+class EmbodimentTrace:
+    requested: bool = False
+    authorized: bool = False
+    eligible_count: int = 0
+    applied_count: int = 0
+    transformed: bool = False
+    source_artifact_id: str = ""
+    transformed_artifact_id: str = ""
+    applied_transformations: list[AppliedTransformation] = field(default_factory=_list)
+
 @dataclass
 class TransformationCandidate:
     candidate_id: str

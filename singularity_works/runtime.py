@@ -1,5 +1,6 @@
 from __future__ import annotations
 # complexity_justified: integrated forge runtime surface
+from dataclasses import asdict
 from pathlib import Path
 import json
 import time
@@ -86,8 +87,9 @@ def _summary(base_dir: Path, ctx: RunContext, result, req: Requirement) -> dict:
         "artifact_rollup": ledger.rollup_artifact(result.artifact.artifact_id),
         "primary_claim_rollup": primary_claim,
         "recursive_audit": result.recursive_audit,
-        "transformation_plan": [candidate.__dict__ for candidate in result.transformation_plan],
-        "applied_transformations": result.applied_transformations,
+        "transformation_plan": [asdict(candidate) for candidate in result.transformation_plan],
+        "applied_transformations": [asdict(item) for item in result.applied_transformations],
+        "embodiment_trace": result.embodiment_trace,
         "linked_laws": result.pattern.get("linked_laws", []),
         "genome_bundle": result.genome_bundle,
         "fact_summary": result.fact_summary,

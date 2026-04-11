@@ -1,21 +1,12 @@
 from __future__ import annotations
 # complexity_justified: transformation policy and safe rewrite dispatch
 
-from dataclasses import dataclass
 from typing import Iterable
 import re
 
-from .models import TransformationCandidate
+from .models import AppliedTransformation, TransformationCandidate
 from .transformer_registry import apply_by_axiom
 
-
-@dataclass
-class AppliedTransformation:
-    candidate_id: str
-    summary: str
-    applied: bool
-    before_snippet: str = ""
-    after_snippet: str = ""
 
 
 def _remove_todo_lines(content: str) -> tuple[str, bool, str, str]:
@@ -120,15 +111,27 @@ def apply_transformations(content: str, plan: list[TransformationCandidate]) -> 
             elif "resource" in summary or "context manager" in summary or source == "conformance.misuse":
                 new, changed, before, after = _rewrite_leaked_open(current)
             else:
-                applied.append(AppliedTransformation(candidate.candidate_id, candidate.summary, False))
+                applied.append(
+                    AppliedTransformation(
+                        candidate_id=candidate.candidate_id,
+                        summary=candidate.summary,
+                        applied=False,
+                        transformation_axiom=axiom,
+                        source_gate=candidate.source_gate,
+                        safety_level=candidate.safety_level,
+                    )
+                )
                 continue
         applied.append(
             AppliedTransformation(
-                candidate.candidate_id,
-                candidate.summary,
-                changed,
-                before if changed else "",
-                after if changed else "",
+                candidate_id=candidate.candidate_id,
+                summary=candidate.summary,
+                applied=changed,
+                before_snippet=before if changed else "",
+                after_snippet=after if changed else "",
+                transformation_axiom=axiom,
+                source_gate=candidate.source_gate,
+                safety_level=candidate.safety_level,
             )
         )
         current = new

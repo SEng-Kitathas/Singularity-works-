@@ -1,6 +1,6 @@
 from __future__ import annotations
 # complexity_justified: integrated forge runtime surface
-from dataclasses import dataclass
+from dataclasses import asdict as _dc_asdict, dataclass
 from pathlib import Path
 
 from .assurance import AssuranceRollup, rollup
@@ -23,7 +23,7 @@ from .gates import (
     simplification_gate,
     syntax_gate,
 )
-from .models import Artifact, Requirement, Risk, RunContext, TransformationCandidate
+from .models import Artifact, AppliedTransformation, EmbodimentTrace, Requirement, Risk, RunContext, TransformationCandidate
 from .monitoring import MonitorEngine
 from .pattern_ir import PatternIR, default_pattern_for_requirement
 from .recovery import RecoveryEngine
@@ -101,7 +101,7 @@ class OrchestrationResult:
     risks: list[Risk]
     recursive_audit: dict
     transformation_plan: list[TransformationCandidate]
-    applied_transformations: list[dict]
+    applied_transformations: list[AppliedTransformation]
     fact_summary: dict
     genome_bundle: dict
     escalation_decision: "dict | None" = None  # populated by escalation_gate.evaluate()
@@ -109,6 +109,7 @@ class OrchestrationResult:
     lbe_result: "dict | None" = None       # populated by lbe_pilot.analyze() when escalation routes to LBE
     lbe_blueprint: "dict | None" = None    # color-coded flow map: source→transform→sink + min replacement
     fractal_cycle: "dict | None" = None    # PROBE→DERIVE→VERIFY→EMBODY→RECURSE runtime trace
+    embodiment_trace: "dict | None" = None # typed embodiment/execution trace for transformation application
 
 
 class Orchestrator:
@@ -962,7 +963,11 @@ class Orchestrator:
             transformation_candidates=len(transformation_plan),
             risk_count=len(risks),
         )
-        applied_transformations: list[dict] = []
+        applied_transformations: list[AppliedTransformation] = []
+        embodiment_trace = EmbodimentTrace(
+            requested=bool(ctx.metadata.get("apply_transformations")),
+            source_artifact_id=artifact.artifact_id,
+        )
         # Switchboard routes transformation_candidate facts through the autonomy
         # tiering matrix and publishes switchboard_decision facts back onto the bus.
         # Routing ALWAYS happens — switchboard_decision facts are available for
@@ -972,6 +977,7 @@ class Orchestrator:
         self.switchboard.route(self.facts)
         eligible_plan: list[TransformationCandidate] = []
         if ctx.metadata.get("apply_transformations") and transformation_plan:
+            embodiment_trace.authorized = True
             fractal_cycle.mark(
                 FractalStage.EMBODY,
                 "authorized",
@@ -982,7 +988,10 @@ class Orchestrator:
             auto_apply_ids = {c.candidate_id for c in transformation_plan if c.auto_apply}
             eligible_plan = [c for c in transformation_plan if c.candidate_id in auto_apply_ids]
             transformed_content, applied = apply_transformations(artifact.content, eligible_plan)
-            applied_transformations = [item.__dict__ for item in applied if item.applied]
+            applied_transformations = [item for item in applied if item.applied]
+            embodiment_trace.eligible_count = len(eligible_plan)
+            embodiment_trace.applied_transformations = applied_transformations[:]
+            embodiment_trace.applied_count = len(applied_transformations)
             if transformed_content != artifact.content:
                 fractal_cycle.mark(
                     FractalStage.EMBODY,
@@ -997,6 +1006,7 @@ class Orchestrator:
                     applied_count=len(applied_transformations),
                 )
                 transformed_recovery = self.recovery.derive(requirement, transformed_content)
+                embodiment_trace.transformed = True
                 artifact = Artifact(
                     artifact_id=f"{artifact.artifact_id}:transformed",
                     artifact_type="candidate",
@@ -1010,6 +1020,7 @@ class Orchestrator:
                         "genome_bundle": genome_bundle,
                     },
                 )
+                embodiment_trace.transformed_artifact_id = artifact.artifact_id
                 self._record(
                     "transformation_application",
                     f"apply:{ctx.session_id}",
@@ -1017,7 +1028,7 @@ class Orchestrator:
                         "requirement_id": requirement.requirement_id,
                         "source_artifact_id": f"artifact:{ctx.session_id}",
                         "transformed_artifact_id": artifact.artifact_id,
-                        "applied_transformations": applied_transformations,
+                        "applied_transformations": [_dc_asdict(item) for item in applied_transformations],
                     },
                 )
                 gate_summary, monitor_events, assurance, risks, audit, transformation_plan = (
@@ -1315,9 +1326,9 @@ class Orchestrator:
             lbe_result=lbe_dict,
             lbe_blueprint=_blueprint_dict if lbe_dict else None,
             fractal_cycle=fractal_cycle.to_dict(),
+            embodiment_trace=_dc_asdict(embodiment_trace),
         )
         try:
-            from dataclasses import asdict as _dc_asdict
             from .hud import snapshot_from_run_result as _snapshot_from_run_result
             result.hud_snapshot = _dc_asdict(
                 _snapshot_from_run_result(
