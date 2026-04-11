@@ -1238,14 +1238,20 @@ class Orchestrator:
         self._persist_assurance(requirement, artifact, assurance, ctx.session_id,
                                   gate_summary=gate_summary, semantic_ir=semantic_ir)
         for risk in risks:
+            from .evidence_ledger import RiskLedgerPayload
             self._record(
                 "risk",
                 risk.risk_id,
-                risk.__dict__
-                | {
-                    "requirement_id": requirement.requirement_id,
-                    "artifact_id": artifact.artifact_id,
-                },
+                RiskLedgerPayload(
+                    risk_id=risk.risk_id,
+                    description=risk.description,
+                    severity=risk.severity,
+                    linked_requirements=risk.linked_requirements,
+                    linked_artifacts=risk.linked_artifacts,
+                    linked_claims=risk.linked_claims,
+                    requirement_id=requirement.requirement_id,
+                    artifact_id=artifact.artifact_id,
+                ),
             )
         self._record(
             "recursive_audit",
