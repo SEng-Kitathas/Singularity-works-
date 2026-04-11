@@ -6,7 +6,23 @@ from typing import Any, Iterable
 import json
 import time
 
-from .models import AssuranceClaim
+from .models import AppliedTransformation, AssuranceClaim, TransformationCandidate
+
+
+@dataclass
+class TransformationPlanLedgerPayload:
+    requirement_id: str = ""
+    artifact_id: str = ""
+    linked_requirements: list[str] = field(default_factory=list)
+    candidates: list[TransformationCandidate] = field(default_factory=list)
+
+
+@dataclass
+class TransformationApplicationLedgerPayload:
+    requirement_id: str = ""
+    source_artifact_id: str = ""
+    transformed_artifact_id: str = ""
+    applied_transformations: list[AppliedTransformation] = field(default_factory=list)
 
 
 @dataclass
@@ -148,6 +164,18 @@ def _decode_trace_link_payload(payload: dict[str, Any] | None) -> TraceLinkLedge
     return TraceLinkLedgerPayload(**(payload or {}))
 
 
+def _decode_transformation_plan_payload(payload: dict[str, Any] | None) -> TransformationPlanLedgerPayload:
+    raw = dict(payload or {})
+    raw["candidates"] = [TransformationCandidate(**item) for item in raw.get("candidates", [])]
+    return TransformationPlanLedgerPayload(**raw)
+
+
+def _decode_transformation_application_payload(payload: dict[str, Any] | None) -> TransformationApplicationLedgerPayload:
+    raw = dict(payload or {})
+    raw["applied_transformations"] = [AppliedTransformation(**item) for item in raw.get("applied_transformations", [])]
+    return TransformationApplicationLedgerPayload(**raw)
+
+
 def _decode_assurance_rollup_payload(payload: dict[str, Any] | None) -> AssuranceRollupLedgerPayload:
     raw = dict(payload or {})
     raw["claims"] = [AssuranceClaim(**item) for item in raw.get("claims", [])]
@@ -241,6 +269,20 @@ class EvidenceLedger:
             if rec.get("record_type") == "trace_link"
         ]
 
+    def transformation_plans_typed(self, session_id: str | None = None) -> list[TransformationPlanLedgerPayload]:
+        return [
+            _decode_transformation_plan_payload(rec.get("payload", {}))
+            for rec in self._session_records(session_id)
+            if rec.get("record_type") == "transformation_plan"
+        ]
+
+    def transformation_applications_typed(self, session_id: str | None = None) -> list[TransformationApplicationLedgerPayload]:
+        return [
+            _decode_transformation_application_payload(rec.get("payload", {}))
+            for rec in self._session_records(session_id)
+            if rec.get("record_type") == "transformation_application"
+        ]
+
     def rollup_status_counts(self, session_id: str | None = None) -> dict[str, int]:
         counts = {"pass": 0, "warn": 0, "fail": 0, "residual": 0}
         for payload in self.gate_results_typed(session_id):
@@ -295,6 +337,8 @@ class EvidenceLedger:
                     else asdict(assurance_claim_payload) if assurance_claim_payload is not None
                     else asdict(assurance_rollup_payload) if assurance_rollup_payload is not None
                     else asdict(trace_link_payload) if trace_link_payload is not None
+                    else asdict(transformation_plan_payload) if transformation_plan_payload is not None
+                    else asdict(transformation_application_payload) if transformation_application_payload is not None
                     else payload
                 )
         if any(x.get("status") == "fail" for x in out["monitor_events"]):
@@ -323,6 +367,8 @@ class EvidenceLedger:
             "risks": [],
             "assurance": [],
             "trace_links": [],
+            "transformation_plans": [],
+            "transformation_applications": [],
             "claim_rollups": [],
         }
         claim_ids: set[str] = set()
@@ -333,6 +379,8 @@ class EvidenceLedger:
             "assurance_rollup": "assurance",
             "assurance_claim": "assurance",
             "trace_link": "trace_links",
+            "transformation_plan": "transformation_plans",
+            "transformation_application": "transformation_applications",
         }
         for rec in self._session_records(session_id):
             payload = rec.get("payload", {})
@@ -342,6 +390,8 @@ class EvidenceLedger:
             assurance_claim_payload = _decode_assurance_claim_payload(payload) if rec.get("record_type") == "assurance_claim" else None
             assurance_rollup_payload = _decode_assurance_rollup_payload(payload) if rec.get("record_type") == "assurance_rollup" else None
             trace_link_payload = _decode_trace_link_payload(payload) if rec.get("record_type") == "trace_link" else None
+            transformation_plan_payload = _decode_transformation_plan_payload(payload) if rec.get("record_type") == "transformation_plan" else None
+            transformation_application_payload = _decode_transformation_application_payload(payload) if rec.get("record_type") == "transformation_application" else None
             linked_requirements = (
                 gate_payload.linked_requirements if gate_payload is not None
                 else monitor_payload.linked_requirements if monitor_payload is not None
@@ -349,6 +399,7 @@ class EvidenceLedger:
                 else assurance_claim_payload.linked_requirements if assurance_claim_payload is not None
                 else assurance_rollup_payload.linked_requirements if assurance_rollup_payload is not None
                 else trace_link_payload.linked_requirements if trace_link_payload is not None
+                else transformation_plan_payload.linked_requirements if transformation_plan_payload is not None
                 else payload.get("linked_requirements", [])
             )
             payload_requirement_id = (
@@ -356,6 +407,8 @@ class EvidenceLedger:
                 else risk_payload.requirement_id if risk_payload is not None
                 else assurance_claim_payload.requirement_id if assurance_claim_payload is not None
                 else assurance_rollup_payload.requirement_id if assurance_rollup_payload is not None
+                else transformation_plan_payload.requirement_id if transformation_plan_payload is not None
+                else transformation_application_payload.requirement_id if transformation_application_payload is not None
                 else payload.get("requirement_id")
             )
             if payload_requirement_id != requirement_id and requirement_id not in linked_requirements:
@@ -368,6 +421,7 @@ class EvidenceLedger:
                     else asdict(risk_payload) if risk_payload is not None
                     else asdict(assurance_claim_payload) if assurance_claim_payload is not None
                     else asdict(assurance_rollup_payload) if assurance_rollup_payload is not None
+                    else asdict(trace_link_payload) if trace_link_payload is not None
                     else payload
                 )
             claim_ids.update(
@@ -396,16 +450,22 @@ class EvidenceLedger:
             "gate_results": [],
             "monitor_events": [],
             "risks": [],
+            "transformation_plans": [],
+            "transformation_applications": [],
         }
         for rec in self.load_all():
             payload = rec.get("payload", {})
             gate_payload = _decode_gate_payload(payload) if rec.get("record_type") == "gate_result" else None
             monitor_payload = _decode_monitor_payload(payload) if rec.get("record_type") == "monitor_event" else None
             risk_payload = _decode_risk_payload(payload) if rec.get("record_type") == "risk" else None
+            transformation_plan_payload = _decode_transformation_plan_payload(payload) if rec.get("record_type") == "transformation_plan" else None
+            transformation_application_payload = _decode_transformation_application_payload(payload) if rec.get("record_type") == "transformation_application" else None
             linked_artifact_id = payload.get("linked_artifact_id")
             payload_artifact_id = (
                 gate_payload.artifact_id if gate_payload is not None
                 else risk_payload.artifact_id if risk_payload is not None
+                else transformation_plan_payload.artifact_id if transformation_plan_payload is not None
+                else transformation_application_payload.transformed_artifact_id if transformation_application_payload is not None
                 else payload.get("artifact_id")
             )
             if payload_artifact_id != artifact_id and linked_artifact_id != artifact_id:
@@ -414,12 +474,16 @@ class EvidenceLedger:
                 "gate_result": "gate_results",
                 "monitor_event": "monitor_events",
                 "risk": "risks",
+                "transformation_plan": "transformation_plans",
+                "transformation_application": "transformation_applications",
             }.get(rec.get("record_type"))
             if bucket:
                 out[bucket].append(
                     asdict(gate_payload) if gate_payload is not None
                     else asdict(monitor_payload) if monitor_payload is not None
                     else asdict(risk_payload) if risk_payload is not None
+                    else asdict(transformation_plan_payload) if transformation_plan_payload is not None
+                    else asdict(transformation_application_payload) if transformation_application_payload is not None
                     else payload
                 )
         return out

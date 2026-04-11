@@ -741,15 +741,16 @@ class Orchestrator:
                 )
         transformation_plan = self._transformation_plan(gate_summary)
         if transformation_plan:
+            from .evidence_ledger import TransformationPlanLedgerPayload
             self._record(
                 "transformation_plan",
                 f"transform:{session_key}",
-                {
-                    "requirement_id": requirement.requirement_id,
-                    "artifact_id": artifact.artifact_id,
-                    "linked_requirements": [requirement.requirement_id],
-                    "candidates": [candidate.__dict__ for candidate in transformation_plan],
-                },
+                TransformationPlanLedgerPayload(
+                    requirement_id=requirement.requirement_id,
+                    artifact_id=artifact.artifact_id,
+                    linked_requirements=[requirement.requirement_id],
+                    candidates=transformation_plan,
+                ),
             )
             for candidate in transformation_plan:
                 from .facts import Fact as _Fact, TransformationCandidatePayload as _TransformationCandidatePayload
@@ -1155,15 +1156,16 @@ class Orchestrator:
                     },
                 )
                 embodiment_trace.transformed_artifact_id = artifact.artifact_id
+                from .evidence_ledger import TransformationApplicationLedgerPayload
                 self._record(
                     "transformation_application",
                     f"apply:{ctx.session_id}",
-                    {
-                        "requirement_id": requirement.requirement_id,
-                        "source_artifact_id": f"artifact:{ctx.session_id}",
-                        "transformed_artifact_id": artifact.artifact_id,
-                        "applied_transformations": [_dc_asdict(item) for item in applied_transformations],
-                    },
+                    TransformationApplicationLedgerPayload(
+                        requirement_id=requirement.requirement_id,
+                        source_artifact_id=f"artifact:{ctx.session_id}",
+                        transformed_artifact_id=artifact.artifact_id,
+                        applied_transformations=applied_transformations,
+                    ),
                 )
                 derived = self._evaluate_subject(
                     requirement,
