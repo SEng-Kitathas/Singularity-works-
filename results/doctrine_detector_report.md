@@ -1,0 +1,141 @@
+# Doctrine Detector Report
+
+- Modules scanned: 50
+- Findings: 77
+
+## Severity counts
+- critical: 0
+- high: 37
+- medium: 33
+- low: 7
+
+## Findings
+- [DQ-PATH] HIGH cilnx_bridge.py:48 — Hardcoded machine-specific path detected. | `Path(r'C:/Users/ancal/Desktop/AI_Pushes_Sandbox/historical data/Geometric reason/rosetta/CILNX_MASTER_DROP_2026-04-01/CILNX_MASTER_DROP_2026-04-01/builds/cilnx_v0_6_scaffold'),`
+- [DQ-PATH] HIGH cilnx_bridge.py:123 — Hardcoded machine-specific path detected. | `adapter_report = Path(r'C:/Users/ancal/Desktop/AI_Pushes_Sandbox/historical data/Geometric reason/TQ2/GEOMETRIC_THREAD_PROJECT_ARCHIVE/06_CIL_ADAPTER/GEOMETRIC_CILNX_V0_6_ADAPTER_REPORT.md')`
+- [DQ-PATH] HIGH cilnx_bridge.py:124 — Hardcoded machine-specific path detected. | `memory_schema = Path(r'C:/Users/ancal/Desktop/AI_Pushes_Sandbox/system/CILNX_ROUTED_STATEFUL_MEMORY_SCHEMA_2026-04-09.md')`
+- [DQ-STUB] HIGH escalation_gate.py:281 — Stub/TODO-like construct detected. | `'NotImplementedError', 'AttributeError', 'ImportError', 'OSError',`
+- [DQ-STUB] HIGH gates.py:64 — Stub/TODO-like construct detected. | `def _todo_comments(content: str) -> list[tuple[int, str]]:`
+- [DQ-STUB] HIGH gates.py:72 — Stub/TODO-like construct detected. | `if "todo" in low or "fixme" in low:`
+- [DQ-STUB] HIGH genome_gate_factory.py:167 — Stub/TODO-like construct detected. | `def _todo_hits(content: str) -> list[tuple[int, str]]:`
+- [DQ-STUB] HIGH genome_gate_factory.py:175 — Stub/TODO-like construct detected. | `if "todo" in low or "fixme" in low:`
+- [DQ-STUB] HIGH genome_gate_factory.py:503 — Stub/TODO-like construct detected. | `"""Detect TODO/FIXME comment markers."""`
+- [DQ-STUB] HIGH genome_gate_factory.py:504 — Stub/TODO-like construct detected. | `hits = _todo_hits(content)`
+- [DQ-STUB] HIGH genome_gate_factory.py:2593 — Stub/TODO-like construct detected. | `"xxxxxxxx", "todo", "none", "null", "example",`
+- [DQ-STUB] HIGH genome_gate_factory.py:2633 — Stub/TODO-like construct detected. | `if not any(skip in line for skip in ("#", "//", "test", "example", "TODO")):`
+- [DQ-STUB] HIGH genome_gate_factory.py:3163 — Stub/TODO-like construct detected. | `Cryptodome (pycryptodome) is an acceptable fork; cryptography package is preferred.`
+- [DQ-STUB] HIGH genome_gate_factory.py:3171 — Stub/TODO-like construct detected. | `if mod.startswith("Crypto.") and not mod.startswith("Cryptodome"):`
+- [DQ-STUB] HIGH laws.py:11 — Stub/TODO-like construct detected. | `"principle": "When building: no stubs, no TODOs, no MVPs, no phases.",`
+- [DQ-STUB] HIGH laws.py:40 — Stub/TODO-like construct detected. | `"no_todos": True,`
+- [DQ-STUB] HIGH laws.py:41 — Stub/TODO-like construct detected. | `"no_fixmes": True,`
+- [DQ-STUB] HIGH laws.py:48 — Stub/TODO-like construct detected. | `"Code must not contain TODO or stub markers. "`
+- [DQ-STUB] HIGH pattern_ir.py:53 — Stub/TODO-like construct detected. | `"no_todo_markers",`
+- [DQ-STUB] HIGH pattern_ir.py:54 — Stub/TODO-like construct detected. | `"no_fixme_markers",`
+- [DQ-STUB] HIGH pattern_ir.py:62 — Stub/TODO-like construct detected. | `misuse_signatures=["todo_marker", "verify_false", "resource_order_misuse"],`
+- [DQ-STUB] HIGH pattern_ir.py:86 — Stub/TODO-like construct detected. | `"remove_todo_markers",`
+- [DQ-STUB] HIGH recovery.py:384 — Stub/TODO-like construct detected. | `"todo_forbidden": "todo" in low,`
+- [DQ-STUB] HIGH recovery.py:718 — Stub/TODO-like construct detected. | `"must not contain todo": ("must_not_contain", "todo", "high"),`
+- [DQ-STUB] HIGH recovery.py:922 — Stub/TODO-like construct detected. | `if flags["todo_forbidden"] and "todo" not in candidate_content.lower():`
+- [DQ-STUB] HIGH recovery.py:923 — Stub/TODO-like construct detected. | `rationale.append("candidate code avoids todo markers")`
+- [DQ-STUB] HIGH runtime.py:32 — Stub/TODO-like construct detected. | `# TODO: close file later`
+- [DQ-STUB] HIGH runtime.py:68 — Stub/TODO-like construct detected. | `"Artifact must not contain TODO. Resource discipline should be respected "`
+- [DQ-STUB] HIGH transformer.py:12 — Stub/TODO-like construct detected. | `def _remove_todo_lines(content: str) -> tuple[str, bool, str, str]:`
+- [DQ-STUB] HIGH transformer.py:18 — Stub/TODO-like construct detected. | `if "todo" in low or "fixme" in low:`
+- [DQ-STUB] HIGH transformer.py:105 — Stub/TODO-like construct detected. | `if "todo" in summary or "stub" in summary or source == "dynamic.no_stub_markers":`
+- [DQ-STUB] HIGH transformer.py:106 — Stub/TODO-like construct detected. | `new, changed, before, after = _remove_todo_lines(current)`
+- [DQ-STUB] HIGH transformer_registry.py:17 — Stub/TODO-like construct detected. | `TODO markers between open() and return don't block the rewrite.`
+- [DQ-STUB] HIGH transformer_registry.py:79 — Stub/TODO-like construct detected. | `def _remove_todo_lines(content: str) -> tuple[str, bool, str, str]:`
+- [DQ-STUB] HIGH transformer_registry.py:80 — Stub/TODO-like construct detected. | `"""Remove TODO/FIXME comment lines."""`
+- [DQ-STUB] HIGH transformer_registry.py:86 — Stub/TODO-like construct detected. | `if "todo" in low or "fixme" in low:`
+- [DQ-STUB] HIGH transformer_registry.py:100 — Stub/TODO-like construct detected. | `"remove_todo_markers": _remove_todo_lines,`
+- [DQ-DICT-HOTSPOT] MEDIUM bounty_reporter.py:1 — High dict-literal density (52) suggests possible dict spill hotspot. | `bounty_reporter.py`
+- [DQ-SIZE] MEDIUM bounty_reporter.py:1 — Large module (754 lines) may indicate concentration seam. | `bounty_reporter.py`
+- [DQ-DYNIMPORT] MEDIUM cilnx_bridge.py:7 — Dynamic import / mounted external dependency detected. | `import importlib.util`
+- [DQ-WRAP] MEDIUM claude_vessel.py:1 — Compatibility wrapper present; canonical naming/substrate may still be split. | `claude_vessel.py`
+- [DQ-SIZE] MEDIUM escalation_gate.py:1 — Large module (713 lines) may indicate concentration seam. | `escalation_gate.py`
+- [DQ-DYNIMPORT] MEDIUM escalation_gate.py:267 — Dynamic import / mounted external dependency detected. | `r'\b(getattr|setattr|__import__|importlib\.import_module|'`
+- [DQ-DICT-HOTSPOT] MEDIUM evidence_ledger.py:1 — High dict-literal density (52) suggests possible dict spill hotspot. | `evidence_ledger.py`
+- [DQ-SIZE] MEDIUM evidence_ledger.py:1 — Large module (789 lines) may indicate concentration seam. | `evidence_ledger.py`
+- [DQ-SIZE] MEDIUM facts.py:1 — Large module (568 lines) may indicate concentration seam. | `facts.py`
+- [DQ-DICT-HOTSPOT] MEDIUM forge_context.py:1 — High dict-literal density (53) suggests possible dict spill hotspot. | `forge_context.py`
+- [DQ-SIZE] MEDIUM forge_context.py:1 — Large module (1407 lines) may indicate concentration seam. | `forge_context.py`
+- [DQ-WRAP] MEDIUM forge_doctor.py:1 — Compatibility wrapper present; canonical naming/substrate may still be split. | `forge_doctor.py`
+- [DQ-DICT-HOTSPOT] MEDIUM forge_mcp_server.py:1 — High dict-literal density (49) suggests possible dict spill hotspot. | `forge_mcp_server.py`
+- [DQ-SIZE] MEDIUM forge_mcp_server.py:1 — Large module (692 lines) may indicate concentration seam. | `forge_mcp_server.py`
+- [DQ-SIZE] MEDIUM forge_starmap.py:1 — Large module (554 lines) may indicate concentration seam. | `forge_starmap.py`
+- [DQ-SIZE] MEDIUM gates.py:1 — Large module (712 lines) may indicate concentration seam. | `gates.py`
+- [DQ-DICT-HOTSPOT] MEDIUM genome_gate_factory.py:1 — High dict-literal density (150) suggests possible dict spill hotspot. | `genome_gate_factory.py`
+- [DQ-SIZE] MEDIUM genome_gate_factory.py:1 — Large module (5068 lines) may indicate concentration seam. | `genome_gate_factory.py`
+- [DQ-SIZE] MEDIUM hud.py:1 — Large module (1312 lines) may indicate concentration seam. | `hud.py`
+- [DQ-SIZE] MEDIUM interprocedural.py:1 — Large module (890 lines) may indicate concentration seam. | `interprocedural.py`
+- [DQ-SIZE] MEDIUM language_front_door.py:1 — Large module (1036 lines) may indicate concentration seam. | `language_front_door.py`
+- [DQ-SIZE] MEDIUM lbe_blueprint.py:1 — Large module (727 lines) may indicate concentration seam. | `lbe_blueprint.py`
+- [DQ-DICT-HOTSPOT] MEDIUM lbe_pilot.py:1 — High dict-literal density (41) suggests possible dict spill hotspot. | `lbe_pilot.py`
+- [DQ-SIZE] MEDIUM lbe_pilot.py:1 — Large module (1344 lines) may indicate concentration seam. | `lbe_pilot.py`
+- [DQ-SIZE] MEDIUM lbe_universal.py:1 — Large module (898 lines) may indicate concentration seam. | `lbe_universal.py`
+- [DQ-SIZE] MEDIUM monitoring.py:1 — Large module (1230 lines) may indicate concentration seam. | `monitoring.py`
+- [DQ-SIZE] MEDIUM orchestration.py:1 — Large module (1536 lines) may indicate concentration seam. | `orchestration.py`
+- [DQ-SIZE] MEDIUM recovery.py:1 — Large module (939 lines) may indicate concentration seam. | `recovery.py`
+- [DQ-STR-EVENT] MEDIUM runtime.py:234 — Stringly runtime event protocol detected. | `snap.events.append(f"front:{receipt.role}:{receipt.disposition}")`
+- [DQ-STR-EVENT] MEDIUM runtime.py:235 — Stringly runtime event protocol detected. | `snap.events.append(f"session:{snap.vessel_session.lifecycle}:{snap.vessel_session.relaunch_action}")`
+- [DQ-STR-EVENT] MEDIUM runtime.py:236 — Stringly runtime event protocol detected. | `snap.events.append(f"recovery:{snap.vessel_recovery.recommended_action}")`
+- [DQ-STR-EVENT] MEDIUM runtime.py:237 — Stringly runtime event protocol detected. | `snap.events.append(f"triad:Cockpit>Forge>CILNX")`
+- [DQ-STR-EVENT] MEDIUM runtime.py:238 — Stringly runtime event protocol detected. | `snap.events.append(f"cilnx:{'online' if cilnx_receipt.available else 'missing'}:{cilnx_receipt.manifest_sequence}")`
+- [DQ-ORPHAN] LOW forge_mcp_server.py:1 — Potential capability island / lineage remnant; verify canonical role. | `forge_mcp_server.py`
+- [DQ-ORPHAN] LOW hud_theme.py:1 — Potential capability island / lineage remnant; verify canonical role. | `hud_theme.py`
+- [DQ-ORPHAN] LOW kerr_ascii.py:1 — Potential capability island / lineage remnant; verify canonical role. | `kerr_ascii.py`
+- [DQ-ORPHAN] LOW lbe_generic.py:1 — Potential capability island / lineage remnant; verify canonical role. | `lbe_generic.py`
+- [DQ-ORPHAN] LOW local_model_adapter.py:1 — Potential capability island / lineage remnant; verify canonical role. | `local_model_adapter.py`
+- [DQ-ORPHAN] LOW sw_oracle.py:1 — Potential capability island / lineage remnant; verify canonical role. | `sw_oracle.py`
+- [DQ-ORPHAN] LOW util.py:1 — Potential capability island / lineage remnant; verify canonical role. | `util.py`
+
+## Module stats
+- __init__.py: lines=25, classes=0, dataclasses=0, enums=0, functions=0, dict_literals=0
+- assurance.py: lines=412, classes=1, dataclasses=1, enums=0, functions=16, dict_literals=7
+- ast_primitives.py: lines=45, classes=0, dataclasses=0, enums=0, functions=4, dict_literals=0
+- bounty_reporter.py: lines=754, classes=2, dataclasses=2, enums=0, functions=13, dict_literals=52
+- cil_council.py: lines=489, classes=4, dataclasses=2, enums=0, functions=11, dict_literals=12
+- cilnx_bridge.py: lines=257, classes=2, dataclasses=2, enums=0, functions=13, dict_literals=6
+- claude_vessel.py: lines=13, classes=0, dataclasses=0, enums=0, functions=0, dict_literals=0
+- cockpit.py: lines=52, classes=0, dataclasses=0, enums=0, functions=0, dict_literals=0
+- enforcement.py: lines=319, classes=2, dataclasses=1, enums=0, functions=9, dict_literals=3
+- ergo_audio.py: lines=91, classes=2, dataclasses=2, enums=0, functions=4, dict_literals=0
+- ergo_boot.py: lines=70, classes=1, dataclasses=1, enums=0, functions=4, dict_literals=0
+- ergo_kerr.py: lines=238, classes=6, dataclasses=5, enums=1, functions=9, dict_literals=1
+- escalation_gate.py: lines=713, classes=3, dataclasses=2, enums=1, functions=12, dict_literals=5
+- evidence_ledger.py: lines=789, classes=20, dataclasses=19, enums=0, functions=46, dict_literals=52
+- facts.py: lines=568, classes=14, dataclasses=13, enums=0, functions=38, dict_literals=7
+- forge_context.py: lines=1407, classes=7, dataclasses=4, enums=1, functions=66, dict_literals=53
+- forge_doctor.py: lines=6, classes=0, dataclasses=0, enums=0, functions=0, dict_literals=0
+- forge_mcp_server.py: lines=692, classes=0, dataclasses=0, enums=0, functions=11, dict_literals=49
+- forge_starmap.py: lines=554, classes=3, dataclasses=2, enums=0, functions=27, dict_literals=8
+- fractal_cycle.py: lines=42, classes=3, dataclasses=2, enums=0, functions=2, dict_literals=2
+- gates.py: lines=712, classes=7, dataclasses=6, enums=0, functions=37, dict_literals=18
+- genome.py: lines=328, classes=6, dataclasses=4, enums=0, functions=22, dict_literals=11
+- genome_gate_factory.py: lines=5068, classes=66, dataclasses=4, enums=0, functions=198, dict_literals=150
+- hud.py: lines=1312, classes=25, dataclasses=23, enums=0, functions=26, dict_literals=17
+- hud_theme.py: lines=50, classes=3, dataclasses=3, enums=0, functions=2, dict_literals=0
+- interprocedural.py: lines=890, classes=17, dataclasses=8, enums=0, functions=38, dict_literals=13
+- kerr_ascii.py: lines=174, classes=5, dataclasses=4, enums=0, functions=11, dict_literals=1
+- language_front_door.py: lines=1036, classes=1, dataclasses=0, enums=0, functions=25, dict_literals=6
+- laws.py: lines=52, classes=0, dataclasses=0, enums=0, functions=0, dict_literals=10
+- lbe_blueprint.py: lines=727, classes=6, dataclasses=5, enums=0, functions=15, dict_literals=14
+- lbe_generic.py: lines=378, classes=2, dataclasses=2, enums=0, functions=3, dict_literals=3
+- lbe_pilot.py: lines=1344, classes=16, dataclasses=16, enums=0, functions=41, dict_literals=41
+- lbe_universal.py: lines=898, classes=5, dataclasses=5, enums=0, functions=7, dict_literals=8
+- local_model_adapter.py: lines=315, classes=3, dataclasses=1, enums=0, functions=9, dict_literals=12
+- models.py: lines=192, classes=14, dataclasses=14, enums=0, functions=3, dict_literals=1
+- monitoring.py: lines=1230, classes=2, dataclasses=1, enums=0, functions=57, dict_literals=5
+- orchestration.py: lines=1536, classes=3, dataclasses=2, enums=0, functions=18, dict_literals=38
+- pattern_ir.py: lines=92, classes=1, dataclasses=1, enums=0, functions=2, dict_literals=0
+- recovery.py: lines=939, classes=4, dataclasses=2, enums=0, functions=20, dict_literals=14
+- runtime.py: lines=297, classes=0, dataclasses=0, enums=0, functions=4, dict_literals=6
+- semantic_ir.py: lines=227, classes=10, dataclasses=10, enums=0, functions=7, dict_literals=1
+- sw_oracle.py: lines=181, classes=0, dataclasses=0, enums=0, functions=3, dict_literals=10
+- switchboard.py: lines=218, classes=4, dataclasses=3, enums=0, functions=6, dict_literals=1
+- traceability.py: lines=27, classes=2, dataclasses=1, enums=0, functions=5, dict_literals=0
+- transformer.py: lines=138, classes=0, dataclasses=0, enums=0, functions=7, dict_literals=0
+- transformer_registry.py: lines=132, classes=0, dataclasses=0, enums=0, functions=6, dict_literals=1
+- util.py: lines=5, classes=0, dataclasses=0, enums=0, functions=1, dict_literals=0
+- verification_hooks.py: lines=43, classes=6, dataclasses=6, enums=0, functions=0, dict_literals=0
+- vessel.py: lines=478, classes=16, dataclasses=11, enums=5, functions=24, dict_literals=4
+- window_anchor.py: lines=148, classes=2, dataclasses=2, enums=0, functions=10, dict_literals=0
