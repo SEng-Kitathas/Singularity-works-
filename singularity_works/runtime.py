@@ -7,9 +7,9 @@ import time
 
 from .evidence_ledger import EvidenceLedger
 from .ergo_boot import play_boot_sequence
-from .hud import ConsoleHUD, snapshot_from_run_result
+from .hud import ConsoleHUD, LaunchReceiptRecord, snapshot_from_run_result
 from .models import Requirement, RunContext
-from .vessel import evaluate_vessel_surface
+from .vessel import build_vessel_launch_plan, evaluate_vessel_surface, plan_unified_front
 from .orchestration import Orchestrator
 from .window_anchor import maybe_apply_runtime_anchor
 
@@ -161,10 +161,28 @@ def _render_summary(ctx: RunContext, req: Requirement, result, orchestrator: Orc
         play_boot_sequence()
     anchor_plan = maybe_apply_runtime_anchor("Claude")
     anchor_supported = anchor_plan is not None and "failed" not in str(anchor_plan.get("note", "")).lower() if anchor_plan is not None else False
-    vessel_surface = evaluate_vessel_surface(Path(__file__).resolve().parent.parent, anchor_supported=anchor_supported)
+    project_root = Path(__file__).resolve().parent.parent
+    vessel_surface = evaluate_vessel_surface(project_root, anchor_supported=anchor_supported)
+    front_receipt = plan_unified_front(build_vessel_launch_plan(project_root))
     if anchor_plan is not None:
         snap.events.append(f"window_anchor={anchor_plan.get('note','none')}")
     snap.stats.update(vessel_surface.to_stats())
+    snap.stats.update(front_receipt.to_stats())
+    snap.unified_front.readiness = front_receipt.readiness.value
+    snap.unified_front.unified_front_requested = front_receipt.unified_front_requested
+    snap.unified_front.unified_front_achieved = front_receipt.unified_front_achieved
+    snap.unified_front.receipts = [
+        LaunchReceiptRecord(
+            role=receipt.role,
+            disposition=receipt.disposition.value,
+            title=receipt.title,
+            detail=receipt.detail,
+            pid=receipt.pid,
+        )
+        for receipt in front_receipt.receipts
+    ]
+    for receipt in snap.unified_front.receipts[:2]:
+        snap.events.append(f"front:{receipt.role}:{receipt.disposition}")
     if vessel_surface.readiness.value != "ready":
         snap.warnings.append("vessel_surface_degraded")
     hud = ConsoleHUD()

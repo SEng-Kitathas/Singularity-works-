@@ -257,6 +257,23 @@ class FractalEventRecord:
 
 
 @dataclass
+class LaunchReceiptRecord:
+    role: str = ""
+    disposition: str = "skipped"
+    title: str = ""
+    detail: str = ""
+    pid: int | None = None
+
+
+@dataclass
+class UnifiedFrontRecord:
+    readiness: str = "degraded"
+    unified_front_requested: bool = False
+    unified_front_achieved: bool = False
+    receipts: list[LaunchReceiptRecord] = field(default_factory=list)
+
+
+@dataclass
 class HudSnapshot:
     # Identity
     app_name: str     = "Singularity Works"
@@ -316,6 +333,7 @@ class HudSnapshot:
     verification: VerificationTraceRecord = field(default_factory=VerificationTraceRecord)
     embodiment: EmbodimentTraceRecord = field(default_factory=EmbodimentTraceRecord)
     fractal_events: list[FractalEventRecord] = field(default_factory=list)
+    unified_front: UnifiedFrontRecord = field(default_factory=UnifiedFrontRecord)
 
     # Ergo-Light / Kerr panel
     kerr_panel: KerrPanelState = field(default_factory=KerrPanelState)
@@ -785,6 +803,18 @@ class ConsoleHUD:
                 rows.append(self._crop(f"  {sd.candidate_id} -> {mode}", width))
         else:
             rows.append(_c(_C.FG_DIM, "  (none active)"))
+        rows.append("")
+
+        # Unified front receipts
+        rows.append(_c(_C.MAGENTA, self._crop("  UNIFIED FRONT", width)))
+        rows.append(self._crop(f"  readiness={snap.unified_front.readiness}", width))
+        rows.append(self._crop(f"  achieved={'yes' if snap.unified_front.unified_front_achieved else 'no'}", width))
+        if snap.unified_front.receipts:
+            for receipt in snap.unified_front.receipts[:3]:
+                pid = f" pid={receipt.pid}" if receipt.pid is not None else ""
+                rows.append(self._crop(f"  {receipt.role} [{receipt.disposition}]{pid}", width))
+        else:
+            rows.append(_c(_C.FG_DIM, "  (no launch receipts)"))
         rows.append("")
 
         # Phase / branch / session meta
