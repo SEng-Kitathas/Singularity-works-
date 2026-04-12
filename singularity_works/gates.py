@@ -76,6 +76,44 @@ def _todo_comments(content: str) -> list[tuple[int, str]]:
     return hits
 
 
+@dataclass(frozen=True)
+class PairViolation:
+    pair: tuple[str, str]
+    reason: str
+
+    def to_dict(self) -> dict[str, Any]:
+        return {"pair": self.pair, "reason": self.reason}
+
+
+@dataclass(frozen=True)
+class ProtocolEdgeViolation:
+    name: str
+    violations: list[PairViolation]
+    sequence: list[str]
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "name": self.name,
+            "violations": [item.to_dict() for item in self.violations],
+            "sequence": self.sequence,
+        }
+
+
+@dataclass(frozen=True)
+class ResourceAnalysis:
+    leaked: list[str] = field(default_factory=list)
+    dangerous_calls: list[str] = field(default_factory=list)
+    dangerous_verify_false: bool = False
+    has_with_open: bool = False
+    has_try_finally_close: bool = False
+    use_after_close: list[str] = field(default_factory=list)
+    close_before_open: list[str] = field(default_factory=list)
+    protocol_warnings: list[str] = field(default_factory=list)
+    transition_graph: dict[str, list[str]] = field(default_factory=dict)
+    line_map: dict[str, list[int]] = field(default_factory=dict)
+    managed_names: list[str] = field(default_factory=list)
+
+
 class _TransitionVisitor(ast.NodeVisitor):
     def __init__(self) -> None:
         self.transitions: dict[str, list[tuple[str, int]]] = {}
@@ -130,7 +168,7 @@ class _TransitionVisitor(ast.NodeVisitor):
         self.generic_visit(node)
 
 
-def _resource_analysis(tree) -> dict[str, Any]:
+def _resource_analysis(tree) -> ResourceAnalysis:
     visitor = _TransitionVisitor()
     visitor.visit(tree)
     leaked: list[str] = []
@@ -161,40 +199,40 @@ def _resource_analysis(tree) -> dict[str, Any]:
         if state == "open" and name not in managed_names and name not in leaked:
             leaked.append(name)
 
-    return {
-        "leaked": sorted(set(leaked)),
-        "dangerous_calls": sorted(set(visitor.dangerous_calls)),
-        "dangerous_verify_false": visitor.verify_false,
-        "has_with_open": visitor.has_with_open,
-        "has_try_finally_close": visitor.has_try_finally_close,
-        "use_after_close": sorted(set(use_after_close)),
-        "close_before_open": sorted(set(close_before_open)),
-        "protocol_warnings": sorted(set(protocol_warnings)),
-        "transition_graph": transition_graph,
-        "line_map": line_map,
-        "managed_names": sorted(managed_names),
-    }
+    return ResourceAnalysis(
+        leaked=sorted(set(leaked)),
+        dangerous_calls=sorted(set(visitor.dangerous_calls)),
+        dangerous_verify_false=visitor.verify_false,
+        has_with_open=visitor.has_with_open,
+        has_try_finally_close=visitor.has_try_finally_close,
+        use_after_close=sorted(set(use_after_close)),
+        close_before_open=sorted(set(close_before_open)),
+        protocol_warnings=sorted(set(protocol_warnings)),
+        transition_graph=transition_graph,
+        line_map=line_map,
+        managed_names=sorted(managed_names),
+    )
 
 
 def _protocol_edge_violations(
     transition_graph: dict[str, list[str]],
     protocol_model: dict[str, Any],
-) -> list[dict[str, Any]]:
+) -> list[ProtocolEdgeViolation]:
     allowed = {tuple(x) for x in protocol_model.get("allowed_edges", []) if len(x) == 2}
     forbidden = {tuple(x) for x in protocol_model.get("forbidden_edges", []) if len(x) == 2}
-    violations: list[dict[str, Any]] = []
+    violations: list[ProtocolEdgeViolation] = []
     if not allowed and not forbidden:
         return violations
     for name, seq in transition_graph.items():
         pairs = list(zip(seq, seq[1:]))
-        bad_pairs = []
+        bad_pairs: list[PairViolation] = []
         for pair in pairs:
             if pair in forbidden:
-                bad_pairs.append({"pair": pair, "reason": "forbidden"})
+                bad_pairs.append(PairViolation(pair=pair, reason="forbidden"))
             elif allowed and pair not in allowed:
-                bad_pairs.append({"pair": pair, "reason": "not_allowed"})
+                bad_pairs.append(PairViolation(pair=pair, reason="not_allowed"))
         if bad_pairs:
-            violations.append({"name": name, "violations": bad_pairs, "sequence": seq})
+            violations.append(ProtocolEdgeViolation(name=name, violations=bad_pairs, sequence=seq))
     return violations
 
 
@@ -405,12 +443,12 @@ def family_alignment_gate() -> Gate:
             residual_obligations=([] if status == "pass" else ["family_alignment"]),
         )
     return Gate("structural.family_alignment", "structural", "Check family/radical alignment", run)
-def _resource_transform_findings(analysis: dict[str, Any]) -> list[GateFinding]:
+def _resource_transform_findings(analysis: ResourceAnalysis) -> list[GateFinding]:
     findings: list[GateFinding] = []
-    leaked = analysis["leaked"]
-    if leaked and not analysis["has_with_open"]:
+    leaked = analysis.leaked
+    if leaked and not analysis.has_with_open:
         for name in leaked:
-            lines = analysis["line_map"].get(name, [])
+            lines = analysis.line_map.get(name, [])
             suggestion = SimplificationSuggestion(
                 suggestion_id=f"suggest:{name}:with_context",
                 summary="Resource handling could be simplified to a context manager",
@@ -432,8 +470,8 @@ def _resource_transform_findings(analysis: dict[str, Any]) -> list[GateFinding]:
                     },
                 )
             )
-    for name in analysis["use_after_close"]:
-        lines = analysis["line_map"].get(name, [])
+    for name in analysis.use_after_close:
+        lines = analysis.line_map.get(name, [])
         suggestion = SimplificationSuggestion(
             suggestion_id=f"suggest:{name}:reorder",
             summary="Reorder resource operations so reads/writes happen before close",
