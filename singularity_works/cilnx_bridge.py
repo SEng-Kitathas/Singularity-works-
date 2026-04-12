@@ -2,6 +2,7 @@ from __future__ import annotations
 # complexity_justified: bridges external CILNX scaffold discovery, dynamic reference loading, append-only manifest emission, and runtime continuity receipts.
 
 from dataclasses import dataclass
+import json
 import hashlib
 import importlib.util
 import sys
@@ -47,6 +48,30 @@ def _candidate_roots() -> tuple[Path, ...]:
         Path(r'C:/Users/ancal/Desktop/AI_Pushes_Sandbox/historical data/Geometric reason/rosetta/CILNX_MASTER_DROP_2026-04-01/CILNX_MASTER_DROP_2026-04-01/builds/cilnx_v0_6_scaffold'),
     )
 
+
+
+
+def cilnx_session_state_path(project_root: str | Path) -> Path:
+    root = Path(project_root)
+    path = root / '.forge' / 'cilnx_bridge' / 'vessel_session_state.json'
+    path.parent.mkdir(parents=True, exist_ok=True)
+    return path
+
+
+def persist_cockpit_session_state(project_root: str | Path, payload: dict[str, Any]) -> Path:
+    path = cilnx_session_state_path(project_root)
+    path.write_text(json.dumps(payload, indent=2, sort_keys=True), encoding='utf-8')
+    return path
+
+
+def load_cockpit_session_state(project_root: str | Path) -> dict[str, Any] | None:
+    path = cilnx_session_state_path(project_root)
+    if not path.exists():
+        return None
+    try:
+        return json.loads(path.read_text(encoding='utf-8'))
+    except Exception:
+        return None
 
 def locate_canonical_cilnx() -> CilnxLocation:
     for root in _candidate_roots():

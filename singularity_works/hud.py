@@ -283,8 +283,6 @@ class VesselSessionRecord:
     rationale: str = ""
     persisted_lifecycle: str = ""
     state_file: str = ""
-    state_file: str = ""
-    persisted_lifecycle: str = ""
 
 
 @dataclass
@@ -834,7 +832,7 @@ class ConsoleHUD:
         rows.append(_c(_C.MAGENTA, self._crop("  SINGULARITY WORKS C2", width)))
         rows.append(self._crop(f"  front=Cockpit readiness={snap.unified_front.readiness}", width))
         rows.append(self._crop(f"  workshop=Forge continuity=CILNX", width))
-        rows.append(self._crop(f"  achieved={'yes' if snap.unified_front.unified_front_achieved else 'no'}", width))
+        rows.append(self._crop(f"  backend=cilnx_bridge achieved={'yes' if snap.unified_front.unified_front_achieved else 'no'}", width))
         if snap.unified_front.receipts:
             for receipt in snap.unified_front.receipts[:3]:
                 pid = f" pid={receipt.pid}" if receipt.pid is not None else ""
@@ -844,7 +842,7 @@ class ConsoleHUD:
         rows.append(self._crop(f"  lifecycle={snap.vessel_session.lifecycle}", width))
         rows.append(self._crop(f"  relaunch={snap.vessel_session.relaunch_action}", width))
         if snap.vessel_session.state_file:
-            rows.append(self._crop(f"  state={snap.vessel_session.state_file}", width))
+            rows.append(self._crop(f"  state=CILNX/{snap.vessel_session.state_file}", width))
         if snap.vessel_session.persisted_lifecycle:
             rows.append(self._crop(f"  persisted={snap.vessel_session.persisted_lifecycle}", width))
         if snap.vessel_session.rationale:

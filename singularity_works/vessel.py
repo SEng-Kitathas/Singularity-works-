@@ -399,23 +399,21 @@ class PersistedVesselSession:
 
 
 def vessel_session_state_path(project_root: str | Path) -> Path:
-    root = Path(project_root)
-    return root / '.forge' / 'vessel_session_state.json'
+    from .cilnx_bridge import cilnx_session_state_path
+    return cilnx_session_state_path(project_root)
 
 
 def persist_vessel_session_state(project_root: str | Path, session: VesselSessionState, receipt: UnifiedFrontReceipt) -> Path:
-    path = vessel_session_state_path(project_root)
-    path.parent.mkdir(parents=True, exist_ok=True)
+    from .cilnx_bridge import persist_cockpit_session_state
     payload = PersistedVesselSession.from_session(session, receipt)
-    path.write_text(json.dumps(payload.__dict__, indent=2), encoding='utf-8')
-    return path
+    return persist_cockpit_session_state(project_root, dict(payload.__dict__))
 
 
 def load_vessel_session_state(project_root: str | Path) -> PersistedVesselSession | None:
-    path = vessel_session_state_path(project_root)
-    if not path.exists():
+    from .cilnx_bridge import load_cockpit_session_state
+    raw = load_cockpit_session_state(project_root)
+    if raw is None:
         return None
-    raw = json.loads(path.read_text(encoding='utf-8'))
     return PersistedVesselSession(
         updated_at=str(raw.get('updated_at', '') or ''),
         lifecycle=str(raw.get('lifecycle', 'planned')),

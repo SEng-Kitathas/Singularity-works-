@@ -183,7 +183,7 @@ def _render_summary(ctx: RunContext, req: Requirement, result, orchestrator: Orc
     )
     snap.stats['front_end'] = 'Cockpit'
     snap.stats['workshop'] = 'Forge'
-    snap.stats['continuity'] = 'CILNX'
+    snap.stats['continuity'] = 'CILNX v0.6'
     snap.stats.update(vessel_surface.to_stats())
     snap.stats.update(front_receipt.to_stats())
     snap.stats.update(session_state.to_stats())
@@ -205,6 +205,7 @@ def _render_summary(ctx: RunContext, req: Requirement, result, orchestrator: Orc
     snap.vessel_recovery.reason = recovery_state.reason
     snap.stats['cilnx_root'] = Path(cilnx_location.root).name if cilnx_location.root else 'missing'
     snap.stats['cilnx_audit'] = 'ok' if cilnx_receipt.audit_ok else 'degraded'
+    snap.stats['continuity_backend'] = 'cilnx_bridge'
     snap.unified_front.receipts = [
         LaunchReceiptRecord(
             role=receipt.role,
