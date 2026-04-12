@@ -488,12 +488,57 @@
     },
     {
       "file": "interprocedural.py",
-      "classes": 17,
+      "classes": 0,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 1,
+      "dict_literals": 4,
+      "lines": 60
+    },
+    {
+      "file": "interprocedural_builder.py",
+      "classes": 1,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 13,
+      "dict_literals": 0,
+      "lines": 261
+    },
+    {
+      "file": "interprocedural_callgraph.py",
+      "classes": 1,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 6,
+      "dict_literals": 4,
+      "lines": 193
+    },
+    {
+      "file": "interprocedural_graph.py",
+      "classes": 0,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 0,
+      "dict_literals": 0,
+      "lines": 19
+    },
+    {
+      "file": "interprocedural_locals.py",
+      "classes": 7,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 17,
+      "dict_literals": 5,
+      "lines": 300
+    },
+    {
+      "file": "interprocedural_types.py",
+      "classes": 8,
       "dataclasses": 8,
       "enums": 0,
-      "functions": 38,
-      "dict_literals": 13,
-      "lines": 890
+      "functions": 1,
+      "dict_literals": 0,
+      "lines": 116
     },
     {
       "file": "language_front_door.py",
@@ -694,15 +739,6 @@
       "category": "module_size",
       "message": "Large module (1322 lines) may indicate concentration seam.",
       "evidence": "hud.py"
-    },
-    {
-      "seam_id": "DQ-SIZE",
-      "severity": "medium",
-      "file": "interprocedural.py",
-      "line": 1,
-      "category": "module_size",
-      "message": "Large module (890 lines) may indicate concentration seam.",
-      "evidence": "interprocedural.py"
     },
     {
       "seam_id": "DQ-SIZE",

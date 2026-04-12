@@ -1,17 +1,16 @@
 # Doctrine Detector Report
 
-- Modules scanned: 76
-- Findings: 10
+- Modules scanned: 81
+- Findings: 9
 
 ## Severity counts
 - critical: 0
 - high: 0
-- medium: 10
+- medium: 9
 - low: 0
 
 ## Findings
 - [DQ-SIZE] MEDIUM hud.py:1 — Large module (1322 lines) may indicate concentration seam. | `hud.py`
-- [DQ-SIZE] MEDIUM interprocedural.py:1 — Large module (890 lines) may indicate concentration seam. | `interprocedural.py`
 - [DQ-SIZE] MEDIUM language_front_door.py:1 — Large module (1036 lines) may indicate concentration seam. | `language_front_door.py`
 - [DQ-SIZE] MEDIUM lbe_blueprint.py:1 — Large module (727 lines) may indicate concentration seam. | `lbe_blueprint.py`
 - [DQ-DICT-HOTSPOT] MEDIUM lbe_pilot.py:1 — High dict-literal density (41) suggests possible dict spill hotspot. | `lbe_pilot.py`
@@ -76,7 +75,12 @@
 - genome_gate_factory.py: lines=262, classes=0, dataclasses=0, enums=0, functions=4, dict_literals=1
 - genome_iris.py: lines=189, classes=1, dataclasses=1, enums=0, functions=4, dict_literals=5
 - hud.py: lines=1322, classes=26, dataclasses=24, enums=0, functions=27, dict_literals=17
-- interprocedural.py: lines=890, classes=17, dataclasses=8, enums=0, functions=38, dict_literals=13
+- interprocedural.py: lines=60, classes=0, dataclasses=0, enums=0, functions=1, dict_literals=4
+- interprocedural_builder.py: lines=261, classes=1, dataclasses=0, enums=0, functions=13, dict_literals=0
+- interprocedural_callgraph.py: lines=193, classes=1, dataclasses=0, enums=0, functions=6, dict_literals=4
+- interprocedural_graph.py: lines=19, classes=0, dataclasses=0, enums=0, functions=0, dict_literals=0
+- interprocedural_locals.py: lines=300, classes=7, dataclasses=0, enums=0, functions=17, dict_literals=5
+- interprocedural_types.py: lines=116, classes=8, dataclasses=8, enums=0, functions=1, dict_literals=0
 - language_front_door.py: lines=1036, classes=1, dataclasses=0, enums=0, functions=25, dict_literals=6
 - laws.py: lines=52, classes=0, dataclasses=0, enums=0, functions=0, dict_literals=10
 - lbe_blueprint.py: lines=727, classes=6, dataclasses=5, enums=0, functions=15, dict_literals=14
