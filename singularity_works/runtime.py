@@ -9,7 +9,7 @@ from .evidence_ledger import EvidenceLedger
 from .ergo_boot import play_boot_sequence
 from .hud import ConsoleHUD, snapshot_from_run_result
 from .models import Requirement, RunContext
-from .vessel import build_vessel_launch_plan, run_vessel_doctor
+from .vessel import evaluate_vessel_surface
 from .orchestration import Orchestrator
 from .window_anchor import maybe_apply_runtime_anchor
 
@@ -160,15 +160,13 @@ def _render_summary(ctx: RunContext, req: Requirement, result, orchestrator: Orc
     if play_boot:
         play_boot_sequence()
     anchor_plan = maybe_apply_runtime_anchor("Claude")
-    doctor = run_vessel_doctor(Path(__file__).resolve().parent.parent)
-    vessel_plan = build_vessel_launch_plan(Path(__file__).resolve().parent.parent)
+    anchor_supported = anchor_plan is not None and "failed" not in str(anchor_plan.get("note", "")).lower() if anchor_plan is not None else False
+    vessel_surface = evaluate_vessel_surface(Path(__file__).resolve().parent.parent, anchor_supported=anchor_supported)
     if anchor_plan is not None:
         snap.events.append(f"window_anchor={anchor_plan.get('note','none')}")
-    snap.stats["vessel"] = "ready" if doctor.passed else "degraded"
-    snap.stats["claude"] = vessel_plan.claude_target.executable if vessel_plan.claude_target else "not-found"
-    snap.stats["terminal"] = Path(vessel_plan.terminal_host.executable).name if vessel_plan.terminal_host.executable else vessel_plan.terminal_host.kind.value
-    if not doctor.passed:
-        snap.warnings.append("vessel_doctor_degraded")
+    snap.stats.update(vessel_surface.to_stats())
+    if vessel_surface.readiness.value != "ready":
+        snap.warnings.append("vessel_surface_degraded")
     hud = ConsoleHUD()
     with hud:
         hud.render(snap)

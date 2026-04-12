@@ -654,6 +654,9 @@ class ConsoleHUD:
                 rows.append(self._crop(line, width))
             rows.append(self._crop(f"  phase={snap.kerr_panel.state.phase_label}", width))
             rows.append(self._crop(f"  drag={snap.kerr_panel.state.drag:.2f} ergo={snap.kerr_panel.state.ergosphere_radius:.2f}", width))
+            rows.append(self._crop(f"  lbe={snap.kerr_panel.state.lbe_pressure:.2f} rec={snap.kerr_panel.state.recovery_pressure:.2f}", width))
+            rows.append(self._crop(f"  mon={snap.kerr_panel.state.monitor_pressure:.2f} sw={snap.kerr_panel.state.switchboard_pressure:.2f}", width))
+            rows.append(self._crop(f"  taint={snap.kerr_panel.state.taint_pressure:.2f}", width))
         else:
             rows.append(_c(_C.FG_DIM, "  (panel offline)"))
         rows.append("")
@@ -1105,6 +1108,12 @@ def snapshot_from_run_result(
         phase=snap.phase,
         label="Kerr cockpit",
         sublabel=f"{snap.phase} | {snap.requirement[:24]}",
+        monitor_count=len(snap.monitor_events_typed),
+        risk_count=len(snap.risks),
+        transformation_count=len(snap.transformation_candidates),
+        switchboard_count=len(snap.switchboard_decisions),
+        lbe_status=snap.verification.lbe_verification.status,
+        recovery_confidence=snap.verification.assurance_verification.status,
     )
     snap.kerr_panel = render_kerr_panel(kerr_state, width=36, height=11, tick=snap.uptime_s)
     return snap

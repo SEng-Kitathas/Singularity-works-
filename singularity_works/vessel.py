@@ -34,6 +34,35 @@ class VesselDoctorReport:
         return all(check.passed for check in self.checks)
 
 
+
+
+class VesselReadiness(str, Enum):
+    READY = "ready"
+    DEGRADED = "degraded"
+    HUD_ONLY = "hud_only"
+
+
+@dataclass(frozen=True)
+class VesselSurfaceState:
+    readiness: VesselReadiness
+    claude_available: bool
+    gpu_terminal: bool
+    anchor_supported: bool
+    unified_front_possible: bool
+    terminal_kind: str
+    terminal_executable: str
+    claude_target: str
+
+    def to_stats(self) -> dict[str, str]:
+        return {
+            "vessel": self.readiness.value,
+            "claude": self.claude_target or "not-found",
+            "terminal": self.terminal_executable or self.terminal_kind,
+            "gpu_term": "yes" if self.gpu_terminal else "no",
+            "unified_front": "yes" if self.unified_front_possible else "no",
+            "anchor": "yes" if self.anchor_supported else "no",
+        }
+
 @dataclass(frozen=True)
 class ClaudeProcessTarget:
     executable: str
@@ -135,3 +164,26 @@ def launch_claude_vessel(plan: VesselLaunchPlan) -> tuple[subprocess.Popen[str],
         if claude_proc is not None:
             procs.append(claude_proc)
     return tuple(procs)
+
+
+def evaluate_vessel_surface(project_root: str | Path, *, anchor_supported: bool) -> VesselSurfaceState:
+    doctor = run_vessel_doctor(project_root)
+    plan = build_vessel_launch_plan(project_root)
+    claude_available = plan.claude_target is not None
+    gpu_terminal = plan.terminal_host.gpu_accelerated
+    unified_front_possible = claude_available and plan.terminal_host.kind is not TerminalHostKind.UNKNOWN
+    readiness = (
+        VesselReadiness.READY if doctor.passed and unified_front_possible
+        else VesselReadiness.HUD_ONLY if doctor.passed
+        else VesselReadiness.DEGRADED
+    )
+    return VesselSurfaceState(
+        readiness=readiness,
+        claude_available=claude_available,
+        gpu_terminal=gpu_terminal,
+        anchor_supported=anchor_supported,
+        unified_front_possible=unified_front_possible,
+        terminal_kind=plan.terminal_host.kind.value,
+        terminal_executable=plan.terminal_host.executable,
+        claude_target=plan.claude_target.executable if plan.claude_target else "",
+    )

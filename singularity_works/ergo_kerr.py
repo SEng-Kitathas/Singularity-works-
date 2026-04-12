@@ -62,6 +62,11 @@ class KerrState:
     blue_shift_bias: float = 0.0
     hazard_pressure: float = 0.0
     proof_pressure: float = 0.0
+    lbe_pressure: float = 0.0
+    recovery_pressure: float = 0.0
+    monitor_pressure: float = 0.0
+    switchboard_pressure: float = 0.0
+    taint_pressure: float = 0.0
     orbitals: int = 3
     label: str = "Forge boot"
     sublabel: str = ""
@@ -103,11 +108,22 @@ def derive_kerr_state(
     phase: str,
     label: str,
     sublabel: str,
+    monitor_count: int = 0,
+    risk_count: int = 0,
+    transformation_count: int = 0,
+    switchboard_count: int = 0,
+    lbe_status: str = "unknown",
+    recovery_confidence: str = "unknown",
 ) -> KerrState:
     hazard_pressure = _clamp((fail_count * 0.18) + (warn_count * 0.08) + (chain_count * 0.12))
     proof_pressure = _clamp((pass_count * 0.03) + (event_count * 0.02) + progress * 0.4)
     blue_shift = 0.55 if verdict == "green" else 0.25 if verdict == "amber" else 0.10
     drag = _clamp((chain_count * 0.15) + (event_count * 0.03) + progress * 0.35)
+    lbe_pressure = 0.85 if lbe_status in {"red", "critical", "danger", "fail"} else 0.55 if lbe_status in {"amber", "warn", "review"} else 0.18
+    recovery_pressure = 0.80 if recovery_confidence in {"low", "unknown"} else 0.45 if recovery_confidence == "moderate" else 0.12
+    monitor_pressure = _clamp(monitor_count * 0.10 + risk_count * 0.08)
+    switchboard_pressure = _clamp(switchboard_count * 0.20 + transformation_count * 0.12)
+    taint_pressure = _clamp(chain_count * 0.18 + risk_count * 0.10)
     phase_map = {
         "boot": BootPhase.COLD_BOOT,
         "ignition": BootPhase.SINGULARITY_IGNITION,
@@ -128,7 +144,12 @@ def derive_kerr_state(
         blue_shift_bias=blue_shift,
         hazard_pressure=hazard_pressure,
         proof_pressure=proof_pressure,
-        orbitals=max(3, min(8, 3 + fail_count + warn_count)),
+        lbe_pressure=lbe_pressure,
+        recovery_pressure=recovery_pressure,
+        monitor_pressure=monitor_pressure,
+        switchboard_pressure=switchboard_pressure,
+        taint_pressure=taint_pressure,
+        orbitals=max(3, min(8, 3 + fail_count + warn_count + monitor_count // 2)),
         label=label,
         sublabel=sublabel,
     )
@@ -184,7 +205,14 @@ def render_kerr_panel(state: KerrState, width: int = 40, height: int = 14, tick:
         f"{t.dim_lavender.fg()}phase={state.phase.value}"
         f" drag={state.drag:.2f} hazard={state.hazard_pressure:.2f} proof={state.proof_pressure:.2f}{_RESET}"
     )
-    return KerrPanelState(state=state, width=width, height=height, lines=(header, sub, *lines, footer))
+    ops = (
+        f"{t.ergosphere_blue.fg()}LBE {state.lbe_pressure:.2f}{_RESET} "
+        f"{t.caution_amber.fg()}REC {state.recovery_pressure:.2f}{_RESET} "
+        f"{t.stable_green.fg()}MON {state.monitor_pressure:.2f}{_RESET} "
+        f"{t.accent_purple.fg()}SW {state.switchboard_pressure:.2f}{_RESET} "
+        f"{t.warning_red.fg()}TAINT {state.taint_pressure:.2f}{_RESET}"
+    )
+    return KerrPanelState(state=state, width=width, height=height, lines=(header, sub, *lines, footer, ops))
 
 
 def boot_frames(now: float) -> BootFrame:
