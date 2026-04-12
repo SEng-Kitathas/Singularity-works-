@@ -38,6 +38,40 @@ class VesselDoctorReport:
 
 
 
+
+
+class RelaunchAction(str, Enum):
+    NONE = "none"
+    LAUNCH_CLAUDE = "launch_claude"
+    RELAUNCH_FORGE = "relaunch_forge"
+    RESTORE_UNIFIED_FRONT = "restore_unified_front"
+    CHECK_HOST = "check_host"
+
+
+class SessionLifecycleState(str, Enum):
+    PLANNED = "planned"
+    HUD_ONLY = "hud_only"
+    UNIFIED = "unified"
+    DEGRADED = "degraded"
+
+
+@dataclass(frozen=True)
+class VesselSessionState:
+    lifecycle: SessionLifecycleState
+    relaunch_action: RelaunchAction
+    anchor_supported: bool
+    active_roles: tuple[str, ...]
+    failed_roles: tuple[str, ...]
+    rationale: str
+
+    def to_stats(self) -> dict[str, str]:
+        return {
+            "session": self.lifecycle.value,
+            "relaunch": self.relaunch_action.value,
+            "active_roles": str(len(self.active_roles)),
+            "failed_roles": str(len(self.failed_roles)),
+        }
+
 class LaunchDisposition(str, Enum):
     LAUNCHED = "launched"
     SKIPPED = "skipped"
@@ -283,4 +317,53 @@ def evaluate_vessel_surface(project_root: str | Path, *, anchor_supported: bool)
         terminal_kind=plan.terminal_host.kind.value,
         terminal_executable=plan.terminal_host.executable,
         claude_target=plan.claude_target.executable if plan.claude_target else "",
+    )
+
+
+def derive_session_state(surface: VesselSurfaceState, receipt: UnifiedFrontReceipt) -> VesselSessionState:
+    active_roles = tuple(r.role for r in receipt.receipts if r.disposition is LaunchDisposition.LAUNCHED)
+    failed_roles = tuple(r.role for r in receipt.receipts if r.disposition is LaunchDisposition.FAILED)
+    if receipt.unified_front_achieved:
+        return VesselSessionState(
+            lifecycle=SessionLifecycleState.UNIFIED,
+            relaunch_action=RelaunchAction.NONE,
+            anchor_supported=surface.anchor_supported,
+            active_roles=active_roles,
+            failed_roles=failed_roles,
+            rationale='forge and claude front achieved',
+        )
+    if surface.claude_available and receipt.readiness is VesselReadiness.HUD_ONLY:
+        return VesselSessionState(
+            lifecycle=SessionLifecycleState.HUD_ONLY,
+            relaunch_action=RelaunchAction.RESTORE_UNIFIED_FRONT,
+            anchor_supported=surface.anchor_supported,
+            active_roles=active_roles,
+            failed_roles=failed_roles,
+            rationale='claude is available but unified front not yet achieved',
+        )
+    if not surface.claude_available and receipt.readiness is VesselReadiness.HUD_ONLY:
+        return VesselSessionState(
+            lifecycle=SessionLifecycleState.HUD_ONLY,
+            relaunch_action=RelaunchAction.LAUNCH_CLAUDE,
+            anchor_supported=surface.anchor_supported,
+            active_roles=active_roles,
+            failed_roles=failed_roles,
+            rationale='forge is viable but claude target missing',
+        )
+    if receipt.readiness is VesselReadiness.DEGRADED:
+        return VesselSessionState(
+            lifecycle=SessionLifecycleState.DEGRADED,
+            relaunch_action=RelaunchAction.CHECK_HOST,
+            anchor_supported=surface.anchor_supported,
+            active_roles=active_roles,
+            failed_roles=failed_roles,
+            rationale='host terminal or launch substrate degraded',
+        )
+    return VesselSessionState(
+        lifecycle=SessionLifecycleState.PLANNED,
+        relaunch_action=RelaunchAction.NONE,
+        anchor_supported=surface.anchor_supported,
+        active_roles=active_roles,
+        failed_roles=failed_roles,
+        rationale='vessel planned but not yet launched',
     )

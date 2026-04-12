@@ -9,7 +9,7 @@ from .evidence_ledger import EvidenceLedger
 from .ergo_boot import play_boot_sequence
 from .hud import ConsoleHUD, LaunchReceiptRecord, snapshot_from_run_result
 from .models import Requirement, RunContext
-from .vessel import build_vessel_launch_plan, evaluate_vessel_surface, plan_unified_front
+from .vessel import build_vessel_launch_plan, derive_session_state, evaluate_vessel_surface, plan_unified_front
 from .orchestration import Orchestrator
 from .window_anchor import maybe_apply_runtime_anchor
 
@@ -166,11 +166,19 @@ def _render_summary(ctx: RunContext, req: Requirement, result, orchestrator: Orc
     front_receipt = plan_unified_front(build_vessel_launch_plan(project_root))
     if anchor_plan is not None:
         snap.events.append(f"window_anchor={anchor_plan.get('note','none')}")
+    session_state = derive_session_state(vessel_surface, front_receipt)
     snap.stats.update(vessel_surface.to_stats())
     snap.stats.update(front_receipt.to_stats())
+    snap.stats.update(session_state.to_stats())
     snap.unified_front.readiness = front_receipt.readiness.value
     snap.unified_front.unified_front_requested = front_receipt.unified_front_requested
     snap.unified_front.unified_front_achieved = front_receipt.unified_front_achieved
+    snap.vessel_session.lifecycle = session_state.lifecycle.value
+    snap.vessel_session.relaunch_action = session_state.relaunch_action.value
+    snap.vessel_session.anchor_supported = session_state.anchor_supported
+    snap.vessel_session.active_roles = list(session_state.active_roles)
+    snap.vessel_session.failed_roles = list(session_state.failed_roles)
+    snap.vessel_session.rationale = session_state.rationale
     snap.unified_front.receipts = [
         LaunchReceiptRecord(
             role=receipt.role,
@@ -183,6 +191,7 @@ def _render_summary(ctx: RunContext, req: Requirement, result, orchestrator: Orc
     ]
     for receipt in snap.unified_front.receipts[:2]:
         snap.events.append(f"front:{receipt.role}:{receipt.disposition}")
+    snap.events.append(f"session:{snap.vessel_session.lifecycle}:{snap.vessel_session.relaunch_action}")
     if vessel_surface.readiness.value != "ready":
         snap.warnings.append("vessel_surface_degraded")
     hud = ConsoleHUD()

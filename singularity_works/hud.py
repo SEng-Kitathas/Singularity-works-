@@ -274,6 +274,16 @@ class UnifiedFrontRecord:
 
 
 @dataclass
+class VesselSessionRecord:
+    lifecycle: str = "planned"
+    relaunch_action: str = "none"
+    anchor_supported: bool = False
+    active_roles: list[str] = field(default_factory=list)
+    failed_roles: list[str] = field(default_factory=list)
+    rationale: str = ""
+
+
+@dataclass
 class HudSnapshot:
     # Identity
     app_name: str     = "Singularity Works"
@@ -334,6 +344,7 @@ class HudSnapshot:
     embodiment: EmbodimentTraceRecord = field(default_factory=EmbodimentTraceRecord)
     fractal_events: list[FractalEventRecord] = field(default_factory=list)
     unified_front: UnifiedFrontRecord = field(default_factory=UnifiedFrontRecord)
+    vessel_session: VesselSessionRecord = field(default_factory=VesselSessionRecord)
 
     # Ergo-Light / Kerr panel
     kerr_panel: KerrPanelState = field(default_factory=KerrPanelState)
@@ -815,6 +826,10 @@ class ConsoleHUD:
                 rows.append(self._crop(f"  {receipt.role} [{receipt.disposition}]{pid}", width))
         else:
             rows.append(_c(_C.FG_DIM, "  (no launch receipts)"))
+        rows.append(self._crop(f"  lifecycle={snap.vessel_session.lifecycle}", width))
+        rows.append(self._crop(f"  relaunch={snap.vessel_session.relaunch_action}", width))
+        if snap.vessel_session.rationale:
+            rows.append(self._crop(f"  why={snap.vessel_session.rationale}", width))
         rows.append("")
 
         # Phase / branch / session meta
