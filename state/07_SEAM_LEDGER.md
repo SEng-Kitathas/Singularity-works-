@@ -222,3 +222,19 @@ For every seam closure pass:
 - S2 narrowed: fact payload/codecs extracted from FactBus body into `facts_payloads.py`.
 - S10 narrowed: MCP and bounty helper/spec surfaces extracted from god-nodes.
 - S1 narrowed again: evidence rollup logic extracted to `evidence_rollups.py`, reducing `evidence_ledger.py` concentration.
+
+### CILNX-I1 — CILNX internal implementation intelligence and format discipline
+- **Status:** OPEN
+- **Meaning:** CILNX must evolve as an intelligent continuity substrate, not a dump box.
+- **Downstream seams now:**
+  - typed envelope discipline by artifact family
+  - temporal/event representation discipline
+  - provenance graph / derivation model discipline
+  - projection-vs-canonical-storage discipline
+  - format-by-class discipline (JSON/JSONL vs binary/schema vs columnar projection)
+- **Closure evidence required:** explicit typed artifact families, clearer canonical/projection separation, and reduced reliance on JSON/JSONL as final internal intelligence format.
+
+### CILNX-N1 — Canonical naming settled
+- **Status:** CLOSED
+- **Meaning:** `CILNX` is canonized as **Cognitive Inter-symbolic Ledger Next**.
+- **Effect:** future doctrine/spec/code surfaces should treat `Next` as the settled NX expansion instead of a provisional suffix.
