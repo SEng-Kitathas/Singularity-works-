@@ -325,13 +325,157 @@
       "lines": 328
     },
     {
-      "file": "genome_gate_factory.py",
-      "classes": 66,
-      "dataclasses": 4,
+      "file": "genome_detection_common.py",
+      "classes": 3,
+      "dataclasses": 3,
       "enums": 0,
-      "functions": 198,
-      "dict_literals": 150,
-      "lines": 5068
+      "functions": 12,
+      "dict_literals": 2,
+      "lines": 185
+    },
+    {
+      "file": "genome_detectors_foundation_a.py",
+      "classes": 8,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 25,
+      "dict_literals": 15,
+      "lines": 404
+    },
+    {
+      "file": "genome_detectors_foundation_b1.py",
+      "classes": 5,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 16,
+      "dict_literals": 15,
+      "lines": 458
+    },
+    {
+      "file": "genome_detectors_foundation_b2.py",
+      "classes": 1,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 10,
+      "dict_literals": 13,
+      "lines": 230
+    },
+    {
+      "file": "genome_detectors_wave2_a.py",
+      "classes": 7,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 19,
+      "dict_literals": 16,
+      "lines": 486
+    },
+    {
+      "file": "genome_detectors_wave2_b.py",
+      "classes": 0,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 7,
+      "dict_literals": 9,
+      "lines": 344
+    },
+    {
+      "file": "genome_detectors_wave3_a1.py",
+      "classes": 1,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 5,
+      "dict_literals": 7,
+      "lines": 313
+    },
+    {
+      "file": "genome_detectors_wave3_a2.py",
+      "classes": 3,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 6,
+      "dict_literals": 5,
+      "lines": 288
+    },
+    {
+      "file": "genome_detectors_wave3_b1.py",
+      "classes": 5,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 14,
+      "dict_literals": 9,
+      "lines": 355
+    },
+    {
+      "file": "genome_detectors_wave3_b2.py",
+      "classes": 5,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 12,
+      "dict_literals": 6,
+      "lines": 248
+    },
+    {
+      "file": "genome_detectors_wave3_c1.py",
+      "classes": 5,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 12,
+      "dict_literals": 9,
+      "lines": 379
+    },
+    {
+      "file": "genome_detectors_wave3_c2.py",
+      "classes": 5,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 11,
+      "dict_literals": 13,
+      "lines": 380
+    },
+    {
+      "file": "genome_detectors_wave3_d1.py",
+      "classes": 7,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 18,
+      "dict_literals": 10,
+      "lines": 386
+    },
+    {
+      "file": "genome_detectors_wave3_d2.py",
+      "classes": 6,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 13,
+      "dict_literals": 8,
+      "lines": 328
+    },
+    {
+      "file": "genome_detectors_wave3_d3.py",
+      "classes": 4,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 10,
+      "dict_literals": 7,
+      "lines": 334
+    },
+    {
+      "file": "genome_gate_factory.py",
+      "classes": 0,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 4,
+      "dict_literals": 1,
+      "lines": 262
+    },
+    {
+      "file": "genome_iris.py",
+      "classes": 1,
+      "dataclasses": 1,
+      "enums": 0,
+      "functions": 4,
+      "dict_literals": 5,
+      "lines": 189
     },
     {
       "file": "hud.py",
@@ -542,24 +686,6 @@
     }
   ],
   "findings": [
-    {
-      "seam_id": "DQ-DICT-HOTSPOT",
-      "severity": "medium",
-      "file": "genome_gate_factory.py",
-      "line": 1,
-      "category": "typed_boundary",
-      "message": "High dict-literal density (150) suggests possible dict spill hotspot.",
-      "evidence": "genome_gate_factory.py"
-    },
-    {
-      "seam_id": "DQ-SIZE",
-      "severity": "medium",
-      "file": "genome_gate_factory.py",
-      "line": 1,
-      "category": "module_size",
-      "message": "Large module (5068 lines) may indicate concentration seam.",
-      "evidence": "genome_gate_factory.py"
-    },
     {
       "seam_id": "DQ-SIZE",
       "severity": "medium",

@@ -1,17 +1,15 @@
 # Doctrine Detector Report
 
-- Modules scanned: 60
-- Findings: 12
+- Modules scanned: 76
+- Findings: 10
 
 ## Severity counts
 - critical: 0
 - high: 0
-- medium: 12
+- medium: 10
 - low: 0
 
 ## Findings
-- [DQ-DICT-HOTSPOT] MEDIUM genome_gate_factory.py:1 — High dict-literal density (150) suggests possible dict spill hotspot. | `genome_gate_factory.py`
-- [DQ-SIZE] MEDIUM genome_gate_factory.py:1 — Large module (5068 lines) may indicate concentration seam. | `genome_gate_factory.py`
 - [DQ-SIZE] MEDIUM hud.py:1 — Large module (1322 lines) may indicate concentration seam. | `hud.py`
 - [DQ-SIZE] MEDIUM interprocedural.py:1 — Large module (890 lines) may indicate concentration seam. | `interprocedural.py`
 - [DQ-SIZE] MEDIUM language_front_door.py:1 — Large module (1036 lines) may indicate concentration seam. | `language_front_door.py`
@@ -60,7 +58,23 @@
 - gates_analysis.py: lines=443, classes=4, dataclasses=3, enums=0, functions=23, dict_literals=12
 - gates_types.py: lines=37, classes=3, dataclasses=3, enums=0, functions=0, dict_literals=0
 - genome.py: lines=328, classes=6, dataclasses=4, enums=0, functions=22, dict_literals=11
-- genome_gate_factory.py: lines=5068, classes=66, dataclasses=4, enums=0, functions=198, dict_literals=150
+- genome_detection_common.py: lines=185, classes=3, dataclasses=3, enums=0, functions=12, dict_literals=2
+- genome_detectors_foundation_a.py: lines=404, classes=8, dataclasses=0, enums=0, functions=25, dict_literals=15
+- genome_detectors_foundation_b1.py: lines=458, classes=5, dataclasses=0, enums=0, functions=16, dict_literals=15
+- genome_detectors_foundation_b2.py: lines=230, classes=1, dataclasses=0, enums=0, functions=10, dict_literals=13
+- genome_detectors_wave2_a.py: lines=486, classes=7, dataclasses=0, enums=0, functions=19, dict_literals=16
+- genome_detectors_wave2_b.py: lines=344, classes=0, dataclasses=0, enums=0, functions=7, dict_literals=9
+- genome_detectors_wave3_a1.py: lines=313, classes=1, dataclasses=0, enums=0, functions=5, dict_literals=7
+- genome_detectors_wave3_a2.py: lines=288, classes=3, dataclasses=0, enums=0, functions=6, dict_literals=5
+- genome_detectors_wave3_b1.py: lines=355, classes=5, dataclasses=0, enums=0, functions=14, dict_literals=9
+- genome_detectors_wave3_b2.py: lines=248, classes=5, dataclasses=0, enums=0, functions=12, dict_literals=6
+- genome_detectors_wave3_c1.py: lines=379, classes=5, dataclasses=0, enums=0, functions=12, dict_literals=9
+- genome_detectors_wave3_c2.py: lines=380, classes=5, dataclasses=0, enums=0, functions=11, dict_literals=13
+- genome_detectors_wave3_d1.py: lines=386, classes=7, dataclasses=0, enums=0, functions=18, dict_literals=10
+- genome_detectors_wave3_d2.py: lines=328, classes=6, dataclasses=0, enums=0, functions=13, dict_literals=8
+- genome_detectors_wave3_d3.py: lines=334, classes=4, dataclasses=0, enums=0, functions=10, dict_literals=7
+- genome_gate_factory.py: lines=262, classes=0, dataclasses=0, enums=0, functions=4, dict_literals=1
+- genome_iris.py: lines=189, classes=1, dataclasses=1, enums=0, functions=4, dict_literals=5
 - hud.py: lines=1322, classes=26, dataclasses=24, enums=0, functions=27, dict_literals=17
 - interprocedural.py: lines=890, classes=17, dataclasses=8, enums=0, functions=38, dict_literals=13
 - language_front_door.py: lines=1036, classes=1, dataclasses=0, enums=0, functions=25, dict_literals=6
