@@ -7,7 +7,7 @@ import time
 
 from .evidence_ledger import EvidenceLedger
 from .ergo_boot import play_boot_sequence
-from .hud import ConsoleHUD, snapshot_from_run_result
+from .hud import ConsoleHUD, HudSnapshot, snapshot_from_run_result
 from .models import Requirement, RunContext
 from .vessel import build_vessel_launch_plan, run_vessel_doctor
 from .orchestration import Orchestrator
@@ -171,7 +171,6 @@ def _play_boot_sequence() -> None:
 
 
 def _render_summary(ctx: RunContext, req: Requirement, result, orchestrator: Orchestrator, *, play_boot: bool = True) -> None:
-    _play_boot_sequence()
     snap = snapshot_from_run_result(
         result,
         orchestrator,
@@ -218,7 +217,7 @@ def _render_summary(ctx: RunContext, req: Requirement, result, orchestrator: Orc
         snap.events.append(f"window_anchor={anchor_plan.get('note','none')}")
     snap.stats["vessel"] = "ready" if doctor.passed else "degraded"
     snap.stats["claude"] = vessel_plan.claude_target.executable if vessel_plan.claude_target else "not-found"
-    snap.stats["terminal"] = Path(vessel_plan.terminal_host).name if vessel_plan.terminal_host else "n/a"
+    snap.stats["terminal"] = Path(vessel_plan.terminal_host.executable).name if vessel_plan.terminal_host.executable else vessel_plan.terminal_host.kind.value
     if not doctor.passed:
         snap.warnings.append("vessel_doctor_degraded")
     hud = ConsoleHUD()
@@ -273,3 +272,7 @@ def demo_run(
     if show_hud:
         _render_summary(ctx, req, result, orchestrator)
     return summary
+
+
+if __name__ == "__main__":
+    demo_run(Path(__file__).resolve().parent.parent, good=True, show_hud=True, apply_transformations=False)

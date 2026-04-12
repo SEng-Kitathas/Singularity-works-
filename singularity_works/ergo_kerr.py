@@ -50,6 +50,9 @@ _RESET = "[0m"
 class KerrState:
     phase: BootPhase = BootPhase.COLD_BOOT
     normalized_progress: float = 0.0
+    @property
+    def phase_label(self) -> str:
+        return self.phase.value
     horizon_radius: float = 0.18
     ergosphere_radius: float = 0.30
     photon_radius: float = 0.36

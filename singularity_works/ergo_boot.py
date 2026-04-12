@@ -17,7 +17,6 @@ _CLEAR = "[H[2J"
 class BootRenderConfig:
     width: int = 44
     height: int = 14
-    use_alt_screen: bool = True
     frame_interval_s: float = 0.05
     hold_handoff_s: float = 0.22
 

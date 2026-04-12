@@ -1,12 +1,21 @@
 from __future__ import annotations
-# complexity_justified: vessel doctor and launch planning bridge multiple host-runtime surfaces while preserving explicit launch contracts.
+# complexity_justified: vessel doctor and unified-front launch planning bridge host runtime, terminal host, and Claude process contracts.
 from dataclasses import dataclass, field
+from enum import Enum
 from pathlib import Path
 import os
 import shutil
 import subprocess
 import sys
 from typing import Sequence
+
+
+class TerminalHostKind(str, Enum):
+    WINDOWS_TERMINAL = "windows_terminal"
+    WEZTERM = "wezterm"
+    ALACRITTY = "alacritty"
+    CONHOST = "conhost"
+    UNKNOWN = "unknown"
 
 
 @dataclass(frozen=True)
@@ -33,11 +42,19 @@ class ClaudeProcessTarget:
 
 
 @dataclass(frozen=True)
+class TerminalHostSpec:
+    kind: TerminalHostKind
+    executable: str = ""
+    gpu_accelerated: bool = False
+    title_supported: bool = False
+
+
+@dataclass(frozen=True)
 class VesselLaunchPlan:
     python_executable: str
-    forge_entry: str
+    forge_command: tuple[str, ...]
     claude_target: ClaudeProcessTarget | None
-    terminal_host: str
+    terminal_host: TerminalHostSpec
     project_root: str
 
 
@@ -49,57 +66,72 @@ def _which_many(candidates: Sequence[str]) -> str | None:
     return None
 
 
+def _detect_terminal_host() -> TerminalHostSpec:
+    if executable := _which_many(['wt', 'wt.exe']):
+        return TerminalHostSpec(TerminalHostKind.WINDOWS_TERMINAL, executable, gpu_accelerated=True, title_supported=True)
+    if executable := _which_many(['wezterm', 'wezterm.exe']):
+        return TerminalHostSpec(TerminalHostKind.WEZTERM, executable, gpu_accelerated=True, title_supported=True)
+    if executable := _which_many(['alacritty', 'alacritty.exe']):
+        return TerminalHostSpec(TerminalHostKind.ALACRITTY, executable, gpu_accelerated=True, title_supported=True)
+    if os.name == 'nt' and (executable := _which_many(['cmd', 'cmd.exe'])):
+        return TerminalHostSpec(TerminalHostKind.CONHOST, executable, gpu_accelerated=False, title_supported=True)
+    return TerminalHostSpec(TerminalHostKind.UNKNOWN)
+
+
+def _detect_claude_target() -> ClaudeProcessTarget | None:
+    executable = _which_many(['claude', 'claude.exe', 'claude-code', 'claude-code.exe'])
+    return ClaudeProcessTarget(executable=executable) if executable else None
+
+
 def run_vessel_doctor(project_root: str | Path) -> VesselDoctorReport:
     root = Path(project_root)
-    terminal = _which_many(['wt', 'wezterm', 'alacritty', 'cmd'])
-    claude_exec = _which_many(['claude', 'claude.exe'])
+    terminal = _detect_terminal_host()
+    claude_target = _detect_claude_target()
     checks = [
-        DoctorCheck("project_root", root.exists(), str(root)),
-        DoctorCheck(
-            "forge_runtime",
-            (root / 'singularity_works' / 'runtime.py').exists(),
-            'runtime.py present',
-        ),
-        DoctorCheck("python", bool(sys.executable), sys.executable),
-        DoctorCheck(
-            "terminal_host",
-            bool(terminal),
-            'preferred terminal available' if terminal else 'no preferred terminal found',
-        ),
-        DoctorCheck(
-            "claude_target",
-            bool(claude_exec),
-            'Claude executable found' if claude_exec else 'Claude executable not found',
-        ),
+        DoctorCheck('project_root', root.exists(), str(root)),
+        DoctorCheck('forge_runtime', (root / 'singularity_works' / 'runtime.py').exists(), 'runtime.py present'),
+        DoctorCheck('python', bool(sys.executable), sys.executable),
+        DoctorCheck('terminal_host', terminal.kind is not TerminalHostKind.UNKNOWN, terminal.executable or 'no preferred terminal found'),
+        DoctorCheck('gpu_terminal', terminal.gpu_accelerated, 'preferred gpu terminal available' if terminal.gpu_accelerated else 'fallback terminal only'),
+        DoctorCheck('claude_target', claude_target is not None, claude_target.executable if claude_target else 'Claude executable not found'),
     ]
     return VesselDoctorReport(tuple(checks))
 
 
 def build_vessel_launch_plan(project_root: str | Path) -> VesselLaunchPlan:
     root = Path(project_root)
-    terminal = _which_many(['wt', 'wezterm', 'alacritty', 'cmd']) or 'cmd'
-    claude_exec = _which_many(['claude', 'claude.exe'])
-    claude_target = ClaudeProcessTarget(executable=claude_exec) if claude_exec else None
-    forge_entry = str(root / 'examples' / 'demo_bad_run.py')
+    terminal = _detect_terminal_host()
     return VesselLaunchPlan(
         python_executable=sys.executable,
-        forge_entry=forge_entry,
-        claude_target=claude_target,
+        forge_command=(sys.executable, '-m', 'singularity_works.runtime'),
+        claude_target=_detect_claude_target(),
         terminal_host=terminal,
         project_root=str(root),
     )
 
 
-def launch_claude_vessel(plan: VesselLaunchPlan) -> list[subprocess.Popen[str]]:
+def _spawn_in_terminal(host: TerminalHostSpec, title: str, command: Sequence[str], cwd: str) -> subprocess.Popen[str] | None:
+    if host.kind is TerminalHostKind.WINDOWS_TERMINAL:
+        argv = [host.executable, 'new-tab', '--title', title, *command]
+    elif host.kind is TerminalHostKind.WEZTERM:
+        argv = [host.executable, 'start', '--cwd', cwd, '--', *command]
+    elif host.kind is TerminalHostKind.ALACRITTY:
+        argv = [host.executable, '--title', title, '-e', *command]
+    elif host.kind is TerminalHostKind.CONHOST:
+        argv = [host.executable, '/c', 'start', f'"{title}"', *command]
+    else:
+        return None
+    return subprocess.Popen(argv, cwd=cwd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, text=True)
+
+
+def launch_claude_vessel(plan: VesselLaunchPlan) -> tuple[subprocess.Popen[str], ...]:
     procs: list[subprocess.Popen[str]] = []
-    forge_cmd = [plan.python_executable, plan.forge_entry]
-    procs.append(subprocess.Popen(forge_cmd, cwd=plan.project_root, text=True))
+    forge_proc = _spawn_in_terminal(plan.terminal_host, 'Singularity Works Forge', plan.forge_command, plan.project_root)
+    if forge_proc is not None:
+        procs.append(forge_proc)
     if plan.claude_target is not None:
-        procs.append(
-            subprocess.Popen(
-                [plan.claude_target.executable, *plan.claude_target.args],
-                cwd=plan.project_root,
-                text=True,
-            )
-        )
-    return procs
+        claude_command = (plan.claude_target.executable, *plan.claude_target.args)
+        claude_proc = _spawn_in_terminal(plan.terminal_host, plan.claude_target.title_hint, claude_command, plan.project_root)
+        if claude_proc is not None:
+            procs.append(claude_proc)
+    return tuple(procs)
