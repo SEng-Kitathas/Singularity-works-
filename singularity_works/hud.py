@@ -18,6 +18,10 @@ import sys
 import textwrap
 import time
 
+from .kerr_ascii import ForgeSignalState, KerrVisualState, KerrViewport, kerr_state_from_forge
+
+from .ergo_kerr import KerrPanelState, derive_kerr_state, render_kerr_panel
+
 
 # ===========================================================================
 # ANSI color/effect tokens  (btop-inspired Apache-2.0 pattern, clean impl)
@@ -255,6 +259,12 @@ class FractalEventRecord:
 
 
 @dataclass
+class KerrPanelRecord:
+    state: KerrVisualState = field(default_factory=KerrVisualState)
+    lines: list[str] = field(default_factory=list)
+
+
+@dataclass
 class HudSnapshot:
     # Identity
     app_name: str     = "Singularity Works"
@@ -314,6 +324,9 @@ class HudSnapshot:
     verification: VerificationTraceRecord = field(default_factory=VerificationTraceRecord)
     embodiment: EmbodimentTraceRecord = field(default_factory=EmbodimentTraceRecord)
     fractal_events: list[FractalEventRecord] = field(default_factory=list)
+
+    # Ergo-Light / Kerr panel
+    kerr_panel: KerrPanelState = field(default_factory=KerrPanelState)
 
     # Display mode: "full" | "compact" | "status"
     display_mode: str = "full"
@@ -477,7 +490,7 @@ class ConsoleHUD:
         # ── Column headers ────────────────────────────────────────────────────
         lh = _c(_C.FG_ACCENT + _C.BOLD, f"{'GATE MATRIX':^{left_w}}")
         ch = _c(_C.FG_ACCENT + _C.BOLD, f"{'VERDICT  ·  WARRANT':^{center_w}}")
-        rh = _c(_C.FG_ACCENT + _C.BOLD, f"{'CHAINS  &  COMPOUND':^{right_w}}")
+        rh = _c(_C.FG_ACCENT + _C.BOLD, f"{'KERR  VESSEL  ·  CHAINS':^{right_w}}")
         lines.append(f"{lh} │ {ch} │ {rh}")
         lines.append(_c(_C.FG_DIM, f"{'─'*left_w}─┼─{'─'*center_w}─┼─{'─'*right_w}"))
 
@@ -613,6 +626,13 @@ class ConsoleHUD:
                 rows.append(f"  {_c(_C.FG_PRIMARY, wline)}")
             rows.append("")
 
+        # Kerr viewport
+        if snap.kerr_panel.lines:
+            rows.append(_c(_C.FG_ACCENT, self._crop("  KERR VIEWPORT", width)))
+            for line in snap.kerr_panel.lines[: min(len(snap.kerr_panel.lines), 16)]:
+                rows.append(self._crop(f"  {line}", width))
+            rows.append("")
+
         # Stats block
         if snap.stats:
             rows.append(_c(_C.FG_DIM, self._crop("  ─ METRICS ─" + "─" * width, width)))
@@ -634,6 +654,17 @@ class ConsoleHUD:
 
     def _right_wing(self, snap: HudSnapshot, width: int) -> list[str]:
         rows: list[str] = []
+
+        # Kerr vessel panel
+        rows.append(_c(_C.MAGENTA, self._crop("  KERR VESSEL", width)))
+        if snap.kerr_panel.lines:
+            for line in snap.kerr_panel.lines[:10]:
+                rows.append(self._crop(line, width))
+            rows.append(self._crop(f"  phase={snap.kerr_panel.state.phase_label}", width))
+            rows.append(self._crop(f"  drag={snap.kerr_panel.state.drag:.2f} ergo={snap.kerr_panel.state.ergosphere_radius:.2f}", width))
+        else:
+            rows.append(_c(_C.FG_DIM, "  (panel offline)"))
+        rows.append("")
 
         # Gate statuses
         rows.append(_c(_C.FG_ACCENT, self._crop("  GATE STATUSES", width)))
@@ -1071,6 +1102,19 @@ def snapshot_from_run_result(
                 rationale=decision.rationale,
             ))
 
+    kerr_state = derive_kerr_state(
+        verdict=snap.verdict,
+        fail_count=snap.counts.get("fail", 0),
+        warn_count=snap.counts.get("warn", 0),
+        pass_count=snap.counts.get("pass", 0),
+        chain_count=len(snap.taint_chains),
+        event_count=len(snap.events),
+        progress=snap.progress_value,
+        phase=snap.phase,
+        label="Kerr cockpit",
+        sublabel=f"{snap.phase} | {snap.requirement[:24]}",
+    )
+    snap.kerr_panel = render_kerr_panel(kerr_state, width=36, height=11, tick=snap.uptime_s)
     return snap
 
 
