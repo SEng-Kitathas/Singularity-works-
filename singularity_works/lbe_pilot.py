@@ -167,6 +167,103 @@ class SinkRecord:
 
 
 @dataclass(frozen=True)
+class TaintFlow:
+    source_var: str
+    target_var: str
+    relation: str
+    line: int = 0
+    tainted: bool = True
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "source_var": self.source_var,
+            "target_var": self.target_var,
+            "relation": self.relation,
+            "line": self.line,
+            "tainted": self.tainted,
+        }
+
+
+@dataclass(frozen=True)
+class OwnershipAnnotation:
+    symbol: str
+    owner: str
+    scope: str
+    line: int = 0
+    confidence: str = "parsed"
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "symbol": self.symbol,
+            "owner": self.owner,
+            "scope": self.scope,
+            "line": self.line,
+            "confidence": self.confidence,
+        }
+
+
+@dataclass(frozen=True)
+class InvariantAnnotation:
+    invariant_id: str
+    status: str
+    line: int = 0
+    subject: str = ""
+    evidence: str = ""
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "invariant_id": self.invariant_id,
+            "status": self.status,
+            "line": self.line,
+            "subject": self.subject,
+            "evidence": self.evidence,
+        }
+
+
+@dataclass
+class SymbolState:
+    symbol: str
+    trust: str = "untrusted"
+    tainted: bool = False
+    sanitized: bool = False
+    last_line: int = 0
+    origins: list[str] = field(default_factory=list)
+
+    def mark_taint(self, *, origin: str, line: int) -> None:
+        self.tainted = True
+        self.last_line = line
+        if origin and origin not in self.origins:
+            self.origins.append(origin)
+
+    def mark_sanitized(self, proof: str, line: int) -> None:
+        self.sanitized = True
+        self.trust = "narrowed"
+        self.last_line = line
+        if proof and proof not in self.origins:
+            self.origins.append(proof)
+
+    def propagate_from(self, parent: "SymbolState", *, line: int, relation: str) -> None:
+        if parent.tainted:
+            self.tainted = True
+        if parent.sanitized:
+            self.sanitized = True
+        self.trust = parent.trust if parent.trust != "untrusted" else self.trust
+        self.last_line = line
+        if relation not in self.origins:
+            self.origins.append(relation)
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "symbol": self.symbol,
+            "trust": self.trust,
+            "tainted": self.tainted,
+            "sanitized": self.sanitized,
+            "last_line": self.last_line,
+            "origins": self.origins,
+        }
+
+
+@dataclass(frozen=True)
 class BlobLineage:
     artifact_id: str = ""
     callable_id: str = ""
@@ -217,9 +314,9 @@ class ForgeIR:
 
     # Layer 3: Semantic
     trust_annotations: list[TrustAnnotation] = field(default_factory=list)
-    taint_flows: list[dict] = field(default_factory=list)
-    ownership_annotations: list[dict] = field(default_factory=list)
-    invariant_annotations: list[dict] = field(default_factory=list)
+    taint_flows: list[TaintFlow] = field(default_factory=list)
+    ownership_annotations: list[OwnershipAnnotation] = field(default_factory=list)
+    invariant_annotations: list[InvariantAnnotation] = field(default_factory=list)
 
     # Layer 4: Annotation
     role_hints: list[str] = field(default_factory=list)
@@ -253,7 +350,7 @@ class PathState:
     sanitization_proofs: list[str] = field(default_factory=list)
 
     # Symbol state map: name → current trust/taint state
-    symbol_states: dict[str, dict] = field(default_factory=dict)
+    symbol_states: dict[str, SymbolState] = field(default_factory=dict)
 
     # Effect accumulation
     effects_reached: list[str] = field(default_factory=list)
@@ -270,15 +367,26 @@ class PathState:
     def is_tainted(self, var: str) -> bool:
         return var in self.tainted_symbols and var not in self.sanitized_symbols
 
+    def _state_for(self, var: str) -> SymbolState:
+        state = self.symbol_states.get(var)
+        if state is None:
+            state = SymbolState(symbol=var)
+            self.symbol_states[var] = state
+        return state
+
     def record_taint(self, var: str, source: str, line: int) -> None:
         self.tainted_symbols.add(var)
         self.entry_sources.append(
             EntrySource(source=source, var=var, line=line, trust="untrusted", confidence="parsed")
         )
+        self._state_for(var).mark_taint(origin=source, line=line)
 
-    def record_transform(self, kind: str, input_var: str, output_var: str) -> None:
-        self.transform_chain.append(f"{kind}({input_var}→{output_var})")
-        # Taint propagates through transforms unless sanitization is proven
+    def record_transform(self, kind: str, input_var: str, output_var: str, line: int = 0) -> None:
+        relation = f"{kind}({input_var}→{output_var})"
+        self.transform_chain.append(relation)
+        parent = self._state_for(input_var)
+        child = self._state_for(output_var)
+        child.propagate_from(parent, line=line, relation=relation)
         if input_var in self.tainted_symbols:
             self.tainted_symbols.add(output_var)
 
@@ -287,6 +395,7 @@ class PathState:
         self.sinks_reached.append(
             SinkRecord(sink_kind=sink_kind, var=var, line=line, tainted=self.is_tainted(var))
         )
+        self._state_for(var).last_line = line
 
 
 # ── Blob (emitted artifact) ───────────────────────────────────────────────
@@ -375,6 +484,17 @@ class LBEResult:
     paths: list[PathState]
     blobs: list[Blob]
     elapsed_ms: float
+
+    def semantic_snapshot(self) -> dict[str, Any]:
+        return {
+            "trust_annotations": [item.to_dict() for item in self.ir.trust_annotations],
+            "taint_flows": [item.to_dict() for item in self.ir.taint_flows],
+            "ownership_annotations": [item.to_dict() for item in self.ir.ownership_annotations],
+            "invariant_annotations": [item.to_dict() for item in self.ir.invariant_annotations],
+            "symbol_states": {
+                key: state.to_dict() for key, state in self.paths[0].symbol_states.items()
+            } if self.paths else {},
+        }
 
     @property
     def highest_risk_blob(self) -> Blob | None:
@@ -691,6 +811,9 @@ def lower(code: str, artifact_id: str = "") -> ForgeIR:
                         )
                         ir.nodes.append(n)
                         ir.sinks.append(n)
+                        ir.ownership_annotations.append(
+                            OwnershipAnnotation(symbol=sink_name, owner="effect_surface", scope=c_id, line=child.lineno, confidence="parsed")
+                        )
 
                 # Transform detection
                 if sink_name in _TRANSFORM_MAP:
@@ -815,6 +938,7 @@ def walk_paths(ir: ForgeIR, code: str) -> list[PathState]:
         for req_var in taint_map.get("__request__", []):
             if req_var not in ps.tainted_symbols:
                 ps.tainted_symbols.add(req_var)
+                ps._state_for(req_var).mark_taint(origin="request", line=sources[0].line if sources else 0)
                 # Record as entry source if not already present
                 already = any(s.var == req_var for s in ps.entry_sources)
                 if not already:
@@ -837,7 +961,15 @@ def walk_paths(ir: ForgeIR, code: str) -> list[PathState]:
                     for dv in derived_vars:
                         if dv not in ps.tainted_symbols:
                             ps.tainted_symbols.add(dv)
-                            ps.transform_chain.append(f"assign({tainted_var}→{dv})")
+                            line_hint = 0
+                            for source_node in sources:
+                                if source_node.properties.get("key") == tainted_var:
+                                    line_hint = source_node.line
+                                    break
+                            ps.record_transform("assign", tainted_var, dv, line=line_hint)
+                            ir.taint_flows.append(
+                                TaintFlow(source_var=tainted_var, target_var=dv, relation="assign", line=line_hint, tainted=True)
+                            )
                             changed = True
 
         # Record transforms in call order
@@ -856,10 +988,31 @@ def walk_paths(ir: ForgeIR, code: str) -> list[PathState]:
                     var = next(iter(ps.tainted_symbols))
                     ps.sanitized_symbols.add(var)
                     ps.sanitization_proofs.append(earned_call)
+                    ps._state_for(var).mark_sanitized(earned_call, ann.line)
+                    ir.invariant_annotations.append(
+                        InvariantAnnotation(
+                            invariant_id="earned_trust_requires_verifiable_call",
+                            status="satisfied",
+                            line=ann.line,
+                            subject=var,
+                            evidence=earned_call,
+                        )
+                    )
 
             elif ann.kind == "claim":
                 var = ann.var
                 ps.trust_claims.append(f"naming_convention:{var}")
+                ps._state_for(var).trust = "claimed_safe"
+                ps._state_for(var).last_line = ann.line
+                ir.invariant_annotations.append(
+                    InvariantAnnotation(
+                        invariant_id="naming_claim_is_not_sanitization",
+                        status="claimed",
+                        line=ann.line,
+                        subject=var,
+                        evidence="naming_convention_safety",
+                    )
+                )
 
         # Determine overall trust state
         if ps.trust_earned:
@@ -897,6 +1050,15 @@ def walk_paths(ir: ForgeIR, code: str) -> list[PathState]:
                 if reaches_tainted else "?"
             )
             ps.record_sink(sink.node_kind, taint_var, sink.line)
+            ir.invariant_annotations.append(
+                InvariantAnnotation(
+                    invariant_id="taint_must_not_reach_effect_sink",
+                    status="violated" if reaches_tainted and not ps.trust_earned else "satisfied",
+                    line=sink.line,
+                    subject=sink.node_kind,
+                    evidence=taint_var,
+                )
+            )
 
         if ps.sinks_reached:
             paths.append(ps)
