@@ -7,12 +7,11 @@ import time
 
 from .evidence_ledger import EvidenceLedger
 from .ergo_boot import play_boot_sequence
-from .hud import ConsoleHUD, HudSnapshot, snapshot_from_run_result
+from .hud import ConsoleHUD, snapshot_from_run_result
 from .models import Requirement, RunContext
 from .vessel import build_vessel_launch_plan, run_vessel_doctor
 from .orchestration import Orchestrator
 from .window_anchor import maybe_apply_runtime_anchor
-from .ergo_kerr import boot_frames, derive_kerr_state, render_kerr_panel, total_boot_duration
 
 GOOD_CONTENT = """from pathlib import Path
 
@@ -118,56 +117,6 @@ def _summary(base_dir: Path, ctx: RunContext, result, req: Requirement, orchestr
     }
 
 
-
-
-def _play_boot_sequence() -> None:
-    hud = ConsoleHUD()
-    start = time.monotonic()
-    with hud:
-        while True:
-            elapsed = time.monotonic() - start
-            frame = boot_frames(elapsed)
-            progress = min(1.0, elapsed / max(0.1, total_boot_duration()))
-            state = derive_kerr_state(
-                verdict="green",
-                fail_count=0,
-                warn_count=0,
-                pass_count=4,
-                chain_count=0,
-                event_count=int(elapsed * 5),
-                progress=progress,
-                phase=("boot" if frame.phase.value == "cold_boot" else "ignition" if frame.phase.value == "singularity_ignition" else "formation" if frame.phase.value == "ergosphere_formation" else "orbit" if frame.phase.value == "orbit_lock" else "complete"),
-                label=frame.label,
-                sublabel=frame.sublabel,
-            )
-            panel = render_kerr_panel(state, width=44, height=12, tick=elapsed)
-            snap = HudSnapshot(
-                app_name="Singularity Works",
-                mode="boot",
-                provider="forge-vessel",
-                session_id="boot",
-                project_tag="singularity-works",
-                uptime_s=elapsed,
-                phase=frame.phase.value,
-                requirement=frame.label,
-                radical="KERR+VESSEL",
-                validator="ergo-light",
-                branch="main",
-                progress_label=frame.label,
-                progress_value=frame.progress,
-                counts={"pass": 0, "warn": 0, "fail": 0, "residual": 0},
-                stats={
-                    "boot_phase": frame.phase.value,
-                    "handoff": "claude vessel + forge cockpit",
-                },
-                events=[frame.sublabel, "Void core online", "Awaiting unified front handoff"],
-                kerr_panel=panel,
-                display_mode="full",
-            )
-            hud.render(snap)
-            if elapsed >= total_boot_duration():
-                break
-            time.sleep(0.05)
 
 
 def _render_summary(ctx: RunContext, req: Requirement, result, orchestrator: Orchestrator, *, play_boot: bool = True) -> None:

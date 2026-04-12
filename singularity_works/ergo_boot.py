@@ -7,7 +7,8 @@ import sys
 import time
 
 from .ergo_kerr import BootFrame, KerrState, boot_frames, render_kerr_panel, total_boot_duration
-from .hud_theme import VOID_PURPLE_THEME
+from .ergo_audio import play_boot_sound_async
+from .ergo_kerr import DEFAULT_VOID_KERR_THEME
 
 _RESET = "[0m"
 _CLEAR = "[H[2J"
@@ -41,18 +42,20 @@ def _progress_bar(progress: float, width: int = 30) -> str:
 
 
 def _render_frame(frame: BootFrame, *, width: int, height: int, tick: float) -> str:
-    theme = VOID_PURPLE_THEME.kerr
+    theme = DEFAULT_VOID_KERR_THEME
     panel = render_kerr_panel(_boot_state(frame), width=width, height=height, tick=tick)
     cols, _ = shutil.get_terminal_size(fallback=(120, 40))
     body: list[str] = []
-    body.append(f"{theme.purple_core.fg()}Singularity Works — Ergo-Light Boot{_RESET}")
-    body.append(f"{theme.pale_orchid.fg()}{frame.label}{_RESET}  {theme.dim_lilac.fg()}{frame.sublabel}{_RESET}")
-    body.append(f"{theme.dim_lilac.fg()}{_progress_bar(frame.progress, 34)} {int(frame.progress * 100):3d}%{_RESET}")
+    body.append(f"{theme.accent_purple.fg()}Singularity Works — Ergo-Light Boot{_RESET}")
+    body.append(f"{theme.pale_orchid.fg()}{frame.label}{_RESET}  {theme.dim_lavender.fg()}{frame.sublabel}{_RESET}")
+    body.append(f"{theme.dim_lavender.fg()}{_progress_bar(frame.progress, 34)} {int(frame.progress * 100):3d}%{_RESET}")
     body.extend(panel.lines)
     return _CLEAR + "\n".join(line[:cols] for line in body)
 
 
-def play_boot_sequence(config: BootRenderConfig = BootRenderConfig()) -> None:
+def play_boot_sequence(config: BootRenderConfig = BootRenderConfig(), *, with_sound: bool = True) -> None:
+    if with_sound:
+        play_boot_sound_async()
     start = time.monotonic()
     end = start + total_boot_duration()
     while True:

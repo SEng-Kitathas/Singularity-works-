@@ -18,8 +18,6 @@ import sys
 import textwrap
 import time
 
-from .kerr_ascii import ForgeSignalState, KerrVisualState, KerrViewport, kerr_state_from_forge
-
 from .ergo_kerr import KerrPanelState, derive_kerr_state, render_kerr_panel
 
 
@@ -256,12 +254,6 @@ class FractalEventRecord:
     stage: str = "UNKNOWN"
     status: str = "unknown"
     details: dict[str, object] = field(default_factory=dict)
-
-
-@dataclass
-class KerrPanelRecord:
-    state: KerrVisualState = field(default_factory=KerrVisualState)
-    lines: list[str] = field(default_factory=list)
 
 
 @dataclass
