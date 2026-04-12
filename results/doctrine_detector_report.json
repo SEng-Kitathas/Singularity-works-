@@ -236,12 +236,30 @@
     },
     {
       "file": "gates.py",
-      "classes": 7,
-      "dataclasses": 6,
+      "classes": 0,
+      "dataclasses": 0,
       "enums": 0,
-      "functions": 37,
-      "dict_literals": 18,
-      "lines": 712
+      "functions": 14,
+      "dict_literals": 6,
+      "lines": 256
+    },
+    {
+      "file": "gates_analysis.py",
+      "classes": 4,
+      "dataclasses": 3,
+      "enums": 0,
+      "functions": 23,
+      "dict_literals": 12,
+      "lines": 443
+    },
+    {
+      "file": "gates_types.py",
+      "classes": 3,
+      "dataclasses": 3,
+      "enums": 0,
+      "functions": 0,
+      "dict_literals": 0,
+      "lines": 37
     },
     {
       "file": "genome.py",
@@ -487,15 +505,6 @@
       "category": "module_size",
       "message": "Large module (1407 lines) may indicate concentration seam.",
       "evidence": "forge_context.py"
-    },
-    {
-      "seam_id": "DQ-SIZE",
-      "severity": "medium",
-      "file": "gates.py",
-      "line": 1,
-      "category": "module_size",
-      "message": "Large module (712 lines) may indicate concentration seam.",
-      "evidence": "gates.py"
     },
     {
       "seam_id": "DQ-DICT-HOTSPOT",

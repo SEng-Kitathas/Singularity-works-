@@ -1,18 +1,17 @@
 # Doctrine Detector Report
 
-- Modules scanned: 52
-- Findings: 15
+- Modules scanned: 54
+- Findings: 14
 
 ## Severity counts
 - critical: 0
 - high: 0
-- medium: 15
+- medium: 14
 - low: 0
 
 ## Findings
 - [DQ-DICT-HOTSPOT] MEDIUM forge_context.py:1 — High dict-literal density (53) suggests possible dict spill hotspot. | `forge_context.py`
 - [DQ-SIZE] MEDIUM forge_context.py:1 — Large module (1407 lines) may indicate concentration seam. | `forge_context.py`
-- [DQ-SIZE] MEDIUM gates.py:1 — Large module (712 lines) may indicate concentration seam. | `gates.py`
 - [DQ-DICT-HOTSPOT] MEDIUM genome_gate_factory.py:1 — High dict-literal density (150) suggests possible dict spill hotspot. | `genome_gate_factory.py`
 - [DQ-SIZE] MEDIUM genome_gate_factory.py:1 — Large module (5068 lines) may indicate concentration seam. | `genome_gate_factory.py`
 - [DQ-SIZE] MEDIUM hud.py:1 — Large module (1322 lines) may indicate concentration seam. | `hud.py`
@@ -53,7 +52,9 @@
 - forge_mcp_server.py: lines=482, classes=0, dataclasses=0, enums=0, functions=9, dict_literals=15
 - forge_starmap.py: lines=486, classes=3, dataclasses=2, enums=0, functions=22, dict_literals=8
 - fractal_cycle.py: lines=42, classes=3, dataclasses=2, enums=0, functions=2, dict_literals=2
-- gates.py: lines=712, classes=7, dataclasses=6, enums=0, functions=37, dict_literals=18
+- gates.py: lines=256, classes=0, dataclasses=0, enums=0, functions=14, dict_literals=6
+- gates_analysis.py: lines=443, classes=4, dataclasses=3, enums=0, functions=23, dict_literals=12
+- gates_types.py: lines=37, classes=3, dataclasses=3, enums=0, functions=0, dict_literals=0
 - genome.py: lines=328, classes=6, dataclasses=4, enums=0, functions=22, dict_literals=11
 - genome_gate_factory.py: lines=5068, classes=66, dataclasses=4, enums=0, functions=198, dict_literals=150
 - hud.py: lines=1322, classes=26, dataclasses=24, enums=0, functions=27, dict_literals=17
