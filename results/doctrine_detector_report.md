@@ -1,6 +1,6 @@
 # Doctrine Detector Report
 
-- Modules scanned: 81
+- Modules scanned: 85
 - Findings: 9
 
 ## Severity counts
@@ -16,7 +16,7 @@
 - [DQ-DICT-HOTSPOT] MEDIUM lbe_pilot.py:1 — High dict-literal density (41) suggests possible dict spill hotspot. | `lbe_pilot.py`
 - [DQ-SIZE] MEDIUM lbe_pilot.py:1 — Large module (1344 lines) may indicate concentration seam. | `lbe_pilot.py`
 - [DQ-SIZE] MEDIUM lbe_universal.py:1 — Large module (898 lines) may indicate concentration seam. | `lbe_universal.py`
-- [DQ-SIZE] MEDIUM monitoring.py:1 — Large module (1230 lines) may indicate concentration seam. | `monitoring.py`
+- [DQ-SIZE] MEDIUM monitoring_tokens.py:1 — Large module (543 lines) may indicate concentration seam. | `monitoring_tokens.py`
 - [DQ-SIZE] MEDIUM orchestration.py:1 — Large module (1536 lines) may indicate concentration seam. | `orchestration.py`
 - [DQ-SIZE] MEDIUM recovery.py:1 — Large module (939 lines) may indicate concentration seam. | `recovery.py`
 
@@ -90,7 +90,11 @@
 - mcp_status_views.py: lines=55, classes=0, dataclasses=0, enums=0, functions=2, dict_literals=0
 - mcp_tool_specs.py: lines=171, classes=0, dataclasses=0, enums=0, functions=1, dict_literals=34
 - models.py: lines=192, classes=14, dataclasses=14, enums=0, functions=3, dict_literals=1
-- monitoring.py: lines=1230, classes=2, dataclasses=1, enums=0, functions=57, dict_literals=5
+- monitoring.py: lines=71, classes=1, dataclasses=0, enums=0, functions=1, dict_literals=1
+- monitoring_auth.py: lines=338, classes=0, dataclasses=0, enums=0, functions=13, dict_literals=4
+- monitoring_core.py: lines=128, classes=1, dataclasses=1, enums=0, functions=11, dict_literals=0
+- monitoring_protocols.py: lines=204, classes=0, dataclasses=0, enums=0, functions=4, dict_literals=0
+- monitoring_tokens.py: lines=543, classes=0, dataclasses=0, enums=0, functions=28, dict_literals=0
 - orchestration.py: lines=1536, classes=3, dataclasses=2, enums=0, functions=18, dict_literals=38
 - pattern_ir.py: lines=92, classes=1, dataclasses=1, enums=0, functions=2, dict_literals=0
 - recovery.py: lines=939, classes=4, dataclasses=2, enums=0, functions=20, dict_literals=14

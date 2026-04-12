@@ -623,12 +623,48 @@
     },
     {
       "file": "monitoring.py",
-      "classes": 2,
+      "classes": 1,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 1,
+      "dict_literals": 1,
+      "lines": 71
+    },
+    {
+      "file": "monitoring_auth.py",
+      "classes": 0,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 13,
+      "dict_literals": 4,
+      "lines": 338
+    },
+    {
+      "file": "monitoring_core.py",
+      "classes": 1,
       "dataclasses": 1,
       "enums": 0,
-      "functions": 57,
-      "dict_literals": 5,
-      "lines": 1230
+      "functions": 11,
+      "dict_literals": 0,
+      "lines": 128
+    },
+    {
+      "file": "monitoring_protocols.py",
+      "classes": 0,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 4,
+      "dict_literals": 0,
+      "lines": 204
+    },
+    {
+      "file": "monitoring_tokens.py",
+      "classes": 0,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 28,
+      "dict_literals": 0,
+      "lines": 543
     },
     {
       "file": "orchestration.py",
@@ -788,11 +824,11 @@
     {
       "seam_id": "DQ-SIZE",
       "severity": "medium",
-      "file": "monitoring.py",
+      "file": "monitoring_tokens.py",
       "line": 1,
       "category": "module_size",
-      "message": "Large module (1230 lines) may indicate concentration seam.",
-      "evidence": "monitoring.py"
+      "message": "Large module (543 lines) may indicate concentration seam.",
+      "evidence": "monitoring_tokens.py"
     },
     {
       "seam_id": "DQ-SIZE",
