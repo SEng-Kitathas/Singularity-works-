@@ -13,6 +13,8 @@ __all__ = [
     "hud",
     "runtime",
     "vessel",
+    "cockpit",
+    "cilnx_bridge",
     "claude_vessel",
     "forge_doctor",
     "ergo_kerr",

@@ -5,6 +5,7 @@ from pathlib import Path
 import json
 import time
 
+from .cilnx_bridge import emit_singularity_continuity, locate_canonical_cilnx
 from .evidence_ledger import EvidenceLedger
 from .ergo_boot import play_boot_sequence
 from .hud import ConsoleHUD, LaunchReceiptRecord, snapshot_from_run_result
@@ -170,10 +171,24 @@ def _render_summary(ctx: RunContext, req: Requirement, result, orchestrator: Orc
     session_state = derive_session_state(vessel_surface, front_receipt)
     recovery_state = derive_recovery_state(previous_session, session_state, vessel_surface)
     persisted = persist_vessel_session(project_root, session_state, front_receipt)
+    cilnx_location = locate_canonical_cilnx()
+    cilnx_receipt = emit_singularity_continuity(
+        project_root,
+        cockpit_lifecycle=session_state.lifecycle.value,
+        relaunch_action=session_state.relaunch_action.value,
+        front_readiness=front_receipt.readiness.value,
+        front_achieved=front_receipt.unified_front_achieved,
+        anchor_supported=anchor_supported,
+        rationale=session_state.rationale,
+    )
+    snap.stats['front_end'] = 'Cockpit'
+    snap.stats['workshop'] = 'Forge'
+    snap.stats['continuity'] = 'CILNX'
     snap.stats.update(vessel_surface.to_stats())
     snap.stats.update(front_receipt.to_stats())
     snap.stats.update(session_state.to_stats())
     snap.stats.update(recovery_state.to_stats())
+    snap.stats.update(cilnx_receipt.to_stats())
     snap.unified_front.readiness = front_receipt.readiness.value
     snap.unified_front.unified_front_requested = front_receipt.unified_front_requested
     snap.unified_front.unified_front_achieved = front_receipt.unified_front_achieved
@@ -188,6 +203,8 @@ def _render_summary(ctx: RunContext, req: Requirement, result, orchestrator: Orc
     snap.vessel_recovery.current_lifecycle = recovery_state.current_lifecycle
     snap.vessel_recovery.recommended_action = recovery_state.recommended_action.value
     snap.vessel_recovery.reason = recovery_state.reason
+    snap.stats['cilnx_root'] = Path(cilnx_location.root).name if cilnx_location.root else 'missing'
+    snap.stats['cilnx_audit'] = 'ok' if cilnx_receipt.audit_ok else 'degraded'
     snap.unified_front.receipts = [
         LaunchReceiptRecord(
             role=receipt.role,
@@ -208,6 +225,8 @@ def _render_summary(ctx: RunContext, req: Requirement, result, orchestrator: Orc
         snap.events.append(f"front:{receipt.role}:{receipt.disposition}")
     snap.events.append(f"session:{snap.vessel_session.lifecycle}:{snap.vessel_session.relaunch_action}")
     snap.events.append(f"recovery:{snap.vessel_recovery.recommended_action}")
+    snap.events.append(f"triad:Cockpit>Forge>CILNX")
+    snap.events.append(f"cilnx:{'online' if cilnx_receipt.available else 'missing'}:{cilnx_receipt.manifest_sequence}")
     if vessel_surface.readiness.value != "ready":
         snap.warnings.append("vessel_surface_degraded")
     hud = ConsoleHUD()

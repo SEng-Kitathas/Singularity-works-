@@ -831,8 +831,9 @@ class ConsoleHUD:
         rows.append("")
 
         # Unified front receipts
-        rows.append(_c(_C.MAGENTA, self._crop("  UNIFIED FRONT", width)))
-        rows.append(self._crop(f"  readiness={snap.unified_front.readiness}", width))
+        rows.append(_c(_C.MAGENTA, self._crop("  SINGULARITY WORKS C2", width)))
+        rows.append(self._crop(f"  front=Cockpit readiness={snap.unified_front.readiness}", width))
+        rows.append(self._crop(f"  workshop=Forge continuity=CILNX", width))
         rows.append(self._crop(f"  achieved={'yes' if snap.unified_front.unified_front_achieved else 'no'}", width))
         if snap.unified_front.receipts:
             for receipt in snap.unified_front.receipts[:3]:
