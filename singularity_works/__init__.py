@@ -12,6 +12,11 @@ __all__ = [
     "orchestration",
     "hud",
     "runtime",
+    "forge_vessel",
+    "claude_vessel",
+    "forge_doctor",
+    "kerr_ascii",
+    "ergo_kerr",
     "laws",
 ]
 __version__ = "0.2.0"
