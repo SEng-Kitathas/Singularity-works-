@@ -36,6 +36,41 @@ class VesselDoctorReport:
 
 
 
+
+
+class LaunchDisposition(str, Enum):
+    LAUNCHED = "launched"
+    SKIPPED = "skipped"
+    FAILED = "failed"
+
+
+@dataclass(frozen=True)
+class ProcessLaunchReceipt:
+    role: str
+    disposition: LaunchDisposition
+    command: tuple[str, ...]
+    title: str
+    detail: str
+    pid: int | None = None
+
+
+@dataclass(frozen=True)
+class UnifiedFrontReceipt:
+    readiness: VesselReadiness
+    unified_front_requested: bool
+    unified_front_achieved: bool
+    receipts: tuple[ProcessLaunchReceipt, ...]
+
+    def to_stats(self) -> dict[str, str]:
+        launched = sum(1 for receipt in self.receipts if receipt.disposition is LaunchDisposition.LAUNCHED)
+        failed = sum(1 for receipt in self.receipts if receipt.disposition is LaunchDisposition.FAILED)
+        return {
+            "vessel_launch": self.readiness.value,
+            "front": "unified" if self.unified_front_achieved else "partial",
+            "launch_ok": str(launched),
+            "launch_fail": str(failed),
+        }
+
 class VesselReadiness(str, Enum):
     READY = "ready"
     DEGRADED = "degraded"
@@ -139,31 +174,93 @@ def build_vessel_launch_plan(project_root: str | Path) -> VesselLaunchPlan:
     )
 
 
-def _spawn_in_terminal(host: TerminalHostSpec, title: str, command: Sequence[str], cwd: str) -> subprocess.Popen[str] | None:
+def _host_command(host: TerminalHostSpec, title: str, command: Sequence[str]) -> tuple[str, ...] | None:
     if host.kind is TerminalHostKind.WINDOWS_TERMINAL:
-        argv = [host.executable, 'new-tab', '--title', title, *command]
-    elif host.kind is TerminalHostKind.WEZTERM:
-        argv = [host.executable, 'start', '--cwd', cwd, '--', *command]
-    elif host.kind is TerminalHostKind.ALACRITTY:
-        argv = [host.executable, '--title', title, '-e', *command]
-    elif host.kind is TerminalHostKind.CONHOST:
-        argv = [host.executable, '/c', 'start', f'"{title}"', *command]
-    else:
-        return None
-    return subprocess.Popen(argv, cwd=cwd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, text=True)
+        return (host.executable, 'new-tab', '--title', title, *command)
+    if host.kind is TerminalHostKind.WEZTERM:
+        return (host.executable, 'start', '--cwd', '.', '--', *command)
+    if host.kind is TerminalHostKind.ALACRITTY:
+        return (host.executable, '--title', title, '-e', *command)
+    if host.kind is TerminalHostKind.CONHOST:
+        return (host.executable, '/c', 'start', f'"{title}"', *command)
+    return None
 
 
-def launch_claude_vessel(plan: VesselLaunchPlan) -> tuple[subprocess.Popen[str], ...]:
-    procs: list[subprocess.Popen[str]] = []
-    forge_proc = _spawn_in_terminal(plan.terminal_host, 'Singularity Works Forge', plan.forge_command, plan.project_root)
-    if forge_proc is not None:
-        procs.append(forge_proc)
+def _spawn_in_terminal(host: TerminalHostSpec, title: str, command: Sequence[str], cwd: str) -> ProcessLaunchReceipt:
+    argv = _host_command(host, title, command)
+    if argv is None:
+        return ProcessLaunchReceipt(
+            role=title,
+            disposition=LaunchDisposition.SKIPPED,
+            command=tuple(command),
+            title=title,
+            detail='no supported terminal host',
+        )
+    try:
+        proc = subprocess.Popen(argv, cwd=cwd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, text=True)
+    except Exception as exc:
+        return ProcessLaunchReceipt(
+            role=title,
+            disposition=LaunchDisposition.FAILED,
+            command=tuple(argv),
+            title=title,
+            detail=f'launch failed: {exc}',
+        )
+    return ProcessLaunchReceipt(
+        role=title,
+        disposition=LaunchDisposition.LAUNCHED,
+        command=tuple(argv),
+        title=title,
+        detail='launched',
+        pid=proc.pid,
+    )
+
+
+def plan_unified_front(plan: VesselLaunchPlan) -> UnifiedFrontReceipt:
+    receipts: list[ProcessLaunchReceipt] = [
+        ProcessLaunchReceipt(
+            role='Singularity Works Forge',
+            disposition=LaunchDisposition.SKIPPED,
+            command=tuple(plan.forge_command),
+            title='Singularity Works Forge',
+            detail='planned launch',
+        )
+    ]
+    if plan.claude_target is not None:
+        receipts.append(
+            ProcessLaunchReceipt(
+                role=plan.claude_target.title_hint,
+                disposition=LaunchDisposition.SKIPPED,
+                command=(plan.claude_target.executable, *plan.claude_target.args),
+                title=plan.claude_target.title_hint,
+                detail='planned launch',
+            )
+        )
+    readiness = VesselReadiness.READY if plan.claude_target is not None and plan.terminal_host.kind is not TerminalHostKind.UNKNOWN else VesselReadiness.HUD_ONLY if plan.terminal_host.kind is not TerminalHostKind.UNKNOWN else VesselReadiness.DEGRADED
+    unified = plan.claude_target is not None and plan.terminal_host.kind is not TerminalHostKind.UNKNOWN
+    return UnifiedFrontReceipt(readiness=readiness, unified_front_requested=True, unified_front_achieved=unified, receipts=tuple(receipts))
+
+
+def launch_claude_vessel(plan: VesselLaunchPlan) -> UnifiedFrontReceipt:
+    receipts: list[ProcessLaunchReceipt] = []
+    forge_receipt = _spawn_in_terminal(plan.terminal_host, 'Singularity Works Forge', plan.forge_command, plan.project_root)
+    receipts.append(forge_receipt)
     if plan.claude_target is not None:
         claude_command = (plan.claude_target.executable, *plan.claude_target.args)
-        claude_proc = _spawn_in_terminal(plan.terminal_host, plan.claude_target.title_hint, claude_command, plan.project_root)
-        if claude_proc is not None:
-            procs.append(claude_proc)
-    return tuple(procs)
+        claude_receipt = _spawn_in_terminal(plan.terminal_host, plan.claude_target.title_hint, claude_command, plan.project_root)
+        receipts.append(claude_receipt)
+    readiness = VesselReadiness.DEGRADED
+    if any(r.role == 'Singularity Works Forge' and r.disposition is LaunchDisposition.LAUNCHED for r in receipts):
+        readiness = VesselReadiness.HUD_ONLY
+    if len(receipts) >= 2 and all(r.disposition is LaunchDisposition.LAUNCHED for r in receipts[:2]):
+        readiness = VesselReadiness.READY
+    unified = len(receipts) >= 2 and all(r.disposition is LaunchDisposition.LAUNCHED for r in receipts[:2])
+    return UnifiedFrontReceipt(
+        readiness=readiness,
+        unified_front_requested=True,
+        unified_front_achieved=unified,
+        receipts=tuple(receipts),
+    )
 
 
 def evaluate_vessel_surface(project_root: str | Path, *, anchor_supported: bool) -> VesselSurfaceState:
