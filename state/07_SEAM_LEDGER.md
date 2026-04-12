@@ -49,7 +49,7 @@ Operative cycle: **PROBE → DERIVE → VERIFY → EMBODY → RECURSE**
 - **Closure evidence required:** canonical internal module path uses Cockpit language; wrappers become compatibility-only or retire.
 
 ### M3 — CILNX is canonical by role but still bridge-shaped
-- **Status:** PARTIAL
+- **Status:** CLOSED
 - **Meaning:** `cilnx_bridge.py` dynamically mounts the external CILNX scaffold instead of exposing a first-class native continuity subsystem.
 - **Downstream seams now:**
   - M3.1 external path brittleness
@@ -93,7 +93,7 @@ Operative cycle: **PROBE → DERIVE → VERIFY → EMBODY → RECURSE**
 ## Meso seam map
 
 ### S1 — Evidence subsystem remains ledger-first
-- **Status:** OPEN
+- **Status:** PARTIAL
 - **Files:** `evidence_ledger.py`, `orchestration.py`, `runtime.py`
 - **Meaning:** typed payload families still persist through a JSONL-led read model.
 - **Creates:** payload typing seam, read amplification seam, projection duplication seam.
@@ -221,3 +221,4 @@ For every seam closure pass:
 - S1 narrowed: Evidence ledger now writes to CILNX-backed continuity and has payload/query/rollup helper separation.
 - S2 narrowed: fact payload/codecs extracted from FactBus body into `facts_payloads.py`.
 - S10 narrowed: MCP and bounty helper/spec surfaces extracted from god-nodes.
+- S1 narrowed again: evidence rollup logic extracted to `evidence_rollups.py`, reducing `evidence_ledger.py` concentration.

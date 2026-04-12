@@ -1,22 +1,17 @@
 # Doctrine Detector Report
 
-- Modules scanned: 50
-- Findings: 21
+- Modules scanned: 52
+- Findings: 15
 
 ## Severity counts
 - critical: 0
 - high: 0
-- medium: 20
-- low: 1
+- medium: 15
+- low: 0
 
 ## Findings
-- [DQ-DICT-HOTSPOT] MEDIUM bounty_reference.py:1 — High dict-literal density (42) suggests possible dict spill hotspot. | `bounty_reference.py`
-- [DQ-SIZE] MEDIUM cilnx_ref_v06.py:1 — Large module (771 lines) may indicate concentration seam. | `cilnx_ref_v06.py`
-- [DQ-SIZE] MEDIUM escalation_gate.py:1 — Large module (713 lines) may indicate concentration seam. | `escalation_gate.py`
-- [DQ-SIZE] MEDIUM evidence_ledger.py:1 — Large module (524 lines) may indicate concentration seam. | `evidence_ledger.py`
 - [DQ-DICT-HOTSPOT] MEDIUM forge_context.py:1 — High dict-literal density (53) suggests possible dict spill hotspot. | `forge_context.py`
 - [DQ-SIZE] MEDIUM forge_context.py:1 — Large module (1407 lines) may indicate concentration seam. | `forge_context.py`
-- [DQ-SIZE] MEDIUM forge_starmap.py:1 — Large module (554 lines) may indicate concentration seam. | `forge_starmap.py`
 - [DQ-SIZE] MEDIUM gates.py:1 — Large module (712 lines) may indicate concentration seam. | `gates.py`
 - [DQ-DICT-HOTSPOT] MEDIUM genome_gate_factory.py:1 — High dict-literal density (150) suggests possible dict spill hotspot. | `genome_gate_factory.py`
 - [DQ-SIZE] MEDIUM genome_gate_factory.py:1 — Large module (5068 lines) may indicate concentration seam. | `genome_gate_factory.py`
@@ -30,32 +25,33 @@
 - [DQ-SIZE] MEDIUM monitoring.py:1 — Large module (1230 lines) may indicate concentration seam. | `monitoring.py`
 - [DQ-SIZE] MEDIUM orchestration.py:1 — Large module (1536 lines) may indicate concentration seam. | `orchestration.py`
 - [DQ-SIZE] MEDIUM recovery.py:1 — Large module (939 lines) may indicate concentration seam. | `recovery.py`
-- [DQ-ORPHAN] LOW cilnx_ref_v06.py:1 — Potential capability island / lineage remnant; verify canonical role. | `cilnx_ref_v06.py`
 
 ## Module stats
 - __init__.py: lines=23, classes=0, dataclasses=0, enums=0, functions=0, dict_literals=0
 - assurance.py: lines=412, classes=1, dataclasses=1, enums=0, functions=16, dict_literals=7
 - ast_primitives.py: lines=45, classes=0, dataclasses=0, enums=0, functions=4, dict_literals=0
-- bounty_reference.py: lines=117, classes=0, dataclasses=0, enums=0, functions=2, dict_literals=42
+- bounty_reference.py: lines=22, classes=0, dataclasses=0, enums=0, functions=2, dict_literals=0
+- bounty_reference_data.py: lines=87, classes=1, dataclasses=1, enums=0, functions=0, dict_literals=2
 - bounty_reporter.py: lines=460, classes=2, dataclasses=1, enums=0, functions=7, dict_literals=7
 - bounty_text.py: lines=190, classes=0, dataclasses=0, enums=0, functions=4, dict_literals=3
 - cil_council.py: lines=489, classes=4, dataclasses=2, enums=0, functions=11, dict_literals=12
 - cilnx_bridge.py: lines=314, classes=3, dataclasses=3, enums=0, functions=15, dict_literals=6
-- cilnx_ref_v06.py: lines=771, classes=11, dataclasses=4, enums=0, functions=37, dict_literals=29
 - cockpit.py: lines=52, classes=0, dataclasses=0, enums=0, functions=0, dict_literals=0
 - cockpit_runtime.py: lines=478, classes=16, dataclasses=11, enums=5, functions=24, dict_literals=4
 - enforcement.py: lines=319, classes=2, dataclasses=1, enums=0, functions=9, dict_literals=3
 - ergo_audio.py: lines=91, classes=2, dataclasses=2, enums=0, functions=4, dict_literals=0
 - ergo_boot.py: lines=70, classes=1, dataclasses=1, enums=0, functions=4, dict_literals=0
 - ergo_kerr.py: lines=238, classes=6, dataclasses=5, enums=1, functions=9, dict_literals=1
-- escalation_gate.py: lines=713, classes=3, dataclasses=2, enums=1, functions=12, dict_literals=5
-- evidence_ledger.py: lines=524, classes=1, dataclasses=0, enums=0, functions=29, dict_literals=29
+- escalation_gate.py: lines=491, classes=3, dataclasses=2, enums=1, functions=3, dict_literals=5
+- escalation_primitives.py: lines=260, classes=0, dataclasses=0, enums=0, functions=9, dict_literals=0
+- evidence_ledger.py: lines=212, classes=1, dataclasses=0, enums=0, functions=24, dict_literals=17
 - evidence_queries.py: lines=21, classes=0, dataclasses=0, enums=0, functions=3, dict_literals=1
+- evidence_rollups.py: lines=338, classes=1, dataclasses=0, enums=0, functions=5, dict_literals=12
 - facts.py: lines=442, classes=2, dataclasses=1, enums=0, functions=34, dict_literals=5
 - facts_payloads.py: lines=450, classes=13, dataclasses=13, enums=0, functions=18, dict_literals=2
 - forge_context.py: lines=1407, classes=7, dataclasses=4, enums=1, functions=66, dict_literals=53
 - forge_mcp_server.py: lines=482, classes=0, dataclasses=0, enums=0, functions=9, dict_literals=15
-- forge_starmap.py: lines=554, classes=3, dataclasses=2, enums=0, functions=27, dict_literals=8
+- forge_starmap.py: lines=486, classes=3, dataclasses=2, enums=0, functions=22, dict_literals=8
 - fractal_cycle.py: lines=42, classes=3, dataclasses=2, enums=0, functions=2, dict_literals=2
 - gates.py: lines=712, classes=7, dataclasses=6, enums=0, functions=37, dict_literals=18
 - genome.py: lines=328, classes=6, dataclasses=4, enums=0, functions=22, dict_literals=11

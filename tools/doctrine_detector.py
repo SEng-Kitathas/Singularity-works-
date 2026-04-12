@@ -46,8 +46,8 @@ SEVERITY_ORDER = {"critical": 4, "high": 3, "medium": 2, "low": 1}
 
 
 def _iter_live_py(package_root: Path) -> Iterable[Path]:
-    for path in sorted(package_root.glob("*.py")):
-        if path.name.startswith("__pycache__"):
+    for path in sorted(package_root.rglob("*.py")):
+        if path.name.startswith("__pycache__") or "_vendor" in path.parts:
             continue
         yield path
 

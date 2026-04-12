@@ -188,7 +188,7 @@ def locate_canonical_cilnx() -> CilnxLocation:
                 available=True,
                 root=str(root),
                 python_ref=str(python_ref),
-                internalized_python_ref='singularity_works.cilnx_ref_v06',
+                internalized_python_ref='singularity_works._vendor.cilnx_ref_v06',
                 schema_path=str(schema_path),
                 adapter_report=str(adapter_report) if adapter_report and adapter_report.exists() else '',
                 memory_schema=str(memory_schema) if memory_schema and memory_schema.exists() else '',
@@ -198,7 +198,7 @@ def locate_canonical_cilnx() -> CilnxLocation:
 
 
 def _load_python_ref(location: CilnxLocation):
-    from . import cilnx_ref_v06
+    from ._vendor import cilnx_ref_v06
     return cilnx_ref_v06
 
 

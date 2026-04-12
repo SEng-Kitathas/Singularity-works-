@@ -33,8 +33,17 @@
       "dataclasses": 0,
       "enums": 0,
       "functions": 2,
-      "dict_literals": 42,
-      "lines": 117
+      "dict_literals": 0,
+      "lines": 22
+    },
+    {
+      "file": "bounty_reference_data.py",
+      "classes": 1,
+      "dataclasses": 1,
+      "enums": 0,
+      "functions": 0,
+      "dict_literals": 2,
+      "lines": 87
     },
     {
       "file": "bounty_reporter.py",
@@ -71,15 +80,6 @@
       "functions": 15,
       "dict_literals": 6,
       "lines": 314
-    },
-    {
-      "file": "cilnx_ref_v06.py",
-      "classes": 11,
-      "dataclasses": 4,
-      "enums": 0,
-      "functions": 37,
-      "dict_literals": 29,
-      "lines": 771
     },
     {
       "file": "cockpit.py",
@@ -140,18 +140,27 @@
       "classes": 3,
       "dataclasses": 2,
       "enums": 1,
-      "functions": 12,
+      "functions": 3,
       "dict_literals": 5,
-      "lines": 713
+      "lines": 491
+    },
+    {
+      "file": "escalation_primitives.py",
+      "classes": 0,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 9,
+      "dict_literals": 0,
+      "lines": 260
     },
     {
       "file": "evidence_ledger.py",
       "classes": 1,
       "dataclasses": 0,
       "enums": 0,
-      "functions": 29,
-      "dict_literals": 29,
-      "lines": 524
+      "functions": 24,
+      "dict_literals": 17,
+      "lines": 212
     },
     {
       "file": "evidence_queries.py",
@@ -161,6 +170,15 @@
       "functions": 3,
       "dict_literals": 1,
       "lines": 21
+    },
+    {
+      "file": "evidence_rollups.py",
+      "classes": 1,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 5,
+      "dict_literals": 12,
+      "lines": 338
     },
     {
       "file": "facts.py",
@@ -203,9 +221,9 @@
       "classes": 3,
       "dataclasses": 2,
       "enums": 0,
-      "functions": 27,
+      "functions": 22,
       "dict_literals": 8,
-      "lines": 554
+      "lines": 486
     },
     {
       "file": "fractal_cycle.py",
@@ -455,42 +473,6 @@
     {
       "seam_id": "DQ-DICT-HOTSPOT",
       "severity": "medium",
-      "file": "bounty_reference.py",
-      "line": 1,
-      "category": "typed_boundary",
-      "message": "High dict-literal density (42) suggests possible dict spill hotspot.",
-      "evidence": "bounty_reference.py"
-    },
-    {
-      "seam_id": "DQ-SIZE",
-      "severity": "medium",
-      "file": "cilnx_ref_v06.py",
-      "line": 1,
-      "category": "module_size",
-      "message": "Large module (771 lines) may indicate concentration seam.",
-      "evidence": "cilnx_ref_v06.py"
-    },
-    {
-      "seam_id": "DQ-SIZE",
-      "severity": "medium",
-      "file": "escalation_gate.py",
-      "line": 1,
-      "category": "module_size",
-      "message": "Large module (713 lines) may indicate concentration seam.",
-      "evidence": "escalation_gate.py"
-    },
-    {
-      "seam_id": "DQ-SIZE",
-      "severity": "medium",
-      "file": "evidence_ledger.py",
-      "line": 1,
-      "category": "module_size",
-      "message": "Large module (524 lines) may indicate concentration seam.",
-      "evidence": "evidence_ledger.py"
-    },
-    {
-      "seam_id": "DQ-DICT-HOTSPOT",
-      "severity": "medium",
       "file": "forge_context.py",
       "line": 1,
       "category": "typed_boundary",
@@ -505,15 +487,6 @@
       "category": "module_size",
       "message": "Large module (1407 lines) may indicate concentration seam.",
       "evidence": "forge_context.py"
-    },
-    {
-      "seam_id": "DQ-SIZE",
-      "severity": "medium",
-      "file": "forge_starmap.py",
-      "line": 1,
-      "category": "module_size",
-      "message": "Large module (554 lines) may indicate concentration seam.",
-      "evidence": "forge_starmap.py"
     },
     {
       "seam_id": "DQ-SIZE",
@@ -631,15 +604,6 @@
       "category": "module_size",
       "message": "Large module (939 lines) may indicate concentration seam.",
       "evidence": "recovery.py"
-    },
-    {
-      "seam_id": "DQ-ORPHAN",
-      "severity": "low",
-      "file": "cilnx_ref_v06.py",
-      "line": 1,
-      "category": "integration",
-      "message": "Potential capability island / lineage remnant; verify canonical role.",
-      "evidence": "cilnx_ref_v06.py"
     }
   ]
 }
