@@ -18,6 +18,40 @@ class RecoveryOutput:
     rationale: list[str] = field(default_factory=list)
 
 
+@dataclass(frozen=True)
+class ProtocolAnalysis:
+    has_open: bool = False
+    has_close: bool = False
+    has_with_open: bool = False
+    has_try_finally_close: bool = False
+    dangerous_calls: list[str] = field(default_factory=list)
+    tokens: set[str] = field(default_factory=set)
+    transition_graph: dict[str, list[str]] = field(default_factory=dict)
+    session_lines: list[int] = field(default_factory=list)
+    redirect_lines: list[int] = field(default_factory=list)
+    cookie_lines: list[int] = field(default_factory=list)
+    cookie_delete_lines: list[int] = field(default_factory=list)
+    session_clear_lines: list[int] = field(default_factory=list)
+    token_revoke_lines: list[int] = field(default_factory=list)
+    logout_lines: list[int] = field(default_factory=list)
+    refresh_issue_lines: list[int] = field(default_factory=list)
+    refresh_rotation_lines: list[int] = field(default_factory=list)
+    refresh_family_protect_lines: list[int] = field(default_factory=list)
+    recovery_token_input_lines: list[int] = field(default_factory=list)
+    recovery_token_validation_lines: list[int] = field(default_factory=list)
+    recovery_token_expiry_lines: list[int] = field(default_factory=list)
+    recovery_token_consume_lines: list[int] = field(default_factory=list)
+    recovery_token_sensitive_use_lines: list[int] = field(default_factory=list)
+    transaction_write_lines: list[int] = field(default_factory=list)
+    commit_lines: list[int] = field(default_factory=list)
+    rollback_lines: list[int] = field(default_factory=list)
+    transaction_context_lines: list[int] = field(default_factory=list)
+    state_input_lines: list[int] = field(default_factory=list)
+    state_expected_lines: list[int] = field(default_factory=list)
+    state_validation_lines: list[int] = field(default_factory=list)
+    state_sensitive_use_lines: list[int] = field(default_factory=list)
+
+
 class _ProtocolVisitor(ast.NodeVisitor):
     def __init__(self) -> None:
         self.transitions: dict[str, list[tuple[str, int]]] = {}
@@ -396,77 +430,43 @@ class RecoveryEngine:
             "high",
         )
 
-    def _protocol_analysis(self, tree) -> dict:
-        out = {
-            "has_open": False,
-            "has_close": False,
-            "has_with_open": False,
-            "has_try_finally_close": False,
-            "dangerous_calls": [],
-            "tokens": set(),
-            "transition_graph": {},
-            "session_lines": [],
-            "redirect_lines": [],
-            "cookie_lines": [],
-            "cookie_delete_lines": [],
-            "session_clear_lines": [],
-            "token_revoke_lines": [],
-            "logout_lines": [],
-            "refresh_issue_lines": [],
-            "refresh_rotation_lines": [],
-            "refresh_family_protect_lines": [],
-            "recovery_token_input_lines": [],
-            "recovery_token_validation_lines": [],
-            "recovery_token_expiry_lines": [],
-            "recovery_token_consume_lines": [],
-            "recovery_token_sensitive_use_lines": [],
-            "transaction_write_lines": [],
-            "commit_lines": [],
-            "rollback_lines": [],
-            "transaction_context_lines": [],
-            "state_input_lines": [],
-            "state_expected_lines": [],
-            "state_validation_lines": [],
-            "state_sensitive_use_lines": [],
-        }
+    def _protocol_analysis(self, tree) -> ProtocolAnalysis:
         if tree is None:
-            return out
+            return ProtocolAnalysis()
         visitor = _ProtocolVisitor()
         visitor.visit(tree)
-        out["has_open"] = visitor.has_open
-        out["has_close"] = visitor.has_close
-        out["has_with_open"] = visitor.has_with_open
-        out["has_try_finally_close"] = visitor.has_try_finally_close
-        out["dangerous_calls"] = visitor.dangerous_calls
-        out["tokens"] = visitor.tokens
-        out["transition_graph"] = {
-            name: [action for action, _ in seq]
-            for name, seq in visitor.transitions.items()
-        }
-        out["session_lines"] = visitor.session_lines
-        out["redirect_lines"] = visitor.redirect_lines
-        out["cookie_lines"] = visitor.cookie_lines
-        out["cookie_delete_lines"] = visitor.cookie_delete_lines
-        out["session_clear_lines"] = visitor.session_clear_lines
-        out["token_revoke_lines"] = visitor.token_revoke_lines
-        out["logout_lines"] = visitor.logout_lines
-        out["refresh_issue_lines"] = visitor.refresh_issue_lines
-        out["refresh_rotation_lines"] = visitor.refresh_rotation_lines
-        out["refresh_family_protect_lines"] = visitor.refresh_family_protect_lines
-        out["recovery_token_input_lines"] = visitor.recovery_token_input_lines
-        out["recovery_token_validation_lines"] = visitor.recovery_token_validation_lines
-        out["recovery_token_expiry_lines"] = visitor.recovery_token_expiry_lines
-        out["recovery_token_consume_lines"] = visitor.recovery_token_consume_lines
-        out["recovery_token_sensitive_use_lines"] = visitor.recovery_token_sensitive_use_lines
-        out["transaction_write_lines"] = visitor.transaction_write_lines
-        out["commit_lines"] = visitor.commit_lines
-        out["rollback_lines"] = visitor.rollback_lines
-        out["transaction_context_lines"] = visitor.transaction_context_lines
-        out["state_input_lines"] = visitor.state_input_lines
-        out["state_expected_lines"] = visitor.state_expected_lines
-        out["state_validation_lines"] = visitor.state_validation_lines
-        out["state_sensitive_use_lines"] = visitor.state_sensitive_use_lines
-        return out
+        return ProtocolAnalysis(
+            has_open=visitor.has_open,
+            has_close=visitor.has_close,
+            has_with_open=visitor.has_with_open,
+            has_try_finally_close=visitor.has_try_finally_close,
+            dangerous_calls=visitor.dangerous_calls,
+            tokens=visitor.tokens,
+            transition_graph={name: [action for action, _ in seq] for name, seq in visitor.transitions.items()},
+            session_lines=visitor.session_lines,
+            redirect_lines=visitor.redirect_lines,
+            cookie_lines=visitor.cookie_lines,
+            cookie_delete_lines=visitor.cookie_delete_lines,
+            session_clear_lines=visitor.session_clear_lines,
+            token_revoke_lines=visitor.token_revoke_lines,
+            logout_lines=visitor.logout_lines,
+            refresh_issue_lines=visitor.refresh_issue_lines,
+            refresh_rotation_lines=visitor.refresh_rotation_lines,
+            refresh_family_protect_lines=visitor.refresh_family_protect_lines,
+            recovery_token_input_lines=visitor.recovery_token_input_lines,
+            recovery_token_validation_lines=visitor.recovery_token_validation_lines,
+            recovery_token_expiry_lines=visitor.recovery_token_expiry_lines,
+            recovery_token_consume_lines=visitor.recovery_token_consume_lines,
+            recovery_token_sensitive_use_lines=visitor.recovery_token_sensitive_use_lines,
+            transaction_write_lines=visitor.transaction_write_lines,
+            commit_lines=visitor.commit_lines,
+            rollback_lines=visitor.rollback_lines,
+            transaction_context_lines=visitor.transaction_context_lines,
+            state_input_lines=visitor.state_input_lines,
+            state_expected_lines=visitor.state_expected_lines,
+            state_validation_lines=visitor.state_validation_lines,
+            state_sensitive_use_lines=visitor.state_sensitive_use_lines,
+        )
 
     def _baseline_structures(
         self,
@@ -571,19 +571,19 @@ class RecoveryEngine:
         rationale: list[str],
     ) -> int:
         gain = 0
-        tokens = {token.lower() for token in analysis["tokens"]}
+        tokens = {token.lower() for token in analysis.tokens}
         if flags["protocol"] and (tokens & {"state", "transition", "handshake", "connect", "close"}):
             rationale.append("candidate code reflects protocol/state terminology")
             gain += 1
         if flags["parser"] and (tokens & {"literal_eval", "parse", "loads"}):
             rationale.append("candidate code reflects parser/safe parsing terminology")
             gain += 1
-        if analysis["has_open"]:
+        if analysis.has_open:
             radicals += ["RESOURCE"]
             resource_conf = "high" if (
-                analysis["has_close"]
-                or analysis["has_with_open"]
-                or analysis["has_try_finally_close"]
+                analysis.has_close
+                or analysis.has_with_open
+                or analysis.has_try_finally_close
             ) else "moderate"
             self._append_structure(
                 structures,
@@ -601,15 +601,15 @@ class RecoveryEngine:
                         ["write", "write"], ["write", "read"], ["write", "close"],
                     ],
                     "forbidden_edges": [["close", "read"], ["close", "write"], ["close", "close"]],
-                    "transition_graph": analysis["transition_graph"],
-                    "close_seen": analysis["has_close"],
-                    "with_open_seen": analysis["has_with_open"],
-                    "try_finally_close_seen": analysis["has_try_finally_close"],
+                    "transition_graph": analysis.transition_graph,
+                    "close_seen": analysis.has_close,
+                    "with_open_seen": analysis.has_with_open,
+                    "try_finally_close_seen": analysis.has_try_finally_close,
                 },
             )
             rationale.append("candidate code exposes a resource lifecycle")
             gain += 1 + (1 if resource_conf == "high" else 0)
-        if analysis["dangerous_calls"]:
+        if analysis.dangerous_calls:
             radicals += ["TRUST"]
             self._append_structure(
                 structures,
@@ -618,11 +618,11 @@ class RecoveryEngine:
                 "moderate",
                 requirement,
                 ["TRUST"],
-                {"dangerous_calls": sorted(set(analysis["dangerous_calls"]))},
+                {"dangerous_calls": sorted(set(analysis.dangerous_calls))},
             )
             rationale.append("candidate code contains dangerous execution primitives")
             gain += 1  # characterizing security-relevant behavior is a recovery signal
-        elif flags["danger"] and not analysis["dangerous_calls"]:
+        elif flags["danger"] and not analysis.dangerous_calls:
             # Danger-flagged requirement, code is clean — strong compliance signal
             radicals += ["TRUST"]
             rationale.append("candidate code is clean against danger-flagged requirement")
@@ -640,8 +640,8 @@ class RecoveryEngine:
             )
             rationale.append("candidate code uses literal_eval instead of dangerous execution")
             gain += 2
-        if flags.get("transaction") and analysis.get("transaction_write_lines"):
-            tx_conf = "high" if (analysis.get("commit_lines") or analysis.get("rollback_lines") or analysis.get("transaction_context_lines")) else "moderate"
+        if flags.get("transaction") and analysis.transaction_write_lines:
+            tx_conf = "high" if (analysis.commit_lines or analysis.rollback_lines or analysis.transaction_context_lines) else "moderate"
             self._append_structure(
                 structures,
                 "recovered:transaction_flow",
@@ -650,16 +650,16 @@ class RecoveryEngine:
                 requirement,
                 ["STATE", "RESOURCE", "TRUST"],
                 {
-                    "transaction_write_lines": analysis.get("transaction_write_lines", []),
-                    "commit_lines": analysis.get("commit_lines", []),
-                    "rollback_lines": analysis.get("rollback_lines", []),
-                    "transaction_context_lines": analysis.get("transaction_context_lines", []),
+                    "transaction_write_lines": analysis.transaction_write_lines,
+                    "commit_lines": analysis.commit_lines,
+                    "rollback_lines": analysis.rollback_lines,
+                    "transaction_context_lines": analysis.transaction_context_lines,
                 },
             )
             rationale.append("candidate code exposes database write / transaction flow")
             gain += 1 + (1 if tx_conf == "high" else 0)
-        if flags["auth"] and analysis.get("redirect_lines"):
-            auth_conf = "high" if (analysis.get("session_lines") or analysis.get("cookie_lines")) else "moderate"
+        if flags["auth"] and analysis.redirect_lines:
+            auth_conf = "high" if (analysis.session_lines or analysis.cookie_lines) else "moderate"
             self._append_structure(
                 structures,
                 "recovered:auth_session_flow",
@@ -668,14 +668,14 @@ class RecoveryEngine:
                 requirement,
                 ["STATE", "TRUST"],
                 {
-                    "session_lines": analysis.get("session_lines", []),
-                    "redirect_lines": analysis.get("redirect_lines", []),
-                    "cookie_lines": analysis.get("cookie_lines", []),
+                    "session_lines": analysis.session_lines,
+                    "redirect_lines": analysis.redirect_lines,
+                    "cookie_lines": analysis.cookie_lines,
                 },
             )
             rationale.append("candidate code exposes auth/session/redirect flow")
             gain += 1 + (1 if auth_conf == "high" else 0)
-        if flags["auth"] and analysis.get("cookie_lines"):
+        if flags["auth"] and analysis.cookie_lines:
             cookie_conf = "high"
             self._append_structure(
                 structures,
@@ -685,8 +685,8 @@ class RecoveryEngine:
                 requirement,
                 ["TRUST", "VERIFY"],
                 {
-                    "cookie_lines": analysis.get("cookie_lines", []),
-                    "tokens": sorted(analysis.get("tokens", set())),
+                    "cookie_lines": analysis.cookie_lines,
+                    "tokens": sorted(analysis.tokens),
                 },
             )
             rationale.append("candidate code exposes auth/session/token cookie surface")
@@ -728,7 +728,7 @@ class RecoveryEngine:
                 self._monitor_seed(requirement, suffix, kind, expr, sev, claim_id)
             )
 
-        if flags["resource"] or (analysis["has_open"] and "close" in low):
+        if flags["resource"] or (analysis.has_open and "close" in low):
             monitor_seeds.append(
                 self._monitor_seed(
                     requirement,
@@ -752,7 +752,7 @@ class RecoveryEngine:
                         f"claim:{requirement.requirement_id}:{suffix}",
                     )
                 )
-            if not analysis["dangerous_calls"]:
+            if not analysis.dangerous_calls:
                 rationale.append("candidate code avoids dangerous execution primitives")
                 confidence_score += 1
 
@@ -767,7 +767,7 @@ class RecoveryEngine:
                     f"claim:{requirement.requirement_id}:verify_enabled",
                 )
             )
-            if "verify_false" not in analysis["dangerous_calls"]:
+            if "verify_false" not in analysis.dangerous_calls:
                 rationale.append("candidate code keeps verification enabled")
                 confidence_score += 1
 
@@ -785,11 +785,11 @@ class RecoveryEngine:
                     f"claim:{requirement.requirement_id}:auth_session_before_redirect",
                 )
             )
-            if analysis.get("redirect_lines") and (analysis.get("session_lines") or analysis.get("cookie_lines")):
+            if analysis.redirect_lines and (analysis.session_lines or analysis.cookie_lines):
                 rationale.append("candidate code establishes session/cookie before auth redirect")
                 confidence_score += 1
 
-        if flags["auth"] and ("cookie" in low or "token" in low or analysis.get("cookie_lines")):
+        if flags["auth"] and ("cookie" in low or "token" in low or analysis.cookie_lines):
             monitor_seeds.append(
                 self._monitor_seed(
                     requirement,
@@ -800,11 +800,11 @@ class RecoveryEngine:
                     f"claim:{requirement.requirement_id}:auth_cookie_hardening",
                 )
             )
-            if analysis.get("cookie_lines"):
+            if analysis.cookie_lines:
                 rationale.append("candidate code sets cookies in an auth/session/token context")
                 confidence_score += 1
 
-        if flags["auth"] and (any(k in low for k in ["refresh", "rotate", "renew"]) or analysis.get("refresh_issue_lines") or analysis.get("refresh_rotation_lines")):
+        if flags["auth"] and (any(k in low for k in ["refresh", "rotate", "renew"]) or analysis.refresh_issue_lines or analysis.refresh_rotation_lines):
             monitor_seeds.append(
                 self._monitor_seed(
                     requirement,
@@ -815,11 +815,11 @@ class RecoveryEngine:
                     f"claim:{requirement.requirement_id}:refresh_rotation",
                 )
             )
-            if analysis.get("refresh_issue_lines"):
+            if analysis.refresh_issue_lines:
                 rationale.append("candidate code participates in refresh-token issuance/rotation flow")
                 confidence_score += 1
 
-        if flags["auth"] and (any(k in low for k in ["refresh", "family", "reuse", "replay"]) or analysis.get("refresh_family_protect_lines")):
+        if flags["auth"] and (any(k in low for k in ["refresh", "family", "reuse", "replay"]) or analysis.refresh_family_protect_lines):
             monitor_seeds.append(
                 self._monitor_seed(
                     requirement,
@@ -830,12 +830,12 @@ class RecoveryEngine:
                     f"claim:{requirement.requirement_id}:refresh_family_integrity",
                 )
             )
-            if analysis.get("refresh_issue_lines") or analysis.get("refresh_family_protect_lines"):
+            if analysis.refresh_issue_lines or analysis.refresh_family_protect_lines:
                 rationale.append("candidate code participates in refresh-token family/reuse integrity flow")
                 confidence_score += 1
 
 
-        if flags["auth"] and (any(k in low for k in ["state", "csrf", "callback", "oauth"]) or analysis.get("state_input_lines") or analysis.get("state_sensitive_use_lines")):
+        if flags["auth"] and (any(k in low for k in ["state", "csrf", "callback", "oauth"]) or analysis.state_input_lines or analysis.state_sensitive_use_lines):
             monitor_seeds.append(
                 self._monitor_seed(
                     requirement,
@@ -846,11 +846,11 @@ class RecoveryEngine:
                     f"claim:{requirement.requirement_id}:callback_state_validation",
                 )
             )
-            if analysis.get("state_input_lines") and analysis.get("state_validation_lines"):
+            if analysis.state_input_lines and analysis.state_validation_lines:
                 rationale.append("candidate code reads callback state and performs explicit state/csrf validation before sensitive continuation")
                 confidence_score += 1
 
-        if (flags.get("recovery_token") or analysis.get("recovery_token_input_lines") or analysis.get("recovery_token_sensitive_use_lines")):
+        if (flags.get("recovery_token") or analysis.recovery_token_input_lines or analysis.recovery_token_sensitive_use_lines):
             monitor_seeds.append(
                 self._monitor_seed(
                     requirement,
@@ -861,11 +861,11 @@ class RecoveryEngine:
                     f"claim:{requirement.requirement_id}:recovery_token_protocol",
                 )
             )
-            if analysis.get("recovery_token_validation_lines") and analysis.get("recovery_token_consume_lines"):
+            if analysis.recovery_token_validation_lines and analysis.recovery_token_consume_lines:
                 rationale.append("candidate code validates and consumes reset/verification token in a sensitive account-recovery flow")
                 confidence_score += 1
 
-        if flags["auth"] and (any(k in low for k in ["logout", "signout", "revoke"]) or analysis.get("cookie_delete_lines") or analysis.get("session_clear_lines") or analysis.get("token_revoke_lines") or analysis.get("logout_lines")):
+        if flags["auth"] and (any(k in low for k in ["logout", "signout", "revoke"]) or analysis.cookie_delete_lines or analysis.session_clear_lines or analysis.token_revoke_lines or analysis.logout_lines):
             monitor_seeds.append(
                 self._monitor_seed(
                     requirement,
@@ -876,11 +876,11 @@ class RecoveryEngine:
                     f"claim:{requirement.requirement_id}:auth_logout_clearance",
                 )
             )
-            if analysis.get("cookie_delete_lines") or analysis.get("session_clear_lines") or analysis.get("token_revoke_lines"):
+            if analysis.cookie_delete_lines or analysis.session_clear_lines or analysis.token_revoke_lines:
                 rationale.append("candidate code clears session/cookies or revokes tokens in an auth logout/revoke context")
                 confidence_score += 1
 
-        if flags.get("transaction") and (analysis.get("transaction_write_lines") or "database" in low or "sql" in low):
+        if flags.get("transaction") and (analysis.transaction_write_lines or "database" in low or "sql" in low):
             monitor_seeds.append(
                 self._monitor_seed(
                     requirement,
@@ -891,7 +891,7 @@ class RecoveryEngine:
                     f"claim:{requirement.requirement_id}:transaction_finalized",
                 )
             )
-            if analysis.get("transaction_write_lines") and (analysis.get("commit_lines") or analysis.get("rollback_lines") or analysis.get("transaction_context_lines")):
+            if analysis.transaction_write_lines and (analysis.commit_lines or analysis.rollback_lines or analysis.transaction_context_lines):
                 rationale.append("candidate code finalizes transaction after database write or uses a managed transaction context")
                 confidence_score += 1
 
