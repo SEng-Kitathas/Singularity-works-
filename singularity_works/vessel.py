@@ -3,10 +3,12 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from enum import Enum
 from pathlib import Path
+import json
 import os
 import shutil
 import subprocess
 import sys
+from datetime import datetime, timezone
 from typing import Sequence
 
 
@@ -335,7 +337,7 @@ def derive_session_state(surface: VesselSurfaceState, receipt: UnifiedFrontRecei
     if surface.claude_available and receipt.readiness is VesselReadiness.HUD_ONLY:
         return VesselSessionState(
             lifecycle=SessionLifecycleState.HUD_ONLY,
-            relaunch_action=RelaunchAction.RESTORE_UNIFIED_FRONT,
+            relaunch_action=RelaunchAction.RESTORE_UNIFIED_FRONT if surface.anchor_supported else RelaunchAction.CHECK_HOST,
             anchor_supported=surface.anchor_supported,
             active_roles=active_roles,
             failed_roles=failed_roles,
@@ -344,7 +346,7 @@ def derive_session_state(surface: VesselSurfaceState, receipt: UnifiedFrontRecei
     if not surface.claude_available and receipt.readiness is VesselReadiness.HUD_ONLY:
         return VesselSessionState(
             lifecycle=SessionLifecycleState.HUD_ONLY,
-            relaunch_action=RelaunchAction.LAUNCH_CLAUDE,
+            relaunch_action=RelaunchAction.LAUNCH_CLAUDE if surface.anchor_supported else RelaunchAction.CHECK_HOST,
             anchor_supported=surface.anchor_supported,
             active_roles=active_roles,
             failed_roles=failed_roles,
@@ -367,3 +369,112 @@ def derive_session_state(surface: VesselSurfaceState, receipt: UnifiedFrontRecei
         failed_roles=failed_roles,
         rationale='vessel planned but not yet launched',
     )
+
+
+@dataclass(frozen=True)
+class PersistedVesselSession:
+    updated_at: str
+    lifecycle: str
+    relaunch_action: str
+    anchor_supported: bool
+    active_roles: tuple[str, ...]
+    failed_roles: tuple[str, ...]
+    rationale: str
+    front_readiness: str
+    front_achieved: bool
+
+    @classmethod
+    def from_session(cls, session: VesselSessionState, receipt: UnifiedFrontReceipt) -> "PersistedVesselSession":
+        return cls(
+            updated_at=datetime.now(timezone.utc).isoformat(),
+            lifecycle=session.lifecycle.value,
+            relaunch_action=session.relaunch_action.value,
+            anchor_supported=session.anchor_supported,
+            active_roles=session.active_roles,
+            failed_roles=session.failed_roles,
+            rationale=session.rationale,
+            front_readiness=receipt.readiness.value,
+            front_achieved=receipt.unified_front_achieved,
+        )
+
+
+def vessel_session_state_path(project_root: str | Path) -> Path:
+    root = Path(project_root)
+    return root / '.forge' / 'vessel_session_state.json'
+
+
+def persist_vessel_session_state(project_root: str | Path, session: VesselSessionState, receipt: UnifiedFrontReceipt) -> Path:
+    path = vessel_session_state_path(project_root)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    payload = PersistedVesselSession.from_session(session, receipt)
+    path.write_text(json.dumps(payload.__dict__, indent=2), encoding='utf-8')
+    return path
+
+
+def load_vessel_session_state(project_root: str | Path) -> PersistedVesselSession | None:
+    path = vessel_session_state_path(project_root)
+    if not path.exists():
+        return None
+    raw = json.loads(path.read_text(encoding='utf-8'))
+    return PersistedVesselSession(
+        updated_at=str(raw.get('updated_at', '') or ''),
+        lifecycle=str(raw.get('lifecycle', 'planned')),
+        relaunch_action=str(raw.get('relaunch_action', 'none')),
+        anchor_supported=bool(raw.get('anchor_supported', False)),
+        active_roles=tuple(raw.get('active_roles', [])),
+        failed_roles=tuple(raw.get('failed_roles', [])),
+        rationale=str(raw.get('rationale', '')),
+        front_readiness=str(raw.get('front_readiness', 'degraded')),
+        front_achieved=bool(raw.get('front_achieved', False)),
+    )
+
+
+def vessel_state_path(project_root: str | Path) -> Path:
+    return vessel_session_state_path(project_root)
+
+
+def load_persisted_vessel_session(project_root: str | Path) -> PersistedVesselSession | None:
+    return load_vessel_session_state(project_root)
+
+
+def persist_vessel_session(project_root: str | Path, session: VesselSessionState, receipt: UnifiedFrontReceipt) -> PersistedVesselSession:
+    persist_vessel_session_state(project_root, session, receipt)
+    loaded = load_vessel_session_state(project_root)
+    if loaded is None:
+        raise RuntimeError('persisted vessel session missing after write')
+    return loaded
+
+
+@dataclass(frozen=True)
+class VesselRecoveryState:
+    persisted: bool
+    previous_lifecycle: str
+    current_lifecycle: str
+    recommended_action: RelaunchAction
+    reason: str
+
+    def to_stats(self) -> dict[str, str]:
+        return {
+            "recovery": self.recommended_action.value,
+            "prev_session": self.previous_lifecycle or "none",
+        }
+
+
+def derive_recovery_state(previous: PersistedVesselSession | None, current: VesselSessionState, surface: VesselSurfaceState) -> VesselRecoveryState:
+    if previous is None:
+        return VesselRecoveryState(
+            persisted=False,
+            previous_lifecycle='',
+            current_lifecycle=current.lifecycle.value,
+            recommended_action=current.relaunch_action,
+            reason='no prior vessel session persisted',
+        )
+    if previous.lifecycle == 'unified' and current.lifecycle.value != 'unified':
+        action = RelaunchAction.RESTORE_UNIFIED_FRONT if surface.anchor_supported else RelaunchAction.CHECK_HOST
+        reason = 'previous session achieved unified front but current session regressed'
+        return VesselRecoveryState(True, previous.lifecycle, current.lifecycle.value, action, reason)
+    if previous.lifecycle == 'hud_only' and current.lifecycle.value == 'hud_only' and not surface.claude_available:
+        return VesselRecoveryState(True, previous.lifecycle, current.lifecycle.value, RelaunchAction.LAUNCH_CLAUDE, 'repeated hud-only state with missing claude target')
+    if previous.anchor_supported and not surface.anchor_supported:
+        return VesselRecoveryState(True, previous.lifecycle, current.lifecycle.value, RelaunchAction.CHECK_HOST, 'anchor capability regressed since previous session')
+    return VesselRecoveryState(True, previous.lifecycle, current.lifecycle.value, current.relaunch_action, 'current session remains doctrinally consistent with persisted state')

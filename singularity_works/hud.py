@@ -281,6 +281,19 @@ class VesselSessionRecord:
     active_roles: list[str] = field(default_factory=list)
     failed_roles: list[str] = field(default_factory=list)
     rationale: str = ""
+    persisted_lifecycle: str = ""
+    state_file: str = ""
+    state_file: str = ""
+    persisted_lifecycle: str = ""
+
+
+@dataclass
+class VesselRecoveryRecord:
+    persisted: bool = False
+    previous_lifecycle: str = ""
+    current_lifecycle: str = "planned"
+    recommended_action: str = "none"
+    reason: str = ""
 
 
 @dataclass
@@ -345,6 +358,7 @@ class HudSnapshot:
     fractal_events: list[FractalEventRecord] = field(default_factory=list)
     unified_front: UnifiedFrontRecord = field(default_factory=UnifiedFrontRecord)
     vessel_session: VesselSessionRecord = field(default_factory=VesselSessionRecord)
+    vessel_recovery: VesselRecoveryRecord = field(default_factory=VesselRecoveryRecord)
 
     # Ergo-Light / Kerr panel
     kerr_panel: KerrPanelState = field(default_factory=KerrPanelState)
@@ -828,8 +842,17 @@ class ConsoleHUD:
             rows.append(_c(_C.FG_DIM, "  (no launch receipts)"))
         rows.append(self._crop(f"  lifecycle={snap.vessel_session.lifecycle}", width))
         rows.append(self._crop(f"  relaunch={snap.vessel_session.relaunch_action}", width))
+        if snap.vessel_session.state_file:
+            rows.append(self._crop(f"  state={snap.vessel_session.state_file}", width))
+        if snap.vessel_session.persisted_lifecycle:
+            rows.append(self._crop(f"  persisted={snap.vessel_session.persisted_lifecycle}", width))
         if snap.vessel_session.rationale:
             rows.append(self._crop(f"  why={snap.vessel_session.rationale}", width))
+        rows.append(self._crop(f"  recovery={snap.vessel_recovery.recommended_action}", width))
+        if snap.vessel_recovery.previous_lifecycle:
+            rows.append(self._crop(f"  prev={snap.vessel_recovery.previous_lifecycle}", width))
+        if snap.vessel_recovery.reason:
+            rows.append(self._crop(f"  reason={snap.vessel_recovery.reason}", width))
         rows.append("")
 
         # Phase / branch / session meta

@@ -9,7 +9,7 @@ from .evidence_ledger import EvidenceLedger
 from .ergo_boot import play_boot_sequence
 from .hud import ConsoleHUD, LaunchReceiptRecord, snapshot_from_run_result
 from .models import Requirement, RunContext
-from .vessel import build_vessel_launch_plan, derive_session_state, evaluate_vessel_surface, plan_unified_front
+from .vessel import build_vessel_launch_plan, derive_recovery_state, derive_session_state, evaluate_vessel_surface, load_persisted_vessel_session, persist_vessel_session, plan_unified_front, vessel_state_path
 from .orchestration import Orchestrator
 from .window_anchor import maybe_apply_runtime_anchor
 
@@ -166,10 +166,14 @@ def _render_summary(ctx: RunContext, req: Requirement, result, orchestrator: Orc
     front_receipt = plan_unified_front(build_vessel_launch_plan(project_root))
     if anchor_plan is not None:
         snap.events.append(f"window_anchor={anchor_plan.get('note','none')}")
+    previous_session = load_persisted_vessel_session(project_root)
     session_state = derive_session_state(vessel_surface, front_receipt)
+    recovery_state = derive_recovery_state(previous_session, session_state, vessel_surface)
+    persisted = persist_vessel_session(project_root, session_state, front_receipt)
     snap.stats.update(vessel_surface.to_stats())
     snap.stats.update(front_receipt.to_stats())
     snap.stats.update(session_state.to_stats())
+    snap.stats.update(recovery_state.to_stats())
     snap.unified_front.readiness = front_receipt.readiness.value
     snap.unified_front.unified_front_requested = front_receipt.unified_front_requested
     snap.unified_front.unified_front_achieved = front_receipt.unified_front_achieved
@@ -179,6 +183,11 @@ def _render_summary(ctx: RunContext, req: Requirement, result, orchestrator: Orc
     snap.vessel_session.active_roles = list(session_state.active_roles)
     snap.vessel_session.failed_roles = list(session_state.failed_roles)
     snap.vessel_session.rationale = session_state.rationale
+    snap.vessel_recovery.persisted = recovery_state.persisted
+    snap.vessel_recovery.previous_lifecycle = recovery_state.previous_lifecycle
+    snap.vessel_recovery.current_lifecycle = recovery_state.current_lifecycle
+    snap.vessel_recovery.recommended_action = recovery_state.recommended_action.value
+    snap.vessel_recovery.reason = recovery_state.reason
     snap.unified_front.receipts = [
         LaunchReceiptRecord(
             role=receipt.role,
@@ -189,9 +198,16 @@ def _render_summary(ctx: RunContext, req: Requirement, result, orchestrator: Orc
         )
         for receipt in front_receipt.receipts
     ]
+    reloaded_persisted = load_persisted_vessel_session(project_root)
+    snap.stats["session_file"] = vessel_state_path(project_root).name
+    if reloaded_persisted is not None:
+        snap.stats["persisted"] = reloaded_persisted.lifecycle
+        snap.vessel_session.persisted_lifecycle = reloaded_persisted.lifecycle
+    snap.vessel_session.state_file = vessel_state_path(project_root).name
     for receipt in snap.unified_front.receipts[:2]:
         snap.events.append(f"front:{receipt.role}:{receipt.disposition}")
     snap.events.append(f"session:{snap.vessel_session.lifecycle}:{snap.vessel_session.relaunch_action}")
+    snap.events.append(f"recovery:{snap.vessel_recovery.recommended_action}")
     if vessel_surface.readiness.value != "ready":
         snap.warnings.append("vessel_surface_degraded")
     hud = ConsoleHUD()
