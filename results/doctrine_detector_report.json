@@ -7,7 +7,7 @@
       "enums": 0,
       "functions": 0,
       "dict_literals": 0,
-      "lines": 25
+      "lines": 23
     },
     {
       "file": "assurance.py",
@@ -47,21 +47,12 @@
     },
     {
       "file": "cilnx_bridge.py",
-      "classes": 2,
-      "dataclasses": 2,
+      "classes": 3,
+      "dataclasses": 3,
       "enums": 0,
-      "functions": 13,
+      "functions": 15,
       "dict_literals": 6,
-      "lines": 257
-    },
-    {
-      "file": "claude_vessel.py",
-      "classes": 0,
-      "dataclasses": 0,
-      "enums": 0,
-      "functions": 0,
-      "dict_literals": 0,
-      "lines": 13
+      "lines": 320
     },
     {
       "file": "cockpit.py",
@@ -71,6 +62,15 @@
       "functions": 0,
       "dict_literals": 0,
       "lines": 52
+    },
+    {
+      "file": "cockpit_runtime.py",
+      "classes": 16,
+      "dataclasses": 11,
+      "enums": 5,
+      "functions": 24,
+      "dict_literals": 4,
+      "lines": 478
     },
     {
       "file": "enforcement.py",
@@ -119,12 +119,12 @@
     },
     {
       "file": "evidence_ledger.py",
-      "classes": 20,
-      "dataclasses": 19,
+      "classes": 1,
+      "dataclasses": 0,
       "enums": 0,
-      "functions": 46,
-      "dict_literals": 52,
-      "lines": 789
+      "functions": 29,
+      "dict_literals": 30,
+      "lines": 528
     },
     {
       "file": "facts.py",
@@ -143,15 +143,6 @@
       "functions": 66,
       "dict_literals": 53,
       "lines": 1407
-    },
-    {
-      "file": "forge_doctor.py",
-      "classes": 0,
-      "dataclasses": 0,
-      "enums": 0,
-      "functions": 0,
-      "dict_literals": 0,
-      "lines": 6
     },
     {
       "file": "forge_mcp_server.py",
@@ -209,21 +200,12 @@
     },
     {
       "file": "hud.py",
-      "classes": 25,
-      "dataclasses": 23,
+      "classes": 26,
+      "dataclasses": 24,
       "enums": 0,
-      "functions": 26,
+      "functions": 27,
       "dict_literals": 17,
-      "lines": 1312
-    },
-    {
-      "file": "hud_theme.py",
-      "classes": 3,
-      "dataclasses": 3,
-      "enums": 0,
-      "functions": 2,
-      "dict_literals": 0,
-      "lines": 50
+      "lines": 1322
     },
     {
       "file": "interprocedural.py",
@@ -233,15 +215,6 @@
       "functions": 38,
       "dict_literals": 13,
       "lines": 890
-    },
-    {
-      "file": "kerr_ascii.py",
-      "classes": 5,
-      "dataclasses": 4,
-      "enums": 0,
-      "functions": 11,
-      "dict_literals": 1,
-      "lines": 174
     },
     {
       "file": "language_front_door.py",
@@ -271,15 +244,6 @@
       "lines": 727
     },
     {
-      "file": "lbe_generic.py",
-      "classes": 2,
-      "dataclasses": 2,
-      "enums": 0,
-      "functions": 3,
-      "dict_literals": 3,
-      "lines": 378
-    },
-    {
       "file": "lbe_pilot.py",
       "classes": 16,
       "dataclasses": 16,
@@ -298,13 +262,13 @@
       "lines": 898
     },
     {
-      "file": "local_model_adapter.py",
-      "classes": 3,
-      "dataclasses": 1,
+      "file": "ledger_payloads.py",
+      "classes": 19,
+      "dataclasses": 19,
       "enums": 0,
-      "functions": 9,
-      "dict_literals": 12,
-      "lines": 315
+      "functions": 18,
+      "dict_literals": 22,
+      "lines": 317
     },
     {
       "file": "models.py",
@@ -370,15 +334,6 @@
       "lines": 227
     },
     {
-      "file": "sw_oracle.py",
-      "classes": 0,
-      "dataclasses": 0,
-      "enums": 0,
-      "functions": 3,
-      "dict_literals": 10,
-      "lines": 181
-    },
-    {
       "file": "switchboard.py",
       "classes": 4,
       "dataclasses": 3,
@@ -415,15 +370,6 @@
       "lines": 132
     },
     {
-      "file": "util.py",
-      "classes": 0,
-      "dataclasses": 0,
-      "enums": 0,
-      "functions": 1,
-      "dict_literals": 0,
-      "lines": 5
-    },
-    {
       "file": "verification_hooks.py",
       "classes": 6,
       "dataclasses": 6,
@@ -431,15 +377,6 @@
       "functions": 0,
       "dict_literals": 0,
       "lines": 43
-    },
-    {
-      "file": "vessel.py",
-      "classes": 16,
-      "dataclasses": 11,
-      "enums": 5,
-      "functions": 24,
-      "dict_literals": 4,
-      "lines": 478
     },
     {
       "file": "window_anchor.py",
@@ -452,339 +389,6 @@
     }
   ],
   "findings": [
-    {
-      "seam_id": "DQ-PATH",
-      "severity": "high",
-      "file": "cilnx_bridge.py",
-      "line": 48,
-      "category": "portability",
-      "message": "Hardcoded machine-specific path detected.",
-      "evidence": "Path(r'C:/Users/ancal/Desktop/AI_Pushes_Sandbox/historical data/Geometric reason/rosetta/CILNX_MASTER_DROP_2026-04-01/CILNX_MASTER_DROP_2026-04-01/builds/cilnx_v0_6_scaffold'),"
-    },
-    {
-      "seam_id": "DQ-PATH",
-      "severity": "high",
-      "file": "cilnx_bridge.py",
-      "line": 123,
-      "category": "portability",
-      "message": "Hardcoded machine-specific path detected.",
-      "evidence": "adapter_report = Path(r'C:/Users/ancal/Desktop/AI_Pushes_Sandbox/historical data/Geometric reason/TQ2/GEOMETRIC_THREAD_PROJECT_ARCHIVE/06_CIL_ADAPTER/GEOMETRIC_CILNX_V0_6_ADAPTER_REPORT.md')"
-    },
-    {
-      "seam_id": "DQ-PATH",
-      "severity": "high",
-      "file": "cilnx_bridge.py",
-      "line": 124,
-      "category": "portability",
-      "message": "Hardcoded machine-specific path detected.",
-      "evidence": "memory_schema = Path(r'C:/Users/ancal/Desktop/AI_Pushes_Sandbox/system/CILNX_ROUTED_STATEFUL_MEMORY_SCHEMA_2026-04-09.md')"
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "escalation_gate.py",
-      "line": 281,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "'NotImplementedError', 'AttributeError', 'ImportError', 'OSError',"
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "gates.py",
-      "line": 64,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "def _todo_comments(content: str) -> list[tuple[int, str]]:"
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "gates.py",
-      "line": 72,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "if \"todo\" in low or \"fixme\" in low:"
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "genome_gate_factory.py",
-      "line": 167,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "def _todo_hits(content: str) -> list[tuple[int, str]]:"
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "genome_gate_factory.py",
-      "line": 175,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "if \"todo\" in low or \"fixme\" in low:"
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "genome_gate_factory.py",
-      "line": 503,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "\"\"\"Detect TODO/FIXME comment markers.\"\"\""
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "genome_gate_factory.py",
-      "line": 504,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "hits = _todo_hits(content)"
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "genome_gate_factory.py",
-      "line": 2593,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "\"xxxxxxxx\", \"todo\", \"none\", \"null\", \"example\","
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "genome_gate_factory.py",
-      "line": 2633,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "if not any(skip in line for skip in (\"#\", \"//\", \"test\", \"example\", \"TODO\")):"
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "genome_gate_factory.py",
-      "line": 3163,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "Cryptodome (pycryptodome) is an acceptable fork; cryptography package is preferred."
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "genome_gate_factory.py",
-      "line": 3171,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "if mod.startswith(\"Crypto.\") and not mod.startswith(\"Cryptodome\"):"
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "laws.py",
-      "line": 11,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "\"principle\": \"When building: no stubs, no TODOs, no MVPs, no phases.\","
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "laws.py",
-      "line": 40,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "\"no_todos\": True,"
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "laws.py",
-      "line": 41,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "\"no_fixmes\": True,"
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "laws.py",
-      "line": 48,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "\"Code must not contain TODO or stub markers. \""
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "pattern_ir.py",
-      "line": 53,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "\"no_todo_markers\","
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "pattern_ir.py",
-      "line": 54,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "\"no_fixme_markers\","
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "pattern_ir.py",
-      "line": 62,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "misuse_signatures=[\"todo_marker\", \"verify_false\", \"resource_order_misuse\"],"
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "pattern_ir.py",
-      "line": 86,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "\"remove_todo_markers\","
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "recovery.py",
-      "line": 384,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "\"todo_forbidden\": \"todo\" in low,"
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "recovery.py",
-      "line": 718,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "\"must not contain todo\": (\"must_not_contain\", \"todo\", \"high\"),"
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "recovery.py",
-      "line": 922,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "if flags[\"todo_forbidden\"] and \"todo\" not in candidate_content.lower():"
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "recovery.py",
-      "line": 923,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "rationale.append(\"candidate code avoids todo markers\")"
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "runtime.py",
-      "line": 32,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "# TODO: close file later"
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "runtime.py",
-      "line": 68,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "\"Artifact must not contain TODO. Resource discipline should be respected \""
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "transformer.py",
-      "line": 12,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "def _remove_todo_lines(content: str) -> tuple[str, bool, str, str]:"
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "transformer.py",
-      "line": 18,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "if \"todo\" in low or \"fixme\" in low:"
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "transformer.py",
-      "line": 105,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "if \"todo\" in summary or \"stub\" in summary or source == \"dynamic.no_stub_markers\":"
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "transformer.py",
-      "line": 106,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "new, changed, before, after = _remove_todo_lines(current)"
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "transformer_registry.py",
-      "line": 17,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "TODO markers between open() and return don't block the rewrite."
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "transformer_registry.py",
-      "line": 79,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "def _remove_todo_lines(content: str) -> tuple[str, bool, str, str]:"
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "transformer_registry.py",
-      "line": 80,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "\"\"\"Remove TODO/FIXME comment lines.\"\"\""
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "transformer_registry.py",
-      "line": 86,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "if \"todo\" in low or \"fixme\" in low:"
-    },
-    {
-      "seam_id": "DQ-STUB",
-      "severity": "high",
-      "file": "transformer_registry.py",
-      "line": 100,
-      "category": "stub",
-      "message": "Stub/TODO-like construct detected.",
-      "evidence": "\"remove_todo_markers\": _remove_todo_lines,"
-    },
     {
       "seam_id": "DQ-DICT-HOTSPOT",
       "severity": "medium",
@@ -810,16 +414,7 @@
       "line": 7,
       "category": "integration",
       "message": "Dynamic import / mounted external dependency detected.",
-      "evidence": "import importlib.util"
-    },
-    {
-      "seam_id": "DQ-WRAP",
-      "severity": "medium",
-      "file": "claude_vessel.py",
-      "line": 1,
-      "category": "wrapper",
-      "message": "Compatibility wrapper present; canonical naming/substrate may still be split.",
-      "evidence": "claude_vessel.py"
+      "evidence": "cilnx_bridge.py"
     },
     {
       "seam_id": "DQ-SIZE",
@@ -831,30 +426,12 @@
       "evidence": "escalation_gate.py"
     },
     {
-      "seam_id": "DQ-DYNIMPORT",
-      "severity": "medium",
-      "file": "escalation_gate.py",
-      "line": 267,
-      "category": "integration",
-      "message": "Dynamic import / mounted external dependency detected.",
-      "evidence": "r'\\b(getattr|setattr|__import__|importlib\\.import_module|'"
-    },
-    {
-      "seam_id": "DQ-DICT-HOTSPOT",
-      "severity": "medium",
-      "file": "evidence_ledger.py",
-      "line": 1,
-      "category": "typed_boundary",
-      "message": "High dict-literal density (52) suggests possible dict spill hotspot.",
-      "evidence": "evidence_ledger.py"
-    },
-    {
       "seam_id": "DQ-SIZE",
       "severity": "medium",
       "file": "evidence_ledger.py",
       "line": 1,
       "category": "module_size",
-      "message": "Large module (789 lines) may indicate concentration seam.",
+      "message": "Large module (528 lines) may indicate concentration seam.",
       "evidence": "evidence_ledger.py"
     },
     {
@@ -883,15 +460,6 @@
       "category": "module_size",
       "message": "Large module (1407 lines) may indicate concentration seam.",
       "evidence": "forge_context.py"
-    },
-    {
-      "seam_id": "DQ-WRAP",
-      "severity": "medium",
-      "file": "forge_doctor.py",
-      "line": 1,
-      "category": "wrapper",
-      "message": "Compatibility wrapper present; canonical naming/substrate may still be split.",
-      "evidence": "forge_doctor.py"
     },
     {
       "seam_id": "DQ-DICT-HOTSPOT",
@@ -953,7 +521,7 @@
       "file": "hud.py",
       "line": 1,
       "category": "module_size",
-      "message": "Large module (1312 lines) may indicate concentration seam.",
+      "message": "Large module (1322 lines) may indicate concentration seam.",
       "evidence": "hud.py"
     },
     {
@@ -1036,114 +604,6 @@
       "category": "module_size",
       "message": "Large module (939 lines) may indicate concentration seam.",
       "evidence": "recovery.py"
-    },
-    {
-      "seam_id": "DQ-STR-EVENT",
-      "severity": "medium",
-      "file": "runtime.py",
-      "line": 234,
-      "category": "event_protocol",
-      "message": "Stringly runtime event protocol detected.",
-      "evidence": "snap.events.append(f\"front:{receipt.role}:{receipt.disposition}\")"
-    },
-    {
-      "seam_id": "DQ-STR-EVENT",
-      "severity": "medium",
-      "file": "runtime.py",
-      "line": 235,
-      "category": "event_protocol",
-      "message": "Stringly runtime event protocol detected.",
-      "evidence": "snap.events.append(f\"session:{snap.vessel_session.lifecycle}:{snap.vessel_session.relaunch_action}\")"
-    },
-    {
-      "seam_id": "DQ-STR-EVENT",
-      "severity": "medium",
-      "file": "runtime.py",
-      "line": 236,
-      "category": "event_protocol",
-      "message": "Stringly runtime event protocol detected.",
-      "evidence": "snap.events.append(f\"recovery:{snap.vessel_recovery.recommended_action}\")"
-    },
-    {
-      "seam_id": "DQ-STR-EVENT",
-      "severity": "medium",
-      "file": "runtime.py",
-      "line": 237,
-      "category": "event_protocol",
-      "message": "Stringly runtime event protocol detected.",
-      "evidence": "snap.events.append(f\"triad:Cockpit>Forge>CILNX\")"
-    },
-    {
-      "seam_id": "DQ-STR-EVENT",
-      "severity": "medium",
-      "file": "runtime.py",
-      "line": 238,
-      "category": "event_protocol",
-      "message": "Stringly runtime event protocol detected.",
-      "evidence": "snap.events.append(f\"cilnx:{'online' if cilnx_receipt.available else 'missing'}:{cilnx_receipt.manifest_sequence}\")"
-    },
-    {
-      "seam_id": "DQ-ORPHAN",
-      "severity": "low",
-      "file": "forge_mcp_server.py",
-      "line": 1,
-      "category": "integration",
-      "message": "Potential capability island / lineage remnant; verify canonical role.",
-      "evidence": "forge_mcp_server.py"
-    },
-    {
-      "seam_id": "DQ-ORPHAN",
-      "severity": "low",
-      "file": "hud_theme.py",
-      "line": 1,
-      "category": "integration",
-      "message": "Potential capability island / lineage remnant; verify canonical role.",
-      "evidence": "hud_theme.py"
-    },
-    {
-      "seam_id": "DQ-ORPHAN",
-      "severity": "low",
-      "file": "kerr_ascii.py",
-      "line": 1,
-      "category": "integration",
-      "message": "Potential capability island / lineage remnant; verify canonical role.",
-      "evidence": "kerr_ascii.py"
-    },
-    {
-      "seam_id": "DQ-ORPHAN",
-      "severity": "low",
-      "file": "lbe_generic.py",
-      "line": 1,
-      "category": "integration",
-      "message": "Potential capability island / lineage remnant; verify canonical role.",
-      "evidence": "lbe_generic.py"
-    },
-    {
-      "seam_id": "DQ-ORPHAN",
-      "severity": "low",
-      "file": "local_model_adapter.py",
-      "line": 1,
-      "category": "integration",
-      "message": "Potential capability island / lineage remnant; verify canonical role.",
-      "evidence": "local_model_adapter.py"
-    },
-    {
-      "seam_id": "DQ-ORPHAN",
-      "severity": "low",
-      "file": "sw_oracle.py",
-      "line": 1,
-      "category": "integration",
-      "message": "Potential capability island / lineage remnant; verify canonical role.",
-      "evidence": "sw_oracle.py"
-    },
-    {
-      "seam_id": "DQ-ORPHAN",
-      "severity": "low",
-      "file": "util.py",
-      "line": 1,
-      "category": "integration",
-      "message": "Potential capability island / lineage remnant; verify canonical role.",
-      "evidence": "util.py"
     }
   ]
 }

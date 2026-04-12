@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from singularity_works.vessel import build_vessel_launch_plan, run_vessel_doctor
+from singularity_works.cockpit_runtime import build_vessel_launch_plan, run_vessel_doctor
 
 if __name__ == "__main__":
     doctor = run_vessel_doctor(ROOT)

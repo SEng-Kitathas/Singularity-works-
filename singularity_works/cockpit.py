@@ -1,7 +1,7 @@
 from __future__ import annotations
 # compatibility and naming promotion: canonical front-end shell name is now cockpit.
 
-from .vessel import (
+from .cockpit_runtime import (
     ClaudeProcessTarget,
     LaunchDisposition,
     ProcessLaunchReceipt,

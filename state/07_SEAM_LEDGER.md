@@ -19,7 +19,7 @@ Operative cycle: **PROBE → DERIVE → VERIFY → EMBODY → RECURSE**
 ## Top-level seam map
 
 ### M1 — Split truth between workshop ledger and CILNX continuity
-- **Status:** OPEN
+- **Status:** PARTIAL
 - **Meaning:** Workshop operational truth still derives primarily from `EvidenceLedger` / `evidence.jsonl` while continuity authority is moving toward CILNX.
 - **Current expression:** Cockpit session persistence and Forge evidence export ride the CILNX line, but workshop rollups and summaries are still ledger-first.
 - **Downstream seams now:**
@@ -35,7 +35,7 @@ Operative cycle: **PROBE → DERIVE → VERIFY → EMBODY → RECURSE**
 - **Closure evidence required:** summary/readback path and workshop rollups no longer depend on JSONL as canonical truth.
 
 ### M2 — Canonical naming still split between Cockpit and vessel
-- **Status:** OPEN
+- **Status:** CLOSED
 - **Meaning:** Architecture story says Cockpit, implementation substrate still largely lives in `vessel.py` with wrappers.
 - **Downstream seams now:**
   - M2.1 import drift
@@ -49,7 +49,7 @@ Operative cycle: **PROBE → DERIVE → VERIFY → EMBODY → RECURSE**
 - **Closure evidence required:** canonical internal module path uses Cockpit language; wrappers become compatibility-only or retire.
 
 ### M3 — CILNX is canonical by role but still bridge-shaped
-- **Status:** OPEN
+- **Status:** PARTIAL
 - **Meaning:** `cilnx_bridge.py` dynamically mounts the external CILNX scaffold instead of exposing a first-class native continuity subsystem.
 - **Downstream seams now:**
   - M3.1 external path brittleness
@@ -105,7 +105,7 @@ Operative cycle: **PROBE → DERIVE → VERIFY → EMBODY → RECURSE**
 - **Creates:** ownership drift, query ambiguity, projection duplication.
 
 ### S3 — Kerr/HUD substrate mostly converged but lineage remnants remain
-- **Status:** OPEN
+- **Status:** PARTIAL
 - **Files:** `ergo_kerr.py`, `ergo_boot.py`, `ergo_audio.py`, `hud.py`, `kerr_ascii.py`, `hud_theme.py`
 - **Meaning:** live substrate is real, but repo still contains alternative renderer/theme lineage.
 - **Creates:** regression risk, canonical renderer ambiguity.
@@ -141,7 +141,7 @@ Operative cycle: **PROBE → DERIVE → VERIFY → EMBODY → RECURSE**
 - **Creates:** portability, upgrade, integrity, and override seams.
 
 ### S9 — LBE family not singular
-- **Status:** OPEN
+- **Status:** PARTIAL
 - **Files:** `lbe_generic.py`, `lbe_pilot.py`, `lbe_universal.py`, `lbe_blueprint.py`
 - **Meaning:** multiple LBE generations remain in the live repo.
 - **Creates:** canonical LBE ambiguity and lineage-residue drift.
@@ -167,7 +167,7 @@ Operative cycle: **PROBE → DERIVE → VERIFY → EMBODY → RECURSE**
 - **Meaning:** untyped metadata can bypass stricter context evolution.
 
 ### μ3 — Compatibility wrappers remain live
-- **Status:** OPEN
+- **Status:** CLOSED
 - **Files:** `claude_vessel.py`, `forge_doctor.py`, `cockpit.py`
 - **Meaning:** wrapper presence signals canonical naming/substrate is not singular.
 
@@ -192,7 +192,7 @@ Operative cycle: **PROBE → DERIVE → VERIFY → EMBODY → RECURSE**
 - **Meaning:** another memory/continuity substrate exists beside the new canonical line.
 
 ### μ8 — Runtime/HUD event vocabulary partly stringly
-- **Status:** OPEN
+- **Status:** CLOSED
 - **Files:** `runtime.py`, `hud.py`
 - **Meaning:** typed state exists, but some event surfaces remain string protocols.
 
@@ -205,3 +205,14 @@ For every seam closure pass:
 3. note which downstream seams disappeared, narrowed, or were created
 4. rescore the relevant Forge one-page dimensions
 5. recurse only on the next real seam
+
+## Latest closure notes
+- M2 narrowed: canonical internal runtime promoted to `cockpit_runtime.py`; `vessel.py` reduced to compatibility wrapper.
+- M3 narrowed: CILNX discovery now prefers environment/discovery search over machine-specific absolute paths, though dynamic external mounting remains.
+- μ8 closed: runtime/HUD event surfaces now use `HudEventRecord` rather than raw string protocols.
+- M1 narrowed: EvidenceLedger now writes canonical records to the CILNX continuity line while mirroring the legacy ledger path for compatibility.
+- M2 closed: compatibility wrapper files removed; canonical internal module path is now `cockpit_runtime.py`.
+- μ3 closed: `vessel.py`, `claude_vessel.py`, and `forge_doctor.py` wrappers were retired from the live package surface.
+- S3 narrowed: retired `kerr_ascii.py` and `hud_theme.py` as non-canonical renderer/theme remnants.
+- S9 narrowed: retired `lbe_generic.py` from the live surface to reduce multi-lineage ambiguity.
+- μ4 narrowed: removed zero-inbound capability islands `local_model_adapter.py`, `sw_oracle.py`, and `util.py`.

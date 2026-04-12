@@ -5,12 +5,12 @@ from pathlib import Path
 import json
 import time
 
-from .cilnx_bridge import emit_singularity_continuity, locate_canonical_cilnx
+from .cilnx_bridge import emit_singularity_continuity, locate_canonical_cilnx, persist_forge_evidence_rollup
 from .evidence_ledger import EvidenceLedger
 from .ergo_boot import play_boot_sequence
-from .hud import ConsoleHUD, LaunchReceiptRecord, snapshot_from_run_result
+from .hud import ConsoleHUD, HudEventRecord, LaunchReceiptRecord, snapshot_from_run_result
 from .models import Requirement, RunContext
-from .vessel import build_vessel_launch_plan, derive_recovery_state, derive_session_state, evaluate_vessel_surface, load_persisted_vessel_session, persist_vessel_session, plan_unified_front, vessel_state_path
+from .cockpit_runtime import build_vessel_launch_plan, derive_recovery_state, derive_session_state, evaluate_vessel_surface, load_persisted_vessel_session, persist_vessel_session, plan_unified_front, vessel_state_path
 from .orchestration import Orchestrator
 from .window_anchor import maybe_apply_runtime_anchor
 
@@ -86,7 +86,7 @@ def _summary(base_dir: Path, ctx: RunContext, result, req: Requirement, orchestr
     transformation_candidates = [asdict(item) for item in (bus.transformation_candidates() if bus and hasattr(bus, "transformation_candidates") else [])]
     switchboard_decisions = [asdict(item) for item in (bus.switchboard_decisions() if bus and hasattr(bus, "switchboard_decisions") else [])]
     propagations = [asdict(item) for item in (bus.propagations() if bus and hasattr(bus, "propagations") else [])]
-    return {
+    summary = {
         "session_id": ctx.session_id,
         "artifact_id": result.artifact.artifact_id,
         "assurance": result.assurance.to_dict(),
@@ -116,8 +116,15 @@ def _summary(base_dir: Path, ctx: RunContext, result, req: Requirement, orchestr
         "genome_bundle": result.genome_bundle.to_legacy_dict(),
         "fact_summary": result.fact_summary,
     }
-
-
+    evidence_path = persist_forge_evidence_rollup(
+        base_dir,
+        session_id=ctx.session_id,
+        requirement_id=req.requirement_id,
+        artifact_id=result.artifact.artifact_id,
+        payload=summary,
+    )
+    summary["cilnx_evidence_export"] = str(evidence_path)
+    return summary
 
 
 def _render_summary(ctx: RunContext, req: Requirement, result, orchestrator: Orchestrator, *, play_boot: bool = True) -> None:
@@ -152,11 +159,11 @@ def _render_summary(ctx: RunContext, req: Requirement, result, orchestrator: Orc
     snap.risks = result.assurance.residual + result.assurance.falsified
     snap.warnings = result.recursive_audit["naivety_flags"]
     snap.events = [
-        "orchestration complete",
-        f"artifact={result.artifact.artifact_id}",
-        f"assurance={result.assurance.status}",
-        f"derive={result.derivation_trace.get('gate_count',0)} gates/{result.derivation_trace.get('monitor_count',0)} monitors",
-        f"verify={result.verification_trace.get('gate_verification',{}).get('status','unknown')}",
+        HudEventRecord(kind="orchestration", detail="complete"),
+        HudEventRecord(kind="artifact", detail=result.artifact.artifact_id),
+        HudEventRecord(kind="assurance", detail=result.assurance.status),
+        HudEventRecord(kind="derive", detail=f"{result.derivation_trace.get('gate_count',0)} gates/{result.derivation_trace.get('monitor_count',0)} monitors"),
+        HudEventRecord(kind="verify", detail=result.verification_trace.get('gate_verification',{}).get('status','unknown')),
     ]
     if play_boot:
         play_boot_sequence()
@@ -166,7 +173,7 @@ def _render_summary(ctx: RunContext, req: Requirement, result, orchestrator: Orc
     vessel_surface = evaluate_vessel_surface(project_root, anchor_supported=anchor_supported)
     front_receipt = plan_unified_front(build_vessel_launch_plan(project_root))
     if anchor_plan is not None:
-        snap.events.append(f"window_anchor={anchor_plan.get('note','none')}")
+        snap.events.append(HudEventRecord(kind='window_anchor', detail=anchor_plan.get('note','none')))
     previous_session = load_persisted_vessel_session(project_root)
     session_state = derive_session_state(vessel_surface, front_receipt)
     recovery_state = derive_recovery_state(previous_session, session_state, vessel_surface)
@@ -206,6 +213,7 @@ def _render_summary(ctx: RunContext, req: Requirement, result, orchestrator: Orc
     snap.stats['cilnx_root'] = Path(cilnx_location.root).name if cilnx_location.root else 'missing'
     snap.stats['cilnx_audit'] = 'ok' if cilnx_receipt.audit_ok else 'degraded'
     snap.stats['continuity_backend'] = 'cilnx_bridge'
+    snap.stats['forge_evidence'] = 'cilnx_export'
     snap.unified_front.receipts = [
         LaunchReceiptRecord(
             role=receipt.role,
@@ -223,11 +231,12 @@ def _render_summary(ctx: RunContext, req: Requirement, result, orchestrator: Orc
         snap.vessel_session.persisted_lifecycle = reloaded_persisted.lifecycle
     snap.vessel_session.state_file = vessel_state_path(project_root).name
     for receipt in snap.unified_front.receipts[:2]:
-        snap.events.append(f"front:{receipt.role}:{receipt.disposition}")
-    snap.events.append(f"session:{snap.vessel_session.lifecycle}:{snap.vessel_session.relaunch_action}")
-    snap.events.append(f"recovery:{snap.vessel_recovery.recommended_action}")
-    snap.events.append(f"triad:Cockpit>Forge>CILNX")
-    snap.events.append(f"cilnx:{'online' if cilnx_receipt.available else 'missing'}:{cilnx_receipt.manifest_sequence}")
+        snap.events.append(HudEventRecord(kind='front', detail=f"{receipt.role}:{receipt.disposition}"))
+    snap.events.append(HudEventRecord(kind='session', detail=f"{snap.vessel_session.lifecycle}:{snap.vessel_session.relaunch_action}"))
+    snap.events.append(HudEventRecord(kind='recovery', detail=snap.vessel_recovery.recommended_action))
+    snap.events.append(HudEventRecord(kind='triad', detail='Cockpit>Forge>CILNX'))
+    snap.events.append(HudEventRecord(kind='cilnx', detail=f"{'online' if cilnx_receipt.available else 'missing'}:{cilnx_receipt.manifest_sequence}"))
+    snap.events.append(HudEventRecord(kind='forge_evidence', detail='cilnx_export'))
     if vessel_surface.readiness.value != "ready":
         snap.warnings.append("vessel_surface_degraded")
     hud = ConsoleHUD()

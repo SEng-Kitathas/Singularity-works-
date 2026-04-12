@@ -5,8 +5,10 @@ from dataclasses import dataclass
 import json
 import hashlib
 import importlib.util
+import os
 import sys
 import time
+from functools import lru_cache
 from pathlib import Path
 from types import ModuleType
 from typing import Any
@@ -43,13 +45,117 @@ class CilnxBridgeReceipt:
         }
 
 
+@dataclass(frozen=True)
+class CilnxDiscoveryConfig:
+    env_var: str = 'CILNX_ROOT'
+    scaffold_name: str = 'cilnx_v0_6_scaffold'
+    ai_push_dir_name: str = 'AI_Pushes_Sandbox'
+
+
+@lru_cache(maxsize=1)
 def _candidate_roots() -> tuple[Path, ...]:
-    return (
-        Path(r'C:/Users/ancal/Desktop/AI_Pushes_Sandbox/historical data/Geometric reason/rosetta/CILNX_MASTER_DROP_2026-04-01/CILNX_MASTER_DROP_2026-04-01/builds/cilnx_v0_6_scaffold'),
-    )
+    config = CilnxDiscoveryConfig()
+    candidates: list[Path] = []
+    env_root = os.environ.get(config.env_var, '').strip()
+    if env_root:
+        candidates.append(Path(env_root))
+    home = Path.home()
+    desktop_root = home / 'Desktop' / config.ai_push_dir_name
+    if desktop_root.exists():
+        candidates.extend(desktop_root.rglob(config.scaffold_name))
+    repo_root = Path(__file__).resolve().parents[1]
+    for parent in [repo_root, *repo_root.parents]:
+        probe = parent / config.ai_push_dir_name
+        if probe.exists():
+            candidates.extend(probe.rglob(config.scaffold_name))
+    for drive in _available_windows_drives():
+        try:
+            candidates.extend(drive.rglob(config.scaffold_name))
+        except Exception:
+            continue
+    unique: list[Path] = []
+    seen: set[str] = set()
+    for candidate in candidates:
+        try:
+            resolved = candidate.resolve()
+        except Exception:
+            resolved = candidate
+        key = str(resolved).lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        unique.append(resolved)
+    return tuple(unique)
+
+
+def _available_windows_drives() -> tuple[Path, ...]:
+    roots: list[Path] = []
+    if os.name != 'nt':
+        return tuple()
+    for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ':
+        drive = Path(f'{letter}:/')
+        if drive.exists():
+            roots.append(drive)
+    return tuple(roots)
+
+
+def _search_support_file(filename: str) -> str:
+    for root in _candidate_roots():
+        ai_push_root = next((parent for parent in [root, *root.parents] if parent.name == 'AI_Pushes_Sandbox'), None)
+        if ai_push_root is None:
+            continue
+        try:
+            match = next(ai_push_root.rglob(filename))
+        except StopIteration:
+            continue
+        return str(match)
+    return ''
 
 
 
+
+
+
+def cilnx_forge_evidence_dir(project_root: str | Path) -> Path:
+    root = Path(project_root)
+    path = root / '.forge' / 'cilnx_bridge' / 'forge_evidence'
+    path.mkdir(parents=True, exist_ok=True)
+    return path
+
+
+def persist_forge_evidence_rollup(
+    project_root: str | Path,
+    *,
+    session_id: str,
+    requirement_id: str,
+    artifact_id: str,
+    payload: dict[str, Any],
+) -> Path:
+    out_dir = cilnx_forge_evidence_dir(project_root)
+    safe_session = session_id.replace('/', '_').replace('\\', '_')
+    safe_requirement = requirement_id.replace('/', '_').replace('\\', '_')
+    path = out_dir / f'{safe_session}__{safe_requirement}.json'
+    body = {
+        'session_id': session_id,
+        'requirement_id': requirement_id,
+        'artifact_id': artifact_id,
+        'payload': payload,
+    }
+    path.write_text(json.dumps(body, indent=2, sort_keys=True), encoding='utf-8')
+    return path
+
+
+def load_forge_evidence_rollup(project_root: str | Path, *, session_id: str, requirement_id: str) -> dict[str, Any] | None:
+    out_dir = cilnx_forge_evidence_dir(project_root)
+    safe_session = session_id.replace('/', '_').replace('\\', '_')
+    safe_requirement = requirement_id.replace('/', '_').replace('\\', '_')
+    path = out_dir / f'{safe_session}__{safe_requirement}.json'
+    if not path.exists():
+        return None
+    try:
+        return json.loads(path.read_text(encoding='utf-8'))
+    except Exception:
+        return None
 
 def cilnx_session_state_path(project_root: str | Path) -> Path:
     root = Path(project_root)
@@ -77,16 +183,16 @@ def locate_canonical_cilnx() -> CilnxLocation:
     for root in _candidate_roots():
         python_ref = root / 'python_ref' / 'cilnx_ref.py'
         schema_path = root / 'schema' / 'cilnx.fbs'
-        adapter_report = Path(r'C:/Users/ancal/Desktop/AI_Pushes_Sandbox/historical data/Geometric reason/TQ2/GEOMETRIC_THREAD_PROJECT_ARCHIVE/06_CIL_ADAPTER/GEOMETRIC_CILNX_V0_6_ADAPTER_REPORT.md')
-        memory_schema = Path(r'C:/Users/ancal/Desktop/AI_Pushes_Sandbox/system/CILNX_ROUTED_STATEFUL_MEMORY_SCHEMA_2026-04-09.md')
+        adapter_report = Path(_search_support_file('GEOMETRIC_CILNX_V0_6_ADAPTER_REPORT.md')) if _search_support_file('GEOMETRIC_CILNX_V0_6_ADAPTER_REPORT.md') else Path()
+        memory_schema = Path(_search_support_file('CILNX_ROUTED_STATEFUL_MEMORY_SCHEMA_2026-04-09.md')) if _search_support_file('CILNX_ROUTED_STATEFUL_MEMORY_SCHEMA_2026-04-09.md') else Path()
         if python_ref.exists() and schema_path.exists():
             return CilnxLocation(
                 available=True,
                 root=str(root),
                 python_ref=str(python_ref),
                 schema_path=str(schema_path),
-                adapter_report=str(adapter_report) if adapter_report.exists() else '',
-                memory_schema=str(memory_schema) if memory_schema.exists() else '',
+                adapter_report=str(adapter_report) if adapter_report and adapter_report.exists() else '',
+                memory_schema=str(memory_schema) if memory_schema and memory_schema.exists() else '',
                 version_hint='v0.6',
             )
     return CilnxLocation(False, '', '', '', '', '', '')

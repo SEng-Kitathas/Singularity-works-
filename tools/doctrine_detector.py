@@ -12,8 +12,10 @@ This detector is intentionally conservative. It is a seam-finder, not a proof en
 
 from dataclasses import dataclass, asdict
 import ast
+import io
 import json
 import re
+import tokenize
 from pathlib import Path
 from typing import Iterable
 
@@ -52,6 +54,43 @@ def _iter_live_py(package_root: Path) -> Iterable[Path]:
 
 def _parse(path: Path) -> ast.AST:
     return ast.parse(path.read_text(encoding="utf-8", errors="replace"), filename=str(path))
+
+
+def _todo_comment_findings(path: Path) -> list[tuple[int, str]]:
+    findings: list[tuple[int, str]] = []
+    tokens = tokenize.generate_tokens(io.StringIO(path.read_text(encoding="utf-8", errors="replace")).readline)
+    for token in tokens:
+        if token.type == tokenize.COMMENT:
+            low = token.string.lower()
+            if 'todo' in low or 'fixme' in low:
+                findings.append((token.start[0], token.string.strip()))
+    return findings
+
+
+def _has_dynamic_import(tree: ast.AST) -> int | None:
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            for alias in node.names:
+                if alias.name == 'importlib' or alias.name.startswith('importlib.'):
+                    return getattr(node, 'lineno', 1)
+        elif isinstance(node, ast.ImportFrom):
+            if node.module == 'importlib' or (node.module and node.module.startswith('importlib.')):
+                return getattr(node, 'lineno', 1)
+        elif isinstance(node, ast.Call):
+            if isinstance(node.func, ast.Attribute) and node.func.attr == 'spec_from_file_location':
+                return getattr(node, 'lineno', 1)
+            if isinstance(node.func, ast.Name) and node.func.id == '__import__':
+                return getattr(node, 'lineno', 1)
+    return None
+
+
+def _absolute_path_findings(path: Path) -> list[tuple[int, str]]:
+    findings: list[tuple[int, str]] = []
+    absolute_pattern = re.compile(r"(?<![A-Za-z])[A-Z]:[\\/]", re.IGNORECASE)
+    for idx, line in enumerate(path.read_text(encoding="utf-8", errors="replace").splitlines(), start=1):
+        if absolute_pattern.search(line):
+            findings.append((idx, line.strip()))
+    return findings
 
 
 def _module_stats(path: Path, tree: ast.AST) -> ModuleStats:
@@ -95,22 +134,38 @@ def _has_phrase(path: Path, pattern: re.Pattern[str]) -> list[Finding]:
 def detect(package_root: Path) -> tuple[list[ModuleStats], list[Finding]]:
     findings: list[Finding] = []
     stats: list[ModuleStats] = []
-
+    module_names = {path.stem for path in _iter_live_py(package_root)}
+    inbound: dict[str, int] = {name: 0 for name in module_names}
+    texts: dict[str, str] = {}
+    trees: dict[str, ast.AST] = {}
     for path in _iter_live_py(package_root):
         text = path.read_text(encoding="utf-8", errors="replace")
         tree = _parse(path)
+        texts[path.name] = text
+        trees[path.name] = tree
+        for node in ast.walk(tree):
+            if isinstance(node, ast.ImportFrom) and node.module and node.level == 1 and node.module in module_names:
+                inbound[node.module] = inbound.get(node.module, 0) + 1
+            elif isinstance(node, ast.ImportFrom) and node.module and node.module.startswith('singularity_works.'):
+                mod = node.module.split('.')[-1]
+                if mod in module_names:
+                    inbound[mod] = inbound.get(mod, 0) + 1
+
+    for path in _iter_live_py(package_root):
+        text = texts[path.name]
+        tree = trees[path.name]
         stats.append(_module_stats(path, tree))
 
         # TODO / stub pressure
-        for idx, line in enumerate(text.splitlines(), start=1):
-            low = line.lower()
-            if "todo" in low or "fixme" in low or "notimplementederror" in low or "unimplemented" in low:
-                findings.append(Finding("DQ-STUB", "high", path.name, idx, "stub", "Stub/TODO-like construct detected.", line.strip()))
+        for idx, comment in _todo_comment_findings(path):
+            findings.append(Finding("DQ-STUB", "high", path.name, idx, "stub", "TODO/FIXME comment marker detected.", comment))
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Raise) and isinstance(node.exc, ast.Call) and isinstance(node.exc.func, ast.Name) and node.exc.func.id == 'NotImplementedError':
+                findings.append(Finding("DQ-STUB", "high", path.name, getattr(node, 'lineno', 1), "stub", "NotImplementedError raise detected.", 'raise NotImplementedError(...)'))
 
         # hardcoded absolute paths
-        for idx, line in enumerate(text.splitlines(), start=1):
-            if "C:/Users/ancal" in line or "D:/Singularity_Works" in line or "AI_Pushes_Sandbox" in line:
-                findings.append(Finding("DQ-PATH", "high", path.name, idx, "portability", "Hardcoded machine-specific path detected.", line.strip()))
+        for idx, line in _absolute_path_findings(path):
+            findings.append(Finding("DQ-PATH", "high", path.name, idx, "portability", "Hardcoded absolute path detected.", line))
 
         # compatibility wrapper detection
         if "compatibility wrapper" in text.lower():
@@ -124,10 +179,9 @@ def detect(package_root: Path) -> tuple[list[ModuleStats], list[Finding]]:
                     break
 
         # dynamic import / external mounting
-        for idx, line in enumerate(text.splitlines(), start=1):
-            if "spec_from_file_location" in line or "importlib" in line:
-                findings.append(Finding("DQ-DYNIMPORT", "medium", path.name, idx, "integration", "Dynamic import / mounted external dependency detected.", line.strip()))
-                break
+        dyn_line = _has_dynamic_import(tree)
+        if dyn_line is not None:
+            findings.append(Finding("DQ-DYNIMPORT", "medium", path.name, dyn_line, "integration", "Dynamic import / mounted external dependency detected.", path.name))
 
         # stringly runtime events
         for idx, line in enumerate(text.splitlines(), start=1):
@@ -151,7 +205,7 @@ def detect(package_root: Path) -> tuple[list[ModuleStats], list[Finding]]:
             findings.append(Finding("DQ-PAYLOAD", "medium", path.name, 1, "soft_boundary", "EvidenceRecord payload remains a soft dict boundary.", "EvidenceRecord.payload"))
 
         # zero-inbound lineage remnants heuristics
-        if path.name in {"kerr_ascii.py", "hud_theme.py", "lbe_generic.py", "local_model_adapter.py", "sw_oracle.py", "forge_mcp_server.py", "util.py"}:
+        if inbound.get(path.stem, 0) == 0 and path.name not in {"__init__.py", "runtime.py", "cockpit_runtime.py", "cockpit.py", "assurance.py", "models.py", "evidence_ledger.py", "facts.py", "orchestration.py", "hud.py", "forge_mcp_server.py"}:
             findings.append(Finding("DQ-ORPHAN", "low", path.name, 1, "integration", "Potential capability island / lineage remnant; verify canonical role.", path.name))
 
     findings.sort(key=lambda f: (-SEVERITY_ORDER[f.severity], f.file, f.line, f.seam_id))

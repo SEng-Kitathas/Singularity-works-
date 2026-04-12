@@ -257,6 +257,15 @@ class FractalEventRecord:
 
 
 @dataclass
+class HudEventRecord:
+    kind: str = "info"
+    detail: str = ""
+
+    def render(self) -> str:
+        return f"{self.kind}:{self.detail}" if self.detail else self.kind
+
+
+@dataclass
 class LaunchReceiptRecord:
     role: str = ""
     disposition: str = "skipped"
@@ -347,7 +356,7 @@ class HudSnapshot:
     stats: dict[str, str]  = field(default_factory=dict)
     risks: list[str]       = field(default_factory=list)
     warnings: list[str]    = field(default_factory=list)
-    events: list[str]      = field(default_factory=list)
+    events: list[HudEventRecord] = field(default_factory=list)
 
     # Typed doctrine-aligned runtime traces
     derivation: DerivationTraceRecord = field(default_factory=DerivationTraceRecord)
@@ -491,7 +500,8 @@ class ConsoleHUD:
 
         lines.append(_c(_C.FG_DIM, "─" * cols))
         for item in snap.events[-5:]:
-            lines.append(f"  {_c(_C.FG_DIM, item[:cols - 4])}")
+            rendered = item.render()
+            lines.append(f"  {_c(_C.FG_DIM, rendered[:cols - 4])}")
 
         return "\n".join(lines) + _C.RESET + "\n"
 
@@ -833,6 +843,7 @@ class ConsoleHUD:
         rows.append(self._crop(f"  front=Cockpit readiness={snap.unified_front.readiness}", width))
         rows.append(self._crop(f"  workshop=Forge continuity=CILNX", width))
         rows.append(self._crop(f"  backend=cilnx_bridge achieved={'yes' if snap.unified_front.unified_front_achieved else 'no'}", width))
+        rows.append(self._crop("  forge_evidence=cilnx_export", width))
         if snap.unified_front.receipts:
             for receipt in snap.unified_front.receipts[:3]:
                 pid = f" pid={receipt.pid}" if receipt.pid is not None else ""
@@ -894,7 +905,7 @@ class ConsoleHUD:
         lines = [_c(_C.FG_ACCENT, "EVENTS")]
         for item in snap.events[-6:]:
             ts_marker = _c(_C.FG_DIM, "·")
-            lines.append(f" {ts_marker} {_c(_C.FG_DIM, self._crop(item, cols - 5))}")
+            lines.append(f" {ts_marker} {_c(_C.FG_DIM, self._crop(item.render(), cols - 5))}")
         return "\n".join(lines)
 
     # ── Helpers ───────────────────────────────────────────────────────────────
