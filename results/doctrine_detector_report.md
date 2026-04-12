@@ -1,17 +1,16 @@
 # Doctrine Detector Report
 
-- Modules scanned: 54
-- Findings: 14
+- Modules scanned: 58
+- Findings: 13
 
 ## Severity counts
 - critical: 0
 - high: 0
-- medium: 14
+- medium: 13
 - low: 0
 
 ## Findings
-- [DQ-DICT-HOTSPOT] MEDIUM forge_context.py:1 — High dict-literal density (53) suggests possible dict spill hotspot. | `forge_context.py`
-- [DQ-SIZE] MEDIUM forge_context.py:1 — Large module (1407 lines) may indicate concentration seam. | `forge_context.py`
+- [DQ-SIZE] MEDIUM forge_context_memory.py:1 — Large module (582 lines) may indicate concentration seam. | `forge_context_memory.py`
 - [DQ-DICT-HOTSPOT] MEDIUM genome_gate_factory.py:1 — High dict-literal density (150) suggests possible dict spill hotspot. | `genome_gate_factory.py`
 - [DQ-SIZE] MEDIUM genome_gate_factory.py:1 — Large module (5068 lines) may indicate concentration seam. | `genome_gate_factory.py`
 - [DQ-SIZE] MEDIUM hud.py:1 — Large module (1322 lines) may indicate concentration seam. | `hud.py`
@@ -48,7 +47,11 @@
 - evidence_rollups.py: lines=338, classes=1, dataclasses=0, enums=0, functions=5, dict_literals=12
 - facts.py: lines=442, classes=2, dataclasses=1, enums=0, functions=34, dict_literals=5
 - facts_payloads.py: lines=450, classes=13, dataclasses=13, enums=0, functions=18, dict_literals=2
-- forge_context.py: lines=1407, classes=7, dataclasses=4, enums=1, functions=66, dict_literals=53
+- forge_context.py: lines=212, classes=1, dataclasses=0, enums=0, functions=12, dict_literals=26
+- forge_context_blocks.py: lines=414, classes=6, dataclasses=4, enums=1, functions=25, dict_literals=16
+- forge_context_cli.py: lines=68, classes=0, dataclasses=0, enums=0, functions=1, dict_literals=0
+- forge_context_memory.py: lines=582, classes=1, dataclasses=0, enums=0, functions=14, dict_literals=11
+- forge_context_ops.py: lines=135, classes=1, dataclasses=0, enums=0, functions=14, dict_literals=6
 - forge_mcp_server.py: lines=482, classes=0, dataclasses=0, enums=0, functions=9, dict_literals=15
 - forge_starmap.py: lines=486, classes=3, dataclasses=2, enums=0, functions=22, dict_literals=8
 - fractal_cycle.py: lines=42, classes=3, dataclasses=2, enums=0, functions=2, dict_literals=2

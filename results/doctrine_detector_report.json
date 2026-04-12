@@ -200,12 +200,48 @@
     },
     {
       "file": "forge_context.py",
-      "classes": 7,
+      "classes": 1,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 12,
+      "dict_literals": 26,
+      "lines": 212
+    },
+    {
+      "file": "forge_context_blocks.py",
+      "classes": 6,
       "dataclasses": 4,
       "enums": 1,
-      "functions": 66,
-      "dict_literals": 53,
-      "lines": 1407
+      "functions": 25,
+      "dict_literals": 16,
+      "lines": 414
+    },
+    {
+      "file": "forge_context_cli.py",
+      "classes": 0,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 1,
+      "dict_literals": 0,
+      "lines": 68
+    },
+    {
+      "file": "forge_context_memory.py",
+      "classes": 1,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 14,
+      "dict_literals": 11,
+      "lines": 582
+    },
+    {
+      "file": "forge_context_ops.py",
+      "classes": 1,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 14,
+      "dict_literals": 6,
+      "lines": 135
     },
     {
       "file": "forge_mcp_server.py",
@@ -489,22 +525,13 @@
   ],
   "findings": [
     {
-      "seam_id": "DQ-DICT-HOTSPOT",
-      "severity": "medium",
-      "file": "forge_context.py",
-      "line": 1,
-      "category": "typed_boundary",
-      "message": "High dict-literal density (53) suggests possible dict spill hotspot.",
-      "evidence": "forge_context.py"
-    },
-    {
       "seam_id": "DQ-SIZE",
       "severity": "medium",
-      "file": "forge_context.py",
+      "file": "forge_context_memory.py",
       "line": 1,
       "category": "module_size",
-      "message": "Large module (1407 lines) may indicate concentration seam.",
-      "evidence": "forge_context.py"
+      "message": "Large module (582 lines) may indicate concentration seam.",
+      "evidence": "forge_context_memory.py"
     },
     {
       "seam_id": "DQ-DICT-HOTSPOT",
