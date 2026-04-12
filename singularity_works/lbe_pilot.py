@@ -93,6 +93,107 @@ class IREdge:
     properties: dict[str, Any] = field(default_factory=dict)
 
 
+@dataclass(frozen=True)
+class TrustAnnotation:
+    kind: str
+    line: int
+    call: str = ""
+    var: str = ""
+    trust_type: str = ""
+    claim_type: str = ""
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "kind": self.kind,
+            "line": self.line,
+            "call": self.call,
+            "var": self.var,
+            "trust_type": self.trust_type,
+            "claim_type": self.claim_type,
+        }
+
+
+@dataclass(frozen=True)
+class EntrySource:
+    source: str
+    var: str
+    line: int
+    trust: str = "untrusted"
+    confidence: str = "parsed"
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "source": self.source,
+            "var": self.var,
+            "line": self.line,
+            "trust": self.trust,
+            "confidence": self.confidence,
+        }
+
+    @classmethod
+    def from_raw(cls, raw: dict[str, Any]) -> "EntrySource":
+        return cls(
+            source=str(raw.get("source", "") or ""),
+            var=str(raw.get("var", "") or ""),
+            line=int(raw.get("line", 0) or 0),
+            trust=str(raw.get("trust", "untrusted") or "untrusted"),
+            confidence=str(raw.get("confidence", "parsed") or "parsed"),
+        )
+
+
+@dataclass(frozen=True)
+class SinkRecord:
+    sink_kind: str
+    var: str
+    line: int
+    tainted: bool
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "sink_kind": self.sink_kind,
+            "var": self.var,
+            "line": self.line,
+            "tainted": self.tainted,
+        }
+
+    @classmethod
+    def from_raw(cls, raw: dict[str, Any]) -> "SinkRecord":
+        return cls(
+            sink_kind=str(raw.get("sink_kind", "") or ""),
+            var=str(raw.get("var", "") or ""),
+            line=int(raw.get("line", 0) or 0),
+            tainted=bool(raw.get("tainted", False)),
+        )
+
+
+@dataclass(frozen=True)
+class BlobLineage:
+    artifact_id: str = ""
+    callable_id: str = ""
+    sink_line: int = 0
+    source_count: int = 0
+    sink_count: int = 0
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "artifact_id": self.artifact_id,
+            "callable_id": self.callable_id,
+            "sink_line": self.sink_line,
+            "source_count": self.source_count,
+            "sink_count": self.sink_count,
+        }
+
+    @classmethod
+    def from_raw(cls, raw: dict[str, Any]) -> "BlobLineage":
+        return cls(
+            artifact_id=str(raw.get("artifact_id", "") or ""),
+            callable_id=str(raw.get("callable_id", "") or ""),
+            sink_line=int(raw.get("sink_line", 0) or 0),
+            source_count=int(raw.get("source_count", 0) or 0),
+            sink_count=int(raw.get("sink_count", 0) or 0),
+        )
+
+
 @dataclass
 class ForgeIR:
     """Complete 4-layer Forge IR for one artifact."""
@@ -115,7 +216,7 @@ class ForgeIR:
     transforms: list[IRNode] = field(default_factory=list)  # transform nodes
 
     # Layer 3: Semantic
-    trust_annotations: list[dict] = field(default_factory=list)
+    trust_annotations: list[TrustAnnotation] = field(default_factory=list)
     taint_flows: list[dict] = field(default_factory=list)
     ownership_annotations: list[dict] = field(default_factory=list)
     invariant_annotations: list[dict] = field(default_factory=list)
@@ -156,10 +257,10 @@ class PathState:
 
     # Effect accumulation
     effects_reached: list[str] = field(default_factory=list)
-    sinks_reached: list[dict] = field(default_factory=list)
+    sinks_reached: list[SinkRecord] = field(default_factory=list)
 
     # Source tracking
-    entry_sources: list[dict] = field(default_factory=list)
+    entry_sources: list[EntrySource] = field(default_factory=list)
     transform_chain: list[str] = field(default_factory=list)
 
     # Ambiguity and confidence
@@ -171,10 +272,9 @@ class PathState:
 
     def record_taint(self, var: str, source: str, line: int) -> None:
         self.tainted_symbols.add(var)
-        self.entry_sources.append({
-            "source": source, "var": var, "line": line,
-            "trust": "untrusted", "confidence": "parsed"
-        })
+        self.entry_sources.append(
+            EntrySource(source=source, var=var, line=line, trust="untrusted", confidence="parsed")
+        )
 
     def record_transform(self, kind: str, input_var: str, output_var: str) -> None:
         self.transform_chain.append(f"{kind}({input_var}→{output_var})")
@@ -184,10 +284,9 @@ class PathState:
 
     def record_sink(self, sink_kind: str, var: str, line: int) -> None:
         self.effects_reached.append(sink_kind)
-        self.sinks_reached.append({
-            "sink_kind": sink_kind, "var": var, "line": line,
-            "tainted": self.is_tainted(var),
-        })
+        self.sinks_reached.append(
+            SinkRecord(sink_kind=sink_kind, var=var, line=line, tainted=self.is_tainted(var))
+        )
 
 
 # ── Blob (emitted artifact) ───────────────────────────────────────────────
@@ -205,10 +304,10 @@ class Blob:
     module_id: str
 
     # Behavior content
-    entry_sources: list[dict]
+    entry_sources: list[EntrySource]
     transform_chain: list[str]
     effects: list[str]
-    sinks: list[dict]
+    sinks: list[SinkRecord]
 
     # Trust state
     trust_claims: list[str]
@@ -226,7 +325,19 @@ class Blob:
     confidence_class: str = "high-confidence inferred"
     verdict: str = ""
     notes: list[str] = field(default_factory=list)
-    lineage: dict = field(default_factory=dict)
+    lineage: BlobLineage = field(default_factory=BlobLineage)
+
+    def __post_init__(self) -> None:
+        self.entry_sources = [
+            item if isinstance(item, EntrySource) else EntrySource.from_raw(item)
+            for item in self.entry_sources
+        ]
+        self.sinks = [
+            item if isinstance(item, SinkRecord) else SinkRecord.from_raw(item)
+            for item in self.sinks
+        ]
+        if not isinstance(self.lineage, BlobLineage):
+            self.lineage = BlobLineage.from_raw(self.lineage)
 
     def to_dict(self) -> dict:
         return {
@@ -235,10 +346,10 @@ class Blob:
             "checkpoint_kind": self.checkpoint_kind,
             "callable_id": self.callable_id,
             "module_id": self.module_id,
-            "entry_sources": self.entry_sources,
+            "entry_sources": [item.to_dict() for item in self.entry_sources],
             "transform_chain": self.transform_chain,
             "effects": self.effects,
-            "sinks": self.sinks,
+            "sinks": [item.to_dict() for item in self.sinks],
             "trust_claims": self.trust_claims,
             "trust_earned": self.trust_earned,
             "trust_state": self.trust_state,
@@ -251,6 +362,7 @@ class Blob:
             "confidence_class": self.confidence_class,
             "verdict": self.verdict,
             "notes": self.notes,
+            "lineage": self.lineage.to_dict(),
         }
 
 
@@ -630,12 +742,9 @@ def lower(code: str, artifact_id: str = "") -> ForgeIR:
             elif isinstance(c.func, ast.Name):
                 fname = c.func.id
             if fname in _TRUST_EARNED_CALLS:
-                ir.trust_annotations.append({
-                    "kind": "earned",
-                    "call": fname,
-                    "line": c.lineno,
-                    "trust_type": "verified_" + fname,
-                })
+                ir.trust_annotations.append(
+                    TrustAnnotation(kind="earned", call=fname, line=c.lineno, trust_type="verified_" + fname)
+                )
 
     # Check for trust claims (variable names suggesting safety)
     for fn_node in ast.walk(tree):
@@ -646,12 +755,9 @@ def lower(code: str, artifact_id: str = "") -> ForgeIR:
                         if isinstance(t, ast.Name):
                             for claim in _TRUST_CLAIM_NAMES:
                                 if t.id.startswith(claim) or t.id.endswith(claim.strip("_")):
-                                    ir.trust_annotations.append({
-                                        "kind": "claim",
-                                        "var": t.id,
-                                        "line": child.lineno,
-                                        "claim_type": "naming_convention_safety",
-                                    })
+                                    ir.trust_annotations.append(
+                                        TrustAnnotation(kind="claim", var=t.id, line=child.lineno, claim_type="naming_convention_safety")
+                                    )
 
     return ir
 
@@ -710,13 +816,17 @@ def walk_paths(ir: ForgeIR, code: str) -> list[PathState]:
             if req_var not in ps.tainted_symbols:
                 ps.tainted_symbols.add(req_var)
                 # Record as entry source if not already present
-                already = any(s.get("var") == req_var for s in ps.entry_sources)
+                already = any(s.var == req_var for s in ps.entry_sources)
                 if not already:
-                    ps.entry_sources.append({
-                        "source": "request", "var": req_var,
-                        "line": sources[0].line if sources else 0,
-                        "trust": "untrusted", "confidence": "parsed",
-                    })
+                    ps.entry_sources.append(
+                        EntrySource(
+                            source="request",
+                            var=req_var,
+                            line=sources[0].line if sources else 0,
+                            trust="untrusted",
+                            confidence="parsed",
+                        )
+                    )
 
         # Propagate taint through assignment chains
         changed = True
@@ -737,8 +847,8 @@ def walk_paths(ir: ForgeIR, code: str) -> list[PathState]:
 
         # Check trust annotations in this callable's scope
         for ann in ir.trust_annotations:
-            if ann.get("kind") == "earned":
-                earned_call = ann.get("call", "")
+            if ann.kind == "earned":
+                earned_call = ann.call
                 ps.trust_earned.append(f"verified_{earned_call}")
                 # Mark the relevant symbol as sanitized if it's tainted
                 # (conservative: only mark as sanitized if it's the only tainted var)
@@ -747,8 +857,8 @@ def walk_paths(ir: ForgeIR, code: str) -> list[PathState]:
                     ps.sanitized_symbols.add(var)
                     ps.sanitization_proofs.append(earned_call)
 
-            elif ann.get("kind") == "claim":
-                var = ann.get("var", "")
+            elif ann.kind == "claim":
+                var = ann.var
                 ps.trust_claims.append(f"naming_convention:{var}")
 
         # Determine overall trust state
@@ -842,9 +952,9 @@ def emit_blobs(ir: ForgeIR, paths: list[PathState], starmap_metrics=None) -> lis
     for ps in paths:
         for sink_rec in ps.sinks_reached:
             blob_counter[0] += 1
-            sink_kind = sink_rec["sink_kind"]
-            tainted = sink_rec["tainted"]
-            sink_line = sink_rec.get("line", 0)
+            sink_kind = sink_rec.sink_kind
+            tainted = sink_rec.tainted
+            sink_line = sink_rec.line
 
             # Score computation
             risk = _score_risk(sink_kind, tainted, ps)
@@ -899,6 +1009,13 @@ def emit_blobs(ir: ForgeIR, paths: list[PathState], starmap_metrics=None) -> lis
                 confidence_class=confidence,
                 verdict=verdict,
                 notes=_build_notes(sink_kind, tainted, ps),
+                lineage=BlobLineage(
+                    artifact_id=ir.artifact_id,
+                    callable_id=ps.callable_id,
+                    sink_line=sink_line,
+                    source_count=len(ps.entry_sources),
+                    sink_count=len(ps.sinks_reached),
+                ),
             )
             blobs.append(blob)
 
