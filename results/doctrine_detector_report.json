@@ -230,9 +230,9 @@
       "classes": 1,
       "dataclasses": 0,
       "enums": 0,
-      "functions": 14,
-      "dict_literals": 11,
-      "lines": 582
+      "functions": 0,
+      "dict_literals": 0,
+      "lines": 10
     },
     {
       "file": "forge_context_ops.py",
@@ -242,6 +242,24 @@
       "functions": 14,
       "dict_literals": 6,
       "lines": 135
+    },
+    {
+      "file": "forge_context_semantic.py",
+      "classes": 1,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 9,
+      "dict_literals": 6,
+      "lines": 315
+    },
+    {
+      "file": "forge_context_session.py",
+      "classes": 1,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 5,
+      "dict_literals": 5,
+      "lines": 280
     },
     {
       "file": "forge_mcp_server.py",
@@ -524,15 +542,6 @@
     }
   ],
   "findings": [
-    {
-      "seam_id": "DQ-SIZE",
-      "severity": "medium",
-      "file": "forge_context_memory.py",
-      "line": 1,
-      "category": "module_size",
-      "message": "Large module (582 lines) may indicate concentration seam.",
-      "evidence": "forge_context_memory.py"
-    },
     {
       "seam_id": "DQ-DICT-HOTSPOT",
       "severity": "medium",

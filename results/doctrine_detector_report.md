@@ -1,16 +1,15 @@
 # Doctrine Detector Report
 
-- Modules scanned: 58
-- Findings: 13
+- Modules scanned: 60
+- Findings: 12
 
 ## Severity counts
 - critical: 0
 - high: 0
-- medium: 13
+- medium: 12
 - low: 0
 
 ## Findings
-- [DQ-SIZE] MEDIUM forge_context_memory.py:1 — Large module (582 lines) may indicate concentration seam. | `forge_context_memory.py`
 - [DQ-DICT-HOTSPOT] MEDIUM genome_gate_factory.py:1 — High dict-literal density (150) suggests possible dict spill hotspot. | `genome_gate_factory.py`
 - [DQ-SIZE] MEDIUM genome_gate_factory.py:1 — Large module (5068 lines) may indicate concentration seam. | `genome_gate_factory.py`
 - [DQ-SIZE] MEDIUM hud.py:1 — Large module (1322 lines) may indicate concentration seam. | `hud.py`
@@ -50,8 +49,10 @@
 - forge_context.py: lines=212, classes=1, dataclasses=0, enums=0, functions=12, dict_literals=26
 - forge_context_blocks.py: lines=414, classes=6, dataclasses=4, enums=1, functions=25, dict_literals=16
 - forge_context_cli.py: lines=68, classes=0, dataclasses=0, enums=0, functions=1, dict_literals=0
-- forge_context_memory.py: lines=582, classes=1, dataclasses=0, enums=0, functions=14, dict_literals=11
+- forge_context_memory.py: lines=10, classes=1, dataclasses=0, enums=0, functions=0, dict_literals=0
 - forge_context_ops.py: lines=135, classes=1, dataclasses=0, enums=0, functions=14, dict_literals=6
+- forge_context_semantic.py: lines=315, classes=1, dataclasses=0, enums=0, functions=9, dict_literals=6
+- forge_context_session.py: lines=280, classes=1, dataclasses=0, enums=0, functions=5, dict_literals=5
 - forge_mcp_server.py: lines=482, classes=0, dataclasses=0, enums=0, functions=9, dict_literals=15
 - forge_starmap.py: lines=486, classes=3, dataclasses=2, enums=0, functions=22, dict_literals=8
 - fractal_cycle.py: lines=42, classes=3, dataclasses=2, enums=0, functions=2, dict_literals=2
