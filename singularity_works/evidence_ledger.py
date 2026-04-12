@@ -86,20 +86,16 @@ class EvidenceLedger:
         return out
 
     def _matches(self, record: dict[str, Any], **criteria: Any) -> bool:
-        payload = record.get("payload", {})
-        for key, value in criteria.items():
-            if record.get(key) != value and payload.get(key) != value:
-                return False
-        return True
+        from .evidence_queries import matches
+        return matches(record, **criteria)
 
     def filter(self, **criteria: Any) -> list[dict[str, Any]]:
-        return [r for r in self.load_all() if self._matches(r, **criteria)]
+        from .evidence_queries import filter_records
+        return filter_records(self, **criteria)
 
     def _session_records(self, session_id: str | None) -> list[dict[str, Any]]:
-        records = self.load_all()
-        if not session_id:
-            return records
-        return [r for r in records if session_id in str(r.get("record_id", ""))]
+        from .evidence_queries import session_records
+        return session_records(self, session_id)
 
     def gate_results_typed(self, session_id: str | None = None) -> list[GateLedgerPayload]:
         return [

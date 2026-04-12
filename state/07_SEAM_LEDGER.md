@@ -216,3 +216,8 @@ For every seam closure pass:
 - S3 narrowed: retired `kerr_ascii.py` and `hud_theme.py` as non-canonical renderer/theme remnants.
 - S9 narrowed: retired `lbe_generic.py` from the live surface to reduce multi-lineage ambiguity.
 - μ4 narrowed: removed zero-inbound capability islands `local_model_adapter.py`, `sw_oracle.py`, and `util.py`.
+
+- M3 closed: runtime continuity now uses internalized `cilnx_ref_v06.py` instead of dynamic external python-ref mounting.
+- S1 narrowed: Evidence ledger now writes to CILNX-backed continuity and has payload/query/rollup helper separation.
+- S2 narrowed: fact payload/codecs extracted from FactBus body into `facts_payloads.py`.
+- S10 narrowed: MCP and bounty helper/spec surfaces extracted from god-nodes.

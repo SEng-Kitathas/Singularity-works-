@@ -28,13 +28,31 @@
       "lines": 45
     },
     {
+      "file": "bounty_reference.py",
+      "classes": 0,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 2,
+      "dict_literals": 42,
+      "lines": 117
+    },
+    {
       "file": "bounty_reporter.py",
       "classes": 2,
-      "dataclasses": 2,
+      "dataclasses": 1,
       "enums": 0,
-      "functions": 13,
-      "dict_literals": 52,
-      "lines": 754
+      "functions": 7,
+      "dict_literals": 7,
+      "lines": 460
+    },
+    {
+      "file": "bounty_text.py",
+      "classes": 0,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 4,
+      "dict_literals": 3,
+      "lines": 190
     },
     {
       "file": "cil_council.py",
@@ -52,7 +70,16 @@
       "enums": 0,
       "functions": 15,
       "dict_literals": 6,
-      "lines": 320
+      "lines": 314
+    },
+    {
+      "file": "cilnx_ref_v06.py",
+      "classes": 11,
+      "dataclasses": 4,
+      "enums": 0,
+      "functions": 37,
+      "dict_literals": 29,
+      "lines": 771
     },
     {
       "file": "cockpit.py",
@@ -123,17 +150,35 @@
       "dataclasses": 0,
       "enums": 0,
       "functions": 29,
-      "dict_literals": 30,
-      "lines": 528
+      "dict_literals": 29,
+      "lines": 524
+    },
+    {
+      "file": "evidence_queries.py",
+      "classes": 0,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 3,
+      "dict_literals": 1,
+      "lines": 21
     },
     {
       "file": "facts.py",
-      "classes": 14,
+      "classes": 2,
+      "dataclasses": 1,
+      "enums": 0,
+      "functions": 34,
+      "dict_literals": 5,
+      "lines": 442
+    },
+    {
+      "file": "facts_payloads.py",
+      "classes": 13,
       "dataclasses": 13,
       "enums": 0,
-      "functions": 38,
-      "dict_literals": 7,
-      "lines": 568
+      "functions": 18,
+      "dict_literals": 2,
+      "lines": 450
     },
     {
       "file": "forge_context.py",
@@ -149,9 +194,9 @@
       "classes": 0,
       "dataclasses": 0,
       "enums": 0,
-      "functions": 11,
-      "dict_literals": 49,
-      "lines": 692
+      "functions": 9,
+      "dict_literals": 15,
+      "lines": 482
     },
     {
       "file": "forge_starmap.py",
@@ -269,6 +314,24 @@
       "functions": 18,
       "dict_literals": 22,
       "lines": 317
+    },
+    {
+      "file": "mcp_status_views.py",
+      "classes": 0,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 2,
+      "dict_literals": 0,
+      "lines": 55
+    },
+    {
+      "file": "mcp_tool_specs.py",
+      "classes": 0,
+      "dataclasses": 0,
+      "enums": 0,
+      "functions": 1,
+      "dict_literals": 34,
+      "lines": 171
     },
     {
       "file": "models.py",
@@ -392,29 +455,20 @@
     {
       "seam_id": "DQ-DICT-HOTSPOT",
       "severity": "medium",
-      "file": "bounty_reporter.py",
+      "file": "bounty_reference.py",
       "line": 1,
       "category": "typed_boundary",
-      "message": "High dict-literal density (52) suggests possible dict spill hotspot.",
-      "evidence": "bounty_reporter.py"
+      "message": "High dict-literal density (42) suggests possible dict spill hotspot.",
+      "evidence": "bounty_reference.py"
     },
     {
       "seam_id": "DQ-SIZE",
       "severity": "medium",
-      "file": "bounty_reporter.py",
+      "file": "cilnx_ref_v06.py",
       "line": 1,
       "category": "module_size",
-      "message": "Large module (754 lines) may indicate concentration seam.",
-      "evidence": "bounty_reporter.py"
-    },
-    {
-      "seam_id": "DQ-DYNIMPORT",
-      "severity": "medium",
-      "file": "cilnx_bridge.py",
-      "line": 7,
-      "category": "integration",
-      "message": "Dynamic import / mounted external dependency detected.",
-      "evidence": "cilnx_bridge.py"
+      "message": "Large module (771 lines) may indicate concentration seam.",
+      "evidence": "cilnx_ref_v06.py"
     },
     {
       "seam_id": "DQ-SIZE",
@@ -431,17 +485,8 @@
       "file": "evidence_ledger.py",
       "line": 1,
       "category": "module_size",
-      "message": "Large module (528 lines) may indicate concentration seam.",
+      "message": "Large module (524 lines) may indicate concentration seam.",
       "evidence": "evidence_ledger.py"
-    },
-    {
-      "seam_id": "DQ-SIZE",
-      "severity": "medium",
-      "file": "facts.py",
-      "line": 1,
-      "category": "module_size",
-      "message": "Large module (568 lines) may indicate concentration seam.",
-      "evidence": "facts.py"
     },
     {
       "seam_id": "DQ-DICT-HOTSPOT",
@@ -460,24 +505,6 @@
       "category": "module_size",
       "message": "Large module (1407 lines) may indicate concentration seam.",
       "evidence": "forge_context.py"
-    },
-    {
-      "seam_id": "DQ-DICT-HOTSPOT",
-      "severity": "medium",
-      "file": "forge_mcp_server.py",
-      "line": 1,
-      "category": "typed_boundary",
-      "message": "High dict-literal density (49) suggests possible dict spill hotspot.",
-      "evidence": "forge_mcp_server.py"
-    },
-    {
-      "seam_id": "DQ-SIZE",
-      "severity": "medium",
-      "file": "forge_mcp_server.py",
-      "line": 1,
-      "category": "module_size",
-      "message": "Large module (692 lines) may indicate concentration seam.",
-      "evidence": "forge_mcp_server.py"
     },
     {
       "seam_id": "DQ-SIZE",
@@ -604,6 +631,15 @@
       "category": "module_size",
       "message": "Large module (939 lines) may indicate concentration seam.",
       "evidence": "recovery.py"
+    },
+    {
+      "seam_id": "DQ-ORPHAN",
+      "severity": "low",
+      "file": "cilnx_ref_v06.py",
+      "line": 1,
+      "category": "integration",
+      "message": "Potential capability island / lineage remnant; verify canonical role.",
+      "evidence": "cilnx_ref_v06.py"
     }
   ]
 }

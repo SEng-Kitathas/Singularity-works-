@@ -1,25 +1,21 @@
 # Doctrine Detector Report
 
-- Modules scanned: 43
-- Findings: 24
+- Modules scanned: 50
+- Findings: 21
 
 ## Severity counts
 - critical: 0
 - high: 0
-- medium: 24
-- low: 0
+- medium: 20
+- low: 1
 
 ## Findings
-- [DQ-DICT-HOTSPOT] MEDIUM bounty_reporter.py:1 — High dict-literal density (52) suggests possible dict spill hotspot. | `bounty_reporter.py`
-- [DQ-SIZE] MEDIUM bounty_reporter.py:1 — Large module (754 lines) may indicate concentration seam. | `bounty_reporter.py`
-- [DQ-DYNIMPORT] MEDIUM cilnx_bridge.py:7 — Dynamic import / mounted external dependency detected. | `cilnx_bridge.py`
+- [DQ-DICT-HOTSPOT] MEDIUM bounty_reference.py:1 — High dict-literal density (42) suggests possible dict spill hotspot. | `bounty_reference.py`
+- [DQ-SIZE] MEDIUM cilnx_ref_v06.py:1 — Large module (771 lines) may indicate concentration seam. | `cilnx_ref_v06.py`
 - [DQ-SIZE] MEDIUM escalation_gate.py:1 — Large module (713 lines) may indicate concentration seam. | `escalation_gate.py`
-- [DQ-SIZE] MEDIUM evidence_ledger.py:1 — Large module (528 lines) may indicate concentration seam. | `evidence_ledger.py`
-- [DQ-SIZE] MEDIUM facts.py:1 — Large module (568 lines) may indicate concentration seam. | `facts.py`
+- [DQ-SIZE] MEDIUM evidence_ledger.py:1 — Large module (524 lines) may indicate concentration seam. | `evidence_ledger.py`
 - [DQ-DICT-HOTSPOT] MEDIUM forge_context.py:1 — High dict-literal density (53) suggests possible dict spill hotspot. | `forge_context.py`
 - [DQ-SIZE] MEDIUM forge_context.py:1 — Large module (1407 lines) may indicate concentration seam. | `forge_context.py`
-- [DQ-DICT-HOTSPOT] MEDIUM forge_mcp_server.py:1 — High dict-literal density (49) suggests possible dict spill hotspot. | `forge_mcp_server.py`
-- [DQ-SIZE] MEDIUM forge_mcp_server.py:1 — Large module (692 lines) may indicate concentration seam. | `forge_mcp_server.py`
 - [DQ-SIZE] MEDIUM forge_starmap.py:1 — Large module (554 lines) may indicate concentration seam. | `forge_starmap.py`
 - [DQ-SIZE] MEDIUM gates.py:1 — Large module (712 lines) may indicate concentration seam. | `gates.py`
 - [DQ-DICT-HOTSPOT] MEDIUM genome_gate_factory.py:1 — High dict-literal density (150) suggests possible dict spill hotspot. | `genome_gate_factory.py`
@@ -34,14 +30,18 @@
 - [DQ-SIZE] MEDIUM monitoring.py:1 — Large module (1230 lines) may indicate concentration seam. | `monitoring.py`
 - [DQ-SIZE] MEDIUM orchestration.py:1 — Large module (1536 lines) may indicate concentration seam. | `orchestration.py`
 - [DQ-SIZE] MEDIUM recovery.py:1 — Large module (939 lines) may indicate concentration seam. | `recovery.py`
+- [DQ-ORPHAN] LOW cilnx_ref_v06.py:1 — Potential capability island / lineage remnant; verify canonical role. | `cilnx_ref_v06.py`
 
 ## Module stats
 - __init__.py: lines=23, classes=0, dataclasses=0, enums=0, functions=0, dict_literals=0
 - assurance.py: lines=412, classes=1, dataclasses=1, enums=0, functions=16, dict_literals=7
 - ast_primitives.py: lines=45, classes=0, dataclasses=0, enums=0, functions=4, dict_literals=0
-- bounty_reporter.py: lines=754, classes=2, dataclasses=2, enums=0, functions=13, dict_literals=52
+- bounty_reference.py: lines=117, classes=0, dataclasses=0, enums=0, functions=2, dict_literals=42
+- bounty_reporter.py: lines=460, classes=2, dataclasses=1, enums=0, functions=7, dict_literals=7
+- bounty_text.py: lines=190, classes=0, dataclasses=0, enums=0, functions=4, dict_literals=3
 - cil_council.py: lines=489, classes=4, dataclasses=2, enums=0, functions=11, dict_literals=12
-- cilnx_bridge.py: lines=320, classes=3, dataclasses=3, enums=0, functions=15, dict_literals=6
+- cilnx_bridge.py: lines=314, classes=3, dataclasses=3, enums=0, functions=15, dict_literals=6
+- cilnx_ref_v06.py: lines=771, classes=11, dataclasses=4, enums=0, functions=37, dict_literals=29
 - cockpit.py: lines=52, classes=0, dataclasses=0, enums=0, functions=0, dict_literals=0
 - cockpit_runtime.py: lines=478, classes=16, dataclasses=11, enums=5, functions=24, dict_literals=4
 - enforcement.py: lines=319, classes=2, dataclasses=1, enums=0, functions=9, dict_literals=3
@@ -49,10 +49,12 @@
 - ergo_boot.py: lines=70, classes=1, dataclasses=1, enums=0, functions=4, dict_literals=0
 - ergo_kerr.py: lines=238, classes=6, dataclasses=5, enums=1, functions=9, dict_literals=1
 - escalation_gate.py: lines=713, classes=3, dataclasses=2, enums=1, functions=12, dict_literals=5
-- evidence_ledger.py: lines=528, classes=1, dataclasses=0, enums=0, functions=29, dict_literals=30
-- facts.py: lines=568, classes=14, dataclasses=13, enums=0, functions=38, dict_literals=7
+- evidence_ledger.py: lines=524, classes=1, dataclasses=0, enums=0, functions=29, dict_literals=29
+- evidence_queries.py: lines=21, classes=0, dataclasses=0, enums=0, functions=3, dict_literals=1
+- facts.py: lines=442, classes=2, dataclasses=1, enums=0, functions=34, dict_literals=5
+- facts_payloads.py: lines=450, classes=13, dataclasses=13, enums=0, functions=18, dict_literals=2
 - forge_context.py: lines=1407, classes=7, dataclasses=4, enums=1, functions=66, dict_literals=53
-- forge_mcp_server.py: lines=692, classes=0, dataclasses=0, enums=0, functions=11, dict_literals=49
+- forge_mcp_server.py: lines=482, classes=0, dataclasses=0, enums=0, functions=9, dict_literals=15
 - forge_starmap.py: lines=554, classes=3, dataclasses=2, enums=0, functions=27, dict_literals=8
 - fractal_cycle.py: lines=42, classes=3, dataclasses=2, enums=0, functions=2, dict_literals=2
 - gates.py: lines=712, classes=7, dataclasses=6, enums=0, functions=37, dict_literals=18
@@ -66,6 +68,8 @@
 - lbe_pilot.py: lines=1344, classes=16, dataclasses=16, enums=0, functions=41, dict_literals=41
 - lbe_universal.py: lines=898, classes=5, dataclasses=5, enums=0, functions=7, dict_literals=8
 - ledger_payloads.py: lines=317, classes=19, dataclasses=19, enums=0, functions=18, dict_literals=22
+- mcp_status_views.py: lines=55, classes=0, dataclasses=0, enums=0, functions=2, dict_literals=0
+- mcp_tool_specs.py: lines=171, classes=0, dataclasses=0, enums=0, functions=1, dict_literals=34
 - models.py: lines=192, classes=14, dataclasses=14, enums=0, functions=3, dict_literals=1
 - monitoring.py: lines=1230, classes=2, dataclasses=1, enums=0, functions=57, dict_literals=5
 - orchestration.py: lines=1536, classes=3, dataclasses=2, enums=0, functions=18, dict_literals=38

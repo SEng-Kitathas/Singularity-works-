@@ -4,13 +4,10 @@ from __future__ import annotations
 from dataclasses import dataclass
 import json
 import hashlib
-import importlib.util
 import os
-import sys
 import time
 from functools import lru_cache
 from pathlib import Path
-from types import ModuleType
 from typing import Any
 
 
@@ -19,6 +16,7 @@ class CilnxLocation:
     available: bool
     root: str
     python_ref: str
+    internalized_python_ref: str
     schema_path: str
     adapter_report: str
     memory_schema: str
@@ -190,22 +188,18 @@ def locate_canonical_cilnx() -> CilnxLocation:
                 available=True,
                 root=str(root),
                 python_ref=str(python_ref),
+                internalized_python_ref='singularity_works.cilnx_ref_v06',
                 schema_path=str(schema_path),
                 adapter_report=str(adapter_report) if adapter_report and adapter_report.exists() else '',
                 memory_schema=str(memory_schema) if memory_schema and memory_schema.exists() else '',
                 version_hint='v0.6',
             )
-    return CilnxLocation(False, '', '', '', '', '', '')
+    return CilnxLocation(False, '', '', '', '', '', '', '')
 
 
-def _load_python_ref(location: CilnxLocation) -> ModuleType:
-    spec = importlib.util.spec_from_file_location('cilnx_ref_runtime', location.python_ref)
-    if spec is None or spec.loader is None:
-        raise RuntimeError('unable to load CILNX python reference')
-    module = importlib.util.module_from_spec(spec)
-    sys.modules[spec.name] = module
-    spec.loader.exec_module(module)
-    return module
+def _load_python_ref(location: CilnxLocation):
+    from . import cilnx_ref_v06
+    return cilnx_ref_v06
 
 
 
