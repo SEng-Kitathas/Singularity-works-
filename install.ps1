@@ -72,7 +72,7 @@ Write-Step "Installing dependencies"
 & $VenvPy -m pip install --quiet --upgrade pip wheel
 & $VenvPy -m pip install --quiet `
     "flask>=3.0" "flask-cors>=4.0" "flask-socketio>=5.3" `
-    "mcp>=0.9" "watchdog>=3.0"
+    "mcp>=0.9,<2" "watchdog>=3.0"
 Write-Ok "Dependencies installed"
 & $VenvPy -m pip install --quiet "rich>=13.0" 2>$null
 if ($LASTEXITCODE -eq 0) { Write-Ok "rich installed" } else { Write-Warn "rich optional" }

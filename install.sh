@@ -71,7 +71,7 @@ step "Installing dependencies"
 pip install --quiet --upgrade pip wheel
 pip install --quiet \
   "flask>=3.0" "flask-cors>=4.0" "flask-socketio>=5.3" \
-  "mcp>=0.9" \
+  "mcp>=0.9,<2" \
   "watchdog>=3.0"
 ok "Core dependencies installed"
 
