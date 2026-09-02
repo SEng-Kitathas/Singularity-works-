@@ -428,7 +428,25 @@ if __name__ == "__main__":
     from singularity_works.facts import FactBus
 
     configs = Path(args.configs)
-    orc = Orchestrator(Path(".forge") / "evidence.jsonl", configs_path=configs)
+    if not configs.exists() and args.configs == "configs":
+        packaged_configs = Path(__file__).resolve().parent.parent / "configs"
+        if packaged_configs.exists():
+            configs = packaged_configs
+    seed_genome = configs / "seed_genome.json"
+    if not seed_genome.exists():
+        print(f"ERROR: seed genome not found: {seed_genome}", file=sys.stderr)
+        sys.exit(2)
+
+    forge_dir = Path(".forge")
+    forge_configs = forge_dir / "configs"
+    forge_configs.mkdir(parents=True, exist_ok=True)
+    import shutil
+    for config_name in ("seed_genome.json", "default.json"):
+        source_config = configs / config_name
+        if source_config.exists():
+            shutil.copy2(source_config, forge_configs / config_name)
+
+    orc = Orchestrator(forge_dir / "evidence.jsonl")
     orc.facts = FactBus()
 
     code = src_path.read_text(encoding="utf-8", errors="replace")
