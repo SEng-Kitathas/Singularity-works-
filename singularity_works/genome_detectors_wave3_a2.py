@@ -24,6 +24,24 @@ _SECRET_VALUE = _re_ext.compile(
     r"""(?i)(?:=|:|=>)\s*["']([A-Za-z0-9_\-\/+=]{16,})["']"""
 )
 
+_CREDENTIAL_KEY_EXACT = frozenset({
+    "api_key", "apikey", "secret", "token", "passwd", "password",
+    "auth_token", "access_token", "refresh_token", "client_secret",
+    "private_key", "db_password", "database_password", "jwt_secret",
+    "signing_key", "encryption_key", "aws_access_key_id",
+    "aws_secret_access_key",
+})
+_CREDENTIAL_KEY_SUFFIXES = (
+    "_api_key", "_apikey", "_secret", "_token", "_passwd", "_password",
+    "_auth_token", "_access_token", "_refresh_token", "_client_secret",
+    "_private_key", "_db_password", "_database_password", "_jwt_secret",
+    "_signing_key", "_encryption_key",
+)
+
+def _is_credential_dict_key(name: str) -> bool:
+    normalized = name.strip().lower().replace("-", "_")
+    return normalized in _CREDENTIAL_KEY_EXACT or normalized.endswith(_CREDENTIAL_KEY_SUFFIXES)
+
 def _detect_hardcoded_secrets(
     content: str, _spec: dict, *, semantic_ir: "Any | None" = None
 ) -> list[_Detection]:
@@ -92,7 +110,7 @@ def _detect_hardcoded_secrets(
                         continue
                     name = key_node.value
                     secret = value_node.value
-                    if not secret or len(secret) < 8 or not _SECRET_NAMES.search(name):
+                    if not secret or len(secret) < 8 or not _is_credential_dict_key(name):
                         continue
                     if secret.lower() in {
                         "changeme", "your_secret_here", "placeholder",
