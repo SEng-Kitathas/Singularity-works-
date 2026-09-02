@@ -7,12 +7,12 @@ Exposes the forge as a first-class MCP tool in Claude Code's universe.
 Claude Code talks to this via stdio transport — no subprocess hacks.
 
 Tools exposed:
-  forge_run_battery        Run the full 49-case security battery
+  forge_run_battery        Run current verify_build verification suite (legacy name)
   forge_get_assurance      Get security verdict for a code artifact
   forge_run_assurance_on_file  Run assurance on a file path
   forge_get_open_seams     Return current open seams from trace matrix
   forge_get_live_shadow    Return current Live Shadow state
-  forge_commit_verified    Gate: commit only after battery passes
+  forge_commit_verified    Gate: compile + self-verification; battery if emitted
 
 Usage (from Claude Code .claude/settings.json):
   "mcpServers": {
@@ -169,7 +169,7 @@ async def call_tool(name: str, arguments: dict) -> list[types.TextContent]:
 # ── Tool implementations ──────────────────────────────────────────────────
 
 async def _run_battery() -> list[types.TextContent]:
-    """Run verify_build.py and return structured battery results."""
+    """Run the current verify_build.py suite (public tool name retained for compatibility)."""
     try:
         result = subprocess.run(
             [sys.executable, "examples/verify_build.py"],
@@ -178,7 +178,7 @@ async def _run_battery() -> list[types.TextContent]:
         )
         if result.returncode != 0 and not result.stdout.strip():
             return [types.TextContent(type="text",
-                text=f"Battery failed to run:\n{result.stderr[:500]}")]
+                text=f"Verification suite failed to run:\n{result.stderr[:500]}")]
 
         data = json.loads(result.stdout)
         sa = data.get("self_audit", {}).get("totals", {})
@@ -189,7 +189,7 @@ async def _run_battery() -> list[types.TextContent]:
         sv_warning = list(sv.get("warning_files", data.get("self_audit", {}).get("warning_files", [])))
 
         lines = [
-            "# Forge Battery Results",
+            "# Forge Verification Results",
             f"compile: {'✓' if data.get('compile_ok') else '✗'}",
             f"good_path: {data.get('good_assurance','?')}",
             f"bad_path: {data.get('bad_assurance','?')} → remediated: {data.get('bad_remediated_assurance','?')}",
@@ -212,7 +212,7 @@ async def _run_battery() -> list[types.TextContent]:
             for f in sv_warning[:8]:
                 lines.append(f"  - {f}")
 
-        # Battery cases if present
+        # Optional legacy/corpus battery cases, only when verify_build emits them
         battery = data.get("battery", {})
         if battery:
             total = battery.get("total", 0)
@@ -413,9 +413,10 @@ async def _get_blueprint(code: str, requirement_text: str) -> list[types.TextCon
 
 
 async def _commit_verified(message: str, require_battery: bool) -> list[types.TextContent]:
-    """Gate commit behind battery pass."""
+    """Gate commit behind the current verify_build compile/self-verification suite."""
     if require_battery:
-        # Run verify_build
+        # Legacy require_battery flag means: run the current verify_build suite.
+        # If a future verifier emits an explicit battery object, require it too.
         try:
             result = subprocess.run(
                 [sys.executable, "examples/verify_build.py"],
@@ -448,7 +449,7 @@ async def _commit_verified(message: str, require_battery: bool) -> list[types.Te
 
         except Exception as e:
             return [types.TextContent(type="text",
-                text=f"COMMIT BLOCKED: could not verify battery: {e}")]
+                text=f"COMMIT BLOCKED: could not run verification suite: {e}")]
 
     # Battery passed — commit
     try:

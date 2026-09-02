@@ -147,15 +147,17 @@ Add to `.claude/settings.json` in your project root (same structure as above).
 
 | Tool | What it does |
 |------|-------------|
-| `forge_run_battery` | Run the full 49-case security battery |
+| `forge_run_battery` | Run the current `verify_build.py` verification suite (legacy tool name retained) |
 | `forge_get_assurance` | Security verdict for a code snippet |
 | `forge_run_assurance_on_file` | Forge run on a file path |
 | `forge_get_open_seams` | Open seams from the trace matrix |
 | `forge_get_live_shadow` | Current Live Shadow state |
 | `forge_get_escalation` | Escalation decision for a finding |
 | `forge_get_blueprint` | Logic Blueprint Engine analysis |
-| `forge_commit_verified` | Gate: only commit after battery passes |
+| `forge_commit_verified` | Gate: require compile + self-verification; also require a battery if the verifier emits one |
 | `forge_generate_bounty_report` | Full bug bounty report from code |
+
+> Historical corpus-regression evidence remains in `tests/expectations.json` and `results/regression_summary.json`. The current `examples/verify_build.py` does **not** emit that corpus battery, so those historical counts are not treated as a live commit gate.
 
 **Example Claude Code usage:**
 ```

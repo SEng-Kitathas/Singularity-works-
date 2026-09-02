@@ -8,10 +8,10 @@ def build_tool_specs() -> list[types.Tool]:
         types.Tool(
             name="forge_run_battery",
             description=(
-                "Run the full Singularity Works security battery (49 cases: "
-                "38 assault + 8 protocol + 3 rate-limit). "
-                "Returns pass/fail counts and any failures. "
-                "MUST pass before any security-sensitive commit."
+                "Run the current Singularity Works verify_build verification suite. "
+                "The public tool name is retained for compatibility; historical corpus "
+                "battery counts are not implied unless verify_build explicitly emits them. "
+                "Returns compile, assurance, and self-verification status."
             ),
             inputSchema={
                 "type": "object",
@@ -149,9 +149,9 @@ def build_tool_specs() -> list[types.Tool]:
         types.Tool(
             name="forge_commit_verified",
             description=(
-                "Gate: commit only after the forge battery passes. "
-                "Runs verify_build.py, checks battery result, then commits if clean. "
-                "BLOCKS commit if battery has failures."
+                "Gate: commit only after the current verify_build suite passes. "
+                "Requires compile and self-verification; if verify_build emits an explicit "
+                "battery object, that battery must pass too."
             ),
             inputSchema={
                 "type": "object",
@@ -162,7 +162,7 @@ def build_tool_specs() -> list[types.Tool]:
                     },
                     "require_battery": {
                         "type": "boolean",
-                        "description": "Whether to require battery pass before committing (default: true)",
+                        "description": "Whether to require the verify_build qualification suite before committing (legacy field name; default: true)",
                     },
                 },
                 "required": ["message"],

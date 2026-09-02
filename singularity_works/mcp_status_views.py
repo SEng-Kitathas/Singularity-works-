@@ -26,29 +26,16 @@ def _get_live_shadow() -> list[types.TextContent]:
         return [types.TextContent(type="text",
             text=shadow_path.read_text(encoding="utf-8"))]
 
-    # Fallback: synthesize from known state
+    # No persisted Live Shadow: fail closed on currentness rather than replaying
+    # a hard-coded historical snapshot as if it were live authority.
     text = textwrap.dedent("""
-        # LIVE SHADOW — Singularity Works Forge
+        # LIVE SHADOW — UNAVAILABLE
 
-        ## Mode
-        BUILD — Law 1 active
+        Status: UNKNOWN / STALE FALLBACK
 
-        ## Authority Base
-        v1.20 — 49/49 FP=0 FN=0 | self_audit=920/4/0
-
-        ## Verified
-        - 28 modules, 12,214 lines, 37 capsules, 36 strategies, 12 monitors
-        - 49/49 battery: FP=0 FN=0 at 1.3s
-        - forge_context.py contradiction path: fixed
-        - auth_rate_limit: 3 cases verified
-
-        ## Open Seams (P0 closed, P1 active)
-        - IDOR/ownership monitor: next march target
-        - MCP server: building now
-        - PreCompact hook: building now
-
-        ## Immediate Next Step
-        Build IDOR monitor → wire PreCompact hook → session startup script
+        No persisted Live Shadow was found at the expected state path. Historical
+        benchmark/status strings are intentionally not synthesized as current truth.
+        Rehydrate from the project state surfaces before making load-bearing decisions.
     """).strip()
     return [types.TextContent(type="text", text=text)]
 
