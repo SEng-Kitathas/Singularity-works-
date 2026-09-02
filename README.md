@@ -112,41 +112,11 @@ The HUD renders a three-wing terminal cockpit (inspired by avionics glass cockpi
 
 Modes: `full` (≥100 cols), `compact` (<100 cols), `status` (single line)
 
-### Check LM Studio connectivity
+### Local inference integration
 
-```bash
-forge-health                              # checks localhost:1234
-forge-health --url http://localhost:1234/v1
-```
-
-Expected output when both models loaded:
-```
-LM Studio — http://localhost:1234/v1
-Status: OK
-Resolved IDs:
-  reasoner   → qwen3.5-35b-a3b-claude-4.6-opus-...  [2100ms]
-  coder      → qwen2.5-coder-7b-instruct-ablite...   [180ms]
-```
-
-### Local model API
-
-```python
-from singularity_works.local_model_adapter import get_adapter
-
-a = get_adapter()   # connects to localhost:1234
-
-# Security code review (CODER — fast)
-r = a.review_code(open("suspicious.py").read())
-print(r.content)
-
-# Deep finding validation (REASONER — thorough)
-r = a.validate_finding("SQL injection at line 14", code_ctx)
-print(r.content)
-
-# Generate PoC steps (CODER)
-r = a.generate_poc("SSRF", vulnerable_code)
-print(r.content)
-```
+The historical `forge-health` / `local_model_adapter` surface is **not part of this qualified release candidate**.
+The committed adapter was removed earlier, while newer local inference work remains machine-specific and unqualified for public release.
+Portable local-inference support will return only after its adapter/config contract passes the same clean-release gate.
 
 ---
 
@@ -294,7 +264,6 @@ Singularity-works-/
     ├── language_front_door.py    # Polyglot IR builder + taint tracker
     ├── hud.py                    # Three-wing ANSI cockpit (781 lines)
     ├── bounty_reporter.py        # Bug bounty report formatter (749 lines)
-    ├── local_model_adapter.py    # LM Studio adapter (Qwen3.5/Qwen2.5)
     ├── forge_mcp_server.py       # Claude Code MCP server (9 tools)
     ├── forge_hud_server.py       # WebSocket HUD backend
     ├── cil_council.py            # REASONER/CODER adversarial loop

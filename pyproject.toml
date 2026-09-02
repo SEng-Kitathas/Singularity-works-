@@ -24,9 +24,8 @@ rich = ["rich>=13.0"]
 dev  = ["pytest>=7.0", "mypy>=1.0"]
 
 [project.scripts]
-forge          = "singularity_works.bounty_reporter:__main__"
-forge-health   = "singularity_works.local_model_adapter:__main__"
-forge-hud      = "singularity_works.hud:__main__"
+forge          = "singularity_works.cli:forge"
+forge-hud      = "singularity_works.cli:forge_hud"
 
 [tool.setuptools.packages.find]
 where = ["."]
