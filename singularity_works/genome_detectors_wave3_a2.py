@@ -81,10 +81,48 @@ def _detect_hardcoded_secrets(
                             ))
                 self.generic_visit(node)
 
+            def visit_Dict(self, node: ast.Dict) -> None:
+                for key_node, value_node in zip(node.keys, node.values):
+                    if not (
+                        isinstance(key_node, ast.Constant)
+                        and isinstance(key_node.value, str)
+                        and isinstance(value_node, ast.Constant)
+                        and isinstance(value_node.value, str)
+                    ):
+                        continue
+                    name = key_node.value
+                    secret = value_node.value
+                    if not secret or len(secret) < 8 or not _SECRET_NAMES.search(name):
+                        continue
+                    if secret.lower() in {
+                        "changeme", "your_secret_here", "placeholder",
+                        "xxxxxxxx", "todo", "none", "null", "example",
+                        "your-secret", "change-me",
+                    }:
+                        continue
+                    if len(secret) >= 16:
+                        detections.append(_Detection(
+                            lineno=getattr(value_node, "lineno", node.lineno),
+                            message=(
+                                f"Hardcoded credential dictionary key '{name}' at line "
+                                f"{getattr(value_node, 'lineno', node.lineno)} — "
+                                f"secret literals are extractable from source and binaries"
+                            ),
+                            evidence={
+                                "rewrite_candidate": (
+                                    f"Load '{name}' from environment or a secrets manager"
+                                ),
+                                "var_name": name,
+                            },
+                        ))
+                self.generic_visit(node)
+
         _V().visit(tree)
 
-    # Heuristic â€” raw content scan for key patterns (catches non-Python)
-    if not detections:
+    # Heuristic — raw content scan is fallback for non-Python / unparsable input only.
+    # Parseable Python is handled structurally above so ordinary metadata strings such
+    # as {"kind": "reset_verify_token_hint"} cannot be mistaken for credentials.
+    if not detections and tree is None:
         lines = content.splitlines()
         for i, line in enumerate(lines, 1):
             if _SECRET_NAMES.search(line) and _SECRET_VALUE.search(line):
