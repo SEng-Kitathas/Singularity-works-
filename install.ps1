@@ -137,9 +137,6 @@ Write-Host ""
 Write-Host "  Install dir: $InstallDir"
 Write-Host ""
 Write-Host "  Quick start:"
-Write-Host "    # Check LM Studio models" -ForegroundColor Yellow
-Write-Host "    .\forge-health.ps1"
-Write-Host ""
 Write-Host "    # Scan a file" -ForegroundColor Yellow
 Write-Host "    .\forge.ps1 path\to\app.py --platform HackerOne --out .\reports"
 Write-Host ""
