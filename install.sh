@@ -91,11 +91,9 @@ sys.path.insert(0, '.')
 from singularity_works.orchestration import Orchestrator
 from singularity_works.hud import ConsoleHUD
 from singularity_works.bounty_reporter import build_report
-from singularity_works.local_model_adapter import LocalModelAdapter
 print('  forge core:     OK')
 print('  hud v3:         OK')
 print('  bounty reporter:OK')
-print('  model adapter:  OK')
 " && ok "All forge modules verified"
 
 # ── 8. Write launcher scripts ─────────────────────────────────────────────────
@@ -111,17 +109,6 @@ python3 -m singularity_works.bounty_reporter "$@"
 EOF
 chmod +x "$FORGE_BIN"
 ok "forge launcher → $FORGE_BIN"
-
-# forge-health command
-HEALTH_BIN="$INSTALL_DIR/forge-health"
-cat > "$HEALTH_BIN" << 'EOF'
-#!/usr/bin/env bash
-source "$(dirname "$0")/.venv/bin/activate"
-cd "$(dirname "$0")"
-python3 -m singularity_works.local_model_adapter health "$@"
-EOF
-chmod +x "$HEALTH_BIN"
-ok "forge-health launcher → $HEALTH_BIN"
 
 # forge-hud command
 HUD_BIN="$INSTALL_DIR/forge-hud"

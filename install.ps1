@@ -92,11 +92,9 @@ sys.path.insert(0, r'$InstallDir')
 from singularity_works.orchestration import Orchestrator
 from singularity_works.hud import ConsoleHUD
 from singularity_works.bounty_reporter import build_report
-from singularity_works.local_model_adapter import LocalModelAdapter
 print('  forge core:      OK')
 print('  hud v3:          OK')
 print('  bounty reporter: OK')
-print('  model adapter:   OK')
 "@
 & $VenvPy -c $verify
 Write-Ok "All forge modules verified"
@@ -111,15 +109,6 @@ Pop-Location
 "@
 Set-Content -Path "$InstallDir\forge.ps1" -Value $forge_ps1
 Write-Ok "forge.ps1 → $InstallDir\forge.ps1"
-
-$health_ps1 = @"
-`$VenvPy = '$VenvDir\Scripts\python.exe'
-Push-Location '$InstallDir'
-& `$VenvPy -m singularity_works.local_model_adapter health @args
-Pop-Location
-"@
-Set-Content -Path "$InstallDir\forge-health.ps1" -Value $health_ps1
-Write-Ok "forge-health.ps1 → $InstallDir\forge-health.ps1"
 
 # ── 9. Claude Code MCP config ────────────────────────────────────────────────
 Write-Step "Claude Code MCP configuration"
