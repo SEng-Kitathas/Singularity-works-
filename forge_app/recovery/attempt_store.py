@@ -195,6 +195,62 @@ class AttemptStore:
         try:
             conn.execute("BEGIN IMMEDIATE")
 
+            # Idempotent replay closes the unknown-outcome gap: if a caller lost
+            # the receipt after COMMIT, repeating the exact immutable operation
+            # with the same attempt_id returns the already-committed attempt.
+            # Any semantic/content mismatch is a hard identity conflict.
+            existing_attempt = conn.execute(
+                """
+                SELECT a.attempt_id, a.blob_sha256, a.parent_attempt_id,
+                       a.artifact_class, a.producer, a.intent, a.metadata_json,
+                       a.created_at, b.byte_length, b.payload
+                FROM attempts a JOIN blobs b ON b.blob_sha256=a.blob_sha256
+                WHERE a.attempt_id=?
+                """,
+                (attempt_id,),
+            ).fetchone()
+            if existing_attempt is not None:
+                existing_payload = bytes(existing_attempt["payload"])
+                replay_matches = (
+                    existing_attempt["blob_sha256"] == blob_sha256
+                    and int(existing_attempt["byte_length"]) == len(payload)
+                    and _sha256(existing_payload) == blob_sha256
+                    and existing_payload == payload
+                    and existing_attempt["parent_attempt_id"] == parent_attempt_id
+                    and existing_attempt["artifact_class"] == artifact_class
+                    and existing_attempt["producer"] == producer
+                    and existing_attempt["intent"] == intent
+                    and existing_attempt["metadata_json"] == metadata_json
+                )
+                if not replay_matches:
+                    raise AttemptStoreError(
+                        f"attempt_id conflict with different immutable operation: {attempt_id}"
+                    )
+                capture_events = conn.execute(
+                    """
+                    SELECT event_id FROM events
+                    WHERE attempt_id=? AND event_type='attempt_captured'
+                    ORDER BY seq
+                    """,
+                    (attempt_id,),
+                ).fetchall()
+                if len(capture_events) != 1:
+                    raise AttemptVerificationError(
+                        f"attempt capture event cardinality invalid for {attempt_id}: {len(capture_events)}"
+                    )
+                conn.rollback()
+                return CaptureReceipt(
+                    attempt_id=attempt_id,
+                    blob_sha256=blob_sha256,
+                    byte_length=len(payload),
+                    event_id=capture_events[0]["event_id"],
+                    parent_attempt_id=parent_attempt_id,
+                    artifact_class=artifact_class,
+                    producer=producer,
+                    created_at=existing_attempt["created_at"],
+                    verified_readback=True,
+                )
+
             if parent_attempt_id is not None:
                 parent = conn.execute(
                     "SELECT attempt_id FROM attempts WHERE attempt_id=?",
