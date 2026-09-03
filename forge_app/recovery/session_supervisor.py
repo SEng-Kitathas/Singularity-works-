@@ -5,10 +5,12 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass
 import json
 import os
+import signal
 from pathlib import Path
 import subprocess
 import time
 from typing import Sequence
+from uuid import uuid4
 
 from .resume_checkpoint import CheckpointView, ResumeCheckpointManager
 
@@ -25,6 +27,7 @@ class ChildReadyReceipt:
     checkpoint_id: str
     resume_id: str
     pid: int
+    instance_token: str
 
     def as_dict(self) -> dict[str, object]:
         return asdict(self)
@@ -36,6 +39,7 @@ class ChildExitReceipt:
     resume_id: str
     crash_id: str | None
     pid: int
+    launch_pid: int
     returncode: int
     seconds_since_resume: float
     expected: bool
@@ -58,6 +62,7 @@ class SessionProcessSupervisor:
         cwd: str | Path | None = None,
         env: dict[str, str] | None = None,
         clock=time.monotonic,
+        instance_token: str | None = None,
     ) -> None:
         if not resume_id:
             raise ValueError("resume_id is required")
@@ -71,6 +76,7 @@ class SessionProcessSupervisor:
         self.cwd = Path(cwd) if cwd is not None else None
         self.env = dict(env) if env is not None else None
         self.clock = clock
+        self.instance_token = instance_token or uuid4().hex
         self.started_at: float | None = None
         self.process: subprocess.Popen[str] | None = None
         self.ready_receipt: ChildReadyReceipt | None = None
@@ -98,10 +104,14 @@ class SessionProcessSupervisor:
         self.ready_path.parent.mkdir(parents=True, exist_ok=True)
         self.manager.record_resume(self.checkpoint_id, resume_id=self.resume_id)
         self.started_at = float(self.clock())
+        child_env = os.environ.copy()
+        if self.env is not None:
+            child_env.update(self.env)
+        child_env["SINGULARITY_SESSION_INSTANCE_TOKEN"] = self.instance_token
         self.process = subprocess.Popen(
             list(self.command),
             cwd=str(self.cwd) if self.cwd is not None else None,
-            env=self.env,
+            env=child_env,
             stdin=subprocess.DEVNULL,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
@@ -126,16 +136,23 @@ class SessionProcessSupervisor:
             checkpoint_id=str(payload.get("checkpoint_id") or ""),
             resume_id=str(payload.get("resume_id") or ""),
             pid=int(payload.get("pid") or 0),
+            instance_token=str(payload.get("instance_token") or ""),
         )
-        expected = ChildReadyReceipt(
-            protocol=READY_PROTOCOL,
-            checkpoint_id=self.checkpoint_id,
-            resume_id=self.resume_id,
-            pid=int(self.process.pid),
-        )
-        if receipt != expected:
+        expected_identity = {
+            "protocol": READY_PROTOCOL,
+            "checkpoint_id": self.checkpoint_id,
+            "resume_id": self.resume_id,
+            "instance_token": self.instance_token,
+        }
+        actual_identity = {
+            "protocol": receipt.protocol,
+            "checkpoint_id": receipt.checkpoint_id,
+            "resume_id": receipt.resume_id,
+            "instance_token": receipt.instance_token,
+        }
+        if actual_identity != expected_identity or receipt.pid <= 0:
             raise SessionSupervisorError(
-                f"ready identity mismatch: expected={expected.as_dict()} actual={receipt.as_dict()}"
+                f"ready identity mismatch: expected={expected_identity} actual={receipt.as_dict()}"
             )
         return receipt
 
@@ -161,6 +178,26 @@ class SessionProcessSupervisor:
         raise SessionSupervisorError(
             f"ready timeout after {timeout_seconds:.3f}s: checkpoint={self.checkpoint_id} resume={self.resume_id}"
         )
+
+    def worker_pid(self) -> int:
+        if self.ready_receipt is not None:
+            return int(self.ready_receipt.pid)
+        if self.process is None:
+            raise SessionSupervisorError("supervised process has not started")
+        return int(self.process.pid)
+
+    def _terminate_worker(self) -> None:
+        if self.process is None:
+            raise SessionSupervisorError("supervised process has not started")
+        worker_pid = self.worker_pid()
+        if worker_pid == int(self.process.pid):
+            if self.process.poll() is None:
+                self.process.kill()
+            return
+        try:
+            os.kill(worker_pid, signal.SIGTERM)
+        except ProcessLookupError:
+            pass
 
     def deterministic_crash_id(self) -> str:
         return f"session-process-crash:{self.checkpoint_id}:{self.resume_id}"
@@ -211,7 +248,8 @@ class SessionProcessSupervisor:
                     checkpoint_id=self.checkpoint_id,
                     resume_id=self.resume_id,
                     crash_id=crash_id,
-                    pid=int(self.process.pid),
+                    pid=self.worker_pid(),
+                    launch_pid=int(self.process.pid),
                     returncode=rc,
                     seconds_since_resume=elapsed,
                     expected=False,
@@ -222,7 +260,7 @@ class SessionProcessSupervisor:
             )
         elapsed = self.elapsed_seconds()
         detail_text = (
-            f"pid={self.process.pid} returncode={rc} supervisor_observed=true"
+            f"launch_pid={self.process.pid} worker_pid={self.worker_pid()} launch_returncode={rc} supervisor_observed=true"
             + (f"; {detail}" if detail else "")
         )
         view = self.manager.record_crash(
@@ -237,7 +275,8 @@ class SessionProcessSupervisor:
             checkpoint_id=self.checkpoint_id,
             resume_id=self.resume_id,
             crash_id=crash_id,
-            pid=int(self.process.pid),
+            pid=self.worker_pid(),
+            launch_pid=int(self.process.pid),
             returncode=rc,
             seconds_since_resume=elapsed,
             expected=False,
@@ -256,8 +295,7 @@ class SessionProcessSupervisor:
     ) -> tuple[ChildExitReceipt, CheckpointView]:
         if self.process is None:
             raise SessionSupervisorError("supervised process has not started")
-        if self.process.poll() is None:
-            self.process.kill()
+        self._terminate_worker()
         return self.record_unexpected_exit(
             crash_id=crash_id,
             failure_domain=failure_domain,
@@ -269,14 +307,14 @@ class SessionProcessSupervisor:
         if self.process is None:
             raise SessionSupervisorError("supervised process has not started")
         self._expected_shutdown = True
-        if self.process.poll() is None:
-            self.process.terminate()
+        self._terminate_worker()
         rc = self._require_terminal_returncode(wait_timeout_seconds=wait_timeout_seconds)
         return ChildExitReceipt(
             checkpoint_id=self.checkpoint_id,
             resume_id=self.resume_id,
             crash_id=None,
-            pid=int(self.process.pid),
+            pid=self.worker_pid(),
+            launch_pid=int(self.process.pid),
             returncode=rc,
             seconds_since_resume=self.elapsed_seconds(),
             expected=True,
@@ -286,11 +324,14 @@ class SessionProcessSupervisor:
 
     def close(self) -> None:
         if self.process is not None and self.process.poll() is None:
-            self.process.kill()
+            try:
+                self._terminate_worker()
+            except Exception:
+                self.process.kill()
             try:
                 self.process.wait(timeout=2.0)
             except subprocess.TimeoutExpired:
-                pass
+                self.process.kill()
 
     def __enter__(self) -> "SessionProcessSupervisor":
         self.start()

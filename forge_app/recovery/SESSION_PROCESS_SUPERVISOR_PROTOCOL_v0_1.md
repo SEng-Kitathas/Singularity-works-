@@ -14,6 +14,8 @@ Locked laws:
 - `SUPERVISOR_OBSERVATION != CHILD_SELF_REPORT`.
 - `RESUME_ID != REUSABLE_PROCESS_SLOT`.
 - `CHILD_READY_ACK != SESSION_STABILITY`.
+- `LAUNCH_PID != COORDINATOR_PID`.
+- `READY_IDENTITY_BINDS_RESUME_NONCE_NOT_LAUNCHER_PID`.
 - `CRASH_ID_REPLAY_USES_ORIGINAL_OBSERVATION`.
 - existing `CRASH_ASSOCIATION_CAUSES_QUARANTINE_NOT_DELETION` remains governing.
 
@@ -32,7 +34,10 @@ The child may create one transient JSON ready receipt:
 - protocol `singularity-session-child-ready/0.1`;
 - checkpoint ID;
 - resume ID;
-- child PID.
+- child/coordinator PID;
+- supervisor-issued per-resume instance nonce.
+
+The launch-handle PID may differ from the coordinator PID when a platform/runtime wrapper is present. The nonce + checkpoint + resume identity binds the ready receipt; the ready-reported coordinator PID becomes the process-death subject.
 
 This receipt is identity/liveness evidence only.
 It is not checkpoint reputation, session stability, semantic truth or authority.

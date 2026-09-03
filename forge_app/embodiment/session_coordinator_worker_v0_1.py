@@ -47,6 +47,7 @@ def main() -> int:
         "checkpoint_id": args.ready_checkpoint or args.checkpoint,
         "resume_id": args.ready_resume or args.resume,
         "pid": os.getpid(),
+        "instance_token": os.environ.get("SINGULARITY_SESSION_INSTANCE_TOKEN", ""),
     }
     _atomic_write_json(Path(args.ready), receipt)
     time.sleep(max(0.0, args.sleep_seconds))
