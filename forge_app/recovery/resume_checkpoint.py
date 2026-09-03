@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, asdict
 import json
-from typing import Any, Mapping, Sequence
+from typing import Any, Callable, Mapping, Sequence
 from uuid import uuid4
 
 from .attempt_store import AttemptStore, AttemptStoreError
@@ -147,6 +147,12 @@ def choose_recovery_view(views: Sequence[CheckpointView]) -> CheckpointView | No
 class ResumeCheckpointManager:
     def __init__(self, store: AttemptStore) -> None:
         self.store = store
+        self._quarantine_handler: Callable[[str], Any] | None = None
+
+    def register_quarantine_handler(self, handler: Callable[[str], Any]) -> None:
+        if self._quarantine_handler is not None and self._quarantine_handler is not handler:
+            raise AttemptStoreError("quarantine handler already registered")
+        self._quarantine_handler = handler
 
     @staticmethod
     def _validate_payload_dict(data: dict[str, Any]) -> None:
@@ -271,6 +277,11 @@ class ResumeCheckpointManager:
                 event_id=f"checkpoint-quarantine:{checkpoint_id}",
             )
             view = self.inspect(checkpoint_id)
+        if view.quarantined and self._quarantine_handler is not None:
+            # Replay is intentional: the handler is required to be idempotent so
+            # a lost response after the quarantine commit can repair/return the
+            # already prepared isolation lane.
+            self._quarantine_handler(checkpoint_id)
         return view
 
     def inspect(self, checkpoint_id: str) -> CheckpointView:

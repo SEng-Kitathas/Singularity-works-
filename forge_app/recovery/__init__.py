@@ -1,6 +1,13 @@
-"""Forge recovery, persistence, checkpoint, and zombie-survivability substrate."""
+"""Forge recovery, persistence, checkpoint, re-entry, and zombie-survivability substrate."""
 
 from .attempt_store import AttemptStore, CaptureReceipt, EventReceipt
+from .reentry import (
+    CheckpointReentryService,
+    OperatorPopup,
+    PopupAction,
+    ReentryPoint,
+    ReentryPreparationError,
+)
 from .resume_checkpoint import (
     CheckpointView,
     ResumeCheckpointManager,
@@ -14,6 +21,11 @@ __all__ = [
     "AttemptStore",
     "CaptureReceipt",
     "EventReceipt",
+    "CheckpointReentryService",
+    "OperatorPopup",
+    "PopupAction",
+    "ReentryPoint",
+    "ReentryPreparationError",
     "CheckpointView",
     "ResumeCheckpointManager",
     "ResumeCheckpointPayload",
