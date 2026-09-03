@@ -400,6 +400,17 @@ class AttemptStore:
         conn = self._connect()
         try:
             conn.execute("BEGIN IMMEDIATE")
+            if attempt_id is not None:
+                row = conn.execute(
+                    "SELECT blob_sha256 FROM attempts WHERE attempt_id=?", (attempt_id,)
+                ).fetchone()
+                if row is None:
+                    raise AttemptStoreError(f"unknown attempt for event: {attempt_id}")
+                actual_blob = row["blob_sha256"]
+                if blob_sha256 is None:
+                    blob_sha256 = actual_blob
+                elif blob_sha256 != actual_blob:
+                    raise AttemptStoreError("event blob_sha256 does not match attempt")
             existing = conn.execute(
                 "SELECT seq,event_id,event_type,attempt_id,blob_sha256,payload_json,created_at FROM events WHERE event_id=?",
                 (event_id,),
@@ -423,17 +434,6 @@ class AttemptStore:
                     created_at=existing["created_at"],
                     seq=int(existing["seq"]),
                 )
-            if attempt_id is not None:
-                row = conn.execute(
-                    "SELECT blob_sha256 FROM attempts WHERE attempt_id=?", (attempt_id,)
-                ).fetchone()
-                if row is None:
-                    raise AttemptStoreError(f"unknown attempt for event: {attempt_id}")
-                actual_blob = row["blob_sha256"]
-                if blob_sha256 is None:
-                    blob_sha256 = actual_blob
-                elif blob_sha256 != actual_blob:
-                    raise AttemptStoreError("event blob_sha256 does not match attempt")
             cur = conn.execute(
                 "INSERT INTO events(event_id,event_type,attempt_id,blob_sha256,payload_json,created_at) VALUES(?,?,?,?,?,?)",
                 (event_id,event_type,attempt_id,blob_sha256,payload_json,created_at),
