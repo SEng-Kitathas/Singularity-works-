@@ -46,3 +46,6 @@ The server DTS is the full-fidelity chronological record. The Git copy redacts m
 `GIT_PUSH_SUCCESS != CONTROL_STATE_COHERENCE`
 
 `CONTROL_CHECKPOINT != PRODUCT_PROMOTION`
+
+## Remote establishment
+Initial remote establishment was independently verified at commit `8226f2ffb1e9e96bfca7f1ba91b32d47a904388e`; see `PUSH_RECEIPT_20260903.md`. Always resolve current branch HEAD live.

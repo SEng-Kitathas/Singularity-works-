@@ -78,9 +78,14 @@
       "sha256": "f5c9ba6e8437b1b6377cc6c23df8e74fa17cbd7a0c5207cca85fa6753e1c64ba"
     },
     {
-      "bytes": 3110,
+      "bytes": 1618,
+      "path": "PUSH_RECEIPT_20260903.md",
+      "sha256": "2fbf22e5e9eb92c8a72972f3d166fb97c24055c0668a37ef594fcbb4236eae02"
+    },
+    {
+      "bytes": 3318,
       "path": "README.md",
-      "sha256": "f91e71c6140035126e0fb587e64deaca354902dd2799fb9c8c4ada05658b95ad"
+      "sha256": "c5f7f089ac9a15a21d87924b3795d838ca5e11b0fc826b1fca74d2be0a21fcbf"
     },
     {
       "bytes": 4395,
@@ -288,6 +293,15 @@
     "working_tree_clean": true
   },
   "qualified_public_main_observed": "1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9",
+  "remote_establishment": {
+    "currentness_rule": "resolve current remote branch HEAD live; receipt identifies initial establishment only",
+    "fresh_clone_head_exact": true,
+    "fresh_clone_verifier": "PASS",
+    "initial_commit": "8226f2ffb1e9e96bfca7f1ba91b32d47a904388e",
+    "ls_remote_exact": true,
+    "public_main_unchanged": "1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9",
+    "receipt": "PUSH_RECEIPT_20260903.md"
+  },
   "resume_point": "Verify current Main candidate/source identity, then finish exact committed-artifact replay/promotion qualification. If shared Core advances, perform early Main->App sync before App consumes semantic-field Core.",
   "schema": "singularity-works.project-control-checkpoint/0.1",
   "source_snapshot_records": {
