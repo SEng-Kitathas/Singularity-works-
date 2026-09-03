@@ -1,0 +1,32 @@
+# Revisit Ledger — Singularity Works / Forge LBE
+
+Last updated: 2026-09-02 UTC
+
+| Date | Seam / Claim / Decision | Why revisit | What could invalidate it | Evidence/action needed | Priority | Status | Next action |
+|---|---|---|---|---|---|---|---|
+| 2026-09-02 | Relation v0.3 `passes_callable` adequate beyond PyGoat | current evidence is Python/Django-heavy | event/plugin/DI callback topology fails | independent callback graph | P1 | WORKING CANDIDATE | pressure during primitive lowering |
+| 2026-09-02 | Semantic Fact IR v0.1.2 is sufficient local field substrate | real scale/currentness now green but materialization not tested | source round trip diverges or simpler model dominates | real patch/reparse discriminator | P0 | LOCAL INCUMBENT CANDIDATE | execute round trip now |
+| 2026-09-02 | Frozen read snapshot boundary is correct | solved stale-hash performance and gives atomic reads | mutable/frozen divergence or live incremental need defeats it | larger/incremental replay | P0 | READY_WITH_EVIDENCE | preserve during round trip |
+| 2026-09-02 | Semantic Fact Index v0.2 is safe/valuable | ~73.9x speedup on 731 facts, exact projections | indexed result differs at larger scale | multi-repo/larger field query replay | P1 | READY_WITH_EVIDENCE BOUNDED | carry into HUD |
+| 2026-09-02 | Snapshot Delta v0.3 currentness semantics generalize | PyGoat comment/remove only | rename/move/provider substitution misclassified | second project/edit archetype | P0 | READY_WITH_EVIDENCE BOUNDED | round-trip + provider substitution |
+| 2026-09-02 | UNKNOWN source/scope identity is sufficient | 18/18 retained in current scale field | multi-source closure ambiguities collapse | closure-level UNKNOWN trial | P1 | VERIFIED BOUNDED | monitor |
+| 2026-09-02 | Merge-order-independent producer lineage is sufficient | synthetic/real forward-reverse passed | different producer-version composition collides | heterogeneous version replay | P1 | VERIFIED BOUNDED | monitor |
+| 2026-09-02 | Transient lowerer IDs must stay out of semantic identity | renumbering caused fake revision churn | local ID needed for unique semantic identity | use separate provenance/debug field only | P0 | LOCKED LAW | never reinsert into fact identity |
+| 2026-09-02 | Entity identity can derive from module/source prefix | fixed first-encounter bug in PyGoat | nested scopes/classes/aliases need finer definition identity | primitive definition-span lowering | P0 | PROVISIONAL BOUNDED | refine with language-native facts |
+| 2026-09-02 | Revision vs semantic continuity split is sound | comment-only and route removal behaved correctly | moves/renames or equivalent rewrite break continuity | move/rename discriminator | P1 | VERIFIED BOUNDED | after round trip |
+| 2026-09-02 | Current security bridges can remain as migration layer | they are collapsed derived facts | they distort primitive fact ontology or duplicate facts | replace progressively with native primitives | P0 | TEMPORARY BRIDGE | start after materialization gate |
+| 2026-09-02 | Java whole-app semantics ready | WebGoat only 2/4 strict supported | new framework facts close gap + fresh holdout | Java vNext + new holdout | P0 | FALSIFIED / REWORK | do not promote current security semantics |
+| 2026-09-02 | Python security can promote | PyGoat dev10/10 only | independent corpus fails | fresh Python holdout | P0 | BLOCKED | acquire before promotion |
+| 2026-09-02 | TypeScript v0.1 broad enough | Juice holdout14/19 | partial binding/stored provenance fixed and fresh repo passes | TS vNext + fresh holdout | P0 | REWORK | spent Juice = dev evidence only |
+| 2026-09-02 | PHP v0.1 broad enough | DVWA18/36 | output/upload/include semantics fixed and fresh repo passes | PHP vNext + fresh holdout | P0 | REWORK | spent DVWA = dev evidence only |
+| 2026-09-02 | Security should remain overlay, not ontology capture | benchmark work could distort core Forge | security-specific nodes dominate field design | primitive/general fact pressure | P0 | ACTIVE GUARDRAIL | keep security removable/selectable |
+| 2026-09-02 | Round-trip map editing can safely materialize source | currently only in-memory semantic counterfactuals qualified | observed reparse delta differs or collateral semantics appear | sandbox patch/readback/rollback trial | P0 | OPEN HIGHEST-VALUE SEAM | execute next |
+| 2026-09-02 | Human HUD UX is useful | self-test != human task value | operator finds projections/edit flow worse than source tools | task-based usability trial | P1 | OPEN | after materialization semantics |
+| 2026-09-02 | Public GitHub main remains qualification-gated | audit stack is not source release | explicit operator policy change | separate release qualification | P0 | ACTIVE RULE | keep `1b8f6bd...` |
+
+| 2026-09-03 | R4.0 optional-machinery interpretation | R4.1 explicitly identifies this as interpretation drift | a stronger superseding process authority changes the obligation | exact R4.1 source + hostile/verifier + operator upgrade request | P0 | RESOLVED / SUPERSEDED | Use R4.1 base-tier functional obligations; preserve proportional/nonlinear choreography |
+| 2026-09-03 | Snapshot Delta v0.3 as current incumbent | provider-substitution campaign exposed evidence/meaning identity defect | v0.4 regression or stronger candidate fails | delta v0.4 + PyGoat 23/23 | P0 | SUPERSEDED BY v0.4 | Treat v0.3 row above as historical bounded evidence only |
+| 2026-09-03 | Round-trip map editing open highest-value seam | PyGoat materialization round trip now qualified | second shape/cross-language transaction fails | 26/26 PyGoat round-trip + exact rollback | P0 | RESOLVED BOUNDED / REOPEN ON NEW SHAPE | Move frontier to exact committed Core promotion and broader materialization shapes |
+| 2026-09-03 | Provider substitution remained unqualified | Microseed v0.4 completed good/bad discriminator | independent provider shape contradicts | 34/34 bounded Microseed provider substitution | P0 | READY_WITH_EVIDENCE BOUNDED | Reopen on second capability/provider archetype |
+
+| 2026-09-03 | Git control-plane durability for cross-thread re-entry | required because chat thread limits force repeated thread switches | remote checkpoint missing/stale or control snapshot diverges from live state | first dedicated control-branch commit + push + exact readback | P0 | ACTIVE | Complete first R4.1-backed control checkpoint and record branch/SHA |

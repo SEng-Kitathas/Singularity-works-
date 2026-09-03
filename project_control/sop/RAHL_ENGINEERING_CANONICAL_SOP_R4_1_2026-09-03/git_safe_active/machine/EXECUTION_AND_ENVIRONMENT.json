@@ -1,0 +1,29 @@
+{
+  "environment_identity_fields": [
+    "subject",
+    "authoritative_representation",
+    "admissible_transformations",
+    "consequence_bearing_environment",
+    "assurance_class",
+    "residuals"
+  ],
+  "non_equivalences": [
+    "SUBMITTED != STARTED",
+    "STARTED != COMPLETED",
+    "COMPLETED != REGISTERED",
+    "ARTIFACT_REGISTERED != CHAT_RENDERED"
+  ],
+  "schema": "rahl.sop.execution-obligations.v1",
+  "states": [
+    "planned",
+    "submitted",
+    "started",
+    "completed",
+    "persisted",
+    "read_back",
+    "registered",
+    "rendered",
+    "synchronized",
+    "published"
+  ]
+}

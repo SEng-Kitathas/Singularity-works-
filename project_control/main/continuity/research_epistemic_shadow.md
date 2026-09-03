@@ -1,0 +1,181 @@
+# RESEARCH EPISTEMIC SHADOW — Forge Core/Main
+
+Last updated: 2026-09-03 UTC
+Status: ACTIVE RESEARCH CONTINUITY SURFACE
+Authority: NONE_BY_CONTENT
+Canonical process: RAHL Engineering Canonical SOP R4.1
+
+## Boundary
+This artifact preserves what Main has learned, why it matters, what remains uncertain, and what should be tested next.
+It does not replace Live Shadow or Design Thread Stream.
+It grants no mutation, promotion, product, semantic, legal, security, release, or architecture authority merely by containing a statement.
+
+`SYNTHESIS != VERIFICATION`
+`RES_CONTENT != GOVERNING_DOCTRINE`
+`ELOQUENT_INFERENCE != LOAD_BEARING_AUTHORITY`
+
+## 1. Research identity
+Forge Core/Main semantic-cartography and canonical-core qualification program inside Singularity Works.
+
+## 2. Current research question
+Can Forge provide a language-agnostic semantic field that supports exact source/evidence identity, immutable read snapshots, bounded projections, semantic currentness, reversible materialization, and behaviorally qualified provider substitution, then expose that capability through a canonical Core interface consumable by Forge App without duplicating canonical truth?
+
+## 3. Strongest verified findings
+- Real four-language semantic field campaign: 26/26 PASS over 511 source files / 731 facts / 18 UNKNOWNs.
+- Indexed projections were observationally identical to canonical scans and approximately 73.9x faster over the bounded batch.
+- PyGoat currentness under semantic delta v0.4: 23/23 PASS.
+- PyGoat route materialization round trip: 26/26 PASS with exact rollback and stale-index rejection.
+- Microseed provider substitution v0.4: 34/34 PASS under the bounded capability shape.
+- Good provider substitution preserved capability identity, contract signature, authority/currentness/qualification/scope, bounded behavior and replay semantics while changing provider implementation identity.
+- Hostile provider preserved contract signature and existing replay pass but changed bounded behavior and was correctly rejected by the independent behavior witness.
+- Main semantic-field Core promotion candidate exists locally at `a7b4511734b1a1e507230308e75b31175aef4c4a`; pre-commit source/wheel/install qualification passed in the bounded campaign.
+- Main/App operate as coordinated development strands of one product: separate pressure, shared identity; independent embodiment, shared canonical truth.
+
+## 4. Earned semantic laws / scars
+- `FIELD != MAP`.
+- `PROJECTION != AUTHORITY`.
+- `INDEX != TRUTH`.
+- `MUTABLE_BUILD_STATE != OPERATOR_READ_SNAPSHOT`.
+- `REVISION_IDENTITY != SEMANTIC_CONTINUITY_IDENTITY`.
+- `EVIDENCE_FINGERPRINT != SEMANTIC_MEANING`.
+- `CONTRACT_IDENTITY_SAME != PROVIDER_BEHAVIOR_EQUIVALENT`.
+- `EXISTING_TEST_PASS != PROVIDER_SUBSTITUTION_EQUIVALENCE`.
+- `SEMANTIC_CHECKS_PASS != EXECUTION_HYGIENE_PASS`.
+- `FULL_REPO_SANDBOX_COPY != MINIMUM_SUFFICIENT_EMBODIMENT`.
+
+## 5. Current architecture interpretation
+The semantic field is an exact source/evidence/currentness substrate alongside, not a silent replacement for, existing `FactBus`, `UniversalSemanticIR`, Universal LBE and Blueprint result models.
+Core/Main should own the canonical substrate and bridge contract.
+Forge App should consume a qualified narrow bridge rather than copy or vendor the implementation.
+
+## 6. Current negative knowledge
+- The legacy universal Java LBE is not a general security kernel.
+- Contract identity alone is insufficient for provider-equivalence authority.
+- Existing regression-suite survival alone is insufficient for provider equivalence.
+- Generic evidence snippet hashes cannot define every semantic continuity identity.
+- Full-repository sandbox embodiment may materially worsen execution cost without strengthening the semantic claim.
+- Microseed replay has known Windows SQLite cleanup execution-hygiene debt after semantic JSON success.
+
+## 7. Current UNKNOWN / open seams
+- Exact post-commit replay qualification of Main candidate `a7b4511734b1a1e507230308e75b31175aef4c4a` remains the key promotion discriminator unless a newer verified candidate supersedes it.
+- Public-source promotion of semantic-field Core is not automatically earned by local candidate success.
+- Shared Core -> App semantic-field bridge consumption is not yet qualified.
+- Cross-language provider materialization and multi-file transactional substitution remain unqualified.
+- Primitive language-native fact ontology remains open beyond current relation/security-derived facts.
+- App checkpoint fields `core_contract_version`, `core_currentness_id`, and `semantic_snapshot_id` remain intentionally unbound until a qualified Core bridge exists.
+
+## 8. Highest-value next discriminator
+Replay the exact committed Main semantic-field candidate from a clean/detached source state and require the committed artifact itself to pass:
+compile -> semantic-field tests -> full `verify_build` -> wheel-content verification -> fresh install -> bridge/materializer smoke -> legacy CLI smoke.
+
+If a newer Main candidate exists at execution time, currentness must be re-read before using this pointer.
+`REMEMBERED_POINTER != CURRENT_STATE_EVIDENCE`.
+
+## 9. Cross-arm research pressure
+- App continues renderer/recovery/operator embodiment without private semantic-field truth.
+- If Main promotes a shared semantic-field interface, App should ingest qualified Main drift early and become a hostile consumer of that bridge.
+- App discoveries that pressure Core semantics should return upstream as requirements/counterexamples, not copied implementation.
+- Main should not absorb App-specific renderer/recovery mechanisms merely because they work locally.
+
+## 10. Research-evidence posture
+All verified claims above remain bounded by their named campaigns and exact artifacts.
+No bounded witness is silently generalized to universal equivalence.
+Identifying evaluation and developmental evaluation remain distinct.
+
+## 11. Promotion posture
+- Semantic-field substrate: strongest local Core candidate, not automatic public canon.
+- Provider substitution: READY_WITH_EVIDENCE under bounded Microseed capability shape.
+- Canonical Main promotion: separate exact-artifact qualification gate.
+- App semantic-field consumption: blocked until qualified Core interface movement.
+
+## 12. Research roughness quarantine
+Donor-specific Microseed capability adapter, security benchmark adapters, parser-specific lowerers, and campaign-specific harnesses remain research instrumentation until separately qualified for canonical source.
+
+## 13. Contradictions / tensions to preserve
+- Need exact evidence/currentness identity without laundering occurrence identity into semantic meaning.
+- Need Core bridge interfaces rich enough for App/HUD interaction while narrow enough to preserve one canonical owner.
+- Need fast operator projections without converting cache/index speed into truth authority.
+- Need materialization flexibility without weakening source/currentness/readback gates.
+
+## 14. Current causal hypothesis
+A frozen exact semantic field plus disposable projections/indexes, explicit semantic deltas, behavior-qualified substitutions, and reversible materialization receipts can support interactive LBE/HUD operation while keeping currentness and authority auditable.
+
+## 15. Alternative hypotheses
+- Existing `UniversalSemanticIR` may eventually absorb part of the field layer after comparative qualification.
+- Some language-native semantic facts may require richer identities than current generic entity/fact structures.
+- Provider behavioral equivalence may require capability-specific witness contracts rather than one universal witness form.
+
+## 16. Failure scars worth replaying
+- Java whole-framework SQLi/XSS misses.
+- TypeScript stored-data provenance misses.
+- PHP whole-application consequence misses.
+- Microseed cleanup hygiene failure after semantic success.
+- Over-scoped semantic snapshot performance in provider v0.2.
+
+## 17. Research methods currently earning residency
+- hostile discriminator campaigns;
+- exact source/evidence hashing;
+- frozen snapshot replay;
+- preview -> observed semantic-delta equality;
+- exact inverse rollback;
+- target-clean readback;
+- installed-surface verification;
+- bounded UNKNOWN-preserving probes.
+
+## 18. Methods not granted automatic authority
+- same-model self-critique;
+- narrative synthesis;
+- benchmark pass without claim-class matching;
+- timing/recency as truth proxy;
+- method-stack ritual;
+- mode/role label as mutation permission.
+
+## 19. Environment / observation notes
+Source hashes, commits, environment IDs, installed artifacts and runtime observations are subject/time-bound observations. Current-state claims require live verification at the point they matter.
+
+## 20. Revisit triggers
+- Main semantic-field candidate replay result.
+- Qualified/public Main movement.
+- App begins consuming semantic-field bridge.
+- New language-native lowerer.
+- Multi-file materialization attempt.
+- Any contradiction between semantic snapshot currentness and source readback.
+- Any App checkpoint requiring non-null Core semantic/currentness identity.
+
+## 21. Research-to-do
+1. Re-read current Main candidate/source identity.
+2. Finish exact committed-artifact replay/promotion gate.
+3. If shared Core moves, perform early Main -> App forward sync.
+4. Build first App consumer against canonical bridge.
+5. Expand primitive language-native fact layer under hostile tests.
+6. Keep RES synchronized when the meaning/frontier changes, without treating RES as doctrine.
+
+## R4.1 process-metabolism epistemic addendum — 2026-09-03
+Truth status: VERIFIED process-source ingestion; NONE_BY_CONTENT for research claims.
+
+R4.1 corrected one R4.0 interpretation drift: the *causal jobs* of PDVER, hostile engineering, Semantic Helix, Attention Reservoir, Loop+, OARR, CSC, and additive AI co-processing are standing obligations for nontrivial work. Their visible choreography remains optional/proportional.
+
+Canonical PDVER is now `PROBE -> DERIVE -> VERIFY -> EMBODY -> RECURSE`; consequence-bearing post-embodiment readback/attack remains mandatory. The universal fixed 20-pass campaign default is removed in favor of discriminator- and consequence-justified bounds.
+
+This was established by full recursive linear ingestion of R4.1: 162 encountered records, 159 textual payloads, 16,276 lines, 0 unread; recursive stream SHA `f81b1da9347c05adb9198de4406a57050e2164dac2468ad307589003708263c2`. R4.1 verifier PASS; hostile suite 17/17 rejected; embedded R4.0 and R3.1 verifiers PASS.
+
+Research implication: Main should no longer treat Helix/OARR/Loop+/CSC/Attention Reservoir as merely optional named extras on nontrivial work. It should ensure their causal functions are actually supplied, while avoiding ritualized fixed sequencing.
+
+`BASE_TIER_FUNCTIONAL_OBLIGATIONS != OPTIONAL_FOR_NONTRIVIAL_WORK`
+`BASE_TIER_FUNCTIONAL_OBLIGATIONS != MANDATORY_LINEAR_PIPELINE`
+`AI_BREADTH != TRUTH_AUTHORITY`
+
+
+## Git-backed continuity epistemic addendum — 2026-09-03
+Truth status: OPERATOR DIRECTIVE + ACTIVE PROCESS DECISION.
+
+Git is now part of the project's continuity architecture, not merely a release/code transport. The live server state remains the high-fidelity mutable working surface; Git stores explicit checkpointed control snapshots so a new chat thread can rehydrate project truth without depending on conversation memory.
+
+Research/continuity implication:
+- `CHAT_CONTEXT != DURABLE_PROJECT_STATE`.
+- `SERVER_LIVE_STATE != CROSS_THREAD_DURABILITY` unless checkpointed.
+- `GIT_PUSH_SUCCESS != CONTROL_STATE_COHERENCE`.
+- A control checkpoint is only qualified after committed-file identity and remote branch SHA are read back.
+- Control snapshots should carry enough state to restart without importing transient logs or large lab blobs.
+
+The control checkpoint must keep product/code promotion separate from continuity persistence: a dedicated Git control branch may advance without advancing qualified public `main`.

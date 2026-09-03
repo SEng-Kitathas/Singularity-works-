@@ -1,0 +1,50 @@
+{
+  "global_transform": "all Git-safe derivative text normalized to LF; exact canonical member hashes preserved in SOURCE_ACTIVE_FILE_HASHES.json",
+  "note": "Git-safe derivative only. Source hashes preserve canonical identity; transformed evidence is not byte-identical canon and must not be passed off as such.",
+  "schema": "singularity-works.rahl-git-safe-transform/0.1",
+  "source_active_bundle_sha256": "b28baeec01ac92b10e3c14d53a86d9aa80ec5041805176a0687dc5ee032d0e7a",
+  "source_carrier_sha256": "af4364fbcf8e5d33aa2ad06e4da9c4669d4be2ffcbc332e416742bec1543f4d2",
+  "transforms": [
+    {
+      "git_copy_sha256": "2f1d32a386354c3fde68b6474198dcfdb69000db836c2830f118808ed7a79bfc",
+      "path": "evidence/receiver_continuity_qualification/CONTINUITY_ENVELOPE_V0_1.patch",
+      "source_sha256": "59fef362ce36896a20379d1514ae865aad547b3ce57705fad9b8add382bc106a",
+      "transformations": [
+        {
+          "count": 1,
+          "label": "machine_project_root"
+        },
+        {
+          "count": 1,
+          "label": "test_fixture_key"
+        },
+        {
+          "count": 12,
+          "label": "trailing_whitespace_normalization"
+        }
+      ]
+    },
+    {
+      "git_copy_sha256": "7a7eaeade84190e9bc42ef87c14ce97cabca52034fc687d080b8cc0a228c21fc",
+      "path": "evidence/receiver_continuity_qualification/QUALIFICATION_REPORT.md",
+      "source_sha256": "5a8d50cf7dcd95722756116db786dae32944efb7360d1cf7f47ad37e88115aa7",
+      "transformations": [
+        {
+          "count": 1,
+          "label": "machine_receiver_source_root"
+        }
+      ]
+    },
+    {
+      "git_copy_sha256": "3819e5ac57737b02679601d4dd56ed5c791dcb855517cc51133fce928ec2e116",
+      "path": "evidence/receiver_continuity_qualification/SOURCE_SNAPSHOT_MANIFEST.json",
+      "source_sha256": "20c83018ee217de05e714edaaef3b97ce49899d4d18db2cb6601f0d01c83d24f",
+      "transformations": [
+        {
+          "count": 1,
+          "label": "machine_receiver_source_root_json"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,394 @@
+{
+  "app_observation": {
+    "branch": "forge/app-shell-rd",
+    "commit": "328249429cc6e86e15db9797bd58eff5fabc5a2d",
+    "local_remote_exact": true,
+    "subject": "singularity-works: qualify operation lifecycle reconciliation v0.1",
+    "working_tree_clean": true
+  },
+  "branch_base_qualified_main": "1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9",
+  "canonical_process": {
+    "active_bundle_sha256": "b28baeec01ac92b10e3c14d53a86d9aa80ec5041805176a0687dc5ee032d0e7a",
+    "active_files": 34,
+    "carrier_sha256": "af4364fbcf8e5d33aa2ad06e4da9c4669d4be2ffcbc332e416742bec1543f4d2",
+    "git_copy": "GIT_SAFE_DERIVATIVE_WITH_EXACT_SOURCE_HASHES",
+    "git_safe_transform_manifest": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/GIT_SAFE_TRANSFORMS.json",
+    "name": "RAHL Engineering Canonical SOP R4.1"
+  },
+  "control_branch": "pcmmad/project-control",
+  "files": [
+    {
+      "bytes": 14,
+      "path": ".gitattributes",
+      "sha256": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9"
+    },
+    {
+      "bytes": 71091,
+      "path": "main/continuity/design_thread_stream.md",
+      "sha256": "1066729532243eecd97ad1cfd843ab6757672aa91954d9ea0964e243e06ad8a5"
+    },
+    {
+      "bytes": 4789,
+      "path": "main/continuity/live_shadow.md",
+      "sha256": "2bcc27d5650a3f39eca9b6bac351b3dd906bea43d93ee5dfd6c703c9ffe654c8"
+    },
+    {
+      "bytes": 11958,
+      "path": "main/continuity/research_epistemic_shadow.md",
+      "sha256": "2b6718943f3d961240ed38795d0a293ce34874b9c7d575573b9c69354fdcc5e3"
+    },
+    {
+      "bytes": 4396,
+      "path": "main/maintenance/FORGE_DOUBLE_HELIX_SYNC_20260903.md",
+      "sha256": "1fe0b98f8677f8f350428e3ba319ca25e0ada2ebaec7d955421fef882c8dc8b3"
+    },
+    {
+      "bytes": 3994,
+      "path": "main/maintenance/RAHL_R4_1_CANONICAL_SOP_ADOPTION_20260903.md",
+      "sha256": "5c51da6c318f7916d3696226a58d3c594de1544ddac6b040603b8d800111524c"
+    },
+    {
+      "bytes": 2798,
+      "path": "main/maintenance/RAHL_R4_1_DEEP_LINEAR_READ_PROOF_20260903.md",
+      "sha256": "b5c9c9bec84362acf8aaf347bd703ca183f6d22a7861f69db5b070878547b475"
+    },
+    {
+      "bytes": 4010,
+      "path": "main/state/current.md",
+      "sha256": "5a4836997f43621313e5ac10b5d8f3a3b68d2959f94f468f3cb206d2efa8990e"
+    },
+    {
+      "bytes": 11733,
+      "path": "main/state/doctrine_snapshot.md",
+      "sha256": "b12142c12499a87517bf72b430e82f01473b3b46c71549a18f5a7c2168a8baa1"
+    },
+    {
+      "bytes": 9034,
+      "path": "main/state/next_steps.md",
+      "sha256": "8291ce172e040d75a08562e4a8bdcd72ad3752469353a06963bede6ba6611b3a"
+    },
+    {
+      "bytes": 6403,
+      "path": "main/state/revisit_ledger.md",
+      "sha256": "4b43466e7530ae49bc4d6a84920a551b0112c4376eb3cba182aaaaf930051ebb"
+    },
+    {
+      "bytes": 13098,
+      "path": "main/state/trace_matrix.md",
+      "sha256": "f5c9ba6e8437b1b6377cc6c23df8e74fa17cbd7a0c5207cca85fa6753e1c64ba"
+    },
+    {
+      "bytes": 3110,
+      "path": "README.md",
+      "sha256": "f91e71c6140035126e0fb587e64deaca354902dd2799fb9c8c4ada05658b95ad"
+    },
+    {
+      "bytes": 4395,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/00_READ_ME_FIRST.md",
+      "sha256": "36ff8f82ef5fbb286e2da39eb65a19f0355c776142c5c67d7bf9c03f03b1d96b"
+    },
+    {
+      "bytes": 2086,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/01_AUTHORITY_CLASSES_AND_CONFLICT_RESOLUTION.md",
+      "sha256": "008390e0c69c64e744d11826451dde7dca25abf38dcefc4ddb8cca6b1fe92dd4"
+    },
+    {
+      "bytes": 6469,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/02_ENGINEERING_AUTHORITY_SURFACE.md",
+      "sha256": "c890c1e1381f0bf11f2a7039a4dc6e1ad0f95a182caf1b3f6cc68a1bf21a8ee2"
+    },
+    {
+      "bytes": 905,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/03_PROJECT_OBLIGATION_INTERFACE.md",
+      "sha256": "59326c29a598e6eee4f66be943fd453a3d9a15d433da2807c98e0282f1278ade"
+    },
+    {
+      "bytes": 6878,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/04_RESEARCH_GOVERNANCE.md",
+      "sha256": "957c97abfe0701f7097de188e92caae335940b5a9720c400bdfde2f018b34029"
+    },
+    {
+      "bytes": 6599,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/05_RESEARCH_MACHINERY_AND_MODES.md",
+      "sha256": "775fc6e9b2853f9c35f520e86e07efa46e8c85a4ac57b743cba3222a105dc2e4"
+    },
+    {
+      "bytes": 3328,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/06_EXECUTION_RELEASE_AND_ENVIRONMENT_DISCIPLINE.md",
+      "sha256": "9cc3a1a09306195408938496554896a1fe71c7f43c4d3407b74a1cb38577e623"
+    },
+    {
+      "bytes": 4056,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/07_CONTINUITY_SYSTEM.md",
+      "sha256": "b917a7f76ded842000cac50e761e61e8704c0916c3228ff615e8b773724a9da9"
+    },
+    {
+      "bytes": 958,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/07A_LIVE_SHADOW_PROTOCOL.md",
+      "sha256": "05c191e6b49ceaee0fe290e94827b204f91f0ad9cb136284aa37134d74b674f1"
+    },
+    {
+      "bytes": 771,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/07B_DESIGN_THREAD_STREAM_PROTOCOL.md",
+      "sha256": "9a0ef949c13aecba346af93e5f497ae1e9b3e828e6bb5359ec130ff134c12df3"
+    },
+    {
+      "bytes": 3354,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/07C_RESEARCH_EPISTEMIC_SHADOW_PROTOCOL.md",
+      "sha256": "d49bb28773d17a79abdc848624f3cbe3a7a60025ce7301bede4d7746e7e2963e"
+    },
+    {
+      "bytes": 1563,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/08_STATE_INSTRUMENTS_PROMOTION_AND_APPEND_ONLY.md",
+      "sha256": "6ed60144dcf9a00e19474176b052cc082eb8ba0afb505ec421f7e33494bb1533"
+    },
+    {
+      "bytes": 1611,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/09_UNKNOWN_TRACE_AND_RECOVERY_RULE.md",
+      "sha256": "ee36bddcfaa6f9219fcf3909c39bcbe3f7bc91e35bee514443859047e3147bfc"
+    },
+    {
+      "bytes": 620,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/10_SUBSTRATE_PROFILE_ACTIVATION.md",
+      "sha256": "bc7750f08dca9d8721df55dd2d84f6d4166a8576abc43622e229d2d2068d0e7c"
+    },
+    {
+      "bytes": 3367,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/11_ACTIVE_SCAR_INDEX.md",
+      "sha256": "04cb15b78ce5e453a6bc003382f45c715c17c7e5b5f8cc497a368e825052181d"
+    },
+    {
+      "bytes": 2334,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/12_COLD_START_PROTOCOL.md",
+      "sha256": "2b269180259d02fe4b688a1e7bd4c144ed8c1574f1c029458efda213fc051d48"
+    },
+    {
+      "bytes": 1431,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/13_PACKAGE_ARCHIVE_AND_PROVENANCE.md",
+      "sha256": "b5850a2bb921a647a26b80e906adb16e749e15f589c4a09602900f2a0982371b"
+    },
+    {
+      "bytes": 4211,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/14_CHANGELOG_AND_CULL_LEDGER.md",
+      "sha256": "e5f32407a63c1697c1961827805490c466560c7dceabba4379e08d971dab6eb5"
+    },
+    {
+      "bytes": 1194,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/15_CLAIM_CEILING_AND_NONCLAIMS.md",
+      "sha256": "eabf6c3ddcabdb5e1ed7a364d20ecd14dc06df98e2323d0c0c25e0086fe078d4"
+    },
+    {
+      "bytes": 505,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/evidence/README.md",
+      "sha256": "efc1079c8d5eb0e8836ecc96e96a5dd7d3d02e15f204258868687fc0fa560af4"
+    },
+    {
+      "bytes": 1024,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/evidence/receiver_continuity_qualification/CANDIDATE_SEAL.json",
+      "sha256": "16c04f9460a1dcad12485db00ee6639f63f8382862262eadf26ea5af7829fdea"
+    },
+    {
+      "bytes": 24629,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/evidence/receiver_continuity_qualification/CONTINUITY_ENVELOPE_V0_1.patch",
+      "sha256": "2f1d32a386354c3fde68b6474198dcfdb69000db836c2830f118808ed7a79bfc"
+    },
+    {
+      "bytes": 7401,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/evidence/receiver_continuity_qualification/QUALIFICATION_REPORT.md",
+      "sha256": "7a7eaeade84190e9bc42ef87c14ce97cabca52034fc687d080b8cc0a228c21fc"
+    },
+    {
+      "bytes": 9527,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/evidence/receiver_continuity_qualification/SOURCE_SNAPSHOT_MANIFEST.json",
+      "sha256": "3819e5ac57737b02679601d4dd56ed5c791dcb855517cc51133fce928ec2e116"
+    },
+    {
+      "bytes": 408,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/machine/AUTHORITY_CLASSES.json",
+      "sha256": "e2bc24ab821c12041d3ee88602696bf3591125e733a96b5dadc95d5dddd40eee"
+    },
+    {
+      "bytes": 1211,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/machine/BASE_TIER_ENGINEERING_METABOLISM.json",
+      "sha256": "acafb6c28563be79d17dd888cdd45d332c5f06dc6dc12a47844432509f01830f"
+    },
+    {
+      "bytes": 745,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/machine/CONTINUITY_INSTRUMENTS.json",
+      "sha256": "c3e6491615b86615f583a1d90c79da866a37c8cad3478549f2289561a96110f1"
+    },
+    {
+      "bytes": 601,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/machine/EXECUTION_AND_ENVIRONMENT.json",
+      "sha256": "623d1c4cefb8faf881987691d6fd0660d63df444223ec82fbf51fd1507d6d76a"
+    },
+    {
+      "bytes": 3491,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/machine/SCARS.json",
+      "sha256": "0ceab6c5eaec8841277df4271f9e7769e0b836e6dd0a5467edaf8f055a0b18f8"
+    },
+    {
+      "bytes": 5683,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/MANIFEST_SHA256.json",
+      "sha256": "7bd55694acaa4dcfe70e2fa7c3e723d5e501bff073145d77e0750dcd7317d499"
+    },
+    {
+      "bytes": 1969,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/PROMOTION_RECEIPT.md",
+      "sha256": "d22531005742b52b0b25de1dea54283e042e57251e1265d14cc1f062511d6928"
+    },
+    {
+      "bytes": 3698,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/RELEASE_VERIFICATION.md",
+      "sha256": "d2cdb3fed19cdb927108371c336c17a115db90d269c7c3098d7b633e124b21db"
+    },
+    {
+      "bytes": 5703,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/tests/RUN_HOSTILE_TESTS.py",
+      "sha256": "f4177f651e00534beb5c452081c0fc3937db79fe5027b16ad19d47f1afc76639"
+    },
+    {
+      "bytes": 8881,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/VERIFY_CANONICAL_SOP.py",
+      "sha256": "17393796a07a02d590ec2b2da28e854d23fef59047c6eac5b4fda7e28d68f8fb"
+    },
+    {
+      "bytes": 2009,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/GIT_SAFE_TRANSFORMS.json",
+      "sha256": "62b7fda159c3c2db216eb17ebabf912fa7d06a168640e84965293b75dc4f7a60"
+    },
+    {
+      "bytes": 5046,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/SOURCE_ACTIVE_FILE_HASHES.json",
+      "sha256": "0daaa6a6508b1836a52a1c6bb41392bbdefaa1f72d6472acefb97a1caf326cc9"
+    },
+    {
+      "bytes": 709,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/SOURCE_IDENTITY.md",
+      "sha256": "8bc7f56412c7ab094062f85fda5b4dd26cf09bf213516a797aa20d399ac4b7a0"
+    },
+    {
+      "bytes": 1801,
+      "path": "VERIFY_CHECKPOINT.py",
+      "sha256": "f5dba1193203a03bbce3779179ce5b6947231dff1ae65f505e5024e3ec5ee207"
+    }
+  ],
+  "generated_utc": "2026-09-03T18:49:00Z",
+  "git_copy_policy": {
+    "checkpoint_text_line_endings": "LF",
+    "credential_scan": "NO_CREDENTIAL_TOKEN_EMAIL_FINDINGS_IN_CONTROL_SURFACES",
+    "dts_machine_local_paths_redacted": true,
+    "server_full_fidelity_preserved": true,
+    "server_source_hashes_preserved_separately": true,
+    "sop_machine_paths_and_test_fixture_literal_redacted": true
+  },
+  "main_candidate": {
+    "commit": "a7b4511734b1a1e507230308e75b31175aef4c4a",
+    "status": "LOCAL_UNPROMOTED_PENDING_EXACT_COMMITTED_ARTIFACT_REPLAY",
+    "working_tree_clean": true
+  },
+  "qualified_public_main_observed": "1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9",
+  "resume_point": "Verify current Main candidate/source identity, then finish exact committed-artifact replay/promotion qualification. If shared Core advances, perform early Main->App sync before App consumes semantic-field Core.",
+  "schema": "singularity-works.project-control-checkpoint/0.1",
+  "source_snapshot_records": {
+    "main/continuity/design_thread_stream.md": {
+      "bytes": 71091,
+      "git_copy_sha256": "1066729532243eecd97ad1cfd843ab6757672aa91954d9ea0964e243e06ad8a5",
+      "git_safe_redactions": [
+        {
+          "count": 2,
+          "label": "machine_local_path",
+          "replacement": "<LOCAL_FORGE_WORKTREE>"
+        },
+        {
+          "count": 1,
+          "label": "machine_local_path",
+          "replacement": "<LOCAL_PROJECT_ROOT>"
+        }
+      ],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "continuity/design_thread_stream/design_thread_stream.md",
+      "server_source_sha256": "2b145f519c246e943c51545f8dbabea7b398c1885f72f628e33fc0cbb2bd606e"
+    },
+    "main/continuity/live_shadow.md": {
+      "bytes": 4789,
+      "git_copy_sha256": "2bcc27d5650a3f39eca9b6bac351b3dd906bea43d93ee5dfd6c703c9ffe654c8",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "continuity/live_shadow/live_shadow.md",
+      "server_source_sha256": "eadf40738ca1574873e68671b40cd3bd4f8105c2744525ee22c604ffe14520f0"
+    },
+    "main/continuity/research_epistemic_shadow.md": {
+      "bytes": 11958,
+      "git_copy_sha256": "2b6718943f3d961240ed38795d0a293ce34874b9c7d575573b9c69354fdcc5e3",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "continuity/research_epistemic_shadow/res.md",
+      "server_source_sha256": "e3c941edd869d05f9b3e9d672cb2c01d46b824e499f9ea9976584108186be710"
+    },
+    "main/maintenance/FORGE_DOUBLE_HELIX_SYNC_20260903.md": {
+      "bytes": 4396,
+      "git_copy_sha256": "1fe0b98f8677f8f350428e3ba319ca25e0ada2ebaec7d955421fef882c8dc8b3",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "notes/maintenance/FORGE_DOUBLE_HELIX_SYNC_20260903.md",
+      "server_source_sha256": "5ef62c6e9c1b68d45fefe0781501a462570b793ce55e14a4ba881cf4da493e6b"
+    },
+    "main/maintenance/RAHL_R4_1_CANONICAL_SOP_ADOPTION_20260903.md": {
+      "bytes": 3994,
+      "git_copy_sha256": "5c51da6c318f7916d3696226a58d3c594de1544ddac6b040603b8d800111524c",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "notes/maintenance/RAHL_R4_1_CANONICAL_SOP_ADOPTION_20260903.md",
+      "server_source_sha256": "1e74683f538b5fa17b867a88188cdc4b04e1adfe2ede262550aa2da9a91f52cf"
+    },
+    "main/maintenance/RAHL_R4_1_DEEP_LINEAR_READ_PROOF_20260903.md": {
+      "bytes": 2798,
+      "git_copy_sha256": "b5c9c9bec84362acf8aaf347bd703ca183f6d22a7861f69db5b070878547b475",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "notes/maintenance/RAHL_R4_1_DEEP_LINEAR_READ_PROOF_20260903.md",
+      "server_source_sha256": "a19f4a0851ffaf8e6c7109c76ad42828a70a674dbddfd4d893e3055f0c9a6ff0"
+    },
+    "main/state/current.md": {
+      "bytes": 4010,
+      "git_copy_sha256": "5a4836997f43621313e5ac10b5d8f3a3b68d2959f94f468f3cb206d2efa8990e",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "state/current/current.md",
+      "server_source_sha256": "1ba44a9369d586d9918ef942604068f9692a168db943b682e1103582c9db29d1"
+    },
+    "main/state/doctrine_snapshot.md": {
+      "bytes": 11733,
+      "git_copy_sha256": "b12142c12499a87517bf72b430e82f01473b3b46c71549a18f5a7c2168a8baa1",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "state/doctrine_snapshot/doctrine_snapshot.md",
+      "server_source_sha256": "7d8e1be4a62c81f3398a91c5e1b6dc705f16db3c398508d226f78005e16079f0"
+    },
+    "main/state/next_steps.md": {
+      "bytes": 9034,
+      "git_copy_sha256": "8291ce172e040d75a08562e4a8bdcd72ad3752469353a06963bede6ba6611b3a",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "state/next_steps/next_steps.md",
+      "server_source_sha256": "430811b78286e520f3507b9c99d8afdf92f853b4935d442d1ef3a5d87a52fd3a"
+    },
+    "main/state/revisit_ledger.md": {
+      "bytes": 6403,
+      "git_copy_sha256": "4b43466e7530ae49bc4d6a84920a551b0112c4376eb3cba182aaaaf930051ebb",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "state/revisit_ledger/revisit_ledger.md",
+      "server_source_sha256": "2fe213fce7ca14aa9252d5d88e2ac209a2e98c9c3df0241edc9743c841a7d21e"
+    },
+    "main/state/trace_matrix.md": {
+      "bytes": 13098,
+      "git_copy_sha256": "f5c9ba6e8437b1b6377cc6c23df8e74fa17cbd7a0c5207cca85fa6753e1c64ba",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "state/trace_matrix/trace_matrix.md",
+      "server_source_sha256": "4a145a4b20882fd1b3649bd6b73b46d8326a99540130924228ab9bd5b6694afd"
+    }
+  }
+}
