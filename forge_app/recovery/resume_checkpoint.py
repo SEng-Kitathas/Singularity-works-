@@ -118,7 +118,33 @@ class ResumeCheckpointManager:
             event_id=f"checkpoint-resumed:{checkpoint_id}:{resume_id}",
         )
 
+    def _latest_resume(self, checkpoint_id: str) -> tuple[int, str] | None:
+        events = self.store.events_for_attempt(checkpoint_id)
+        resumes = [
+            (int(event["seq"]), str(event["payload"].get("resume_id") or ""))
+            for event in events
+            if event["event_type"] == "checkpoint_resumed"
+        ]
+        if not resumes:
+            return None
+        seq, resume_id = max(resumes, key=lambda item: item[0])
+        if not resume_id:
+            raise AttemptStoreError(f"checkpoint resume event missing resume_id: {checkpoint_id}")
+        return seq, resume_id
+
+    def _require_latest_resume(self, checkpoint_id: str, resume_id: str) -> int:
+        latest = self._latest_resume(checkpoint_id)
+        if latest is None:
+            raise AttemptStoreError(f"checkpoint has not been resumed: {checkpoint_id}")
+        seq, latest_resume_id = latest
+        if latest_resume_id != resume_id:
+            raise AttemptStoreError(
+                f"stale resume generation for {checkpoint_id}: supplied={resume_id} latest={latest_resume_id}"
+            )
+        return seq
+
     def record_health(self, checkpoint_id: str, *, resume_id: str, healthy_seconds: float, meaningful_operations: int) -> bool:
+        self._require_latest_resume(checkpoint_id, resume_id)
         if healthy_seconds < STABLE_SECONDS or meaningful_operations < STABLE_OPERATIONS:
             return False
         self.store.append_event(
@@ -146,12 +172,14 @@ class ResumeCheckpointManager:
             event_id=f"checkpoint-lkg:{checkpoint_id}:{promotion_id}",
         )
 
-    def record_crash(self, checkpoint_id: str, *, crash_id: str, seconds_since_resume: float, failure_domain: str, detail: str = "") -> CheckpointView:
+    def record_crash(self, checkpoint_id: str, *, resume_id: str, crash_id: str, seconds_since_resume: float, failure_domain: str, detail: str = "") -> CheckpointView:
+        self._require_latest_resume(checkpoint_id, resume_id)
         early = float(seconds_since_resume) <= EARLY_CRASH_SECONDS
         self.store.append_event(
             "checkpoint_crash_associated",
             attempt_id=checkpoint_id,
             payload={
+                "resume_id": resume_id,
                 "crash_id": crash_id,
                 "seconds_since_resume": float(seconds_since_resume),
                 "early": early,
