@@ -16,6 +16,12 @@ from .resume_checkpoint import (
     derive_checkpoint_view,
 )
 from .session_health import SessionHealthLease
+from .session_supervisor import (
+    ChildExitReceipt,
+    ChildReadyReceipt,
+    SessionProcessSupervisor,
+    SessionSupervisorError,
+)
 
 __all__ = [
     "AttemptStore",
@@ -30,6 +36,10 @@ __all__ = [
     "ResumeCheckpointManager",
     "ResumeCheckpointPayload",
     "SessionHealthLease",
+    "ChildExitReceipt",
+    "ChildReadyReceipt",
+    "SessionProcessSupervisor",
+    "SessionSupervisorError",
     "choose_recovery_view",
     "derive_checkpoint_view",
 ]
