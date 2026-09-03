@@ -249,5 +249,6 @@ def render_minimal_text(model: ErgoLaunchModel, *, width: int = 80) -> str:
             add(f"  {_truncate(attempt.intent, max(8, width - 2))}")
 
     add(_rule(width))
-    add("Ergo is observing durable state. Presentation does not create truth.")
+    add("Ergo is observing durable state.")
+    add("Presentation does not create truth.")
     return "\n".join(lines) + "\n"
