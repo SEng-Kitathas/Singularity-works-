@@ -148,16 +148,24 @@ PyGoat currentness remains 23/23 PASS under the current delta lineage. Harmless 
 - Public qualified Main remains source/release gated.
 - Forge App candidates do not become Core/Main by existence or Git mergeability; integration promotion is explicit and evidence-bearing.
 
-## RES embodiment retained under R4.1
-The R4 continuity model's third shadow remains explicitly embodied in Main:
+## RES embodiment retained under R4.1 — synchronized through App gen10
+Main/Core RES:
 `continuity/research_epistemic_shadow/res.md`
-SHA `c74c75792652445bbdde796f1b7b95ee4e096c4224259e52d020143e26f1d523`.
+SHA `65fad5bae02cb3345b0b22bc9cf0ce2999140a13bd00d7abe0f7091e9cf89120`.
+
+The current Main RES was read completely end-to-end after its append-oriented repair. It retains the Core semantic replay/promotion frontier and now also carries cross-arm learning from App generation 9 durable authority state and generation 10 operation lifecycle/reconciliation, with OS/process egress enforcement identified as the dominant App security frontier.
+
+App now owns a separate product/runtime/security RES:
+`singularity-works-forge-app/continuity/research_epistemic_shadow/res.md`
+SHA `1af0ba6e371514645b7bde90425aac5fbbe95eed0c8d0e66d879052fab0bdf45`.
 
 Ceiling remains load-bearing:
 - `RES_CONTENT != GOVERNING_DOCTRINE`;
+- `RES_SYNTHESIS != LINEAR_HUMAN_SEMANTIC_READ`;
 - RES carries no mutation/promotion authority;
 - no native PCMMAD RES artifact class exists yet;
-- this explicit file is a zero-authority research continuity surface, not a substitute authority class.
+- Main and App RES surfaces have separate research ownership and may cross-reference without transferring authority;
+- these explicit files are zero-authority research continuity surfaces, not substitute authority classes.
 
 
 ## Git-backed continuity doctrine delta — 2026-09-03 UTC
@@ -204,3 +212,16 @@ Load-bearing derived laws:
 - `MACHINE_PASS != HUMAN_SEMANTIC_GATE_PASS`;
 - `PRESENT_AND_HASHED != SEMANTICALLY_READ`;
 - `PROMOTION_REQUIRES_LINEAR_SEMANTIC_READ_WHEN_READABLE`.
+
+
+## Linear semantic-read gate — first verified embodiment — 2026-09-03 UTC
+The additive project-local doctrine is now verified in an actual publication boundary, not only recorded as text.
+
+The Git control checkpoint at `061cb8dac4eaf608fb1c07a77cba626712e52ce0` completed the human semantic-read gate before publication. The read surfaced two semantic representation ambiguities that machine integrity/privacy checks alone had not resolved; both were corrected and reread before commit/push.
+
+This strengthens the operational interpretation of:
+- `AUTOMATED_CHECKS != LINEAR_HUMAN_SEMANTIC_READ`;
+- `MACHINE_PASS != HUMAN_SEMANTIC_GATE_PASS`;
+- `PRESENT_AND_HASHED != SEMANTICALLY_READ`.
+
+Automated checks remain supporting obligations where applicable; the human semantic-read gate is additive, not a replacement for them.

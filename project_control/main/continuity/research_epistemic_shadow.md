@@ -213,3 +213,88 @@ Epistemic implication: machine evidence can establish integrity, structure, exec
 `AUTOMATED_CHECKS != LINEAR_HUMAN_SEMANTIC_READ`
 `MACHINE_PASS != HUMAN_SEMANTIC_GATE_PASS`
 `PRESENT_AND_HASHED != SEMANTICALLY_READ`
+
+
+## Cross-arm authority/consequence research frontier — gen9/gen10 — 2026-09-03
+Truth status: VERIFIED App execution evidence + CROSS-ARM RESEARCH SYNTHESIS; authority NONE.
+
+The previous RES frontier at the exact committed-artifact replay/promotion question remains active for Core/Main, but it is no longer the whole Singularity Works research frontier. App has since qualified two product/security boundaries that materially change the cross-arm epistemic map.
+
+### Gen9 — durable authority state
+Verified App learning:
+- authority objects can remain immutable while revoke/disarm/currentness evolve through append-only events;
+- changed scope should create new immutable authority generations rather than silently widening an existing grant;
+- persisted ALLOW decisions bind to an exact authority-state fingerprint;
+- after revoke, disarm, or currentness drift, historical ALLOW remains evidence but cannot prepare a new consequence;
+- `OLD_ALLOW_RECEIPT != CURRENT_EXECUTION_AUTHORITY`;
+- authority metadata can remain secret-free while still carrying capability/resource/currentness identity.
+
+This matters to Main only as cross-arm meaning: future Forge semantic evidence may advise an external operation, but semantic evidence cannot mint or revive product authority.
+
+### Gen10 — operation lifecycle / uncertain outcome
+Verified App learning:
+- `PREPARED != SUBMITTED != STARTED != COMPLETED != REMOTE_OBSERVED`;
+- `LOCAL_SUCCESS != REMOTE_COMMIT_PROVEN`;
+- `UNKNOWN_OUTCOME != SAFE_TO_RETRY`;
+- blind retry after uncertain consequence is unsafe without reconciliation;
+- remote ABSENT does not itself authorize replay;
+- authorized replay preserves the same consequence identity/idempotency key and still requires current authority;
+- remote observations carry authority NONE.
+
+This closes a major semantic ambiguity around external effects: evidence that a local process completed is not evidence that a provider-side consequence committed, and uncertainty must remain visible rather than being converted into a retry assumption.
+
+### Current cross-arm research frontier
+The highest-risk next App question is no longer local authority math or local consequence lifecycle. It is **OS/process egress enforcement**:
+
+> Can protected Singularity Works execution domains actually be prevented from opening raw network paths around Connection Gate, including through child processes, plugins, imported code, DNS/loopback/local-service seams, or subprocess escape?
+
+Until this is embodied and attacked, `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` remains a target law rather than a runtime fact.
+
+Candidate pressure questions:
+1. What is the smallest enforceable protected-domain boundary on the current Windows runtime?
+2. Can enforcement be child-process scoped without falsely claiming machine-wide firewall control?
+3. Which paths—raw sockets, subprocesses, inherited handles, proxies, loopback, DNS, helper binaries—can bypass voluntary broker APIs?
+4. How should a broker bind allowed transport to the already-qualified prepared-operation/lifecycle identity without turning an idempotency key or receipt into authority?
+5. What happens when enforcement state itself is UNKNOWN or cannot be proven current?
+
+## Semantic-gate effect on RES
+The operator-bound **LINEAR HUMAN READ / SEMANTIC GATE** applies to promotion out of RES. RES may carry hypotheses, rankings, cross-arm synthesis and pointers to unread artifacts, but:
+
+`RES_SYNTHESIS != LINEAR_HUMAN_SEMANTIC_READ`
+
+`RES_CONTENT != SEMANTIC_ADMISSION`
+
+A meaningfully readable artifact cannot become load-bearing merely because RES summarizes or recommends it. Complete linear semantic read remains a separate gate before promotion/sealing/publication/admission/load-bearing treatment.
+
+
+## Linear human semantic-read gate — first embodied publication — 2026-09-03
+Truth status: VERIFIED execution/readback.
+
+The first publication governed by the new doctrine is the Git control checkpoint itself. A complete semantic read exposed two representation-boundary ambiguities that automated integrity/privacy gates had not identified as semantic problems. Both were corrected before publication, then reread.
+
+This provides immediate supporting evidence for the doctrine's purpose:
+`MACHINE_PASS != HUMAN_SEMANTIC_GATE_PASS`.
+
+Durable Git control tip: `061cb8dac4eaf608fb1c07a77cba626712e52ce0`. Human read basis: 55 readable files / 5,481 lines / 349,333 bytes / stream SHA `8661b5fb6b3e6a9dd6814f625eea456ffe25b28f980db0033c8f0d69a228260f`; blocking semantic findings after correction: 0. Fresh remote clone checkpoint verifier PASS.
+
+Receipt SHA: `ab4f9db4dabf90ea360f8ceaa73f67de2af69bff03f017c45846464cf98ae39c`.
+
+
+## Linear semantic-read gate — first empirical process learning — 2026-09-03
+Truth status: VERIFIED process embodiment; authority NONE for unrelated domain claims.
+
+The additive semantic-read gate has now been exercised at an actual Git control publication boundary. Before publishing control tip `061cb8dac4eaf608fb1c07a77cba626712e52ce0`, the complete readable control set was semantically read: 55 readable files / 5,481 lines / 349,333 bytes, stream SHA `8661b5fb6b3e6a9dd6814f625eea456ffe25b28f980db0033c8f0d69a228260f`.
+
+The read surfaced **two semantic representation ambiguities** that machine integrity/privacy checks alone had not resolved. Both were corrected and the changed artifacts were reread before publication. Subsequent machine support and remote readback then passed: checkpoint verifier 54 manifested files, privacy scan 0 hits, diff/staged-blob checks PASS, remote ref exact, fresh-clone verifier PASS.
+
+Epistemic update:
+- the semantic gate is not merely ceremonial duplication of automated verification;
+- machine-valid structure can still encode human-semantic ambiguity at a promotion boundary;
+- semantic-read findings and machine-verifier findings are complementary evidence classes;
+- the gate should remain independent rather than being collapsed into “verifier passed.”
+
+`MACHINE_INTEGRITY_PASS != SEMANTIC_UNAMBIGUITY`
+`SEMANTIC_READ_FINDING != MACHINE_VALIDATION_FINDING`
+`HUMAN_SEMANTIC_GATE + MACHINE_VERIFICATION > EITHER_ALONE_FOR_READABLE_PROMOTION`
+
+This evidence strengthens the gate's residency as project-local process doctrine but does not grant the human read authority over unrelated technical facts; each promoted claim still requires its own evidence class.

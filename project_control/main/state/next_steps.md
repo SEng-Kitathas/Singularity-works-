@@ -132,3 +132,16 @@ Immediate consequence for the current Core promotion frontier: exact committed-a
 
 Exact bound text:
 If an artifact can be meaningfully read, it SHALL receive a complete linear semantic read before it is promoted, sealed, published, admitted, or treated as load-bearing. Automated checks may precede and support the gate; they SHALL NOT substitute for it.
+
+
+## Linear semantic-read gate — current checkpoint anchor — 2026-09-03 UTC
+Verified durable control tip is now `061cb8dac4eaf608fb1c07a77cba626712e52ce0` on `pcmmad/project-control`.
+
+For the next Core promotion campaign, the gate order includes both semantic and machine evidence:
+1. re-read live source/candidate currentness;
+2. complete the readable-artifact linear human semantic read;
+3. run exact committed-artifact replay / hostile / packaging / installed-surface gates as applicable;
+4. reconcile any semantic findings before promotion;
+5. only then cross the promotion boundary and update the Git control checkpoint.
+
+No automatic verifier result substitutes for step 2.

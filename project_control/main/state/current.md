@@ -96,3 +96,26 @@ If an artifact can be meaningfully read, it SHALL receive a complete linear sema
 This applies to all future readable artifacts crossing a load-bearing boundary. Automated verification remains necessary where otherwise required, but is not sufficient to satisfy this gate.
 
 Addendum record: `notes/maintenance/LINEAR_HUMAN_READ_SEMANTIC_GATE_ADDENDUM_20260903.md` SHA `1910637867cc2759ab46bc8772b429abac28ca0f6d211d8ee7769eba5ee5125d`.
+
+## RES synchronization repair — 2026-09-03 UTC
+Main/Core RES is now current through the App gen9/gen10 cross-arm learning frontier:
+`continuity/research_epistemic_shadow/res.md`
+SHA `65fad5bae02cb3345b0b22bc9cf0ce2999140a13bd00d7abe0f7091e9cf89120`.
+
+It was read completely end-to-end after mutation. It retains Main's Core semantic replay/promotion frontier while also recording App durable-authority and uncertain-outcome learning plus the current OS/process egress-enforcement question.
+
+App now has a separate zero-authority product/runtime/security RES, SHA `1af0ba6e371514645b7bde90425aac5fbbe95eed0c8d0e66d879052fab0bdf45`.
+
+`RES_CONTENT != GOVERNING_DOCTRINE` and `RES_SYNTHESIS != LINEAR_HUMAN_SEMANTIC_READ` remain active. Main/App RES ownership is separate; cross-reference does not transfer authority.
+
+
+
+## Linear semantic-read doctrine — durable control state — 2026-09-03 UTC
+The operator-bound `LINEAR HUMAN READ / SEMANTIC GATE` is now embodied in the durable Git control plane.
+
+Verified remote control tip: `061cb8dac4eaf608fb1c07a77cba626712e52ce0` on `pcmmad/project-control`.
+Human semantic-read gate before publication: 55 readable files / 5,481 lines / 349,333 bytes; stream SHA `8661b5fb6b3e6a9dd6814f625eea456ffe25b28f980db0033c8f0d69a228260f`; two derivative-boundary ambiguities corrected and reread; 0 blocking findings.
+Fresh remote clone: clean; checkpoint verifier PASS with 54 manifested files.
+Public `main` remains unchanged at `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`.
+
+Current promotion rule: readable candidate artifacts require the complete human semantic-read gate in addition to all otherwise-required machine/replay/hostile/installation verification.

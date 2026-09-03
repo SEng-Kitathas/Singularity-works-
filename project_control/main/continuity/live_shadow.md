@@ -92,3 +92,28 @@ If an artifact can be meaningfully read, it SHALL receive a complete linear sema
 Operational consequence: no readable artifact may become load-bearing merely because hashes, manifests, tests, hostile suites, parsers, scanners, linters, or other machine checks pass. Those checks support but do not discharge the semantic-read gate.
 
 Canonical addendum record: `notes/maintenance/LINEAR_HUMAN_READ_SEMANTIC_GATE_ADDENDUM_20260903.md`, SHA `1910637867cc2759ab46bc8772b429abac28ca0f6d211d8ee7769eba5ee5125d`.
+
+## RES synchronization repair — 2026-09-03
+- Main RES updated append-only through App gen9 durable-authority and gen10 operation-lifecycle learning; current SHA `65fad5bae02cb3345b0b22bc9cf0ce2999140a13bd00d7abe0f7091e9cf89120`.
+- App now owns separate zero-authority product/runtime/security RES SHA `1af0ba6e371514645b7bde90425aac5fbbe95eed0c8d0e66d879052fab0bdf45`.
+- Both updated RES files were read completely end-to-end after mutation before being treated as the repaired epistemic baseline.
+- Main retains Core semantic replay/promotion frontier; App RES owns OS/process egress-enforcement research frontier. Cross-awareness does not transfer authority.
+- `RES_CONTENT != GOVERNING_DOCTRINE`; `RES_SYNTHESIS != LINEAR_HUMAN_SEMANTIC_READ`.
+- Additive Linear Human Read / Semantic Gate applies before readable artifacts leave RES/research status for promotion/sealing/publication/admission/load-bearing treatment.
+
+## Delta Since Previous Shadow — RES repair
+- Prior Main RES stale frontier repaired.
+- App RES absence repaired.
+- Main doctrine/current RES pointers updated to exact current hashes.
+- No Core source/public-main mutation occurred.
+
+
+
+## Linear human semantic-read gate — durable Git anchor — 2026-09-03 UTC
+- Additive doctrine is now durably published on `pcmmad/project-control` at `061cb8dac4eaf608fb1c07a77cba626712e52ce0`.
+- Human semantic gate before publication: 55 readable control files, 5,481 lines, 349,333 bytes, stream SHA `8661b5fb6b3e6a9dd6814f625eea456ffe25b28f980db0033c8f0d69a228260f`; two derivative-boundary findings corrected and changed artifacts reread completely; blocking findings 0.
+- Automated support after the semantic read: checkpoint verifier PASS (54 manifested files), privacy scan PASS (0 hits), diff check PASS, staged blob/manifest equality PASS.
+- Independent GitHub readback and fresh remote clone: control HEAD exact `061cb8d...`, verifier PASS, clone clean.
+- Public `main` remains `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`; App remains observed `328249429cc6e86e15db9797bd58eff5fabc5a2d`.
+- Receipt: `notes/maintenance/LINEAR_HUMAN_READ_GATE_GIT_CHECKPOINT_20260903.md` SHA `ab4f9db4dabf90ea360f8ceaa73f67de2af69bff03f017c45846464cf98ae39c`.
+- Fixed-point rule: this post-push server receipt enters the next bounded Git checkpoint rather than causing an immediate recursive checkpoint-of-checkpoint cycle.

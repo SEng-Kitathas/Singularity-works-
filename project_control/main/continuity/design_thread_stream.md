@@ -16,7 +16,7 @@ Tags: BUILD-COMMIT, GIT-LINEAGE, REMOTE-SYNC, QUALIFICATION-BRANCH, RELEASE-BLOC
 
 Assistant rehydrated live project state and first repaired the stale logical baseline: map trial v2 had already completed after the previous checkpoint. v2 result is PASS/CONDITIONALLY_READY under a static Python-relation ceiling, with 15/15 hostile checks, 109 nodes, 267 edges, 171 meaningful relations, 171 paths, 29/29 output-manifest integrity, all nodes/edges source-addressable/evidenced, no runtime outcome inflation, no consequence-authority emergence, and clean old-bone worktree readback.
 
-Assistant inspected Git planes without mutating the dirty working tree. `<LOCAL_FORGE_WORKTREE>` local main = `d56027e879a21d078a8c36f712cf7380be4c63f5`, heavily dirty; clean worktree = `b83615c47dd8b58728ebc03ca48106058a0760f9`. GitHub `main` resolved by `git ls-remote` to the same `b83615c...`. Local committed main is 28 commits ahead, merge-base exactly remote main, no remote divergence observed. `gh auth status` is unauthenticated, but `git push --dry-run origin main:main` succeeded through Git credential manager, proving Git push capability.
+Assistant inspected Git planes without mutating the dirty working tree. `<LOCAL_FORGE_REPO>` local main = `d56027e879a21d078a8c36f712cf7380be4c63f5`, heavily dirty; clean worktree = `b83615c47dd8b58728ebc03ca48106058a0760f9`. GitHub `main` resolved by `git ls-remote` to the same `b83615c...`. Local committed main is 28 commits ahead, merge-base exactly remote main, no remote divergence observed. `gh auth status` is unauthenticated, but `git push --dry-run origin main:main` succeeded through Git credential manager, proving Git push capability.
 
 Under R3 promotion discipline, assistant did not push local main directly. It reconstructed exact committed `d56027e` in an isolated clean clone. `compileall` passed and package imports mostly passed, but a release blocker was reproduced: committed `pyproject.toml` and README advertise `singularity_works.local_model_adapter`, while that module is absent at `d56027e`. Existing `forge`/`forge-hud` console-script declarations also target `:__main__` even though those modules lack a callable `__main__` attribute; that scar already exists at remote `b83615c`. A local untracked replacement adapter exists, but its dependent profile contains numerous absolute machine/runtime/model paths and is not publication-qualified.
 
@@ -43,7 +43,7 @@ A clean replay of committed `5cb291432dac60f7eaa18d9cdeb519213ec556ac` passed in
 
 Assistant then replayed exact `1b8f6bd...` from a fresh detached clone. Verified results: compileall PASS; project verifier rc0 and all expected semantic state transitions PASS; self-verification 0 fails / 29 warnings; full promoted-delta secret hits 0; machine-private-path hits 0; retired `forge-health` absent from executable/advised surfaces; wheel build PASS. Wheel `singularity_works-1.0.0-py3-none-any.whl` was 320862 bytes with SHA-256 `0ffe61597b78861e0e5894ade9884b57fc3ae0d955b69ad82b3cc1e9bf06daf9`, containing callable `forge`/`forge-hud` entrypoints and both config JSON files. Disposable install PASS; installed `forge --help` PASS; installed `forge safe_sample.py --target safe-sample --out reports` from outside the source tree PASS with GREEN, 0 findings, and two report files. Tracked source remained unchanged after replay.
 
-Assistant preserved non-green residuals rather than rewriting them away: full historical `b83615c..1b8f6bd` contains inherited whitespace complaints; self-audit is PASS but not CLEAN because 29 warnings remain; successful installed smoke exposed nested `.forge/.forge/cilnx_bridge` path technical debt. Dirty `<LOCAL_FORGE_WORKTREE>` was not reset, cleaned, or bulk-staged. Clean old-bone worktree remains pinned at `b83615c...` for comparison.
+Assistant preserved non-green residuals rather than rewriting them away: full historical `b83615c..1b8f6bd` contains inherited whitespace complaints; self-audit is PASS but not CLEAN because 29 warnings remain; successful installed smoke exposed nested `.forge/.forge/cilnx_bridge` path technical debt. Dirty `<LOCAL_FORGE_REPO>` was not reset, cleaned, or bulk-staged. Clean old-bone worktree remains pinned at `b83615c...` for comparison.
 
 Remote promotion was then performed with exact gates. GitHub `main` was re-read at `b83615c47dd8b58728ebc03ca48106058a0760f9`; local merge-base proved fast-forward ancestry. Assistant dry-ran and non-force pushed `pcmmad/release-repair-d56027e` -> `1b8f6bd...`, read it back exactly, re-read main immediately before promotion, dry-ran the main update, then non-force pushed main `b83615c..1b8f6bd`. Final `git ls-remote` readback: `main=1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`; `pcmmad/release-repair-d56027e` same exact SHA; earlier `pcmmad/qualification-d56027e=d56027e879a21d078a8c36f712cf7380be4c63f5` preserved. No force push occurred.
 
@@ -155,7 +155,7 @@ User said: “Proceed.”
 Timestamp: 2026-09-02 UTC
 Tags: BUILD-COMMIT, QUARRY, STARMAP-SME, GITHUB-MIRROR, DONOR-CROSSWALK
 
-Assistant re-grounded on the Live Shadow and launched a local-first donor quarry. A broad inventory established 65 top-level project roots under `<LOCAL_PROJECT_ROOT>` plus a dense Downloads donor corpus. A bounded Git repository inventory found 24 local Git worktrees/repos, including current/past Singularity Works and multiple Microseed continuity clones.
+Assistant re-grounded on the Live Shadow and launched a local-first donor quarry. A broad inventory established 65 top-level project roots under `<LOCAL_PROJECTS_ROOT>` plus a dense Downloads donor corpus. A bounded Git repository inventory found 24 local Git worktrees/repos, including current/past Singularity Works and multiple Microseed continuity clones.
 
 Current public GitHub account surface was enumerated as 10 repos: Proto-Microseed, HSP, Singularity-works-, Cognitive-Field-Engineering, Hostile-OS, PAL, CIC-NERV, AI-Research-and-development, NEXUS, holonic-linux. Read-only quarry mirrors were created under `investigation/github_quarry_20260902/`; PAL was verified empty. Observed current heads were recorded in the quarry ledger.
 
@@ -728,3 +728,72 @@ Timestamp: 2026-09-03 UTC
 Tags: BUILD-COMMIT, CONTINUITY-FIRST, GIT-CONTROL
 
 Assistant accepted the operator-authored rule as a project-local additive doctrine overlay on RAHL R4.1, without rewriting the sealed R4.1 source. The exact wording is preserved in `notes/maintenance/LINEAR_HUMAN_READ_SEMANTIC_GATE_ADDENDUM_20260903.md` SHA `1910637867cc2759ab46bc8772b429abac28ca0f6d211d8ee7769eba5ee5125d` and is propagated through Live Shadow, DTS, RES, Current, Doctrine, Next, Trace, Revisit before refreshing the Git cross-thread control branch.
+
+
+---
+
+## Cross-arm entry — RES synchronization defect repaired; semantic gate bound — 2026-09-03
+Tags: RES, APP, MAIN, SEMANTIC-GATE, CONTINUITY
+
+Audit after the operator asked whether RES was current found that Main RES contained R4.1 and Git-control learning but had not advanced through App generation 9 durable authority-state and generation 10 operation lifecycle/reconciliation; App had no separate RES at all. This was recorded as a real continuity defect rather than smoothed into “fully sealed.”
+
+Operator then bound additive project-local doctrine:
+
+**LINEAR HUMAN READ / SEMANTIC GATE**
+If an artifact can be meaningfully read, it SHALL receive a complete linear semantic read before it is promoted, sealed, published, admitted, or treated as load-bearing. Automated checks may precede and support the gate; they SHALL NOT substitute for it.
+
+Main already had the exact operator-directive addendum record at `notes/maintenance/LINEAR_HUMAN_READ_SEMANTIC_GATE_ADDENDUM_20260903.md`, SHA `1910637867cc2759ab46bc8772b429abac28ca0f6d211d8ee7769eba5ee5125d`. App received its own additive record, SHA `3eea1088fe51affbe7519bddb03d6366d024c305bf853b3704834a0ac665f456`.
+
+Main RES was repaired append-only. Current SHA `14cffd6c3a5953140b55eafd8b0c93cd424d0757cd709279d62f668e9a8e8103`. It now preserves both the Main/Core semantic replay/promotion frontier and cross-arm learning from App gen9/gen10, including `OLD_ALLOW_RECEIPT != CURRENT_EXECUTION_AUTHORITY`, `UNKNOWN_OUTCOME != SAFE_TO_RETRY`, same-identity replay after proven absence, and the current App OS/process egress-enforcement question.
+
+App gained a separate product/runtime/security RES at `continuity/research_epistemic_shadow/res.md`, SHA `f6ae4d8e8e9f93500225b855aa215f9f9a54f9aec61e6e1acb25b52db5d3a5d2`. Main/App research ownership is now explicit and separate; cross-reference does not transfer semantic/product/promotion authority.
+
+Both repaired RES artifacts were read completely end-to-end after mutation. This was done before treating them as the repaired epistemic baseline, so the new semantic gate was applied to the repair itself rather than being merely written as prose.
+
+Main Doctrine/Current/Live/Trace pointers were updated to exact current RES identities. No Git Main source, public `main`, App source, provider, network or Attempt Store mutation occurred during this repair.
+
+Active guards:
+- `RES_CONTENT != GOVERNING_DOCTRINE`;
+- `RES_SYNTHESIS != LINEAR_HUMAN_SEMANTIC_READ`;
+- `AUTOMATED_CHECKS != LINEAR_HUMAN_SEMANTIC_READ`;
+- `MACHINE_PASS != HUMAN_SEMANTIC_GATE_PASS`;
+- `PRESENT_AND_HASHED != SEMANTICALLY_READ`.
+
+Main immediate Core frontier remains exact semantic-field committed-artifact/currentness qualification. App immediate security frontier remains OS/process egress enforcement under the newly bound linear semantic-read admission gate.
+
+
+---
+
+## Turn 051 — ASSISTANT / LINEAR HUMAN READ GATE PUBLISHED
+Timestamp: 2026-09-03 UTC
+Tags: DOCTRINE, SEMANTIC-GATE, GIT-CONTROL, VERIFIED
+
+Assistant applied the newly bound human semantic-read gate to the Git control publication itself. The entire readable `project_control/` tree was linearly read before publication: 55 files / 5,481 lines / 349,333 bytes / stream SHA `8661b5fb6b3e6a9dd6814f625eea456ffe25b28f980db0033c8f0d69a228260f`. Two derivative-representation ambiguities were found and corrected, the changed artifacts and final CHECKPOINT were reread completely, and no blocking semantic findings remained.
+
+Supporting machine gates then passed. Commit `061cb8dac4eaf608fb1c07a77cba626712e52ce0` (`control: bind linear human semantic-read gate`) was semantically inspected at the commit boundary, pushed non-force to `pcmmad/project-control`, independently resolved by GitHub, and replayed from the fresh remote clone with checkpoint verifier PASS / 54 manifested files / clean tree. Public `main` remained `1b8f6bd...`.
+
+Server receipt: `notes/maintenance/LINEAR_HUMAN_READ_GATE_GIT_CHECKPOINT_20260903.md` SHA `ab4f9db4dabf90ea360f8ceaa73f67de2af69bff03f017c45846464cf98ae39c`.
+
+
+---
+
+## Cross-arm entry — RES fixed-point refresh after semantic-gate publication embodiment — 2026-09-03
+Tags: RES, SEMANTIC-GATE, GIT-CONTROL, FIXED-POINT
+
+Post-repair readback established newer durable control-plane evidence: `LINEAR HUMAN READ / SEMANTIC GATE` was exercised before publishing control tip `061cb8dac4eaf608fb1c07a77cba626712e52ce0`. The complete readable control set was semantically read: 55 files / 5,481 lines / 349,333 bytes, stream SHA `8661b5fb6b3e6a9dd6814f625eea456ffe25b28f980db0033c8f0d69a228260f`. Two semantic representation ambiguities not resolved by automated integrity/privacy checks were found, corrected and reread before publication. Machine verifier/privacy/diff/staged-blob checks and fresh remote-clone verification then passed.
+
+This process embodiment was added to both RES surfaces because it materially changes the evidence for why the semantic gate exists.
+
+Final Main RES SHA for this repair cycle:
+`65fad5bae02cb3345b0b22bc9cf0ce2999140a13bd00d7abe0f7091e9cf89120`.
+Final App RES SHA:
+`1af0ba6e371514645b7bde90425aac5fbbe95eed0c8d0e66d879052fab0bdf45`.
+
+Both RES files were completely reread end-to-end after this final append. Main Current/Doctrine/Trace/Live and App Current/Doctrine/Next/Trace/Live pointers were refreshed to these exact hashes.
+
+New epistemic scars:
+- `MACHINE_INTEGRITY_PASS != SEMANTIC_UNAMBIGUITY`;
+- `SEMANTIC_READ_FINDING != MACHINE_VALIDATION_FINDING`;
+- `ENFORCEMENT_TEST_PASS != ENFORCEMENT_SCOPE_SEMANTICALLY_UNAMBIGUOUS` for the upcoming App security boundary.
+
+No Core/App product source mutation occurred in this repair. One bounded Git control checkpoint refresh follows to preserve the new continuity state; post-push receipt state will enter the next normal checkpoint rather than trigger recursive checkpointing.
