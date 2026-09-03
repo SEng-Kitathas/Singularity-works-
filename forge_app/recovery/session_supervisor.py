@@ -176,6 +176,20 @@ class SessionProcessSupervisor:
                 raise SessionSupervisorError("child is still running; no exit to observe") from exc
         return int(rc)
 
+    def _existing_crash_event(self, crash_id: str):
+        for event in self.manager.store.events_for_attempt(self.checkpoint_id):
+            if event["event_type"] != "checkpoint_crash_associated":
+                continue
+            payload = event["payload"]
+            if str(payload.get("crash_id") or "") != crash_id:
+                continue
+            if str(payload.get("resume_id") or "") != self.resume_id:
+                raise SessionSupervisorError(
+                    f"crash_id already belongs to different resume: crash_id={crash_id}"
+                )
+            return event
+        return None
+
     def record_unexpected_exit(
         self,
         *,
@@ -188,6 +202,24 @@ class SessionProcessSupervisor:
         if self.process is None:
             raise SessionSupervisorError("supervised process has not started")
         crash_id = crash_id or self.deterministic_crash_id()
+        existing = self._existing_crash_event(crash_id)
+        if existing is not None:
+            elapsed = float(existing["payload"].get("seconds_since_resume") or 0.0)
+            view = self.manager.inspect(self.checkpoint_id)
+            return (
+                ChildExitReceipt(
+                    checkpoint_id=self.checkpoint_id,
+                    resume_id=self.resume_id,
+                    crash_id=crash_id,
+                    pid=int(self.process.pid),
+                    returncode=rc,
+                    seconds_since_resume=elapsed,
+                    expected=False,
+                    checkpoint_status=view.status,
+                    quarantined=view.quarantined,
+                ),
+                view,
+            )
         elapsed = self.elapsed_seconds()
         detail_text = (
             f"pid={self.process.pid} returncode={rc} supervisor_observed=true"

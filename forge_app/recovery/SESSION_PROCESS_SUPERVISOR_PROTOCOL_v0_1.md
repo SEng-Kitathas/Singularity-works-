@@ -14,6 +14,7 @@ Locked laws:
 - `SUPERVISOR_OBSERVATION != CHILD_SELF_REPORT`.
 - `RESUME_ID != REUSABLE_PROCESS_SLOT`.
 - `CHILD_READY_ACK != SESSION_STABILITY`.
+- `CRASH_ID_REPLAY_USES_ORIGINAL_OBSERVATION`.
 - existing `CRASH_ASSOCIATION_CAUSES_QUARANTINE_NOT_DELETION` remains governing.
 
 ## Start ordering
@@ -57,7 +58,7 @@ A deliberately expected shutdown must not be recorded as crash association merel
 ## Failure handling
 - wrong/malformed/stale ready identity: fail closed and do not accept READY;
 - child exits before ready: supervisor may record the observed unexpected exit against the already-durable resume generation;
-- duplicate observation of the same deterministic crash ID: idempotent, no extra early-crash count;
+- duplicate observation of the same deterministic crash ID: read/reuse the original durable crash observation; do not recompute elapsed time or create a different immutable event;
 - supervisor crash after child death but before crash receipt is outside v0.1 and remains a later recovery seam.
 
 ## Qualification target
