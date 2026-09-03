@@ -6,7 +6,7 @@ import subprocess
 import tempfile
 import unittest
 
-from forge_app.ergo.reentry_cli import render_popup_text
+from forge_app.ergo.reentry_cli import render_checkpoint_list_text, render_popup_text
 from forge_app.recovery import AttemptStore, ResumeCheckpointManager, ResumeCheckpointPayload
 from forge_app.recovery.reentry import CheckpointReentryService, ReentryPreparationError
 
@@ -325,6 +325,41 @@ class CheckpointReentryV01Tests(unittest.TestCase):
             actions = {a.action_id: a for a in point.popup.actions}
             self.assertTrue(actions["open_isolated_reentry"].enabled)
             self.assertIn("state-only", actions["open_isolated_reentry"].reason)
+
+    def test_manual_checkpoint_browser_lists_every_checkpoint_and_marks_preferred(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            _, _, head1, head2, _, manager, service, _ = self.env(td)
+            good = manager.capture_checkpoint(
+                payload(1, source_head=head1), checkpoint_id="checkpoint-browser-good"
+            )
+            self.make_lkg(manager, good)
+            risky = manager.capture_checkpoint(
+                payload(2, source_head=head2, parent=good), checkpoint_id="checkpoint-browser-risky"
+            )
+            manager.record_resume(risky, resume_id="resume-browser-a")
+            manager.record_crash(
+                risky,
+                resume_id="resume-browser-a",
+                crash_id="crash-browser-a",
+                seconds_since_resume=1.0,
+                failure_domain="session_host",
+            )
+            manager.record_resume(risky, resume_id="resume-browser-b")
+            manager.record_crash(
+                risky,
+                resume_id="resume-browser-b",
+                crash_id="crash-browser-b",
+                seconds_since_resume=1.0,
+                failure_domain="session_host",
+            )
+            rendered = render_checkpoint_list_text(manager)
+            self.assertIn("Manual isolated re-entry is available from every listed checkpoint.", rendered)
+            self.assertIn("checkpoint-browser-good", rendered)
+            self.assertIn("checkpoint-browser-risky", rendered)
+            self.assertIn("QUARANTINED", rendered)
+            preferred_line = next(line for line in rendered.splitlines() if "checkpoint-browser-good" in line)
+            self.assertTrue(preferred_line.startswith(">"))
+
 
 
 if __name__ == "__main__":
