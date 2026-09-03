@@ -51,34 +51,50 @@ class ErgoRecoverySummary:
         return payload
 
 
-def _git(repo: Path, *args: str) -> tuple[int, str, str]:
+def inspect_git_source(repo_path: str | Path) -> GitSourceSummary:
+    """Inspect branch/head/dirty state with one stable porcelain-v2 Git call."""
+    repo = Path(repo_path)
+    if not repo.exists():
+        return GitSourceSummary(str(repo), False, None, None, None, (), "repo path missing")
+
     result = subprocess.run(
-        ["git", "-C", str(repo), *args],
+        ["git", "-C", str(repo), "status", "--porcelain=v2", "--branch"],
         text=True,
         capture_output=True,
         timeout=5,
     )
-    return result.returncode, result.stdout.strip(), result.stderr.strip()
+    if result.returncode != 0:
+        return GitSourceSummary(
+            str(repo),
+            False,
+            None,
+            None,
+            None,
+            (),
+            result.stderr.strip() or "not a git repository",
+        )
 
+    head: str | None = None
+    branch: str | None = None
+    status_lines: list[str] = []
+    for line in result.stdout.splitlines():
+        if line.startswith("# branch.oid "):
+            value = line[len("# branch.oid ") :].strip()
+            head = None if value == "(initial)" else value
+        elif line.startswith("# branch.head "):
+            value = line[len("# branch.head ") :].strip()
+            branch = None if value == "(detached)" else value
+        elif line and not line.startswith("# "):
+            status_lines.append(line)
 
-def inspect_git_source(repo_path: str | Path) -> GitSourceSummary:
-    repo = Path(repo_path)
-    if not repo.exists():
-        return GitSourceSummary(str(repo), False, None, None, None, (), "repo path missing")
-    rc, head, err = _git(repo, "rev-parse", "HEAD")
-    if rc != 0:
-        return GitSourceSummary(str(repo), False, None, None, None, (), err or "not a git repository")
-    _, branch, _ = _git(repo, "branch", "--show-current")
-    rc, status, status_err = _git(repo, "status", "--porcelain=v1")
-    lines = tuple(line for line in status.splitlines() if line) if rc == 0 else ()
     return GitSourceSummary(
         repo_path=str(repo),
         available=True,
         head=head,
-        branch=branch or None,
-        dirty=bool(lines) if rc == 0 else None,
-        status_lines=lines,
-        error=status_err or None if rc != 0 else None,
+        branch=branch,
+        dirty=bool(status_lines),
+        status_lines=tuple(status_lines),
+        error=None,
     )
 
 
