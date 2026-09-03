@@ -51,3 +51,21 @@ __all__ += [
     "PersistedDecision",
     "PreparedOperation",
 ]
+
+from .operation_lifecycle import (
+    ExternalOperation,
+    ExternalOperationLifecycleStore,
+    LifecycleState,
+    LifecycleView,
+    OperationLifecycleError,
+    RemoteOutcome,
+)
+
+__all__ += [
+    "ExternalOperation",
+    "ExternalOperationLifecycleStore",
+    "LifecycleState",
+    "LifecycleView",
+    "OperationLifecycleError",
+    "RemoteOutcome",
+]
