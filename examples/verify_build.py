@@ -2,6 +2,7 @@ from __future__ import annotations
 from pathlib import Path
 import json
 import compileall
+import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -15,6 +16,21 @@ from singularity_works.gates import syntax_gate, simplification_gate
 from singularity_works.genome import RadicalMapGenome
 from singularity_works.genome_gate_factory import genome_gates_from_bundle
 from singularity_works.laws import SELF_QA_REQUIREMENT_TEXT
+
+def semantic_field_tests(root: Path) -> dict:
+    result = subprocess.run(
+        [sys.executable, "-m", "unittest", "discover", "-s", "tests", "-p", "test_semantic_field.py"],
+        cwd=root,
+        text=True,
+        capture_output=True,
+    )
+    return {
+        "passed": result.returncode == 0,
+        "return_code": result.returncode,
+        "stdout": result.stdout[-4000:],
+        "stderr": result.stderr[-4000:],
+    }
+
 
 def self_audit(root: Path) -> dict:
     # Self-audit uses genome-derived gates — the forge audits itself with the same
@@ -71,6 +87,7 @@ if __name__ == '__main__':
     security_remediated = demo_run(base, show_hud=False, apply_transformations=True, scenario="security")
     execution = demo_run(base, show_hud=False, scenario="execution")
     execution_remediated = demo_run(base, show_hud=False, apply_transformations=True, scenario="execution")
+    semantic_field_report = semantic_field_tests(base)
     self_report = self_audit(base)
     self_totals = self_report.get('totals', {})
     self_verification = {
@@ -115,9 +132,10 @@ if __name__ == '__main__':
         'bad_claim_count': len(bad['requirement_rollup']['claim_rollups']),
         'good_transformations': len(good.get('transformation_plan', [])),
         'bad_transformations': len(bad.get('transformation_plan', [])),
+        'semantic_field_tests': semantic_field_report,
         'self_audit': self_report,
         'self_verification': self_verification,
-        'expected': {'compile_ok': True, 'good_assurance': 'green', 'bad_assurance': 'red', 'bad_remediated_assurance': 'green', 'security_assurance': 'red', 'security_remediated_assurance': 'green', 'execution_assurance': 'red', 'execution_remediated_assurance': 'green', 'self_verification_passed': True}
+        'expected': {'compile_ok': True, 'good_assurance': 'green', 'bad_assurance': 'red', 'bad_remediated_assurance': 'green', 'security_assurance': 'red', 'security_remediated_assurance': 'green', 'execution_assurance': 'red', 'execution_remediated_assurance': 'green', 'semantic_field_tests_passed': True, 'self_verification_passed': True}
     }
     (base / 'build_verification_summary.json').write_text(json.dumps(report, indent=2))
     md = []
@@ -132,6 +150,7 @@ if __name__ == '__main__':
     md.append(f"- bad_recursive_audit: `{bad['recursive_audit']}`")
     md.append(f"- good_claim_count: **{len(good['requirement_rollup']['claim_rollups'])}**")
     md.append(f"- bad_claim_count: **{len(bad['requirement_rollup']['claim_rollups'])}**")
+    md.append(f"- semantic_field_tests_passed: **{semantic_field_report['passed']}**")
     md.append(f"- self_audit_totals: `{self_report['totals']}`")
     md.append(f"- self_verification_passed: **{self_verification['passed']}**")
     md.append(f"- self_verification_clean: **{self_verification['clean']}**")
