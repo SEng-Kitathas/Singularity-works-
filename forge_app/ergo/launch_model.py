@@ -11,6 +11,7 @@ from dataclasses import dataclass, asdict
 import json
 from typing import Any, Iterable
 
+from .checkpoint_summary import ErgoCheckpointSummary
 from .recovery_summary import ErgoRecoverySummary
 
 
@@ -141,7 +142,22 @@ def _modes(summary: ErgoRecoverySummary) -> tuple[LaunchMode, ...]:
     )
 
 
-def build_launch_model(summary: ErgoRecoverySummary, *, recent_limit: int = 6) -> ErgoLaunchModel:
+def _checkpoint_state(summary: ErgoCheckpointSummary) -> str:
+    if summary.status == "READY":
+        return "READY"
+    if summary.status in {"CAUTION", "RECOVERY_REQUIRED"}:
+        return "CAUTION"
+    if summary.status in {"MISSING", "UNREADABLE", "DEGRADED"}:
+        return "BLOCKED"
+    return "UNKNOWN"
+
+
+def build_launch_model(
+    summary: ErgoRecoverySummary,
+    *,
+    recent_limit: int = 6,
+    checkpoint_summary: ErgoCheckpointSummary | None = None,
+) -> ErgoLaunchModel:
     posture, posture_reason = _posture(summary)
     source = summary.source
     source_state, _ = _source_state(summary)
@@ -156,7 +172,7 @@ def build_launch_model(summary: ErgoRecoverySummary, *, recent_limit: int = 6) -
         else "unknown"
     )
 
-    facts = (
+    facts_list = [
         LaunchFact("store_status", "Recovery store", summary.store_status, "READY" if summary.store_status == "READY" else "BLOCKED"),
         LaunchFact("integrity", "Integrity", "ok" if summary.integrity_ok is True else "unknown" if summary.integrity_ok is None else "failed", "READY" if summary.integrity_ok is True else "BLOCKED"),
         LaunchFact("journal_mode", "Journal", summary.journal_mode or "—", "NEUTRAL"),
@@ -165,7 +181,48 @@ def build_launch_model(summary: ErgoRecoverySummary, *, recent_limit: int = 6) -
         LaunchFact("source_branch", "Source branch", source_branch, source_state),
         LaunchFact("source_head", "Source HEAD", source_head, source_state),
         LaunchFact("source_clean", "Source clean", source_clean, source_state),
-    )
+    ]
+    checkpoint_reasons: tuple[str, ...] = ()
+    if checkpoint_summary is not None:
+        cp_state = _checkpoint_state(checkpoint_summary)
+        facts_list.extend(
+            [
+                LaunchFact(
+                    "resume_checkpoint",
+                    "Resume checkpoint",
+                    checkpoint_summary.selected_status or checkpoint_summary.status,
+                    cp_state,
+                ),
+                LaunchFact(
+                    "resume_generation",
+                    "Resume generation",
+                    _display_count(checkpoint_summary.selected_generation),
+                    cp_state,
+                ),
+                LaunchFact(
+                    "resume_policy",
+                    "Resume policy",
+                    checkpoint_summary.selected_resume_policy or "—",
+                    cp_state,
+                ),
+                LaunchFact(
+                    "resume_source_head",
+                    "Resume source HEAD",
+                    _short_hash(checkpoint_summary.selected_source_head),
+                    cp_state,
+                ),
+                LaunchFact(
+                    "resume_core_snapshot",
+                    "Core semantic snapshot",
+                    _short_hash(checkpoint_summary.selected_semantic_snapshot_id)
+                    if checkpoint_summary.selected_semantic_snapshot_id
+                    else "not bridged",
+                    "READY" if checkpoint_summary.selected_semantic_snapshot_id else "UNKNOWN",
+                ),
+            ]
+        )
+        checkpoint_reasons = tuple(checkpoint_summary.reasons)
+    facts = tuple(facts_list)
 
     attempts = tuple(
         RecentAttempt(
@@ -189,7 +246,7 @@ def build_launch_model(summary: ErgoRecoverySummary, *, recent_limit: int = 6) -
         facts=facts,
         modes=_modes(summary),
         recent_attempts=attempts,
-        reasons=tuple(summary.reasons),
+        reasons=tuple(summary.reasons) + checkpoint_reasons,
     )
 
 

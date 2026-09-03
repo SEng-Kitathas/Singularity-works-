@@ -9,6 +9,7 @@ It proves that recovery/launch semantics are independent of GPU/UI backend.
 import argparse
 from pathlib import Path
 
+from .checkpoint_summary import build_checkpoint_summary
 from .launch_model import build_launch_model, render_minimal_text
 from .recovery_summary import build_recovery_summary
 
@@ -26,7 +27,12 @@ def main() -> int:
         source_repo=Path(args.source_repo) if args.source_repo else None,
         latest_limit=max(0, args.recent),
     )
-    model = build_launch_model(summary, recent_limit=max(0, args.recent))
+    checkpoint_summary = build_checkpoint_summary(Path(args.store))
+    model = build_launch_model(
+        summary,
+        recent_limit=max(0, args.recent),
+        checkpoint_summary=checkpoint_summary,
+    )
     print(render_minimal_text(model, width=args.width), end="")
     return 2 if model.posture == "RECOVERY_REQUIRED" else 0
 

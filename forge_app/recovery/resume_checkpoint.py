@@ -61,22 +61,96 @@ class CheckpointView:
     semantic_snapshot_id: str | None
 
 
+def validate_checkpoint_payload(data: dict[str, Any]) -> None:
+    if data.get("schema") != CHECKPOINT_SCHEMA:
+        raise AttemptStoreError(f"checkpoint schema mismatch: {data.get('schema')!r}")
+    if not str(data.get("session_id") or "").strip():
+        raise AttemptStoreError("checkpoint session_id missing")
+    if not isinstance(data.get("generation"), int) or int(data["generation"]) < 0:
+        raise AttemptStoreError("checkpoint generation invalid")
+    if not str(data.get("project_id") or "").strip():
+        raise AttemptStoreError("checkpoint project_id missing")
+    if not str(data.get("workspace_id") or "").strip():
+        raise AttemptStoreError("checkpoint workspace_id missing")
+
+
+def derive_checkpoint_view(
+    *,
+    checkpoint_id: str,
+    attempt: Mapping[str, Any],
+    payload: Mapping[str, Any],
+    events: Sequence[Mapping[str, Any]],
+) -> CheckpointView:
+    validate_checkpoint_payload(dict(payload))
+    typed = [(int(e["seq"]), str(e["event_type"]), dict(e["payload"])) for e in events]
+    verified = any(t == "checkpoint_verified" for _, t, _ in typed)
+    resumed = any(t == "checkpoint_resumed" for _, t, _ in typed)
+    quarantine_seq = max((s for s, t, _ in typed if t == "checkpoint_quarantined"), default=-1)
+    crash_events = [(s, p) for s, t, p in typed if t == "checkpoint_crash_associated"]
+    early_crashes = [(s, p) for s, p in crash_events if bool(p.get("early"))]
+    last_crash_seq = max((s for s, _ in crash_events), default=-1)
+    last_stable_seq = max((s for s, t, _ in typed if t == "checkpoint_stable"), default=-1)
+    last_lkg_seq = max((s for s, t, _ in typed if t == "checkpoint_lkg_promoted"), default=-1)
+    quarantined = quarantine_seq >= 0
+    stable = last_stable_seq >= 0 and last_stable_seq > last_crash_seq and not quarantined
+    lkg = last_lkg_seq >= 0 and last_lkg_seq > last_crash_seq and not quarantined
+    if quarantined:
+        status = "QUARANTINED"
+        policy = "INSPECT_ONLY"
+    elif stable:
+        status = "LKG" if lkg else "STABLE"
+        policy = "NORMAL"
+    elif verified and len(early_crashes) == 0:
+        status = "VERIFIED"
+        policy = "NORMAL"
+    elif verified and len(early_crashes) == 1:
+        status = "CRASH_ASSOCIATED"
+        policy = "SAFE_ONLY"
+    elif verified:
+        status = "VERIFIED_DEGRADED"
+        policy = "SAFE_ONLY"
+    else:
+        status = "CAPTURED"
+        policy = "INSPECT_ONLY"
+    return CheckpointView(
+        checkpoint_id=checkpoint_id,
+        generation=int(payload["generation"]),
+        parent_checkpoint_id=payload.get("parent_checkpoint_id"),
+        verified=verified,
+        resumed=resumed,
+        stable=stable,
+        lkg=lkg,
+        early_crash_count=len(early_crashes),
+        quarantined=quarantined,
+        status=status,
+        resume_policy=policy,
+        blob_sha256=str(attempt["blob_sha256"]),
+        source_head=payload.get("source_head"),
+        semantic_snapshot_id=payload.get("semantic_snapshot_id"),
+    )
+
+
+def choose_recovery_view(views: Sequence[CheckpointView]) -> CheckpointView | None:
+    candidates = [v for v in views if v.verified and not v.quarantined]
+    stable = [v for v in candidates if v.stable]
+    if stable:
+        return max(stable, key=lambda v: (v.generation, v.checkpoint_id))
+    clean_verified = [v for v in candidates if v.early_crash_count == 0]
+    if clean_verified:
+        return max(clean_verified, key=lambda v: (v.generation, v.checkpoint_id))
+    single_crash = [v for v in candidates if v.early_crash_count == 1]
+    if single_crash:
+        return max(single_crash, key=lambda v: (v.generation, v.checkpoint_id))
+    return None
+
+
 class ResumeCheckpointManager:
     def __init__(self, store: AttemptStore) -> None:
         self.store = store
 
     @staticmethod
     def _validate_payload_dict(data: dict[str, Any]) -> None:
-        if data.get("schema") != CHECKPOINT_SCHEMA:
-            raise AttemptStoreError(f"checkpoint schema mismatch: {data.get('schema')!r}")
-        if not str(data.get("session_id") or "").strip():
-            raise AttemptStoreError("checkpoint session_id missing")
-        if not isinstance(data.get("generation"), int) or int(data["generation"]) < 0:
-            raise AttemptStoreError("checkpoint generation invalid")
-        if not str(data.get("project_id") or "").strip():
-            raise AttemptStoreError("checkpoint project_id missing")
-        if not str(data.get("workspace_id") or "").strip():
-            raise AttemptStoreError("checkpoint workspace_id missing")
+        validate_checkpoint_payload(data)
 
     def capture_checkpoint(self, payload: ResumeCheckpointPayload, *, checkpoint_id: str | None = None) -> str:
         checkpoint_id = checkpoint_id or f"checkpoint-{uuid4().hex}"
@@ -204,53 +278,12 @@ class ResumeCheckpointManager:
         if attempt["artifact_class"] != ARTIFACT_CLASS:
             raise AttemptStoreError(f"not a resume checkpoint: {checkpoint_id}")
         payload = json.loads(attempt["payload"].decode("utf-8"))
-        self._validate_payload_dict(payload)
         events = self.store.events_for_attempt(checkpoint_id)
-        typed = [(e["seq"], e["event_type"], e["payload"]) for e in events]
-        verified = any(t == "checkpoint_verified" for _, t, _ in typed)
-        resumed = any(t == "checkpoint_resumed" for _, t, _ in typed)
-        quarantine_seq = max((s for s, t, _ in typed if t == "checkpoint_quarantined"), default=-1)
-        crash_events = [(s, p) for s, t, p in typed if t == "checkpoint_crash_associated"]
-        early_crashes = [(s, p) for s, p in crash_events if bool(p.get("early"))]
-        last_crash_seq = max((s for s, _ in crash_events), default=-1)
-        last_stable_seq = max((s for s, t, _ in typed if t == "checkpoint_stable"), default=-1)
-        last_lkg_seq = max((s for s, t, _ in typed if t == "checkpoint_lkg_promoted"), default=-1)
-        quarantined = quarantine_seq >= 0
-        stable = last_stable_seq >= 0 and last_stable_seq > last_crash_seq and not quarantined
-        lkg = last_lkg_seq >= 0 and last_lkg_seq > last_crash_seq and not quarantined
-        if quarantined:
-            status = "QUARANTINED"
-            policy = "INSPECT_ONLY"
-        elif stable:
-            status = "LKG" if lkg else "STABLE"
-            policy = "NORMAL"
-        elif verified and len(early_crashes) == 0:
-            status = "VERIFIED"
-            policy = "NORMAL"
-        elif verified and len(early_crashes) == 1:
-            status = "CRASH_ASSOCIATED"
-            policy = "SAFE_ONLY"
-        elif verified:
-            status = "VERIFIED_DEGRADED"
-            policy = "SAFE_ONLY"
-        else:
-            status = "CAPTURED"
-            policy = "INSPECT_ONLY"
-        return CheckpointView(
+        return derive_checkpoint_view(
             checkpoint_id=checkpoint_id,
-            generation=int(payload["generation"]),
-            parent_checkpoint_id=payload.get("parent_checkpoint_id"),
-            verified=verified,
-            resumed=resumed,
-            stable=stable,
-            lkg=lkg,
-            early_crash_count=len(early_crashes),
-            quarantined=quarantined,
-            status=status,
-            resume_policy=policy,
-            blob_sha256=attempt["blob_sha256"],
-            source_head=payload.get("source_head"),
-            semantic_snapshot_id=payload.get("semantic_snapshot_id"),
+            attempt=attempt,
+            payload=payload,
+            events=events,
         )
 
     def list_checkpoints(self, *, limit: int = 200) -> list[CheckpointView]:
@@ -259,15 +292,4 @@ class ResumeCheckpointManager:
         return sorted(views, key=lambda v: (v.generation, v.checkpoint_id), reverse=True)
 
     def choose_recovery(self) -> CheckpointView | None:
-        views = self.list_checkpoints(limit=500)
-        candidates = [v for v in views if v.verified and not v.quarantined]
-        stable = [v for v in candidates if v.stable]
-        if stable:
-            return max(stable, key=lambda v: (v.generation, v.checkpoint_id))
-        clean_verified = [v for v in candidates if v.early_crash_count == 0]
-        if clean_verified:
-            return max(clean_verified, key=lambda v: (v.generation, v.checkpoint_id))
-        single_crash = [v for v in candidates if v.early_crash_count == 1]
-        if single_crash:
-            return max(single_crash, key=lambda v: (v.generation, v.checkpoint_id))
-        return None
+        return choose_recovery_view(self.list_checkpoints(limit=500))
