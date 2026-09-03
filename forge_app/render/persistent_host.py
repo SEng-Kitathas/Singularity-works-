@@ -117,6 +117,13 @@ class _JsonLineWorker:
             except subprocess.TimeoutExpired:
                 self.proc.kill()
                 self.proc.wait(timeout=1.5)
+        # Let the stdout reader observe EOF before closing pipe objects. This is
+        # part of renderer-generation teardown, not optional test hygiene.
+        if self._reader.is_alive():
+            self._reader.join(timeout=1.0)
+        for stream in (self.proc.stdin, self.proc.stdout, self.proc.stderr):
+            if stream is not None and not stream.closed:
+                stream.close()
 
 
 class PersistentRendererHost:
