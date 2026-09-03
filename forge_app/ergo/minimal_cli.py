@@ -27,7 +27,15 @@ def main() -> int:
         source_repo=Path(args.source_repo) if args.source_repo else None,
         latest_limit=max(0, args.recent),
     )
-    checkpoint_summary = build_checkpoint_summary(Path(args.store))
+    current_source_head = (
+        summary.source.head
+        if summary.source is not None and summary.source.available
+        else None
+    )
+    checkpoint_summary = build_checkpoint_summary(
+        Path(args.store),
+        current_source_head=current_source_head,
+    )
     model = build_launch_model(
         summary,
         recent_limit=max(0, args.recent),

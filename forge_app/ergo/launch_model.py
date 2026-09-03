@@ -92,39 +92,65 @@ def _source_state(summary: ErgoRecoverySummary) -> tuple[str, str]:
     return "READY", "Source repository is clean"
 
 
-def _posture(summary: ErgoRecoverySummary) -> tuple[str, str]:
+def _posture(
+    summary: ErgoRecoverySummary,
+    checkpoint_summary: ErgoCheckpointSummary | None = None,
+) -> tuple[str, str]:
     if summary.recovery_mode_required:
         return "RECOVERY_REQUIRED", "Durable state requires recovery inspection before normal launch"
     source_state, source_reason = _source_state(summary)
     if source_state in {"BLOCKED", "CAUTION", "UNKNOWN"}:
         return "CAUTION", source_reason
+    if checkpoint_summary is not None:
+        if checkpoint_summary.status == "RECOVERY_REQUIRED":
+            return "RECOVERY_REQUIRED", "No non-quarantined verified checkpoint is eligible for automatic resume"
+        if checkpoint_summary.status == "CAUTION":
+            reason = checkpoint_summary.reasons[0] if checkpoint_summary.reasons else "Resume checkpoint requires safe-mode pressure"
+            return "CAUTION", reason
+        if checkpoint_summary.status in {"UNREADABLE", "DEGRADED"}:
+            return "CAUTION", "Resume checkpoint evidence is degraded"
     if summary.store_status == "READY" and summary.integrity_ok is True:
         return "READY", "Durable recovery state and source inspection are ready"
     return "CAUTION", "Launch state contains unresolved evidence"
 
 
-def _modes(summary: ErgoRecoverySummary) -> tuple[LaunchMode, ...]:
-    recovery_required = bool(summary.recovery_mode_required)
+def _modes(
+    summary: ErgoRecoverySummary,
+    checkpoint_summary: ErgoCheckpointSummary | None = None,
+) -> tuple[LaunchMode, ...]:
+    recovery_required = bool(summary.recovery_mode_required) or bool(
+        checkpoint_summary is not None and checkpoint_summary.status == "RECOVERY_REQUIRED"
+    )
+    checkpoint_safe_only = bool(
+        checkpoint_summary is not None
+        and checkpoint_summary.selected_resume_policy == "SAFE_ONLY"
+    )
+    normal_enabled = bool(summary.normal_mode_allowed)
+    safe_enabled = bool(summary.safe_mode_available)
     return (
         LaunchMode(
             mode_id="normal",
             label="Normal",
-            enabled=bool(summary.normal_mode_allowed),
-            recommended=bool(summary.normal_mode_allowed and not recovery_required),
+            enabled=normal_enabled,
+            recommended=bool(normal_enabled and not recovery_required and not checkpoint_safe_only),
             reason=(
-                "Durable state permits normal launch"
-                if summary.normal_mode_allowed
+                "Normal launch is available, but automatic resume is SAFE_ONLY"
+                if normal_enabled and checkpoint_safe_only
+                else "Durable state permits normal launch"
+                if normal_enabled
                 else "Normal launch blocked by recovery state"
             ),
         ),
         LaunchMode(
             mode_id="safe",
             label="Safe",
-            enabled=bool(summary.safe_mode_available),
-            recommended=False,
+            enabled=safe_enabled,
+            recommended=bool(safe_enabled and checkpoint_safe_only and not recovery_required),
             reason=(
-                "Reduced-risk launch path remains available"
-                if summary.safe_mode_available
+                "Selected checkpoint requires safe-mode resume pressure"
+                if safe_enabled and checkpoint_safe_only
+                else "Reduced-risk launch path remains available"
+                if safe_enabled
                 else "Safe launch path unavailable"
             ),
         ),
@@ -158,7 +184,7 @@ def build_launch_model(
     recent_limit: int = 6,
     checkpoint_summary: ErgoCheckpointSummary | None = None,
 ) -> ErgoLaunchModel:
-    posture, posture_reason = _posture(summary)
+    posture, posture_reason = _posture(summary, checkpoint_summary)
     source = summary.source
     source_state, _ = _source_state(summary)
 
@@ -212,6 +238,22 @@ def build_launch_model(
                     cp_state,
                 ),
                 LaunchFact(
+                    "resume_source_currentness",
+                    "Resume source match",
+                    checkpoint_summary.source_currentness,
+                    "READY"
+                    if checkpoint_summary.source_currentness == "MATCH"
+                    else "CAUTION"
+                    if checkpoint_summary.source_currentness == "MISMATCH"
+                    else "UNKNOWN",
+                ),
+                LaunchFact(
+                    "resume_selection_reason",
+                    "Resume selection",
+                    checkpoint_summary.selection_reason or "—",
+                    cp_state,
+                ),
+                LaunchFact(
                     "resume_core_snapshot",
                     "Core semantic snapshot",
                     _short_hash(checkpoint_summary.selected_semantic_snapshot_id)
@@ -244,7 +286,7 @@ def build_launch_model(
         posture_reason=posture_reason,
         observer_authority=summary.observer_authority,
         facts=facts,
-        modes=_modes(summary),
+        modes=_modes(summary, checkpoint_summary),
         recent_attempts=attempts,
         reasons=tuple(summary.reasons) + checkpoint_reasons,
     )

@@ -88,7 +88,7 @@ class ErgoCheckpointSummaryV01Tests(unittest.TestCase):
             )
             db = root / "attempt_store.sqlite3"
             before = (db.read_bytes(), db.stat().st_mtime_ns)
-            summary = build_checkpoint_summary(root)
+            summary = build_checkpoint_summary(root, current_source_head="head-1")
             after = (db.read_bytes(), db.stat().st_mtime_ns)
             self.assertEqual(before, after)
             self.assertEqual(summary.status, "READY")
@@ -99,6 +99,8 @@ class ErgoCheckpointSummaryV01Tests(unittest.TestCase):
             self.assertFalse(summary.selected_stable)
             self.assertFalse(summary.selected_lkg)
             self.assertEqual(summary.selected_source_head, "head-1")
+            self.assertEqual(summary.current_source_head, "head-1")
+            self.assertEqual(summary.source_currentness, "MATCH")
             self.assertIsNone(summary.selected_semantic_snapshot_id)
 
     def test_quarantined_newest_is_not_selected_over_older_lkg(self) -> None:
@@ -171,6 +173,31 @@ class ErgoCheckpointSummaryV01Tests(unittest.TestCase):
             self.assertIn("Core semantic snapshot", rendered)
             self.assertIn("not bridged", rendered)
             self.assertEqual(model.observer_authority, "NONE")
+
+    def test_source_mismatch_downgrades_resume_to_safe_only_and_launcher_caution(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td) / "store"
+            store = AttemptStore(root)
+            manager = ResumeCheckpointManager(store)
+            manager.capture_checkpoint(payload(1), checkpoint_id="checkpoint-old-source")
+            summary = build_checkpoint_summary(root, current_source_head="head-2")
+            self.assertEqual(summary.status, "CAUTION")
+            self.assertEqual(summary.source_currentness, "MISMATCH")
+            self.assertEqual(summary.selected_resume_policy, "SAFE_ONLY")
+            self.assertIn("source HEAD differs", " ".join(summary.reasons))
+
+            model = build_launch_model(recovery_summary(), checkpoint_summary=summary)
+            self.assertEqual(model.posture, "CAUTION")
+            modes = {mode.mode_id: mode for mode in model.modes}
+            self.assertTrue(modes["normal"].enabled)
+            self.assertFalse(modes["normal"].recommended)
+            self.assertTrue(modes["safe"].enabled)
+            self.assertTrue(modes["safe"].recommended)
+            facts = {fact.key: fact for fact in model.facts}
+            self.assertEqual(facts["resume_source_currentness"].value, "MISMATCH")
+            self.assertEqual(facts["resume_source_currentness"].state, "CAUTION")
+            self.assertEqual(facts["resume_policy"].value, "SAFE_ONLY")
+
 
 
 if __name__ == "__main__":

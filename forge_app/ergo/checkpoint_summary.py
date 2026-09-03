@@ -36,6 +36,9 @@ class ErgoCheckpointSummary:
     selected_quarantined: bool | None
     selected_early_crash_count: int | None
     selected_source_head: str | None
+    current_source_head: str | None
+    source_currentness: str
+    selection_reason: str | None
     selected_semantic_snapshot_id: str | None
     reasons: tuple[str, ...]
     observer_authority: str = "NONE"
@@ -70,6 +73,7 @@ def build_checkpoint_summary(
     store_root: str | Path,
     *,
     limit: int = 500,
+    current_source_head: str | None = None,
 ) -> ErgoCheckpointSummary:
     store_root = Path(store_root)
     db_path = store_root / "attempt_store.sqlite3"
@@ -89,6 +93,9 @@ def build_checkpoint_summary(
             selected_quarantined=None,
             selected_early_crash_count=None,
             selected_source_head=None,
+            current_source_head=current_source_head,
+            source_currentness="UNKNOWN",
+            selection_reason=None,
             selected_semantic_snapshot_id=None,
             reasons=("attempt store database is missing",),
             observer_authority="NONE",
@@ -136,13 +143,36 @@ def build_checkpoint_summary(
                         f"checkpoint {checkpoint_id} invalid: {type(exc).__name__}: {exc}"
                     )
             selected = choose_recovery_view(views)
+            source_currentness = "UNKNOWN"
+            selection_reason: str | None = None
+            effective_policy = selected.resume_policy if selected else None
+            if selected is not None:
+                if selected.source_head and current_source_head:
+                    source_currentness = (
+                        "MATCH" if selected.source_head == current_source_head else "MISMATCH"
+                    )
+                if selected.lkg:
+                    selection_reason = "latest non-quarantined LKG checkpoint"
+                elif selected.stable:
+                    selection_reason = "latest non-quarantined STABLE checkpoint"
+                elif selected.early_crash_count == 0:
+                    selection_reason = "latest non-quarantined VERIFIED checkpoint"
+                else:
+                    selection_reason = "only non-quarantined crash-associated checkpoint"
+                if source_currentness == "MISMATCH" and effective_policy == "NORMAL":
+                    effective_policy = "SAFE_ONLY"
+                    reasons.append(
+                        "selected checkpoint source HEAD differs from current source HEAD; automatic normal resume downgraded"
+                    )
             if not rows:
                 status = "NONE"
             elif not views:
                 status = "DEGRADED"
             elif selected is None:
                 status = "RECOVERY_REQUIRED"
-            elif selected.resume_policy == "NORMAL":
+            elif source_currentness == "MISMATCH":
+                status = "CAUTION"
+            elif effective_policy == "NORMAL":
                 status = "READY"
             else:
                 status = "CAUTION"
@@ -154,13 +184,16 @@ def build_checkpoint_summary(
                 selected_checkpoint_id=selected.checkpoint_id if selected else None,
                 selected_generation=selected.generation if selected else None,
                 selected_status=selected.status if selected else None,
-                selected_resume_policy=selected.resume_policy if selected else None,
+                selected_resume_policy=effective_policy,
                 selected_verified=selected.verified if selected else None,
                 selected_stable=selected.stable if selected else None,
                 selected_lkg=selected.lkg if selected else None,
                 selected_quarantined=selected.quarantined if selected else None,
                 selected_early_crash_count=selected.early_crash_count if selected else None,
                 selected_source_head=selected.source_head if selected else None,
+                current_source_head=current_source_head,
+                source_currentness=source_currentness,
+                selection_reason=selection_reason,
                 selected_semantic_snapshot_id=selected.semantic_snapshot_id if selected else None,
                 reasons=tuple(reasons),
                 observer_authority="NONE",
@@ -183,6 +216,9 @@ def build_checkpoint_summary(
             selected_quarantined=None,
             selected_early_crash_count=None,
             selected_source_head=None,
+            current_source_head=current_source_head,
+            source_currentness="UNKNOWN",
+            selection_reason=None,
             selected_semantic_snapshot_id=None,
             reasons=(f"checkpoint store unreadable: {type(exc).__name__}: {exc}",),
             observer_authority="NONE",
