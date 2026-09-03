@@ -105,3 +105,30 @@ The product/Core next action remains currentness re-read followed by exact commi
 5. Record the resulting branch/SHA in Live Shadow, DTS, Current, Trace and Revisit so the next chat thread has an explicit Git rehydration anchor.
 
 Done when a fresh thread can start from the Git control checkpoint and recover the current project control state without relying on the previous chat transcript.
+
+
+## Cross-thread Git control ongoing queue — 2026-09-03 UTC
+Initial durability establishment is complete: GitHub `pcmmad/project-control` verified at `174ba730f691a50f332b77bb8803370ed642cae4`; fresh remote-clone checkpoint verifier PASS with 52 files.
+
+### Ongoing checkpoint hygiene
+After any load-bearing state change or before a forced thread switch:
+1. update Live Shadow + DTS + RES;
+2. reconcile Current / Doctrine / Next / Trace / Revisit;
+3. refresh the bounded Git-safe `project_control/` snapshot;
+4. run privacy/credential scan, `VERIFY_CHECKPOINT.py`, and Git diff checks;
+5. commit and push `pcmmad/project-control`;
+6. independently read back remote branch SHA and verify content from remote state;
+7. record the new anchor in live server continuity.
+
+### Product/Core P0 remains
+The control-plane task is complete for initial establishment and no longer blocks Core work. Resume with live currentness verification followed by exact committed-artifact replay/promotion qualification of the current Main semantic-field Core candidate. If shared Core advances, perform early Main -> App sync before App binds to semantic-field Core.
+
+
+## Linear human read gate — active execution rule — 2026-09-03 UTC
+Before any readable artifact is promoted, sealed, published, admitted, or treated as load-bearing, require a complete linear semantic read. Automated checks may precede/support this gate but SHALL NOT substitute for it.
+
+Immediate consequence for the current Core promotion frontier: exact committed-artifact replay/testing alone is not sufficient for promotion. Any readable candidate artifacts crossing the promotion boundary must also receive the complete linear semantic read required by the new doctrine addendum.
+
+
+Exact bound text:
+If an artifact can be meaningfully read, it SHALL receive a complete linear semantic read before it is promoted, sealed, published, admitted, or treated as load-bearing. Automated checks may precede and support the gate; they SHALL NOT substitute for it.

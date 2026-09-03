@@ -171,3 +171,36 @@ Doctrine additions:
 - Control-plane persistence and product/release promotion are distinct authority paths.
 - Dedicated control branches are preferred for continuity snapshots so public `main` does not move merely because a checkpoint is needed.
 - A future thread should be able to rehydrate from the Git control snapshot + live server state without reconstructing doctrine from chat.
+
+
+## Git control-plane doctrine promotion — 2026-09-03 UTC
+The cross-thread Git checkpoint discipline is now verified in embodiment, not merely proposed.
+
+- Durable branch: `pcmmad/project-control`.
+- Verified GitHub tip at this checkpoint: `174ba730f691a50f332b77bb8803370ed642cae4`.
+- Fresh remote clone + `project_control/VERIFY_CHECKPOINT.py`: PASS with 52 manifested files.
+- Public `main` remained unchanged.
+
+Promoted local continuity laws:
+- `CHAT_CONTEXT != DURABLE_PROJECT_STATE`.
+- `LIVE_SERVER_STATE != CROSS_THREAD_CHECKPOINT`.
+- `GIT_PUSH_SUCCESS != CONTROL_STATE_COHERENCE`.
+- `PUSH_OUTPUT != REMOTE_READBACK`.
+- `REMOTE_REF_MATCH != CHECKPOINT_CONTENT_VERIFIED`.
+- `SOURCE_IDENTITY != GIT_SAFE_REPRESENTATION`.
+- `CONTROL_CHECKPOINT != PRODUCT_PROMOTION`.
+
+Required ordering for checkpointing remains: update live shadows/state first -> build bounded Git-safe snapshot -> self-verify/privacy-scan/diff-check -> commit/push -> remote ref readback -> fresh-clone/content verification -> record durable anchor server-side.
+
+
+## Additive doctrine binding — LINEAR HUMAN READ / SEMANTIC GATE — 2026-09-03 UTC
+Authority: explicit operator directive; project-local additive overlay on RAHL R4.1.
+
+**LINEAR HUMAN READ / SEMANTIC GATE**
+If an artifact can be meaningfully read, it SHALL receive a complete linear semantic read before it is promoted, sealed, published, admitted, or treated as load-bearing. Automated checks may precede and support the gate; they SHALL NOT substitute for it.
+
+Load-bearing derived laws:
+- `AUTOMATED_CHECKS != LINEAR_HUMAN_SEMANTIC_READ`;
+- `MACHINE_PASS != HUMAN_SEMANTIC_GATE_PASS`;
+- `PRESENT_AND_HASHED != SEMANTICALLY_READ`;
+- `PROMOTION_REQUIRES_LINEAR_SEMANTIC_READ_WHEN_READABLE`.

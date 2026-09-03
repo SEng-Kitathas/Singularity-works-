@@ -16,6 +16,15 @@
     "name": "RAHL Engineering Canonical SOP R4.1"
   },
   "control_branch": "pcmmad/project-control",
+  "doctrine_addenda": [
+    {
+      "authority": "OPERATOR_PROJECT_LOCAL_ADDITIVE",
+      "exact_text": "If an artifact can be meaningfully read, it SHALL receive a complete linear semantic read before it is promoted, sealed, published, admitted, or treated as load-bearing. Automated checks may precede and support the gate; they SHALL NOT substitute for it.",
+      "maintenance_path": "main/maintenance/LINEAR_HUMAN_READ_SEMANTIC_GATE_ADDENDUM_20260903.md",
+      "name": "LINEAR HUMAN READ / SEMANTIC GATE",
+      "server_source_sha256": "1910637867cc2759ab46bc8772b429abac28ca0f6d211d8ee7769eba5ee5125d"
+    }
+  ],
   "files": [
     {
       "bytes": 14,
@@ -23,24 +32,34 @@
       "sha256": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9"
     },
     {
-      "bytes": 71091,
+      "bytes": 73733,
       "path": "main/continuity/design_thread_stream.md",
-      "sha256": "1066729532243eecd97ad1cfd843ab6757672aa91954d9ea0964e243e06ad8a5"
+      "sha256": "3c9b632b089a16ec5deff170bbef62d5617c817db3ce58e71ad7e111b55840d4"
     },
     {
-      "bytes": 4789,
+      "bytes": 7234,
       "path": "main/continuity/live_shadow.md",
-      "sha256": "2bcc27d5650a3f39eca9b6bac351b3dd906bea43d93ee5dfd6c703c9ffe654c8"
+      "sha256": "3b8e0c932ba7fb8b026443623f526fdc45d17a2250a7fc9f6248cd55380988ae"
     },
     {
-      "bytes": 11958,
+      "bytes": 14030,
       "path": "main/continuity/research_epistemic_shadow.md",
-      "sha256": "2b6718943f3d961240ed38795d0a293ce34874b9c7d575573b9c69354fdcc5e3"
+      "sha256": "690d235b8ccd6ad048ad953ef3140fa71e35d4b26b3b665e9d9dc0d094db2c03"
     },
     {
       "bytes": 4396,
       "path": "main/maintenance/FORGE_DOUBLE_HELIX_SYNC_20260903.md",
       "sha256": "1fe0b98f8677f8f350428e3ba319ca25e0ada2ebaec7d955421fef882c8dc8b3"
+    },
+    {
+      "bytes": 5403,
+      "path": "main/maintenance/GIT_CROSS_THREAD_CONTROL_CHECKPOINT_20260903.md",
+      "sha256": "4cf9c592db4b9669cf0b01f12f34ecddc98043bcba75659a9edae60c56a3e8c0"
+    },
+    {
+      "bytes": 1319,
+      "path": "main/maintenance/LINEAR_HUMAN_READ_SEMANTIC_GATE_ADDENDUM_20260903.md",
+      "sha256": "730aef97f7b98c2a11bacaf2172b032223d0af72ec9ebbecc1c4d41a2742e7fd"
     },
     {
       "bytes": 3994,
@@ -53,29 +72,29 @@
       "sha256": "b5c9c9bec84362acf8aaf347bd703ca183f6d22a7861f69db5b070878547b475"
     },
     {
-      "bytes": 4010,
+      "bytes": 6145,
       "path": "main/state/current.md",
-      "sha256": "5a4836997f43621313e5ac10b5d8f3a3b68d2959f94f468f3cb206d2efa8990e"
+      "sha256": "6f9a41a54c641ad84ed845342b4eec93880219d29abd15fe98aa9011be14f5b6"
     },
     {
-      "bytes": 11733,
+      "bytes": 13468,
       "path": "main/state/doctrine_snapshot.md",
-      "sha256": "b12142c12499a87517bf72b430e82f01473b3b46c71549a18f5a7c2168a8baa1"
+      "sha256": "6d0f638dcd59f18fad45def3580b9bbe278ff90ce6423f5b9c9b2ddc4c2c922b"
     },
     {
-      "bytes": 9034,
+      "bytes": 11050,
       "path": "main/state/next_steps.md",
-      "sha256": "8291ce172e040d75a08562e4a8bdcd72ad3752469353a06963bede6ba6611b3a"
+      "sha256": "aa4cdf436a32b15ec559ab945f29c452c8fa45024825f78db745ed63f9138d34"
     },
     {
-      "bytes": 6403,
+      "bytes": 7680,
       "path": "main/state/revisit_ledger.md",
-      "sha256": "4b43466e7530ae49bc4d6a84920a551b0112c4376eb3cba182aaaaf930051ebb"
+      "sha256": "8ec37e03dc386ac43abb040a5a8471bec33f6c35ced4e7238e7b8c0fc7ae46c3"
     },
     {
-      "bytes": 13098,
+      "bytes": 15116,
       "path": "main/state/trace_matrix.md",
-      "sha256": "f5c9ba6e8437b1b6377cc6c23df8e74fa17cbd7a0c5207cca85fa6753e1c64ba"
+      "sha256": "a18de3a610efb9be7f2fa0900720efedef86b1b8ca1573f61f131dfca3049601"
     },
     {
       "bytes": 1618,
@@ -83,9 +102,9 @@
       "sha256": "2fbf22e5e9eb92c8a72972f3d166fb97c24055c0668a37ef594fcbb4236eae02"
     },
     {
-      "bytes": 3318,
+      "bytes": 3791,
       "path": "README.md",
-      "sha256": "c5f7f089ac9a15a21d87924b3795d838ca5e11b0fc826b1fca74d2be0a21fcbf"
+      "sha256": "b23e9e7a2e7ee424cc8aa1d0313d198de0cf7a8e9e672444743953be222abb76"
     },
     {
       "bytes": 4395,
@@ -183,9 +202,9 @@
       "sha256": "eabf6c3ddcabdb5e1ed7a364d20ecd14dc06df98e2323d0c0c25e0086fe078d4"
     },
     {
-      "bytes": 505,
+      "bytes": 1133,
       "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/evidence/README.md",
-      "sha256": "efc1079c8d5eb0e8836ecc96e96a5dd7d3d02e15f204258868687fc0fa560af4"
+      "sha256": "8d5e92df2c46dfbe70b87a9dac875a675e7faf3596d76fbcd3a12eaf4261ae01"
     },
     {
       "bytes": 1024,
@@ -258,9 +277,9 @@
       "sha256": "17393796a07a02d590ec2b2da28e854d23fef59047c6eac5b4fda7e28d68f8fb"
     },
     {
-      "bytes": 2009,
+      "bytes": 2383,
       "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/GIT_SAFE_TRANSFORMS.json",
-      "sha256": "62b7fda159c3c2db216eb17ebabf912fa7d06a168640e84965293b75dc4f7a60"
+      "sha256": "ea41e2b63392228e36fce55bc5dc541f199893777f552da8f629a09ada943736"
     },
     {
       "bytes": 5046,
@@ -268,9 +287,9 @@
       "sha256": "0daaa6a6508b1836a52a1c6bb41392bbdefaa1f72d6472acefb97a1caf326cc9"
     },
     {
-      "bytes": 709,
+      "bytes": 1154,
       "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/SOURCE_IDENTITY.md",
-      "sha256": "8bc7f56412c7ab094062f85fda5b4dd26cf09bf213516a797aa20d399ac4b7a0"
+      "sha256": "53ec180dd5d38bd3ec0c4f9275dd5f57c434a814a8b372e47ab46ed97dd4144a"
     },
     {
       "bytes": 1801,
@@ -278,7 +297,7 @@
       "sha256": "f5dba1193203a03bbce3779179ce5b6947231dff1ae65f505e5024e3ec5ee207"
     }
   ],
-  "generated_utc": "2026-09-03T18:49:00Z",
+  "generated_utc": "2026-09-03T20:12:30Z",
   "git_copy_policy": {
     "checkpoint_text_line_endings": "LF",
     "credential_scan": "NO_CREDENTIAL_TOKEN_EMAIL_FINDINGS_IN_CONTROL_SURFACES",
@@ -287,11 +306,53 @@
     "server_source_hashes_preserved_separately": true,
     "sop_machine_paths_and_test_fixture_literal_redacted": true
   },
+  "linear_human_semantic_gate": {
+    "blocking_findings": 0,
+    "completed_before_publication": true,
+    "deterministic_stream_bytes": 349333,
+    "deterministic_stream_lines": 5481,
+    "deterministic_stream_sha256": "8661b5fb6b3e6a9dd6814f625eea456ffe25b28f980db0033c8f0d69a228260f",
+    "full_tree_read_phase": {
+      "scope": "55 readable files as materialized before semantic corrections",
+      "stream_bytes": 349333,
+      "stream_lines": 5481,
+      "stream_sha256": "8661b5fb6b3e6a9dd6814f625eea456ffe25b28f980db0033c8f0d69a228260f"
+    },
+    "post_finding_reread_phase": {
+      "changed_artifacts_reread_completely": [
+        {
+          "bytes": 1133,
+          "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/evidence/README.md",
+          "sha256": "8d5e92df2c46dfbe70b87a9dac875a675e7faf3596d76fbcd3a12eaf4261ae01"
+        },
+        {
+          "bytes": 1154,
+          "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/SOURCE_IDENTITY.md",
+          "sha256": "53ec180dd5d38bd3ec0c4f9275dd5f57c434a814a8b372e47ab46ed97dd4144a"
+        },
+        {
+          "bytes": 2383,
+          "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/GIT_SAFE_TRANSFORMS.json",
+          "sha256": "ea41e2b63392228e36fce55bc5dc541f199893777f552da8f629a09ada943736"
+        }
+      ],
+      "checkpoint_reread_required_after_this_metadata_update": true,
+      "status": "PASS"
+    },
+    "readable_files_read": 55,
+    "rule": "If an artifact can be meaningfully read, it SHALL receive a complete linear semantic read before it is promoted, sealed, published, admitted, or treated as load-bearing. Automated checks may precede and support the gate; they SHALL NOT substitute for it.",
+    "semantic_findings": [
+      "Git-safe derivative evidence wording implied preserved machine paths although declared public-safe transformations redact them; derivative wording corrected before publication.",
+      "Canonical R4.1 manifest/verifier inside git_safe_active describe original carrier bytes, not transformed derivative; boundary made explicit before publication."
+    ],
+    "status": "PASS"
+  },
   "main_candidate": {
     "commit": "a7b4511734b1a1e507230308e75b31175aef4c4a",
     "status": "LOCAL_UNPROMOTED_PENDING_EXACT_COMMITTED_ARTIFACT_REPLAY",
     "working_tree_clean": true
   },
+  "previous_verified_control_tip": "174ba730f691a50f332b77bb8803370ed642cae4",
   "qualified_public_main_observed": "1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9",
   "remote_establishment": {
     "currentness_rule": "resolve current remote branch HEAD live; receipt identifies initial establishment only",
@@ -302,43 +363,43 @@
     "public_main_unchanged": "1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9",
     "receipt": "PUSH_RECEIPT_20260903.md"
   },
-  "resume_point": "Verify current Main candidate/source identity, then finish exact committed-artifact replay/promotion qualification. If shared Core advances, perform early Main->App sync before App consumes semantic-field Core.",
+  "resume_point": "Before any readable artifact crosses promotion/sealing/publication/admission/load-bearing boundary, complete the linear human semantic-read gate. Product/Core frontier otherwise remains live-currentness re-read then exact committed-artifact replay/promotion qualification of Main semantic-field Core candidate.",
   "schema": "singularity-works.project-control-checkpoint/0.1",
   "source_snapshot_records": {
     "main/continuity/design_thread_stream.md": {
-      "bytes": 71091,
-      "git_copy_sha256": "1066729532243eecd97ad1cfd843ab6757672aa91954d9ea0964e243e06ad8a5",
+      "bytes": 73733,
+      "git_copy_sha256": "3c9b632b089a16ec5deff170bbef62d5617c817db3ce58e71ad7e111b55840d4",
       "git_safe_redactions": [
         {
           "count": 2,
-          "label": "machine_local_path",
+          "label": "machine_local_forge_worktree",
           "replacement": "<LOCAL_FORGE_WORKTREE>"
         },
         {
           "count": 1,
-          "label": "machine_local_path",
+          "label": "machine_local_project_root",
           "replacement": "<LOCAL_PROJECT_ROOT>"
         }
       ],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "continuity/design_thread_stream/design_thread_stream.md",
-      "server_source_sha256": "2b145f519c246e943c51545f8dbabea7b398c1885f72f628e33fc0cbb2bd606e"
+      "server_source_sha256": "00a3ae418f6e56603eaad15fdce5d5fb62ced69c74508450d764b1ce0d00f7ad"
     },
     "main/continuity/live_shadow.md": {
-      "bytes": 4789,
-      "git_copy_sha256": "2bcc27d5650a3f39eca9b6bac351b3dd906bea43d93ee5dfd6c703c9ffe654c8",
+      "bytes": 7234,
+      "git_copy_sha256": "3b8e0c932ba7fb8b026443623f526fdc45d17a2250a7fc9f6248cd55380988ae",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "continuity/live_shadow/live_shadow.md",
-      "server_source_sha256": "eadf40738ca1574873e68671b40cd3bd4f8105c2744525ee22c604ffe14520f0"
+      "server_source_sha256": "d71bbd3ee00344cdbecd54b6fbf195e6c3159405fb6d0e9d1626e991f6c25dfe"
     },
     "main/continuity/research_epistemic_shadow.md": {
-      "bytes": 11958,
-      "git_copy_sha256": "2b6718943f3d961240ed38795d0a293ce34874b9c7d575573b9c69354fdcc5e3",
+      "bytes": 14030,
+      "git_copy_sha256": "690d235b8ccd6ad048ad953ef3140fa71e35d4b26b3b665e9d9dc0d094db2c03",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "continuity/research_epistemic_shadow/res.md",
-      "server_source_sha256": "e3c941edd869d05f9b3e9d672cb2c01d46b824e499f9ea9976584108186be710"
+      "server_source_sha256": "e86538842d4da9406c8c769b36059007bce39166385da60b1e9f7f0a59bb4f53"
     },
     "main/maintenance/FORGE_DOUBLE_HELIX_SYNC_20260903.md": {
       "bytes": 4396,
@@ -347,6 +408,22 @@
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "notes/maintenance/FORGE_DOUBLE_HELIX_SYNC_20260903.md",
       "server_source_sha256": "5ef62c6e9c1b68d45fefe0781501a462570b793ce55e14a4ba881cf4da493e6b"
+    },
+    "main/maintenance/GIT_CROSS_THREAD_CONTROL_CHECKPOINT_20260903.md": {
+      "bytes": 5403,
+      "git_copy_sha256": "4cf9c592db4b9669cf0b01f12f34ecddc98043bcba75659a9edae60c56a3e8c0",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "notes/maintenance/GIT_CROSS_THREAD_CONTROL_CHECKPOINT_20260903.md",
+      "server_source_sha256": "439a5e2c82b4c3b983cbe11c665e288a1f924c20e1a7e7a5e8a606979032c765"
+    },
+    "main/maintenance/LINEAR_HUMAN_READ_SEMANTIC_GATE_ADDENDUM_20260903.md": {
+      "bytes": 1319,
+      "git_copy_sha256": "730aef97f7b98c2a11bacaf2172b032223d0af72ec9ebbecc1c4d41a2742e7fd",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "notes/maintenance/LINEAR_HUMAN_READ_SEMANTIC_GATE_ADDENDUM_20260903.md",
+      "server_source_sha256": "1910637867cc2759ab46bc8772b429abac28ca0f6d211d8ee7769eba5ee5125d"
     },
     "main/maintenance/RAHL_R4_1_CANONICAL_SOP_ADOPTION_20260903.md": {
       "bytes": 3994,
@@ -365,44 +442,44 @@
       "server_source_sha256": "a19f4a0851ffaf8e6c7109c76ad42828a70a674dbddfd4d893e3055f0c9a6ff0"
     },
     "main/state/current.md": {
-      "bytes": 4010,
-      "git_copy_sha256": "5a4836997f43621313e5ac10b5d8f3a3b68d2959f94f468f3cb206d2efa8990e",
+      "bytes": 6145,
+      "git_copy_sha256": "6f9a41a54c641ad84ed845342b4eec93880219d29abd15fe98aa9011be14f5b6",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/current/current.md",
-      "server_source_sha256": "1ba44a9369d586d9918ef942604068f9692a168db943b682e1103582c9db29d1"
+      "server_source_sha256": "ecb4b73f2637f56573b9b858020f5a917dff355726c3aa39f311e70a2074f4ec"
     },
     "main/state/doctrine_snapshot.md": {
-      "bytes": 11733,
-      "git_copy_sha256": "b12142c12499a87517bf72b430e82f01473b3b46c71549a18f5a7c2168a8baa1",
+      "bytes": 13468,
+      "git_copy_sha256": "6d0f638dcd59f18fad45def3580b9bbe278ff90ce6423f5b9c9b2ddc4c2c922b",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/doctrine_snapshot/doctrine_snapshot.md",
-      "server_source_sha256": "7d8e1be4a62c81f3398a91c5e1b6dc705f16db3c398508d226f78005e16079f0"
+      "server_source_sha256": "0a99d20cb6a3e3c32ffba20af4df9a15be55ade3205c7260905b2a576fcd3efe"
     },
     "main/state/next_steps.md": {
-      "bytes": 9034,
-      "git_copy_sha256": "8291ce172e040d75a08562e4a8bdcd72ad3752469353a06963bede6ba6611b3a",
+      "bytes": 11050,
+      "git_copy_sha256": "aa4cdf436a32b15ec559ab945f29c452c8fa45024825f78db745ed63f9138d34",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/next_steps/next_steps.md",
-      "server_source_sha256": "430811b78286e520f3507b9c99d8afdf92f853b4935d442d1ef3a5d87a52fd3a"
+      "server_source_sha256": "bad8a1bcfad62f50794550bd93150c539c497fd91d22a969e24093b5153becd9"
     },
     "main/state/revisit_ledger.md": {
-      "bytes": 6403,
-      "git_copy_sha256": "4b43466e7530ae49bc4d6a84920a551b0112c4376eb3cba182aaaaf930051ebb",
+      "bytes": 7680,
+      "git_copy_sha256": "8ec37e03dc386ac43abb040a5a8471bec33f6c35ced4e7238e7b8c0fc7ae46c3",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/revisit_ledger/revisit_ledger.md",
-      "server_source_sha256": "2fe213fce7ca14aa9252d5d88e2ac209a2e98c9c3df0241edc9743c841a7d21e"
+      "server_source_sha256": "73ff1b7034224f42adfc25195f65c7ddc9a5430ea37e0b005c633426ff9f97c9"
     },
     "main/state/trace_matrix.md": {
-      "bytes": 13098,
-      "git_copy_sha256": "f5c9ba6e8437b1b6377cc6c23df8e74fa17cbd7a0c5207cca85fa6753e1c64ba",
+      "bytes": 15116,
+      "git_copy_sha256": "a18de3a610efb9be7f2fa0900720efedef86b1b8ca1573f61f131dfca3049601",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/trace_matrix/trace_matrix.md",
-      "server_source_sha256": "4a145a4b20882fd1b3649bd6b73b46d8326a99540130924228ab9bd5b6694afd"
+      "server_source_sha256": "0df59aa9a9d78636e3fd3610147b823bd9bc85d1ff61073475cb999051c4ddd7"
     }
   }
 }

@@ -6,6 +6,17 @@
   "source_carrier_sha256": "af4364fbcf8e5d33aa2ad06e4da9c4669d4be2ffcbc332e416742bec1543f4d2",
   "transforms": [
     {
+      "git_copy_sha256": "8d5e92df2c46dfbe70b87a9dac875a675e7faf3596d76fbcd3a12eaf4261ae01",
+      "path": "evidence/README.md",
+      "source_sha256": "efc1079c8d5eb0e8836ecc96e96a5dd7d3d02e15f204258868687fc0fa560af4",
+      "transformations": [
+        {
+          "count": 1,
+          "label": "git_safe_derivative_boundary_clarification"
+        }
+      ]
+    },
+    {
       "git_copy_sha256": "2f1d32a386354c3fde68b6474198dcfdb69000db836c2830f118808ed7a79bfc",
       "path": "evidence/receiver_continuity_qualification/CONTINUITY_ENVELOPE_V0_1.patch",
       "source_sha256": "59fef362ce36896a20379d1514ae865aad547b3ce57705fad9b8add382bc106a",

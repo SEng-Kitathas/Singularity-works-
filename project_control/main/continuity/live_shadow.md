@@ -69,3 +69,26 @@ App inspects and designs the OS/process enforcement boundary. Main/Core continue
 - Git control checkpoint content must preserve R4.1 SOP identity/authority, Main/App double-helix state, exact current qualified Main/candidate pointers with currentness labels, open seams, and resume point.
 - Git push success != state coherence: exact post-push branch/SHA and committed-file readback remain mandatory.
 - Current immediate action: create/update a dedicated Git control branch from qualified Main lineage, add the canonical R4.1 control package plus current continuity/state snapshot, commit, push, and read back exact remote SHA without mutating public `main` unless separately promoted.
+
+
+## Durable Git control anchor established — 2026-09-03 UTC
+- GitHub control branch `pcmmad/project-control` is now durably established and final read back at `174ba730f691a50f332b77bb8803370ed642cae4`.
+- Initial checkpoint commit `8226f2ffb1e9e96bfca7f1ba91b32d47a904388e` was independently verified by `ls-remote` and fresh-clone checkpoint verification before the receipt commit was created.
+- Final fresh remote-clone verification at branch tip: `project_control/VERIFY_CHECKPOINT.py` PASS with 52 manifested files.
+- Public `main` remains unchanged at `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`.
+- App `forge/app-shell-rd` is independently observed local/remote exact and clean at `328249429cc6e86e15db9797bd58eff5fabc5a2d` (`singularity-works: qualify operation lifecycle reconciliation v0.1`). No Core semantic implication is inferred from subject alone.
+- Durable checkpoint maintenance note: `notes/maintenance/GIT_CROSS_THREAD_CONTROL_CHECKPOINT_20260903.md`, SHA `439a5e2c82b4c3b983cbe11c665e288a1f924c20e1a7e7a5e8a606979032c765`.
+- Git control branch is a checkpoint/control plane only: `CONTROL_CHECKPOINT != PRODUCT_PROMOTION`.
+- Git copy is intentionally Git-safe/portable; server continuity remains full-fidelity. Canonical R4.1 source identity remains SHA `af4364fbcf8e5d33aa2ad06e4da9c4669d4be2ffcbc332e416742bec1543f4d2`.
+- Ongoing rule: after any load-bearing state change or before a forced thread switch, update live continuity/state first, then refresh/push/verify `pcmmad/project-control`, then record the new remote anchor server-side.
+
+
+## Additive doctrine — LINEAR HUMAN READ / SEMANTIC GATE — 2026-09-03
+Authority: explicit operator directive; project-local additive overlay on RAHL R4.1.
+
+**LINEAR HUMAN READ / SEMANTIC GATE**
+If an artifact can be meaningfully read, it SHALL receive a complete linear semantic read before it is promoted, sealed, published, admitted, or treated as load-bearing. Automated checks may precede and support the gate; they SHALL NOT substitute for it.
+
+Operational consequence: no readable artifact may become load-bearing merely because hashes, manifests, tests, hostile suites, parsers, scanners, linters, or other machine checks pass. Those checks support but do not discharge the semantic-read gate.
+
+Canonical addendum record: `notes/maintenance/LINEAR_HUMAN_READ_SEMANTIC_GATE_ADDENDUM_20260903.md`, SHA `1910637867cc2759ab46bc8772b429abac28ca0f6d211d8ee7769eba5ee5125d`.

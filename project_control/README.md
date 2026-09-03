@@ -49,3 +49,10 @@ The server DTS is the full-fidelity chronological record. The Git copy redacts m
 
 ## Remote establishment
 Initial remote establishment was independently verified at commit `8226f2ffb1e9e96bfca7f1ba91b32d47a904388e`; see `PUSH_RECEIPT_20260903.md`. Always resolve current branch HEAD live.
+
+## Additive project-local promotion gate
+**LINEAR HUMAN READ / SEMANTIC GATE**
+
+If an artifact can be meaningfully read, it SHALL receive a complete linear semantic read before it is promoted, sealed, published, admitted, or treated as load-bearing. Automated checks may precede and support the gate; they SHALL NOT substitute for it.
+
+The exact operator addendum is checkpointed at `project_control/main/maintenance/LINEAR_HUMAN_READ_SEMANTIC_GATE_ADDENDUM_20260903.md`.

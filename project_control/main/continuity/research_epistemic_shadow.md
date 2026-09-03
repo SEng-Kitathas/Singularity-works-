@@ -179,3 +179,37 @@ Research/continuity implication:
 - Control snapshots should carry enough state to restart without importing transient logs or large lab blobs.
 
 The control checkpoint must keep product/code promotion separate from continuity persistence: a dedicated Git control branch may advance without advancing qualified public `main`.
+
+
+## Durable Git control-plane research addendum — 2026-09-03
+Truth status: VERIFIED execution/readback.
+
+The first cross-thread Git control branch is now established at `pcmmad/project-control`; final verified GitHub tip at this checkpoint is `174ba730f691a50f332b77bb8803370ed642cae4`. A fresh remote clone at that tip passes the project-control verifier with 52 manifested files.
+
+Operational learning:
+- continuity should be updated **before** Git checkpoint materialization;
+- Git checkpoint source and Git-safe representation require separate identities;
+- public Git hygiene may require redaction/normalization without corrupting the canonical source record;
+- a self-verifying control tree is materially stronger than a prose-only handoff;
+- remote `ls-remote` plus fresh-clone verification closes more of the durability claim than push output alone.
+
+`SOURCE_IDENTITY != GIT_SAFE_REPRESENTATION`
+`PUSH_OUTPUT != REMOTE_READBACK`
+`REMOTE_REF_MATCH != CHECKPOINT_CONTENT_VERIFIED`
+
+The Git checkpoint solves cross-thread continuity transport; it does not solve Core promotion or semantic-field qualification. The research frontier therefore remains exact committed-artifact replay/promotion of the Main semantic-field candidate after live currentness re-read.
+
+
+## Linear human semantic-read gate — 2026-09-03
+Truth status: OPERATOR DIRECTIVE promoted to project-local process doctrine.
+
+Exact binding:
+
+**LINEAR HUMAN READ / SEMANTIC GATE**
+If an artifact can be meaningfully read, it SHALL receive a complete linear semantic read before it is promoted, sealed, published, admitted, or treated as load-bearing. Automated checks may precede and support the gate; they SHALL NOT substitute for it.
+
+Epistemic implication: machine evidence can establish integrity, structure, execution result, or hostile rejection, but it cannot substitute for the complete semantic read required before readable artifacts become load-bearing.
+
+`AUTOMATED_CHECKS != LINEAR_HUMAN_SEMANTIC_READ`
+`MACHINE_PASS != HUMAN_SEMANTIC_GATE_PASS`
+`PRESENT_AND_HASHED != SEMANTICALLY_READ`

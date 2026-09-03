@@ -68,3 +68,31 @@ Active persistence ordering:
 This persistence action is distinct from product/release promotion. Public `main` remains governed by its separate qualification gate.
 
 Immediate resume point: construct and push the first R4.1-backed Main control checkpoint from the current qualified Main lineage, carrying the current continuity/state snapshot and explicit rehydration instructions.
+
+
+## Durable cross-thread Git anchor — 2026-09-03 UTC
+The Git control-plane requirement is now embodied and remotely verified.
+
+- Repository: `https://github.com/SEng-Kitathas/Singularity-works-`
+- Control branch: `pcmmad/project-control`
+- Final verified remote tip for this checkpoint: `174ba730f691a50f332b77bb8803370ed642cae4`
+- Initial establishment commit: `8226f2ffb1e9e96bfca7f1ba91b32d47a904388e`
+- Fresh remote-clone verifier at final tip: PASS, 52 manifested files.
+- Qualified public `main` remains `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`.
+- Main semantic-field candidate remains local/unpromoted at `a7b4511734b1a1e507230308e75b31175aef4c4a`, clean at latest direct read; exact committed-artifact replay remains pending.
+- App `forge/app-shell-rd` is now independently observed local/remote exact and clean at `328249429cc6e86e15db9797bd58eff5fabc5a2d`.
+
+The Git control branch is not a release branch and does not imply product promotion. Its job is durable cross-thread project re-entry. Current Git checkpoint source is intentionally Git-safe/portable while exact server-source and canonical R4.1 identities remain recorded separately.
+
+Resume point remains: live-currentness re-read -> exact committed-artifact replay/promotion qualification of Main semantic-field Core candidate -> early Main->App sync if shared Core actually advances.
+
+
+## Additive promotion gate — 2026-09-03 UTC
+Project-local doctrine now includes the following operator-bound requirement:
+
+**LINEAR HUMAN READ / SEMANTIC GATE**
+If an artifact can be meaningfully read, it SHALL receive a complete linear semantic read before it is promoted, sealed, published, admitted, or treated as load-bearing. Automated checks may precede and support the gate; they SHALL NOT substitute for it.
+
+This applies to all future readable artifacts crossing a load-bearing boundary. Automated verification remains necessary where otherwise required, but is not sufficient to satisfy this gate.
+
+Addendum record: `notes/maintenance/LINEAR_HUMAN_READ_SEMANTIC_GATE_ADDENDUM_20260903.md` SHA `1910637867cc2759ab46bc8772b429abac28ca0f6d211d8ee7769eba5ee5125d`.

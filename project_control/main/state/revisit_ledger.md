@@ -30,3 +30,9 @@ Last updated: 2026-09-02 UTC
 | 2026-09-03 | Provider substitution remained unqualified | Microseed v0.4 completed good/bad discriminator | independent provider shape contradicts | 34/34 bounded Microseed provider substitution | P0 | READY_WITH_EVIDENCE BOUNDED | Reopen on second capability/provider archetype |
 
 | 2026-09-03 | Git control-plane durability for cross-thread re-entry | required because chat thread limits force repeated thread switches | remote checkpoint missing/stale or control snapshot diverges from live state | first dedicated control-branch commit + push + exact readback | P0 | ACTIVE | Complete first R4.1-backed control checkpoint and record branch/SHA |
+
+| 2026-09-03 | Git control-plane durability for cross-thread re-entry | initial establishment was required by repeated chat-thread limits | remote branch drift, checkpoint verifier failure, or stale Git snapshot relative to live state | GitHub `pcmmad/project-control` final verified tip `174ba730f691a50f332b77bb8803370ed642cae4`; fresh-clone verifier PASS with 52 files | P0 | RESOLVED INITIAL / ONGOING HYGIENE | Refresh control branch after load-bearing changes and before forced thread switches; always live-read current remote HEAD |
+
+| 2026-09-03 | Automated verification can discharge readable-artifact promotion semantics | explicitly superseded by operator doctrine addendum | operator later narrows/revokes the gate | exact addendum + continuity/state propagation | P0 | FALSIFIED / SUPERSEDED | Require complete linear human semantic read whenever an artifact can be meaningfully read before promotion/sealing/publication/admission/load-bearing treatment |
+
+Exact bound text governing the resolved row above: If an artifact can be meaningfully read, it SHALL receive a complete linear semantic read before it is promoted, sealed, published, admitted, or treated as load-bearing. Automated checks may precede and support the gate; they SHALL NOT substitute for it.

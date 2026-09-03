@@ -694,3 +694,37 @@ Timestamp: 2026-09-03 UTC
 Tags: BUILD-COMMIT, CONTINUITY-FIRST, GIT-CHECKPOINT
 
 Assistant accepted Git as a required durable cross-thread project-control plane rather than merely a code mirror. The ordering is locked: update Live Shadow, DTS, RES, Current, Doctrine, Next Steps, Trace Matrix and Revisit Ledger first; only then create a Git control snapshot, commit, push and read back exact remote branch/SHA. Public `main` must not be mutated merely to persist control state; a dedicated control branch/checkpoint is preferred until separate promotion authority exists.
+
+
+---
+
+## Turn 048 — ASSISTANT / DURABLE GIT CONTROL ESTABLISHED
+Timestamp: 2026-09-03 UTC
+Tags: BUILD-COMMIT, GIT-CONTROL, REMOTE-READBACK, CROSS-THREAD
+
+After continuity/state were updated first, assistant created `pcmmad/project-control` from exact qualified Main `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`, not from the unpromoted semantic-field candidate. The control tree contains README/read order, machine-readable CHECKPOINT, self-verifier, Main Live Shadow/DTS/RES, Current/Doctrine/Next/Trace/Revisit, R4.1 adoption/deep-read proof, double-helix note, and a Git-safe/portable derivative of the 34 active R4.1 files with exact canonical source hashes and explicit transformations.
+
+Initial commit `8226f2ffb1e9e96bfca7f1ba91b32d47a904388e` was pushed to GitHub, independently confirmed by `ls-remote`, cloned fresh, and `project_control/VERIFY_CHECKPOINT.py` passed. A second receipt commit `174ba730f691a50f332b77bb8803370ed642cae4` recorded that establishment. Final GitHub readback returned control branch `174ba730...`, public main still `1b8f6bd...`, App `forge/app-shell-rd` `328249429cc6e86e15db9797bd58eff5fabc5a2d`. The fresh remote clone fast-forwarded to the final tip and verifier PASSed with 52 manifested files.
+
+Git safety work preserved full-fidelity server continuity while redacting machine-local paths only in Git copies; exact server-source hashes are recorded. Canonical R4.1 carrier remains `af4364fbcf8e5d33aa2ad06e4da9c4669d4be2ffcbc332e416742bec1543f4d2` and must not be conflated with the transformed Git-safe derivative.
+
+
+---
+
+## Turn 049 — USER
+Timestamp: 2026-09-03 16:09 ET
+Tags: DOCTRINE-ADDENDUM, HUMAN-READ-GATE, PROMOTION-CONTROL
+
+User bound an additive doctrine addendum exactly as follows:
+
+**LINEAR HUMAN READ / SEMANTIC GATE**
+
+If an artifact can be meaningfully read, it SHALL receive a complete linear semantic read before it is promoted, sealed, published, admitted, or treated as load-bearing. Automated checks may precede and support the gate; they SHALL NOT substitute for it.
+
+---
+
+## Turn 050 — ASSISTANT / ADDITIVE DOCTRINE BINDING
+Timestamp: 2026-09-03 UTC
+Tags: BUILD-COMMIT, CONTINUITY-FIRST, GIT-CONTROL
+
+Assistant accepted the operator-authored rule as a project-local additive doctrine overlay on RAHL R4.1, without rewriting the sealed R4.1 source. The exact wording is preserved in `notes/maintenance/LINEAR_HUMAN_READ_SEMANTIC_GATE_ADDENDUM_20260903.md` SHA `1910637867cc2759ab46bc8772b429abac28ca0f6d211d8ee7769eba5ee5125d` and is propagated through Live Shadow, DTS, RES, Current, Doctrine, Next, Trace, Revisit before refreshing the Git cross-thread control branch.
