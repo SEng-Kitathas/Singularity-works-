@@ -60,6 +60,20 @@ class CaptureReceipt:
         return asdict(self)
 
 
+@dataclass(frozen=True)
+class EventReceipt:
+    event_id: str
+    event_type: str
+    attempt_id: str | None
+    blob_sha256: str | None
+    payload: dict[str, Any]
+    created_at: str
+    seq: int
+
+    def as_dict(self) -> dict[str, Any]:
+        return asdict(self)
+
+
 class AttemptStore:
     def __init__(self, root: str | Path) -> None:
         self.root = Path(root)
@@ -366,6 +380,123 @@ class AttemptStore:
             if not committed and conn.in_transaction:
                 conn.rollback()
             raise
+        finally:
+            conn.close()
+
+    def append_event(
+        self,
+        event_type: str,
+        *,
+        attempt_id: str | None = None,
+        blob_sha256: str | None = None,
+        payload: Mapping[str, Any] | None = None,
+        event_id: str | None = None,
+    ) -> EventReceipt:
+        if not event_type.strip():
+            raise ValueError("event_type is required")
+        event_id = event_id or f"event-{uuid4().hex}"
+        created_at = _utc_now()
+        payload_json = _canonical_json(payload)
+        conn = self._connect()
+        try:
+            conn.execute("BEGIN IMMEDIATE")
+            existing = conn.execute(
+                "SELECT seq,event_id,event_type,attempt_id,blob_sha256,payload_json,created_at FROM events WHERE event_id=?",
+                (event_id,),
+            ).fetchone()
+            if existing is not None:
+                matches = (
+                    existing["event_type"] == event_type
+                    and existing["attempt_id"] == attempt_id
+                    and existing["blob_sha256"] == blob_sha256
+                    and existing["payload_json"] == payload_json
+                )
+                if not matches:
+                    raise AttemptStoreError(f"event_id conflict with different immutable event: {event_id}")
+                conn.rollback()
+                return EventReceipt(
+                    event_id=existing["event_id"],
+                    event_type=existing["event_type"],
+                    attempt_id=existing["attempt_id"],
+                    blob_sha256=existing["blob_sha256"],
+                    payload=json.loads(existing["payload_json"]),
+                    created_at=existing["created_at"],
+                    seq=int(existing["seq"]),
+                )
+            if attempt_id is not None:
+                row = conn.execute(
+                    "SELECT blob_sha256 FROM attempts WHERE attempt_id=?", (attempt_id,)
+                ).fetchone()
+                if row is None:
+                    raise AttemptStoreError(f"unknown attempt for event: {attempt_id}")
+                actual_blob = row["blob_sha256"]
+                if blob_sha256 is None:
+                    blob_sha256 = actual_blob
+                elif blob_sha256 != actual_blob:
+                    raise AttemptStoreError("event blob_sha256 does not match attempt")
+            cur = conn.execute(
+                "INSERT INTO events(event_id,event_type,attempt_id,blob_sha256,payload_json,created_at) VALUES(?,?,?,?,?,?)",
+                (event_id,event_type,attempt_id,blob_sha256,payload_json,created_at),
+            )
+            seq = int(cur.lastrowid)
+            conn.commit()
+            return EventReceipt(
+                event_id=event_id,event_type=event_type,attempt_id=attempt_id,
+                blob_sha256=blob_sha256,payload=json.loads(payload_json),
+                created_at=created_at,seq=seq,
+            )
+        except BaseException:
+            if conn.in_transaction:
+                conn.rollback()
+            raise
+        finally:
+            conn.close()
+
+    def events_for_attempt(self, attempt_id: str) -> list[dict[str, Any]]:
+        conn = self._connect()
+        try:
+            rows = conn.execute(
+                "SELECT seq,event_id,event_type,attempt_id,blob_sha256,payload_json,created_at FROM events WHERE attempt_id=? ORDER BY seq",
+                (attempt_id,),
+            ).fetchall()
+            return [
+                {
+                    "seq": int(r["seq"]),
+                    "event_id": r["event_id"],
+                    "event_type": r["event_type"],
+                    "attempt_id": r["attempt_id"],
+                    "blob_sha256": r["blob_sha256"],
+                    "payload": json.loads(r["payload_json"]),
+                    "created_at": r["created_at"],
+                }
+                for r in rows
+            ]
+        finally:
+            conn.close()
+
+    def events_by_type(self, event_type: str, limit: int | None = None) -> list[dict[str, Any]]:
+        conn = self._connect()
+        try:
+            sql = "SELECT seq,event_id,event_type,attempt_id,blob_sha256,payload_json,created_at FROM events WHERE event_type=? ORDER BY seq"
+            params: tuple[Any, ...]
+            if limit is None:
+                params = (event_type,)
+            else:
+                sql += " DESC LIMIT ?"
+                params = (event_type, max(0, int(limit)))
+            rows = conn.execute(sql, params).fetchall()
+            return [
+                {
+                    "seq": int(r["seq"]),
+                    "event_id": r["event_id"],
+                    "event_type": r["event_type"],
+                    "attempt_id": r["attempt_id"],
+                    "blob_sha256": r["blob_sha256"],
+                    "payload": json.loads(r["payload_json"]),
+                    "created_at": r["created_at"],
+                }
+                for r in rows
+            ]
         finally:
             conn.close()
 
