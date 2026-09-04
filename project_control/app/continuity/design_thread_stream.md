@@ -685,3 +685,34 @@ New research scars include:
 - for egress enforcement specifically, `ENFORCEMENT_TEST_PASS != ENFORCEMENT_SCOPE_SEMANTICALLY_UNAMBIGUOUS`.
 
 App Current/Doctrine/Next/Trace/Live pointers were refreshed to the final App RES hash. No source, network, provider or Attempt Store mutation occurred. A single bounded Git control checkpoint refresh follows; its post-push server receipt will wait for the next normal checkpoint rather than causing recursive checkpoint churn.
+
+
+---
+
+## Entry 017 — App continuity/RES durably checkpointed in project-control branch — 2026-09-03
+Tags: RES, APP, GIT-CONTROL, SEMANTIC-GATE, READBACK
+
+The bounded cross-thread control refresh completed without mutating App source. Prior control tip `061cb8dac4eaf608fb1c07a77cba626712e52ce0` was refreshed in an isolated detached control worktree with a new `project_control/app/` slice containing App DTS, Live Shadow, RES, Current, Doctrine, Next, Revisit, Trace and selected maintenance checkpoints.
+
+Before publication, the complete readable control candidate passed the operator-bound Linear Human Read / Semantic Gate: 69/69 readable files, 0 unread, 7,574 source lines; deterministic stream 7,781 lines / 502,952 bytes, SHA `a768aa2b2ce588498371bf90b364f5c93a7f748c89a4ab66c961b73807081807`. Three semantic representation findings were corrected and changed artifacts reread completely; blocking findings 0.
+
+Machine support then passed: checkpoint verifier 68 manifested files, privacy/token/private-key findings 0, actionable machine-path findings 0, diff checks PASS, all staged manifested blobs exact.
+
+New durable control commit:
+`a86c2e2200b5b052cc95fe3834dcfed0bc5a18ab`
+subject `control: synchronize Main/App RES and project continuity`.
+
+Dry-run and non-force push to `pcmmad/project-control` passed. Independent `ls-remote` and fresh single-branch clone confirmed exact HEAD `a86c2e2200b5b052cc95fe3834dcfed0bc5a18ab`; fresh-clone checkpoint verifier PASS.
+
+App product/source boundary remained unchanged:
+- branch `forge/app-shell-rd`;
+- exact source `328249429cc6e86e15db9797bd58eff5fabc5a2d`;
+- generation 10 remains current LKG;
+- Attempt Store remains 100 blobs / 100 attempts / 163 events, integrity ok;
+- no network/provider consequence occurred.
+
+App RES remains SHA `1af0ba6e371514645b7bde90425aac5fbbe95eed0c8d0e66d879052fab0bdf45`, authority NONE, with OS/process egress enforcement still the dominant research frontier. Main RES remains separate SHA `65fad5bae02cb3345b0b22bc9cf0ce2999140a13bd00d7abe0f7091e9cf89120`.
+
+Post-push receipt is persisted in Main project state as `RES_SEMANTIC_GATE_GIT_CONTROL_CHECKPOINT_20260903.md`, SHA `3f14b850fd6745a69075b89a06d734da78d32c7de7e492978b1eaaa0dd4b3018`.
+
+Fixed-point rule: this post-push receipt/state delta waits for the next normal control checkpoint; no immediate recursive checkpoint publication.

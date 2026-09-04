@@ -1,36 +1,39 @@
 # LIVE SHADOW — Singularity Works App Program
 
-## Thread identity
+## Thread Identity
 - Project: `singularity-works-forge-app`
-- Last updated: 2026-09-03 UTC
-- Mode: CHECKPOINT after RES repair + Linear Human Read / Semantic Gate binding
+- Last Updated: 2026-09-03 UTC
+- Mode: CHECKPOINT after RAHL R4.2 canonical SOP adoption; durable-control publication pending
 - Role: R4 Convergence Refiner -> R5 Reality Pressure Engine
-- Dominant objective: hold generation-10 LKG, keep App RES synchronized, and begin OS/process egress-enforcement work under the new semantic-read admission gate.
+- Dominant Objective: hold generation-10 qualified baseline, keep App RES current, and begin OS/process egress-enforcement research/Attempt 0 under the Linear Human Read / Semantic Gate.
 
-## Active user intent
-- Continue autonomous build work.
-- Maintain RAHL R4.1 base-tier discipline.
-- RES must be genuinely current, not merely present.
-- Bind additive doctrine: **LINEAR HUMAN READ / SEMANTIC GATE** — every meaningfully readable artifact receives a complete linear semantic read before promotion/sealing/publication/admission/load-bearing treatment; automation may support but not substitute.
-- External connectivity must remain gated, manually authorized/scoped and auditable.
+## Active User Intent
+- Continue autonomous build work under RAHL R4.2.
+- Keep RES genuinely synchronized with product/runtime/security research meaning/frontier.
+- Enforce the R4.2-canonical **LINEAR HUMAN READ / SEMANTIC GATE** before readable artifacts become load-bearing.
+- Preserve external authority as explicit/manual/scoped/auditable; provider verification must never imply broad authority.
+- Preserve Git-backed cross-thread continuity without conflating control checkpointing with product/source promotion.
 
-## Current authoritative state
-- RAHL R4.1 remains current process SOP; carrier SHA `af4364fbcf8e5d33aa2ad06e4da9c4669d4be2ffcbc332e416742bec1543f4d2`.
-- Additive gate is recorded in `notes/maintenance/LINEAR_HUMAN_READ_SEMANTIC_GATE_ADDENDUM_20260903.md`, SHA `3eea1088fe51affbe7519bddb03d6366d024c305bf853b3704834a0ac665f456`.
-- App now has explicit zero-authority RES `continuity/research_epistemic_shadow/res.md`, SHA `1af0ba6e371514645b7bde90425aac5fbbe95eed0c8d0e66d879052fab0bdf45`.
-- App RES was read completely end-to-end after creation and carries product/runtime/security research through gen10; dominant frontier = OS/process egress enforcement.
-- Main RES remains separate for semantic/Core research and has been extended through App gen9/gen10 cross-arm learning; authority NONE.
-- App local/remote exact qualified source remains `328249429cc6e86e15db9797bd58eff5fabc5a2d`, clean at the source boundary.
-- Connection Gate pure authority, durable authority-state/receipt, and operation lifecycle/reconciliation layers remain qualified.
-- Operation lifecycle Attempt 0 `7db4f51...` passed 10/10 unchanged; full App regression 94/94.
-- Generation 10 `checkpoint-app-live-0010-328249429cc6` remains selected LKG, source MATCH, NORMAL, early crash 0, Ergo READY/Normal.
-- Gen10 evidence `attempt-live-resume-session-0010-lkg`, blob `aa223c2d56162ad2873dc13ac95a150c06216eb23b5eb1eb238c70e4fe3c3dcd`.
+## Current Authoritative State
+- RAHL R4.2 is current universal process/cold-start default, carrier SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`; exact App project-root copy `sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_2_2026-09-03.zip`.
+- R4.2 canonically carries the semantic gate; the prior App addendum `notes/maintenance/LINEAR_HUMAN_READ_SEMANTIC_GATE_ADDENDUM_20260903.md` remains historical/provenance evidence.
+- App RES: `continuity/research_epistemic_shadow/res.md`, SHA `1af0ba6e371514645b7bde90425aac5fbbe95eed0c8d0e66d879052fab0bdf45`, authority NONE, scope PRODUCT_RUNTIME_SECURITY_RESEARCH.
+- Main/Core RES remains separate at SHA `65fad5bae02cb3345b0b22bc9cf0ce2999140a13bd00d7abe0f7091e9cf89120`, authority NONE, scope CORE_SEMANTIC_RESEARCH.
+- Both RES artifacts were fully reread after their final mutation; App dominant frontier remains OS/process egress enforcement.
+- App branch `forge/app-shell-rd` remains local/remote exact and clean at `328249429cc6e86e15db9797bd58eff5fabc5a2d`.
+- Connection Gate pure authority, durable authority-state/receipt, and operation lifecycle/reconciliation remain qualified.
+- Operation-lifecycle Attempt 0 `7db4f51...` passed 10/10 unchanged; full App regression 94/94.
+- Current LKG: `checkpoint-app-live-0010-328249429cc6` — VERIFIED / RESUMED / STABLE / LKG / source MATCH / NORMAL / early crash 0 / not quarantined / Ergo READY.
+- Gen10 evidence: `attempt-live-resume-session-0010-lkg`, blob `aa223c2d56162ad2873dc13ac95a150c06216eb23b5eb1eb238c70e4fe3c3dcd`.
 - Attempt Store remains 100 blobs / 100 attempts / 163 events, integrity ok, WAL/FULL.
+- Latest durable project-control tip: `pcmmad/project-control` = `a86c2e2200b5b052cc95fe3834dcfed0bc5a18ab`, parent `061cb8dac4eaf608fb1c07a77cba626712e52ce0`.
+- That control generation now durably carries this App strand's Current/Doctrine/Next/Revisit/Trace/Live/DTS/RES plus selected maintenance evidence alongside Main/Core continuity.
 
-## Active constraints
+## Active Constraints
 - `CANONICAL_PROCESS_DEFAULT != UNIVERSAL_DOMAIN_TRUTH`.
 - `AUTOMATED_CHECKS != LINEAR_HUMAN_SEMANTIC_READ`.
 - `MACHINE_CHECK_PASS != SEMANTIC_ADMISSION`.
+- `MACHINE_INTEGRITY_PASS != SEMANTIC_UNAMBIGUITY`.
 - `SUMMARY != LINEAR_READ`.
 - `RES_CONTENT != GOVERNING_DOCTRINE`.
 - `RES_SYNTHESIS != LINEAR_HUMAN_SEMANTIC_READ`.
@@ -40,47 +43,53 @@
 - `OLD_ALLOW_RECEIPT != CURRENT_EXECUTION_AUTHORITY`.
 - `NO_SECRET_BYTES_IN_AUTHORITY_STATE_STORE`.
 - `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` remains target enforcement, NOT runtime fact.
+- `ENFORCEMENT_TEST_PASS != ENFORCEMENT_SCOPE_SEMANTICALLY_UNAMBIGUOUS`.
 - No real provider/OAuth/GitHub connector before enforcement qualification.
+- `CONTROL_CHECKPOINT != PRODUCT_PROMOTION`.
 
-## Decisions locked in
-- Main/Core and App maintain separate zero-authority RES surfaces with distinct research ownership.
-- RES must update when the meaning/frontier changes; Live/DTS currency does not imply RES currency.
-- Complete linear semantic read is a separate admission gate for readable artifacts; hash/test/verifier success cannot substitute.
+## Decisions Locked In
+- R4.2 adoption evidence: 35/35 current readable members linearly read; stream 3,175/3,175 lines SHA `f6997264...68c3a`; verifier PASS; hostile 26/26; exact R4.1/R4.0/R3.1 ancestry reuse verified.
+- Main/Core and App maintain separate zero-authority RES surfaces with distinct research ownership; cross-reference does not transfer authority.
+- RES must update when research meaning/frontier changes; Live/DTS currency does not imply RES currency.
+- Every meaningfully readable enforcement protocol/code/test/report/evidence surface must pass complete linear semantic read before promotion/qualification, in addition to required automated/hostile verification.
 - External operation identity/idempotency is established before submission.
 - Local completion and remote commit proof remain distinct.
 - Reconciled absence does not automatically authorize retry.
-- Next security boundary is OS/process egress enforcement, not provider wiring.
+- OS/process egress enforcement is the next App security boundary; real provider wiring remains later.
+- Latest control publication `a86c2e2...` completed human semantic read over 69/69 readable files / 7,781 deterministic stream lines, found and corrected 3 semantic representation defects, then passed verifier/privacy/staged-manifest/fresh-clone checks.
+- Fixed-point rule: the post-push receipt/state delta waits for the next normal Git control checkpoint rather than triggering immediate recursive publication.
 
-## Open loops
-1. Inspect available Windows/process enforcement primitives and current process-launch topology.
-2. Define protected execution domains and default-deny network posture.
-3. Prove raw socket/subprocess/plugin/imported-code/DNS/loopback bypass attempts fail inside protected domains.
-4. Define broker-only allow path bound to qualified prepared operation/lifecycle state.
+## Open Loops
+1. Inspect actual Windows/process launch topology and available enforceable network-isolation primitives.
+2. Define the exact protected execution-domain boundary without falsely claiming machine-wide firewall control.
+3. Pressure raw sockets, subprocess/helper escape, plugin/imported-code escape, DNS, loopback/local-service, inherited capability/proxy paths.
+4. Define broker-only allow path bound to qualified current authority + prepared-operation/lifecycle identity.
 5. Preserve enforcement Attempt 0 before first execution.
-6. Perform complete linear semantic read of every meaningfully readable enforcement artifact before promotion/qualification.
-7. Provider-native idempotency/reconciliation later.
-8. OAuth/PKCE + Vault secret storage later.
-9. Recovery supervisor death/process-tree seams.
-10. Core semantic restoration bridge remains Main-owned.
+6. Perform complete linear semantic read of every meaningfully readable enforcement artifact before admission/promotion.
+7. Keep `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` unearned until runtime evidence exists.
+8. Later: provider-native idempotency/reconciliation, OAuth/PKCE, Vault secret storage, supervisor-death/process-tree seams.
+9. Core restoration/currentness bridge remains Main-owned and UNKNOWN to App until qualified.
+10. Next normal Git control checkpoint must absorb current post-push receipt/state deltas; do not checkpoint recursively now.
 
-## Immediate next step
-Enter BUILD-PLAN/AUDIT for OS/process egress enforcement. Inspect actual Windows/process primitives and existing App launch topology first. Any resulting readable protocol/code/tests/reports remain non-admitted until complete linear semantic read plus required automated/hostile verification.
+## Immediate Next Step
+Enter BUILD-PLAN/AUDIT for OS/process egress enforcement. Inspect actual Windows/process primitives and existing App launch topology before selecting an implementation. Preserve Attempt 0 before first execution; readable candidate artifacts remain non-admitted until complete semantic read plus required machine/hostile verification.
 
-## Last 10 turn reinforcement window
-1. User asked whether RES had been updated properly; audit found Main RES R4.1-aware but stale after gen9/gen10 and App RES absent — state-changing defect discovered.
-2. User said proceed — repair authorized.
-3. Main RES was read; stale frontier confirmed.
-4. User bound additive **LINEAR HUMAN READ / SEMANTIC GATE** doctrine — state-changing process law.
-5. Existing Main doctrine surfaces were found already carrying the exact gate; App did not yet.
-6. Main RES was append-updated with gen9/gen10 cross-arm authority/consequence learning and OS/process egress frontier.
-7. App RES was created as a separate zero-authority product/runtime/security research surface.
-8. Both Main and App RES were read completely end-to-end after mutation; hashes recorded.
-9. App Current/Doctrine/Next/Revisit/Trace were updated to bind the semantic gate, RES ownership, and egress-enforcement preflight.
-10. Current qualified code/LKG baseline remained gen10 at `3282494...`; no source or network mutation occurred during RES/doctrine repair.
+## Last 10 Turn Reinforcement Window
+1. User asked whether RES was properly current; audit found Main RES stale after App gen9/gen10 and App RES absent — state-changing defect.
+2. User authorized repair.
+3. User bound the additive **LINEAR HUMAN READ / SEMANTIC GATE** — state-changing process law.
+4. Main RES was append-repaired through App gen9/gen10 learning; App gained a separate zero-authority product/runtime/security RES.
+5. Both RES surfaces were completely reread after mutation and separate ownership/no-authority semantics were propagated into state/doctrine/trace.
+6. Existing first semantic-gate publication evidence (`061cb8d...`) was incorporated into both RES surfaces; final RES SHAs became Main `65fad5ba...` and App `1af0ba6e...`.
+7. A new Main+App project-control snapshot was assembled in an isolated worktree and linearly read across 69/69 readable files / 7,781 deterministic stream lines.
+8. The full read found three current-generation semantic representation defects; all were corrected/reread; machine/privacy/staged-manifest checks then passed.
+9. Control commit `a86c2e2200b5b052cc95fe3834dcfed0bc5a18ab` was non-force pushed and independently verified by exact remote readback + clean fresh clone; App source/public Main remained unchanged.
+10. Post-push semantic reread found continuity hygiene debt: Main Current/Live had obsolete old action sections and App Live's last-10 window was stale. Main Current/Live were compacted/currentized and this App Live update repairs the last-10 window without changing App source/RES/runtime state.
 
-## Delta since previous shadow
-- App RES changed from absent -> explicit/current zero-authority research surface.
-- Main/App RES ownership split is explicit.
-- Main RES frontier now includes App gen9/gen10 learning and OS/process egress enforcement.
-- Linear Human Read / Semantic Gate is now load-bearing App process doctrine.
-- Immediate frontier remains OS/process egress enforcement, now with a mandatory semantic-read admission preflight.
+## Delta Since Previous Shadow
+- Universal process advanced R4.1 -> R4.2; exact carrier copied into App project `sop/` and admitted by complete semantic read + verifier + hostile pressure.
+- Last-10 reinforcement window now includes the completed RES repair, semantic-gate control publication, and post-push continuity-hygiene findings.
+- Latest durable control tip is explicitly `a86c2e2200b5b052cc95fe3834dcfed0bc5a18ab`.
+- App RES remains current at `1af0ba6e...`; no research-frontier change from the checkpoint push itself.
+- Immediate frontier remains OS/process egress enforcement under the semantic-read gate.
+- No App source, Attempt Store, provider or network mutation occurred during this Live Shadow repair.

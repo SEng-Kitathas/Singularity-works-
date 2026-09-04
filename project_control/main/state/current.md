@@ -1,121 +1,127 @@
-# Current State — Singularity Works / Forge LBE
+# Current State — Singularity Works / Forge Core-Main
 
 Last updated: 2026-09-03 UTC
-Mode: CHECKPOINT — Core/Main with R4.1 and current App cross-arm awareness
+Mode: CHECKPOINT after RAHL R4.2 canonical SOP adoption; durable-control publication pending
 Role: R4 Convergence Refiner
 
-## Universal process
-RAHL Engineering Canonical SOP R4.1 is current universal process/cold-start default under `CANONICAL_PROCESS_DEFAULT != UNIVERSAL_DOMAIN_TRUTH`.
-Carrier SHA `af4364fbcf8e5d33aa2ad06e4da9c4669d4be2ffcbc332e416742bec1543f4d2`.
-
-## Product identity / double helix
+## Project identity
 - Singularity Works = software/product whole.
 - Forge = semantic/evidence/transformation core.
 - Main/Core owns canonical Forge semantics/currentness/snapshot interfaces.
-- App owns recovery/Ergo/GitHome/Vault/Connection Gate/operator embodiment.
+- App owns product/runtime/recovery/GitHome/Vault/Connection Gate/operator embodiment.
 - `MAIN_DRIFT_SHOULD_BE_INGESTED_EARLY; APP_PROMOTION_SHOULD_BE_INGESTED_LATE`.
 
-## Latest verified App counterpart
-App branch `forge/app-shell-rd` local/remote exact source:
-`328249429cc6e86e15db9797bd58eff5fabc5a2d`, clean.
+## Universal process
+RAHL Engineering Canonical SOP R4.2 is current universal process/cold-start default under `CANONICAL_PROCESS_DEFAULT != UNIVERSAL_DOMAIN_TRUTH`.
+Carrier SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`.
+Project-root carrier: `sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_2_2026-09-03.zip`, byte-identical to the server-native source.
+Adoption record: `notes/maintenance/RAHL_R4_2_CANONICAL_SOP_ADOPTION_20260903.md`, SHA `5222f5a991d34a1156c3b51b2e707e6d6c6a6461e2c5e94b40f3c50067ecbe34`.
+PDVER = `PROBE -> DERIVE -> VERIFY -> EMBODY -> RECURSE`.
+R4.2 canonically integrates the Linear Human Read / Semantic Gate, Durable Local Execution / Control-Plane Minimization, response-loss readback, execution-architecture escalation, strongest-surviving operator-side execution-plane preference, and the explicit RES protocol. The prior standalone semantic-gate addendum remains historical/provenance evidence rather than a separate required overlay.
 
-Current App LKG:
-`checkpoint-app-live-0010-328249429cc6`
-- VERIFIED / RESUMED / STABLE / LKG;
-- source MATCH / NORMAL / early crash 0;
-- Ergo READY / Normal recommended.
+## Linear Human Read / Semantic Gate — canonical R4.2 process law
+The prior project-local addendum remains historical/provenance evidence; active process authority is now carried directly by R4.2.
 
-Gen10 evidence `attempt-live-resume-session-0010-lkg`, blob `aa223c2d56162ad2873dc13ac95a150c06216eb23b5eb1eb238c70e4fe3c3dcd`.
-App Attempt Store: 100 blobs / 100 attempts / 163 events, integrity ok, WAL/FULL.
+**LINEAR HUMAN READ / SEMANTIC GATE**
 
-## App operation lifecycle/reconciliation v0.1
-Attempt 0 `7db4f518e42998246d4043fdc63c22a1c35aa71f` passed 10/10 unchanged; full App regression 94/94 PASS.
-Qualification report SHA `4674b9cd87a5460f14a2df75e8bab751f2a64004fcb7f421b8a16d80cabcb0a4`.
-Live evidence `attempt-live-operation-lifecycle-v0-1`, blob `00a7cc4744c7985f2117ebfeae0cf9bbc29751c89265a5286f3d69b228f08dc9`.
+If an artifact can be meaningfully read, it SHALL receive a complete linear semantic read before it is promoted, sealed, published, admitted, or treated as load-bearing. Automated checks may precede and support the gate; they SHALL NOT substitute for it.
 
-Qualified product/consequence laws include `UNKNOWN_OUTCOME != SAFE_TO_RETRY`, `RETRY_AFTER_UNKNOWN_REQUIRES_RECONCILIATION`, `LOCAL_SUCCESS != REMOTE_COMMIT_PROVEN`, `IDEMPOTENCY_KEY != AUTHORITY`, and same-identity replay after proven absence. These are App/product laws, not canonical Forge semantic law by inclusion.
+Active guards:
+- `AUTOMATED_CHECKS != LINEAR_HUMAN_SEMANTIC_READ`;
+- `MACHINE_PASS != HUMAN_SEMANTIC_GATE_PASS`;
+- `MACHINE_INTEGRITY_PASS != SEMANTIC_UNAMBIGUITY`;
+- `SUMMARY != LINEAR_READ`.
 
-Main awareness note:
-`notes/maintenance/APP_OPERATION_LIFECYCLE_GEN10_UPDATE_20260903.md`
-SHA `283aac39000098c3c87a9ff64e9e4d8784b2593d9dfbe55de8cd0dc63b0dd772`.
+Main addendum SHA `1910637867cc2759ab46bc8772b429abac28ca0f6d211d8ee7769eba5ee5125d`.
+
+## RES ownership/currentness
+Main/Core RES:
+`continuity/research_epistemic_shadow/res.md`
+SHA `65fad5bae02cb3345b0b22bc9cf0ce2999140a13bd00d7abe0f7091e9cf89120`.
+Scope: CORE_SEMANTIC_RESEARCH. Authority: NONE_BY_CONTENT.
+
+App RES:
+SHA `1af0ba6e371514645b7bde90425aac5fbbe95eed0c8d0e66d879052fab0bdf45`.
+Scope: PRODUCT_RUNTIME_SECURITY_RESEARCH. Authority: NONE_BY_CONTENT.
+
+Both were completely reread after final RES mutation. Main retains the Core semantic replay/promotion frontier; App retains OS/process egress enforcement. Cross-reference does not transfer authority.
+
+`RES_CONTENT != GOVERNING_DOCTRINE`.
+`RES_SYNTHESIS != LINEAR_HUMAN_SEMANTIC_READ`.
 
 ## Core semantic incumbent
 - IR v0.1.2 SHA `5d019792cd72a58b261a9a7945eb23e3973befeb337a8625853f245fcd81a524`;
 - adapters v0.1.5 SHA `d99b1c5196f5ff2c79819fc83b01144f6935879a9ecb2535986895d0c5674e72`;
 - index v0.2 SHA `b8744b0825acf45c5943dec70b9fb44c1d8828ab462301e0eb3a29cdcc12c7d8`;
 - delta v0.4 SHA `d7c71ee3ce6d3db4bdd227d4696cad526721462814a15a6908d80d5ce6c1c0cb`;
-- real field 26/26 PASS over 511 sources / 731 facts / 18 UNKNOWNs;
-- PyGoat currentness 23/23 PASS;
-- Microseed provider substitution 34/34 PASS.
+- real field: 26/26 PASS, 511 sources, 731 facts, 18 UNKNOWNs;
+- PyGoat currentness: 23/23 PASS;
+- Microseed provider substitution: 34/34 PASS.
 
-## Cross-strand requirement
-App Core identity fields remain null/UNKNOWN pending qualified Main-owned bridge. App external-authority/consequence mechanisms do not mint semantic truth.
+Local semantic-field candidate:
+`pcmmad/semantic-field-core-v01` at `a7b4511734b1a1e507230308e75b31175aef4c4a`, local/unpromoted pending exact committed-artifact replay/currentness/promotion qualification.
 
-## Immediate Core frontier
-Continue semantic-field/Core-interface qualification under R4.1. App next pressures OS/process egress enforcement; do not absorb that product security boundary into Forge Core.
+Qualified public `main` remains:
+`1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`.
 
+## Latest verified App counterpart
+App branch `forge/app-shell-rd` local/remote exact:
+`328249429cc6e86e15db9797bd58eff5fabc5a2d`, clean.
 
-## Git-backed cross-thread control state — 2026-09-03 UTC
-Operator requirement: the project must survive repeated chat-thread switches without relying on chat memory. Git is therefore a required durable control/checkpoint plane in addition to the live PCMMAD server state.
+Current App LKG:
+`checkpoint-app-live-0010-328249429cc6` — VERIFIED / RESUMED / STABLE / LKG / source MATCH / NORMAL / early crash 0 / Ergo READY.
 
-Active persistence ordering:
-1. update Live Shadow + DTS + RES;
-2. reconcile Current / Doctrine / Next / Trace / Revisit;
-3. create a bounded Git control snapshot;
-4. commit and push to a dedicated control branch;
-5. read back exact remote SHA and committed control-file identities.
+App Attempt Store: 100 blobs / 100 attempts / 163 events, integrity ok, WAL/FULL.
+App Core contract/currentness/snapshot fields remain UNKNOWN/null pending a Main-owned qualified bridge.
 
-This persistence action is distinct from product/release promotion. Public `main` remains governed by its separate qualification gate.
+## Durable cross-thread control
+Dedicated control branch:
+`pcmmad/project-control`.
 
-Immediate resume point: construct and push the first R4.1-backed Main control checkpoint from the current qualified Main lineage, carrying the current continuity/state snapshot and explicit rehydration instructions.
+Latest verified remote tip:
+`a86c2e2200b5b052cc95fe3834dcfed0bc5a18ab`
+parent `061cb8dac4eaf608fb1c07a77cba626712e52ce0`
+tree `42cadbba62369741179b723fe2fcb7ff1058cdd1`.
 
+This generation durably contains separate Main/Core and App continuity/RES slices.
+Pre-publication semantic gate:
+- 69/69 readable files;
+- 7,574 source lines;
+- deterministic 7,781-line stream SHA `a768aa2b2ce588498371bf90b364f5c93a7f748c89a4ab66c961b73807081807`;
+- 3 semantic representation findings corrected and reread;
+- 0 blocking findings.
 
-## Durable cross-thread Git anchor — 2026-09-03 UTC
-The Git control-plane requirement is now embodied and remotely verified.
+Supporting verification:
+- checkpoint verifier PASS, 68 manifested files;
+- privacy/token/private-key/actionable-path findings 0;
+- staged manifest equality PASS;
+- non-force push/readback exact;
+- fresh single-branch clone clean and verifier PASS.
 
-- Repository: `https://github.com/SEng-Kitathas/Singularity-works-`
-- Control branch: `pcmmad/project-control`
-- Final verified remote tip for this checkpoint: `174ba730f691a50f332b77bb8803370ed642cae4`
-- Initial establishment commit: `8226f2ffb1e9e96bfca7f1ba91b32d47a904388e`
-- Fresh remote-clone verifier at final tip: PASS, 52 manifested files.
-- Qualified public `main` remains `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`.
-- Main semantic-field candidate remains local/unpromoted at `a7b4511734b1a1e507230308e75b31175aef4c4a`, clean at latest direct read; exact committed-artifact replay remains pending.
-- App `forge/app-shell-rd` is now independently observed local/remote exact and clean at `328249429cc6e86e15db9797bd58eff5fabc5a2d`.
+Post-push receipt:
+`notes/maintenance/RES_SEMANTIC_GATE_GIT_CONTROL_CHECKPOINT_20260903.md`
+SHA `3f14b850fd6745a69075b89a06d734da78d32c7de7e492978b1eaaa0dd4b3018`.
 
-The Git control branch is not a release branch and does not imply product promotion. Its job is durable cross-thread project re-entry. Current Git checkpoint source is intentionally Git-safe/portable while exact server-source and canonical R4.1 identities remain recorded separately.
+`CONTROL_CHECKPOINT != PRODUCT_PROMOTION`.
+Fixed-point rule: this post-push receipt/state delta enters the next normal control checkpoint; no recursive immediate publication.
 
-Resume point remains: live-currentness re-read -> exact committed-artifact replay/promotion qualification of Main semantic-field Core candidate -> early Main->App sync if shared Core actually advances.
+## Verified vs provisional
+Verified:
+- R4.2 process adoption/integrity;
+- semantic-field local incumbent evidence above;
+- App gen10 state and qualified authority/lifecycle boundaries;
+- separate current Main/App RES surfaces;
+- semantic gate publication evidence;
+- durable control branch `a86c2e2...` fresh-clone readback.
 
+Provisional/open:
+- Main semantic-field candidate promotion;
+- Core checkpoint-compatible contract/currentness/snapshot bridge;
+- App OS/process egress enforcement;
+- real OAuth/provider connector;
+- Vault crypto/container implementation.
 
-## Additive promotion gate — 2026-09-03 UTC
-Project-local doctrine now includes the following operator-bound requirement:
+## Resume point
+Main: re-read live currentness, then run exact committed-artifact replay/promotion qualification of `a7b4511734b1a1e507230308e75b31175aef4c4a` under the Linear Human Read / Semantic Gate.
 
-**LINEAR HUMAN READ / SEMANTIC GATE**
-If an artifact can be meaningfully read, it SHALL receive a complete linear semantic read before it is promoted, sealed, published, admitted, or treated as load-bearing. Automated checks may precede and support the gate; they SHALL NOT substitute for it.
-
-This applies to all future readable artifacts crossing a load-bearing boundary. Automated verification remains necessary where otherwise required, but is not sufficient to satisfy this gate.
-
-Addendum record: `notes/maintenance/LINEAR_HUMAN_READ_SEMANTIC_GATE_ADDENDUM_20260903.md` SHA `1910637867cc2759ab46bc8772b429abac28ca0f6d211d8ee7769eba5ee5125d`.
-
-## RES synchronization repair — 2026-09-03 UTC
-Main/Core RES is now current through the App gen9/gen10 cross-arm learning frontier:
-`continuity/research_epistemic_shadow/res.md`
-SHA `65fad5bae02cb3345b0b22bc9cf0ce2999140a13bd00d7abe0f7091e9cf89120`.
-
-It was read completely end-to-end after mutation. It retains Main's Core semantic replay/promotion frontier while also recording App durable-authority and uncertain-outcome learning plus the current OS/process egress-enforcement question.
-
-App now has a separate zero-authority product/runtime/security RES, SHA `1af0ba6e371514645b7bde90425aac5fbbe95eed0c8d0e66d879052fab0bdf45`.
-
-`RES_CONTENT != GOVERNING_DOCTRINE` and `RES_SYNTHESIS != LINEAR_HUMAN_SEMANTIC_READ` remain active. Main/App RES ownership is separate; cross-reference does not transfer authority.
-
-
-
-## Linear semantic-read doctrine — durable control state — 2026-09-03 UTC
-The operator-bound `LINEAR HUMAN READ / SEMANTIC GATE` is now embodied in the durable Git control plane.
-
-Verified remote control tip: `061cb8dac4eaf608fb1c07a77cba626712e52ce0` on `pcmmad/project-control`.
-Human semantic-read gate before publication: 55 readable files / 5,481 lines / 349,333 bytes; stream SHA `8661b5fb6b3e6a9dd6814f625eea456ffe25b28f980db0033c8f0d69a228260f`; two derivative-boundary ambiguities corrected and reread; 0 blocking findings.
-Fresh remote clone: clean; checkpoint verifier PASS with 54 manifested files.
-Public `main` remains unchanged at `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`.
-
-Current promotion rule: readable candidate artifacts require the complete human semantic-read gate in addition to all otherwise-required machine/replay/hostile/installation verification.
+Cross-arm: App proceeds independently on OS/process egress enforcement; synchronize only when shared Core interfaces or evidence materially change.

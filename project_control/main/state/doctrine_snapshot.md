@@ -1,22 +1,22 @@
 # Doctrine Snapshot — Singularity Works / Forge LBE
 
 Last updated: 2026-09-03 UTC
-Mode: CHECKPOINT after RAHL R4.1 canonical process-SOP adoption
+Mode: CHECKPOINT after RAHL R4.2 canonical process-SOP adoption
 
 ## Universal process SOP
-**RAHL Engineering Canonical SOP R4.1 (2026-09-03)** is now the current universal engineering/research process and cold-start SOP default.
+**RAHL Engineering Canonical SOP R4.2 (2026-09-03)** is now the current universal engineering/research process and cold-start SOP default.
 
 Verified carrier SHA:
-`af4364fbcf8e5d33aa2ad06e4da9c4669d4be2ffcbc332e416742bec1543f4d2`.
+`eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`.
 
 Adoption record:
-`notes/maintenance/RAHL_R4_1_CANONICAL_SOP_ADOPTION_20260903.md`
-SHA `1e74683f538b5fa17b867a88188cdc4b04e1adfe2ede262550aa2da9a91f52cf`.
+`notes/maintenance/RAHL_R4_2_CANONICAL_SOP_ADOPTION_20260903.md`
+SHA `5222f5a991d34a1156c3b51b2e707e6d6c6a6461e2c5e94b40f3c50067ecbe34`.
 
 Authority ceiling:
 - `CANONICAL_PROCESS_DEFAULT != UNIVERSAL_DOMAIN_TRUTH`;
-- R4.1 has universal process/cold-start authority by adoption;
-- R4.1 gets no Forge semantic, Singularity Works product/security/architecture/legal/release authority merely by inclusion;
+- R4.2 has universal process/cold-start authority by adoption;
+- R4.2 gets no Forge semantic, Singularity Works product/security/architecture/legal/release authority merely by inclusion;
 - project-local Core/Main doctrine remains governing where more specific/stronger;
 - defaults, heuristics, triggers, scars, research candidates, ancestry, and RES content do not silently promote into canonical semantic law.
 
@@ -26,7 +26,7 @@ PDVER order is:
 `PROBE -> DERIVE -> VERIFY -> EMBODY -> RECURSE`.
 Pre-embodiment verification does not remove post-embodiment readback/attack where consequence matters. No fixed research-pass count is universal law.
 
-R4.1 guards now active:
+R4.1-derived base-tier guards retained active in R4.2:
 - `BASE_TIER_FUNCTIONAL_OBLIGATIONS != OPTIONAL_FOR_NONTRIVIAL_WORK`;
 - `BASE_TIER_FUNCTIONAL_OBLIGATIONS != MANDATORY_LINEAR_PIPELINE`;
 - `PROPORTIONALITY != DISPENSATION_FROM_ENGINEERING_DISCIPLINE`;
@@ -35,7 +35,7 @@ R4.1 guards now active:
 - `AI_BREADTH != TRUTH_AUTHORITY`;
 - `PROCESS_IMPLEMENTATION_CAN_BE_RETIRED != PROCESS_FUNCTION_CAN_BE_SILENTLY_DROPPED`.
 
-Verification before adoption: 36/36 outer members linearly inspected; primary verifier PASS; hostile suite 17/17 rejected. Main then strengthened the evidence with a recursive ancestry reread: 162 encountered records / 159 textual payloads / 16,276 lines / 0 unread; recursive stream SHA `f81b1da9347c05adb9198de4406a57050e2164dac2468ad307589003708263c2`; embedded R4.0 and R3.1 verifiers PASS. Deep-read proof SHA `a19f4a0851ffaf8e6c7109c76ad42828a70a674dbddfd4d893e3055f0c9a6ff0`.
+Historical R4.1 qualification evidence retained as ancestry: 36/36 outer members linearly inspected; primary verifier PASS; hostile suite 17/17 rejected. Main then strengthened that R4.1 evidence with a recursive ancestry reread: 162 encountered records / 159 textual payloads / 16,276 lines / 0 unread; recursive stream SHA `f81b1da9347c05adb9198de4406a57050e2164dac2468ad307589003708263c2`; embedded R4.0 and R3.1 verifiers PASS. Deep-read proof SHA `a19f4a0851ffaf8e6c7109c76ad42828a70a674dbddfd4d893e3055f0c9a6ff0`.
 
 Continuity recognizes **RES (Research Epistemic Shadow)** alongside Live Shadow and DTS, with `RES_CONTENT != GOVERNING_DOCTRINE`. No dedicated RES PCMMAD artifact class currently exists, so no substitute authority surface is fabricated.
 
@@ -148,7 +148,7 @@ PyGoat currentness remains 23/23 PASS under the current delta lineage. Harmless 
 - Public qualified Main remains source/release gated.
 - Forge App candidates do not become Core/Main by existence or Git mergeability; integration promotion is explicit and evidence-bearing.
 
-## RES embodiment retained under R4.1 — synchronized through App gen10
+## RES embodiment retained under R4.2 — synchronized through App gen10
 Main/Core RES:
 `continuity/research_epistemic_shadow/res.md`
 SHA `65fad5bae02cb3345b0b22bc9cf0ce2999140a13bd00d7abe0f7091e9cf89120`.
@@ -201,8 +201,8 @@ Promoted local continuity laws:
 Required ordering for checkpointing remains: update live shadows/state first -> build bounded Git-safe snapshot -> self-verify/privacy-scan/diff-check -> commit/push -> remote ref readback -> fresh-clone/content verification -> record durable anchor server-side.
 
 
-## Additive doctrine binding — LINEAR HUMAN READ / SEMANTIC GATE — 2026-09-03 UTC
-Authority: explicit operator directive; project-local additive overlay on RAHL R4.1.
+## Historical additive doctrine binding — LINEAR HUMAN READ / SEMANTIC GATE — 2026-09-03 UTC
+Historical authority at time of entry: explicit operator directive; project-local additive overlay on RAHL R4.1. R4.2 now integrates this rule canonically, so this section is retained as provenance/history rather than a separate active authority layer.
 
 **LINEAR HUMAN READ / SEMANTIC GATE**
 If an artifact can be meaningfully read, it SHALL receive a complete linear semantic read before it is promoted, sealed, published, admitted, or treated as load-bearing. Automated checks may precede and support the gate; they SHALL NOT substitute for it.
@@ -225,3 +225,14 @@ This strengthens the operational interpretation of:
 - `PRESENT_AND_HASHED != SEMANTICALLY_READ`.
 
 Automated checks remain supporting obligations where applicable; the human semantic-read gate is additive, not a replacement for them.
+
+## R4.2 canonical integration — 2026-09-03 UTC
+R4.2 supersedes R4.1 as the active universal process/cold-start default at exact carrier SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`. Exact project-root copy: `sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_2_2026-09-03.zip`.
+
+Admission basis: 35/35 current readable non-ancestry members read completely in deterministic order; semantic-read stream 3,175/3,175 lines, SHA `f6997264acb625d54d3924d2c25dc0689dfe1bbf65eb64eaa52c2afd61e68c3a`; R4.1/R4.0/R3.1 ancestry exact-hash + CRC reuse verified; primary verifier PASS; hostile suite 26/26 rejected.
+
+R4.2 canonically absorbs the previously additive Linear Human Read / Semantic Gate and Durable Local Execution / Control-Plane Minimization. The standalone semantic-gate addendum remains preserved as project history/evidence but is no longer the sole active authority for that rule.
+
+New/strengthened active process scars include `CONTROL_PLANE_RESPONSE_FAILURE != LOCAL_EXECUTION_FAILURE`, `CONTROL_PLANE != BULK_DATA_PLANE`, `CONTROL_PLANE_MINIMIZATION != SEMANTIC_READ_SKIPPING`, `STRONGEST_SURVIVING_PLANE != PRETTIEST_PLANE`, `ASSISTANT_SIDE_CONVENIENCE != MATERIAL_ADVANTAGE`, and `EXECUTION_PLANE_FALLBACK != AUTHORITY_BYPASS`.
+
+R4.1 remains exact ancestry, including its base-tier metabolism correction. No Core semantic/product/release authority is transferred by SOP adoption.

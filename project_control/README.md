@@ -8,7 +8,7 @@ It exists because a single project spans multiple chat threads. Chat context is 
 - Qualified public `main` remains separately governed.
 - The live PCMMAD server state is the high-fidelity mutable working plane.
 - `project_control/.gitattributes` normalizes checkpoint text to LF so Git copies and committed blobs are portable/deterministic across platforms; server-source hashes remain recorded separately.
-- This Git tree is a bounded, Git-safe checkpoint of the control state plus a Git-safe derivative of the active RAHL process SOP; canonical source hashes are preserved beside it.
+- This Git tree is a bounded, Git-safe checkpoint of control state. The current RAHL R4.2 SOP is carried as exact binary copies under the Main/App control slices; the retained R4.1 Git-safe derivative is ancestry/history only. Canonical server-source hashes remain recorded separately.
 - `GIT_PUSH_SUCCESS != CONTROL_STATE_COHERENCE`: always read the branch HEAD and checkpoint manifest before trusting it.
 
 ## Re-entry read order
@@ -27,13 +27,15 @@ For a fresh thread/session:
 12. `project_control/app/state/doctrine_snapshot.md`
 13. `project_control/app/continuity/research_epistemic_shadow.md` when product/security research/frontier meaning matters
 14. Main/App Design Thread Streams only as needed for chronology/recovery
-15. `project_control/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/00_READ_ME_FIRST.md` and `12_COLD_START_PROTOCOL.md` when process re-entry is required.
+15. `project_control/main/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_2_2026-09-03.zip` or the byte-identical App copy when process re-entry is required; extract/read the active R4.2 package under its own cold-start protocol. The retained R4.1 Git-safe derivative is ancestry/history, not the current SOP.
 
 Then reconcile against live server state and current Git remotes before mutation.
 
 ## Current checkpoint facts
-- Canonical process SOP: **RAHL Engineering Canonical SOP R4.1**.
-- R4.1 carrier SHA-256: `af4364fbcf8e5d33aa2ad06e4da9c4669d4be2ffcbc332e416742bec1543f4d2`.
+- Canonical process SOP: **RAHL Engineering Canonical SOP R4.2**.
+- R4.2 carrier SHA-256: `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`.
+- Exact carrier copies: `project_control/main/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_2_2026-09-03.zip` and `project_control/app/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_2_2026-09-03.zip`.
+- R4.2 admission: 35/35 current readable members; deterministic semantic-read stream 3,175/3,175 lines, SHA `f6997264acb625d54d3924d2c25dc0689dfe1bbf65eb64eaa52c2afd61e68c3a`; primary verifier PASS; hostile suite 26/26 rejected; exact R4.1/R4.0/R3.1 ancestry reuse verified.
 - Qualified public Main at checkpoint: `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`.
 - Main semantic-field candidate: `a7b4511734b1a1e507230308e75b31175aef4c4a`, **LOCAL / UNPROMOTED / pending exact committed-artifact replay**.
 - Forge App branch: `forge/app-shell-rd`; live local/remote observation at checkpoint: `328249429cc6e86e15db9797bd58eff5fabc5a2d`, clean. Commit subject: `singularity-works: qualify operation lifecycle reconciliation v0.1`.
@@ -56,12 +58,12 @@ The server DTS is the full-fidelity chronological record. The Git derivative red
 ## Remote establishment
 Initial remote establishment was independently verified at commit `8226f2ffb1e9e96bfca7f1ba91b32d47a904388e`; see `PUSH_RECEIPT_20260903.md`. Always resolve current branch HEAD live.
 
-## Additive project-local promotion gate
+## Canonical R4.2 semantic-admission gate
 **LINEAR HUMAN READ / SEMANTIC GATE**
 
 If an artifact can be meaningfully read, it SHALL receive a complete linear semantic read before it is promoted, sealed, published, admitted, or treated as load-bearing. Automated checks may precede and support the gate; they SHALL NOT substitute for it.
 
-The exact operator addendum is checkpointed at `project_control/main/maintenance/LINEAR_HUMAN_READ_SEMANTIC_GATE_ADDENDUM_20260903.md`.
+The exact operator addendum remains checkpointed at `project_control/main/maintenance/LINEAR_HUMAN_READ_SEMANTIC_GATE_ADDENDUM_20260903.md` as provenance/history; R4.2 now carries the active rule canonically.
 
 ## RES ownership
 - Main/Core RES owns semantic/Core research continuity.
@@ -69,3 +71,9 @@ The exact operator addendum is checkpointed at `project_control/main/maintenance
 - Both are authority NONE. Cross-reference does not transfer authority.
 - `RES_CONTENT != GOVERNING_DOCTRINE`.
 - `RES_SYNTHESIS != LINEAR_HUMAN_SEMANTIC_READ`.
+
+## Current SOP carrier copies
+- Main control copy: `project_control/main/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_2_2026-09-03.zip`.
+- App control copy: `project_control/app/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_2_2026-09-03.zip`.
+- Both are 625,556 bytes and exact SHA-256 `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`.
+- The two control copies are exact binaries, not rewritten Git-safe derivatives.

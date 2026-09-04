@@ -1,16 +1,21 @@
 # Current State — Singularity Works App Program
 
 Last updated: 2026-09-03 UTC
-Mode: CHECKPOINT after RES repair + Linear Human Read / Semantic Gate binding
+Mode: CHECKPOINT after RAHL R4.2 canonical SOP adoption; durable-control publication pending
 Role: R4 Convergence Refiner -> R5 Reality Pressure Engine
 
 ## Universal process
-RAHL Engineering Canonical SOP R4.1 is current universal process/cold-start default under `CANONICAL_PROCESS_DEFAULT != UNIVERSAL_DOMAIN_TRUTH`.
-Carrier SHA `af4364fbcf8e5d33aa2ad06e4da9c4669d4be2ffcbc332e416742bec1543f4d2`.
+RAHL Engineering Canonical SOP R4.2 is current universal process/cold-start default under `CANONICAL_PROCESS_DEFAULT != UNIVERSAL_DOMAIN_TRUTH`.
+Carrier SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`.
+Project-root carrier: `sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_2_2026-09-03.zip`, byte-identical to server-native source.
+Adoption record: `notes/maintenance/RAHL_R4_2_CANONICAL_SOP_ADOPTION_20260903.md`, SHA `51740685fe5f5624f11048d43ecf087a6e7b072986005b85dcd8149216577620`.
 For nontrivial work: PDVER + hostile engineering + Semantic Helix + Attention Reservoir + Loop+ + OARR + CSC + additive AI co-processing, proportionate/non-linear. PDVER = `PROBE -> DERIVE -> VERIFY -> EMBODY -> RECURSE`.
+R4.2 canonically integrates the Linear Human Read / Semantic Gate, Durable Local Execution / Control-Plane Minimization, response-loss readback, execution-architecture escalation, strongest-surviving operator-side execution-plane preference, and explicit RES protocol.
 
-## Additive doctrine — Linear Human Read / Semantic Gate
-Exact operator-bound rule:
+## Linear Human Read / Semantic Gate — now canonicalized by R4.2
+The prior App addendum remains provenance/history evidence. Active process authority for this rule is now carried directly by R4.2.
+
+Exact rule:
 
 **LINEAR HUMAN READ / SEMANTIC GATE**
 If an artifact can be meaningfully read, it SHALL receive a complete linear semantic read before it is promoted, sealed, published, admitted, or treated as load-bearing. Automated checks may precede and support the gate; they SHALL NOT substitute for it.
@@ -85,3 +90,12 @@ Evidence `attempt-live-resume-session-0010-lkg`, blob `aa223c2d56162ad2873dc13ac
 
 ## Immediate frontier
 OS/process network egress enforcement remains next, but its readable protocol/code/tests/reports/evidence cannot be promoted or treated as load-bearing until they pass the complete linear semantic-read gate in addition to automated/hostile verification.
+
+## Durable cross-thread control checkpoint — 2026-09-03 UTC
+Latest verified `pcmmad/project-control` tip: `a86c2e2200b5b052cc95fe3834dcfed0bc5a18ab`, parent `061cb8dac4eaf608fb1c07a77cba626712e52ce0`.
+
+This control generation durably checkpoints separate Main/Core and App continuity/RES slices while leaving App source unchanged at `328249429cc6e86e15db9797bd58eff5fabc5a2d`. Complete semantic admission before control publication: 69/69 readable files, 7,781 deterministic stream lines, stream SHA `a768aa2b2ce588498371bf90b364f5c93a7f748c89a4ab66c961b73807081807`; 3 representation findings corrected and reread; 0 blocking. Machine verifier PASS with 68 manifested files; privacy/token/private-key/actionable-path findings 0; staged manifest exact; fresh clone exact/clean.
+
+App RES remains SHA `1af0ba6e371514645b7bde90425aac5fbbe95eed0c8d0e66d879052fab0bdf45`, authority NONE. Main RES remains SHA `65fad5bae02cb3345b0b22bc9cf0ce2999140a13bd00d7abe0f7091e9cf89120`, authority NONE. The push reinforces semantic-gate evidence but does not change the research frontier: OS/process egress enforcement remains next.
+
+Post-push receipt is persisted in Main project state as `RES_SEMANTIC_GATE_GIT_CONTROL_CHECKPOINT_20260903.md` SHA `3f14b850fd6745a69075b89a06d734da78d32c7de7e492978b1eaaa0dd4b3018`. Fixed-point rule prevents recursive immediate checkpointing.

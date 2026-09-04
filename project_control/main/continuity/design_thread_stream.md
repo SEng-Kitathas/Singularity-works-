@@ -797,3 +797,33 @@ New epistemic scars:
 - `ENFORCEMENT_TEST_PASS != ENFORCEMENT_SCOPE_SEMANTICALLY_UNAMBIGUOUS` for the upcoming App security boundary.
 
 No Core/App product source mutation occurred in this repair. One bounded Git control checkpoint refresh follows to preserve the new continuity state; post-push receipt state will enter the next normal checkpoint rather than trigger recursive checkpointing.
+
+
+---
+
+## Cross-arm entry — RES/semantic-gate project-control generation published and independently read back — 2026-09-03
+Tags: RES, SEMANTIC-GATE, GIT-CONTROL, READBACK, FIXED-POINT
+
+The bounded Git control refresh following the RES repair completed. A detached isolated worktree was anchored at prior control tip `061cb8dac4eaf608fb1c07a77cba626712e52ce0`; App source and public Main were not checked out or mutated.
+
+The new control snapshot added a bounded App continuity slice beside Main/Core: App DTS, Live Shadow, RES, Current, Doctrine, Next, Revisit, Trace and selected maintenance checkpoints. Git-safe derivative transforms preserved exact server-source hashes while redacting machine-local paths and one email-shaped non-secret App DTS identifier.
+
+Before admission/publication, the complete readable project-control candidate passed the Linear Human Read / Semantic Gate: 69/69 readable files, 0 unread, 7,574 source lines / 484,436 source bytes; deterministic read stream 7,781 lines / 502,952 bytes, SHA `a768aa2b2ce588498371bf90b364f5c93a7f748c89a4ab66c961b73807081807`. Three semantic representation defects were found: Main-only README scope, missing whole-snapshot project identity in CHECKPOINT, and a false README claim that no email-shaped finding had occurred despite derivative redaction. All three were corrected; README and CHECKPOINT were completely reread; final CHECKPOINT was reread again after semantic status became PASS. Blocking findings: 0.
+
+Final candidate support checks: checkpoint verifier PASS with 68 manifested files; email/token/private-key findings 0; actionable machine-path findings 0; diff checks PASS; all 68 manifested staged blobs matched CHECKPOINT exactly; no missing/extra manifest paths; CHECKPOINT intentionally self-excluded.
+
+Detached commit created:
+`a86c2e2200b5b052cc95fe3834dcfed0bc5a18ab`
+parent `061cb8dac4eaf608fb1c07a77cba626712e52ce0`
+tree `42cadbba62369741179b723fe2fcb7ff1058cdd1`
+subject `control: synchronize Main/App RES and project continuity`.
+
+Dry-run push PASS. Non-force exact-ref push PASS to `pcmmad/project-control`. Post-push `ls-remote` exact at `a86c2e2200b5b052cc95fe3834dcfed0bc5a18ab`. Fresh single-branch clone HEAD exact/clean; checkpoint verifier PASS. Public `main` remained `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`; App branch remained `328249429cc6e86e15db9797bd58eff5fabc5a2d`.
+
+Server post-push receipt:
+`notes/maintenance/RES_SEMANTIC_GATE_GIT_CONTROL_CHECKPOINT_20260903.md`
+SHA `3f14b850fd6745a69075b89a06d734da78d32c7de7e492978b1eaaa0dd4b3018`.
+
+Main RES remains SHA `65fad5bae02cb3345b0b22bc9cf0ce2999140a13bd00d7abe0f7091e9cf89120`; App RES remains SHA `1af0ba6e371514645b7bde90425aac5fbbe95eed0c8d0e66d879052fab0bdf45`. Publication reinforced semantic-gate evidence but did not change either research frontier, so RES was not mutated again.
+
+Fixed-point rule remains active: this post-push receipt and state delta wait for the next normal Git control checkpoint rather than causing recursive checkpoint publication.

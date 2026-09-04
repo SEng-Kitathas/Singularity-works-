@@ -1,14 +1,16 @@
 # Doctrine Snapshot — Singularity Works App
 
 Last updated: 2026-09-03 UTC
-Mode: CHECKPOINT after RES repair + Linear Human Read / Semantic Gate binding
+Mode: CHECKPOINT after RAHL R4.2 canonical process-SOP adoption
 
 ## Universal process
-RAHL Engineering Canonical SOP R4.1 is current universal process/cold-start default under `CANONICAL_PROCESS_DEFAULT != UNIVERSAL_DOMAIN_TRUTH`.
+RAHL Engineering Canonical SOP R4.2 is current universal process/cold-start default under `CANONICAL_PROCESS_DEFAULT != UNIVERSAL_DOMAIN_TRUTH`.
+Carrier SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`; exact App project-root copy `sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_2_2026-09-03.zip`.
+Adoption note SHA `51740685fe5f5624f11048d43ecf087a6e7b072986005b85dcd8149216577620`.
 For nontrivial work, standing process functions are PDVER + hostile engineering + Semantic Helix + Attention Reservoir + Loop+ + OARR + CSC + additive AI co-processing, applied proportionately/non-linearly. PDVER = `PROBE -> DERIVE -> VERIFY -> EMBODY -> RECURSE`.
 
-## Additive project-local doctrine — Linear Human Read / Semantic Gate
-Authority: explicit operator directive; additive overlay on R4.1, not a rewrite of the sealed R4.1 package.
+## Linear Human Read / Semantic Gate — canonical R4.2 process law
+Authority: explicit operator directive now integrated into R4.2 active process authority. The prior standalone App addendum is retained as historical/provenance evidence.
 
 **LINEAR HUMAN READ / SEMANTIC GATE**
 If an artifact can be meaningfully read, it SHALL receive a complete linear semantic read before it is promoted, sealed, published, admitted, or treated as load-bearing. Automated checks may precede and support the gate; they SHALL NOT substitute for it.
@@ -100,3 +102,12 @@ Attempt Store 100 blobs / 100 attempts / 163 events, integrity ok.
 - Vault crypto/container implementation;
 - supervisor-death reconciliation/process-tree containment;
 - Core semantic restoration bridge.
+
+## R4.2 canonical integration — 2026-09-03 UTC
+R4.2 supersedes R4.1 as the active universal process/cold-start default at carrier SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`.
+
+Admission basis: 35/35 current readable non-ancestry members read completely; 3,175/3,175 deterministic semantic-read stream lines SHA `f6997264acb625d54d3924d2c25dc0689dfe1bbf65eb64eaa52c2afd61e68c3a`; R4.1/R4.0/R3.1 exact-hash + CRC reuse verified; primary verifier PASS; hostile suite 26/26 rejected.
+
+R4.2 directly carries the semantic gate and local-first/control-plane minimization rules previously held as additive project doctrine. The standalone addendum remains evidence/history, not a separate required authority layer.
+
+For the App frontier this strengthens, but does not satisfy, OS/process egress-enforcement qualification: `ENFORCEMENT_TEST_PASS != ENFORCEMENT_SCOPE_SEMANTICALLY_UNAMBIGUOUS` remains active, and `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` remains unearned runtime law.
