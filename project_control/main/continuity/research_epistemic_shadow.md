@@ -28,7 +28,7 @@ Can Forge provide a language-agnostic semantic field that supports exact source/
 - Microseed provider substitution v0.4: 34/34 PASS under the bounded capability shape.
 - Good provider substitution preserved capability identity, contract signature, authority/currentness/qualification/scope, bounded behavior and replay semantics while changing provider implementation identity.
 - Hostile provider preserved contract signature and existing replay pass but changed bounded behavior and was correctly rejected by the independent behavior witness.
-- Main semantic-field Core promotion candidate exists locally at `a7b4511734b1a1e507230308e75b31175aef4c4a`; pre-commit source/wheel/install qualification passed in the bounded campaign.
+- Main semantic-field Core candidate is remotely durable at `pcmmad/semantic-field-core-v01@a7b4511734b1a1e507230308e75b31175aef4c4a`, exact-replay qualified, and PROMOTION_READY_WITH_EVIDENCE; public qualified Main remains `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9` pending the separate promotion gate.
 - Main/App operate as coordinated development strands of one product: separate pressure, shared identity; independent embodiment, shared canonical truth.
 
 ## 4. Earned semantic laws / scars
@@ -57,18 +57,20 @@ Forge App should consume a qualified narrow bridge rather than copy or vendor th
 - Microseed replay has known Windows SQLite cleanup execution-hygiene debt after semantic JSON success.
 
 ## 7. Current UNKNOWN / open seams
-- Exact post-commit replay qualification of Main candidate `a7b4511734b1a1e507230308e75b31175aef4c4a` remains the key promotion discriminator unless a newer verified candidate supersedes it.
-- Public-source promotion of semantic-field Core is not automatically earned by local candidate success.
-- Shared Core -> App semantic-field bridge consumption is not yet qualified.
+- Exact committed replay is no longer open: candidate `a7b4511734b1a1e507230308e75b31175aef4c4a` is replay-qualified and remotely durable.
+- Public-source promotion of semantic-field Core remains a **separate unresolved gate**; candidate durability/readiness does not itself advance qualified Main.
+- Shared Core -> App semantic-field bridge consumption is not yet qualified because public/qualified Main has not moved.
+- Inherited package-description/counter metadata remains stale and should be repaired separately from the exact semantic-field candidate.
 - Cross-language provider materialization and multi-file transactional substitution remain unqualified.
 - Primitive language-native fact ontology remains open beyond current relation/security-derived facts.
 - App checkpoint fields `core_contract_version`, `core_currentness_id`, and `semantic_snapshot_id` remain intentionally unbound until a qualified Core bridge exists.
 
 ## 8. Highest-value next discriminator
-Replay the exact committed Main semantic-field candidate from a clean/detached source state and require the committed artifact itself to pass:
-compile -> semantic-field tests -> full `verify_build` -> wheel-content verification -> fresh install -> bridge/materializer smoke -> legacy CLI smoke.
+Execute the public-Main PROMOTION gate for the already-qualified durable candidate `a7b4511734b1a1e507230308e75b31175aef4c4a`:
+remote-currentness readback -> exact ancestry proof -> promotion-authority check -> exact source mutation only if authorized -> remote/fresh-clone post-promotion verification -> immediate Main->App early forward-sync handshake.
 
-If a newer Main candidate exists at execution time, currentness must be re-read before using this pointer.
+Inherited package-description debt stays outside that exact candidate promotion unless separately justified and qualified.
+`PROMOTION_READY_WITH_EVIDENCE != PUBLIC_MAIN_PROMOTED`.
 `REMEMBERED_POINTER != CURRENT_STATE_EVIDENCE`.
 
 ## 9. Cross-arm research pressure
@@ -83,10 +85,10 @@ No bounded witness is silently generalized to universal equivalence.
 Identifying evaluation and developmental evaluation remain distinct.
 
 ## 11. Promotion posture
-- Semantic-field substrate: strongest local Core candidate, not automatic public canon.
+- Semantic-field substrate: exact-replay-qualified, remotely durable candidate `a7b4511734b1a1e507230308e75b31175aef4c4a`; PROMOTION_READY_WITH_EVIDENCE, not public canon.
 - Provider substitution: READY_WITH_EVIDENCE under bounded Microseed capability shape.
-- Canonical Main promotion: separate exact-artifact qualification gate.
-- App semantic-field consumption: blocked until qualified Core interface movement.
+- Canonical Main promotion: separate explicit PROMOTION gate is now the active Main discriminator.
+- App semantic-field consumption: blocked until qualified Core interface movement and early forward-sync handshake.
 
 ## 12. Research roughness quarantine
 Donor-specific Microseed capability adapter, security benchmark adapters, parser-specific lowerers, and campaign-specific harnesses remain research instrumentation until separately qualified for canonical source.
@@ -143,12 +145,13 @@ Source hashes, commits, environment IDs, installed artifacts and runtime observa
 - Any App checkpoint requiring non-null Core semantic/currentness identity.
 
 ## 21. Research-to-do
-1. Re-read current Main candidate/source identity.
-2. Finish exact committed-artifact replay/promotion gate.
-3. If shared Core moves, perform early Main -> App forward sync.
-4. Build first App consumer against canonical bridge.
-5. Expand primitive language-native fact layer under hostile tests.
-6. Keep RES synchronized when the meaning/frontier changes, without treating RES as doctrine.
+1. Checkpoint the fully admitted candidate-publication continuity state in `pcmmad/project-control`.
+2. Execute the separate public-Main PROMOTION gate for `a7b4511734b1a1e507230308e75b31175aef4c4a`.
+3. If shared Core moves, perform immediate Main -> App early forward sync before App consumption.
+4. Build the first App consumer against the canonical bridge only after qualified Main movement.
+5. Repair inherited package-description/counter metadata in a separately scoped, semantically admitted packaging/documentation pass.
+6. Expand primitive language-native fact layer under hostile tests.
+7. Keep RES synchronized when the meaning/frontier changes, without treating RES as doctrine.
 
 ## R4.1 process-metabolism epistemic addendum — 2026-09-03
 Truth status: VERIFIED process-source ingestion; NONE_BY_CONTENT for research claims.
@@ -315,3 +318,16 @@ Operational meaning retained from R4.2:
 `CONTROL_PLANE_RESPONSE_FAILURE != LOCAL_EXECUTION_FAILURE`
 `STRONGEST_SURVIVING_PLANE != PRETTIEST_PLANE`
 `RES_CONTENT != GOVERNING_DOCTRINE`
+
+## Semantic-field remote candidate publication — 2026-09-04
+Truth status: VERIFIED source-integration evidence; RES authority remains NONE_BY_CONTENT.
+
+The exact semantic-field candidate `a7b4511734b1a1e507230308e75b31175aef4c4a` survived complete R4.2 source admission, committed replay, like-for-like parent-wheel control, fresh installed bridge/CLI/safe-scan replay, changed-file hygiene scan, remote candidate publication, and fresh GitHub clone verification. This advances the research posture from “local candidate awaiting exact replay” to “bounded source-integration candidate with earned promotion readiness.”
+
+New operational distinction reinforced:
+- `CANDIDATE_DURABLE != QUALIFIED_MAIN_ADVANCED`;
+- `PROMOTION_READY_WITH_EVIDENCE != PUBLIC_MAIN_PROMOTED`;
+- `INHERITED_METADATA_DEBT != CANDIDATE_SEMANTIC_REGRESSION`;
+- `PACKAGE_DESCRIPTION_CLEAN != INSTALLED_SURFACE_CORRECT`.
+
+The stale package long-description/counter surface is a genuine inherited seam discovered by distribution-level semantic reading. It should be repaired separately rather than used to launder unrelated changes into the exact qualified semantic-field commit.

@@ -1,7 +1,7 @@
 # Current State — Singularity Works App Program
 
 Last updated: 2026-09-04 UTC
-Mode: CHECKPOINT after RAHL R4.2 canonical SOP adoption; durable-control publication pending
+Mode: BUILD-PLAN/AUDIT — R4.2 full-adherence control checkpoint closed; egress-enforcement frontier active
 Role: R4 Convergence Refiner -> R5 Reality Pressure Engine
 
 ## Universal process
@@ -33,7 +33,7 @@ SHA `3eea1088fe51affbe7519bddb03d6366d024c305bf853b3704834a0ac665f456`.
 ## RES repair / ownership
 App now has a distinct zero-authority Research Epistemic Shadow:
 `continuity/research_epistemic_shadow/res.md`
-SHA `519722deee61e3fa436418fb71848609c6d670876de6618e1755a1702d8536e5`.
+SHA `f08aebcc1d8052bd7f63c3ff11bd2c7af2d7d32151236b03e45ca65cb3783a4a`.
 
 It was completely read end-to-end after creation. It carries the product/runtime/security research frontier through generation 10 and identifies OS/process egress enforcement as the dominant next discriminator.
 
@@ -92,13 +92,13 @@ Evidence `attempt-live-resume-session-0010-lkg`, blob `aa223c2d56162ad2873dc13ac
 OS/process network egress enforcement remains next, but its readable protocol/code/tests/reports/evidence cannot be promoted or treated as load-bearing until they pass the complete linear semantic-read gate in addition to automated/hostile verification.
 
 ## Durable cross-thread control checkpoint — 2026-09-03 UTC
-Latest independently observed **pre-refresh** `pcmmad/project-control` tip: `efd86410359946de1c514cc098ef0df8583a9bb9`. Resolve live again after the R4.2 adherence checkpoint publication; this pointer is not self-updating.
+Current independently verified `pcmmad/project-control` tip: **`819cf6fc8d470bb5a8b5bfbf72e1791b7d480c8e`**. Fresh-clone verifier PASS with 74 manifested files; frozen CHECKPOINT SHA `20647ea7cf2c546b6ee0b0a336288a586c5abe3cf557442f5ac9636f7d3c9a6c`.
 
-This control generation durably checkpoints separate Main/Core and App continuity/RES slices while leaving App source unchanged at `328249429cc6e86e15db9797bd58eff5fabc5a2d`. Complete semantic admission before control publication: 69/69 readable files, 7,781 deterministic stream lines, stream SHA `a768aa2b2ce588498371bf90b364f5c93a7f748c89a4ab66c961b73807081807`; 3 representation findings corrected and reread; 0 blocking. Machine verifier PASS with 68 manifested files; privacy/token/private-key/actionable-path findings 0; staged manifest exact; fresh clone exact/clean.
+This current R4.2 closure generation durably checkpoints separate Main/Core and App continuity/RES slices while leaving App source unchanged at `328249429cc6e86e15db9797bd58eff5fabc5a2d`. Current-generation verification: frozen CHECKPOINT `20647ea7cf2c546b6ee0b0a336288a586c5abe3cf557442f5ac9636f7d3c9a6c` / 74 manifested files; repaired readable control representations semantically admitted to fixed point; privacy/actionable-path findings 0; diff/staged-manifest checks PASS; non-force push exact; independent remote ref exact; fresh clone exact/clean with verifier PASS 74; both R4.2 ZIPs exact.
 
-App RES current SHA `519722deee61e3fa436418fb71848609c6d670876de6618e1755a1702d8536e5`, authority NONE. Main RES current SHA `a232664ad90dada57ccbc2ca085f11a6e0ee159a5c434f528943ad729033979f`, authority NONE. The push reinforces semantic-gate evidence but does not change the research frontier: OS/process egress enforcement remains next.
+App RES current SHA `f08aebcc1d8052bd7f63c3ff11bd2c7af2d7d32151236b03e45ca65cb3783a4a`, authority NONE. Main RES current SHA `a7231ecd2a8ad55516630e6e175aa45dd29c373a7b8a0cd368513e76a57018f4`, authority NONE. The push does not change the research frontier: OS/process egress enforcement remains next.
 
-Post-push receipt is persisted in Main project state as `RES_SEMANTIC_GATE_GIT_CONTROL_CHECKPOINT_20260903.md` SHA `3f14b850fd6745a69075b89a06d734da78d32c7de7e492978b1eaaa0dd4b3018`. Fixed-point rule prevents recursive immediate checkpointing.
+Current App closure receipt: `notes/maintenance/RAHL_R4_2_FULL_ADHERENCE_GIT_CLOSURE_20260904.md` SHA `aa1351ffa260b5925097c8d818eed382995298062fb9fb7ddc5530ea1f2c304d`. Historical `a86c2e2...` / 69-readable / 68-manifest evidence remains in Trace/DTS only. Fixed-point rule prevents recursive immediate checkpointing.
 
 ## R4.2 full-adherence synchronization — 2026-09-04
 - Current universal process SOP: **RAHL Engineering Canonical SOP R4.2**.
@@ -108,3 +108,13 @@ Post-push receipt is persisted in Main project state as `RES_SEMANTIC_GATE_GIT_C
 - Git control branch pre-refresh observation: `efd86410359946de1c514cc098ef0df8583a9bb9`; exact R4.2 Main/App ZIP blobs present there.
 - Process adherence repair applied across all eight Forge App continuity/state surfaces before Git refresh.
 - Product/release authority remains separate from SOP/process authority.
+
+## R4.2 full-adherence Git closure — 2026-09-04
+- R4.2 process/control closure verified at `pcmmad/project-control@819cf6fc8d470bb5a8b5bfbf72e1791b7d480c8e`.
+- Fresh remote clone exact/clean; checkpoint verifier PASS 74; CHECKPOINT SHA `20647ea7cf2c546b6ee0b0a336288a586c5abe3cf557442f5ac9636f7d3c9a6c`.
+- Closure receipt SHA `aa1351ffa260b5925097c8d818eed382995298062fb9fb7ddc5530ea1f2c304d`.
+- Public Main/App source unchanged.
+- Fixed-point rule prevents recursive immediate control publication.
+
+## Semantic-field remote candidate publication — 2026-09-04
+Main candidate `pcmmad/semantic-field-core-v01@a7b4511734b1a1e507230308e75b31175aef4c4a` is remotely durable and promotion-ready with evidence. Public Main remains `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`, so App's qualified Core baseline has **not advanced**. App remains generation-10/current source `328249429...` and continues OS/process egress-enforcement pressure. No candidate consumption, vendoring, or private Core copy is admitted. Publication notice SHA `7d84f3f1ee26c6eca6baa3dd62823eaf30180bef4b110608359233edd0e003b2`.

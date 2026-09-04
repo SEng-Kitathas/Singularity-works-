@@ -1,8 +1,8 @@
 # Current State — Singularity Works / Forge Core-Main
 
 Last updated: 2026-09-04 UTC
-Mode: CHECKPOINT after RAHL R4.2 canonical SOP adoption; durable-control publication pending
-Role: R4 Convergence Refiner
+Mode: CHECKPOINT -> PROMOTION — candidate replay/publication complete; candidate-publication control refresh pending
+Role: R5 Reality Pressure Engine
 
 ## Project identity
 - Singularity Works = software/product whole.
@@ -37,14 +37,14 @@ Main addendum SHA `1910637867cc2759ab46bc8772b429abac28ca0f6d211d8ee7769eba5ee51
 ## RES ownership/currentness
 Main/Core RES:
 `continuity/research_epistemic_shadow/res.md`
-SHA `a232664ad90dada57ccbc2ca085f11a6e0ee159a5c434f528943ad729033979f`.
+SHA `a7231ecd2a8ad55516630e6e175aa45dd29c373a7b8a0cd368513e76a57018f4`.
 Scope: CORE_SEMANTIC_RESEARCH. Authority: NONE_BY_CONTENT.
 
 App RES:
-SHA `519722deee61e3fa436418fb71848609c6d670876de6618e1755a1702d8536e5`.
+SHA `f08aebcc1d8052bd7f63c3ff11bd2c7af2d7d32151236b03e45ca65cb3783a4a`.
 Scope: PRODUCT_RUNTIME_SECURITY_RESEARCH. Authority: NONE_BY_CONTENT.
 
-Both were completely reread after final RES mutation. Main retains the Core semantic replay/promotion frontier; App retains OS/process egress enforcement. Cross-reference does not transfer authority.
+Both were completely reread after final RES mutation. Main retains the public-Main promotion/interface frontier; App retains OS/process egress enforcement. Cross-reference does not transfer authority.
 
 `RES_CONTENT != GOVERNING_DOCTRINE`.
 `RES_SYNTHESIS != LINEAR_HUMAN_SEMANTIC_READ`.
@@ -58,8 +58,8 @@ Both were completely reread after final RES mutation. Main retains the Core sema
 - PyGoat currentness: 23/23 PASS;
 - Microseed provider substitution: 34/34 PASS.
 
-Local semantic-field candidate:
-`pcmmad/semantic-field-core-v01` at `a7b4511734b1a1e507230308e75b31175aef4c4a`, local/unpromoted pending exact committed-artifact replay/currentness/promotion qualification.
+Semantic-field candidate:
+`pcmmad/semantic-field-core-v01` at `a7b4511734b1a1e507230308e75b31175aef4c4a`, remotely durable, exact-replay qualified, and **PROMOTION_READY_WITH_EVIDENCE**. It is not yet public/qualified Main.
 
 Qualified public `main` remains:
 `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`.
@@ -78,29 +78,25 @@ App Core contract/currentness/snapshot fields remain UNKNOWN/null pending a Main
 Dedicated control branch:
 `pcmmad/project-control`.
 
-Latest independently observed **pre-refresh** remote tip:
-`efd86410359946de1c514cc098ef0df8583a9bb9`.
+Current independently verified remote tip:
+`819cf6fc8d470bb5a8b5bfbf72e1791b7d480c8e`.
 
-This is intentionally a pre-refresh observation while the R4.2 full-adherence checkpoint is being prepared; resolve remote HEAD live after publication instead of treating this pointer as self-updating.
+Fresh single-branch GitHub clone was exact/clean; `project_control/VERIFY_CHECKPOINT.py` PASS with 74 manifested files; frozen CHECKPOINT SHA `20647ea7cf2c546b6ee0b0a336288a586c5abe3cf557442f5ac9636f7d3c9a6c`.
 
-This generation durably contains separate Main/Core and App continuity/RES slices.
-Pre-publication semantic gate:
-- 69/69 readable files;
-- 7,574 source lines;
-- deterministic 7,781-line stream SHA `a768aa2b2ce588498371bf90b364f5c93a7f748c89a4ab66c961b73807081807`;
-- 3 semantic representation findings corrected and reread;
-- 0 blocking findings.
+This current R4.2 closure generation durably contains separate Main/Core and App continuity/RES slices.
+Current-generation verification:
+- frozen CHECKPOINT SHA `20647ea7cf2c546b6ee0b0a336288a586c5abe3cf557442f5ac9636f7d3c9a6c`, 74 manifested files;
+- R4.2 carrier 35/35 active readable members linearly reread; verifier PASS rc0; hostile 26/26 rejected;
+- repaired Git-readable control representations semantically read to fixed point;
+- privacy/credential/actionable-path findings 0; working/staged diff checks PASS; all 74 manifested staged blobs exact;
+- commit `819cf6fc8d470bb5a8b5bfbf72e1791b7d480c8e` created directly from prior remote `efd86410359946de1c514cc098ef0df8583a9bb9`; dry-run + non-force push PASS;
+- independent remote ref exact and fresh GitHub clone clean/verifier PASS 74; Main/App R4.2 ZIPs exact.
 
-Supporting verification:
-- checkpoint verifier PASS, 68 manifested files;
-- privacy/token/private-key/actionable-path findings 0;
-- staged manifest equality PASS;
-- non-force push/readback exact;
-- fresh single-branch clone clean and verifier PASS.
+Current closure receipt:
+`notes/maintenance/RAHL_R4_2_FULL_ADHERENCE_GIT_CLOSURE_20260904.md`
+SHA `d940cf8a72cda27850eb05213934bcfb86c997ab54eb1646705b5eb272f88025`.
 
-Post-push receipt:
-`notes/maintenance/RES_SEMANTIC_GATE_GIT_CONTROL_CHECKPOINT_20260903.md`
-SHA `3f14b850fd6745a69075b89a06d734da78d32c7de7e492978b1eaaa0dd4b3018`.
+Historical `a86c2e2...` / 69-readable / 68-manifest generation remains preserved in Trace/DTS and is not the current checkpoint.
 
 `CONTROL_CHECKPOINT != PRODUCT_PROMOTION`.
 Fixed-point rule: this post-push receipt/state delta enters the next normal control checkpoint; no recursive immediate publication.
@@ -108,11 +104,11 @@ Fixed-point rule: this post-push receipt/state delta enters the next normal cont
 ## Verified vs provisional
 Verified:
 - R4.2 process adoption/integrity;
-- semantic-field local incumbent evidence above;
+- semantic-field exact-replay-qualified remote candidate evidence above;
 - App gen10 state and qualified authority/lifecycle boundaries;
 - separate current Main/App RES surfaces;
 - semantic gate publication evidence;
-- durable control branch pre-refresh live readback at `efd8641...`; earlier `a86c2e2...` remains historical publication evidence.
+- durable control branch current readback at `819cf6fc8d470bb5a8b5bfbf72e1791b7d480c8e` with fresh-clone verifier PASS 74; earlier `efd8641...` and `a86c2e2...` remain historical generation evidence.
 
 Provisional/open:
 - Main semantic-field candidate promotion;
@@ -122,7 +118,7 @@ Provisional/open:
 - Vault crypto/container implementation.
 
 ## Resume point
-Main: re-read live currentness, then run exact committed-artifact replay/promotion qualification of `a7b4511734b1a1e507230308e75b31175aef4c4a` under the Linear Human Read / Semantic Gate.
+First publish one normal `pcmmad/project-control` checkpoint containing the fully admitted candidate-publication state. After exact remote/fresh-clone checkpoint readback, enter the separate public-Main PROMOTION gate for `a7b4511734b1a1e507230308e75b31175aef4c4a`: re-read remote `main`, prove exact ancestry, keep inherited package-description debt separate, define post-promotion verification and immediate Main->App forward-sync handshake, then mutate `main` only if the promotion gate is explicitly satisfied.
 
 Cross-arm: App proceeds independently on OS/process egress enforcement; synchronize only when shared Core interfaces or evidence materially change.
 
@@ -134,3 +130,19 @@ Cross-arm: App proceeds independently on OS/process egress enforcement; synchron
 - Git control branch pre-refresh observation: `efd86410359946de1c514cc098ef0df8583a9bb9`; exact R4.2 Main/App ZIP blobs present there.
 - Process adherence repair applied across all eight Main/Core continuity/state surfaces before Git refresh.
 - Product/release authority remains separate from SOP/process authority.
+
+## R4.2 full-adherence Git closure — 2026-09-04
+- R4.2 process/control closure verified at `pcmmad/project-control@819cf6fc8d470bb5a8b5bfbf72e1791b7d480c8e`.
+- Fresh remote clone exact/clean; checkpoint verifier PASS 74; CHECKPOINT SHA `20647ea7cf2c546b6ee0b0a336288a586c5abe3cf557442f5ac9636f7d3c9a6c`.
+- Closure receipt SHA `d940cf8a72cda27850eb05213934bcfb86c997ab54eb1646705b5eb272f88025`.
+- Public Main/App source unchanged.
+- Fixed-point rule prevents recursive immediate control publication.
+
+## Semantic-field remote candidate publication — 2026-09-04
+- Remote candidate: `pcmmad/semantic-field-core-v01@a7b4511734b1a1e507230308e75b31175aef4c4a`.
+- Parent/qualified public Main: `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`; public `main` independently unchanged.
+- Qualification: PROMOTION_READY_WITH_EVIDENCE; receipt `d2f5377027de444b066979beab1ac3a7eeb08591d376215abfc34dde41cc54e3`.
+- Remote publication receipt `c822aab716e24ea542176440920bd93040586de6c5b3488322b41959fb583454`.
+- Exact wheel `0cccdbc37f25fc875ee5fc957aa50d67910d6ac1951ac52dd28457bee219d4a6`; fresh install/bridge/CLI/safe scan PASS; exact candidate fresh clone 8/8 tests PASS.
+- Separate inherited packaging-description debt remains open.
+- Next state transition is PROMOTION gate, not automatic public-main mutation.

@@ -839,3 +839,31 @@ Operator requested verification that R4.2 exists either at the server-native pat
 Assistant completed a fresh linear semantic reread of all 35 active/current R4.2 readable members in deterministic archive order (3,070 source lines, 0 unread), reused unchanged sealed ancestry only under R4.2's exact-hash semantic-read rule, and replayed the package verifier plus hostile suite from fresh extraction: verifier PASS rc0; hostile 26/26 rejected.
 
 A bilateral control-surface audit then found continuity drift: Live/Current/Doctrine/Trace carried R4.2, while DTS/RES/Next/Revisit were missing R4.2; Main RES additionally retained a stale R4.1 process header. This entry records the repair across all eight Main/Core continuity/state instruments before refreshing Git control.
+
+---
+
+## R4.2 full-adherence Git closure — 2026-09-04
+Date: 2026-09-04 UTC
+Tags: BUILD-COMMIT, R4.2, GIT-CONTROL, REMOTE-READBACK, FIXED-POINT
+
+USER directed: “Proceed with the project under strict SOP adherence.”
+
+ASSISTANT resumed at the exact pending R4.2 publication gate rather than widening. Frozen `project_control/CHECKPOINT.json` SHA `20647ea7cf2c546b6ee0b0a336288a586c5abe3cf557442f5ac9636f7d3c9a6c` had already received its complete semantic read and was not rewritten. Mechanical gates passed: checkpoint verifier 74 files, privacy/actionable-path findings 0, working/staged diff checks PASS, and every manifested staged blob exact. A `git add` control-plane call timed out; consequence readback showed staging had actually completed with no index lock, so no blind retry occurred.
+
+Commit `819cf6fc8d470bb5a8b5bfbf72e1791b7d480c8e` (`control: close R4.2 full-adherence checkpoint`) was created directly atop `efd86410359946de1c514cc098ef0df8583a9bb9`, verifier PASSed again, remote was reread unchanged, dry-run PASSed, and a non-force push completed. Independent App-side `ls-remote` returned control `819cf6fc8d470bb5a8b5bfbf72e1791b7d480c8e`, public Main `1b8f6bd...`, App source `328249429...`. A fresh GitHub clone was exact/clean, checkpoint verifier PASSed 74 files, frozen CHECKPOINT hash matched, and both Main/App R4.2 ZIPs remained exact SHA `eb167543...ce9a`.
+
+The bilateral R4.2 continuity-drift seam is therefore resolved at this checkpoint under its declared process/control ceiling. Closure receipt SHA `d940cf8a72cda27850eb05213934bcfb86c997ab54eb1646705b5eb272f88025`. Product/source authority was not changed. Fixed-point rule prevents recursive immediate Git publication of this receipt/state delta.
+
+---
+
+## Semantic-field remote candidate publication — 2026-09-04
+Date: 2026-09-04 UTC
+Tags: BUILD-COMMIT, R4.2, SEMANTIC-FIELD, CANDIDATE-PUBLICATION, PROMOTION-GATE
+
+ASSISTANT resumed Main's P0 after closing R4.2 control durability. Live candidate/replay state confirmed exact clean commit `a7b4511734b1a1e507230308e75b31175aef4c4a` directly atop qualified Main `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`. All nine changed readable candidate files were linearly read under R4.2 before replay interpretation (1,735 lines; stream SHA `0f63c629...db16`). Exact replay passed compile, semantic-field 8/8, full verify_build, and self-audit 6,614 pass / 29 inherited warn / 0 fail / 0 residual. The 190,995-byte verification report was read completely.
+
+A same-environment wheel/control comparison established candidate wheel `0cccdbc37f25fc875ee5fc957aa50d67910d6ac1951ac52dd28457bee219d4a6` adds exactly five semantic-field package members over qualified Main and removes none. Fresh installed surface loaded from venv site-packages, module bytes matched candidate source, bridge authority remained NONE, installed CLI help passed, and safe scan returned GREEN / 0 findings; generated reports were read completely. Distribution metadata semantic read exposed stale inherited package-description/counter debt, explicitly separated from candidate semantics.
+
+Qualification receipt `d2f5377027de444b066979beab1ac3a7eeb08591d376215abfc34dde41cc54e3` was created and completely read, yielding PROMOTION_READY_WITH_EVIDENCE. Independent GitHub readback showed candidate branch absent and public Main unchanged. Dry-run then non-force explicit push created `pcmmad/semantic-field-core-v01@a7b4511734b1a1e507230308e75b31175aef4c4a`. Independent remote readback and fresh clone confirmed exact HEAD/parent/nine-file delta, clean tree, diff check PASS and semantic tests 8/8. Public Main did not move.
+
+Next frontier: explicit public-Main PROMOTION gate; App does not consume candidate until qualified Main advances and an early Main->App handshake completes.

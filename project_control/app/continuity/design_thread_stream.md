@@ -728,3 +728,27 @@ Operator requested verification that R4.2 exists either at the server-native pat
 Assistant completed a fresh linear semantic reread of all 35 active/current R4.2 readable members in deterministic archive order (3,070 source lines, 0 unread), reused unchanged sealed ancestry only under R4.2's exact-hash semantic-read rule, and replayed the package verifier plus hostile suite from fresh extraction: verifier PASS rc0; hostile 26/26 rejected.
 
 A bilateral control-surface audit then found continuity drift: Live/Current/Doctrine/Trace carried R4.2, while DTS/RES/Next/Revisit were missing R4.2; Main RES additionally retained a stale R4.1 process header. This entry records the repair across all eight Forge App continuity/state instruments before refreshing Git control.
+
+---
+
+## R4.2 full-adherence Git closure — 2026-09-04
+Date: 2026-09-04 UTC
+Tags: BUILD-COMMIT, R4.2, GIT-CONTROL, REMOTE-READBACK, FIXED-POINT
+
+USER directed: “Proceed with the project under strict SOP adherence.”
+
+ASSISTANT resumed at the exact pending R4.2 publication gate rather than widening. Frozen `project_control/CHECKPOINT.json` SHA `20647ea7cf2c546b6ee0b0a336288a586c5abe3cf557442f5ac9636f7d3c9a6c` had already received its complete semantic read and was not rewritten. Mechanical gates passed: checkpoint verifier 74 files, privacy/actionable-path findings 0, working/staged diff checks PASS, and every manifested staged blob exact. A `git add` control-plane call timed out; consequence readback showed staging had actually completed with no index lock, so no blind retry occurred.
+
+Commit `819cf6fc8d470bb5a8b5bfbf72e1791b7d480c8e` (`control: close R4.2 full-adherence checkpoint`) was created directly atop `efd86410359946de1c514cc098ef0df8583a9bb9`, verifier PASSed again, remote was reread unchanged, dry-run PASSed, and a non-force push completed. Independent App-side `ls-remote` returned control `819cf6fc8d470bb5a8b5bfbf72e1791b7d480c8e`, public Main `1b8f6bd...`, App source `328249429...`. A fresh GitHub clone was exact/clean, checkpoint verifier PASSed 74 files, frozen CHECKPOINT hash matched, and both Main/App R4.2 ZIPs remained exact SHA `eb167543...ce9a`.
+
+The bilateral R4.2 continuity-drift seam is therefore resolved at this checkpoint under its declared process/control ceiling. Closure receipt SHA `aa1351ffa260b5925097c8d818eed382995298062fb9fb7ddc5530ea1f2c304d`. Product/source authority was not changed. Fixed-point rule prevents recursive immediate Git publication of this receipt/state delta.
+
+---
+
+## Semantic-field remote candidate publication — 2026-09-04
+Date: 2026-09-04 UTC
+Tags: DOUBLE-HELIX, CANDIDATE-PUBLICATION, NO-CONSUMPTION
+
+Main/Core completed exact R4.2 replay qualification of semantic-field candidate `a7b4511734b1a1e507230308e75b31175aef4c4a` and published it non-force to `pcmmad/semantic-field-core-v01`. Independent GitHub readback and fresh clone verified exact candidate/parent/nine-file delta and semantic-field tests 8/8. Public Main remains `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`; App source remains unchanged.
+
+Therefore App records a cross-arm candidate-status handshake only. Candidate durability is not qualified-Main movement and does not authorize App to vendor, copy, or bind product behavior to the candidate. App remains on OS/process egress enforcement until Main's separate promotion gate advances qualified Core and triggers early forward sync.

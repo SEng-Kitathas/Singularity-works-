@@ -51,7 +51,7 @@ Last updated: 2026-09-04 UTC
 ## Current verified baseline
 - RAHL R4.2 current process SOP, carrier SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`;
 - R4.2-canonical Linear Human Read / Semantic Gate active; prior standalone addendum retained as provenance;
-- App RES current SHA `519722deee61e3fa436418fb71848609c6d670876de6618e1755a1702d8536e5`; intermediate `9a91fb3e...` and prior `1af0ba6e...` generations remain historical and were completely read within their own admission cycles;
+- App RES current SHA `f08aebcc1d8052bd7f63c3ff11bd2c7af2d7d32151236b03e45ca65cb3783a4a`; intermediate `9a91fb3e...` and prior `1af0ba6e...` generations remain historical and were completely read within their own admission cycles;
 - source local/remote exact `328249429cc6e86e15db9797bd58eff5fabc5a2d`, clean at qualified source boundary;
 - lifecycle Attempt 0 10/10 PASS unchanged;
 - full App regression 94/94 PASS;
@@ -65,7 +65,16 @@ Last updated: 2026-09-04 UTC
 1. Keep RAHL R4.2 SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a` as the active universal process/cold-start default until explicitly superseded.
 2. Before load-bearing publication/admission of changed readable artifacts, complete the linear semantic-read gate; automation is supporting evidence only.
 3. Prefer strongest sufficient operator/local/server execution for deterministic work; after response loss inspect consequence-bearing state before retry.
-4. Refresh `pcmmad/project-control` after this bilateral continuity repair, run checkpoint verifier/privacy/diff gates, push, remote-read branch SHA, and verify from fresh remote state.
+4. R4.2 bilateral control repair is closed at `819cf6fc8d470bb5a8b5bfbf72e1791b7d480c8e` with fresh-clone verifier PASS; do not recursively republish the post-push receipt. Resume the product-specific egress-enforcement frontier.
 5. Maintain RES as research continuity, not doctrine.
 
 The product-specific next frontier remains governed by the latest arm-local Current/Live state; this SOP repair does not silently reorder product work.
+
+## R4.2 full-adherence Git closure — 2026-09-04
+Control durability is closed for this cycle at `819cf6fc8d470bb5a8b5bfbf72e1791b7d480c8e` / CHECKPOINT `20647ea7cf2c546b6ee0b0a336288a586c5abe3cf557442f5ac9636f7d3c9a6c`. Next normal checkpoint will absorb the post-push receipt/state delta.
+
+## Semantic-field remote candidate publication — 2026-09-04
+1. Continue OS/process egress-enforcement frontier against current qualified Main `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`.
+2. Do not consume `pcmmad/semantic-field-core-v01` merely because candidate `a7b4511734b1a1e507230308e75b31175aef4c4a` is durable/promotion-ready.
+3. Reserve only the future bridge boundary (`semantic-field-bridge/0.1`).
+4. Trigger early Main->App forward sync only after qualified/public Main actually advances through its separate promotion gate.

@@ -3,9 +3,9 @@
 ## Thread Identity
 - Project: `singularity-works-forge-app`
 - Last Updated: 2026-09-04 UTC
-- Mode: CHECKPOINT after RAHL R4.2 canonical SOP adoption; durable-control publication pending
+- Mode: BUILD-PLAN/AUDIT — R4.2 control closure complete; OS/process egress-enforcement frontier active
 - Role: R4 Convergence Refiner -> R5 Reality Pressure Engine
-- Dominant Objective: hold generation-10 qualified baseline, keep App RES current, and begin OS/process egress-enforcement research/Attempt 0 under the Linear Human Read / Semantic Gate.
+- Dominant Objective: hold generation-10 qualified baseline and pressure OS/process egress enforcement under R4.2 without bypassing Connection Gate, authority, lifecycle, or semantic-read controls.
 
 ## Active User Intent
 - Continue autonomous build work under RAHL R4.2.
@@ -17,8 +17,8 @@
 ## Current Authoritative State
 - RAHL R4.2 is current universal process/cold-start default, carrier SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`; exact App project-root copy `sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_2_2026-09-03.zip`.
 - R4.2 canonically carries the semantic gate; the prior App addendum `notes/maintenance/LINEAR_HUMAN_READ_SEMANTIC_GATE_ADDENDUM_20260903.md` remains historical/provenance evidence.
-- App RES: `continuity/research_epistemic_shadow/res.md`, SHA `519722deee61e3fa436418fb71848609c6d670876de6618e1755a1702d8536e5`, authority NONE, scope PRODUCT_RUNTIME_SECURITY_RESEARCH.
-- Main/Core RES remains separate at SHA `a232664ad90dada57ccbc2ca085f11a6e0ee159a5c434f528943ad729033979f`, authority NONE, scope CORE_SEMANTIC_RESEARCH.
+- App RES: `continuity/research_epistemic_shadow/res.md`, SHA `f08aebcc1d8052bd7f63c3ff11bd2c7af2d7d32151236b03e45ca65cb3783a4a`, authority NONE, scope PRODUCT_RUNTIME_SECURITY_RESEARCH.
+- Main/Core RES remains separate at SHA `a7231ecd2a8ad55516630e6e175aa45dd29c373a7b8a0cd368513e76a57018f4`, authority NONE, scope CORE_SEMANTIC_RESEARCH.
 - Both RES artifacts were fully reread after their final mutation; App dominant frontier remains OS/process egress enforcement.
 - App branch `forge/app-shell-rd` remains local/remote exact and clean at `328249429cc6e86e15db9797bd58eff5fabc5a2d`.
 - Connection Gate pure authority, durable authority-state/receipt, and operation lifecycle/reconciliation remain qualified.
@@ -26,7 +26,7 @@
 - Current LKG: `checkpoint-app-live-0010-328249429cc6` — VERIFIED / RESUMED / STABLE / LKG / source MATCH / NORMAL / early crash 0 / not quarantined / Ergo READY.
 - Gen10 evidence: `attempt-live-resume-session-0010-lkg`, blob `aa223c2d56162ad2873dc13ac95a150c06216eb23b5eb1eb238c70e4fe3c3dcd`.
 - Attempt Store remains 100 blobs / 100 attempts / 163 events, integrity ok, WAL/FULL.
-- Latest independently observed pre-refresh project-control tip: `pcmmad/project-control` = `efd86410359946de1c514cc098ef0df8583a9bb9`. Resolve live again after the pending R4.2 adherence checkpoint publication.
+- Current independently verified durable project-control tip: `pcmmad/project-control` = **`819cf6fc8d470bb5a8b5bfbf72e1791b7d480c8e`**. Fresh-clone verifier PASS with 74 manifested files; frozen CHECKPOINT SHA `20647ea7cf2c546b6ee0b0a336288a586c5abe3cf557442f5ac9636f7d3c9a6c`.
 - That control generation now durably carries this App strand's Current/Doctrine/Next/Revisit/Trace/Live/DTS/RES plus selected maintenance evidence alongside Main/Core continuity.
 
 ## Active Constraints
@@ -75,22 +75,22 @@
 Enter BUILD-PLAN/AUDIT for OS/process egress enforcement. Inspect actual Windows/process primitives and existing App launch topology before selecting an implementation. Preserve Attempt 0 before first execution; readable candidate artifacts remain non-admitted until complete semantic read plus required machine/hostile verification.
 
 ## Last 10 Turn Reinforcement Window
-1. User asked whether RES was properly current; audit found Main RES stale after App gen9/gen10 and App RES absent — state-changing defect.
-2. User authorized repair.
-3. User bound the additive **LINEAR HUMAN READ / SEMANTIC GATE** — state-changing process law.
-4. Main RES was append-repaired through App gen9/gen10 learning; App gained a separate zero-authority product/runtime/security RES.
-5. Both RES surfaces were completely reread after mutation and separate ownership/no-authority semantics were propagated into state/doctrine/trace.
-6. Existing first semantic-gate publication evidence (`061cb8d...`) was incorporated into both RES surfaces; final RES SHAs became Main `65fad5ba...` and App `1af0ba6e...`.
-7. A new Main+App project-control snapshot was assembled in an isolated worktree and linearly read across 69/69 readable files / 7,781 deterministic stream lines.
-8. The full read found three current-generation semantic representation defects; all were corrected/reread; machine/privacy/staged-manifest checks then passed.
-9. Control commit `a86c2e2200b5b052cc95fe3834dcfed0bc5a18ab` was non-force pushed and independently verified by exact remote readback + clean fresh clone; App source/public Main remained unchanged.
-10. Post-push semantic reread found continuity hygiene debt: Main Current/Live had obsolete old action sections and App Live's last-10 window was stale. Main Current/Live were compacted/currentized and this App Live update repairs the last-10 window without changing App source/RES/runtime state.
+1. R4.2 full-adherence Git closure completed at control `819cf6fc8d470bb5a8b5bfbf72e1791b7d480c8e` with App source unchanged.
+2. Main live-verified semantic-field candidate `a7b4511734b1a1e507230308e75b31175aef4c4a` against qualified Main `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`.
+3. Main completed the full R4.2 nine-file semantic read before candidate replay interpretation.
+4. Main exact replay passed compile, 8/8 semantic tests, verify_build and installed-surface pressure.
+5. Like-for-like parent-wheel control showed the candidate adds exactly five semantic-field modules and removes none.
+6. Inherited stale package metadata was separated from candidate semantics as its own debt.
+7. Main qualification receipt earned PROMOTION_READY_WITH_EVIDENCE.
+8. Candidate branch `pcmmad/semantic-field-core-v01@a7b4511734b1a1e507230308e75b31175aef4c4a` was published and independently fresh-clone verified while public Main stayed `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`.
+9. App recorded the cross-arm rule: candidate durability is not a consumption trigger; App remains on OS/process egress enforcement.
+10. User said “Proceed”; bilateral candidate-publication continuity was fully read, fixed-point RES/currentness pointers were repaired, and one normal control checkpoint is now pending before any Main promotion.
 
 ## Delta Since Previous Shadow
 - Universal process advanced R4.1 -> R4.2; exact carrier copied into App project `sop/` and admitted by complete semantic read + verifier + hostile pressure.
 - Last-10 reinforcement window now includes the completed RES repair, semantic-gate control publication, and post-push continuity-hygiene findings.
-- Historical `a86c2e2200b5b052cc95fe3834dcfed0bc5a18ab` is no longer branch-current; live pre-refresh observation is `efd86410359946de1c514cc098ef0df8583a9bb9`.
-- App RES current SHA is `519722deee61e3fa436418fb71848609c6d670876de6618e1755a1702d8536e5`; intermediate `9a91fb3e...` and prior `1af0ba6e...` generations remain historical evidence. No product research-frontier change was caused by the checkpoint push itself.
+- Historical `a86c2e2200b5b052cc95fe3834dcfed0bc5a18ab` and pre-refresh `efd86410359946de1c514cc098ef0df8583a9bb9` are no longer currentness pointers; current verified control tip is `819cf6fc8d470bb5a8b5bfbf72e1791b7d480c8e`.
+- App RES current SHA is `f08aebcc1d8052bd7f63c3ff11bd2c7af2d7d32151236b03e45ca65cb3783a4a`; intermediate `9a91fb3e...` and prior `1af0ba6e...` generations remain historical evidence. No product research-frontier change was caused by the checkpoint push itself.
 - Immediate frontier remains OS/process egress enforcement under the semantic-read gate.
 - No App source, Attempt Store, provider or network mutation occurred during this Live Shadow repair.
 
@@ -102,3 +102,20 @@ Enter BUILD-PLAN/AUDIT for OS/process egress enforcement. Inspect actual Windows
 - Forge App project-root SOP copy is exact at 625,556 bytes / SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`.
 - Git control branch was independently observed at `efd86410359946de1c514cc098ef0df8583a9bb9` before this continuity refresh; a new checkpoint publication/readback follows this repair.
 - This process synchronization does not promote product code or transfer Core/App ownership.
+
+## R4.2 full-adherence Git closure — 2026-09-04
+- R4.2 continuity-drift seam is **RESOLVED AT THIS CHECKPOINT** under the declared process/control claim ceiling.
+- Durable control anchor: `pcmmad/project-control@819cf6fc8d470bb5a8b5bfbf72e1791b7d480c8e`.
+- Frozen checkpoint SHA: `20647ea7cf2c546b6ee0b0a336288a586c5abe3cf557442f5ac9636f7d3c9a6c`; fresh remote clone verifier PASS with 74 manifested files.
+- Public Main remains `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`; App source remains `328249429cc6e86e15db9797bd58eff5fabc5a2d`.
+- Closure receipt SHA: `aa1351ffa260b5925097c8d818eed382995298062fb9fb7ddc5530ea1f2c304d`.
+- Fixed-point rule: closure receipt/state delta enters the next normal control checkpoint; no recursive immediate publication.
+- App immediate frontier remains OS/process egress-enforcement pressure; no product/network mutation occurred during control closure.
+
+## Semantic-field remote candidate publication — 2026-09-04
+- Main/Core candidate is remotely durable at `pcmmad/semantic-field-core-v01@a7b4511734b1a1e507230308e75b31175aef4c4a` and independently fresh-clone verified.
+- Candidate is PROMOTION_READY_WITH_EVIDENCE; public Main remains `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`.
+- App source remains `328249429cc6e86e15db9797bd58eff5fabc5a2d`; App product frontier remains OS/process egress enforcement.
+- Candidate publication is **not** an App consumption trigger. App MUST NOT copy/vendor/bind to semantic-field Core until qualified Main advances and early forward-sync handshake completes.
+- Future consumer boundary may target `singularity_works.semantic_field_bridge` schema `singularity-works.semantic-field-bridge/0.1` only after that gate.
+- App publication notice SHA `7d84f3f1ee26c6eca6baa3dd62823eaf30180bef4b110608359233edd0e003b2`.

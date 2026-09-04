@@ -200,3 +200,11 @@ Operational meaning retained from R4.2:
 `CONTROL_PLANE_RESPONSE_FAILURE != LOCAL_EXECUTION_FAILURE`
 `STRONGEST_SURVIVING_PLANE != PRETTIEST_PLANE`
 `RES_CONTENT != GOVERNING_DOCTRINE`
+
+## Semantic-field remote candidate publication — 2026-09-04
+Truth status: VERIFIED cross-arm status; authority NONE_BY_CONTENT.
+
+Main's semantic-field candidate `a7b4511734b1a1e507230308e75b31175aef4c4a` is now remotely durable and bounded promotion-ready, but public/qualified Main remains `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`. This does not alter App's current product/runtime research frontier. It does sharpen one interface lesson: future App consumption should occur through the narrow canonical bridge after qualified Main movement, not through branch-level copying or private reimplementation.
+
+`CANDIDATE_DURABLE != QUALIFIED_MAIN_ADVANCED`
+`APP_CONSUMER_BOUNDARY != APP_PRIVATE_CORE_COPY`

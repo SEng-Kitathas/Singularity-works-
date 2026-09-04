@@ -34,7 +34,7 @@ SHA `3eea1088fe51affbe7519bddb03d6366d024c305bf853b3704834a0ac665f456`.
 ## RES doctrine / ownership
 App now has an explicit zero-authority product/runtime/security RES:
 `continuity/research_epistemic_shadow/res.md`
-SHA `519722deee61e3fa436418fb71848609c6d670876de6618e1755a1702d8536e5`.
+SHA `f08aebcc1d8052bd7f63c3ff11bd2c7af2d7d32151236b03e45ca65cb3783a4a`.
 
 The file was completely read end-to-end after creation. It carries research meaning/frontier through generation 10 and the current OS/process egress-enforcement discriminator.
 

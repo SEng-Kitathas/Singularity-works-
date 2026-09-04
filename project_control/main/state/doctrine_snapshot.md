@@ -78,7 +78,7 @@ SHA `c9e491567ac1fa99e5332891104f3343074d1d46177db82edb624a66cf85c48e`.
 App Git copy: `forge_app/promotion/MAIN_APP_CONVERGENCE_CONTEXT_VERBATIM_20260902.md`, commit `9aa8b14`.
 
 ## Semantic-field doctrine
-The current local incumbent candidate is:
+The current exact-replay-qualified remote candidate architecture is:
 **mutable lowering/build state -> exact verified SemanticFactBundle -> immutable FrozenSemanticFactBundle -> rebuildable non-authoritative index -> bounded projection -> non-authoritative SnapshotDelta across frozen snapshots.**
 
 ### Durable truth boundary
@@ -144,20 +144,20 @@ PyGoat currentness remains 23/23 PASS under the current delta lineage. Harmless 
 - green expensive, gray visible.
 
 ## Promotion boundaries
-- Semantic-field stack remains strongest local LBE field candidate, not public/source canon.
+- Semantic-field stack is remotely durable and PROMOTION_READY_WITH_EVIDENCE at the exact candidate commit, but remains outside public/source canon until the separate promotion gate advances qualified Main.
 - Public qualified Main remains source/release gated.
 - Forge App candidates do not become Core/Main by existence or Git mergeability; integration promotion is explicit and evidence-bearing.
 
 ## RES embodiment retained under R4.2 — synchronized through App gen10
 Main/Core RES:
 `continuity/research_epistemic_shadow/res.md`
-SHA `a232664ad90dada57ccbc2ca085f11a6e0ee159a5c434f528943ad729033979f`.
+SHA `a7231ecd2a8ad55516630e6e175aa45dd29c373a7b8a0cd368513e76a57018f4`.
 
-The current Main RES was read completely end-to-end after its append-oriented repair. It retains the Core semantic replay/promotion frontier and now also carries cross-arm learning from App generation 9 durable authority state and generation 10 operation lifecycle/reconciliation, with OS/process egress enforcement identified as the dominant App security frontier.
+The current Main RES was read completely end-to-end after its append-oriented repair. It retains the public-Main promotion/interface frontier and cross-arm learning from App generation 9 durable authority state and generation 10 operation lifecycle/reconciliation, with OS/process egress enforcement identified as the dominant App security frontier.
 
 App now owns a separate product/runtime/security RES:
 `singularity-works-forge-app/continuity/research_epistemic_shadow/res.md`
-SHA `519722deee61e3fa436418fb71848609c6d670876de6618e1755a1702d8536e5`.
+SHA `f08aebcc1d8052bd7f63c3ff11bd2c7af2d7d32151236b03e45ca65cb3783a4a`.
 
 Ceiling remains load-bearing:
 - `RES_CONTENT != GOVERNING_DOCTRINE`;

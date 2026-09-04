@@ -7,7 +7,7 @@ It exists because a single project spans multiple chat threads. Chat context is 
 - This branch is a **control/checkpoint branch**, not a public release/promotion branch.
 - Qualified public `main` remains separately governed.
 - The live PCMMAD server state is the high-fidelity mutable working plane.
-- `project_control/.gitattributes` normalizes checkpoint text to LF so Git copies and committed blobs are portable/deterministic across platforms; server-source hashes remain recorded separately.
+- `project_control/.gitattributes` normalizes checkpoint text to LF while explicitly keeping `*.zip` carriers binary (`-text`); server-source hashes remain recorded separately.
 - This Git tree is a bounded, Git-safe checkpoint of control state. The current RAHL R4.2 SOP is carried as exact binary copies under the Main/App control slices; the retained R4.1 Git-safe derivative is ancestry/history only. Canonical server-source hashes remain recorded separately.
 - `GIT_PUSH_SUCCESS != CONTROL_STATE_COHERENCE`: always read the branch HEAD and checkpoint manifest before trusting it.
 
@@ -37,11 +37,11 @@ Then reconcile against live server state and current Git remotes before mutation
 - Exact carrier copies: `project_control/main/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_2_2026-09-03.zip` and `project_control/app/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_2_2026-09-03.zip`.
 - R4.2 admission: 35/35 current readable members; deterministic semantic-read stream 3,175/3,175 lines, SHA `f6997264acb625d54d3924d2c25dc0689dfe1bbf65eb64eaa52c2afd61e68c3a`; primary verifier PASS; hostile suite 26/26 rejected; exact R4.1/R4.0/R3.1 ancestry reuse verified.
 - Qualified public Main at checkpoint: `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`.
-- Main semantic-field candidate: `a7b4511734b1a1e507230308e75b31175aef4c4a`, **LOCAL / UNPROMOTED / pending exact committed-artifact replay**.
+- Main semantic-field candidate: `pcmmad/semantic-field-core-v01@a7b4511734b1a1e507230308e75b31175aef4c4a`, **REMOTE DURABLE / EXACT-REPLAY QUALIFIED / PROMOTION_READY_WITH_EVIDENCE / NOT YET PUBLIC MAIN**.
 - Forge App branch: `forge/app-shell-rd`; live local/remote observation at checkpoint: `328249429cc6e86e15db9797bd58eff5fabc5a2d`, clean. Commit subject: `singularity-works: qualify operation lifecycle reconciliation v0.1`.
 - Double-helix model remains: separate pressure, shared identity; independent embodiment, shared canonical truth.
-- Main RES SHA-256: `a232664ad90dada57ccbc2ca085f11a6e0ee159a5c434f528943ad729033979f`; authority NONE.
-- App RES SHA-256: `519722deee61e3fa436418fb71848609c6d670876de6618e1755a1702d8536e5`; authority NONE.
+- Main RES SHA-256: `a7231ecd2a8ad55516630e6e175aa45dd29c373a7b8a0cd368513e76a57018f4`; authority NONE.
+- App RES SHA-256: `f08aebcc1d8052bd7f63c3ff11bd2c7af2d7d32151236b03e45ca65cb3783a4a`; authority NONE.
 
 ## Git-safe continuity note
 The server DTS is the full-fidelity chronological record. The Git derivative redacts machine-local path roots and one email-shaped non-secret identifier found in the App DTS; its manifest records exact server-source hashes, Git-copy hashes, and declared transforms. No credential/token/private-key material is admitted by the checkpoint scan.
@@ -84,3 +84,11 @@ The exact operator addendum remains checkpointed at `project_control/main/mainte
 - Pre-publication audit: `project_control/main/maintenance/RAHL_R4_2_FULL_ADHERENCE_AUDIT_20260904.md`, source SHA `f63c31e79674837ee823037edbf344e333b0e6861aa479da3c108f786dacc76c`.
 - Pre-refresh control tip observed live: `efd86410359946de1c514cc098ef0df8583a9bb9`.
 - Current Git snapshot must pass its own semantic/readback gates before this audit can close.
+## Semantic-field candidate checkpoint — 2026-09-04
+- Previous verified control tip: `819cf6fc8d470bb5a8b5bfbf72e1791b7d480c8e`.
+- Public qualified Main at snapshot build: `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`.
+- Remote semantic-field candidate: `pcmmad/semantic-field-core-v01@a7b4511734b1a1e507230308e75b31175aef4c4a`; exact parent `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`.
+- Candidate verdict: `PROMOTION_READY_WITH_EVIDENCE`; public Main not yet advanced.
+- App source at snapshot build: `328249429cc6e86e15db9797bd58eff5fabc5a2d`; App consumption remains blocked until qualified Main advances and early forward sync completes.
+- R4.2 carrier remains exact SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`.
+- This checkpoint absorbs the deferred R4.2 closure receipts and semantic-field qualification/publication receipts under the fixed-point rule.
