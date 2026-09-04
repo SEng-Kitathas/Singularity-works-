@@ -19,5 +19,10 @@ __all__ = [
     "ergo_boot",
     "ergo_audio",
     "laws",
+    "semantic_field",
+    "semantic_field_index",
+    "semantic_field_delta",
+    "semantic_materializer",
+    "semantic_field_bridge",
 ]
 __version__ = "0.2.0"
