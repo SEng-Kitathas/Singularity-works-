@@ -1,6 +1,6 @@
 # Doctrine Snapshot — Singularity Works App
 
-Last updated: 2026-09-03 UTC
+Last updated: 2026-09-04 UTC
 Mode: CHECKPOINT after RAHL R4.2 canonical process-SOP adoption
 
 ## Universal process
@@ -34,7 +34,7 @@ SHA `3eea1088fe51affbe7519bddb03d6366d024c305bf853b3704834a0ac665f456`.
 ## RES doctrine / ownership
 App now has an explicit zero-authority product/runtime/security RES:
 `continuity/research_epistemic_shadow/res.md`
-SHA `1af0ba6e371514645b7bde90425aac5fbbe95eed0c8d0e66d879052fab0bdf45`.
+SHA `519722deee61e3fa436418fb71848609c6d670876de6618e1755a1702d8536e5`.
 
 The file was completely read end-to-end after creation. It carries research meaning/frontier through generation 10 and the current OS/process egress-enforcement discriminator.
 
@@ -111,3 +111,16 @@ Admission basis: 35/35 current readable non-ancestry members read completely; 3,
 R4.2 directly carries the semantic gate and local-first/control-plane minimization rules previously held as additive project doctrine. The standalone addendum remains evidence/history, not a separate required authority layer.
 
 For the App frontier this strengthens, but does not satisfy, OS/process egress-enforcement qualification: `ENFORCEMENT_TEST_PASS != ENFORCEMENT_SCOPE_SEMANTICALLY_UNAMBIGUOUS` remains active, and `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` remains unearned runtime law.
+
+## R4.2 full-adherence synchronization — 2026-09-04
+RAHL Engineering Canonical SOP **R4.2** remains the active universal process/cold-start authority for this project arm under `CANONICAL_PROCESS_DEFAULT != UNIVERSAL_DOMAIN_TRUTH`. Fresh 2026-09-04 semantic reread and verifier/hostile replay revalidated the exact carrier SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`.
+
+Active R4.2 process obligations include:
+- `AUTOMATED_CHECKS != LINEAR_SEMANTIC_READ`;
+- `CONTROL_PLANE_RESPONSE_FAILURE != LOCAL_EXECUTION_FAILURE`;
+- `CONTROL_PLANE_MINIMIZATION != SEMANTIC_READ_SKIPPING`;
+- `STRONGEST_SURVIVING_PLANE != PRETTIEST_PLANE`;
+- `ASSISTANT_SIDE_CONVENIENCE != MATERIAL_ADVANTAGE`;
+- `EXECUTION_PLANE_FALLBACK != AUTHORITY_BYPASS`;
+- `RES_CONTENT != GOVERNING_DOCTRINE`;
+- `BASE_TIER_FUNCTIONAL_OBLIGATIONS != OPTIONAL_FOR_NONTRIVIAL_WORK`.

@@ -1,6 +1,6 @@
 # Doctrine Snapshot — Singularity Works / Forge LBE
 
-Last updated: 2026-09-03 UTC
+Last updated: 2026-09-04 UTC
 Mode: CHECKPOINT after RAHL R4.2 canonical process-SOP adoption
 
 ## Universal process SOP
@@ -151,13 +151,13 @@ PyGoat currentness remains 23/23 PASS under the current delta lineage. Harmless 
 ## RES embodiment retained under R4.2 — synchronized through App gen10
 Main/Core RES:
 `continuity/research_epistemic_shadow/res.md`
-SHA `65fad5bae02cb3345b0b22bc9cf0ce2999140a13bd00d7abe0f7091e9cf89120`.
+SHA `a232664ad90dada57ccbc2ca085f11a6e0ee159a5c434f528943ad729033979f`.
 
 The current Main RES was read completely end-to-end after its append-oriented repair. It retains the Core semantic replay/promotion frontier and now also carries cross-arm learning from App generation 9 durable authority state and generation 10 operation lifecycle/reconciliation, with OS/process egress enforcement identified as the dominant App security frontier.
 
 App now owns a separate product/runtime/security RES:
 `singularity-works-forge-app/continuity/research_epistemic_shadow/res.md`
-SHA `1af0ba6e371514645b7bde90425aac5fbbe95eed0c8d0e66d879052fab0bdf45`.
+SHA `519722deee61e3fa436418fb71848609c6d670876de6618e1755a1702d8536e5`.
 
 Ceiling remains load-bearing:
 - `RES_CONTENT != GOVERNING_DOCTRINE`;
@@ -185,7 +185,7 @@ Doctrine additions:
 The cross-thread Git checkpoint discipline is now verified in embodiment, not merely proposed.
 
 - Durable branch: `pcmmad/project-control`.
-- Verified GitHub tip at this checkpoint: `174ba730f691a50f332b77bb8803370ed642cae4`.
+- Historical verified GitHub establishment tip for that checkpoint: `174ba730f691a50f332b77bb8803370ed642cae4`; later control generations supersede it as branch currentness.
 - Fresh remote clone + `project_control/VERIFY_CHECKPOINT.py`: PASS with 52 manifested files.
 - Public `main` remained unchanged.
 
@@ -236,3 +236,16 @@ R4.2 canonically absorbs the previously additive Linear Human Read / Semantic Ga
 New/strengthened active process scars include `CONTROL_PLANE_RESPONSE_FAILURE != LOCAL_EXECUTION_FAILURE`, `CONTROL_PLANE != BULK_DATA_PLANE`, `CONTROL_PLANE_MINIMIZATION != SEMANTIC_READ_SKIPPING`, `STRONGEST_SURVIVING_PLANE != PRETTIEST_PLANE`, `ASSISTANT_SIDE_CONVENIENCE != MATERIAL_ADVANTAGE`, and `EXECUTION_PLANE_FALLBACK != AUTHORITY_BYPASS`.
 
 R4.1 remains exact ancestry, including its base-tier metabolism correction. No Core semantic/product/release authority is transferred by SOP adoption.
+
+## R4.2 full-adherence synchronization — 2026-09-04
+RAHL Engineering Canonical SOP **R4.2** remains the active universal process/cold-start authority for this project arm under `CANONICAL_PROCESS_DEFAULT != UNIVERSAL_DOMAIN_TRUTH`. Fresh 2026-09-04 semantic reread and verifier/hostile replay revalidated the exact carrier SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`.
+
+Active R4.2 process obligations include:
+- `AUTOMATED_CHECKS != LINEAR_SEMANTIC_READ`;
+- `CONTROL_PLANE_RESPONSE_FAILURE != LOCAL_EXECUTION_FAILURE`;
+- `CONTROL_PLANE_MINIMIZATION != SEMANTIC_READ_SKIPPING`;
+- `STRONGEST_SURVIVING_PLANE != PRETTIEST_PLANE`;
+- `ASSISTANT_SIDE_CONVENIENCE != MATERIAL_ADVANTAGE`;
+- `EXECUTION_PLANE_FALLBACK != AUTHORITY_BYPASS`;
+- `RES_CONTENT != GOVERNING_DOCTRINE`;
+- `BASE_TIER_FUNCTIONAL_OBLIGATIONS != OPTIONAL_FOR_NONTRIVIAL_WORK`.

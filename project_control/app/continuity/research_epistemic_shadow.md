@@ -1,6 +1,6 @@
 # RESEARCH EPISTEMIC SHADOW — Singularity Works App
 
-Last updated: 2026-09-03 UTC
+Last updated: 2026-09-04 UTC
 Authority: **NONE_BY_CONTENT**
 Purpose: zero-authority research continuity for product/runtime/security meaning and frontier.
 
@@ -130,7 +130,7 @@ Keep visible until resolved:
 - Core semantic bridge remains UNKNOWN and Main-owned.
 
 ## 9. Linear Human Read / Semantic Gate
-Operator-bound additive doctrine:
+R4.2-canonical process law; originally introduced as operator-bound additive doctrine and retained in that history:
 
 **LINEAR HUMAN READ / SEMANTIC GATE**
 
@@ -183,3 +183,20 @@ App research implication for upcoming egress-enforcement work:
 `SEMANTIC_READ_FINDING != MACHINE_VALIDATION_FINDING`
 
 This strengthens the semantic gate as a required App promotion precondition while preserving `RES_CONTENT != GOVERNING_DOCTRINE`.
+
+## R4.2 full-adherence synchronization — 2026-09-04
+Truth status: VERIFIED process-ingestion/currentness evidence; RES authority remains NONE_BY_CONTENT.
+
+R4.2 is the active universal engineering/research process and cold-start default for this arm. Fresh 2026-09-04 source contact re-read all 35 active/current readable members (3,070 source lines, 0 unread) from exact carrier SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`; fresh verifier PASS and hostile campaign 26/26 rejected.
+
+Operational meaning retained from R4.2:
+- semantic admission requires complete linear reading before load-bearing authority transitions; automation supports but does not substitute;
+- substantial finite deterministic work defaults to the strongest sufficient operator/local/server plane;
+- response loss requires consequence-bearing readback before rerun;
+- after the first deterministic bridge/transport failure, repeating the same architecture without rerouting is presumptively a process error;
+- continuity remains navigation/research state rather than truth authority.
+
+`AUTOMATED_CHECKS != LINEAR_SEMANTIC_READ`
+`CONTROL_PLANE_RESPONSE_FAILURE != LOCAL_EXECUTION_FAILURE`
+`STRONGEST_SURVIVING_PLANE != PRETTIEST_PLANE`
+`RES_CONTENT != GOVERNING_DOCTRINE`

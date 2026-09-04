@@ -2,7 +2,7 @@
 
 ## Thread Identity
 - Project: `singularity-works-forge-app`
-- Last Updated: 2026-09-03 UTC
+- Last Updated: 2026-09-04 UTC
 - Mode: CHECKPOINT after RAHL R4.2 canonical SOP adoption; durable-control publication pending
 - Role: R4 Convergence Refiner -> R5 Reality Pressure Engine
 - Dominant Objective: hold generation-10 qualified baseline, keep App RES current, and begin OS/process egress-enforcement research/Attempt 0 under the Linear Human Read / Semantic Gate.
@@ -17,8 +17,8 @@
 ## Current Authoritative State
 - RAHL R4.2 is current universal process/cold-start default, carrier SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`; exact App project-root copy `sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_2_2026-09-03.zip`.
 - R4.2 canonically carries the semantic gate; the prior App addendum `notes/maintenance/LINEAR_HUMAN_READ_SEMANTIC_GATE_ADDENDUM_20260903.md` remains historical/provenance evidence.
-- App RES: `continuity/research_epistemic_shadow/res.md`, SHA `1af0ba6e371514645b7bde90425aac5fbbe95eed0c8d0e66d879052fab0bdf45`, authority NONE, scope PRODUCT_RUNTIME_SECURITY_RESEARCH.
-- Main/Core RES remains separate at SHA `65fad5bae02cb3345b0b22bc9cf0ce2999140a13bd00d7abe0f7091e9cf89120`, authority NONE, scope CORE_SEMANTIC_RESEARCH.
+- App RES: `continuity/research_epistemic_shadow/res.md`, SHA `519722deee61e3fa436418fb71848609c6d670876de6618e1755a1702d8536e5`, authority NONE, scope PRODUCT_RUNTIME_SECURITY_RESEARCH.
+- Main/Core RES remains separate at SHA `a232664ad90dada57ccbc2ca085f11a6e0ee159a5c434f528943ad729033979f`, authority NONE, scope CORE_SEMANTIC_RESEARCH.
 - Both RES artifacts were fully reread after their final mutation; App dominant frontier remains OS/process egress enforcement.
 - App branch `forge/app-shell-rd` remains local/remote exact and clean at `328249429cc6e86e15db9797bd58eff5fabc5a2d`.
 - Connection Gate pure authority, durable authority-state/receipt, and operation lifecycle/reconciliation remain qualified.
@@ -26,7 +26,7 @@
 - Current LKG: `checkpoint-app-live-0010-328249429cc6` — VERIFIED / RESUMED / STABLE / LKG / source MATCH / NORMAL / early crash 0 / not quarantined / Ergo READY.
 - Gen10 evidence: `attempt-live-resume-session-0010-lkg`, blob `aa223c2d56162ad2873dc13ac95a150c06216eb23b5eb1eb238c70e4fe3c3dcd`.
 - Attempt Store remains 100 blobs / 100 attempts / 163 events, integrity ok, WAL/FULL.
-- Latest durable project-control tip: `pcmmad/project-control` = `a86c2e2200b5b052cc95fe3834dcfed0bc5a18ab`, parent `061cb8dac4eaf608fb1c07a77cba626712e52ce0`.
+- Latest independently observed pre-refresh project-control tip: `pcmmad/project-control` = `efd86410359946de1c514cc098ef0df8583a9bb9`. Resolve live again after the pending R4.2 adherence checkpoint publication.
 - That control generation now durably carries this App strand's Current/Doctrine/Next/Revisit/Trace/Live/DTS/RES plus selected maintenance evidence alongside Main/Core continuity.
 
 ## Active Constraints
@@ -56,7 +56,7 @@
 - Local completion and remote commit proof remain distinct.
 - Reconciled absence does not automatically authorize retry.
 - OS/process egress enforcement is the next App security boundary; real provider wiring remains later.
-- Latest control publication `a86c2e2...` completed human semantic read over 69/69 readable files / 7,781 deterministic stream lines, found and corrected 3 semantic representation defects, then passed verifier/privacy/staged-manifest/fresh-clone checks.
+- Historical control publication `a86c2e2...` completed human semantic read over 69/69 readable files / 7,781 deterministic stream lines, found and corrected 3 semantic representation defects, then passed verifier/privacy/staged-manifest/fresh-clone checks. It is no longer branch-current.
 - Fixed-point rule: the post-push receipt/state delta waits for the next normal Git control checkpoint rather than triggering immediate recursive publication.
 
 ## Open Loops
@@ -89,7 +89,16 @@ Enter BUILD-PLAN/AUDIT for OS/process egress enforcement. Inspect actual Windows
 ## Delta Since Previous Shadow
 - Universal process advanced R4.1 -> R4.2; exact carrier copied into App project `sop/` and admitted by complete semantic read + verifier + hostile pressure.
 - Last-10 reinforcement window now includes the completed RES repair, semantic-gate control publication, and post-push continuity-hygiene findings.
-- Latest durable control tip is explicitly `a86c2e2200b5b052cc95fe3834dcfed0bc5a18ab`.
-- App RES remains current at `1af0ba6e...`; no research-frontier change from the checkpoint push itself.
+- Historical `a86c2e2200b5b052cc95fe3834dcfed0bc5a18ab` is no longer branch-current; live pre-refresh observation is `efd86410359946de1c514cc098ef0df8583a9bb9`.
+- App RES current SHA is `519722deee61e3fa436418fb71848609c6d670876de6618e1755a1702d8536e5`; intermediate `9a91fb3e...` and prior `1af0ba6e...` generations remain historical evidence. No product research-frontier change was caused by the checkpoint push itself.
 - Immediate frontier remains OS/process egress enforcement under the semantic-read gate.
 - No App source, Attempt Store, provider or network mutation occurred during this Live Shadow repair.
+
+## R4.2 full-adherence synchronization — 2026-09-04
+- Active universal process/cold-start SOP: **RAHL Engineering Canonical SOP R4.2**; carrier SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`.
+- Fresh 2026-09-04 semantic reread: all 35/35 active/current readable members read in archive order; 3,070 source lines; 0 unread. Sealed R4.1/R4.0/R3.1 ancestry reused only by exact prior-read identity as R4.2 permits.
+- Fresh extraction verifier: PASS rc0; hostile suite: 26/26 rejected, 0 unexpected passes.
+- Standing process guards actively bound: `AUTOMATED_CHECKS != LINEAR_SEMANTIC_READ`; `CONTROL_PLANE_RESPONSE_FAILURE != LOCAL_EXECUTION_FAILURE`; `STRONGEST_SURVIVING_PLANE != PRETTIEST_PLANE`; `RES_CONTENT != GOVERNING_DOCTRINE`.
+- Forge App project-root SOP copy is exact at 625,556 bytes / SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`.
+- Git control branch was independently observed at `efd86410359946de1c514cc098ef0df8583a9bb9` before this continuity refresh; a new checkpoint publication/readback follows this repair.
+- This process synchronization does not promote product code or transfer Core/App ownership.

@@ -1,9 +1,9 @@
 # RESEARCH EPISTEMIC SHADOW — Forge Core/Main
 
-Last updated: 2026-09-03 UTC
+Last updated: 2026-09-04 UTC
 Status: ACTIVE RESEARCH CONTINUITY SURFACE
 Authority: NONE_BY_CONTENT
-Canonical process: RAHL Engineering Canonical SOP R4.1
+Canonical process: RAHL Engineering Canonical SOP R4.2
 
 ## Boundary
 This artifact preserves what Main has learned, why it matters, what remains uncertain, and what should be tested next.
@@ -298,3 +298,20 @@ Epistemic update:
 `HUMAN_SEMANTIC_GATE + MACHINE_VERIFICATION > EITHER_ALONE_FOR_READABLE_PROMOTION`
 
 This evidence strengthens the gate's residency as project-local process doctrine but does not grant the human read authority over unrelated technical facts; each promoted claim still requires its own evidence class.
+
+## R4.2 full-adherence synchronization — 2026-09-04
+Truth status: VERIFIED process-ingestion/currentness evidence; RES authority remains NONE_BY_CONTENT.
+
+R4.2 is the active universal engineering/research process and cold-start default for this arm. Fresh 2026-09-04 source contact re-read all 35 active/current readable members (3,070 source lines, 0 unread) from exact carrier SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`; fresh verifier PASS and hostile campaign 26/26 rejected.
+
+Operational meaning retained from R4.2:
+- semantic admission requires complete linear reading before load-bearing authority transitions; automation supports but does not substitute;
+- substantial finite deterministic work defaults to the strongest sufficient operator/local/server plane;
+- response loss requires consequence-bearing readback before rerun;
+- after the first deterministic bridge/transport failure, repeating the same architecture without rerouting is presumptively a process error;
+- continuity remains navigation/research state rather than truth authority.
+
+`AUTOMATED_CHECKS != LINEAR_SEMANTIC_READ`
+`CONTROL_PLANE_RESPONSE_FAILURE != LOCAL_EXECUTION_FAILURE`
+`STRONGEST_SURVIVING_PLANE != PRETTIEST_PLANE`
+`RES_CONTENT != GOVERNING_DOCTRINE`

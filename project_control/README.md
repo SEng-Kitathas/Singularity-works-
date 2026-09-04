@@ -40,8 +40,8 @@ Then reconcile against live server state and current Git remotes before mutation
 - Main semantic-field candidate: `a7b4511734b1a1e507230308e75b31175aef4c4a`, **LOCAL / UNPROMOTED / pending exact committed-artifact replay**.
 - Forge App branch: `forge/app-shell-rd`; live local/remote observation at checkpoint: `328249429cc6e86e15db9797bd58eff5fabc5a2d`, clean. Commit subject: `singularity-works: qualify operation lifecycle reconciliation v0.1`.
 - Double-helix model remains: separate pressure, shared identity; independent embodiment, shared canonical truth.
-- Main RES SHA-256: `65fad5bae02cb3345b0b22bc9cf0ce2999140a13bd00d7abe0f7091e9cf89120`; authority NONE.
-- App RES SHA-256: `1af0ba6e371514645b7bde90425aac5fbbe95eed0c8d0e66d879052fab0bdf45`; authority NONE.
+- Main RES SHA-256: `a232664ad90dada57ccbc2ca085f11a6e0ee159a5c434f528943ad729033979f`; authority NONE.
+- App RES SHA-256: `519722deee61e3fa436418fb71848609c6d670876de6618e1755a1702d8536e5`; authority NONE.
 
 ## Git-safe continuity note
 The server DTS is the full-fidelity chronological record. The Git derivative redacts machine-local path roots and one email-shaped non-secret identifier found in the App DTS; its manifest records exact server-source hashes, Git-copy hashes, and declared transforms. No credential/token/private-key material is admitted by the checkpoint scan.
@@ -77,3 +77,10 @@ The exact operator addendum remains checkpointed at `project_control/main/mainte
 - App control copy: `project_control/app/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_2_2026-09-03.zip`.
 - Both are 625,556 bytes and exact SHA-256 `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`.
 - The two control copies are exact binaries, not rewritten Git-safe derivatives.
+## R4.2 full-adherence revalidation — 2026-09-04
+- Server carrier re-read: 35/35 active/current readable members, 3,070 source lines, 0 unread.
+- Fresh exact-carrier verifier PASS; hostile suite 26/26 rejected.
+- Bilateral Main/App continuity audit found and repaired R4.2 currentness drift before this control refresh.
+- Pre-publication audit: `project_control/main/maintenance/RAHL_R4_2_FULL_ADHERENCE_AUDIT_20260904.md`, source SHA `f63c31e79674837ee823037edbf344e333b0e6861aa479da3c108f786dacc76c`.
+- Pre-refresh control tip observed live: `efd86410359946de1c514cc098ef0df8583a9bb9`.
+- Current Git snapshot must pass its own semantic/readback gates before this audit can close.

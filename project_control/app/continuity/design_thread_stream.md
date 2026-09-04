@@ -716,3 +716,15 @@ App RES remains SHA `1af0ba6e371514645b7bde90425aac5fbbe95eed0c8d0e66d879052fab0
 Post-push receipt is persisted in Main project state as `RES_SEMANTIC_GATE_GIT_CONTROL_CHECKPOINT_20260903.md`, SHA `3f14b850fd6745a69075b89a06d734da78d32c7de7e492978b1eaaa0dd4b3018`.
 
 Fixed-point rule: this post-push receipt/state delta waits for the next normal control checkpoint; no immediate recursive checkpoint publication.
+
+---
+
+## R4.2 full-adherence synchronization — 2026-09-04
+Date: 2026-09-04
+Tags: SOP-R4.2, CONTINUITY-REPAIR, SEMANTIC-READ, GIT-CONTROL
+
+Operator requested verification that R4.2 exists either at the server-native path or Forge Git and required persistence, adoption, and full adherence. Direct live inspection found the exact server carrier at SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a` and GitHub `pcmmad/project-control` at `efd86410359946de1c514cc098ef0df8583a9bb9` with exact Main/App ZIP blobs.
+
+Assistant completed a fresh linear semantic reread of all 35 active/current R4.2 readable members in deterministic archive order (3,070 source lines, 0 unread), reused unchanged sealed ancestry only under R4.2's exact-hash semantic-read rule, and replayed the package verifier plus hostile suite from fresh extraction: verifier PASS rc0; hostile 26/26 rejected.
+
+A bilateral control-surface audit then found continuity drift: Live/Current/Doctrine/Trace carried R4.2, while DTS/RES/Next/Revisit were missing R4.2; Main RES additionally retained a stale R4.1 process header. This entry records the repair across all eight Forge App continuity/state instruments before refreshing Git control.

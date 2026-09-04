@@ -1,6 +1,6 @@
 # Next Steps — Singularity Works App
 
-Last updated: 2026-09-03 UTC
+Last updated: 2026-09-04 UTC
 
 ## P0 — semantic admission + RES preflight
 1. For every meaningfully readable OS/network enforcement artifact, perform a complete linear semantic read before it is promoted, sealed, published, admitted, or treated as load-bearing.
@@ -49,9 +49,9 @@ Last updated: 2026-09-03 UTC
 32. Main/Core and App maintain separate zero-authority RES surfaces and cross-reference rather than silently merging authority domains.
 
 ## Current verified baseline
-- RAHL R4.1 current process SOP;
-- additive Linear Human Read / Semantic Gate bound;
-- App RES SHA `1af0ba6e371514645b7bde90425aac5fbbe95eed0c8d0e66d879052fab0bdf45`, complete semantic read performed after creation;
+- RAHL R4.2 current process SOP, carrier SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`;
+- R4.2-canonical Linear Human Read / Semantic Gate active; prior standalone addendum retained as provenance;
+- App RES current SHA `519722deee61e3fa436418fb71848609c6d670876de6618e1755a1702d8536e5`; intermediate `9a91fb3e...` and prior `1af0ba6e...` generations remain historical and were completely read within their own admission cycles;
 - source local/remote exact `328249429cc6e86e15db9797bd58eff5fabc5a2d`, clean at qualified source boundary;
 - lifecycle Attempt 0 10/10 PASS unchanged;
 - full App regression 94/94 PASS;
@@ -59,3 +59,13 @@ Last updated: 2026-09-03 UTC
 - current LKG `checkpoint-app-live-0010-328249429cc6`, source MATCH, early crash 0;
 - gen10 evidence `attempt-live-resume-session-0010-lkg`, blob `aa223c2d56162ad2873dc13ac95a150c06216eb23b5eb1eb238c70e4fe3c3dcd`;
 - Attempt Store 100 blobs / 100 attempts / 163 events, integrity ok.
+
+## R4.2 full-adherence synchronization — 2026-09-04
+### Process/control P0
+1. Keep RAHL R4.2 SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a` as the active universal process/cold-start default until explicitly superseded.
+2. Before load-bearing publication/admission of changed readable artifacts, complete the linear semantic-read gate; automation is supporting evidence only.
+3. Prefer strongest sufficient operator/local/server execution for deterministic work; after response loss inspect consequence-bearing state before retry.
+4. Refresh `pcmmad/project-control` after this bilateral continuity repair, run checkpoint verifier/privacy/diff gates, push, remote-read branch SHA, and verify from fresh remote state.
+5. Maintain RES as research continuity, not doctrine.
+
+The product-specific next frontier remains governed by the latest arm-local Current/Live state; this SOP repair does not silently reorder product work.

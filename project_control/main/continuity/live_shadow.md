@@ -2,7 +2,7 @@
 
 ## Thread Identity
 - Project: `pcmmad-forge-audit`
-- Last Updated: 2026-09-03 UTC
+- Last Updated: 2026-09-04 UTC
 - Mode: CHECKPOINT after RAHL R4.2 canonical SOP adoption; durable-control publication pending
 - Role: R4 Convergence Refiner
 - Dominant Objective: preserve canonical Forge semantic authority, keep Main/App research continuity current, and resume exact committed-artifact replay/promotion qualification of the Main semantic-field candidate.
@@ -23,10 +23,10 @@
 - Local semantic-field candidate `pcmmad/semantic-field-core-v01` remains `a7b4511734b1a1e507230308e75b31175aef4c4a`, local/unpromoted pending exact committed-artifact replay/currentness/promotion qualification.
 - Qualified public `main` remains `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`.
 - App branch `forge/app-shell-rd` remains local/remote exact and clean at `328249429cc6e86e15db9797bd58eff5fabc5a2d`; generation 10 remains current App LKG; App Attempt Store remains 100 blobs / 100 attempts / 163 events, integrity ok.
-- Main/Core RES: `continuity/research_epistemic_shadow/res.md`, SHA `65fad5bae02cb3345b0b22bc9cf0ce2999140a13bd00d7abe0f7091e9cf89120`, authority NONE, scope CORE_SEMANTIC_RESEARCH.
-- App RES: SHA `1af0ba6e371514645b7bde90425aac5fbbe95eed0c8d0e66d879052fab0bdf45`, authority NONE, scope PRODUCT_RUNTIME_SECURITY_RESEARCH.
+- Main/Core RES: `continuity/research_epistemic_shadow/res.md`, SHA `a232664ad90dada57ccbc2ca085f11a6e0ee159a5c434f528943ad729033979f`, authority NONE, scope CORE_SEMANTIC_RESEARCH.
+- App RES: SHA `519722deee61e3fa436418fb71848609c6d670876de6618e1755a1702d8536e5`, authority NONE, scope PRODUCT_RUNTIME_SECURITY_RESEARCH.
 - Both RES artifacts were fully reread after their final mutation; Main retains Core semantic replay/promotion frontier, App retains OS/process egress-enforcement frontier.
-- Latest durable cross-thread control tip: `pcmmad/project-control` = `a86c2e2200b5b052cc95fe3834dcfed0bc5a18ab`, parent `061cb8dac4eaf608fb1c07a77cba626712e52ce0`, tree `42cadbba62369741179b723fe2fcb7ff1058cdd1`.
+- Latest independently observed pre-refresh cross-thread control tip: `pcmmad/project-control` = `efd86410359946de1c514cc098ef0df8583a9bb9`. This value is deliberately labeled pre-refresh; current remote HEAD must be resolved live after the pending R4.2 adherence checkpoint publication.
 - Latest control generation contains separate Main/Core and App continuity/RES slices and was independently fresh-clone verified.
 
 ## Active Constraints
@@ -48,7 +48,7 @@
 - Main/Core and App maintain separate zero-authority RES surfaces with explicit ownership.
 - Git is a required durable project-control/checkpoint plane; live server state remains the mutable working plane.
 - Control publication is separate from product/release promotion.
-- Latest control publication `a86c2e2...` completed the semantic gate over 69/69 readable files, 7,574 source lines, 7,781 deterministic stream lines, SHA `a768aa2b2ce588498371bf90b364f5c93a7f748c89a4ab66c961b73807081807`; three semantic representation findings were corrected/reread; blocking findings 0.
+- Historical control publication `a86c2e2...` completed its semantic gate over 69/69 readable files, 7,574 source lines, 7,781 deterministic stream lines, SHA `a768aa2b2ce588498371bf90b364f5c93a7f748c89a4ab66c961b73807081807`; three semantic representation findings were corrected/reread; blocking findings 0. It is no longer the current branch tip.
 - Supporting control checks: verifier PASS (68 manifested files), privacy/token/private-key/actionable-path findings 0, staged manifest equality PASS, exact remote readback and fresh-clone verifier PASS.
 - Post-push receipt: `notes/maintenance/RES_SEMANTIC_GATE_GIT_CONTROL_CHECKPOINT_20260903.md`, SHA `3f14b850fd6745a69075b89a06d734da78d32c7de7e492978b1eaaa0dd4b3018`.
 - Fixed-point rule: post-push receipt/state deltas wait for the next normal Git control checkpoint instead of causing recursive checkpoint publication.
@@ -79,7 +79,16 @@ Main: inspect live currentness of `pcmmad/semantic-field-core-v01` / `a7b4511734
 ## Delta Since Previous Shadow
 - Universal process advanced R4.1 -> R4.2; exact carrier copied into Main project `sop/` and admitted by complete semantic read + verifier + hostile pressure.
 - Removed obsolete prior checkpoint/action sections from the active Live Shadow; chronology remains preserved in DTS/maintenance notes.
-- Latest durable control tip is now unambiguously `a86c2e2200b5b052cc95fe3834dcfed0bc5a18ab`.
+- The historical `a86c2e2200b5b052cc95fe3834dcfed0bc5a18ab` checkpoint is no longer the current branch tip; live pre-refresh observation is `efd86410359946de1c514cc098ef0df8583a9bb9`.
 - Main/App RES final identities and ownership are explicit and current.
 - Immediate Main resume point is semantic-field candidate currentness + exact committed-artifact replay/promotion qualification.
 - No Core source, public `main`, App source, provider, network or Attempt Store mutation occurred during this Live Shadow compaction repair.
+
+## R4.2 full-adherence synchronization — 2026-09-04
+- Active universal process/cold-start SOP: **RAHL Engineering Canonical SOP R4.2**; carrier SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`.
+- Fresh 2026-09-04 semantic reread: all 35/35 active/current readable members read in archive order; 3,070 source lines; 0 unread. Sealed R4.1/R4.0/R3.1 ancestry reused only by exact prior-read identity as R4.2 permits.
+- Fresh extraction verifier: PASS rc0; hostile suite: 26/26 rejected, 0 unexpected passes.
+- Standing process guards actively bound: `AUTOMATED_CHECKS != LINEAR_SEMANTIC_READ`; `CONTROL_PLANE_RESPONSE_FAILURE != LOCAL_EXECUTION_FAILURE`; `STRONGEST_SURVIVING_PLANE != PRETTIEST_PLANE`; `RES_CONTENT != GOVERNING_DOCTRINE`.
+- Main/Core project-root SOP copy is exact at 625,556 bytes / SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`.
+- Git control branch was independently observed at `efd86410359946de1c514cc098ef0df8583a9bb9` before this continuity refresh; a new checkpoint publication/readback follows this repair.
+- This process synchronization does not promote product code or transfer Core/App ownership.

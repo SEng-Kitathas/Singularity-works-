@@ -1,6 +1,6 @@
 # Current State — Singularity Works / Forge Core-Main
 
-Last updated: 2026-09-03 UTC
+Last updated: 2026-09-04 UTC
 Mode: CHECKPOINT after RAHL R4.2 canonical SOP adoption; durable-control publication pending
 Role: R4 Convergence Refiner
 
@@ -37,11 +37,11 @@ Main addendum SHA `1910637867cc2759ab46bc8772b429abac28ca0f6d211d8ee7769eba5ee51
 ## RES ownership/currentness
 Main/Core RES:
 `continuity/research_epistemic_shadow/res.md`
-SHA `65fad5bae02cb3345b0b22bc9cf0ce2999140a13bd00d7abe0f7091e9cf89120`.
+SHA `a232664ad90dada57ccbc2ca085f11a6e0ee159a5c434f528943ad729033979f`.
 Scope: CORE_SEMANTIC_RESEARCH. Authority: NONE_BY_CONTENT.
 
 App RES:
-SHA `1af0ba6e371514645b7bde90425aac5fbbe95eed0c8d0e66d879052fab0bdf45`.
+SHA `519722deee61e3fa436418fb71848609c6d670876de6618e1755a1702d8536e5`.
 Scope: PRODUCT_RUNTIME_SECURITY_RESEARCH. Authority: NONE_BY_CONTENT.
 
 Both were completely reread after final RES mutation. Main retains the Core semantic replay/promotion frontier; App retains OS/process egress enforcement. Cross-reference does not transfer authority.
@@ -78,10 +78,10 @@ App Core contract/currentness/snapshot fields remain UNKNOWN/null pending a Main
 Dedicated control branch:
 `pcmmad/project-control`.
 
-Latest verified remote tip:
-`a86c2e2200b5b052cc95fe3834dcfed0bc5a18ab`
-parent `061cb8dac4eaf608fb1c07a77cba626712e52ce0`
-tree `42cadbba62369741179b723fe2fcb7ff1058cdd1`.
+Latest independently observed **pre-refresh** remote tip:
+`efd86410359946de1c514cc098ef0df8583a9bb9`.
+
+This is intentionally a pre-refresh observation while the R4.2 full-adherence checkpoint is being prepared; resolve remote HEAD live after publication instead of treating this pointer as self-updating.
 
 This generation durably contains separate Main/Core and App continuity/RES slices.
 Pre-publication semantic gate:
@@ -112,7 +112,7 @@ Verified:
 - App gen10 state and qualified authority/lifecycle boundaries;
 - separate current Main/App RES surfaces;
 - semantic gate publication evidence;
-- durable control branch `a86c2e2...` fresh-clone readback.
+- durable control branch pre-refresh live readback at `efd8641...`; earlier `a86c2e2...` remains historical publication evidence.
 
 Provisional/open:
 - Main semantic-field candidate promotion;
@@ -125,3 +125,12 @@ Provisional/open:
 Main: re-read live currentness, then run exact committed-artifact replay/promotion qualification of `a7b4511734b1a1e507230308e75b31175aef4c4a` under the Linear Human Read / Semantic Gate.
 
 Cross-arm: App proceeds independently on OS/process egress enforcement; synchronize only when shared Core interfaces or evidence materially change.
+
+## R4.2 full-adherence synchronization — 2026-09-04
+- Current universal process SOP: **RAHL Engineering Canonical SOP R4.2**.
+- Exact carrier/project-root copy: 625,556 bytes; SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`.
+- Fresh active-surface semantic reread: 35/35 readable members, 3,070 source lines, 0 unread.
+- Fresh verifier PASS rc0; hostile 26/26 rejected.
+- Git control branch pre-refresh observation: `efd86410359946de1c514cc098ef0df8583a9bb9`; exact R4.2 Main/App ZIP blobs present there.
+- Process adherence repair applied across all eight Main/Core continuity/state surfaces before Git refresh.
+- Product/release authority remains separate from SOP/process authority.
