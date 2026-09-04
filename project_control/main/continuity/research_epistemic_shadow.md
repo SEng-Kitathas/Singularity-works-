@@ -3,7 +3,7 @@
 Last updated: 2026-09-04 UTC
 Status: ACTIVE RESEARCH CONTINUITY SURFACE
 Authority: NONE_BY_CONTENT
-Canonical process: RAHL Engineering Canonical SOP R4.2
+Canonical process: RAHL Engineering Canonical SOP R4.4
 
 ## Boundary
 This artifact preserves what Main has learned, why it matters, what remains uncertain, and what should be tested next.
@@ -28,7 +28,7 @@ Can Forge provide a language-agnostic semantic field that supports exact source/
 - Microseed provider substitution v0.4: 34/34 PASS under the bounded capability shape.
 - Good provider substitution preserved capability identity, contract signature, authority/currentness/qualification/scope, bounded behavior and replay semantics while changing provider implementation identity.
 - Hostile provider preserved contract signature and existing replay pass but changed bounded behavior and was correctly rejected by the independent behavior witness.
-- Main semantic-field Core candidate is remotely durable at `pcmmad/semantic-field-core-v01@a7b4511734b1a1e507230308e75b31175aef4c4a`, exact-replay qualified, and PROMOTION_READY_WITH_EVIDENCE; public qualified Main remains `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9` pending the separate promotion gate.
+- Semantic-field Core v0.1 is now qualified public Main at `a7b4511734b1a1e507230308e75b31175aef4c4a`, promoted from exact parent `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9` after replay, remote readback, and fresh-clone verification.
 - Main/App operate as coordinated development strands of one product: separate pressure, shared identity; independent embodiment, shared canonical truth.
 
 ## 4. Earned semantic laws / scars
@@ -57,21 +57,20 @@ Forge App should consume a qualified narrow bridge rather than copy or vendor th
 - Microseed replay has known Windows SQLite cleanup execution-hygiene debt after semantic JSON success.
 
 ## 7. Current UNKNOWN / open seams
-- Exact committed replay is no longer open: candidate `a7b4511734b1a1e507230308e75b31175aef4c4a` is replay-qualified and remotely durable.
-- Public-source promotion of semantic-field Core remains a **separate unresolved gate**; candidate durability/readiness does not itself advance qualified Main.
-- Shared Core -> App semantic-field bridge consumption is not yet qualified because public/qualified Main has not moved.
-- Inherited package-description/counter metadata remains stale and should be repaired separately from the exact semantic-field candidate.
+- Main semantic-field source promotion is closed: qualified public Main is `a7b4511734b1a1e507230308e75b31175aef4c4a`.
+- App source ancestry is synchronized and remotely/local qualified at `b674dbaaf428970c486753168e75847a345eb1c2`; the unresolved seam moved from Git integration to recovery currentness because Gen10 is source-bound to `328249429cc6e86e15db9797bd58eff5fabc5a2d`.
+- App consumption of `semantic_field_bridge` remains blocked until the exact forward-sync candidate is qualified and promoted to the App branch.
+- Inherited package-description/counter metadata remains stale and is separate P1 packaging/documentation debt.
 - Cross-language provider materialization and multi-file transactional substitution remain unqualified.
 - Primitive language-native fact ontology remains open beyond current relation/security-derived facts.
-- App checkpoint fields `core_contract_version`, `core_currentness_id`, and `semantic_snapshot_id` remain intentionally unbound until a qualified Core bridge exists.
+- App checkpoint fields `core_contract_version`, `core_currentness_id`, and `semantic_snapshot_id` remain unbound until the synchronized App baseline qualifies bridge consumption/restoration semantics.
 
 ## 8. Highest-value next discriminator
-Execute the public-Main PROMOTION gate for the already-qualified durable candidate `a7b4511734b1a1e507230308e75b31175aef4c4a`:
-remote-currentness readback -> exact ancestry proof -> promotion-authority check -> exact source mutation only if authorized -> remote/fresh-clone post-promotion verification -> immediate Main->App early forward-sync handshake.
+Qualify generation 11 for synchronized App source `b674dbaaf428970c486753168e75847a345eb1c2` using the existing recovery/session-health machinery, then require read-only Ergo source MATCH / NORMAL / READY. Only after that recovery-currentness gate closes does OS/process egress enforcement return to the immediate build frontier.
 
-Inherited package-description debt stays outside that exact candidate promotion unless separately justified and qualified.
-`PROMOTION_READY_WITH_EVIDENCE != PUBLIC_MAIN_PROMOTED`.
-`REMEMBERED_POINTER != CURRENT_STATE_EVIDENCE`.
+`APP_SOURCE_INTEGRATED != CURRENT_RECOVERY_LKG_MATCH`.
+`LKG != AUTOMATIC_NORMAL_RESUME_ACROSS_SOURCE_CHANGE`.
+`SOURCE_ADVANCED -> CURRENTNESS_REQUALIFICATION_REQUIRED`.
 
 ## 9. Cross-arm research pressure
 - App continues renderer/recovery/operator embodiment without private semantic-field truth.
@@ -85,10 +84,10 @@ No bounded witness is silently generalized to universal equivalence.
 Identifying evaluation and developmental evaluation remain distinct.
 
 ## 11. Promotion posture
-- Semantic-field substrate: exact-replay-qualified, remotely durable candidate `a7b4511734b1a1e507230308e75b31175aef4c4a`; PROMOTION_READY_WITH_EVIDENCE, not public canon.
+- Semantic-field Core v0.1: **QUALIFIED PUBLIC MAIN** at `a7b4511734b1a1e507230308e75b31175aef4c4a`.
 - Provider substitution: READY_WITH_EVIDENCE under bounded Microseed capability shape.
-- Canonical Main promotion: separate explicit PROMOTION gate is now the active Main discriminator.
-- App semantic-field consumption: blocked until qualified Core interface movement and early forward-sync handshake.
+- App semantic-field source integration: QUALIFIED/DURABLE at `b674dba...`; App recovery currentness for that source remains PENDING generation-11 qualification.
+- Inherited package-description/counter debt: OPEN SEPARATE P1; not part of the semantic-field promotion.
 
 ## 12. Research roughness quarantine
 Donor-specific Microseed capability adapter, security benchmark adapters, parser-specific lowerers, and campaign-specific harnesses remain research instrumentation until separately qualified for canonical source.
@@ -136,22 +135,23 @@ A frozen exact semantic field plus disposable projections/indexes, explicit sema
 Source hashes, commits, environment IDs, installed artifacts and runtime observations are subject/time-bound observations. Current-state claims require live verification at the point they matter.
 
 ## 20. Revisit triggers
-- Main semantic-field candidate replay result.
-- Qualified/public Main movement.
-- App begins consuming semantic-field bridge.
+- App forward-sync candidate is created, qualified, rejected, or promoted.
+- App begins consuming `semantic_field_bridge` or binds non-null Core currentness/snapshot identity.
 - New language-native lowerer.
 - Multi-file materialization attempt.
 - Any contradiction between semantic snapshot currentness and source readback.
-- Any App checkpoint requiring non-null Core semantic/currentness identity.
+- Inherited package-description debt becomes release/operator significant or is repaired.
+- Qualified Main moves again or is rolled back.
 
 ## 21. Research-to-do
-1. Checkpoint the fully admitted candidate-publication continuity state in `pcmmad/project-control`.
-2. Execute the separate public-Main PROMOTION gate for `a7b4511734b1a1e507230308e75b31175aef4c4a`.
-3. If shared Core moves, perform immediate Main -> App early forward sync before App consumption.
-4. Build the first App consumer against the canonical bridge only after qualified Main movement.
-5. Repair inherited package-description/counter metadata in a separately scoped, semantically admitted packaging/documentation pass.
+1. Qualify the isolated Main->App forward merge from App `328249429cc6e86e15db9797bd58eff5fabc5a2d` to qualified Main `a7b4511734b1a1e507230308e75b31175aef4c4a`.
+2. If integration qualifies, promote/read back the exact App merge non-force and only then allow canonical bridge consumption.
+3. Resume App OS/process egress-enforcement implementation from synchronized ancestry.
+4. Repair inherited package-description/counter metadata in a separately scoped packaging/documentation pass.
+5. Build the first App consumer against canonical `semantic_field_bridge` after App integration qualification.
 6. Expand primitive language-native fact layer under hostile tests.
-7. Keep RES synchronized when the meaning/frontier changes, without treating RES as doctrine.
+7. Keep RES synchronized when meaning/frontier changes, without treating RES as doctrine.
+
 
 ## R4.1 process-metabolism epistemic addendum — 2026-09-03
 Truth status: VERIFIED process-source ingestion; NONE_BY_CONTENT for research claims.
@@ -302,10 +302,10 @@ Epistemic update:
 
 This evidence strengthens the gate's residency as project-local process doctrine but does not grant the human read authority over unrelated technical facts; each promoted claim still requires its own evidence class.
 
-## R4.2 full-adherence synchronization — 2026-09-04
+## Historical R4.2 full-adherence synchronization — 2026-09-04
 Truth status: VERIFIED process-ingestion/currentness evidence; RES authority remains NONE_BY_CONTENT.
 
-R4.2 is the active universal engineering/research process and cold-start default for this arm. Fresh 2026-09-04 source contact re-read all 35 active/current readable members (3,070 source lines, 0 unread) from exact carrier SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`; fresh verifier PASS and hostile campaign 26/26 rejected.
+At this historical checkpoint R4.2 was the active universal engineering/research process and cold-start default for this arm. R4.4 now supersedes it. Fresh 2026-09-04 source contact re-read all 35 then-active/current readable members (3,070 source lines, 0 unread) from exact carrier SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`; fresh verifier PASS and hostile campaign 26/26 rejected.
 
 Operational meaning retained from R4.2:
 - semantic admission requires complete linear reading before load-bearing authority transitions; automation supports but does not substitute;
@@ -331,3 +331,95 @@ New operational distinction reinforced:
 - `PACKAGE_DESCRIPTION_CLEAN != INSTALLED_SURFACE_CORRECT`.
 
 The stale package long-description/counter surface is a genuine inherited seam discovered by distribution-level semantic reading. It should be repaired separately rather than used to launder unrelated changes into the exact qualified semantic-field commit.
+
+## Semantic-field public Main promotion — 2026-09-04
+Truth status: VERIFIED source-promotion evidence; RES authority remains NONE_BY_CONTENT.
+
+The semantic-field candidate `a7b4511734b1a1e507230308e75b31175aef4c4a` has crossed the separate source-promotion gate and is now exact qualified public Main. This changes the research frontier: bridge consumption is no longer blocked by Core promotion, but remains blocked by App ancestry/integration qualification. The next discriminator is therefore the exact early Main->App forward-sync candidate, not another Core replay.
+
+`PROMOTION_READY_WITH_EVIDENCE -> QUALIFIED_MAIN` only after exact mutation/readback/replay.
+`QUALIFIED_MAIN_ADVANCED != APP_INTEGRATION_COMPLETE`.
+`GIT_MERGEABILITY != APP_INTEGRATION_QUALIFIED`.
+
+## App source sync recovery-currentness — 2026-09-04
+Truth status: VERIFIED cross-arm integration/currentness evidence; RES authority remains NONE. App source forward sync is complete at `b674dbaaf428970c486753168e75847a345eb1c2`. New read-only recovery evidence shows Gen10 remains a historically valid LKG but no longer matches current source, so automatic NORMAL resume is downgraded to SAFE_ONLY/CAUTION. Recovery currentness requalification is the immediate discriminator; OS/process egress enforcement remains downstream.
+
+
+## App forward sync + generation 11 closure — 2026-09-04
+Truth status: VERIFIED cross-arm integration/recovery evidence; RES authority remains NONE_BY_CONTENT.
+
+The App forward-sync and recovery-currentness discriminators are now closed for the current source generation.
+
+Verified App source:
+`forge/app-shell-rd@b674dbaaf428970c486753168e75847a345eb1c2`.
+This is the exact two-parent merge of prior App `328249429cc6e86e15db9797bd58eff5fabc5a2d` and qualified Main `a7b4511734b1a1e507230308e75b31175aef4c4a`, tree `a0b650d0cc367c6f575a59f41005813ccd8ac4f0`.
+
+Fresh remote integration qualification passed compile, semantic-field 8/8, App regression 94/94 with ResourceWarning-as-error, and full verify_build. The merge carries exactly the nine qualified semantic-field paths and no private `forge_app/**` Core implementation.
+
+Generation 10 remained historically valid but source mismatch correctly downgraded it to CAUTION/SAFE_ONLY for current App source. Generation 11 `checkpoint-app-live-0011-b674dbaaf428` then independently earned VERIFIED/RESUMED/STABLE/LKG/source MATCH/NORMAL with four meaningful operations and real stability only at ~10.797s. Evidence SHA `817daa41119e499c3bc8cc978d0ea625be4598ef6a8263f3acf5cf84392fa3e9`; App Attempt Store 102 blobs / 102 attempts / 169 events, integrity ok.
+
+Cross-arm research interpretation:
+- the App synchronization gate is no longer the dominant discriminator;
+- App may now consume the Main-owned canonical bridge through bounded interfaces without vendoring Core;
+- bridge source availability still does **not** qualify checkpoint semantic restoration/currentness/snapshot identity;
+- the immediate downstream App security frontier returns to OS/process egress enforcement.
+
+`APP_SOURCE_INTEGRATED != NEW_LKG`.
+`BRIDGE_SOURCE_AVAILABLE != CHECKPOINT_SEMANTIC_RESTORATION_QUALIFIED`.
+`SOURCE_ADVANCED -> CURRENTNESS_REQUALIFICATION_REQUIRED`.
+
+Main's research frontier should therefore remain Core/interface focused while treating App egress enforcement as product-owned hostile-consumer pressure, not as a reason to absorb App network/recovery machinery into canonical Core.
+
+
+## CURRENT FRONTIER OVERRIDE — supersedes earlier gen11-pending sections — 2026-09-04
+This block supersedes the older `Current UNKNOWN / open seams`, `Highest-value next discriminator`, `Promotion posture`, `Revisit triggers`, and `Research-to-do` wording above wherever those sections still describe Main->App forward sync or generation 11 as pending. Historical text remains preserved as the research path.
+
+### Current verified cross-arm state
+- Qualified public Main: `a7b4511734b1a1e507230308e75b31175aef4c4a`.
+- Qualified App source integration: `b674dbaaf428970c486753168e75847a345eb1c2`, exact two-parent merge of prior App + qualified Main.
+- App generation 11 `checkpoint-app-live-0011-b674dbaaf428` is current VERIFIED/RESUMED/STABLE/LKG/source-MATCH/NORMAL baseline.
+- Gen11 evidence SHA `817daa41119e499c3bc8cc978d0ea625be4598ef6a8263f3acf5cf84392fa3e9`.
+- App Attempt Store 102 blobs / 102 attempts / 169 events, integrity ok.
+- Canonical bridge source is available in App ancestry.
+- App checkpoint Core restoration/currentness/snapshot identity remains unqualified and null.
+
+### Current open seams
+1. App OS/process egress enforcement — immediate downstream product/security frontier.
+2. App checkpoint semantic restoration/currentness/snapshot identity — separate P1 cross-arm interface frontier.
+3. Inherited package-description/counter metadata — separate P1 packaging/documentation debt.
+4. Cross-language provider materialization, multi-file transactional substitution and richer primitive language-native ontology remain unqualified Main research seams.
+
+### Current highest-value discriminator
+Main itself should not absorb App egress machinery. The immediate cross-arm value is to let App pressure the qualified bridge as a hostile consumer while App builds OS/process egress enforcement. Main should respond only to semantic/interface evidence returned upstream.
+
+### Current promotion posture
+- Semantic-field Core v0.1: QUALIFIED PUBLIC MAIN.
+- App semantic-field source integration: QUALIFIED/DURABLE.
+- App generation 11 recovery currentness: QUALIFIED CURRENT LKG.
+- Checkpoint semantic restoration identity: NOT QUALIFIED.
+- App egress enforcement: NOT QUALIFIED.
+
+### Current research-to-do
+1. Keep Main semantic ownership stable while App resumes egress enforcement.
+2. Accept/pressure App-returned bridge/interface counterexamples without copying App-specific machinery into Core.
+3. Separately define and qualify checkpoint restoration identity before App fills Core IDs.
+4. Repair inherited packaging-description/counter metadata in a separate bounded pass.
+5. Continue language-native ontology/materialization research only under named hostile discriminators.
+6. Keep Main/App RES synchronized when the research frontier changes.
+
+
+## R4.4 research-method addendum — 2026-09-04
+Truth status: VERIFIED process-package adoption; RES authority remains NONE_BY_CONTENT.
+
+R4.4 is now the current project-agnostic research/engineering process default at exact carrier SHA `04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc`.
+
+Independent adoption pressure in this project completed a full semantic read of the current R4.4 readable surface: 46/46 members, 4,537 source lines, deterministic 4,675-line stream SHA `d7dccd023a585d375710445d33a06e4a706cafc15e0b8f509237a983209288f8`; package verifier PASS / STATE PROMOTED; hostile suite 54/54 rejected; deterministic seal PASS.
+
+Research-method implications for the Main/Core frontier:
+- semantic-read claims now have a machine-checkable ledger/evidence surface, while `ATTESTATION != COMPREHENSION` remains explicit;
+- additive/synonym semantic reversals must be attacked, not only deletion/substitution of protected strings;
+- publication is a distinct artifact class: `SEALED_BYTES != PUBLISHED_BYTES`;
+- Global Cross-Project Scar Ledger recurrence is navigation/attack pressure, not authority; relevant scars must be provenance-inspected and re-derived under current constraints before reuse;
+- historical/re-entry summaries remain navigation and cannot outrank current source contact.
+
+This process update does not change Main semantic facts or App product facts by itself. Main's current research frontier remains Core/interface pressure returned by App hostile-consumer work plus independent cross-language/materialization seams. App's downstream product/security frontier remains OS/process egress enforcement.

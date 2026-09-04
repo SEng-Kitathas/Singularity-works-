@@ -1,94 +1,67 @@
 # Singularity Works / Forge — Cross-Thread Project Control
 
 This directory is the durable Git checkpoint surface for **Singularity Works / Forge across the Main/Core + App double helix**.
-It exists because a single project spans multiple chat threads. Chat context is not durable project state.
+Chat context is not durable project state. The live PCMMAD server remains the mutable high-fidelity working plane.
 
 ## Authority boundary
-- This branch is a **control/checkpoint branch**, not a public release/promotion branch.
-- Qualified public `main` remains separately governed.
-- The live PCMMAD server state is the high-fidelity mutable working plane.
-- `project_control/.gitattributes` normalizes checkpoint text to LF while explicitly keeping `*.zip` carriers binary (`-text`); server-source hashes remain recorded separately.
-- This Git tree is a bounded, Git-safe checkpoint of control state. The current RAHL R4.2 SOP is carried as exact binary copies under the Main/App control slices; the retained R4.1 Git-safe derivative is ancestry/history only. Canonical server-source hashes remain recorded separately.
-- `GIT_PUSH_SUCCESS != CONTROL_STATE_COHERENCE`: always read the branch HEAD and checkpoint manifest before trusting it.
+- `pcmmad/project-control` is continuity/control only; it does not promote product/source authority.
+- Qualified public Main and App source are governed separately.
+- Exact sealed SOP ZIP carriers are stored as binary `-text`; text control derivatives may be normalized/redacted and therefore carry separate server-source and Git-copy hashes.
+- `SEALED_BYTES != PUBLISHED_BYTES` applies to text/publication surfaces; exact R4.4 ZIP copies below are byte-identical sealed carriers.
+- `GIT_PUSH_SUCCESS != CONTROL_STATE_COHERENCE`; require remote ref readback + fresh-clone verifier.
 
 ## Re-entry read order
-For a fresh thread/session:
 1. `project_control/README.md`
 2. `project_control/CHECKPOINT.json`
-3. `project_control/main/continuity/live_shadow.md`
-4. `project_control/main/state/current.md`
-5. `project_control/main/state/doctrine_snapshot.md`
-6. `project_control/main/state/next_steps.md`
-7. `project_control/main/state/trace_matrix.md`
-8. `project_control/main/state/revisit_ledger.md`
-9. `project_control/main/continuity/research_epistemic_shadow.md` when Core research/frontier meaning matters
-10. `project_control/app/continuity/live_shadow.md`
-11. `project_control/app/state/current.md`
-12. `project_control/app/state/doctrine_snapshot.md`
-13. `project_control/app/continuity/research_epistemic_shadow.md` when product/security research/frontier meaning matters
-14. Main/App Design Thread Streams only as needed for chronology/recovery
-15. `project_control/main/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_2_2026-09-03.zip` or the byte-identical App copy when process re-entry is required; extract/read the active R4.2 package under its own cold-start protocol. The retained R4.1 Git-safe derivative is ancestry/history, not the current SOP.
+3. Main Live / Current / Doctrine / Next / Trace / Revisit
+4. App Live / Current / Doctrine / Next / Trace / Revisit
+5. Main/App RES when research/frontier meaning matters
+6. DTS only as needed for chronology/recovery
+7. R4.4 carrier/cold-start protocol when process re-entry is required
 
-Then reconcile against live server state and current Git remotes before mutation.
+Then reconcile against live server state and Git remotes before mutation.
 
 ## Current checkpoint facts
-- Canonical process SOP: **RAHL Engineering Canonical SOP R4.2**.
-- R4.2 carrier SHA-256: `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`.
-- Exact carrier copies: `project_control/main/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_2_2026-09-03.zip` and `project_control/app/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_2_2026-09-03.zip`.
-- R4.2 admission: 35/35 current readable members; deterministic semantic-read stream 3,175/3,175 lines, SHA `f6997264acb625d54d3924d2c25dc0689dfe1bbf65eb64eaa52c2afd61e68c3a`; primary verifier PASS; hostile suite 26/26 rejected; exact R4.1/R4.0/R3.1 ancestry reuse verified.
-- Qualified public Main at checkpoint: `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`.
-- Main semantic-field candidate: `pcmmad/semantic-field-core-v01@a7b4511734b1a1e507230308e75b31175aef4c4a`, **REMOTE DURABLE / EXACT-REPLAY QUALIFIED / PROMOTION_READY_WITH_EVIDENCE / NOT YET PUBLIC MAIN**.
-- Forge App branch: `forge/app-shell-rd`; live local/remote observation at checkpoint: `328249429cc6e86e15db9797bd58eff5fabc5a2d`, clean. Commit subject: `singularity-works: qualify operation lifecycle reconciliation v0.1`.
-- Double-helix model remains: separate pressure, shared identity; independent embodiment, shared canonical truth.
-- Main RES SHA-256: `a7231ecd2a8ad55516630e6e175aa45dd29c373a7b8a0cd368513e76a57018f4`; authority NONE.
-- App RES SHA-256: `f08aebcc1d8052bd7f63c3ff11bd2c7af2d7d32151236b03e45ca65cb3783a4a`; authority NONE.
+- Canonical process: **RAHL Engineering Canonical SOP R4.4**.
+- R4.4 carrier SHA: `04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc`; 2,532,911 bytes; 51 outer members.
+- Exact carriers: `main/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_4_2026-09-04.zip` and `app/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_4_2026-09-04.zip`.
+- Independent R4.4 admission: 46/46 current readable members; 4,537 source lines; deterministic 4,675-line stream SHA `d7dccd023a585d375710445d33a06e4a706cafc15e0b8f509237a983209288f8`; verifier PASS/PROMOTED; hostile 54/54 rejected; deterministic seal true.
+- Qualified public Main: `a7b4511734b1a1e507230308e75b31175aef4c4a`.
+- App source: `b674dbaaf428970c486753168e75847a345eb1c2`, exact qualified two-parent forward merge of prior App + qualified Main.
+- Current App recovery: generation 11 `checkpoint-app-live-0011-b674dbaaf428`, VERIFIED/RESUMED/STABLE/LKG/source MATCH/NORMAL.
+- Gen11 evidence SHA: `817daa41119e499c3bc8cc978d0ea625be4598ef6a8263f3acf5cf84392fa3e9`; Attempt Store live count at capture: 102 blobs / 102 attempts / 169 events, integrity ok.
+- Main RES SHA: `9abe90f23dfb719291736bf9ad6b155ad2982df7527a4e06909956473ba4ccb3`, authority NONE.
+- App RES SHA: `9d4d3b56432a822354f377f9482b3e7b9e78797de34be8d675d86d80461f0218`, authority NONE.
+- Checkpoint semantic restoration identity remains unqualified; gen11 Core IDs remain null.
+- Next product/security frontier after this control checkpoint: OS/process egress enforcement Attempt 0.
 
-## Git-safe continuity note
-The server DTS is the full-fidelity chronological record. The Git derivative redacts machine-local path roots and one email-shaped non-secret identifier found in the App DTS; its manifest records exact server-source hashes, Git-copy hashes, and declared transforms. No credential/token/private-key material is admitted by the checkpoint scan.
+## Current process scars
+`CANONICAL_PROCESS_DEFAULT != UNIVERSAL_DOMAIN_TRUTH`
 
-## Core continuity laws
-`CHAT_CONTEXT != DURABLE_PROJECT_STATE`
+`GATE_ASSERTED != GATE_WITNESSED`
 
-`LIVE_SERVER_STATE != CROSS_THREAD_CHECKPOINT`
+`ATTESTATION != COMPREHENSION`
 
-`GIT_PUSH_SUCCESS != CONTROL_STATE_COHERENCE`
+`GUARD_PRESENT != GUARD_EXERCISED`
+
+`PROTECTED_STRING_INTACT != MEANING_INTACT`
+
+`SEALED_BYTES != PUBLISHED_BYTES`
+
+`SEALING_EXEMPTION != PUBLICATION_EXEMPTION`
 
 `CONTROL_CHECKPOINT != PRODUCT_PROMOTION`
 
-## Remote establishment
-Initial remote establishment was independently verified at commit `8226f2ffb1e9e96bfca7f1ba91b32d47a904388e`; see `PUSH_RECEIPT_20260903.md`. Always resolve current branch HEAD live.
+`RES_CONTENT != GOVERNING_DOCTRINE`
 
-## Canonical R4.2 semantic-admission gate
-**LINEAR HUMAN READ / SEMANTIC GATE**
+`APP_SOURCE_INTEGRATED != NEW_LKG`
 
-If an artifact can be meaningfully read, it SHALL receive a complete linear semantic read before it is promoted, sealed, published, admitted, or treated as load-bearing. Automated checks may precede and support the gate; they SHALL NOT substitute for it.
+`BRIDGE_SOURCE_AVAILABLE != CHECKPOINT_SEMANTIC_RESTORATION_QUALIFIED`
 
-The exact operator addendum remains checkpointed at `project_control/main/maintenance/LINEAR_HUMAN_READ_SEMANTIC_GATE_ADDENDUM_20260903.md` as provenance/history; R4.2 now carries the active rule canonically.
+## Semantic admission evidence for this live fixed point
+- Initial cross-strand adoption stream: 18 artifacts / 3,905 deterministic lines / SHA `cc8114cf4c18f90710df4027dba82d8e86213f3c5b20597efabc14e897cd9b15`; it found stale R4.2/gen11 labels.
+- Correction stream: 11 artifacts / 1,599 deterministic lines / SHA `afc7ec51a9fb349e41df9c187a16e5e467953f1a3fa292d47932bd3898b435b9`; it found three residual pointer/authority defects.
+- Final corrected Main Doctrine/Main Live/App Live were fully reread after those three repairs.
 
-## RES ownership
-- Main/Core RES owns semantic/Core research continuity.
-- App RES owns product/runtime/security research continuity.
-- Both are authority NONE. Cross-reference does not transfer authority.
-- `RES_CONTENT != GOVERNING_DOCTRINE`.
-- `RES_SYNTHESIS != LINEAR_HUMAN_SEMANTIC_READ`.
-
-## Current SOP carrier copies
-- Main control copy: `project_control/main/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_2_2026-09-03.zip`.
-- App control copy: `project_control/app/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_2_2026-09-03.zip`.
-- Both are 625,556 bytes and exact SHA-256 `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`.
-- The two control copies are exact binaries, not rewritten Git-safe derivatives.
-## R4.2 full-adherence revalidation — 2026-09-04
-- Server carrier re-read: 35/35 active/current readable members, 3,070 source lines, 0 unread.
-- Fresh exact-carrier verifier PASS; hostile suite 26/26 rejected.
-- Bilateral Main/App continuity audit found and repaired R4.2 currentness drift before this control refresh.
-- Pre-publication audit: `project_control/main/maintenance/RAHL_R4_2_FULL_ADHERENCE_AUDIT_20260904.md`, source SHA `f63c31e79674837ee823037edbf344e333b0e6861aa479da3c108f786dacc76c`.
-- Pre-refresh control tip observed live: `efd86410359946de1c514cc098ef0df8583a9bb9`.
-- Current Git snapshot must pass its own semantic/readback gates before this audit can close.
-## Semantic-field candidate checkpoint — 2026-09-04
-- Previous verified control tip: `819cf6fc8d470bb5a8b5bfbf72e1791b7d480c8e`.
-- Public qualified Main at snapshot build: `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`.
-- Remote semantic-field candidate: `pcmmad/semantic-field-core-v01@a7b4511734b1a1e507230308e75b31175aef4c4a`; exact parent `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`.
-- Candidate verdict: `PROMOTION_READY_WITH_EVIDENCE`; public Main not yet advanced.
-- App source at snapshot build: `328249429cc6e86e15db9797bd58eff5fabc5a2d`; App consumption remains blocked until qualified Main advances and early forward sync completes.
-- R4.2 carrier remains exact SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`.
-- This checkpoint absorbs the deferred R4.2 closure receipts and semantic-field qualification/publication receipts under the fixed-point rule.
+## R4.4 research reuse rule
+When the Global Cross-Project Scar Ledger is available, recurrence is navigation/attack pressure rather than authority. Inspect provenance and independently re-derive applicability under current constraints before reuse.

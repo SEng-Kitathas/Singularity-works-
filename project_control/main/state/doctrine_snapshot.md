@@ -1,22 +1,22 @@
 # Doctrine Snapshot — Singularity Works / Forge LBE
 
 Last updated: 2026-09-04 UTC
-Mode: CHECKPOINT after RAHL R4.2 canonical process-SOP adoption
+Mode: CHECKPOINT — Main/App source synchronized; App generation-11 recovery currentness qualified
 
 ## Universal process SOP
-**RAHL Engineering Canonical SOP R4.2 (2026-09-03)** is now the current universal engineering/research process and cold-start SOP default.
+**RAHL Engineering Canonical SOP R4.4 (2026-09-04)** is now the current universal engineering/research process and cold-start SOP default.
 
 Verified carrier SHA:
-`eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`.
+`04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc`.
 
 Adoption record:
-`notes/maintenance/RAHL_R4_2_CANONICAL_SOP_ADOPTION_20260903.md`
-SHA `5222f5a991d34a1156c3b51b2e707e6d6c6a6461e2c5e94b40f3c50067ecbe34`.
+`notes/maintenance/RAHL_R4_4_CANONICAL_SOP_ADOPTION_20260904.md`
+SHA `5d801bde0c48df3c577597b3f753f895b251f7eefee048ae770ef06a208fdbae`.
 
 Authority ceiling:
 - `CANONICAL_PROCESS_DEFAULT != UNIVERSAL_DOMAIN_TRUTH`;
-- R4.2 has universal process/cold-start authority by adoption;
-- R4.2 gets no Forge semantic, Singularity Works product/security/architecture/legal/release authority merely by inclusion;
+- R4.4 has universal process/cold-start authority by adoption;
+- R4.4 gets no Forge semantic, Singularity Works product/security/architecture/legal/release authority merely by inclusion;
 - project-local Core/Main doctrine remains governing where more specific/stronger;
 - defaults, heuristics, triggers, scars, research candidates, ancestry, and RES content do not silently promote into canonical semantic law.
 
@@ -26,7 +26,7 @@ PDVER order is:
 `PROBE -> DERIVE -> VERIFY -> EMBODY -> RECURSE`.
 Pre-embodiment verification does not remove post-embodiment readback/attack where consequence matters. No fixed research-pass count is universal law.
 
-R4.1-derived base-tier guards retained active in R4.2:
+R4.1-derived base-tier guards remain active through R4.4 ancestry:
 - `BASE_TIER_FUNCTIONAL_OBLIGATIONS != OPTIONAL_FOR_NONTRIVIAL_WORK`;
 - `BASE_TIER_FUNCTIONAL_OBLIGATIONS != MANDATORY_LINEAR_PIPELINE`;
 - `PROPORTIONALITY != DISPENSATION_FROM_ENGINEERING_DISCIPLINE`;
@@ -78,7 +78,7 @@ SHA `c9e491567ac1fa99e5332891104f3343074d1d46177db82edb624a66cf85c48e`.
 App Git copy: `forge_app/promotion/MAIN_APP_CONVERGENCE_CONTEXT_VERBATIM_20260902.md`, commit `9aa8b14`.
 
 ## Semantic-field doctrine
-The current exact-replay-qualified remote candidate architecture is:
+The current qualified public-Main semantic-field architecture is:
 **mutable lowering/build state -> exact verified SemanticFactBundle -> immutable FrozenSemanticFactBundle -> rebuildable non-authoritative index -> bounded projection -> non-authoritative SnapshotDelta across frozen snapshots.**
 
 ### Durable truth boundary
@@ -144,20 +144,20 @@ PyGoat currentness remains 23/23 PASS under the current delta lineage. Harmless 
 - green expensive, gray visible.
 
 ## Promotion boundaries
-- Semantic-field stack is remotely durable and PROMOTION_READY_WITH_EVIDENCE at the exact candidate commit, but remains outside public/source canon until the separate promotion gate advances qualified Main.
+- Semantic-field stack is qualified public/source canon at exact Main commit `a7b4511734b1a1e507230308e75b31175aef4c4a`; App forward-sync is separately qualified/durable at `b674dbaaf428970c486753168e75847a345eb1c2`, while checkpoint semantic restoration identity remains separately unqualified.
 - Public qualified Main remains source/release gated.
 - Forge App candidates do not become Core/Main by existence or Git mergeability; integration promotion is explicit and evidence-bearing.
 
-## RES embodiment retained under R4.2 — synchronized through App gen10
+## RES embodiment retained under R4.4 — synchronized through App generation 11
 Main/Core RES:
 `continuity/research_epistemic_shadow/res.md`
-SHA `a7231ecd2a8ad55516630e6e175aa45dd29c373a7b8a0cd368513e76a57018f4`.
+SHA `9abe90f23dfb719291736bf9ad6b155ad2982df7527a4e06909956473ba4ccb3`.
 
-The current Main RES was read completely end-to-end after its append-oriented repair. It retains the public-Main promotion/interface frontier and cross-arm learning from App generation 9 durable authority state and generation 10 operation lifecycle/reconciliation, with OS/process egress enforcement identified as the dominant App security frontier.
+The current Main RES was read completely end-to-end after its generation-11 supersession block. Main/App source synchronization and App recovery-currentness are now closed for the current source; OS/process egress enforcement is the downstream App security frontier. Checkpoint semantic restoration/currentness/snapshot identity remains a separate P1 seam.
 
 App now owns a separate product/runtime/security RES:
 `singularity-works-forge-app/continuity/research_epistemic_shadow/res.md`
-SHA `f08aebcc1d8052bd7f63c3ff11bd2c7af2d7d32151236b03e45ca65cb3783a4a`.
+SHA `9d4d3b56432a822354f377f9482b3e7b9e78797de34be8d675d86d80461f0218`.
 
 Ceiling remains load-bearing:
 - `RES_CONTENT != GOVERNING_DOCTRINE`;
@@ -227,20 +227,20 @@ This strengthens the operational interpretation of:
 Automated checks remain supporting obligations where applicable; the human semantic-read gate is additive, not a replacement for them.
 
 ## R4.2 canonical integration — 2026-09-03 UTC
-R4.2 supersedes R4.1 as the active universal process/cold-start default at exact carrier SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`. Exact project-root copy: `sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_2_2026-09-03.zip`.
+Historical R4.2 state: R4.2 superseded R4.1 as the active universal process/cold-start default at exact carrier SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`. Its exact project-root copy is `sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_2_2026-09-03.zip`. R4.4 now supersedes R4.2.
 
 Admission basis: 35/35 current readable non-ancestry members read completely in deterministic order; semantic-read stream 3,175/3,175 lines, SHA `f6997264acb625d54d3924d2c25dc0689dfe1bbf65eb64eaa52c2afd61e68c3a`; R4.1/R4.0/R3.1 ancestry exact-hash + CRC reuse verified; primary verifier PASS; hostile suite 26/26 rejected.
 
-R4.2 canonically absorbs the previously additive Linear Human Read / Semantic Gate and Durable Local Execution / Control-Plane Minimization. The standalone semantic-gate addendum remains preserved as project history/evidence but is no longer the sole active authority for that rule.
+Historical R4.2 integration: R4.2 canonically absorbed the previously additive Linear Human Read / Semantic Gate and Durable Local Execution / Control-Plane Minimization. R4.4 now carries and extends those process laws; the standalone addendum remains provenance/history.
 
 New/strengthened active process scars include `CONTROL_PLANE_RESPONSE_FAILURE != LOCAL_EXECUTION_FAILURE`, `CONTROL_PLANE != BULK_DATA_PLANE`, `CONTROL_PLANE_MINIMIZATION != SEMANTIC_READ_SKIPPING`, `STRONGEST_SURVIVING_PLANE != PRETTIEST_PLANE`, `ASSISTANT_SIDE_CONVENIENCE != MATERIAL_ADVANTAGE`, and `EXECUTION_PLANE_FALLBACK != AUTHORITY_BYPASS`.
 
 R4.1 remains exact ancestry, including its base-tier metabolism correction. No Core semantic/product/release authority is transferred by SOP adoption.
 
 ## R4.2 full-adherence synchronization — 2026-09-04
-RAHL Engineering Canonical SOP **R4.2** remains the active universal process/cold-start authority for this project arm under `CANONICAL_PROCESS_DEFAULT != UNIVERSAL_DOMAIN_TRUTH`. Fresh 2026-09-04 semantic reread and verifier/hostile replay revalidated the exact carrier SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`.
+Historical R4.2 full-adherence state: R4.2 was the active universal process/cold-start authority for this project arm at this checkpoint. Fresh 2026-09-04 semantic reread and verifier/hostile replay revalidated exact carrier SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`. R4.4 now supersedes it.
 
-Active R4.2 process obligations include:
+R4.2 process obligations retained as ancestry and carried forward where not superseded include:
 - `AUTOMATED_CHECKS != LINEAR_SEMANTIC_READ`;
 - `CONTROL_PLANE_RESPONSE_FAILURE != LOCAL_EXECUTION_FAILURE`;
 - `CONTROL_PLANE_MINIMIZATION != SEMANTIC_READ_SKIPPING`;
@@ -249,3 +249,30 @@ Active R4.2 process obligations include:
 - `EXECUTION_PLANE_FALLBACK != AUTHORITY_BYPASS`;
 - `RES_CONTENT != GOVERNING_DOCTRINE`;
 - `BASE_TIER_FUNCTIONAL_OBLIGATIONS != OPTIONAL_FOR_NONTRIVIAL_WORK`.
+
+## Semantic-field public Main promotion — 2026-09-04
+Semantic-field Core v0.1 is now part of qualified public Main at `a7b4511734b1a1e507230308e75b31175aef4c4a` after exact promotion and post-promotion source replay. This promotes the bounded semantic-field implementation/bridge only; it does not promote language-specific lowerers, security adapters, App runtime/recovery ownership, or inherited package-description debt. Qualified Main movement activates the existing early Main->App synchronization doctrine.
+
+## App source sync recovery-currentness — 2026-09-04
+Source integration and recovery authority remain distinct. App contains canonical semantic-field Core in ancestry at `b674dbaaf428970c486753168e75847a345eb1c2`. Gen10 remains historical/source-stale SAFE_ONLY. Generation 11 `checkpoint-app-live-0011-b674dbaaf428` independently earned VERIFIED/RESUMED/STABLE/LKG/source MATCH/NORMAL after four meaningful operations and ~10.797s healthy runtime; LKG promotion followed only after STABLE. Evidence SHA `817daa41119e499c3bc8cc978d0ea625be4598ef6a8263f3acf5cf84392fa3e9`. No Core contract/currentness/snapshot IDs are invented merely because Core is available.
+
+`APP_SOURCE_INTEGRATED != NEW_LKG`.
+`BRIDGE_SOURCE_AVAILABLE != CHECKPOINT_SEMANTIC_RESTORATION_QUALIFIED`.
+
+The immediate downstream App frontier is OS/process egress enforcement; Main semantic ownership remains unchanged.
+
+## R4.4 canonical process integration — 2026-09-04
+R4.4 supersedes R4.2/R4.3 as the active universal process/cold-start authority at exact carrier SHA `04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc`. R4.3 is the exact canonical parent; R4.2/R4.1/R4.0/R3.1 remain retained ancestry. Independent sibling R4.3 donor evidence is not ancestry authority.
+
+Independent admission: 46/46 current readable members, deterministic 4,675-line semantic-read stream SHA `d7dccd023a585d375710445d33a06e4a706cafc15e0b8f509237a983209288f8`; verifier PASS / STATE PROMOTED; hostile 54/54 rejected; deterministic seal PASS.
+
+R4.4 adds load-bearing process laws around semantic gate evidence, host-identity guard self-tests, section inventory, anti-binding/additive hostile witnesses, publication reconciliation, Global Cross-Project Scar Ledger reuse discipline, and historical reconstruction/re-entry.
+
+`GATE_ASSERTED != GATE_WITNESSED`.
+`GUARD_PRESENT != GUARD_EXERCISED`.
+`PROTECTED_STRING_INTACT != MEANING_INTACT`.
+`SEALED_BYTES != PUBLISHED_BYTES`.
+`SEALING_EXEMPTION != PUBLICATION_EXEMPTION`.
+`SIBLING_DONOR != CANONICAL_PARENT`.
+
+R4.4 adoption does not modify Main semantic authority, App product authority, generation-11 recovery state, or egress-enforcement qualification.

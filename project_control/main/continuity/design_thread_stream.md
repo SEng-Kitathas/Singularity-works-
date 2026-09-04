@@ -867,3 +867,101 @@ A same-environment wheel/control comparison established candidate wheel `0cccdbc
 Qualification receipt `d2f5377027de444b066979beab1ac3a7eeb08591d376215abfc34dde41cc54e3` was created and completely read, yielding PROMOTION_READY_WITH_EVIDENCE. Independent GitHub readback showed candidate branch absent and public Main unchanged. Dry-run then non-force explicit push created `pcmmad/semantic-field-core-v01@a7b4511734b1a1e507230308e75b31175aef4c4a`. Independent remote readback and fresh clone confirmed exact HEAD/parent/nine-file delta, clean tree, diff check PASS and semantic tests 8/8. Public Main did not move.
 
 Next frontier: explicit public-Main PROMOTION gate; App does not consume candidate until qualified Main advances and an early Main->App handshake completes.
+
+---
+
+## Semantic-field public Main promotion — 2026-09-04
+Date: 2026-09-04 UTC
+Tags: PROMOTION, MAIN, SEMANTIC-FIELD, REMOTE-READBACK, DOUBLE-HELIX
+
+After candidate-publication control checkpoint `cadd64cde4428719b1f3ff6981a4224ea4e22fb8` was independently verified, assistant entered the explicitly queued PROMOTION gate. Live GitHub refs remained Main `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`, candidate `a7b4511734b1a1e507230308e75b31175aef4c4a`, App `328249429cc6e86e15db9797bd58eff5fabc5a2d`. Fresh candidate clone proved exact one-commit ancestry and nine-file qualified delta. Dry-run then non-force exact fast-forward promoted `a7b4511734b1a1e507230308e75b31175aef4c4a` to public `main`. Independent App-side `ls-remote` returned public Main `a7b4511734b1a1e507230308e75b31175aef4c4a`. A fresh public-Main clone was exact/clean; compile PASS, semantic-field 8/8, full verify_build PASS, report SHA `78d11c30...5e94a`, 0 failures / 29 inherited warnings.
+
+The qualified-Main movement immediately activates the double-helix forward-sync obligation. App remains unchanged pending isolated integration qualification; no App consumption authority is inferred from Git mergeability alone.
+
+
+---
+
+## Cross-arm entry — R4.2 requested push reconciled against newer concurrent control lineage — 2026-09-04
+Tags: R4.2, GIT-CONTROL, CONCURRENCY, READBACK, NO-DUPLICATE-MUTATION
+
+User said `Proceed` after a prior pass had prepared but not yet pushed a frozen R4.2 control candidate based on `pcmmad/project-control@a86c2e2200b5b052cc95fe3834dcfed0bc5a18ab`.
+
+Before staging, local-first currentness readback found that remote state had advanced concurrently:
+- `pcmmad/project-control` = `cadd64cde4428719b1f3ff6981a4224ea4e22fb8`;
+- public `main` = `a7b4511734b1a1e507230308e75b31175aef4c4a`;
+- App `forge/app-shell-rd` remained `328249429cc6e86e15db9797bd58eff5fabc5a2d`.
+
+Remote control ancestry from the prior `a86c2e2...` point showed that the requested work had already been completed by a stronger concurrent lineage:
+- `efd8641` — `control: adopt RAHL R4.2 for Main/App project control`;
+- `819cf6f` — `control: close R4.2 full-adherence checkpoint`;
+- `cadd64c` — `control: checkpoint semantic-field candidate publication`.
+
+A fresh single-branch clone of `pcmmad/project-control` verified exact HEAD `cadd64cde4428719b1f3ff6981a4224ea4e22fb8`, clean working tree, and `project_control/VERIFY_CHECKPOINT.py` PASS with 79 manifested files. Frozen CHECKPOINT SHA was `654dfd9b84271fc0dcaf1a963cab7c3ec88850f348278d8c856e57df228069c7`.
+
+The checkpoint identifies current canonical process as RAHL Engineering Canonical SOP R4.2 and contains exact Main/App control copies:
+- `project_control/main/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_2_2026-09-03.zip`;
+- `project_control/app/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_2_2026-09-03.zip`.
+
+Both copies were reread as exact 625,556-byte carriers with SHA `eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a`, 38 ZIP members, CRC/testzip PASS. The remote checkpoint records R4.2 semantic admission PASS over 35/35 current readable members, 3,070 source lines, deterministic 3,175-line stream SHA `f6997264acb625d54d3924d2c25dc0689dfe1bbf65eb64eaa52c2afd61e68c3a`, primary verifier PASS, hostile suite 26/26 rejected, and exact R4.1/R4.0/R3.1 ancestry reuse.
+
+Persisted Main/App Current surfaces independently agreed that R4.2 is current and that `cadd64c...` is the verified durable control tip. Main additionally showed qualified public `main` advanced to `a7b4511...`; App remains on `3282494...` pending qualified early Main->App forward sync.
+
+Therefore the stale unpushed R4.2 candidate was **not** staged or pushed. Its damaged/obsolete isolated worktree lanes were removed after consequence readback. The temporary fresh clone used for independent verification was also removed after Windows read-only Git pack attributes were cleared. No source branch or remote control mutation was performed in this reconciliation pass.
+
+Result: requested R4.2 copy/adoption/push is already VERIFIED COMPLETE on the newer remote lineage. Duplicate mutation was suppressed.
+
+---
+
+## App source sync recovery-currentness — 2026-09-04
+Date: 2026-09-04 UTC
+Tags: APP-SYNC, RECOVERY-CURRENTNESS, SAFE-ONLY, GEN11
+
+App's isolated semantic-field forward merge qualified as exact tree `a0b650d0cc367c6f575a59f41005813ccd8ac4f0` and became two-parent commit `b674dbaaf428970c486753168e75847a345eb1c2`. Non-force push, independent remote ref readback and fresh App clone verification passed compile, semantic-field 8/8, App 94/94 and full verify_build. The fresh verify report was completely reread because its SHA changed; recursive comparison proved exactly one field/byte difference, test duration 0.004s -> 0.005s. The actual local App source was then fast-forwarded ff-only to exact remote `b674dbaaf428970c486753168e75847a345eb1c2` and verified clean/tree/parents exact.
+
+Read-only Ergo against the real Attempt Store/current source selected generation 10 LKG but correctly reported source MISMATCH because Gen10 was bound to `328249429cc6e86e15db9797bd58eff5fabc5a2d`. Effective resume policy became SAFE_ONLY and posture CAUTION, authority NONE. Raw Gen10 payload was read directly from SQLite read-only and its null Core contract/currentness/snapshot fields were preserved as null. No Gen11 exists yet. Immediate gate is generation-11 recovery-currentness qualification before egress work resumes.
+
+
+---
+
+## Cross-arm entry — App semantic-field forward sync closed; generation 11 current LKG — 2026-09-04
+Tags: APP, MAIN-APP, SEMANTIC-FIELD, RECOVERY, GEN11, CROSS-ARM
+
+App forward-sync source integration is now verified complete at `forge/app-shell-rd@b674dbaaf428970c486753168e75847a345eb1c2`, exact merge tree `a0b650d0cc367c6f575a59f41005813ccd8ac4f0`, parents prior App `328249429cc6e86e15db9797bd58eff5fabc5a2d` and qualified Main `a7b4511734b1a1e507230308e75b31175aef4c4a`. Exact nine-file semantic-field delta entered App ancestry with no `forge_app/**` source change. Fresh remote compile, semantic-field 8/8, App 94/94 and full verify_build passed.
+
+Because source integration does not mint recovery reputation, generation 10 remained historical LKG but read-only Ergo currentness against `b674dba...` reported source MISMATCH / CAUTION / SAFE_ONLY.
+
+App then captured generation 11 `checkpoint-app-live-0011-b674dbaaf428`, parent gen10. The checkpoint retained null `core_contract_version`, `core_currentness_id` and `semantic_snapshot_id` because canonical bridge source availability is qualified but checkpoint semantic restoration/currentness identity is not.
+
+Generation 11 resume completed four meaningful operations and remained non-STABLE at ~2.719s / ~5.391s / ~8.110s. At ~10.797s it earned STABLE; only afterward was LKG promotion appended. Final state: VERIFIED / RESUMED / STABLE / LKG / source MATCH / NORMAL / early crash 0 / not quarantined / selected latest non-quarantined LKG / summary READY.
+
+Evidence `state/live_resume_session_0011.json` SHA `817daa41119e499c3bc8cc978d0ea625be4598ef6a8263f3acf5cf84392fa3e9` was completely read and preserved as Attempt `attempt-live-resume-session-0011-lkg` with exact blob/readback. App Attempt Store advanced to 102 blobs / 102 attempts / 169 events, integrity ok, WAL/FULL.
+
+App continuity/RES was reconciled. A concurrent stale Current tail saying “No Gen11 yet” was detected by post-mutation semantic read and removed from Current; its historical pre-gen11 state remains preserved chronologically in App DTS rather than being erased. App RES now returns the dominant product/security frontier to OS/process egress enforcement while retaining checkpoint semantic restoration identity as open P1.
+
+Main awareness note `notes/maintenance/APP_FORWARD_SYNC_GEN11_AWARENESS_20260904.md` SHA `5d469eae18ca3a78b8320086ebedb6c60fc5cc4eaab7864186c2f78f7da3d8b6` records the cross-arm boundary without Main source mutation.
+
+Main RES was updated with the same zero-authority cross-arm learning; current Main RES SHA `d10e0fa9fe98423451dd2205cae4c6b90c7314e8d9262380c6878a12dd63cf4e`.
+
+Next action: publish/read back a normal `pcmmad/project-control` checkpoint containing Main `a7b4511...`, App `b674dba...`, generation 11 and current Main/App RES/continuity. Only then begin new App OS/process egress-enforcement implementation.
+
+
+---
+
+## Cross-arm entry — RAHL R4.4 adopted as current universal process SOP — 2026-09-04
+Tags: R4.4, SOP, PROCESS, SEMANTIC-GATE, SCAR-LEDGER, PUBLICATION
+
+Operator supplied server-native carrier `RAHL_ENGINEERING_CANONICAL_SOP_R4_4_2026-09-04.zip` from the RAHL project root. Exact carrier: 2,532,911 bytes, SHA `04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc`, 51 ZIP members, CRC/testzip PASS.
+
+Before adoption, the complete current readable non-ancestry surface was independently read in deterministic order: 46/46 members, 4,537 source lines / 244,912 bytes; semantic stream 4,675/4,675 lines / 259,211 bytes, SHA `d7dccd023a585d375710445d33a06e4a706cafc15e0b8f509237a983209288f8`. No semantic defect was found.
+
+R4.4's own semantic-read ledger was inspected and contains no pending unread entries. Reuse claims bind to the exact sealed R4.3 parent manifest. Canonical parent R4.3 SHA `cd46c482608f48b1d15ad99acf4eafd07712de6b0efc44dc9e8638b3fdaaf58e`; retained R4.2/R4.1/R4.0/R3.1 ancestry identities and CRC PASS. Independent sibling R4.3 donor SHA `7d72e57dc2021af20753a942f87da38bf8ad31fbb89a6bd21145bd8e263d8552` remains donor evidence, not ancestry authority.
+
+Fresh extraction verifier PASS / STATE PROMOTED. Hostile suite 54/54 rejected with zero unexpected passes. Qualification runner PASS with deterministic seal true.
+
+Exact R4.4 carrier was copied byte-identically into Main `sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_4_2026-09-04.zip`. Adoption note `notes/maintenance/RAHL_R4_4_CANONICAL_SOP_ADOPTION_20260904.md` SHA `5d801bde0c48df3c577597b3f753f895b251f7eefee048ae770ef06a208fdbae`.
+
+Main Current/Doctrine/Next/Revisit/Trace/Live and RES were advanced to R4.4 while preserving R4.2/R4.3 history as ancestry. R4.4 adds/promotes semantic-gate evidence/interlock, host-identity self-tests, section inventory, anti-binding/additive hostile witnesses, publication reconciliation, Global Cross-Project Scar Ledger discipline, and historical reconstruction/re-entry rules.
+
+Active new scars include `GATE_ASSERTED != GATE_WITNESSED`, `GUARD_PRESENT != GUARD_EXERCISED`, `PROTECTED_STRING_INTACT != MEANING_INTACT`, `SEALED_BYTES != PUBLISHED_BYTES`, `SEALING_EXEMPTION != PUBLICATION_EXEMPTION`, and `SIBLING_DONOR != CANONICAL_PARENT`.
+
+R4.4 adoption does not alter qualified Main semantic source `a7b4511734b1a1e507230308e75b31175aef4c4a`, App source `b674dbaaf428970c486753168e75847a345eb1c2`, or App generation-11 recovery facts. The next consequence-bearing action remains one normal durable project-control checkpoint containing R4.4 + gen11/current continuity before App begins egress-enforcement implementation.

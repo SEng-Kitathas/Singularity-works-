@@ -1,0 +1,122 @@
+{
+  "checkpoint": {
+    "blob_sha256": "0a644a5040256482d79eb5dba23c73afb6586f95223946f1c283e6d72f22c821",
+    "checkpoint_id": "checkpoint-app-live-0011-b674dbaaf428",
+    "early_crash_count": 0,
+    "generation": 11,
+    "lkg": true,
+    "parent_checkpoint_id": "checkpoint-app-live-0010-328249429cc6",
+    "quarantined": false,
+    "resume_policy": "NORMAL",
+    "resumed": true,
+    "semantic_snapshot_id": null,
+    "source_head": "b674dbaaf428970c486753168e75847a345eb1c2",
+    "stable": true,
+    "status": "LKG",
+    "verified": true
+  },
+  "checkpoint_id": "checkpoint-app-live-0011-b674dbaaf428",
+  "checkpoint_summary": {
+    "checkpoint_count": 12,
+    "current_source_head": "b674dbaaf428970c486753168e75847a345eb1c2",
+    "observer_authority": "NONE",
+    "reasons": [],
+    "schema": "forge-ergo-checkpoint-summary/0.1",
+    "selected_checkpoint_id": "checkpoint-app-live-0011-b674dbaaf428",
+    "selected_early_crash_count": 0,
+    "selected_generation": 11,
+    "selected_lkg": true,
+    "selected_quarantined": false,
+    "selected_resume_policy": "NORMAL",
+    "selected_semantic_snapshot_id": null,
+    "selected_source_head": "b674dbaaf428970c486753168e75847a345eb1c2",
+    "selected_stable": true,
+    "selected_status": "LKG",
+    "selected_verified": true,
+    "selection_reason": "latest non-quarantined LKG checkpoint",
+    "source_currentness": "MATCH",
+    "status": "READY",
+    "store_path": "<LOCAL_APP_ATTEMPT_STORE_DB>"
+  },
+  "core_checkpoint_identity": {
+    "core_contract_version": null,
+    "core_currentness_id": null,
+    "reason": "canonical bridge source is integrated, but App checkpoint restoration identity has not yet been explicitly qualified",
+    "semantic_snapshot_id": null
+  },
+  "forward_sync_receipts": {
+    "qualification": {
+      "bytes": 6420,
+      "lines": 129,
+      "sha256": "ef9cbb12293a0077e143ee8c991a466bc23019a303221a13be85bf3cc46c604e"
+    },
+    "remote_closure": {
+      "bytes": 5742,
+      "lines": 129,
+      "sha256": "8119f920e0c8e1c34c85ebe8e6ab5d01cbf32e5ab01309a8ede68e40145fa2ec"
+    }
+  },
+  "heartbeats": [
+    {
+      "elapsed_seconds": 2.7189999999973224,
+      "meaningful_operations": 4,
+      "ordinal": 1,
+      "stable": false
+    },
+    {
+      "elapsed_seconds": 5.39100000000326,
+      "meaningful_operations": 4,
+      "ordinal": 2,
+      "stable": false
+    },
+    {
+      "elapsed_seconds": 8.110000000000582,
+      "meaningful_operations": 4,
+      "ordinal": 3,
+      "stable": false
+    },
+    {
+      "elapsed_seconds": 10.797000000005937,
+      "meaningful_operations": 4,
+      "ordinal": 4,
+      "stable": true
+    }
+  ],
+  "operations": [
+    "durable_recovery_and_exact_source_inspection",
+    "forward_sync_qualification_and_remote_closure_readback",
+    "canonical_semantic_bridge_and_semantic_field_tests",
+    "gen11_verified_resume_readback"
+  ],
+  "parent_checkpoint_id": "checkpoint-app-live-0010-328249429cc6",
+  "resume_id": "resume-app-live-0011-forward-sync-qualified",
+  "schema": "forge-app-live-resume-session/0.1",
+  "semantic_bridge": {
+    "schema": "singularity-works.semantic-field-bridge/0.1",
+    "source_sha256": "d8fe6650895409c3b80f78291af78c71552f0337c003b4f65ad5ac717d5e1c94"
+  },
+  "semantic_field_tests": {
+    "bytes": 1358,
+    "lines": 13,
+    "returncode": 0,
+    "sha256": "d26198019f2936b2389dfc9b70879bc70d0f9dc4b7cbdb1558dca29f7fbf78af"
+  },
+  "source_head": "b674dbaaf428970c486753168e75847a345eb1c2",
+  "store_before_evidence_capture": {
+    "counts": {
+      "attempts": 101,
+      "blobs": 101,
+      "events": 168
+    },
+    "integrity": "ok",
+    "journal_mode": "wal",
+    "last_event": {
+      "attempt_id": "checkpoint-app-live-0011-b674dbaaf428",
+      "created_at": "2026-09-04T17:35:22.305814Z",
+      "event_id": "checkpoint-lkg:checkpoint-app-live-0011-b674dbaaf428:lkg-app-live-0011-forward-sync-qualified",
+      "event_type": "checkpoint_lkg_promoted",
+      "seq": 168
+    },
+    "synchronous": 2
+  }
+}
