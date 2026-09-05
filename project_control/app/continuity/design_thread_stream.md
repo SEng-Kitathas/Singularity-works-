@@ -857,3 +857,35 @@ App Current/Doctrine/Next/Revisit/Trace/Live and RES were advanced to R4.4 witho
 R4.4 adds method pressure directly relevant to the next egress-enforcement campaign: query the Global Cross-Project Scar Ledger when available, inspect provenance and re-derive applicability; gate assertions require evidence surfaces; additive/synonym semantic reversals are first-class hostile attacks; publication bytes must be reconciled separately from sealed bytes.
 
 The product/security frontier remains OS/process egress enforcement. A normal durable `pcmmad/project-control` checkpoint containing R4.4 + gen11/current continuity must be published/read back before new enforcement implementation begins.
+
+
+---
+
+## Entry 021 — R4.4 + generation-11 durable control checkpoint published/read back — 2026-09-04
+Tags: R4.4, GEN11, GIT-CONTROL, PUBLICATION, FRESH-CLONE, FIXED-POINT
+
+The combined R4.4 + synchronized source + generation-11 control checkpoint was published from an isolated control worktree based exactly on prior remote `cadd64cde4428719b1f3ff6981a4224ea4e22fb8`.
+
+Final frozen CHECKPOINT: `c86558c829012caf8ff8844b0d01ef8eeb2df47d4cedf86137700d9aaeb2a84a`, 1,264 lines, semantic gate PASS, 88 manifested files. Publication admission separated exact already-read server sources, transformed Git-safe derivatives and exact sealed R4.4 ZIPs. A machine scan found one absolute local Attempt Store DB path in the Git-only gen11 evidence derivative; that derivative was redacted to `<LOCAL_APP_ATTEMPT_STORE_DB>`, completely reread, and the exact server evidence SHA `817daa41119e499c3bc8cc978d0ea625be4598ef6a8263f3acf5cf84392fa3e9` remained recorded separately. Final privacy/actionable-path findings 0.
+
+All 88 staged and committed manifest blobs matched CHECKPOINT exactly. Commit `cb8d01c5e635347e038b4dffea49387945aea72d`, parent `cadd64cde4428719b1f3ff6981a4224ea4e22fb8`, tree `ca773d2f9e5ee4cd374bc076d2c47254b682197f`, subject `control: checkpoint R4.4 and App generation 11`.
+
+Dry-run non-force push PASS. Actual non-force push PASS. Independent `ls-remote` exact. Fresh single-branch clone exact/clean; verifier PASS / 88; CHECKPOINT exact; Main/App R4.4 carriers exact SHA `04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc`, 51 members, CRC-clean; App source remained `b674dbaaf428970c486753168e75847a345eb1c2`; generation 11 remained VERIFIED/RESUMED/STABLE/LKG/source MATCH/NORMAL.
+
+App post-push receipt `notes/maintenance/R4_4_GEN11_CONTROL_CHECKPOINT_20260904.md` SHA `620c3c1762ae92be4550850556a434cea2deba74d61096adbdc6dec5dbd307f8`.
+
+Current durable cross-thread anchor is now `pcmmad/project-control@cb8d01c5e635347e038b4dffea49387945aea72d`. Prior `cadd64c...` state remains historical only.
+
+Immediate App frontier: OS/process egress-enforcement BUILD-PLAN/AUDIT under R4.4. Query/re-derive relevant Global Cross-Project Scar Ledger recurrence if available; inspect actual Windows/process primitives and preserve enforcement Attempt 0 before first execution. Do not wire a real provider first.
+
+Fixed-point rule: post-push receipt/pointer updates wait for the next normal control checkpoint; no recursive immediate publication.
+
+---
+
+## ICF-CS v1.0 adoption — 2026-09-05
+Date: 2026-09-05 UTC
+Tags: ICF-CS, CURRENT-INGRESS, CONTINUITY
+
+USER supplied the project-agnostic Intent–Constraint–Frontier Continuity Standard solution and directed the project to use it while ignoring the donor project's specifics. Assistant re-grounded on current App reality: R4.4, source `b674dba...`, generation 11 LKG/source MATCH/NORMAL, durable control baseline `cb8d01c...`, egress enforcement frontier.
+
+Main-created ICF-CS standard SHA `e279b9412f1ba3aff3634afd2ab046db855e5ce491510b7569f83f85399c498f`, shared current project instance `dc3612d9e0fc8a34a98fe56c332a7d73ac6142b63e49ecc1d57bd6078ee6171d`, and ingress pointer `8d2e9a7fd9091e9970386b7d7a8398c9227bb19f26b7b700bde60d3219264e95` were mirrored byte-identically into App. App Live/Current/Doctrine/Next/Trace/Revisit/DTS were reconciled so fresh-thread ingress uses Intent/Constraints/Frontier before DTS history. One bounded project-control publication is now required before egress Attempt 0 resumes.

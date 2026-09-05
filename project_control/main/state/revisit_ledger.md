@@ -1,6 +1,6 @@
 # Revisit Ledger — Singularity Works / Forge LBE
 
-Last updated: 2026-09-04 UTC
+Last updated: 2026-09-05 UTC
 
 | Date | Seam / Claim / Decision | Why revisit | What could invalidate it | Evidence/action needed | Priority | Status | Next action |
 |---|---|---|---|---|---|---|---|
@@ -52,6 +52,8 @@ Exact bound text governing the resolved row above: If an artifact can be meaning
 
 | 2026-09-04 | App recovery currentness after source sync | Gen10 source differs from current App source `b674dbaaf428970c486753168e75847a345eb1c2` | generation 11 cannot earn stable/LKG or source currentness | gen11 capture/resume/health/LKG + read-only Ergo MATCH/NORMAL/READY | P0 | RESOLVED — GEN11 CURRENT LKG | Reopen only on source drift/crash/newer qualified checkpoint |
 | 2026-09-04 | R4.4 universal SOP adoption | R4.4 supersedes R4.2 process authority and adds ledger/anti-binding/publication reconciliation/scar-ledger discipline | carrier identity/read/qualification contradiction or stronger superseding SOP | exact carrier SHA `04f3e94e...b3bbc`; 46/46 current readable members; 4,675-line semantic stream; verifier PASS; hostile 54/54; deterministic seal | P0 | RESOLVED / CURRENT PROCESS | Preserve R4.2/R4.3 ancestry; apply R4.4 gates to future promotion/publication |
-| 2026-09-04 | Durable control reflects gen11 + R4.4 | last verified `pcmmad/project-control@cadd64cde4428719b1f3ff6981a4224ea4e22fb8` predates final gen11/R4.4 state | future thread rehydrates stale process/recovery frontier | one normal R4.4 control checkpoint + semantic gate + staged equality + non-force push + fresh clone | P0 | OPEN UNTIL PUSH | Complete before new egress-enforcement implementation |
+| 2026-09-04 | Durable control reflects gen11 + R4.4 | prior `cadd64c...` anchor predated final gen11/R4.4 state | checkpoint publication could fail or drift | R4.4 semantic/publication gate + 88/88 staged/committed manifest equality + non-force push + fresh clone | P0 | RESOLVED at `cb8d01c5e635347e038b4dffea49387945aea72d` | Reopen only on control drift/verification contradiction or newer load-bearing state |
 | 2026-09-04 | App checkpoint semantic restoration identity | canonical bridge source is integrated but gen11 Core IDs remain null | restoration/currentness semantics later qualify differently | explicit Main/App restoration interface qualification | P1 | OPEN | Do not populate by inference |
 | 2026-09-04 | App OS/process egress enforcement | Connection Gate/lifecycle are qualified but ambient network denial is not | child/plugin/subprocess/DNS/loopback/proxy escape | R4.4-governed Attempt 0 hostile campaign | P0 | OPEN / NEXT PRODUCT FRONTIER | Query relevant global scars, inspect Windows primitives, preserve Attempt 0 |
+
+| 2026-09-05 | ICF-CS current-ingress remains discoverable/current | fresh thread could find historical/donor prose before current project direction | pointer missing/stale, ICF instance diverges from Current/Next/Doctrine, or cold start acts on remembered pointers | ingress-pointer check + ICF/current-state reconciliation + live readback before mutation | P0 | ACTIVE LOAD-BEARING CONTINUITY RULE | verify at each control checkpoint/thread handoff |

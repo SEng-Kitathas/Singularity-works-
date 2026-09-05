@@ -11,17 +11,29 @@ Chat context is not durable project state. The live PCMMAD server remains the mu
 - `GIT_PUSH_SUCCESS != CONTROL_STATE_COHERENCE`; require remote ref readback + fresh-clone verifier.
 
 ## Re-entry read order
-1. `project_control/README.md`
-2. `project_control/CHECKPOINT.json`
-3. Main Live / Current / Doctrine / Next / Trace / Revisit
-4. App Live / Current / Doctrine / Next / Trace / Revisit
-5. Main/App RES when research/frontier meaning matters
-6. DTS only as needed for chronology/recovery
-7. R4.4 carrier/cold-start protocol when process re-entry is required
+1. `project_control/main/state/current.md` (or App Current when entering through App)
+2. `project_control/main/checkpoints/PROJECT_INTENT_CURRENT.md` / App exact counterpart
+3. `project_control/main/state/doctrine/PROJECT_COMMANDERS_INTENT_CURRENT.md`
+4. `project_control/main/state/doctrine/INTENT_CONSTRAINT_FRONTIER_CONTINUITY_STANDARD.md`
+5. current R4.4 process + Next / Doctrine / Revisit / Trace
+6. Live Shadow
+7. DTS only after current ingress is established
+8. live Git/recovery/environment readback before mutation
+
+Cold-start grammar:
+`CURRENT STATE -> ICF-CS -> R4.4 + NEXT/DOCTRINE/REVISIT/TRACE -> LIVE SHADOW -> DTS -> LIVE READBACK BEFORE MUTATION`
+
+If material surfaces disagree:
+`CONFLICT -> RECOVERY/AUDIT -> LOCALIZE -> REPAIR/SUPERSEDE -> READBACK -> RESUME`
 
 Then reconcile against live server state and Git remotes before mutation.
 
 ## Current checkpoint facts
+- ICF-CS v1.0 authoritative server-source SHA: `e279b9412f1ba3aff3634afd2ab046db855e5ce491510b7569f83f85399c498f`; LF-normalized Git-copy SHA: `06b1271bfa8aee5dbd78a3ad7d7d4e56b4d9ccaaf4825bc90504d4d3f194fb40`.
+- Current project Intent/Constraints/Frontier instance SHA: `dc3612d9e0fc8a34a98fe56c332a7d73ac6142b63e49ecc1d57bd6078ee6171d`.
+- Discoverable ingress pointer SHA: `8d2e9a7fd9091e9970386b7d7a8398c9227bb19f26b7b700bde60d3219264e95`.
+- ICF adoption receipt authoritative server-source SHA: `3ae4d9a4360ab576aa027c6c80f793050c48e4db57f9e94ec3eeeee7739c97aa`; LF-normalized Git-copy SHA: `a0a192bfd27825ca023822e1a0f35ca46867c65980997caf0cc17f067fe8fc20`.
+- Core law: `DIRECTION != CONSTRAINTS != FRONTIER != HISTORY`.
 - Canonical process: **RAHL Engineering Canonical SOP R4.4**.
 - R4.4 carrier SHA: `04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc`; 2,532,911 bytes; 51 outer members.
 - Exact carriers: `main/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_4_2026-09-04.zip` and `app/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_4_2026-09-04.zip`.

@@ -2,10 +2,10 @@
 
 ## Thread Identity
 - Project: `singularity-works-forge-app`
-- Last Updated: 2026-09-04 UTC
-- Mode: CHECKPOINT after qualified Main->App forward sync + generation-11 LKG
-- Role: R5 Reality Pressure Engine
-- Dominant Objective: preserve synchronized source/recovery baseline and move into OS/process egress-enforcement Attempt 0 without wiring a real provider first.
+- Last Updated: 2026-09-05 UTC
+- Mode: CHECKPOINT — ICF-CS v1.0 adoption and durable-control publication
+- Role: R4 Convergence Refiner
+- Dominant Objective: make current project direction/constraints/frontier explicit and durable under ICF-CS v1.0, then resume OS/process egress-enforcement Attempt 0 from the synchronized Gen11 baseline.
 
 ## Active User Intent
 - Continue autonomous build work under RAHL R4.4.
@@ -16,6 +16,7 @@
 
 ## Current Authoritative State
 - R4.4 is current process/cold-start SOP, carrier SHA `04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc`; exact project-root copy `sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_4_2026-09-04.zip`.
+- ICF-CS v1.0 is the project continuity/rehydration standard beneath R4.4: standard SHA `e279b9412f1ba3aff3634afd2ab046db855e5ce491510b7569f83f85399c498f`, current project instance SHA `dc3612d9e0fc8a34a98fe56c332a7d73ac6142b63e49ecc1d57bd6078ee6171d`, ingress pointer SHA `8d2e9a7fd9091e9970386b7d7a8398c9227bb19f26b7b700bde60d3219264e95`.
 - App source branch `forge/app-shell-rd` local/remote exact and clean at `b674dbaaf428970c486753168e75847a345eb1c2`.
 - `b674dba...` is the qualified two-parent forward merge of prior App `328249429...` and qualified Main `a7b451173...`; exact tree `a0b650d0cc367c6f575a59f41005813ccd8ac4f0`.
 - Forward-sync qualification receipt SHA `ef9cbb12293a0077e143ee8c991a466bc23019a303221a13be85bf3cc46c604e`.
@@ -29,13 +30,18 @@
 - Generation 10 remains valid historical LKG evidence but source mismatch against current App makes its effective automatic resume SAFE_ONLY.
 - Attempt Store 102 blobs / 102 attempts / 169 events, integrity ok, WAL/FULL.
 - App RES current file `continuity/research_epistemic_shadow/res.md` SHA `9d4d3b56432a822354f377f9482b3e7b9e78797de34be8d675d86d80461f0218`, authority NONE_BY_CONTENT; dominant frontier is OS/process egress enforcement.
-- Last independently verified durable project-control anchor before this live mutation remains `pcmmad/project-control@cadd64cde4428719b1f3ff6981a4224ea4e22fb8`, CHECKPOINT `654dfd9b84271fc0dcaf1a963cab7c3ec88850f348278d8c856e57df228069c7`; it is now stale relative to gen11 and must be refreshed normally.
+- Latest independently verified durable project-control anchor is `pcmmad/project-control@cb8d01c5e635347e038b4dffea49387945aea72d`, CHECKPOINT `c86558c829012caf8ff8844b0d01ef8eeb2df47d4cedf86137700d9aaeb2a84a`, verifier PASS 88, fresh-clone exact/clean; R4.4/gen11/current RES state is durable.
 
 - R4.4 adoption evidence: complete independent semantic read 46/46 / 4,675 stream lines SHA `d7dccd02...288f8`; verifier PASS/PROMOTED; hostile 54/54; deterministic seal true.
 - R4.4 new gate/publication scars active: `GATE_ASSERTED != GATE_WITNESSED`, `GUARD_PRESENT != GUARD_EXERCISED`, `PROTECTED_STRING_INTACT != MEANING_INTACT`, `SEALED_BYTES != PUBLISHED_BYTES`.
 
 ## Active Constraints
 - `CANONICAL_PROCESS_DEFAULT != UNIVERSAL_DOMAIN_TRUTH`.
+- `DIRECTION != CONSTRAINTS != FRONTIER != HISTORY`.
+- `HISTORICAL_HANDOFF != CURRENT_INGRESS`.
+- `DONOR != AUTHORITY`.
+- `RECENT_TIMESTAMP != CURRENT_AUTHORITY`.
+- `STALE_GREEN != CURRENT_EVIDENCE`.
 - `AUTOMATED_CHECKS != LINEAR_HUMAN_SEMANTIC_READ`.
 - `MACHINE_CHECK_PASS != SEMANTIC_ADMISSION`.
 - `RES_CONTENT != GOVERNING_DOCTRINE`.
@@ -57,32 +63,30 @@
 - Generation 11 supersedes gen10 as current LKG; gen10 history remains preserved.
 - Forward-sync integration gate is closed for Main `a7b4511...` / App `b674dba...`.
 - Product/security frontier returns to OS/process egress enforcement.
-- A normal control checkpoint must absorb this state before cross-thread continuity is considered durable at the new baseline.
+- Durable R4.4/gen11 control checkpoint is complete; cross-thread continuity matches the current baseline.
 
 ## Open Loops
-1. Publish a new `pcmmad/project-control` checkpoint containing forward-sync/gen11 continuity and fresh RES identities.
-2. Inspect actual Windows/process launch topology and available egress-enforcement primitives.
-3. Define protected execution-domain boundary without claiming machine-wide control prematurely.
-4. Preserve enforcement Attempt 0 protocol/code/tests before first execution.
-5. Pressure raw socket/subprocess/plugin/DNS/loopback/inherited-capability bypasses.
-6. Define broker-only allow path bound to current Connection Gate authority + prepared operation identity.
-7. Separately qualify checkpoint semantic snapshot/currentness/restoration identity later.
-8. Resume provider/OAuth/Vault connector work only after enforcement boundary qualifies.
+1. Publish/read back one bounded `pcmmad/project-control` checkpoint containing ICF-CS v1.0, the shared project Intent/Constraints/Frontier instance, and current ingress pointer.
+2. After that durability gate, inspect Windows/process launch topology and start egress-enforcement Attempt 0.
+3. Define the protected execution-domain boundary without claiming machine-wide control prematurely.
+4. Preserve enforcement Attempt 0 before first execution and pressure raw socket/subprocess/plugin/DNS/loopback/inherited-capability bypasses.
+5. Separately qualify checkpoint semantic restoration identity later.
+6. Resume provider/OAuth/Vault connector work only after enforcement boundary qualifies.
 
 ## Immediate Next Step
-First publish/read back the normal durable control checkpoint for source `b674dba...` + generation 11. Then enter BUILD-PLAN/AUDIT for OS/process egress enforcement and preserve Attempt 0 before first execution.
+Seal ICF-CS v1.0 into the durable project-control branch and independently read it back. Then enter BUILD-PLAN/AUDIT for OS/process egress enforcement using the ICF current-ingress order and live currentness readback before mutation.
 
 ## Last 10 Turn Reinforcement Window
-1. R4.2 Main/App SOP copy/adoption request was audited; newer control lineage already completed it, so duplicate push was suppressed.
-2. Remote control `cadd64c...` fresh clone verified R4.2 Main/App carriers and 79-file checkpoint.
-3. User said Proceed; intended early Main->App merge qualification began.
-4. Git currentness revealed App had already advanced concurrently to `b674dba...`, a two-parent merge of old App and qualified Main.
-5. Forward-sync qualification and remote-closure receipts were fully read; they prove exact nine-file Main delta, no `forge_app/**` change, semantic 8/8, App 94/94, verify_build PASS and exact remote/fresh-clone integration.
-6. Read-only currentness against source `b674dba...` showed gen10 remains historical LKG but CAUTION/SAFE_ONLY due source MISMATCH.
-7. Generation 11 was captured at exact source `b674dba...`, parent gen10, with Core restoration identity fields intentionally null.
-8. Live gen11 resume performed 4 meaningful operations; STABLE remained false through ~8.110s and became true at ~10.797s; LKG promotion followed only afterward.
-9. Gen11 evidence SHA `817daa41...a3e9` was fully read and preserved as exact verified Attempt; store advanced to 102/102/169 integrity ok.
-10. Current/Doctrine/Next/Revisit/Trace/RES/Live are being reconciled to close the integration gate and return frontier to OS/process egress enforcement; control checkpoint refresh remains next.
+1. R4.4 remains current process; App source `b674dba...` and generation 11 MATCH/NORMAL/READY remain qualified.
+2. Durable control baseline `cb8d01c5e635347e038b4dffea49387945aea72d` / CHECKPOINT `c86558c...b2a84a` remains the previous verified cross-thread checkpoint.
+3. User supplied project-agnostic ICF-CS v1.0 and directed this project to use the solution rather than donor-project specifics.
+4. Main created reusable ICF-CS standard SHA `e279b9412f1ba3aff3634afd2ab046db855e5ce491510b7569f83f85399c498f` and completely read it.
+5. Main created current shared project Intent/Constraints/Frontier instance SHA `dc3612d9e0fc8a34a98fe56c332a7d73ac6142b63e49ecc1d57bd6078ee6171d` and completely read it.
+6. Main created discoverable ingress pointer SHA `8d2e9a7fd9091e9970386b7d7a8398c9227bb19f26b7b700bde60d3219264e95` and completely read it.
+7. The ICF currentness wording was fixed so old control hashes are navigation baselines requiring live readback, not self-updating truth.
+8. All three ICF files were mirrored byte-identically into App.
+9. App Live/Current/Doctrine/Next/Trace/Revisit/DTS were reconciled so current ingress precedes DTS archaeology while egress enforcement remains the product frontier.
+10. The 14-file bilateral semantic read completed 9/9 chunks; this bounded currentness repair precedes one non-product Git control checkpoint.
 
 ## Delta Since Previous Shadow
 - App source currentness advanced `3282494...` -> qualified merge `b674dba...`.
@@ -90,4 +94,11 @@ First publish/read back the normal durable control checkpoint for source `b674db
 - Recovery current LKG advanced generation 10 -> generation 11.
 - Attempt Store advanced 100/100/163 -> 102/102/169.
 - App RES current SHA `9d4d3b56...1f0218`; immediate integration gate is closed and egress enforcement is the dominant research frontier.
-- Durable control anchor is intentionally marked stale until the next normal project-control push/readback.
+- Durable baseline `cb8d01c...` remains the previous verified control generation; the ICF-CS adoption checkpoint is pending and will supersede it only after remote/fresh-clone readback.
+
+## ICF-CS v1.0 adoption — 2026-09-05
+- Reusable standard: `state/doctrine_snapshot/INTENT_CONSTRAINT_FRONTIER_CONTINUITY_STANDARD.md`, SHA `e279b9412f1ba3aff3634afd2ab046db855e5ce491510b7569f83f85399c498f`.
+- Shared current project instance: `state/doctrine_snapshot/PROJECT_COMMANDERS_INTENT_CURRENT.md`, SHA `dc3612d9e0fc8a34a98fe56c332a7d73ac6142b63e49ecc1d57bd6078ee6171d`.
+- Discoverable ingress pointer: `checkpoints/PROJECT_INTENT_CURRENT.md`, SHA `8d2e9a7fd9091e9970386b7d7a8398c9227bb19f26b7b700bde60d3219264e95`.
+- Cold start: `CURRENT STATE -> ICF-CS -> R4.4 + NEXT/DOCTRINE/REVISIT/TRACE -> LIVE SHADOW -> DTS -> LIVE READBACK BEFORE MUTATION`.
+- Egress enforcement remains the product frontier; ICF-CS changes re-entry discipline, not App product/runtime authority.

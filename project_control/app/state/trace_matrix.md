@@ -1,6 +1,6 @@
 # Trace Matrix — Singularity Works App
 
-Last updated: 2026-09-04 UTC
+Last updated: 2026-09-05 UTC
 
 | Claim / artifact | Evidence | Status | Confidence | Demotion trigger |
 |---|---|---|---|---|
@@ -32,7 +32,7 @@ Last updated: 2026-09-04 UTC
 | OS/process egress enforcement | not yet embodied | NOT QUALIFIED | high | next Attempt 0 required |
 | `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` | product target only | NOT RUNTIME FACT | high | requires enforcement evidence |
 | Real GitHub/OAuth connector | absent | NOT QUALIFIED | high | blocked on enforcement + provider qualification |
-| Last durable project-control anchor before gen11 | `cadd64cde4428719b1f3ff6981a4224ea4e22fb8`, CHECKPOINT `654dfd9b...69c7`, verifier PASS 79 | VERIFIED BUT STALE VS LIVE GEN11 | high | new normal control checkpoint published |
+| Historical durable project-control anchor before gen11 | `cadd64cde4428719b1f3ff6981a4224ea4e22fb8`, CHECKPOINT `654dfd9b...69c7`, verifier PASS 79 | HISTORICAL / SUPERSEDED BY `cb8d01c5...` | high historical | retained for lineage; current control row below governs |
 
 ## Current gate text
 If an artifact can be meaningfully read, it SHALL receive a complete linear semantic read before it is promoted, sealed, published, admitted, or treated as load-bearing. Automated checks may precede and support the gate; they SHALL NOT substitute for it.
@@ -41,3 +41,6 @@ If an artifact can be meaningfully read, it SHALL receive a complete linear sema
 `notes/maintenance/SEMANTIC_FIELD_FORWARD_SYNC_GEN11_LKG_CLOSURE_20260904.md`
 SHA `06abc98eb85405d481a433429afacc28b1f3c40b66a8ea6b9459b999544bf4bc`.
 | RAHL R4.4 current process SOP | carrier SHA `04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc`; App adoption note SHA `442e33b4...4a61a`; independent semantic read 46/46 | LOAD-BEARING PROCESS DEFAULT | high | carrier/read/ledger/qualification contradiction or explicit supersession |
+| R4.4 + generation-11 durable project-control checkpoint | `pcmmad/project-control@cb8d01c5e635347e038b4dffea49387945aea72d`; CHECKPOINT `c86558c829012caf8ff8844b0d01ef8eeb2df47d4cedf86137700d9aaeb2a84a`; App receipt SHA `620c3c1762ae92be4550850556a434cea2deba74d61096adbdc6dec5dbd307f8` | VERIFIED CURRENT DURABLE CONTROL | high | remote drift, verifier contradiction, or newer load-bearing state |
+
+| ICF-CS v1.0 adoption — 2026-09-05 | user-supplied ICF-CS project-agnostic solution + current R4.4/Main/App/gen11 state | prevent fresh-thread rollback by separating Intent/Constraints/Frontier/History | standard `e279b9412f1ba3aff3634afd2ab046db855e5ce491510b7569f83f85399c498f`; project instance `dc3612d9e0fc8a34a98fe56c332a7d73ac6142b63e49ecc1d57bd6078ee6171d`; ingress pointer `8d2e9a7fd9091e9970386b7d7a8398c9227bb19f26b7b700bde60d3219264e95` | exact files mirrored from Main; active App control surfaces reconciled; Git checkpoint pending | ADOPTED PROJECT-LOCAL CONTINUITY STANDARD / ZERO PRODUCT AUTHORITY | high | current-ingress pointer or ICF frontier drifts from Current/Next/Live | checkpoint before egress mutation |

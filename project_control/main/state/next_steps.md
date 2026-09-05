@@ -1,6 +1,6 @@
 # Next Steps — Singularity Works / Forge Core-Main
 
-Last updated: 2026-09-04 UTC
+Last updated: 2026-09-05 UTC
 
 ## Current universal process gate
 RAHL Engineering Canonical SOP **R4.4** is the active universal process/cold-start default. Carrier SHA `04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc`.
@@ -34,18 +34,19 @@ Generation 11 earned STABLE at ~10.797s after four meaningful operations; LKG pr
 
 Generation 10 remains historical/source-stale SAFE_ONLY. The early Main->App forward-sync and recovery-currentness gates are closed for this source generation.
 
-## Immediate P0 — durable control checkpoint
-1. Reconcile Main/App Current / Doctrine / Next / Trace / Revisit / Live / DTS / RES to R4.4 + gen11 current truth.
-2. Materialize one bounded `pcmmad/project-control` checkpoint from the latest remote control tip.
-3. Include exact Main/App R4.4 carrier copies, adoption receipts, gen11 closure/evidence identities and current RES/continuity.
-4. Apply R4.4 complete semantic-read gate to every changed readable control artifact.
-5. Reconcile sealed-vs-published bytes explicitly; exact ZIP carrier bytes must remain exact.
-6. Verify manifest/membership, privacy/host identity, staged blob equality and diff hygiene.
-7. Non-force push only after remote race recheck.
-8. Independently `ls-remote`, fresh-clone and run the checkpoint verifier.
-9. Record post-push receipt without recursive immediate checkpointing.
+## CLOSED P0 — durable R4.4 + gen11 control checkpoint
+Completed at `pcmmad/project-control@cb8d01c5e635347e038b4dffea49387945aea72d`. CHECKPOINT `c86558c829012caf8ff8844b0d01ef8eeb2df47d4cedf86137700d9aaeb2a84a`; verifier PASS 88; fresh clone exact/clean; R4.4 ZIPs exact; generation 11 exact; privacy/actionable-path findings 0. Post-push receipt SHA `eb58c0261efccab272d17912e9faf1f92d1e8727f6925a253535f854e94bdd14`. Fixed-point receipt/pointer updates wait for the next normal checkpoint.
 
-## Immediate P0 after durable control — App OS/process egress enforcement
+## Immediate P0 — ICF-CS durable continuity publication
+1. Snapshot the exact current ICF-CS standard `e279b9412f1ba3aff3634afd2ab046db855e5ce491510b7569f83f85399c498f`, project instance `dc3612d9e0fc8a34a98fe56c332a7d73ac6142b63e49ecc1d57bd6078ee6171d`, and ingress pointer `8d2e9a7fd9091e9970386b7d7a8398c9227bb19f26b7b700bde60d3219264e95` into `pcmmad/project-control`.
+2. Include reconciled Main/App Current, Doctrine, Next, Trace, Revisit, Live and DTS surfaces.
+3. Apply the R4.4 complete semantic-read gate to every changed readable control representation.
+4. Run checkpoint verifier, privacy/host/path scan, diff/staged-blob equality and binary-carrier checks.
+5. Non-force push the bounded control generation, independently resolve the remote ref, and verify from a fresh clone.
+6. Record the durable anchor server-side without recursive checkpoint churn.
+7. Then resume App OS/process egress-enforcement Attempt 0.
+
+## Immediate P0 — App OS/process egress enforcement
 1. Query the Global Cross-Project Scar Ledger for prior process/network containment scars if the live registry is available.
 2. Inspect actual Windows/process-launch topology and available enforcement primitives.
 3. Define the exact protected execution-domain boundary without claiming machine-wide control prematurely.
@@ -85,3 +86,6 @@ After any load-bearing state change or before forced thread switch:
 - Do not treat remembered commit/path/hash as current without live readback.
 - Do not treat a semantic-read ledger attestation as proof of comprehension.
 - Do not infer publication byte identity from sealed byte identity without reconciliation.
+
+## ICF-CS v1.0 adoption — 2026-09-05
+ICF-CS publication is the only new prerequisite inserted ahead of the already-earned egress frontier. The product/security frontier itself is unchanged.

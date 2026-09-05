@@ -1,8 +1,8 @@
 # Current State — Singularity Works App Program
 
-Last updated: 2026-09-04 UTC
-Mode: CHECKPOINT after qualified Main->App forward sync + generation-11 LKG
-Role: R5 Reality Pressure Engine
+Last updated: 2026-09-05 UTC
+Mode: CHECKPOINT — ICF-CS v1.0 adoption and durable-control publication
+Role: R4 Convergence Refiner
 
 ## Universal process
 RAHL Engineering Canonical SOP R4.4 is current universal process/cold-start default under `CANONICAL_PROCESS_DEFAULT != UNIVERSAL_DOMAIN_TRUTH`.
@@ -10,6 +10,17 @@ Carrier SHA `04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc`.
 Project-root carrier: `sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_4_2026-09-04.zip`, byte-identical to server-native source.
 Adoption record: `notes/maintenance/RAHL_R4_4_CANONICAL_SOP_ADOPTION_20260904.md`, SHA `442e33b4ca5dda1cff9af1e6fe04660571c94d6478dd0f92af46d4fbd264a61a`.
 The R4.4-canonical Linear Human Read / Semantic Gate, gate-evidence interlock, anti-binding/additive hostile rules and publication reconciliation are active; the prior App addenda remain provenance/history evidence.
+
+## ICF-CS v1.0 current ingress
+Project continuity now uses Intent–Constraint–Frontier separation under R4.4.
+- standard SHA `e279b9412f1ba3aff3634afd2ab046db855e5ce491510b7569f83f85399c498f` at `state/doctrine_snapshot/INTENT_CONSTRAINT_FRONTIER_CONTINUITY_STANDARD.md`;
+- shared current project ICF instance SHA `dc3612d9e0fc8a34a98fe56c332a7d73ac6142b63e49ecc1d57bd6078ee6171d` at `state/doctrine_snapshot/PROJECT_COMMANDERS_INTENT_CURRENT.md`;
+- discoverable ingress pointer SHA `8d2e9a7fd9091e9970386b7d7a8398c9227bb19f26b7b700bde60d3219264e95` at `checkpoints/PROJECT_INTENT_CURRENT.md`.
+
+Core law: `DIRECTION != CONSTRAINTS != FRONTIER != HISTORY`.
+Cold-start grammar: `CURRENT STATE -> ICF-CS -> R4.4 + NEXT/DOCTRINE/REVISIT/TRACE -> LIVE SHADOW -> DTS -> LIVE READBACK BEFORE MUTATION`.
+
+ICF-CS is continuity/process structure only; it does not mint App product/runtime/source/recovery authority.
 
 ## R4.4 process delta
 R4.4 adds/promotes machine-checkable semantic-read ledger/interlock, host-identity self-tests, active-surface section inventory, anti-binding/additive hostile witnesses, publication reconciliation, Global Cross-Project Scar Ledger discipline and re-entry/historical-reconstruction rules.
@@ -129,15 +140,18 @@ Generation 11 deliberately keeps:
 Canonical bridge source integration is qualified; checkpoint restoration/currentness/snapshot identity is a separate future qualification.
 
 ## Durable cross-thread control
-Last independently verified control anchor before this generation-11 continuity mutation:
-`pcmmad/project-control@cadd64cde4428719b1f3ff6981a4224ea4e22fb8`, CHECKPOINT SHA `654dfd9b84271fc0dcaf1a963cab7c3ec88850f348278d8c856e57df228069c7`, verifier PASS 79.
+Latest independently verified durable control anchor:
+`pcmmad/project-control@cb8d01c5e635347e038b4dffea49387945aea72d`, CHECKPOINT SHA `c86558c829012caf8ff8844b0d01ef8eeb2df47d4cedf86137700d9aaeb2a84a`, verifier PASS 88. Fresh single-branch clone reproduced exact HEAD/clean tree, exact R4.4 carriers and generation-11 state.
 
-A new normal control checkpoint is required to absorb the source-forward-sync + generation-11 continuity state. Until that push/readback completes, `cadd64c...` remains the last durable cross-thread anchor but is stale relative to this live project state.
+R4.4 + source `b674dba...` + generation 11 + current RES/continuity are now durable across threads.
+Post-push receipt: `notes/maintenance/R4_4_GEN11_CONTROL_CHECKPOINT_20260904.md` SHA `620c3c1762ae92be4550850556a434cea2deba74d61096adbdc6dec5dbd307f8`.
+
+Fixed-point receipt/pointer updates wait for the next normal checkpoint; no recursive control publication.
 
 ## Immediate frontier
 The early Main->App synchronization gate is closed for source `b674dba...` and generation 11.
 
-Resume the product/security frontier:
+First close the ICF-CS durable-control checkpoint so fresh threads enter through current Intent/Constraints/Frontier. Then resume the product/security frontier:
 **OS/process network egress enforcement Attempt 0**.
 
 Required first pressure:
@@ -158,3 +172,6 @@ Required first pressure:
 ## Closure receipt
 `notes/maintenance/SEMANTIC_FIELD_FORWARD_SYNC_GEN11_LKG_CLOSURE_20260904.md`
 SHA `06abc98eb85405d481a433429afacc28b1f3c40b66a8ea6b9459b999544bf4bc`.
+
+## ICF-CS v1.0 adoption — 2026-09-05
+ICF-CS v1.0 is adopted as the project continuity/rehydration layer beneath R4.4. Product/security frontier remains egress enforcement; only ingress/rehydration sequencing changes.

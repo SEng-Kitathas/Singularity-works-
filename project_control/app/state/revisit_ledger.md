@@ -1,6 +1,6 @@
 # Revisit Ledger — Singularity Works App
 
-Last updated: 2026-09-04 UTC
+Last updated: 2026-09-05 UTC
 
 | Seam / claim | Why revisit | What could invalidate it | Needed pressure | Priority | Status |
 |---|---|---|---|---|---|
@@ -23,5 +23,7 @@ Last updated: 2026-09-04 UTC
 | Whole process-tree containment | not qualified | descendants survive parent kill | Windows job/process-tree pressure | P0 | OPEN |
 | Vault hybrid classical+PQ target practical | architecture only | standards/platform/recovery constraints | threat model | P0 | PROVISIONAL |
 | Core semantic ownership remains Main-owned | prevents semantic fork | App privately reimplements canonical field | cross-strand audit | P0 | ACTIVE GUARDRAIL |
-| Durable control checkpoint reflects gen11 | last verified control anchor predates forward-sync/gen11 continuity | future thread rehydrates from `cadd64c...` and misses source/LKG change | new control checkpoint + fresh clone readback | P0 | OPEN UNTIL CONTROL PUSH |
+| Durable control checkpoint reflects gen11 + R4.4 | prior control anchor predated forward-sync/gen11/R4.4 continuity | checkpoint push/readback could fail or drift | semantic/publication gate + manifest equality + non-force push + fresh clone | P0 | RESOLVED at `cb8d01c5e635347e038b4dffea49387945aea72d` | Reopen on control drift/verification contradiction or newer load-bearing state |
 | R4.4 process adoption | new canonical process adds semantic ledger/anti-binding/publication/scar-ledger discipline | carrier or admission evidence later contradicted | exact carrier + semantic 46/46 + verifier + hostile 54/54 + deterministic seal | P0 | CURRENT PROCESS | reopen only on supersession/contradiction |
+
+| 2026-09-05 | ICF-CS current-ingress remains discoverable/current | a fresh thread could enter through historical/donor prose and rollback direction/frontier | pointer missing/stale or ICF instance disagrees with Current/Next/Live | reconcile ICF/current surfaces + live readback before mutation | P0 | ACTIVE LOAD-BEARING CONTINUITY RULE | verify at every handoff/control checkpoint |

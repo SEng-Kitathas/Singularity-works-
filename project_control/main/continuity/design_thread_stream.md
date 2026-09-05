@@ -965,3 +965,39 @@ Main Current/Doctrine/Next/Revisit/Trace/Live and RES were advanced to R4.4 whil
 Active new scars include `GATE_ASSERTED != GATE_WITNESSED`, `GUARD_PRESENT != GUARD_EXERCISED`, `PROTECTED_STRING_INTACT != MEANING_INTACT`, `SEALED_BYTES != PUBLISHED_BYTES`, `SEALING_EXEMPTION != PUBLICATION_EXEMPTION`, and `SIBLING_DONOR != CANONICAL_PARENT`.
 
 R4.4 adoption does not alter qualified Main semantic source `a7b4511734b1a1e507230308e75b31175aef4c4a`, App source `b674dbaaf428970c486753168e75847a345eb1c2`, or App generation-11 recovery facts. The next consequence-bearing action remains one normal durable project-control checkpoint containing R4.4 + gen11/current continuity before App begins egress-enforcement implementation.
+
+
+---
+
+## Cross-arm entry — R4.4 + App generation 11 durable control checkpoint published/read back — 2026-09-04
+Tags: R4.4, GEN11, GIT-CONTROL, PUBLICATION, FRESH-CLONE, FIXED-POINT
+
+The combined R4.4 + synchronized Main/App + App generation-11 control checkpoint was published from an isolated worktree based exactly on prior remote control `cadd64cde4428719b1f3ff6981a4224ea4e22fb8`.
+
+Before commit, complete project-side semantic admission had already qualified R4.4 and repaired stale R4.2/gen11 labels. Control-publication semantic admission then read all transformed/new readable Git surfaces, explicitly reused only exact already-read server-source bytes, preserved exact sealed R4.4 ZIP carriers, corrected three current-generation metadata defects, and later found/redacted one absolute local Attempt Store DB path from the Git-only gen11 evidence derivative. The redacted evidence and CHECKPOINT were completely reread. Final privacy/actionable-path scans were 0/0.
+
+Frozen CHECKPOINT: `c86558c829012caf8ff8844b0d01ef8eeb2df47d4cedf86137700d9aaeb2a84a`, 1,264 lines, semantic gate PASS, manifest 88. All 88 staged and all 88 committed manifest blobs matched CHECKPOINT exactly; committed CHECKPOINT bytes matched the fully read candidate.
+
+Detached commit `cb8d01c5e635347e038b4dffea49387945aea72d`, parent `cadd64cde4428719b1f3ff6981a4224ea4e22fb8`, tree `ca773d2f9e5ee4cd374bc076d2c47254b682197f`, subject `control: checkpoint R4.4 and App generation 11`.
+
+Dry-run non-force push PASS. Actual non-force push PASS. Post-push `ls-remote` exact at `cb8d01c5e635347e038b4dffea49387945aea72d`. Fresh single-branch clone exact/clean; checkpoint verifier PASS / 88; frozen CHECKPOINT exact; Main/App R4.4 carrier ZIPs exact SHA `04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc`, 51 members, CRC-clean; Main remained `a7b4511734b1a1e507230308e75b31175aef4c4a`; App remained `b674dbaaf428970c486753168e75847a345eb1c2`; gen11 currentness/LKG fields exact.
+
+Post-push Main receipt `notes/maintenance/R4_4_GEN11_CONTROL_CHECKPOINT_20260904.md` SHA `eb58c0261efccab272d17912e9faf1f92d1e8727f6925a253535f854e94bdd14`.
+
+Current durable control is now `pcmmad/project-control@cb8d01c5e635347e038b4dffea49387945aea72d`. The previous `cadd64c...` anchor remains history, not current state.
+
+Immediate next product frontier: App OS/process egress-enforcement BUILD-PLAN/AUDIT under R4.4. Query/re-derive relevant Global Cross-Project Scar Ledger entries when the live registry is available; preserve Attempt 0 before execution.
+
+Fixed-point rule: this post-push receipt and pointer update wait for the next normal checkpoint and do not trigger recursive publication.
+
+---
+
+## ICF-CS v1.0 adoption — 2026-09-05
+Date: 2026-09-05 UTC
+Tags: ICF-CS, CONTINUITY, CURRENT-INGRESS, COLD-START
+
+USER supplied the project-agnostic Intent–Constraint–Frontier Continuity Standard pattern and directed Main to ignore the donor project specifics and use the solution. Assistant re-grounded on the live current state rather than the quoted donor state: R4.4 current, Main `a7b451...`, App `b674dba...`, generation 11 current LKG/source MATCH/NORMAL, control baseline `cb8d01c...`, egress enforcement current product frontier.
+
+A reusable ICF-CS v1.0 standard was created at `state/doctrine_snapshot/INTENT_CONSTRAINT_FRONTIER_CONTINUITY_STANDARD.md` SHA `e279b9412f1ba3aff3634afd2ab046db855e5ce491510b7569f83f85399c498f`. A current Singularity Works / Forge Intent/Constraints/Frontier instance was created at `state/doctrine_snapshot/PROJECT_COMMANDERS_INTENT_CURRENT.md` SHA `dc3612d9e0fc8a34a98fe56c332a7d73ac6142b63e49ecc1d57bd6078ee6171d`. A bounded ingress pointer was created at `checkpoints/PROJECT_INTENT_CURRENT.md` SHA `8d2e9a7fd9091e9970386b7d7a8398c9227bb19f26b7b700bde60d3219264e95`. All three were completely read on Main; exact bytes were mirrored to App.
+
+Cold-start grammar is now `CURRENT STATE -> ICF-CS -> R4.4 + NEXT/DOCTRINE/REVISIT/TRACE -> LIVE SHADOW -> DTS -> LIVE READBACK BEFORE MUTATION`; disagreement routes through RECOVERY/AUDIT. ICF-CS does not acquire semantic/product/source/recovery authority. A bounded Git control checkpoint is now required before egress Attempt 0 resumes.

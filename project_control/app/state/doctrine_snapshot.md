@@ -1,7 +1,7 @@
 # Doctrine Snapshot — Singularity Works App
 
-Last updated: 2026-09-04 UTC
-Mode: CHECKPOINT after qualified Main->App forward sync + generation-11 LKG
+Last updated: 2026-09-05 UTC
+Mode: CHECKPOINT — ICF-CS v1.0 adoption and durable-control publication
 
 ## Universal process
 RAHL Engineering Canonical SOP R4.4 is current universal process/cold-start default under `CANONICAL_PROCESS_DEFAULT != UNIVERSAL_DOMAIN_TRUTH`.
@@ -146,3 +146,10 @@ Independent admission: complete current readable surface 46/46, deterministic 4,
 R4.4 adds semantic gate witness/ledger, host-identity guard self-tests, section inventory, anti-binding/additive hostile attacks, publication reconciliation, Global Cross-Project Scar Ledger discipline, and historical reconstruction/re-entry.
 
 This process promotion does not alter App source `b674dba...`, generation 11 LKG, Connection Gate/lifecycle qualification, or the still-unearned OS/process egress boundary.
+
+## ICF-CS v1.0 adoption — 2026-09-05
+ICF-CS v1.0 is adopted as project-local continuity/rehydration discipline beneath R4.4. Standard `e279b9412f1ba3aff3634afd2ab046db855e5ce491510b7569f83f85399c498f`; shared current project instance `dc3612d9e0fc8a34a98fe56c332a7d73ac6142b63e49ecc1d57bd6078ee6171d`; ingress pointer `8d2e9a7fd9091e9970386b7d7a8398c9227bb19f26b7b700bde60d3219264e95`.
+
+Active laws include `DIRECTION != CONSTRAINTS != FRONTIER != HISTORY`, `HISTORICAL_HANDOFF != CURRENT_INGRESS`, `DONOR != AUTHORITY`, `RECENT_TIMESTAMP != CURRENT_AUTHORITY`, `STALE_GREEN != CURRENT_EVIDENCE`, `CURRENT_POINTER != CURRENT_FACT_UNTIL_READBACK`, `INTENT != MUTATION_PERMISSION`, and `FRONTIER != DOCTRINE_AUTHORITY`.
+
+Cold-start order is `CURRENT STATE -> ICF-CS -> R4.4 + NEXT/DOCTRINE/REVISIT/TRACE -> LIVE SHADOW -> DTS -> LIVE READBACK BEFORE MUTATION`. ICF-CS does not transfer Main semantic authority or App runtime/recovery authority.

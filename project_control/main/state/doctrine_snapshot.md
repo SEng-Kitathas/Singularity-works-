@@ -1,7 +1,7 @@
 # Doctrine Snapshot — Singularity Works / Forge LBE
 
-Last updated: 2026-09-04 UTC
-Mode: CHECKPOINT — Main/App source synchronized; App generation-11 recovery currentness qualified
+Last updated: 2026-09-05 UTC
+Mode: CHECKPOINT — ICF-CS v1.0 adoption and durable-control publication
 
 ## Universal process SOP
 **RAHL Engineering Canonical SOP R4.4 (2026-09-04)** is now the current universal engineering/research process and cold-start SOP default.
@@ -276,3 +276,22 @@ R4.4 adds load-bearing process laws around semantic gate evidence, host-identity
 `SIBLING_DONOR != CANONICAL_PARENT`.
 
 R4.4 adoption does not modify Main semantic authority, App product authority, generation-11 recovery state, or egress-enforcement qualification.
+
+## ICF-CS v1.0 adoption — 2026-09-05
+ICF-CS v1.0 is adopted as a project-local continuity/rehydration standard beneath the current canonical process SOP.
+
+Standard SHA `e279b9412f1ba3aff3634afd2ab046db855e5ce491510b7569f83f85399c498f`. Current Singularity Works / Forge ICF instance SHA `dc3612d9e0fc8a34a98fe56c332a7d73ac6142b63e49ecc1d57bd6078ee6171d`. Discoverable ingress pointer SHA `8d2e9a7fd9091e9970386b7d7a8398c9227bb19f26b7b700bde60d3219264e95`.
+
+Active continuity laws:
+- `DIRECTION != CONSTRAINTS != FRONTIER != HISTORY`;
+- `HISTORICAL_HANDOFF != CURRENT_INGRESS`;
+- `DONOR != AUTHORITY`;
+- `RECENT_TIMESTAMP != CURRENT_AUTHORITY`;
+- `STALE_GREEN != CURRENT_EVIDENCE`;
+- `CURRENT_POINTER != CURRENT_FACT_UNTIL_READBACK`;
+- `INTENT != MUTATION_PERMISSION`;
+- `FRONTIER != DOCTRINE_AUTHORITY`.
+
+Cold-start order is `CURRENT STATE -> ICF-CS -> R4.4 + NEXT/DOCTRINE/REVISIT/TRACE -> LIVE SHADOW -> DTS -> LIVE READBACK BEFORE MUTATION`. Material disagreement routes through RECOVERY/AUDIT rather than narrative smoothing.
+
+ICF-CS does not replace R4.4, project doctrine, source/release qualification, recovery qualification, RES, or live readback.

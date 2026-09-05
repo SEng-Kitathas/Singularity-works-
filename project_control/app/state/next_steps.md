@@ -1,6 +1,14 @@
 # Next Steps — Singularity Works App
 
-Last updated: 2026-09-04 UTC
+Last updated: 2026-09-05 UTC
+
+## P0 — ICF-CS durable continuity publication
+0.1 Snapshot exact standard `e279b9412f1ba3aff3634afd2ab046db855e5ce491510b7569f83f85399c498f`, project ICF instance `dc3612d9e0fc8a34a98fe56c332a7d73ac6142b63e49ecc1d57bd6078ee6171d`, ingress pointer `8d2e9a7fd9091e9970386b7d7a8398c9227bb19f26b7b700bde60d3219264e95`, and reconciled Main/App continuity/state into `pcmmad/project-control`.
+0.2 Apply R4.4 semantic admission to every changed readable control representation.
+0.3 Run checkpoint verifier, privacy/host/path scan, diff/staged-blob equality and binary-carrier checks.
+0.4 Non-force push, independently resolve remote ref, and verify from a fresh clone.
+0.5 Record the new durable anchor without recursive checkpoint churn.
+0.6 Then continue egress-enforcement Attempt 0 below.
 
 ## P0 — OS/process network egress enforcement Attempt 0
 0. Query the R4.4 Global Cross-Project Scar Ledger for relevant prior containment/network/process scars when the live registry is available; inspect provenance and re-derive under current constraints before reuse.
@@ -73,4 +81,7 @@ The early Main->App forward-sync gate is closed for qualified Main `a7b4511...` 
 Generation 10 remains historical evidence and source-stale SAFE_ONLY; generation 11 is current LKG.
 
 ## Control-plane follow-up
-A new normal `pcmmad/project-control` checkpoint must absorb the forward-sync/gen11 continuity state. Last independently verified durable anchor before this mutation remains `cadd64cde4428719b1f3ff6981a4224ea4e22fb8`.
+Durable R4.4/gen11 control checkpoint is CLOSED at `pcmmad/project-control@cb8d01c5e635347e038b4dffea49387945aea72d`, CHECKPOINT `c86558c829012caf8ff8844b0d01ef8eeb2df47d4cedf86137700d9aaeb2a84a`, verifier PASS 88, fresh clone exact/clean. Fixed-point post-push state waits for the next normal checkpoint.
+
+## ICF-CS v1.0 adoption — 2026-09-05
+ICF-CS durability is the only new prerequisite ahead of egress Attempt 0. The product/security frontier itself is unchanged.

@@ -1,7 +1,7 @@
 # Current State — Singularity Works / Forge Core-Main
 
-Last updated: 2026-09-04 UTC
-Mode: CHECKPOINT after App forward sync + generation-11 recovery qualification
+Last updated: 2026-09-05 UTC
+Mode: CHECKPOINT — ICF-CS v1.0 adoption and durable-control publication
 Role: R4 Convergence Refiner
 
 ## Project identity
@@ -17,6 +17,18 @@ Carrier SHA `04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc`.
 Project-root copy `sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_4_2026-09-04.zip` is exact.
 Adoption note `notes/maintenance/RAHL_R4_4_CANONICAL_SOP_ADOPTION_20260904.md` SHA `5d801bde0c48df3c577597b3f753f895b251f7eefee048ae770ef06a208fdbae`.
 The R4.4 Linear Human Read / Semantic Gate and machine-checkable gate-evidence/publication-reconciliation rules are mandatory.
+
+## ICF-CS v1.0 current ingress
+Project continuity now uses Intent–Constraint–Frontier separation under R4.4.
+- standard: `state/doctrine_snapshot/INTENT_CONSTRAINT_FRONTIER_CONTINUITY_STANDARD.md`, SHA `e279b9412f1ba3aff3634afd2ab046db855e5ce491510b7569f83f85399c498f`;
+- current project ICF instance: `state/doctrine_snapshot/PROJECT_COMMANDERS_INTENT_CURRENT.md`, SHA `dc3612d9e0fc8a34a98fe56c332a7d73ac6142b63e49ecc1d57bd6078ee6171d`;
+- discoverable pointer: `checkpoints/PROJECT_INTENT_CURRENT.md`, SHA `8d2e9a7fd9091e9970386b7d7a8398c9227bb19f26b7b700bde60d3219264e95`.
+
+Core law: `DIRECTION != CONSTRAINTS != FRONTIER != HISTORY`.
+Cold-start grammar: `CURRENT STATE -> ICF-CS -> R4.4 + NEXT/DOCTRINE/REVISIT/TRACE -> LIVE SHADOW -> DTS -> LIVE READBACK BEFORE MUTATION`.
+Material disagreement uses `CONFLICT -> RECOVERY/AUDIT -> LOCALIZE -> REPAIR/SUPERSEDE -> READBACK -> RESUME`.
+
+ICF-CS is continuity/process structure only; it does not mint Forge semantic, App runtime, source, release, or recovery authority.
 
 ## R4.4 process delta
 R4.4 adds/promotes gate evidence surfaces, host-identity self-tests, section inventory, anti-binding/additive hostile witnesses, publication reconciliation, Global Cross-Project Scar Ledger discipline, and re-entry/historical reconstruction rules.
@@ -97,11 +109,12 @@ App RES current SHA `9d4d3b56432a822354f377f9482b3e7b9e78797de34be8d675d86d80461
 Main research meaning now treats App synchronization/recovery currentness as closed and App OS/process egress enforcement as the active downstream product/security frontier. Main/Core semantic source ownership remains unchanged.
 
 ## Durable cross-thread control
-Last independently verified durable control tip before this live gen11 mutation:
-`pcmmad/project-control@cadd64cde4428719b1f3ff6981a4224ea4e22fb8`.
-Frozen CHECKPOINT SHA `654dfd9b84271fc0dcaf1a963cab7c3ec88850f348278d8c856e57df228069c7`, verifier PASS 79.
+Latest independently verified durable control tip:
+`pcmmad/project-control@cb8d01c5e635347e038b4dffea49387945aea72d`.
+Frozen CHECKPOINT SHA `c86558c829012caf8ff8844b0d01ef8eeb2df47d4cedf86137700d9aaeb2a84a`, verifier PASS 88. Fresh single-branch clone reproduced exact HEAD, clean tree, exact CHECKPOINT, R4.4 carriers and generation-11 state.
 
-This control tip is now stale versus live App source/gen11 continuity. A new normal control checkpoint must absorb the current Main/App state before further product implementation.
+R4.4 + Main `a7b4511...` + App `b674dba...` + generation 11 + current Main/App RES are now durably represented across threads.
+Post-push receipt: `notes/maintenance/R4_4_GEN11_CONTROL_CHECKPOINT_20260904.md` SHA `eb58c0261efccab272d17912e9faf1f92d1e8727f6925a253535f854e94bdd14`.
 
 `CONTROL_CHECKPOINT != PRODUCT_PROMOTION`.
 
@@ -112,7 +125,7 @@ Verified:
 - App source forward sync `b674dba...` and remote integration qualification;
 - App generation 11 current LKG/source MATCH;
 - separate Main/App RES ownership;
-- current control anchor `cadd64c...` as last durable pre-gen11 checkpoint.
+- current durable control anchor `cb8d01c...` with R4.4/gen11 fresh-clone verification.
 
 Open/provisional:
 - checkpoint semantic restoration/currentness/snapshot identity;
@@ -122,4 +135,7 @@ Open/provisional:
 - inherited packaging-description debt.
 
 ## Resume point
-First publish/read back a normal `pcmmad/project-control` checkpoint for App source `b674dba...` + generation 11. Then App may resume OS/process egress-enforcement Attempt 0. Main/Core source remains unchanged unless a genuine semantic/interface requirement returns upstream.
+First publish/read back a bounded ICF-CS adoption checkpoint on `pcmmad/project-control`. Then App may resume OS/process egress-enforcement Attempt 0 using the ICF current-ingress order and live currentness readback before mutation. Main/Core source remains unchanged unless a genuine semantic/interface requirement returns upstream.
+
+## ICF-CS v1.0 adoption — 2026-09-05
+ICF-CS v1.0 is adopted as the project continuity/rehydration layer beneath R4.4. Intent, load-bearing constraints, fast-changing frontier, and history are now explicitly separated and discoverable.
