@@ -2,18 +2,20 @@ from __future__ import annotations
 
 """Hostile discriminators descended from OS/process egress Attempt 0.
 
-The exact parent first execution is preserved at source e9b81750... and remains
-immutable evidence. This v0.1.1 descendant changes only D2 command-harness
-construction after the original D2 rc1 was localized to Windows cmd quoting.
-This descendant SHALL be committed/pushed and recovery-current before its first
-protected execution. No test contacts an external network endpoint; loopback
-listeners are parent-owned bypass detectors only.
+The exact original and v0.1.1 D2 executions remain preserved evidence. This
+v0.1.2 descendant changes only D2's root-to-descendant launcher after cmd.exe
+was shown to return rc1 inside AppContainer despite a valid unprotected command
+shape. The same PowerShell/Process.Start construction now supplies an unprotected
+positive control and protected negative discriminator. This descendant SHALL be
+committed/pushed and recovery-current before its first execution. No test contacts
+an external network endpoint; loopback listeners are parent-owned bypass detectors only.
 """
 
 import os
 from pathlib import Path
 import shutil
 import socket
+import subprocess
 import threading
 import unittest
 from uuid import uuid4
@@ -36,6 +38,22 @@ def _system_executable(name: str) -> Path:
 
 def _profile_name(label: str) -> str:
     return f"SingularityWorks.EgressAttempt0.{label}.{uuid4().hex[:8]}"
+
+
+def _powershell_process_start_script(executable: Path, arguments: str) -> str:
+    executable_text = str(executable).replace("'", "''")
+    argument_text = arguments.replace("'", "''")
+    return (
+        "$ErrorActionPreference='Stop'; try { "
+        "$psi=New-Object System.Diagnostics.ProcessStartInfo; "
+        f"$psi.FileName='{executable_text}'; "
+        f"$psi.Arguments='{argument_text}'; "
+        "$psi.UseShellExecute=$false; "
+        "$p=[System.Diagnostics.Process]::Start($psi); "
+        "if($null -eq $p){exit 190}; "
+        "$p.WaitForExit(); exit $p.ExitCode "
+        "} catch { exit 190 }"
+    )
 
 
 class _LocalHttpListener:
@@ -135,27 +153,66 @@ class OsProcessEgressEnforcementV01Tests(unittest.TestCase):
         )
 
     def test_d2_protected_descendant_cannot_connect_to_parent_loopback_listener(self) -> None:
-        cmd = _system_executable("cmd.exe")
+        powershell = _system_executable("powershell.exe")
         curl = _system_executable("curl.exe")
-        curl_text = str(curl)
-        self.assertNotRegex(
-            curl_text,
-            r"\s",
-            "D2 v0.1.1 deliberately requires a whitespace-free resolved curl path; do not launder shell quoting ambiguity into network-denial evidence",
+
+        def curl_arguments(port: int) -> str:
+            return (
+                "--noproxy * --connect-timeout 1 --max-time 2 --silent --show-error "
+                f"http://127.0.0.1:{port}/ --output NUL"
+            )
+
+        # Positive control: prove this exact root->descendant launch construction
+        # reaches the parent-owned loopback listener without AppContainer isolation.
+        with _LocalHttpListener() as control_listener:
+            control_script = _powershell_process_start_script(
+                curl, curl_arguments(control_listener.port)
+            )
+            control = subprocess.run(
+                [
+                    str(powershell),
+                    "-NoProfile",
+                    "-NonInteractive",
+                    "-Command",
+                    control_script,
+                ],
+                cwd=powershell.parent,
+                text=True,
+                capture_output=True,
+                timeout=5.0,
+                check=False,
+            )
+        self.assertTrue(
+            control_listener.accepted.is_set(),
+            "unprotected descendant control did not reach parent loopback listener",
         )
-        child_command = (
-            f'{curl_text} --noproxy * --connect-timeout 1 --max-time 2 --silent --show-error '
-            f'http://127.0.0.1:{{port}}/ --output NUL'
+        self.assertEqual(
+            control.returncode,
+            0,
+            f"unprotected descendant control failed before containment pressure: {control.stderr}",
         )
+
+        # Negative discriminator: same Process.Start construction under the
+        # zero-capability AppContainer + immediate Job root.
         with _LocalHttpListener() as listener:
+            protected_script = _powershell_process_start_script(
+                curl, curl_arguments(listener.port)
+            )
             receipt = run_zero_network_process(
-                [str(cmd), "/d", "/c", child_command.format(port=listener.port)],
+                [
+                    str(powershell),
+                    "-NoProfile",
+                    "-NonInteractive",
+                    "-Command",
+                    protected_script,
+                ],
                 timeout_seconds=5.0,
-                cwd=cmd.parent,
+                cwd=powershell.parent,
                 profile_name=_profile_name("D2"),
             )
         self.assertTrue(receipt.appcontainer_verified)
         self.assertTrue(receipt.immediate_job_verified)
+        self.assertEqual(receipt.capability_count, 0)
         self.assertFalse(listener.accepted.is_set(), "protected descendant reached parent loopback listener")
         self.assertIn(
             receipt.exit_code,
