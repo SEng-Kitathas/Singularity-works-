@@ -1,48 +1,46 @@
 {
   "app_observation": {
     "branch": "forge/app-shell-rd",
-    "commit": "b674dbaaf428970c486753168e75847a345eb1c2",
+    "commit": "e9b81750db265a467187c61962ffab3cff98d4fe",
     "local_remote_exact": true,
-    "subject": "app: forward-sync qualified semantic-field core",
+    "scope": "PRESERVED_EGRESS_ATTEMPT_0_ONLY__NOT_EXECUTED_NOT_QUALIFIED",
+    "subject": "forge-app: preserve egress enforcement attempt zero",
     "working_tree_clean": true
   },
   "app_recovery": {
-    "checkpoint_blob_sha256": "0a644a5040256482d79eb5dba23c73afb6586f95223946f1c283e6d72f22c821",
-    "checkpoint_id": "checkpoint-app-live-0011-b674dbaaf428",
-    "core_contract_version": null,
-    "core_currentness_id": null,
+    "attempt_store": {
+      "attempts": 104,
+      "blobs": 104,
+      "events": 175,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "synchronous": "2"
+    },
+    "checkpoint_blob_sha256": "0889dd0599355f54fcc055a86002dd6c2ac7131de7b34ec0ef11ddc4511222fb",
+    "checkpoint_id": "checkpoint-app-live-0012-e9b81750db26",
     "early_crash_count": 0,
-    "evidence_attempt": "attempt-live-resume-session-0011-lkg",
-    "evidence_sha256": "817daa41119e499c3bc8cc978d0ea625be4598ef6a8263f3acf5cf84392fa3e9",
-    "generation": 11,
+    "egress_attempt0_executed": false,
+    "evidence_sha256": "aeff0db397135d8f227f11e17c1b7b939235b6ae11ee2ae97053246d9d605e0a",
+    "generation": 12,
+    "healthy_seconds": 10.218,
     "lkg": true,
     "meaningful_operations": 4,
-    "parent_checkpoint_id": "checkpoint-app-live-0010-328249429cc6",
+    "parent_checkpoint_id": "checkpoint-app-live-0011-b674dbaaf428",
     "quarantined": false,
     "resume_policy": "NORMAL",
     "resumed": true,
-    "semantic_snapshot_id": null,
     "source_currentness": "MATCH",
-    "source_head": "b674dbaaf428970c486753168e75847a345eb1c2",
+    "source_head": "e9b81750db265a467187c61962ffab3cff98d4fe",
     "stable": true,
-    "stable_elapsed_seconds_approx": 10.797,
-    "store_counts_after_evidence": {
-      "attempts": 102,
-      "blobs": 102,
-      "events": 169
-    },
     "verified": true
   },
   "app_source": {
     "branch": "forge/app-shell-rd",
-    "commit": "b674dbaaf428970c486753168e75847a345eb1c2",
+    "commit": "e9b81750db265a467187c61962ffab3cff98d4fe",
+    "delta_scope": "preserved OS/process egress Attempt-0 protocol/package/implementation/frozen tests",
+    "egress_attempt0": "PRESERVED_UNEXECUTED_UNQUALIFIED",
     "local_remote_exact": true,
-    "parents": [
-      "328249429cc6e86e15db9797bd58eff5fabc5a2d",
-      "a7b4511734b1a1e507230308e75b31175aef4c4a"
-    ],
-    "qualification": "PASS_REMOTE_FRESH_CLONE",
-    "tree": "a0b650d0cc367c6f575a59f41005813ccd8ac4f0",
+    "parent": "b674dbaaf428970c486753168e75847a345eb1c2",
     "working_tree_clean": true
   },
   "branch_base_qualified_main": "a7b4511734b1a1e507230308e75b31175aef4c4a",
@@ -95,6 +93,14 @@
       "server_source_sha256": "1910637867cc2759ab46bc8772b429abac28ca0f6d211d8ee7769eba5ee5125d"
     }
   ],
+  "egress_attempt_0": {
+    "first_execution_gate": "AFTER_SUCCESSOR_CONTROL_PUSH_AND_FRESH_CLONE_READBACK",
+    "semantic_stream_lines": 1061,
+    "semantic_stream_sha256": "c76cef0f136727eba61a2a4cf66d826744b44bcd60e78ea647a618b08c5900c0",
+    "source_head": "e9b81750db265a467187c61962ffab3cff98d4fe",
+    "status": "PRESERVED_UNEXECUTED_UNQUALIFIED",
+    "tests": "D0_D1_D2_D3_FROZEN_DO_NOT_EDIT_BEFORE_FIRST_EXECUTION"
+  },
   "files": [
     {
       "bytes": 26,
@@ -102,24 +108,39 @@
       "sha256": "1f188a384f3a7d8e293f83c43a896957fff3e9ff9fc3f752e6d78825f92f65ec"
     },
     {
-      "bytes": 1730,
+      "bytes": 1618,
+      "path": "PUSH_RECEIPT_20260903.md",
+      "sha256": "2fbf22e5e9eb92c8a72972f3d166fb97c24055c0668a37ef594fcbb4236eae02"
+    },
+    {
+      "bytes": 3607,
+      "path": "README.md",
+      "sha256": "81ecbbb5c7f0dee19e1d093839fd02b4c59aab1d7c3828ba4fea447cf82423b2"
+    },
+    {
+      "bytes": 1801,
+      "path": "VERIFY_CHECKPOINT.py",
+      "sha256": "f5dba1193203a03bbce3779179ce5b6947231dff1ae65f505e5024e3ec5ee207"
+    },
+    {
+      "bytes": 2769,
       "path": "app/checkpoints/PROJECT_INTENT_CURRENT.md",
-      "sha256": "8d2e9a7fd9091e9970386b7d7a8398c9227bb19f26b7b700bde60d3219264e95"
+      "sha256": "7fc1675989ec806095fbc250c9d6c6adc213c7af3ca13dc0f1f515fc44f290b3"
     },
     {
-      "bytes": 78291,
+      "bytes": 89125,
       "path": "app/continuity/design_thread_stream.md",
-      "sha256": "876ddb8b24e379a84dc6981d8e4802dfaf8090239a011c2e1ea94540adc79c99"
+      "sha256": "a7043dbf8b19188b7ae91c1c7563b3654e54778f86c53a25f72b57c5f5c86cfc"
     },
     {
-      "bytes": 9551,
+      "bytes": 11409,
       "path": "app/continuity/live_shadow.md",
-      "sha256": "16446eb7ec661234ce1e01316c08b339a3535ebde4ef9d44356aadd79bbe3aca"
+      "sha256": "5accb1e6abb44431a6e51639c37755a72df6d167bb8955ebe738e47f46fd782d"
     },
     {
-      "bytes": 10528,
+      "bytes": 11939,
       "path": "app/continuity/research_epistemic_shadow.md",
-      "sha256": "9d4d3b56432a822354f377f9482b3e7b9e78797de34be8d675d86d80461f0218"
+      "sha256": "a476342db8d3e6eea323ec157e5e4964eb0f1a009aabcf2867927f56e8c72792"
     },
     {
       "bytes": 3963,
@@ -135,6 +156,21 @@
       "bytes": 4099,
       "path": "app/maintenance/CONNECTION_GATE_AUTHORITY_STATE_CHECKPOINT_20260903.md",
       "sha256": "fd6031c7ccfb78928d90782817853c8b3735e20c134720541f78467ebd2e7761"
+    },
+    {
+      "bytes": 2619,
+      "path": "app/maintenance/GEN12_E9B81750_RECOVERY_CURRENTNESS_20260906.md",
+      "sha256": "053497de9b63299386f1395e66c2f3939c83fbdb89b8dfb9b443acd325f19f69"
+    },
+    {
+      "bytes": 2463,
+      "path": "app/maintenance/ICF_CS_V1_1_AUTHORITY_ADOPTION_20260906.md",
+      "sha256": "13aabeefa929328be42f26d858622787371f57f85f5a93b2acc71e875277e21a"
+    },
+    {
+      "bytes": 1355,
+      "path": "app/maintenance/ICF_CS_V1_1_GEN12_SEMANTIC_CORRECTION_20260906.md",
+      "sha256": "aee9fb38daf77ab13fa70c5e313055c624354784f6022450de94843efbbecde3"
     },
     {
       "bytes": 7225,
@@ -192,6 +228,11 @@
       "sha256": "cbebe47192ae3a8bd7e8ce8d27c0ede416ca4374f886aa64b133c60cdad56273"
     },
     {
+      "bytes": 4555,
+      "path": "app/sop/ICF_CS_V1_1_DETACHED_RELEASE_RECEIPT_2026-09-05.json",
+      "sha256": "418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c"
+    },
+    {
       "bytes": 625556,
       "path": "app/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_2_2026-09-03.zip",
       "sha256": "eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a"
@@ -202,64 +243,99 @@
       "sha256": "04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc"
     },
     {
-      "bytes": 7989,
+      "bytes": 2557435,
+      "path": "app/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_4_ICF_CS_V1_1_ADDENDUM_2026-09-05.zip",
+      "sha256": "f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63"
+    },
+    {
+      "bytes": 9005,
       "path": "app/state/current.md",
-      "sha256": "b37b36262dac6fb63b946fabc095f2eaaa5ed256c5ceb4a6202dc1cc6f73d2c1"
+      "sha256": "626b87de8359e7761dff9d54cb34ea3c947d3a536e4b48315b2987f307a7832a"
     },
     {
-      "bytes": 10466,
+      "bytes": 4215,
+      "path": "app/state/doctrine/ICF_CS_MECHANIZED_EPOCH_PROFILE_V1_1.md",
+      "sha256": "733b799815abdb4b1ff735635f7928953c12944ece579365b5aae138d90f90f8"
+    },
+    {
+      "bytes": 2832,
+      "path": "app/state/doctrine/ICF_CS_QUALIFICATION_CONTRACT_V1_1.json",
+      "sha256": "7d20ed708adb4f7ee147b56da41deac77146b56fc85bd769be3a6d240b3e2029"
+    },
+    {
+      "bytes": 1128,
+      "path": "app/state/doctrine/ICF_CS_V1_0_DEMOTION_RECEIPT.json",
+      "sha256": "3225fd952d704d31047ffdf01bffbc0968e4428357342ccb8ce5094ae8385057"
+    },
+    {
+      "bytes": 1927,
+      "path": "app/state/doctrine/ICF_CS_V1_1.json",
+      "sha256": "d67726aeb402c280770eeaf314068ed7a1330beb21167d9d6d9b7c4674425bb0"
+    },
+    {
+      "bytes": 6316,
       "path": "app/state/doctrine/INTENT_CONSTRAINT_FRONTIER_CONTINUITY_STANDARD.md",
-      "sha256": "06b1271bfa8aee5dbd78a3ad7d7d4e56b4d9ccaaf4825bc90504d4d3f194fb40"
+      "sha256": "62be845da364ae81f59b6320c9b34b136236bf5be8aa8036018da48efcb754f4"
     },
     {
-      "bytes": 8693,
+      "bytes": 11254,
       "path": "app/state/doctrine/PROJECT_COMMANDERS_INTENT_CURRENT.md",
-      "sha256": "dc3612d9e0fc8a34a98fe56c332a7d73ac6142b63e49ecc1d57bd6078ee6171d"
+      "sha256": "95ff8a58543c8aa2a2f20eb98cca47a30c3b64a5e8823c5f84edd3ad25cc9761"
     },
     {
-      "bytes": 8463,
+      "bytes": 12773,
       "path": "app/state/doctrine_snapshot.md",
-      "sha256": "26ba1aa1f8345db83decfff1566ddc2f47ec69931e4d215e703158ae25b03aba"
+      "sha256": "6631e592cf23cb605856f2005f1cb781ba86957806c68334016803f2fb694845"
     },
     {
-      "bytes": 7008,
+      "bytes": 2879,
+      "path": "app/state/live_resume_session_0012.json",
+      "sha256": "b1d785fae561756b05daa3c268e0a0e13a913c0c529d8b0ba105a84e817e1b2b"
+    },
+    {
+      "bytes": 8958,
       "path": "app/state/next_steps.md",
-      "sha256": "abf05ac933f2c53058794c40625ba3d316a6a1f9ab4e797218662b869dbba92e"
+      "sha256": "076e745e0947e47e96ef54884b35be9a4125ef83a434683668323745878ecd89"
     },
     {
-      "bytes": 5388,
+      "bytes": 9646,
       "path": "app/state/revisit_ledger.md",
-      "sha256": "c7f7c71084b3803afa006dd0b05138481d5a383f744f9922e58913f6b4698e01"
+      "sha256": "a2439f2d0a17b60482fd36dc9c3f2073e8ba74ceffdc4d534329243ac2445deb"
     },
     {
-      "bytes": 7518,
+      "bytes": 12744,
       "path": "app/state/trace_matrix.md",
-      "sha256": "a0e38416d1978a61972f122672714bc44bd790d17bc191d6d22a3b13f8aed4b4"
+      "sha256": "5f5b837a1a2f57340178e94aa8e2c49f25f359af01a2c065f97fdb8830e7956b"
     },
     {
-      "bytes": 1730,
+      "bytes": 2769,
       "path": "main/checkpoints/PROJECT_INTENT_CURRENT.md",
-      "sha256": "8d2e9a7fd9091e9970386b7d7a8398c9227bb19f26b7b700bde60d3219264e95"
+      "sha256": "7fc1675989ec806095fbc250c9d6c6adc213c7af3ca13dc0f1f515fc44f290b3"
     },
     {
-      "bytes": 102871,
+      "bytes": 116754,
       "path": "main/continuity/design_thread_stream.md",
-      "sha256": "b1abbd9d0d4107370731c8fc255269edb794a64bfe53fcb8cb629f17ff047c23"
+      "sha256": "942d0c7581c13e37b4457078fabad10cc5ad380cd6ed21bf98f8f4b4951ac400"
     },
     {
-      "bytes": 9442,
+      "bytes": 11281,
       "path": "main/continuity/live_shadow.md",
-      "sha256": "901aaee9468f4a35d01c55e934baaa0f162af10a2a3be4d7f822eaee4e0e3faa"
+      "sha256": "f38a47cc6cf9cdd85950aaeceb82016c27da23743f9c9b6d9f709ed409d4e76a"
     },
     {
-      "bytes": 31818,
+      "bytes": 31102,
       "path": "main/continuity/research_epistemic_shadow.md",
-      "sha256": "9abe90f23dfb719291736bf9ad6b155ad2982df7527a4e06909956473ba4ccb3"
+      "sha256": "c963e4fd011dd432e8255b793aa0f2623d7d4548f3e3eb34b4f91aa34815fbbc"
     },
     {
       "bytes": 3271,
       "path": "main/maintenance/APP_FORWARD_SYNC_GEN11_AWARENESS_20260904.md",
       "sha256": "018d3ef7d1e24dbbb470d9dd99fd2a881f09c9455527dec192fe954c0af46e9e"
+    },
+    {
+      "bytes": 1408,
+      "path": "main/maintenance/APP_GEN12_E9B81750_AWARENESS_20260906.md",
+      "sha256": "d4830fec598a090e0df24195aac26fa1cd805e0a5b2e4ef1769c31885cddab23"
     },
     {
       "bytes": 4396,
@@ -270,6 +346,16 @@
       "bytes": 5403,
       "path": "main/maintenance/GIT_CROSS_THREAD_CONTROL_CHECKPOINT_20260903.md",
       "sha256": "4cf9c592db4b9669cf0b01f12f34ecddc98043bcba75659a9edae60c56a3e8c0"
+    },
+    {
+      "bytes": 3968,
+      "path": "main/maintenance/ICF_CS_V1_1_AUTHORITY_ADOPTION_20260906.md",
+      "sha256": "541bd5539655557353a78387c5a526126ae617e316ce559421dfbac2672fe3d9"
+    },
+    {
+      "bytes": 1700,
+      "path": "main/maintenance/ICF_CS_V1_1_GEN12_SEMANTIC_CORRECTION_20260906.md",
+      "sha256": "bd231a1804f17bffe2fb8dec3ddfcacf2cb0fb1465efaa0c15fd9ad8d3c1b37e"
     },
     {
       "bytes": 7225,
@@ -332,6 +418,11 @@
       "sha256": "6e507c5a492003d853b49d0e4f99feca9f96ea52cdddb986e2dee391c54468df"
     },
     {
+      "bytes": 4555,
+      "path": "main/sop/ICF_CS_V1_1_DETACHED_RELEASE_RECEIPT_2026-09-05.json",
+      "sha256": "418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c"
+    },
+    {
       "bytes": 625556,
       "path": "main/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_2_2026-09-03.zip",
       "sha256": "eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a"
@@ -342,49 +433,79 @@
       "sha256": "04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc"
     },
     {
-      "bytes": 8179,
+      "bytes": 2557435,
+      "path": "main/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_4_ICF_CS_V1_1_ADDENDUM_2026-09-05.zip",
+      "sha256": "f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63"
+    },
+    {
+      "bytes": 9218,
       "path": "main/state/current.md",
-      "sha256": "f6ce48dc5a8b44d4f4cc1f7e903cb09f038e21d031756a1283b92d2755d99740"
+      "sha256": "1c94d31f02f6ed5a292c17c1a01e74b6b47d33d81b66cd1e6ce12d9b1dd22bf3"
     },
     {
-      "bytes": 10466,
+      "bytes": 4215,
+      "path": "main/state/doctrine/ICF_CS_MECHANIZED_EPOCH_PROFILE_V1_1.md",
+      "sha256": "733b799815abdb4b1ff735635f7928953c12944ece579365b5aae138d90f90f8"
+    },
+    {
+      "bytes": 2832,
+      "path": "main/state/doctrine/ICF_CS_QUALIFICATION_CONTRACT_V1_1.json",
+      "sha256": "7d20ed708adb4f7ee147b56da41deac77146b56fc85bd769be3a6d240b3e2029"
+    },
+    {
+      "bytes": 1128,
+      "path": "main/state/doctrine/ICF_CS_V1_0_DEMOTION_RECEIPT.json",
+      "sha256": "3225fd952d704d31047ffdf01bffbc0968e4428357342ccb8ce5094ae8385057"
+    },
+    {
+      "bytes": 1927,
+      "path": "main/state/doctrine/ICF_CS_V1_1.json",
+      "sha256": "d67726aeb402c280770eeaf314068ed7a1330beb21167d9d6d9b7c4674425bb0"
+    },
+    {
+      "bytes": 6316,
       "path": "main/state/doctrine/INTENT_CONSTRAINT_FRONTIER_CONTINUITY_STANDARD.md",
-      "sha256": "06b1271bfa8aee5dbd78a3ad7d7d4e56b4d9ccaaf4825bc90504d4d3f194fb40"
+      "sha256": "62be845da364ae81f59b6320c9b34b136236bf5be8aa8036018da48efcb754f4"
     },
     {
-      "bytes": 8693,
+      "bytes": 11254,
       "path": "main/state/doctrine/PROJECT_COMMANDERS_INTENT_CURRENT.md",
-      "sha256": "dc3612d9e0fc8a34a98fe56c332a7d73ac6142b63e49ecc1d57bd6078ee6171d"
+      "sha256": "95ff8a58543c8aa2a2f20eb98cca47a30c3b64a5e8823c5f84edd3ad25cc9761"
     },
     {
-      "bytes": 21794,
+      "bytes": 26688,
       "path": "main/state/doctrine_snapshot.md",
-      "sha256": "3f6bdab573525ab561e7112190c7cc4632d6ae8589c0eb620e79a5e313d0fa71"
+      "sha256": "9dc451cd8496fca4c08c47a6ebde21e88fd5ef9dde73c35011dcc7401ec0e8ae"
     },
     {
-      "bytes": 6431,
+      "bytes": 8236,
       "path": "main/state/next_steps.md",
-      "sha256": "26428ff69784fba87a10058ebf58a36e489807d9cb1f68a6ffaf019e058c204e"
+      "sha256": "4344a97ac1443abd0408e91dfec3de411d5647a61341d3629d0c59a8f58058c1"
     },
     {
-      "bytes": 14080,
+      "bytes": 18380,
       "path": "main/state/revisit_ledger.md",
-      "sha256": "4e16bc4c41c5d832af0a41715bc5637d2466b09e8a86f91ca10ad065c75e7f30"
+      "sha256": "beac74c24cd3f7f42257a7c2bb17a6e3e703897e10d9c09f952959a9de07ab5e"
     },
     {
-      "bytes": 27116,
+      "bytes": 32262,
       "path": "main/state/trace_matrix.md",
-      "sha256": "5b2b8d451c95aae973f25562eb96ebb0228f54fd90bc5e8a1daebd778d315255"
+      "sha256": "0456edb2a5832d72299c16f609c63cdc6fd17d1c4922f074ceca4095f186d2ae"
     },
     {
-      "bytes": 1618,
-      "path": "PUSH_RECEIPT_20260903.md",
-      "sha256": "2fbf22e5e9eb92c8a72972f3d166fb97c24055c0668a37ef594fcbb4236eae02"
+      "bytes": 2383,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/GIT_SAFE_TRANSFORMS.json",
+      "sha256": "ea41e2b63392228e36fce55bc5dc541f199893777f552da8f629a09ada943736"
     },
     {
-      "bytes": 5314,
-      "path": "README.md",
-      "sha256": "293ae0a4250e07012e61fe011b8b064e67b23f7c247c7ebb84e267decf31625f"
+      "bytes": 5046,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/SOURCE_ACTIVE_FILE_HASHES.json",
+      "sha256": "0daaa6a6508b1836a52a1c6bb41392bbdefaa1f72d6472acefb97a1caf326cc9"
+    },
+    {
+      "bytes": 1154,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/SOURCE_IDENTITY.md",
+      "sha256": "53ec180dd5d38bd3ec0c4f9275dd5f57c434a814a8b372e47ab46ed97dd4144a"
     },
     {
       "bytes": 4395,
@@ -422,11 +543,6 @@
       "sha256": "9cc3a1a09306195408938496554896a1fe71c7f43c4d3407b74a1cb38577e623"
     },
     {
-      "bytes": 4056,
-      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/07_CONTINUITY_SYSTEM.md",
-      "sha256": "b917a7f76ded842000cac50e761e61e8704c0916c3228ff615e8b773724a9da9"
-    },
-    {
       "bytes": 958,
       "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/07A_LIVE_SHADOW_PROTOCOL.md",
       "sha256": "05c191e6b49ceaee0fe290e94827b204f91f0ad9cb136284aa37134d74b674f1"
@@ -440,6 +556,11 @@
       "bytes": 3354,
       "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/07C_RESEARCH_EPISTEMIC_SHADOW_PROTOCOL.md",
       "sha256": "d49bb28773d17a79abdc848624f3cbe3a7a60025ce7301bede4d7746e7e2963e"
+    },
+    {
+      "bytes": 4056,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/07_CONTINUITY_SYSTEM.md",
+      "sha256": "b917a7f76ded842000cac50e761e61e8704c0916c3228ff615e8b773724a9da9"
     },
     {
       "bytes": 1563,
@@ -480,6 +601,26 @@
       "bytes": 1194,
       "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/15_CLAIM_CEILING_AND_NONCLAIMS.md",
       "sha256": "eabf6c3ddcabdb5e1ed7a364d20ecd14dc06df98e2323d0c0c25e0086fe078d4"
+    },
+    {
+      "bytes": 5683,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/MANIFEST_SHA256.json",
+      "sha256": "7bd55694acaa4dcfe70e2fa7c3e723d5e501bff073145d77e0750dcd7317d499"
+    },
+    {
+      "bytes": 1969,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/PROMOTION_RECEIPT.md",
+      "sha256": "d22531005742b52b0b25de1dea54283e042e57251e1265d14cc1f062511d6928"
+    },
+    {
+      "bytes": 3698,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/RELEASE_VERIFICATION.md",
+      "sha256": "d2cdb3fed19cdb927108371c336c17a115db90d269c7c3098d7b633e124b21db"
+    },
+    {
+      "bytes": 8881,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/VERIFY_CANONICAL_SOP.py",
+      "sha256": "17393796a07a02d590ec2b2da28e854d23fef59047c6eac5b4fda7e28d68f8fb"
     },
     {
       "bytes": 1133,
@@ -532,103 +673,27 @@
       "sha256": "0ceab6c5eaec8841277df4271f9e7769e0b836e6dd0a5467edaf8f055a0b18f8"
     },
     {
-      "bytes": 5683,
-      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/MANIFEST_SHA256.json",
-      "sha256": "7bd55694acaa4dcfe70e2fa7c3e723d5e501bff073145d77e0750dcd7317d499"
-    },
-    {
-      "bytes": 1969,
-      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/PROMOTION_RECEIPT.md",
-      "sha256": "d22531005742b52b0b25de1dea54283e042e57251e1265d14cc1f062511d6928"
-    },
-    {
-      "bytes": 3698,
-      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/RELEASE_VERIFICATION.md",
-      "sha256": "d2cdb3fed19cdb927108371c336c17a115db90d269c7c3098d7b633e124b21db"
-    },
-    {
       "bytes": 5703,
       "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/tests/RUN_HOSTILE_TESTS.py",
       "sha256": "f4177f651e00534beb5c452081c0fc3937db79fe5027b16ad19d47f1afc76639"
-    },
-    {
-      "bytes": 8881,
-      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/VERIFY_CANONICAL_SOP.py",
-      "sha256": "17393796a07a02d590ec2b2da28e854d23fef59047c6eac5b4fda7e28d68f8fb"
-    },
-    {
-      "bytes": 2383,
-      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/GIT_SAFE_TRANSFORMS.json",
-      "sha256": "ea41e2b63392228e36fce55bc5dc541f199893777f552da8f629a09ada943736"
-    },
-    {
-      "bytes": 5046,
-      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/SOURCE_ACTIVE_FILE_HASHES.json",
-      "sha256": "0daaa6a6508b1836a52a1c6bb41392bbdefaa1f72d6472acefb97a1caf326cc9"
-    },
-    {
-      "bytes": 1154,
-      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/SOURCE_IDENTITY.md",
-      "sha256": "53ec180dd5d38bd3ec0c4f9275dd5f57c434a814a8b372e47ab46ed97dd4144a"
-    },
-    {
-      "bytes": 1801,
-      "path": "VERIFY_CHECKPOINT.py",
-      "sha256": "f5dba1193203a03bbce3779179ce5b6947231dff1ae65f505e5024e3ec5ee207"
     }
   ],
-  "generated_utc": "2026-09-05T14:32:44Z",
+  "generated_utc": "2026-09-06T21:16:23Z",
   "git_copy_policy": {
     "binary_attribute_repair_20260904": "REPAIRED_PREEXISTING_ALL_TEXT_EOL_RULE_BEFORE_CANDIDATE_PUBLICATION_CHECKPOINT",
     "binary_carriers": "*.zip -text; exact bytes required",
     "canonical_process": "R4.4_EXACT_BINARY_CARRIER_MAIN_AND_APP",
     "checkpoint_text_line_endings": "LF",
     "credential_scan": "PASS_NO_EMAIL_TOKEN_PRIVATE_KEY_OR_ACTIONABLE_MACHINE_PATH_FINDINGS",
-    "current_generation_changed_readable_stream_sha256": "PARTITIONED_EXACT_READ_EVIDENCE_SEE_icf_cs.publication_semantic_admission",
-    "current_generation_semantic_gate": "PASS_NONSELF_ARTIFACTS; CHECKPOINT_SELF_READ_IS_EXTERNAL_PRECOMMIT_GATE",
-    "current_r4_4_generation_semantic_read_evidence": {
-      "correction_artifacts": [
-        "project_control/main/state/revisit_ledger.md",
-        "project_control/CHECKPOINT.json"
-      ],
-      "correction_reread": {
-        "checkpoint_pre_final_status_lines": 1225,
-        "checkpoint_pre_final_status_sha256": "24581d3b391d6dd52794e7441b55281af9748329e7d1e85579cfc9214ca7ff05",
-        "main_revisit_sha256": "f4b7daa0ccfb5d169f2ae0d24679a257371f64b9b27e683c0a39f43a3fd492fe",
-        "status": "PASS_COMPLETE"
-      },
-      "exact_sealed_binary_reuse": {
-        "artifacts": 2,
-        "paths": [
-          "project_control/main/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_4_2026-09-04.zip",
-          "project_control/app/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_4_2026-09-04.zip"
-        ],
-        "sha256": "04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc",
-        "status": "PASS_EXACT_SEALED_BYTES"
-      },
-      "exact_server_source_read_reuse": {
-        "artifacts": 13,
-        "status": "REUSED_ONLY_WHERE_SERVER_SOURCE_SHA_EQUALS_GIT_COPY_SHA_AND_SERVER_SOURCE_COMPLETE_READ_ALREADY_PASSED"
-      },
-      "machine_path_reconciliation": {
-        "diff_check": "PASS",
-        "git_derivative_sha256": "cf1a0dbb25510a4b07b70757258a9c61ce3a0400846ad72743bb8dbbd920338e",
-        "post_redaction_actionable_machine_paths": 0,
-        "post_redaction_privacy_findings": 0,
-        "redaction": "<LOCAL_APP_ATTEMPT_STORE_DB>",
-        "server_evidence_sha256": "817daa41119e499c3bc8cc978d0ea625be4598ef6a8263f3acf5cf84392fa3e9",
-        "status": "PASS_COMPLETE",
-        "verifier": "PASS"
-      },
-      "transformed_or_new_readables": {
-        "artifacts": 12,
-        "deterministic_stream_bytes": 281868,
-        "deterministic_stream_lines": 3865,
-        "sha256": "c2593a7748e3e9d6a3d48314d180dfebff9c376f7717de0dc28a28cb96d4c2c1",
-        "status": "COMPLETE_FOUND_THREE_CURRENTNESS_METADATA_DEFECTS"
-      }
-    },
+    "current_app_source": "e9b81750db265a467187c61962ffab3cff98d4fe",
+    "current_authority": "R4.4_PLUS_ICF_CS_V1_1",
+    "current_generation_semantic_gate": "PATH_REDACTION_CORRECTION_REREAD_AND_FINAL_CHECKPOINT_EXTERNAL_GATE_REQUIRED",
+    "current_ingress_instance_sha256": "95ff8a58543c8aa2a2f20eb98cca47a30c3b64a5e8823c5f84edd3ad25cc9761",
+    "current_ingress_pointer_sha256": "7fc1675989ec806095fbc250c9d6c6adc213c7af3ca13dc0f1f515fc44f290b3",
+    "current_recovery_checkpoint": "checkpoint-app-live-0012-e9b81750db26",
+    "detached_receipt_sha256": "418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c",
     "dts_machine_local_paths_redacted": true,
+    "initial_generation_changed_readable_stream_sha256": "ddbc4b5b4f3d0e22f8f9cccda3fec8c5a0aa6562b5722746f2e01879c0ff355b",
     "previous_control_generation_semantic_gate": {
       "control_tip": "a86c2e2200b5b052cc95fe3834dcfed0bc5a18ab",
       "full_tree_read": "PASS_69_OF_69_READABLE_FILES",
@@ -692,15 +757,302 @@
         "status": "PASS_COMPLETE"
       }
     },
-    "publication_reconciliation": "SEALED_ZIP_BYTES_EXACT; TEXT_GIT_DERIVATIVES_TRACK_SEPARATE_SOURCE_AND_COPY_HASHES",
+    "previous_r4_4_gen11_generation_semantic_read_evidence": {
+      "correction_artifacts": [
+        "project_control/main/state/revisit_ledger.md",
+        "project_control/CHECKPOINT.json"
+      ],
+      "correction_reread": {
+        "checkpoint_pre_final_status_lines": 1225,
+        "checkpoint_pre_final_status_sha256": "24581d3b391d6dd52794e7441b55281af9748329e7d1e85579cfc9214ca7ff05",
+        "main_revisit_sha256": "f4b7daa0ccfb5d169f2ae0d24679a257371f64b9b27e683c0a39f43a3fd492fe",
+        "status": "PASS_COMPLETE"
+      },
+      "exact_sealed_binary_reuse": {
+        "artifacts": 2,
+        "paths": [
+          "project_control/main/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_4_2026-09-04.zip",
+          "project_control/app/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_4_2026-09-04.zip"
+        ],
+        "sha256": "04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc",
+        "status": "PASS_EXACT_SEALED_BYTES"
+      },
+      "exact_server_source_read_reuse": {
+        "artifacts": 13,
+        "status": "REUSED_ONLY_WHERE_SERVER_SOURCE_SHA_EQUALS_GIT_COPY_SHA_AND_SERVER_SOURCE_COMPLETE_READ_ALREADY_PASSED"
+      },
+      "machine_path_reconciliation": {
+        "diff_check": "PASS",
+        "git_derivative_sha256": "cf1a0dbb25510a4b07b70757258a9c61ce3a0400846ad72743bb8dbbd920338e",
+        "post_redaction_actionable_machine_paths": 0,
+        "post_redaction_privacy_findings": 0,
+        "redaction": "<LOCAL_APP_ATTEMPT_STORE_DB>",
+        "server_evidence_sha256": "817daa41119e499c3bc8cc978d0ea625be4598ef6a8263f3acf5cf84392fa3e9",
+        "status": "PASS_COMPLETE",
+        "verifier": "PASS"
+      },
+      "transformed_or_new_readables": {
+        "artifacts": 12,
+        "deterministic_stream_bytes": 281868,
+        "deterministic_stream_lines": 3865,
+        "sha256": "c2593a7748e3e9d6a3d48314d180dfebff9c376f7717de0dc28a28cb96d4c2c1",
+        "status": "COMPLETE_FOUND_THREE_CURRENTNESS_METADATA_DEFECTS"
+      }
+    },
+    "publication_reconciliation": "CANONICAL_RELEASE_BYTES_EXACT; TEXT_DERIVATIVES_TRACK_SERVER_SOURCE_AND_GIT_COPY_HASHES",
     "r4_4_carrier_sha256": "04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc",
-    "semantic_gate_changed_readables": "PASS_23_CURRENT_NONMANIFEST_CHANGED_ARTIFACTS",
+    "semantic_gate_changed_readables": "V1_1_GEN12_FINAL_PARTITION_11_FRESH_30_EXACT_READ_REUSE_2_EXACT_BINARY",
     "semantic_gate_exact_binary_reuse": "PASS_R4_4_CARRIER_SHA_EXACT_MAIN_AND_APP",
     "server_full_fidelity_preserved": true,
     "server_source_hashes_preserved_separately": true,
-    "sop_machine_paths_and_test_fixture_literal_redacted": true
+    "sop_machine_paths_and_test_fixture_literal_redacted": true,
+    "v1_1_payload_sha256": "f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63"
   },
   "icf_cs": {
+    "authority_ceiling": "CONTINUITY_REHYDRATION_CURRENT_INGRESS_EVALUATION_DATA_HYGIENE_ONLY",
+    "cold_start": "CURRENT STATE -> ICF-CS -> CURRENT CANONICAL SOP + NEXT/DOCTRINE/REVISIT/TRACE -> LIVE SHADOW -> DTS -> LIVE READBACK BEFORE MUTATION",
+    "conflict_grammar": "CONFLICT -> RECOVERY/AUDIT -> LOCALIZE -> REPAIR/SUPERSEDE -> READBACK -> RESUME",
+    "core_law": "DIRECTION != CONSTRAINTS != FRONTIER != HISTORY",
+    "detached_receipt_sha256": "418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c",
+    "epoch_profile_sha256": "733b799815abdb4b1ff735635f7928953c12944ece579365b5aae138d90f90f8",
+    "ingress_pointer_sha256": "7fc1675989ec806095fbc250c9d6c6adc213c7af3ca13dc0f1f515fc44f290b3",
+    "machine_contract_sha256": "d67726aeb402c280770eeaf314068ed7a1330beb21167d9d6d9b7c4674425bb0",
+    "payload_sha256": "f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63",
+    "project_instance_sha256": "95ff8a58543c8aa2a2f20eb98cca47a30c3b64a5e8823c5f84edd3ad25cc9761",
+    "publication_semantic_admission": {
+      "blocking_findings": 0,
+      "final_partition": {
+        "exact_sealed_binary_reuse": 2,
+        "exact_server_read_reuse": 30,
+        "fresh_transformed_or_new": 11
+      },
+      "initial_fresh_artifacts": 10,
+      "initial_fresh_stream_lines": 4253,
+      "initial_fresh_stream_sha256": "ddbc4b5b4f3d0e22f8f9cccda3fec8c5a0aa6562b5722746f2e01879c0ff355b",
+      "status": "PATH_REDACTION_CORRECTION_REREAD_AND_FINAL_CHECKPOINT_EXTERNAL_GATE_REQUIRED"
+    },
+    "qualification_contract_sha256": "7d20ed708adb4f7ee147b56da41deac77146b56fc85bd769be3a6d240b3e2029",
+    "standard_sha256": "62be845da364ae81f59b6320c9b34b136236bf5be8aa8036018da48efcb754f4",
+    "status": "CURRENT_BINDING_ADDITIVE_CONTINUITY_DOCTRINE__PUBLICATION_ADMITTED_PENDING_FINAL_CHECKPOINT_REREAD",
+    "v1_0_demotion_receipt_sha256": "3225fd952d704d31047ffdf01bffbc0968e4428357342ccb8ce5094ae8385057",
+    "v1_0_status": "HISTORICAL_DEMOTED",
+    "version": "1.1"
+  },
+  "linear_human_semantic_gate": {
+    "active_authority": "RAHL Engineering Canonical SOP R4.4 + ICF-CS v1.1 additive continuity/process doctrine",
+    "blocking_findings_after_correction": 0,
+    "blocking_findings_after_server_correction": 0,
+    "control_changed_readable_artifacts": {
+      "admission_strategy": "INITIAL_10_FRESH_4253_LINE_READ_PLUS_EXACT_UNCHANGED_REUSE_PLUS_COMPLETE_PATH_REDACTION_CORRECTION_REREAD_AND_FINAL_CHECKPOINT_EXTERNAL_GATE",
+      "exact_sealed_binary": 2,
+      "exact_server_read_reuse": 30,
+      "fresh_transformed_or_new": 11
+    },
+    "control_publication_initial_read": {
+      "fresh_artifacts": 10,
+      "sha256": "ddbc4b5b4f3d0e22f8f9cccda3fec8c5a0aa6562b5722746f2e01879c0ff355b",
+      "status": "COMPLETE_FOUND_CHECKPOINT_AND_RES_POINTER_FINDINGS",
+      "stream_lines": 4253
+    },
+    "control_publication_read": "INITIAL_COMPLETE_FINDINGS_REPAIRED__README_AND_CHECKPOINT_FINAL_REREAD_REQUIRED",
+    "correction_reread": {
+      "checkpoint_pre_final_status_complete_read": true,
+      "checkpoint_pre_final_status_sha256": "24581d3b391d6dd52794e7441b55281af9748329e7d1e85579cfc9214ca7ff05",
+      "main_revisit_sha256": "f4b7daa0ccfb5d169f2ae0d24679a257371f64b9b27e683c0a39f43a3fd492fe",
+      "status": "PASS_COMPLETE"
+    },
+    "current_res_read": {
+      "app": {
+        "sha256": "a476342db8d3e6eea323ec157e5e4964eb0f1a009aabcf2867927f56e8c72792",
+        "status": "PASS_EXACT_UNCHANGED_REUSE_FROM_PREVIOUS_COMPLETE_READ"
+      },
+      "main": {
+        "lines": 415,
+        "sha256": "c963e4fd011dd432e8255b793aa0f2623d7d4548f3e3eb34b4f91aa34815fbbc",
+        "status": "PASS_COMPLETE_CURRENT_READ"
+      }
+    },
+    "machine_path_redaction_reread": {
+      "app_evidence_complete_read": true,
+      "app_evidence_git_sha256": "cf1a0dbb25510a4b07b70757258a9c61ce3a0400846ad72743bb8dbbd920338e",
+      "checkpoint_complete_read": true,
+      "checkpoint_pre_final_scan_sha256": "3d00b980ac023ffea72257a31cd02a4b5fe6e575243f8ffccb877b7cd6d2d8d1",
+      "status": "PASS_COMPLETE"
+    },
+    "path_redaction_correction_gate": {
+      "artifacts": [
+        "app/continuity/design_thread_stream.md",
+        "app/state/live_resume_session_0012.json",
+        "main/continuity/design_thread_stream.md",
+        "CHECKPOINT.json"
+      ],
+      "status": "REQUIRED_EXTERNAL_PRECOMMIT_COMPLETE_REREAD"
+    },
+    "pre_path_redaction_control_changed_readable_artifacts": {
+      "exact_sealed_binary": 2,
+      "exact_server_read_reuse": 31,
+      "fresh_stream_lines": 4253,
+      "fresh_stream_sha256": "ddbc4b5b4f3d0e22f8f9cccda3fec8c5a0aa6562b5722746f2e01879c0ff355b",
+      "fresh_transformed_or_new": 10
+    },
+    "previous_bilateral_res_complete_read": {
+      "lines": 628,
+      "sha256": "8b53d697d9a9afe1d1188fce3a6878969fc676b67158410b2dfe6af54a7ba388",
+      "status": "PASS"
+    },
+    "previous_r4_4_gen11_control_changed_readable_artifacts": {
+      "exact_sealed_binary": 2,
+      "exact_server_read_reuse": 13,
+      "fresh_stream_lines": 3865,
+      "fresh_stream_sha256": "c2593a7748e3e9d6a3d48314d180dfebff9c376f7717de0dc28a28cb96d4c2c1",
+      "fresh_transformed_or_new": 12
+    },
+    "project_correction_read": {
+      "artifacts": 16,
+      "lines": 1621,
+      "sha256": "db64aa422dfd1d878e3b8630be9ff12ae7a5118cb1727e2367834f3d0152f1c3",
+      "status": "COMPLETE_FINDINGS_REPAIRED"
+    },
+    "project_fixed_point_evidence": {
+      "app_receipt": "app/maintenance/RAHL_R4_4_CANONICAL_SOP_ADOPTION_20260904.md",
+      "blocking_semantic_findings": 0,
+      "final_three_artifact_reread": "PASS_COMPLETE",
+      "main_receipt": "main/maintenance/RAHL_R4_4_CANONICAL_SOP_ADOPTION_20260904.md",
+      "project_adoption_correction_stream": {
+        "artifacts": 11,
+        "lines": 1599,
+        "sha256": "afc7ec51a9fb349e41df9c187a16e5e467953f1a3fa292d47932bd3898b435b9",
+        "status": "COMPLETE_FOUND_THREE_RESIDUAL_DEFECTS"
+      },
+      "project_adoption_initial_semantic_stream": {
+        "artifacts": 18,
+        "lines": 3905,
+        "sha256": "cc8114cf4c18f90710df4027dba82d8e86213f3c5b20597efabc14e897cd9b15",
+        "status": "COMPLETE_FOUND_STALE_LABELS"
+      }
+    },
+    "project_initial_read": {
+      "artifacts": 21,
+      "lines": 2016,
+      "sha256": "6f82c71476560601a02da7ca1c2bd7056882b6bd87a798b4c405dd7001b70ce2",
+      "status": "COMPLETE_FINDINGS_REPAIRED"
+    },
+    "rule": "If an artifact can be meaningfully read, it SHALL receive a complete linear semantic read before it is promoted, sealed, published, admitted, or treated as load-bearing. Automated checks may precede and support the gate; they SHALL NOT substitute for it.",
+    "semantic_findings": [
+      {
+        "artifact": "CHECKPOINT.json",
+        "finding": "doctrine_addenda semantic-gate active authority still named R4.2 after R4.4 adoption",
+        "id": "checkpoint-active-gate-authority-r4-2",
+        "resolution": "active_authority and authority classification advanced to R4.4 while addendum text/provenance remain historical"
+      },
+      {
+        "artifact": "CHECKPOINT.json",
+        "finding": "git_copy_policy current-generation semantic-read/reuse fields still contained R4.2 generation evidence",
+        "id": "checkpoint-current-generation-evidence-r4-2",
+        "resolution": "R4.2 evidence moved under explicit previous_r4_2_generation_semantic_read_evidence; current R4.4 publication evidence recorded separately"
+      },
+      {
+        "artifact": "main/state/revisit_ledger.md",
+        "finding": "pre-gen11 recovery-currentness row remained ACTIVE alongside later RESOLVED gen11 row",
+        "id": "main-revisit-pre-gen11-active-row",
+        "resolution": "older row explicitly marked HISTORICAL / SUPERSEDED BY GEN11 RESOLUTION ROW"
+      },
+      {
+        "artifact": "app/evidence/live_resume_session_0011.json",
+        "finding": "Git control derivative contained an absolute local Attempt Store DB path although server evidence was valid",
+        "id": "gen11-evidence-machine-local-db-path",
+        "resolution": "redacted only the Git derivative; exact server evidence SHA remains separately recorded"
+      },
+      {
+        "artifact": "CHECKPOINT.json",
+        "finding": "top-level app_observation still named predecessor b674dba as current App after e9b81750 source advancement",
+        "id": "v1_1-checkpoint-stale-app-observation",
+        "resolution": "preserved prior object under previous_app_observation and bound app_observation to e9b81750 preserved Attempt-0 source"
+      },
+      {
+        "artifact": "CHECKPOINT.json",
+        "finding": "previous R4.4/gen11 publication evidence remained under current_r4_4_generation_semantic_read_evidence",
+        "id": "v1_1-checkpoint-old-r4_4-gen11-evidence-current-key",
+        "resolution": "moved exact evidence under previous_r4_4_gen11_generation_semantic_read_evidence"
+      },
+      {
+        "artifact": "CHECKPOINT.json",
+        "finding": "control_changed_readable_artifacts retained previous 12/13/2 R4.4-gen11 publication partition",
+        "id": "v1_1-checkpoint-old-publication-partition-current",
+        "resolution": "preserved old partition under previous_r4_4_gen11_control_changed_readable_artifacts and bound current v1.1/gen12 partition 10 fresh / 31 exact-read reuse / 2 exact binaries / 4253-line stream"
+      },
+      {
+        "artifact": "README.md + CHECKPOINT.json",
+        "finding": "Main RES advanced concurrently from aad59b85... to c963e4fd... after earlier bilateral RES read; candidate detailed source record had current bytes but README/high-level RES pointer remained stale",
+        "id": "v1_1-main-res-concurrent-currentness-advance",
+        "resolution": "fresh complete 415-line current Main RES read; README/high-level CHECKPOINT pointer advanced to c963e4fd; prior 628-line bilateral read retained explicitly as previous evidence"
+      },
+      {
+        "artifact": "App/Main DTS Git derivatives + App Gen12 evidence Git derivative",
+        "finding": "full candidate scan found actionable machine-local Windows paths in three current-generation derivatives; one additional https scanner false positive was non-actionable",
+        "id": "v1_1-current-generation-machine-local-paths",
+        "resolution": "redacted Git derivatives only; exact server-source identities retained separately; final partition advanced to 11 fresh / 30 exact-read reuse / 2 exact binaries"
+      }
+    ],
+    "status": "NONCHECKPOINT_PUBLICATION_READ_PASS__PATH_REDACTION_CORRECTION_AND_FINAL_CHECKPOINT_EXTERNAL_PRECOMMIT_GATE_REQUIRED",
+    "v1_1_payload_semantic_read": {
+      "readable_members": 16,
+      "sha256": "ad1dab3444274a23c8d63a1edb3857b50f90c98efd0115d3c7c488c06fac9ec6",
+      "status": "PASS",
+      "stream_lines": 1050
+    }
+  },
+  "main_candidate": {
+    "branch": "main",
+    "commit": "a7b4511734b1a1e507230308e75b31175aef4c4a",
+    "note": "historical candidate has been promoted; current source is public main",
+    "public_main_promoted": true,
+    "scope": "HISTORICAL_CORE_QUALIFICATION_CANDIDATE_METADATA",
+    "status": "QUALIFIED_PUBLIC_MAIN"
+  },
+  "main_source": {
+    "branch": "main",
+    "branch_head": "287c0bad0e9b3fef3002b91702e86b410cada4ce",
+    "core_qualification_anchor": "a7b4511734b1a1e507230308e75b31175aef4c4a",
+    "core_qualification_retained": true,
+    "head_delta_scope": "authority/rahl-sop/** only",
+    "law": "MAIN_BRANCH_HEAD != CORE_QUALIFICATION_ANCHOR"
+  },
+  "previous_app_observation": {
+    "branch": "forge/app-shell-rd",
+    "commit": "b674dbaaf428970c486753168e75847a345eb1c2",
+    "local_remote_exact": true,
+    "subject": "app: forward-sync qualified semantic-field core",
+    "working_tree_clean": true
+  },
+  "previous_app_recovery_generation": {
+    "checkpoint_blob_sha256": "0a644a5040256482d79eb5dba23c73afb6586f95223946f1c283e6d72f22c821",
+    "checkpoint_id": "checkpoint-app-live-0011-b674dbaaf428",
+    "core_contract_version": null,
+    "core_currentness_id": null,
+    "early_crash_count": 0,
+    "evidence_attempt": "attempt-live-resume-session-0011-lkg",
+    "evidence_sha256": "817daa41119e499c3bc8cc978d0ea625be4598ef6a8263f3acf5cf84392fa3e9",
+    "generation": 11,
+    "lkg": true,
+    "meaningful_operations": 4,
+    "parent_checkpoint_id": "checkpoint-app-live-0010-328249429cc6",
+    "quarantined": false,
+    "resume_policy": "NORMAL",
+    "resumed": true,
+    "semantic_snapshot_id": null,
+    "source_currentness": "MATCH",
+    "source_head": "b674dbaaf428970c486753168e75847a345eb1c2",
+    "stable": true,
+    "stable_elapsed_seconds_approx": 10.797,
+    "store_counts_after_evidence": {
+      "attempts": 102,
+      "blobs": 102,
+      "events": 169
+    },
+    "verified": true
+  },
+  "previous_icf_cs_generation": {
     "adoption_receipt_git_copy_sha256": "a0a192bfd27825ca023822e1a0f35ca46867c65980997caf0cc17f067fe8fc20",
     "adoption_receipt_server_source_sha256": "3ae4d9a4360ab576aa027c6c80f793050c48e4db57f9e94ec3eeeee7739c97aa",
     "adoption_receipt_sha256": "3ae4d9a4360ab576aa027c6c80f793050c48e4db57f9e94ec3eeeee7739c97aa",
@@ -804,93 +1156,11 @@
     "status": "ADOPTED_PROJECT_LOCAL_CONTINUITY_REHYDRATION_STANDARD",
     "version": "1.0"
   },
-  "linear_human_semantic_gate": {
-    "active_authority": "RAHL Engineering Canonical SOP R4.4",
-    "blocking_findings_after_correction": 0,
-    "control_changed_readable_artifacts": {
-      "exact_sealed_binary": 2,
-      "exact_server_read_reuse": 13,
-      "fresh_stream_lines": 3865,
-      "fresh_stream_sha256": "c2593a7748e3e9d6a3d48314d180dfebff9c376f7717de0dc28a28cb96d4c2c1",
-      "fresh_transformed_or_new": 12
-    },
-    "correction_reread": {
-      "checkpoint_pre_final_status_complete_read": true,
-      "checkpoint_pre_final_status_sha256": "24581d3b391d6dd52794e7441b55281af9748329e7d1e85579cfc9214ca7ff05",
-      "main_revisit_sha256": "f4b7daa0ccfb5d169f2ae0d24679a257371f64b9b27e683c0a39f43a3fd492fe",
-      "status": "PASS_COMPLETE"
-    },
-    "machine_path_redaction_reread": {
-      "app_evidence_complete_read": true,
-      "app_evidence_git_sha256": "cf1a0dbb25510a4b07b70757258a9c61ce3a0400846ad72743bb8dbbd920338e",
-      "checkpoint_complete_read": true,
-      "checkpoint_pre_final_scan_sha256": "3d00b980ac023ffea72257a31cd02a4b5fe6e575243f8ffccb877b7cd6d2d8d1",
-      "status": "PASS_COMPLETE"
-    },
-    "project_fixed_point_evidence": {
-      "app_receipt": "app/maintenance/RAHL_R4_4_CANONICAL_SOP_ADOPTION_20260904.md",
-      "blocking_semantic_findings": 0,
-      "final_three_artifact_reread": "PASS_COMPLETE",
-      "main_receipt": "main/maintenance/RAHL_R4_4_CANONICAL_SOP_ADOPTION_20260904.md",
-      "project_adoption_correction_stream": {
-        "artifacts": 11,
-        "lines": 1599,
-        "sha256": "afc7ec51a9fb349e41df9c187a16e5e467953f1a3fa292d47932bd3898b435b9",
-        "status": "COMPLETE_FOUND_THREE_RESIDUAL_DEFECTS"
-      },
-      "project_adoption_initial_semantic_stream": {
-        "artifacts": 18,
-        "lines": 3905,
-        "sha256": "cc8114cf4c18f90710df4027dba82d8e86213f3c5b20597efabc14e897cd9b15",
-        "status": "COMPLETE_FOUND_STALE_LABELS"
-      }
-    },
-    "rule": "If an artifact can be meaningfully read, it SHALL receive a complete linear semantic read before it is promoted, sealed, published, admitted, or treated as load-bearing. Automated checks may precede and support the gate; they SHALL NOT substitute for it.",
-    "semantic_findings": [
-      {
-        "artifact": "CHECKPOINT.json",
-        "finding": "doctrine_addenda semantic-gate active authority still named R4.2 after R4.4 adoption",
-        "id": "checkpoint-active-gate-authority-r4-2",
-        "resolution": "active_authority and authority classification advanced to R4.4 while addendum text/provenance remain historical"
-      },
-      {
-        "artifact": "CHECKPOINT.json",
-        "finding": "git_copy_policy current-generation semantic-read/reuse fields still contained R4.2 generation evidence",
-        "id": "checkpoint-current-generation-evidence-r4-2",
-        "resolution": "R4.2 evidence moved under explicit previous_r4_2_generation_semantic_read_evidence; current R4.4 publication evidence recorded separately"
-      },
-      {
-        "artifact": "main/state/revisit_ledger.md",
-        "finding": "pre-gen11 recovery-currentness row remained ACTIVE alongside later RESOLVED gen11 row",
-        "id": "main-revisit-pre-gen11-active-row",
-        "resolution": "older row explicitly marked HISTORICAL / SUPERSEDED BY GEN11 RESOLUTION ROW"
-      },
-      {
-        "artifact": "app/evidence/live_resume_session_0011.json",
-        "finding": "Git control derivative contained an absolute local Attempt Store DB path although server evidence was valid",
-        "id": "gen11-evidence-machine-local-db-path",
-        "resolution": "redacted only the Git derivative; exact server evidence SHA remains separately recorded"
-      }
-    ],
-    "status": "PASS"
-  },
-  "main_candidate": {
-    "branch": "main",
-    "commit": "a7b4511734b1a1e507230308e75b31175aef4c4a",
-    "note": "historical candidate has been promoted; current source is public main",
-    "public_main_promoted": true,
-    "status": "QUALIFIED_PUBLIC_MAIN"
-  },
-  "main_source": {
-    "branch": "main",
-    "commit": "a7b4511734b1a1e507230308e75b31175aef4c4a",
-    "public": true,
-    "qualified": true
-  },
-  "previous_verified_control_tip": "cb8d01c5e635347e038b4dffea49387945aea72d",
+  "previous_verified_control_tip": "63f7a74f47be4179b5871fd7ff9da819b54e3ab9",
   "project": "Singularity Works / Forge \u2014 Main/Core + App project control",
+  "public_main_branch_head_observed": "287c0bad0e9b3fef3002b91702e86b410cada4ce",
   "qualified_public_main_observed": "a7b4511734b1a1e507230308e75b31175aef4c4a",
-  "qualified_source": {
+  "qualified_source_anchors": {
     "app": "b674dbaaf428970c486753168e75847a345eb1c2",
     "main": "a7b4511734b1a1e507230308e75b31175aef4c4a"
   },
@@ -943,16 +1213,16 @@
       "authority": "NONE_BY_CONTENT",
       "git_path": "app/continuity/research_epistemic_shadow.md",
       "scope": "PRODUCT_RUNTIME_SECURITY_RESEARCH",
-      "server_source_sha256": "9d4d3b56432a822354f377f9482b3e7b9e78797de34be8d675d86d80461f0218"
+      "server_source_sha256": "a476342db8d3e6eea323ec157e5e4964eb0f1a009aabcf2867927f56e8c72792"
     },
     "main": {
       "authority": "NONE_BY_CONTENT",
       "git_path": "main/continuity/research_epistemic_shadow.md",
       "scope": "CORE_SEMANTIC_RESEARCH",
-      "server_source_sha256": "9abe90f23dfb719291736bf9ad6b155ad2982df7527a4e06909956473ba4ccb3"
+      "server_source_sha256": "c963e4fd011dd432e8255b793aa0f2623d7d4548f3e3eb34b4f91aa34815fbbc"
     }
   },
-  "resume_point": "After exact final CHECKPOINT read and remote/fresh-clone publication of this ICF-CS control generation, resume App OS/process egress-enforcement BUILD-PLAN/AUDIT under R4.4 using ICF current ingress and live readback.",
+  "resume_point": "Complete this successor control publication/fresh-clone readback; then execute exact frozen D0-D3 unchanged as first egress Attempt-0 execution.",
   "schema": "singularity-works.project-control-checkpoint/0.1",
   "semantic_field_candidate": {
     "app_consumption_authority": true,
@@ -966,16 +1236,16 @@
   },
   "source_snapshot_records": {
     "app/checkpoints/PROJECT_INTENT_CURRENT.md": {
-      "bytes": 1730,
-      "git_copy_sha256": "8d2e9a7fd9091e9970386b7d7a8398c9227bb19f26b7b700bde60d3219264e95",
+      "bytes": 2769,
+      "git_copy_sha256": "7fc1675989ec806095fbc250c9d6c6adc213c7af3ca13dc0f1f515fc44f290b3",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "checkpoints/PROJECT_INTENT_CURRENT.md",
-      "server_source_sha256": "8d2e9a7fd9091e9970386b7d7a8398c9227bb19f26b7b700bde60d3219264e95"
+      "server_source_sha256": "7fc1675989ec806095fbc250c9d6c6adc213c7af3ca13dc0f1f515fc44f290b3"
     },
     "app/continuity/design_thread_stream.md": {
-      "bytes": 78291,
-      "git_copy_sha256": "876ddb8b24e379a84dc6981d8e4802dfaf8090239a011c2e1ea94540adc79c99",
+      "bytes": 89125,
+      "git_copy_sha256": "a7043dbf8b19188b7ae91c1c7563b3654e54778f86c53a25f72b57c5f5c86cfc",
       "git_safe_redactions": [
         {
           "count": 1,
@@ -984,34 +1254,34 @@
         },
         {
           "count": 1,
-          "label": "forge_repo",
-          "replacement": "<LOCAL_FORGE_REPO>"
+          "label": "email_shaped_identifier",
+          "replacement": "<REDACTED_EMAIL_SHAPED_IDENTIFIER>"
         },
         {
           "count": 1,
-          "label": "email_shaped_identifier",
-          "replacement": "<REDACTED_EMAIL_SHAPED_IDENTIFIER>"
+          "label": "historical_worktree_path",
+          "replacement": "<LOCAL_HISTORICAL_WORKTREE>"
         }
       ],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "continuity/design_thread_stream/design_thread_stream.md",
-      "server_source_sha256": "3af92db2533dd6a6e400569c88e2cece74eaaea7821e4d0f942ce2c466e60352"
+      "server_source_sha256": "6c2c657686476c1c4cca24a7ae57bdddea718c8f7ac8fe162e70f744d6081336"
     },
     "app/continuity/live_shadow.md": {
-      "bytes": 9551,
-      "git_copy_sha256": "16446eb7ec661234ce1e01316c08b339a3535ebde4ef9d44356aadd79bbe3aca",
+      "bytes": 11409,
+      "git_copy_sha256": "5accb1e6abb44431a6e51639c37755a72df6d167bb8955ebe738e47f46fd782d",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "continuity/live_shadow/live_shadow.md",
-      "server_source_sha256": "16446eb7ec661234ce1e01316c08b339a3535ebde4ef9d44356aadd79bbe3aca"
+      "server_source_sha256": "5accb1e6abb44431a6e51639c37755a72df6d167bb8955ebe738e47f46fd782d"
     },
     "app/continuity/research_epistemic_shadow.md": {
-      "bytes": 10528,
-      "git_copy_sha256": "9d4d3b56432a822354f377f9482b3e7b9e78797de34be8d675d86d80461f0218",
+      "bytes": 11939,
+      "git_copy_sha256": "a476342db8d3e6eea323ec157e5e4964eb0f1a009aabcf2867927f56e8c72792",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "continuity/research_epistemic_shadow/res.md",
-      "server_source_sha256": "9d4d3b56432a822354f377f9482b3e7b9e78797de34be8d675d86d80461f0218"
+      "server_source_sha256": "a476342db8d3e6eea323ec157e5e4964eb0f1a009aabcf2867927f56e8c72792"
     },
     "app/evidence/live_resume_session_0011.json": {
       "bytes": 3963,
@@ -1042,6 +1312,30 @@
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "notes/maintenance/CONNECTION_GATE_AUTHORITY_STATE_CHECKPOINT_20260903.md",
       "server_source_sha256": "1b2a481bf51b9df26370d666d8bac898153408455363eac6221b543debc88732"
+    },
+    "app/maintenance/GEN12_E9B81750_RECOVERY_CURRENTNESS_20260906.md": {
+      "bytes": 2619,
+      "git_copy_sha256": "053497de9b63299386f1395e66c2f3939c83fbdb89b8dfb9b443acd325f19f69",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "notes/maintenance/GEN12_E9B81750_RECOVERY_CURRENTNESS_20260906.md",
+      "server_source_sha256": "892a0896bdd5ae9d1fe2db085960c09467efa8cae433a4902d1515ae5c26f3dd"
+    },
+    "app/maintenance/ICF_CS_V1_1_AUTHORITY_ADOPTION_20260906.md": {
+      "bytes": 2463,
+      "git_copy_sha256": "13aabeefa929328be42f26d858622787371f57f85f5a93b2acc71e875277e21a",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "notes/maintenance/ICF_CS_V1_1_AUTHORITY_ADOPTION_20260906.md",
+      "server_source_sha256": "3c19e3fa1eaed8e7dcb19af5ecaa1875a29bce63224c0d4b444a7e43143090d6"
+    },
+    "app/maintenance/ICF_CS_V1_1_GEN12_SEMANTIC_CORRECTION_20260906.md": {
+      "bytes": 1355,
+      "git_copy_sha256": "aee9fb38daf77ab13fa70c5e313055c624354784f6022450de94843efbbecde3",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "notes/maintenance/ICF_CS_V1_1_GEN12_SEMANTIC_CORRECTION_20260906.md",
+      "server_source_sha256": "5ea0defa18552057fde944b65c2dc543e6285d716709bedb338a6ae661bd6361"
     },
     "app/maintenance/ICF_CS_V1_ADOPTION_CHECKPOINT_20260905.md": {
       "bytes": 7225,
@@ -1143,6 +1437,15 @@
       "server_source_path": "notes/maintenance/SEMANTIC_FIELD_MAIN_APP_FORWARD_SYNC_REMOTE_CLOSURE_20260904.md",
       "server_source_sha256": "8119f920e0c8e1c34c85ebe8e6ab5d01cbf32e5ab01309a8ede68e40145fa2ec"
     },
+    "app/sop/ICF_CS_V1_1_DETACHED_RELEASE_RECEIPT_2026-09-05.json": {
+      "bytes": 4555,
+      "git_copy_sha256": "418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c",
+      "git_safe_redactions": [],
+      "line_endings": "CANONICAL_EXACT_BYTES",
+      "semantic_admission": "V1_1_CANONICAL_RELEASE_EXACT_BYTES",
+      "server_source_path": "sop/ICF_CS_V1_1_DETACHED_RELEASE_RECEIPT_2026-09-05.json",
+      "server_source_sha256": "418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c"
+    },
     "app/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_2_2026-09-03.zip": {
       "bytes": 625556,
       "git_copy_sha256": "eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a",
@@ -1161,73 +1464,128 @@
       "server_source_path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_4_2026-09-04.zip",
       "server_source_sha256": "04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc"
     },
+    "app/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_4_ICF_CS_V1_1_ADDENDUM_2026-09-05.zip": {
+      "bytes": 2557435,
+      "git_copy_sha256": "f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63",
+      "git_safe_redactions": [],
+      "line_endings": "BINARY_EXACT_COPY",
+      "semantic_admission": "V1_1_CANONICAL_RELEASE_EXACT_BYTES",
+      "server_source_path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_4_ICF_CS_V1_1_ADDENDUM_2026-09-05.zip",
+      "server_source_sha256": "f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63"
+    },
     "app/state/current.md": {
-      "bytes": 7989,
-      "git_copy_sha256": "b37b36262dac6fb63b946fabc095f2eaaa5ed256c5ceb4a6202dc1cc6f73d2c1",
+      "bytes": 9005,
+      "git_copy_sha256": "626b87de8359e7761dff9d54cb34ea3c947d3a536e4b48315b2987f307a7832a",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/current/current.md",
-      "server_source_sha256": "b37b36262dac6fb63b946fabc095f2eaaa5ed256c5ceb4a6202dc1cc6f73d2c1"
+      "server_source_sha256": "626b87de8359e7761dff9d54cb34ea3c947d3a536e4b48315b2987f307a7832a"
+    },
+    "app/state/doctrine/ICF_CS_MECHANIZED_EPOCH_PROFILE_V1_1.md": {
+      "bytes": 4215,
+      "git_copy_sha256": "733b799815abdb4b1ff735635f7928953c12944ece579365b5aae138d90f90f8",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "state/doctrine_snapshot/ICF_CS_MECHANIZED_EPOCH_PROFILE_V1_1.md",
+      "server_source_sha256": "733b799815abdb4b1ff735635f7928953c12944ece579365b5aae138d90f90f8"
+    },
+    "app/state/doctrine/ICF_CS_QUALIFICATION_CONTRACT_V1_1.json": {
+      "bytes": 2832,
+      "git_copy_sha256": "7d20ed708adb4f7ee147b56da41deac77146b56fc85bd769be3a6d240b3e2029",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "state/doctrine_snapshot/ICF_CS_QUALIFICATION_CONTRACT_V1_1.json",
+      "server_source_sha256": "7d20ed708adb4f7ee147b56da41deac77146b56fc85bd769be3a6d240b3e2029"
+    },
+    "app/state/doctrine/ICF_CS_V1_0_DEMOTION_RECEIPT.json": {
+      "bytes": 1128,
+      "git_copy_sha256": "3225fd952d704d31047ffdf01bffbc0968e4428357342ccb8ce5094ae8385057",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "state/doctrine_snapshot/ICF_CS_V1_0_DEMOTION_RECEIPT.json",
+      "server_source_sha256": "3225fd952d704d31047ffdf01bffbc0968e4428357342ccb8ce5094ae8385057"
+    },
+    "app/state/doctrine/ICF_CS_V1_1.json": {
+      "bytes": 1927,
+      "git_copy_sha256": "d67726aeb402c280770eeaf314068ed7a1330beb21167d9d6d9b7c4674425bb0",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "state/doctrine_snapshot/ICF_CS_V1_1.json",
+      "server_source_sha256": "d67726aeb402c280770eeaf314068ed7a1330beb21167d9d6d9b7c4674425bb0"
     },
     "app/state/doctrine/INTENT_CONSTRAINT_FRONTIER_CONTINUITY_STANDARD.md": {
-      "bytes": 10466,
-      "git_copy_sha256": "06b1271bfa8aee5dbd78a3ad7d7d4e56b4d9ccaaf4825bc90504d4d3f194fb40",
+      "bytes": 6316,
+      "git_copy_sha256": "62be845da364ae81f59b6320c9b34b136236bf5be8aa8036018da48efcb754f4",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/doctrine_snapshot/INTENT_CONSTRAINT_FRONTIER_CONTINUITY_STANDARD.md",
-      "server_source_sha256": "e279b9412f1ba3aff3634afd2ab046db855e5ce491510b7569f83f85399c498f"
+      "server_source_sha256": "62be845da364ae81f59b6320c9b34b136236bf5be8aa8036018da48efcb754f4"
     },
     "app/state/doctrine/PROJECT_COMMANDERS_INTENT_CURRENT.md": {
-      "bytes": 8693,
-      "git_copy_sha256": "dc3612d9e0fc8a34a98fe56c332a7d73ac6142b63e49ecc1d57bd6078ee6171d",
+      "bytes": 11254,
+      "git_copy_sha256": "95ff8a58543c8aa2a2f20eb98cca47a30c3b64a5e8823c5f84edd3ad25cc9761",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/doctrine_snapshot/PROJECT_COMMANDERS_INTENT_CURRENT.md",
-      "server_source_sha256": "dc3612d9e0fc8a34a98fe56c332a7d73ac6142b63e49ecc1d57bd6078ee6171d"
+      "server_source_sha256": "95ff8a58543c8aa2a2f20eb98cca47a30c3b64a5e8823c5f84edd3ad25cc9761"
     },
     "app/state/doctrine_snapshot.md": {
-      "bytes": 8463,
-      "git_copy_sha256": "26ba1aa1f8345db83decfff1566ddc2f47ec69931e4d215e703158ae25b03aba",
+      "bytes": 12773,
+      "git_copy_sha256": "6631e592cf23cb605856f2005f1cb781ba86957806c68334016803f2fb694845",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/doctrine_snapshot/doctrine_snapshot.md",
-      "server_source_sha256": "26ba1aa1f8345db83decfff1566ddc2f47ec69931e4d215e703158ae25b03aba"
+      "server_source_sha256": "6631e592cf23cb605856f2005f1cb781ba86957806c68334016803f2fb694845"
+    },
+    "app/state/live_resume_session_0012.json": {
+      "bytes": 2879,
+      "git_copy_sha256": "b1d785fae561756b05daa3c268e0a0e13a913c0c529d8b0ba105a84e817e1b2b",
+      "git_safe_redactions": [
+        {
+          "count": 1,
+          "label": "app_attempt_store_db",
+          "replacement": "<LOCAL_APP_ATTEMPT_STORE_DB>"
+        }
+      ],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "state/live_resume_session_0012.json",
+      "server_source_sha256": "aeff0db397135d8f227f11e17c1b7b939235b6ae11ee2ae97053246d9d605e0a"
     },
     "app/state/next_steps.md": {
-      "bytes": 7008,
-      "git_copy_sha256": "abf05ac933f2c53058794c40625ba3d316a6a1f9ab4e797218662b869dbba92e",
+      "bytes": 8958,
+      "git_copy_sha256": "076e745e0947e47e96ef54884b35be9a4125ef83a434683668323745878ecd89",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/next_steps/next_steps.md",
-      "server_source_sha256": "abf05ac933f2c53058794c40625ba3d316a6a1f9ab4e797218662b869dbba92e"
+      "server_source_sha256": "076e745e0947e47e96ef54884b35be9a4125ef83a434683668323745878ecd89"
     },
     "app/state/revisit_ledger.md": {
-      "bytes": 5388,
-      "git_copy_sha256": "c7f7c71084b3803afa006dd0b05138481d5a383f744f9922e58913f6b4698e01",
+      "bytes": 9646,
+      "git_copy_sha256": "a2439f2d0a17b60482fd36dc9c3f2073e8ba74ceffdc4d534329243ac2445deb",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/revisit_ledger/revisit_ledger.md",
-      "server_source_sha256": "c7f7c71084b3803afa006dd0b05138481d5a383f744f9922e58913f6b4698e01"
+      "server_source_sha256": "a2439f2d0a17b60482fd36dc9c3f2073e8ba74ceffdc4d534329243ac2445deb"
     },
     "app/state/trace_matrix.md": {
-      "bytes": 7518,
-      "git_copy_sha256": "a0e38416d1978a61972f122672714bc44bd790d17bc191d6d22a3b13f8aed4b4",
+      "bytes": 12744,
+      "git_copy_sha256": "5f5b837a1a2f57340178e94aa8e2c49f25f359af01a2c065f97fdb8830e7956b",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/trace_matrix/trace_matrix.md",
-      "server_source_sha256": "a0e38416d1978a61972f122672714bc44bd790d17bc191d6d22a3b13f8aed4b4"
+      "server_source_sha256": "5f5b837a1a2f57340178e94aa8e2c49f25f359af01a2c065f97fdb8830e7956b"
     },
     "main/checkpoints/PROJECT_INTENT_CURRENT.md": {
-      "bytes": 1730,
-      "git_copy_sha256": "8d2e9a7fd9091e9970386b7d7a8398c9227bb19f26b7b700bde60d3219264e95",
+      "bytes": 2769,
+      "git_copy_sha256": "7fc1675989ec806095fbc250c9d6c6adc213c7af3ca13dc0f1f515fc44f290b3",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "checkpoints/PROJECT_INTENT_CURRENT.md",
-      "server_source_sha256": "8d2e9a7fd9091e9970386b7d7a8398c9227bb19f26b7b700bde60d3219264e95"
+      "server_source_sha256": "7fc1675989ec806095fbc250c9d6c6adc213c7af3ca13dc0f1f515fc44f290b3"
     },
     "main/continuity/design_thread_stream.md": {
-      "bytes": 102871,
-      "git_copy_sha256": "b1abbd9d0d4107370731c8fc255269edb794a64bfe53fcb8cb629f17ff047c23",
+      "bytes": 116754,
+      "git_copy_sha256": "942d0c7581c13e37b4457078fabad10cc5ad380cd6ed21bf98f8f4b4951ac400",
       "git_safe_redactions": [
         {
           "count": 1,
@@ -1236,29 +1594,29 @@
         },
         {
           "count": 2,
-          "label": "forge_repo",
-          "replacement": "<LOCAL_FORGE_REPO>"
+          "label": "historical_worktree_path",
+          "replacement": "<LOCAL_HISTORICAL_WORKTREE>"
         }
       ],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "continuity/design_thread_stream/design_thread_stream.md",
-      "server_source_sha256": "62cfdb5c2db43e1331f13d0cf98893aa20bc5dca78cf80246077bcc5954e243a"
+      "server_source_sha256": "68148141011d910cd981eff88d86e18920e8c704eb2f8da73e1682210131984b"
     },
     "main/continuity/live_shadow.md": {
-      "bytes": 9442,
-      "git_copy_sha256": "901aaee9468f4a35d01c55e934baaa0f162af10a2a3be4d7f822eaee4e0e3faa",
+      "bytes": 11281,
+      "git_copy_sha256": "f38a47cc6cf9cdd85950aaeceb82016c27da23743f9c9b6d9f709ed409d4e76a",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "continuity/live_shadow/live_shadow.md",
-      "server_source_sha256": "901aaee9468f4a35d01c55e934baaa0f162af10a2a3be4d7f822eaee4e0e3faa"
+      "server_source_sha256": "f38a47cc6cf9cdd85950aaeceb82016c27da23743f9c9b6d9f709ed409d4e76a"
     },
     "main/continuity/research_epistemic_shadow.md": {
-      "bytes": 31818,
-      "git_copy_sha256": "9abe90f23dfb719291736bf9ad6b155ad2982df7527a4e06909956473ba4ccb3",
+      "bytes": 31102,
+      "git_copy_sha256": "c963e4fd011dd432e8255b793aa0f2623d7d4548f3e3eb34b4f91aa34815fbbc",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "continuity/research_epistemic_shadow/res.md",
-      "server_source_sha256": "9abe90f23dfb719291736bf9ad6b155ad2982df7527a4e06909956473ba4ccb3"
+      "server_source_sha256": "c963e4fd011dd432e8255b793aa0f2623d7d4548f3e3eb34b4f91aa34815fbbc"
     },
     "main/maintenance/APP_FORWARD_SYNC_GEN11_AWARENESS_20260904.md": {
       "bytes": 3271,
@@ -1267,6 +1625,14 @@
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "notes/maintenance/APP_FORWARD_SYNC_GEN11_AWARENESS_20260904.md",
       "server_source_sha256": "5d469eae18ca3a78b8320086ebedb6c60fc5cc4eaab7864186c2f78f7da3d8b6"
+    },
+    "main/maintenance/APP_GEN12_E9B81750_AWARENESS_20260906.md": {
+      "bytes": 1408,
+      "git_copy_sha256": "d4830fec598a090e0df24195aac26fa1cd805e0a5b2e4ef1769c31885cddab23",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "notes/maintenance/APP_GEN12_E9B81750_AWARENESS_20260906.md",
+      "server_source_sha256": "88929a65265c944aa49c5503173493917f0d9ad502a801d3bcfa05be6f26808b"
     },
     "main/maintenance/FORGE_DOUBLE_HELIX_SYNC_20260903.md": {
       "bytes": 4396,
@@ -1283,6 +1649,22 @@
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "notes/maintenance/GIT_CROSS_THREAD_CONTROL_CHECKPOINT_20260903.md",
       "server_source_sha256": "439a5e2c82b4c3b983cbe11c665e288a1f924c20e1a7e7a5e8a606979032c765"
+    },
+    "main/maintenance/ICF_CS_V1_1_AUTHORITY_ADOPTION_20260906.md": {
+      "bytes": 3968,
+      "git_copy_sha256": "541bd5539655557353a78387c5a526126ae617e316ce559421dfbac2672fe3d9",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "notes/maintenance/ICF_CS_V1_1_AUTHORITY_ADOPTION_20260906.md",
+      "server_source_sha256": "37d9ca9b8ad14ed5d5a3ce95ba7dd34a9ef5ab49bc860589b0a2e5906e14c9dd"
+    },
+    "main/maintenance/ICF_CS_V1_1_GEN12_SEMANTIC_CORRECTION_20260906.md": {
+      "bytes": 1700,
+      "git_copy_sha256": "bd231a1804f17bffe2fb8dec3ddfcacf2cb0fb1465efaa0c15fd9ad8d3c1b37e",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "notes/maintenance/ICF_CS_V1_1_GEN12_SEMANTIC_CORRECTION_20260906.md",
+      "server_source_sha256": "538df049bcf5dfe88be93a608b4a7e502a164680e47f8d7f5eb111f2d0939150"
     },
     "main/maintenance/ICF_CS_V1_ADOPTION_CHECKPOINT_20260905.md": {
       "bytes": 7225,
@@ -1398,6 +1780,15 @@
       "server_source_path": "notes/maintenance/SEMANTIC_FIELD_CORE_REMOTE_CANDIDATE_PUBLICATION_20260904.md",
       "server_source_sha256": "c822aab716e24ea542176440920bd93040586de6c5b3488322b41959fb583454"
     },
+    "main/sop/ICF_CS_V1_1_DETACHED_RELEASE_RECEIPT_2026-09-05.json": {
+      "bytes": 4555,
+      "git_copy_sha256": "418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c",
+      "git_safe_redactions": [],
+      "line_endings": "CANONICAL_EXACT_BYTES",
+      "semantic_admission": "V1_1_CANONICAL_RELEASE_EXACT_BYTES",
+      "server_source_path": "sop/ICF_CS_V1_1_DETACHED_RELEASE_RECEIPT_2026-09-05.json",
+      "server_source_sha256": "418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c"
+    },
     "main/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_2_2026-09-03.zip": {
       "bytes": 625556,
       "git_copy_sha256": "eb167543e9ceb2ae01449f421d2916e61b7dd924270ea2e83e3364c9d808ce9a",
@@ -1416,61 +1807,102 @@
       "server_source_path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_4_2026-09-04.zip",
       "server_source_sha256": "04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc"
     },
+    "main/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_4_ICF_CS_V1_1_ADDENDUM_2026-09-05.zip": {
+      "bytes": 2557435,
+      "git_copy_sha256": "f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63",
+      "git_safe_redactions": [],
+      "line_endings": "BINARY_EXACT_COPY",
+      "semantic_admission": "V1_1_CANONICAL_RELEASE_EXACT_BYTES",
+      "server_source_path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_4_ICF_CS_V1_1_ADDENDUM_2026-09-05.zip",
+      "server_source_sha256": "f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63"
+    },
     "main/state/current.md": {
-      "bytes": 8179,
-      "git_copy_sha256": "f6ce48dc5a8b44d4f4cc1f7e903cb09f038e21d031756a1283b92d2755d99740",
+      "bytes": 9218,
+      "git_copy_sha256": "1c94d31f02f6ed5a292c17c1a01e74b6b47d33d81b66cd1e6ce12d9b1dd22bf3",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/current/current.md",
-      "server_source_sha256": "f6ce48dc5a8b44d4f4cc1f7e903cb09f038e21d031756a1283b92d2755d99740"
+      "server_source_sha256": "1c94d31f02f6ed5a292c17c1a01e74b6b47d33d81b66cd1e6ce12d9b1dd22bf3"
+    },
+    "main/state/doctrine/ICF_CS_MECHANIZED_EPOCH_PROFILE_V1_1.md": {
+      "bytes": 4215,
+      "git_copy_sha256": "733b799815abdb4b1ff735635f7928953c12944ece579365b5aae138d90f90f8",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "state/doctrine_snapshot/ICF_CS_MECHANIZED_EPOCH_PROFILE_V1_1.md",
+      "server_source_sha256": "733b799815abdb4b1ff735635f7928953c12944ece579365b5aae138d90f90f8"
+    },
+    "main/state/doctrine/ICF_CS_QUALIFICATION_CONTRACT_V1_1.json": {
+      "bytes": 2832,
+      "git_copy_sha256": "7d20ed708adb4f7ee147b56da41deac77146b56fc85bd769be3a6d240b3e2029",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "state/doctrine_snapshot/ICF_CS_QUALIFICATION_CONTRACT_V1_1.json",
+      "server_source_sha256": "7d20ed708adb4f7ee147b56da41deac77146b56fc85bd769be3a6d240b3e2029"
+    },
+    "main/state/doctrine/ICF_CS_V1_0_DEMOTION_RECEIPT.json": {
+      "bytes": 1128,
+      "git_copy_sha256": "3225fd952d704d31047ffdf01bffbc0968e4428357342ccb8ce5094ae8385057",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "state/doctrine_snapshot/ICF_CS_V1_0_DEMOTION_RECEIPT.json",
+      "server_source_sha256": "3225fd952d704d31047ffdf01bffbc0968e4428357342ccb8ce5094ae8385057"
+    },
+    "main/state/doctrine/ICF_CS_V1_1.json": {
+      "bytes": 1927,
+      "git_copy_sha256": "d67726aeb402c280770eeaf314068ed7a1330beb21167d9d6d9b7c4674425bb0",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "state/doctrine_snapshot/ICF_CS_V1_1.json",
+      "server_source_sha256": "d67726aeb402c280770eeaf314068ed7a1330beb21167d9d6d9b7c4674425bb0"
     },
     "main/state/doctrine/INTENT_CONSTRAINT_FRONTIER_CONTINUITY_STANDARD.md": {
-      "bytes": 10466,
-      "git_copy_sha256": "06b1271bfa8aee5dbd78a3ad7d7d4e56b4d9ccaaf4825bc90504d4d3f194fb40",
+      "bytes": 6316,
+      "git_copy_sha256": "62be845da364ae81f59b6320c9b34b136236bf5be8aa8036018da48efcb754f4",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/doctrine_snapshot/INTENT_CONSTRAINT_FRONTIER_CONTINUITY_STANDARD.md",
-      "server_source_sha256": "e279b9412f1ba3aff3634afd2ab046db855e5ce491510b7569f83f85399c498f"
+      "server_source_sha256": "62be845da364ae81f59b6320c9b34b136236bf5be8aa8036018da48efcb754f4"
     },
     "main/state/doctrine/PROJECT_COMMANDERS_INTENT_CURRENT.md": {
-      "bytes": 8693,
-      "git_copy_sha256": "dc3612d9e0fc8a34a98fe56c332a7d73ac6142b63e49ecc1d57bd6078ee6171d",
+      "bytes": 11254,
+      "git_copy_sha256": "95ff8a58543c8aa2a2f20eb98cca47a30c3b64a5e8823c5f84edd3ad25cc9761",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/doctrine_snapshot/PROJECT_COMMANDERS_INTENT_CURRENT.md",
-      "server_source_sha256": "dc3612d9e0fc8a34a98fe56c332a7d73ac6142b63e49ecc1d57bd6078ee6171d"
+      "server_source_sha256": "95ff8a58543c8aa2a2f20eb98cca47a30c3b64a5e8823c5f84edd3ad25cc9761"
     },
     "main/state/doctrine_snapshot.md": {
-      "bytes": 21794,
-      "git_copy_sha256": "3f6bdab573525ab561e7112190c7cc4632d6ae8589c0eb620e79a5e313d0fa71",
+      "bytes": 26688,
+      "git_copy_sha256": "9dc451cd8496fca4c08c47a6ebde21e88fd5ef9dde73c35011dcc7401ec0e8ae",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/doctrine_snapshot/doctrine_snapshot.md",
-      "server_source_sha256": "3f6bdab573525ab561e7112190c7cc4632d6ae8589c0eb620e79a5e313d0fa71"
+      "server_source_sha256": "9dc451cd8496fca4c08c47a6ebde21e88fd5ef9dde73c35011dcc7401ec0e8ae"
     },
     "main/state/next_steps.md": {
-      "bytes": 6431,
-      "git_copy_sha256": "26428ff69784fba87a10058ebf58a36e489807d9cb1f68a6ffaf019e058c204e",
+      "bytes": 8236,
+      "git_copy_sha256": "4344a97ac1443abd0408e91dfec3de411d5647a61341d3629d0c59a8f58058c1",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/next_steps/next_steps.md",
-      "server_source_sha256": "26428ff69784fba87a10058ebf58a36e489807d9cb1f68a6ffaf019e058c204e"
+      "server_source_sha256": "4344a97ac1443abd0408e91dfec3de411d5647a61341d3629d0c59a8f58058c1"
     },
     "main/state/revisit_ledger.md": {
-      "bytes": 14080,
-      "git_copy_sha256": "4e16bc4c41c5d832af0a41715bc5637d2466b09e8a86f91ca10ad065c75e7f30",
+      "bytes": 18380,
+      "git_copy_sha256": "beac74c24cd3f7f42257a7c2bb17a6e3e703897e10d9c09f952959a9de07ab5e",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/revisit_ledger/revisit_ledger.md",
-      "server_source_sha256": "4e16bc4c41c5d832af0a41715bc5637d2466b09e8a86f91ca10ad065c75e7f30"
+      "server_source_sha256": "beac74c24cd3f7f42257a7c2bb17a6e3e703897e10d9c09f952959a9de07ab5e"
     },
     "main/state/trace_matrix.md": {
-      "bytes": 27116,
-      "git_copy_sha256": "5b2b8d451c95aae973f25562eb96ebb0228f54fd90bc5e8a1daebd778d315255",
+      "bytes": 32262,
+      "git_copy_sha256": "0456edb2a5832d72299c16f609c63cdc6fd17d1c4922f074ceca4095f186d2ae",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/trace_matrix/trace_matrix.md",
-      "server_source_sha256": "5b2b8d451c95aae973f25562eb96ebb0228f54fd90bc5e8a1daebd778d315255"
+      "server_source_sha256": "0456edb2a5832d72299c16f609c63cdc6fd17d1c4922f074ceca4095f186d2ae"
     }
   }
 }

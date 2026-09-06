@@ -1,8 +1,8 @@
 # Project Commander’s Intent — Singularity Works / Forge — Current
 
-Standard: ICF-CS v1.0
+Standard: ICF-CS v1.1
 Status: CURRENT PROJECT INTENT / CONSTRAINT / FRONTIER INGRESS
-Last updated: 2026-09-05
+Last updated: 2026-09-06
 Authority: project-local continuity/direction surface. Owner intent and stronger project-local doctrine supersede where explicit. Frontier facts still require live readback before mutation.
 
 ## I. INTENT — slow-changing project direction
@@ -44,6 +44,8 @@ The project is trying to become a durable, operator-usable software-production/r
 
 ### Evidence / promotion
 - R4.4 is the current canonical process/cold-start default under `CANONICAL_PROCESS_DEFAULT != UNIVERSAL_DOMAIN_TRUTH`.
+- ICF-CS v1.1 is the current binding additive continuity/process doctrine above sealed R4.4: payload `sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_4_ICF_CS_V1_1_ADDENDUM_2026-09-05.zip` SHA `f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63`; detached release receipt `sop/ICF_CS_V1_1_DETACHED_RELEASE_RECEIPT_2026-09-05.json` SHA `418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c`; standard SHA `62be845da364ae81f59b6320c9b34b136236bf5be8aa8036018da48efcb754f4`; machine contract SHA `d67726aeb402c280770eeaf314068ed7a1330beb21167d9d6d9b7c4674425bb0`; qualification contract SHA `7d20ed708adb4f7ee147b56da41deac77146b56fc85bd769be3a6d240b3e2029`; mechanized epoch profile SHA `733b799815abdb4b1ff735635f7928953c12944ece579365b5aae138d90f90f8`. v1.0 is demoted historical evidence by demotion receipt SHA `3225fd952d704d31047ffdf01bffbc0968e4428357342ccb8ce5094ae8385057`.
+- ICF-CS scope is continuity/rehydration/current-ingress/evaluation-data hygiene only; it does not mint semantic/product/runtime/source/recovery/security authority.
 - Readable load-bearing artifacts require complete linear semantic read before promotion/admission.
 - `AUTOMATED_CHECKS != LINEAR_HUMAN_SEMANTIC_READ`.
 - `GATE_ASSERTED != GATE_WITNESSED`.
@@ -52,15 +54,16 @@ The project is trying to become a durable, operator-usable software-production/r
 - Mutation/execution/push claims require consequence-bearing readback.
 
 ### Semantic-field boundary
-- Qualified public Main semantic-field Core is exact commit `a7b4511734b1a1e507230308e75b31175aef4c4a` unless live readback proves otherwise.
+- Current public Main branch head is `287c0bad0e9b3fef3002b91702e86b410cada4ce`. Core semantic qualification anchor remains `a7b4511734b1a1e507230308e75b31175aef4c4a` because `287c0bad0e9b3fef3002b91702e86b410cada4ce` is an authority-publication-only child with no Core code changes. `MAIN_BRANCH_HEAD != CORE_QUALIFICATION_ANCHOR`.
 - Canonical App-facing bridge: `singularity_works.semantic_field_bridge`, schema `singularity-works.semantic-field-bridge/0.1`.
 - Index/projection/delta authority remains NONE unless separately changed by qualified doctrine.
 - Evidence identity is not automatically semantic meaning.
 - Checkpoint semantic restoration/currentness/snapshot identity remains separate from bridge-source availability.
 
 ### Recovery / consequence boundary
-- App current qualified source is `forge/app-shell-rd@b674dbaaf428970c486753168e75847a345eb1c2` unless live readback proves otherwise.
-- Generation 11 `checkpoint-app-live-0011-b674dbaaf428` is the current earned LKG/source-MATCH/NORMAL checkpoint unless live recovery readback proves otherwise.
+- App current source is `forge/app-shell-rd@e9b81750db265a467187c61962ffab3cff98d4fe`, local/remote exact and clean; it is the preserved egress-enforcement Attempt-0 commit and does not by itself qualify the egress primitive.
+- Generation 12 `checkpoint-app-live-0012-e9b81750db26` is the current earned LKG for `e9b81750db265a467187c61962ffab3cff98d4fe`: VERIFIED / RESUMED / STABLE / LKG / source MATCH / NORMAL / early crash 0 / not quarantined. Evidence SHA `aeff0db397135d8f227f11e17c1b7b939235b6ae11ee2ae97053246d9d605e0a`.
+- Generation 11 `checkpoint-app-live-0011-b674dbaaf428` remains historical LKG evidence for source `b674dba...` but is source-MISMATCH against current App and is not the current recovery ingress.
 - `APP_SOURCE_INTEGRATED != NEW_LKG`.
 - `BRIDGE_SOURCE_AVAILABLE != CHECKPOINT_SEMANTIC_RESTORATION_QUALIFIED`.
 - `OLD_ALLOW_RECEIPT != CURRENT_EXECUTION_AUTHORITY`.
@@ -78,13 +81,19 @@ The project is trying to become a durable, operator-usable software-production/r
 ## III. FRONTIER — fast-changing current state
 ### Earned now
 - R4.4 is current canonical process/cold-start SOP; carrier SHA `04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc`.
-- Qualified public Main: `a7b4511734b1a1e507230308e75b31175aef4c4a`.
-- App source local/remote qualified: `b674dbaaf428970c486753168e75847a345eb1c2`.
-- App generation 11 is current LKG/source MATCH/NORMAL/READY.
-- Main->App semantic-field forward sync is closed for the current source generation.
-- Durable control branch: `pcmmad/project-control`. Previous independently verified baseline before ICF-CS adoption: `cb8d01c5e635347e038b4dffea49387945aea72d`, frozen CHECKPOINT SHA `c86558c829012caf8ff8844b0d01ef8eeb2df47d4cedf86137700d9aaeb2a84a`, verifier PASS 88. Resolve the branch ref live before mutation; newer verified control generations supersede this baseline as currentness evidence.
+- Current public Main branch head: `287c0bad0e9b3fef3002b91702e86b410cada4ce`; Core qualification anchor remains `a7b4511734b1a1e507230308e75b31175aef4c4a`.
+- App source local/remote exact and clean: `e9b81750db265a467187c61962ffab3cff98d4fe`; this preserves egress Attempt 0 but does not qualify it.
+- App generation 12 `checkpoint-app-live-0012-e9b81750db26` is current LKG/source MATCH/NORMAL; Gen11 is historical/source-stale.
+- Main->App semantic-field Core integration remains intact; the later Main head is authority-publication-only and the later App head only preserves egress Attempt 0.
+- Durable control branch current verified baseline: `pcmmad/project-control@63f7a74f47be4179b5871fd7ff9da819b54e3ab9`, frozen CHECKPOINT SHA `500d7c167ff5d27e6287edf675d7bbc06a91b5a7c169ffa44df753e6af6bb049`, verifier PASS 96, fresh-clone exact/clean. Resolve the branch ref live before mutation; newer verified generations supersede this baseline as currentness evidence.
+- ICF-CS v1.1, Main/App source currentness, and Gen12 recovery are server-current but newer than durable control `63f7a74f47be...`; one successor control checkpoint is required before executing egress Attempt 0.
 
 These hashes are **current-ingress pointers**, not perpetual truth. Re-read live Git/recovery state before consequence-bearing mutation.
+
+### Immediate continuity prerequisite
+**Publish and fresh-clone verify a successor `pcmmad/project-control` generation from verified predecessor `63f7a74...` containing ICF-CS v1.1 + Main/App source currentness + Gen12 recovery.**
+
+This is continuity durability only; it does not change the product/security frontier below.
 
 ### Active immediate frontier
 **App OS/process network egress enforcement — Attempt 0.**
@@ -94,7 +103,7 @@ Required first pressure:
 - define the protected execution-domain boundary;
 - determine where default-deny can actually be enforced;
 - attack bypasses through raw sockets, subprocesses, plugins, DNS, and loopback;
-- preserve Attempt 0 before first consequence-bearing execution;
+- Attempt 0 is already preserved; after successor control readback, execute the exact frozen D0-D3 tests without editing them first;
 - do not begin with a real provider connector.
 
 ### Open / unearned
@@ -112,7 +121,7 @@ Required first pressure:
 - Packaging-description debt stays separately scoped from semantic/runtime work.
 
 ### Immediate next move
-Re-read live App source/recovery/control currentness, then enter App OS/process egress-enforcement BUILD-PLAN/AUDIT under R4.4. Re-derive applicable cross-project scars, inspect Windows/process primitives, define the smallest hostile discriminator, and preserve Attempt 0 before first mutation/execution.
+First publish/read back the successor control generation from verified predecessor `63f7a74...` containing ICF-CS v1.1, Main/App source currentness and Gen12. After fresh-clone verification, execute the exact already-preserved egress Attempt-0 hostile tests without editing them first.
 
 ## IV. HISTORY BOUNDARY
 The following categories are useful but are not current ingress by default:
@@ -134,7 +143,7 @@ Use them as lineage/evidence/donor surfaces only after current ingress is establ
 ## V. RE-ENTRY CONTRACT
 Read in this order for a fresh thread/project re-entry:
 
-`CURRENT STATE -> ICF-CS -> R4.4 + NEXT/DOCTRINE/REVISIT/TRACE -> LIVE SHADOW -> DTS -> LIVE READBACK BEFORE MUTATION`
+`CURRENT STATE -> ICF-CS -> CURRENT CANONICAL SOP + NEXT/DOCTRINE/REVISIT/TRACE -> LIVE SHADOW -> DTS -> LIVE READBACK BEFORE MUTATION`
 
 If material conflict exists:
 

@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-05",
+  "demoted_package_id": "RAHL_ENGINEERING_CANONICAL_SOP_R4_4_ICF_CS_V1_0_ADDENDUM_2026-09-05",
+  "demoted_zip_sha256": "51ed7f424dff7c67534f7e53e8a7c10ebd93bf33ea575eea49dc3f05c24a92a9",
+  "law": [
+    "VERIFIER_NAMED_X != VERIFIER_CHECKS_X",
+    "SELF_VERIFYING_PACKAGE != VERIFIED_PACKAGE",
+    "COMMON_MODE_WITNESSES != INDEPENDENT_ASSURANCE",
+    "HOSTILE_COUNT_REPORTED != HOSTILE_COVERAGE_PINNED",
+    "PHRASE_WITNESS != SEMANTIC_COMPLETENESS"
+  ],
+  "schema": "rahl.sop.overlay-demotion-receipt.v1",
+  "status": "DEMOTED_SUPERSEDED_PENDING_REPAIR",
+  "verified_failures": [
+    "null semantic-read attestations accepted",
+    "verifier anti-binding loop could be gutted and re-attested",
+    "hostile suite could be truncated to one case while qualification stayed green",
+    "donor-authority paraphrase bypassed phrase witness",
+    "expected-label leakage paraphrase bypassed phrase witness",
+    "semantic-read ledger v1 parent identity fields omitted",
+    "required detached/external receipt not shipped",
+    "claim ceiling dropped inherited phrase/common-mode residual disclosure"
+  ]
+}

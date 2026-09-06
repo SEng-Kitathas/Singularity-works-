@@ -1,0 +1,48 @@
+{
+  "authority_ceiling": "continuity/process control only; no product/domain/architecture/legal/regulatory/scientific-result authority created by inclusion",
+  "canonical_base": {
+    "package_id": "RAHL_ENGINEERING_CANONICAL_SOP_R4_4_2026-09-04",
+    "sha256": "04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc"
+  },
+  "cold_start": "CURRENT STATE -> ICF-CS -> CURRENT CANONICAL SOP + NEXT/DOCTRINE/REVISIT/TRACE -> LIVE SHADOW -> DTS -> LIVE READBACK BEFORE MUTATION",
+  "conflict": "CONFLICT -> RECOVERY/AUDIT -> LOCALIZE -> REPAIR/SUPERSEDE -> READBACK -> RESUME",
+  "core_law": "DIRECTION != CONSTRAINTS != FRONTIER != HISTORY",
+  "date": "2026-09-05",
+  "history_role": "distinct chronological/forensic lineage; not automatic current authority",
+  "live_classes": [
+    "intent",
+    "constraints",
+    "frontier"
+  ],
+  "mechanized_profile": {
+    "enabled_as_reference": true,
+    "laws": [
+      "CLASS_EPOCH != GLOBAL_TIME",
+      "EPOCH_EQUAL != CONTENT_EQUAL",
+      "TOKEN_MATCH != FACTUAL_TRUTH",
+      "EPOCH_MATCH != AUTHORITY_MATCH",
+      "CAS_CHECK != AUTHORITY_CHECK",
+      "CAS_SUCCESS != SEMANTIC_VALIDITY",
+      "SELF_TEST_PASS != CROSS_PROJECT_EFFICACY"
+    ],
+    "preferred_when_durable_local_state_available": true,
+    "stale_action": "CONFLICT -> RECOVERY/AUDIT",
+    "token_fields": [
+      "epoch",
+      "sha256",
+      "source_id",
+      "source_path"
+    ]
+  },
+  "release_law": "SELF_VERIFYING_PACKAGE != VERIFIED_PACKAGE",
+  "schema": "rahl.sop.icf-cs.v1",
+  "short_name": "ICF-CS",
+  "standard_name": "Intent\u2013Constraint\u2013Frontier Continuity Standard",
+  "status": "PAYLOAD_REQUIRES_DETACHED_RELEASE_RECEIPT_FOR_ACTIVATION",
+  "supersedes": {
+    "package_id": "RAHL_ENGINEERING_CANONICAL_SOP_R4_4_ICF_CS_V1_0_ADDENDUM_2026-09-05",
+    "sha256": "51ed7f424dff7c67534f7e53e8a7c10ebd93bf33ea575eea49dc3f05c24a92a9",
+    "status": "DEMOTED"
+  },
+  "version": "1.1"
+}

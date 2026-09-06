@@ -1,6 +1,6 @@
 # RESEARCH EPISTEMIC SHADOW — Singularity Works App
 
-Last updated: 2026-09-04 UTC
+Last updated: 2026-09-06 UTC
 Authority: **NONE_BY_CONTENT**
 Scope: PRODUCT_RUNTIME_SECURITY_RESEARCH
 Purpose: zero-authority research continuity for App/product/runtime/security meaning and frontier.
@@ -24,25 +24,27 @@ Cross-reference is allowed; authority transfer is not.
 
 ## 2. Current verified App research baseline
 Current source:
-`forge/app-shell-rd@b674dbaaf428970c486753168e75847a345eb1c2`, local/remote exact and clean.
+`forge/app-shell-rd@e9b81750db265a467187c61962ffab3cff98d4fe`, local/remote exact and clean; frozen egress Attempt 0 preserved and never executed.
 
 This is a provenance-preserving two-parent forward merge:
 - prior App `328249429cc6e86e15db9797bd58eff5fabc5a2d`;
-- qualified Main `a7b4511734b1a1e507230308e75b31175aef4c4a`.
+- qualified semantic Main `a7b4511734b1a1e507230308e75b31175aef4c4a`; public Main `287c0bad0e9b3fef3002b91702e86b410cada4ce` adds authority-release surfaces only.
 
 The merge changes exactly the nine qualified Main semantic-field paths and no `forge_app/**` source.
 Fresh remote qualification passed compile, semantic-field 8/8, App regression 94/94 with ResourceWarning-as-error, and full verify_build.
 
 Current LKG:
-`checkpoint-app-live-0011-b674dbaaf428`.
+`checkpoint-app-live-0012-e9b81750db26`.
 VERIFIED / RESUMED / STABLE / LKG / source MATCH / NORMAL / early crash 0 / not quarantined.
 
-Generation-11 evidence:
-`state/live_resume_session_0011.json`
-SHA `817daa41119e499c3bc8cc978d0ea625be4598ef6a8263f3acf5cf84392fa3e9`.
+Generation-12 evidence:
+`state/live_resume_session_0012.json`
+SHA `aeff0db397135d8f227f11e17c1b7b939235b6ae11ee2ae97053246d9d605e0a`.
+
+Generation 11 remains historical/source-stale.
 
 Attempt Store:
-102 blobs / 102 attempts / 169 events, integrity ok, WAL/FULL.
+104 blobs / 104 attempts / 175 events, integrity ok, WAL/FULL.
 
 ## 3. Research learning — authority and consequence
 Connection Gate / durable authority / operation-lifecycle campaigns established:
@@ -86,9 +88,9 @@ Earned distinctions:
 - `APP_SOURCE_INTEGRATED != NEW_LKG`;
 - `REMOTE_TEST_PASS != RECOVERY_CHECKPOINT_PROMOTED`.
 
-## 5. Research learning — generation 11 recovery
+## 5. Research learning — generation 11 -> 12 recovery currentness
 Generation 10 remained historically valid but current-source mismatch correctly forced CAUTION/SAFE_ONLY.
-Generation 11 then earned a new LKG through a real >10s resumed lease and four meaningful operations.
+Generation 11 earned a new LKG after the semantic-field merge. After source later advanced to preserved Attempt 0 `e9b81750...`, Gen12 separately re-earned LKG through real >10s health evidence and four meaningful operations.
 
 Research implication: recovery currentness is a separate operational truth surface from Git/test qualification and must remain separately evidenced.
 
@@ -97,7 +99,7 @@ Research implication: recovery currentness is a separate operational truth surfa
 `CHECKPOINT_REPUTATION_IS_EVENT_DERIVED`.
 
 ## 6. Important open semantic bridge seam
-Bridge source availability is qualified, but generation 11 still keeps:
+Bridge source availability is qualified, but generation 12 still keeps:
 - `core_contract_version = null`;
 - `core_currentness_id = null`;
 - `semantic_snapshot_id = null`.
@@ -117,6 +119,8 @@ Target law remains unearned:
 `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT`.
 
 Highest-value discriminators:
+0. publish/fresh-clone verify the successor v1.1/Gen12 control generation;
+1. execute the exact frozen D0-D3 Attempt 0 without editing first;
 1. define exact protected execution-domain scope;
 2. identify Windows primitives that can enforce default-deny without falsely claiming whole-machine control;
 3. pressure raw socket access;
@@ -167,14 +171,13 @@ Machine success is supporting evidence only.
 Update this RES when enforcement Attempt 0 architecture is selected/preserved, a bypass is found, a Windows enforcement primitive is proven sufficient or impractical, a broker allow path is embodied, real provider transport begins, OAuth/secret-storage architecture changes, checkpoint semantic restoration/currentness is qualified, GitHome/Vault gains consequence-bearing implementation, or a security assumption is promoted/demoted/contradicted.
 
 ## 12. Current research-to-do
-1. Inspect actual Windows/process-launch topology and available enforcement primitives.
-2. Rank enforcement Sigma branches by enforceability, failure-closed behavior, privilege cost and bypass surface.
-3. Define the smallest falsifiable protected-domain discriminator.
-4. Preserve Attempt 0 protocol/code/tests before first execution.
-5. Attack raw socket/subprocess/plugin/DNS/loopback/inherited-capability paths.
-6. Keep `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` UNKNOWN until runtime evidence exists.
-7. Separately queue Core checkpoint restoration identity as P1 rather than silently populating null fields.
-
+1. Publish/fresh-clone verify successor v1.1/Gen12 project-control state from `63f7a74...`.
+2. Re-read App source/Gen12 and frozen D0-D3 test hash immediately before first execution.
+3. Execute exact preserved D0-D3 unchanged; preserve all failures exactly.
+4. If D0-D3 pass, widen hostile pressure only through a new preserved attempt; do not jump directly to provider integration.
+5. Keep `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` UNKNOWN until production launch integration and broader bypass pressure qualify it.
+6. Keep Core checkpoint restoration identity as separate P1 with null fields until explicitly qualified.
+7. Evaluate v1.1 epoch/CAS profile separately as a project-efficacy discriminator, never as truth authority.
 
 ## R4.4 research-method addendum — 2026-09-04
 Truth status: VERIFIED process-package adoption; RES authority remains NONE_BY_CONTENT.
@@ -190,4 +193,15 @@ Research-method implications for the immediate App security frontier:
 - additive/synonym semantic reversals are first-class hostile cases;
 - any future publication/control materialization must reconcile `SEALED_BYTES != PUBLISHED_BYTES` rather than assuming Git checkout identity equals sealed carrier identity.
 
-This process update does not itself change the App source, generation-11 LKG, Connection Gate authority, operation lifecycle or egress-enforcement truth. The dominant research frontier remains OS/process egress enforcement from synchronized source `b674dba...`.
+This historical R4.4 process update did not itself change the then-current App source/recovery state. Current App is `e9b81750...`, Gen12 MATCH/NORMAL, and frozen Attempt 0 remains unexecuted.
+
+## ICF-CS v1.1 authority reconciliation — 2026-09-06
+Truth status: VERIFIED currentness/process evidence; RES authority remains NONE_BY_CONTENT.
+
+Research meaning changed only in sequencing/currentness:
+- ICF-CS v1.1 is current additive process authority; this does not make RES governing doctrine.
+- public Main is `287c0bad0e9b3fef3002b91702e86b410cada4ce` while semantic Core anchor stays `a7b4511734b1a1e507230308e75b31175aef4c4a`.
+- App source is `e9b81750db265a467187c61962ffab3cff98d4fe`; Attempt 0 is preserved/unexecuted.
+- Gen12 `checkpoint-app-live-0012-e9b81750db26` is current LKG/source MATCH/NORMAL; Gen11 is historical/source-stale.
+- Immediate research discriminator after successor control publication is exact first execution of frozen D0-D3.
+- v1.1 mechanized epoch/CAS profile remains a separate project-efficacy hypothesis, not automatic authority.

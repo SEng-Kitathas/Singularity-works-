@@ -1,79 +1,39 @@
 # Singularity Works / Forge — Cross-Thread Project Control
 
-This directory is the durable Git checkpoint surface for **Singularity Works / Forge across the Main/Core + App double helix**.
-Chat context is not durable project state. The live PCMMAD server remains the mutable high-fidelity working plane.
+Durable cross-thread continuity/control surface. It does not promote product/source/recovery authority merely by publication.
 
-## Authority boundary
-- `pcmmad/project-control` is continuity/control only; it does not promote product/source authority.
-- Qualified public Main and App source are governed separately.
-- Exact sealed SOP ZIP carriers are stored as binary `-text`; text control derivatives may be normalized/redacted and therefore carry separate server-source and Git-copy hashes.
-- `SEALED_BYTES != PUBLISHED_BYTES` applies to text/publication surfaces; exact R4.4 ZIP copies below are byte-identical sealed carriers.
-- `GIT_PUSH_SUCCESS != CONTROL_STATE_COHERENCE`; require remote ref readback + fresh-clone verifier.
+## Current process authority
+- sealed R4.4 base SHA `04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc`;
+- current additive ICF-CS v1.1 payload SHA `f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63`;
+- detached receipt SHA `418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c`;
+- standard `62be845da364ae81f59b6320c9b34b136236bf5be8aa8036018da48efcb754f4`; machine `d67726aeb402c280770eeaf314068ed7a1330beb21167d9d6d9b7c4674425bb0`; qualification `7d20ed708adb4f7ee147b56da41deac77146b56fc85bd769be3a6d240b3e2029`; epoch profile `733b799815abdb4b1ff735635f7928953c12944ece579365b5aae138d90f90f8`; v1.0 demotion `3225fd952d704d31047ffdf01bffbc0968e4428357342ccb8ce5094ae8385057`.
+- v1.0 remains historical evidence only.
 
-## Re-entry read order
-1. `project_control/main/state/current.md` (or App Current when entering through App)
-2. `project_control/main/checkpoints/PROJECT_INTENT_CURRENT.md` / App exact counterpart
-3. `project_control/main/state/doctrine/PROJECT_COMMANDERS_INTENT_CURRENT.md`
-4. `project_control/main/state/doctrine/INTENT_CONSTRAINT_FRONTIER_CONTINUITY_STANDARD.md`
-5. current R4.4 process + Next / Doctrine / Revisit / Trace
-6. Live Shadow
-7. DTS only after current ingress is established
-8. live Git/recovery/environment readback before mutation
+## Current project ingress
+- Project Commander's Intent SHA `95ff8a58543c8aa2a2f20eb98cca47a30c3b64a5e8823c5f84edd3ad25cc9761`;
+- ingress pointer SHA `7fc1675989ec806095fbc250c9d6c6adc213c7af3ca13dc0f1f515fc44f290b3`;
+- `CURRENT STATE -> ICF-CS -> CURRENT CANONICAL SOP + NEXT/DOCTRINE/REVISIT/TRACE -> LIVE SHADOW -> DTS -> LIVE READBACK BEFORE MUTATION`.
 
-Cold-start grammar:
-`CURRENT STATE -> ICF-CS -> R4.4 + NEXT/DOCTRINE/REVISIT/TRACE -> LIVE SHADOW -> DTS -> LIVE READBACK BEFORE MUTATION`
+## Source / recovery split
+- public Main branch head `287c0bad0e9b3fef3002b91702e86b410cada4ce`;
+- Core semantic qualification anchor `a7b4511734b1a1e507230308e75b31175aef4c4a`;
+- `MAIN_BRANCH_HEAD != CORE_QUALIFICATION_ANCHOR`;
+- App current source `e9b81750db265a467187c61962ffab3cff98d4fe` local/remote exact and clean;
+- Gen12 `checkpoint-app-live-0012-e9b81750db26` VERIFIED/RESUMED/STABLE/LKG/source MATCH/NORMAL, blob `0889dd0599355f54fcc055a86002dd6c2ac7131de7b34ec0ef11ddc4511222fb`, evidence `aeff0db397135d8f227f11e17c1b7b939235b6ae11ee2ae97053246d9d605e0a`;
+- Gen11 is historical/source-stale against current App.
 
-If material surfaces disagree:
-`CONFLICT -> RECOVERY/AUDIT -> LOCALIZE -> REPAIR/SUPERSEDE -> READBACK -> RESUME`
+## Egress boundary
+Attempt 0 is preserved in App source and completely read, stream SHA `c76cef0f136727eba61a2a4cf66d826744b44bcd60e78ea647a618b08c5900c0`. D0-D3 remain never executed/unqualified. First execution occurs only after this successor control is pushed and independently fresh-clone verified.
 
-Then reconcile against live server state and Git remotes before mutation.
+## Semantic admission
+- v1.1 payload: 16/16 readable non-parent members / 1,050-line stream SHA `ad1dab3444274a23c8d63a1edb3857b50f90c98efd0115d3c7c488c06fac9ec6`; distribution/primary/meta/qualification PASS; hostile 35/35; semantic pending 0.
+- project first read: 21 artifacts / 2,016 lines / SHA `6f82c71476560601a02da7ca1c2bd7056882b6bd87a798b4c405dd7001b70ce2`; representation findings repaired.
+- correction read: 16 artifacts / 1,621 lines / SHA `db64aa422dfd1d878e3b8630be9ff12ae7a5118cb1727e2367834f3d0152f1c3`; pointer-hygiene findings repaired.
+- prior bilateral RES read: 628 lines / SHA `8b53d697d9a9afe1d1188fce3a6878969fc676b67158410b2dfe6af54a7ba388`; Main RES then advanced and received a fresh complete 415-line read at SHA `c963e4fd011dd432e8255b793aa0f2623d7d4548f3e3eb34b4f91aa34815fbbc`; App RES remains exact `a476342db8d3e6eea323ec157e5e4964eb0f1a009aabcf2867927f56e8c72792`, authority NONE_BY_CONTENT.
 
-## Current checkpoint facts
-- ICF-CS v1.0 authoritative server-source SHA: `e279b9412f1ba3aff3634afd2ab046db855e5ce491510b7569f83f85399c498f`; LF-normalized Git-copy SHA: `06b1271bfa8aee5dbd78a3ad7d7d4e56b4d9ccaaf4825bc90504d4d3f194fb40`.
-- Current project Intent/Constraints/Frontier instance SHA: `dc3612d9e0fc8a34a98fe56c332a7d73ac6142b63e49ecc1d57bd6078ee6171d`.
-- Discoverable ingress pointer SHA: `8d2e9a7fd9091e9970386b7d7a8398c9227bb19f26b7b700bde60d3219264e95`.
-- ICF adoption receipt authoritative server-source SHA: `3ae4d9a4360ab576aa027c6c80f793050c48e4db57f9e94ec3eeeee7739c97aa`; LF-normalized Git-copy SHA: `a0a192bfd27825ca023822e1a0f35ca46867c65980997caf0cc17f067fe8fc20`.
-- Core law: `DIRECTION != CONSTRAINTS != FRONTIER != HISTORY`.
-- Canonical process: **RAHL Engineering Canonical SOP R4.4**.
-- R4.4 carrier SHA: `04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc`; 2,532,911 bytes; 51 outer members.
-- Exact carriers: `main/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_4_2026-09-04.zip` and `app/sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_4_2026-09-04.zip`.
-- Independent R4.4 admission: 46/46 current readable members; 4,537 source lines; deterministic 4,675-line stream SHA `d7dccd023a585d375710445d33a06e4a706cafc15e0b8f509237a983209288f8`; verifier PASS/PROMOTED; hostile 54/54 rejected; deterministic seal true.
-- Qualified public Main: `a7b4511734b1a1e507230308e75b31175aef4c4a`.
-- App source: `b674dbaaf428970c486753168e75847a345eb1c2`, exact qualified two-parent forward merge of prior App + qualified Main.
-- Current App recovery: generation 11 `checkpoint-app-live-0011-b674dbaaf428`, VERIFIED/RESUMED/STABLE/LKG/source MATCH/NORMAL.
-- Gen11 evidence SHA: `817daa41119e499c3bc8cc978d0ea625be4598ef6a8263f3acf5cf84392fa3e9`; Attempt Store live count at capture: 102 blobs / 102 attempts / 169 events, integrity ok.
-- Main RES SHA: `9abe90f23dfb719291736bf9ad6b155ad2982df7527a4e06909956473ba4ccb3`, authority NONE.
-- App RES SHA: `9d4d3b56432a822354f377f9482b3e7b9e78797de34be8d675d86d80461f0218`, authority NONE.
-- Checkpoint semantic restoration identity remains unqualified; gen11 Core IDs remain null.
-- Next product/security frontier after this control checkpoint: OS/process egress enforcement Attempt 0.
-
-## Current process scars
-`CANONICAL_PROCESS_DEFAULT != UNIVERSAL_DOMAIN_TRUTH`
-
-`GATE_ASSERTED != GATE_WITNESSED`
-
-`ATTESTATION != COMPREHENSION`
-
-`GUARD_PRESENT != GUARD_EXERCISED`
-
-`PROTECTED_STRING_INTACT != MEANING_INTACT`
-
-`SEALED_BYTES != PUBLISHED_BYTES`
-
-`SEALING_EXEMPTION != PUBLICATION_EXEMPTION`
+## Publication boundary
+Verified predecessor control: `63f7a74f47be4179b5871fd7ff9da819b54e3ab9`. This generation must pass Git-representation semantic read, privacy/path scan, manifest/index equality, non-force remote race check, commit/push, `ls-remote`, and fresh-clone verifier before D0-D3.
 
 `CONTROL_CHECKPOINT != PRODUCT_PROMOTION`
-
-`RES_CONTENT != GOVERNING_DOCTRINE`
-
-`APP_SOURCE_INTEGRATED != NEW_LKG`
-
-`BRIDGE_SOURCE_AVAILABLE != CHECKPOINT_SEMANTIC_RESTORATION_QUALIFIED`
-
-## Semantic admission evidence for this live fixed point
-- Initial cross-strand adoption stream: 18 artifacts / 3,905 deterministic lines / SHA `cc8114cf4c18f90710df4027dba82d8e86213f3c5b20597efabc14e897cd9b15`; it found stale R4.2/gen11 labels.
-- Correction stream: 11 artifacts / 1,599 deterministic lines / SHA `afc7ec51a9fb349e41df9c187a16e5e467953f1a3fa292d47932bd3898b435b9`; it found three residual pointer/authority defects.
-- Final corrected Main Doctrine/Main Live/App Live were fully reread after those three repairs.
-
-## R4.4 research reuse rule
-When the Global Cross-Project Scar Ledger is available, recurrence is navigation/attack pressure rather than authority. Inspect provenance and independently re-derive applicability under current constraints before reuse.
+`GEN12_RECOVERY_LKG != EGRESS_ENFORCEMENT_QUALIFIED`
+`ATTEMPT_0_IS_EVIDENCE_NOT_SCRATCH_SPACE`

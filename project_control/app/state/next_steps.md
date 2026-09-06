@@ -1,21 +1,30 @@
 # Next Steps — Singularity Works App
 
-Last updated: 2026-09-05 UTC
+Last updated: 2026-09-06 UTC
 
-## P0 — ICF-CS durable continuity publication
-0.1 Snapshot exact standard `e279b9412f1ba3aff3634afd2ab046db855e5ce491510b7569f83f85399c498f`, project ICF instance `dc3612d9e0fc8a34a98fe56c332a7d73ac6142b63e49ecc1d57bd6078ee6171d`, ingress pointer `8d2e9a7fd9091e9970386b7d7a8398c9227bb19f26b7b700bde60d3219264e95`, and reconciled Main/App continuity/state into `pcmmad/project-control`.
-0.2 Apply R4.4 semantic admission to every changed readable control representation.
-0.3 Run checkpoint verifier, privacy/host/path scan, diff/staged-blob equality and binary-carrier checks.
-0.4 Non-force push, independently resolve remote ref, and verify from a fresh clone.
-0.5 Record the new durable anchor without recursive checkpoint churn.
-0.6 Then continue egress-enforcement Attempt 0 below.
+## Historical pre-official ICF-CS durable continuity publication — CLOSED
+- Published `pcmmad/project-control@63f7a74f47be4179b5871fd7ff9da819b54e3ab9` from exact parent `cb8d01c5e635347e038b4dffea49387945aea72d`.
+- Frozen CHECKPOINT `500d7c167ff5d27e6287edf675d7bbc06a91b5a7c169ffa44df753e6af6bb049`, verifier PASS 96, independent remote/fresh-clone exact.
+- Closure receipt `e515beb3f00da247a979c83a4c0f80dc926d47f72315026fc4cedb3755c263ef`.
+- Post-push receipt/pointer delta waits for the next normal checkpoint.
+
+
+## Immediate P0 — ICF-CS v1.1 + Gen12 durable control refresh
+1. Publish exact v1.1 payload `f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63`, detached receipt `418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c`, standard `62be845da364ae81f59b6320c9b34b136236bf5be8aa8036018da48efcb754f4`, machine `d67726aeb402c280770eeaf314068ed7a1330beb21167d9d6d9b7c4674425bb0`, qualification `7d20ed708adb4f7ee147b56da41deac77146b56fc85bd769be3a6d240b3e2029`, epoch profile `733b799815abdb4b1ff735635f7928953c12944ece579365b5aae138d90f90f8` and v1.0 demotion receipt `3225fd952d704d31047ffdf01bffbc0968e4428357342ccb8ce5094ae8385057` on both control strands.
+2. Publish current Commander `95ff8a58543c8aa2a2f20eb98cca47a30c3b64a5e8823c5f84edd3ad25cc9761` and ingress pointer `7fc1675989ec806095fbc250c9d6c6adc213c7af3ca13dc0f1f515fc44f290b3`.
+3. Record live public Main `287c0bad0e9b3fef3002b91702e86b410cada4ce` while preserving semantic Core anchor `a7b4511734b1a1e507230308e75b31175aef4c4a`.
+4. Record App source `e9b81750db265a467187c61962ffab3cff98d4fe` and Gen12 `checkpoint-app-live-0012-e9b81750db26` MATCH/NORMAL; Gen11 historical/source-stale.
+5. Preserve predecessor control `63f7a74f47be4179b5871fd7ff9da819b54e3ab9` / CHECKPOINT `500d7c167ff5d27e6287edf675d7bbc06a91b5a7c169ffa44df753e6af6bb049` as prior verified generation.
+6. Complete semantic read of all changed readable control representations; verify manifest/privacy/diff/staged hashes and exact sealed binaries.
+7. Non-force push only after live remote race check; require independent ref + fresh-clone verifier/readback.
+8. After durable readback, execute exact frozen D0-D3 Attempt 0 without editing first.
 
 ## P0 — OS/process network egress enforcement Attempt 0
 0. Query the R4.4 Global Cross-Project Scar Ledger for relevant prior containment/network/process scars when the live registry is available; inspect provenance and re-derive under current constraints before reuse.
 1. Inspect actual Windows/process-launch topology and available enforcement primitives on the current machine.
 2. Define the exact protected execution-domain boundary: which Singularity Works child processes/plugins/imported code are denied ambient network access by default.
 3. Define the broker/Gate allow path so an approved network consequence requires current Connection Gate authority plus an exact prepared-operation/lifecycle identity.
-4. Preserve the complete enforcement Attempt 0 implementation/protocol/tests before first execution.
+4. Attempt 0 is already preserved; after successor control readback, execute exact frozen D0-D3 without editing first.
 5. Hostile-test direct raw sockets, subprocess/helper-binary escape, plugin/imported-code escape, DNS, loopback/local service, inherited handles/capabilities and proxy/environment-mediated egress.
 6. Unsupported/unknown enforcement state must fail closed for the protected domain.
 7. Renderer/recovery processes that do not require network should remain network-denied by default.
@@ -65,23 +74,26 @@ Last updated: 2026-09-05 UTC
 
 ## Current verified baseline
 - R4.4 current process carrier SHA `04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc`;
-- App local/remote source exact `b674dbaaf428970c486753168e75847a345eb1c2`, clean;
+- App local/remote source exact `e9b81750db265a467187c61962ffab3cff98d4fe`, clean; Attempt 0 preserved/unexecuted;
 - exact merge parents `[328249429cc6e86e15db9797bd58eff5fabc5a2d, a7b4511734b1a1e507230308e75b31175aef4c4a]`;
 - forward-sync qualification receipt SHA `ef9cbb12293a0077e143ee8c991a466bc23019a303221a13be85bf3cc46c604e`;
 - remote closure SHA `8119f920e0c8e1c34c85ebe8e6ab5d01cbf32e5ab01309a8ede68e40145fa2ec`;
 - fresh remote compile PASS / semantic 8/8 / App 94/94 / full verify_build PASS;
 - canonical bridge schema `singularity-works.semantic-field-bridge/0.1`;
-- current LKG generation 11 `checkpoint-app-live-0011-b674dbaaf428`, source MATCH/NORMAL;
-- gen11 evidence `state/live_resume_session_0011.json` SHA `817daa41119e499c3bc8cc978d0ea625be4598ef6a8263f3acf5cf84392fa3e9`;
-- evidence Attempt `attempt-live-resume-session-0011-lkg`, exact blob same SHA;
-- Attempt Store 102 blobs / 102 attempts / 169 events, integrity ok, WAL/FULL.
+- current LKG generation 12 `checkpoint-app-live-0012-e9b81750db26`, source MATCH/NORMAL; Gen11 historical/source-stale;
+- Gen12 evidence `state/live_resume_session_0012.json` SHA `aeff0db397135d8f227f11e17c1b7b939235b6ae11ee2ae97053246d9d605e0a`;
+- evidence Attempt `attempt-live-resume-session-0012-lkg`, exact blob same SHA;
+- Attempt Store 104 blobs / 104 attempts / 175 events, integrity ok, WAL/FULL.
 
 ## Closed this cycle
 The early Main->App forward-sync gate is closed for qualified Main `a7b4511...` / App merge `b674dba...`.
-Generation 10 remains historical evidence and source-stale SAFE_ONLY; generation 11 is current LKG.
+Generation 10 and Gen11 remain historical; Gen11 is source-stale against current App. Generation 12 is current LKG/source MATCH/NORMAL.
 
 ## Control-plane follow-up
-Durable R4.4/gen11 control checkpoint is CLOSED at `pcmmad/project-control@cb8d01c5e635347e038b4dffea49387945aea72d`, CHECKPOINT `c86558c829012caf8ff8844b0d01ef8eeb2df47d4cedf86137700d9aaeb2a84a`, verifier PASS 88, fresh clone exact/clean. Fixed-point post-push state waits for the next normal checkpoint.
+Current durable predecessor ICF/R4.4/gen11 control is `pcmmad/project-control@63f7a74f47be4179b5871fd7ff9da819b54e3ab9`, CHECKPOINT `500d7c167ff5d27e6287edf675d7bbc06a91b5a7c169ffa44df753e6af6bb049`, verifier PASS 96, fresh clone exact/clean. Previous `cb8d01c5...` remains historical. Fixed-point post-push receipt/pointer state waits for the next normal checkpoint.
 
-## ICF-CS v1.0 adoption — 2026-09-05
-ICF-CS durability is the only new prerequisite ahead of egress Attempt 0. The product/security frontier itself is unchanged.
+## Historical ICF-CS v1.0 adoption — 2026-09-05
+At that historical v1.0 generation, ICF durability was the prerequisite ahead of egress Attempt 0; the current prerequisite is v1.1/source/Gen12 successor control publication. The product/security frontier itself is unchanged.
+
+## Historical pre-official ICF-CS Git-control closure — 2026-09-05
+The provisional ICF generation is durable at `63f7a74...`; official-addendum successor publication above is the current P0 before egress implementation.

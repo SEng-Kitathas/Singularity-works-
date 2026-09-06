@@ -1,8 +1,8 @@
 # Current State — Singularity Works / Forge Core-Main
 
-Last updated: 2026-09-05 UTC
-Mode: CHECKPOINT — ICF-CS v1.0 adoption and durable-control publication
-Role: R4 Convergence Refiner
+Last updated: 2026-09-06 UTC
+Mode: CHECKPOINT — ICF-CS v1.1 + Gen12 server-current; successor durable-control publication required before first egress execution
+Role: R5 Reality Pressure Engine
 
 ## Project identity
 - Singularity Works = software/product whole.
@@ -17,18 +17,20 @@ Carrier SHA `04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc`.
 Project-root copy `sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_4_2026-09-04.zip` is exact.
 Adoption note `notes/maintenance/RAHL_R4_4_CANONICAL_SOP_ADOPTION_20260904.md` SHA `5d801bde0c48df3c577597b3f753f895b251f7eefee048ae770ef06a208fdbae`.
 The R4.4 Linear Human Read / Semantic Gate and machine-checkable gate-evidence/publication-reconciliation rules are mandatory.
+R4.4 remains the sealed canonical parent; ICF-CS does not replace or mutate it.
 
-## ICF-CS v1.0 current ingress
-Project continuity now uses Intent–Constraint–Frontier separation under R4.4.
-- standard: `state/doctrine_snapshot/INTENT_CONSTRAINT_FRONTIER_CONTINUITY_STANDARD.md`, SHA `e279b9412f1ba3aff3634afd2ab046db855e5ce491510b7569f83f85399c498f`;
-- current project ICF instance: `state/doctrine_snapshot/PROJECT_COMMANDERS_INTENT_CURRENT.md`, SHA `dc3612d9e0fc8a34a98fe56c332a7d73ac6142b63e49ecc1d57bd6078ee6171d`;
-- discoverable pointer: `checkpoints/PROJECT_INTENT_CURRENT.md`, SHA `8d2e9a7fd9091e9970386b7d7a8398c9227bb19f26b7b700bde60d3219264e95`.
+## ICF-CS v1.1 current ingress
+ICF-CS v1.1 is current binding additive continuity/process doctrine above sealed R4.4.
+- payload carrier `sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_4_ICF_CS_V1_1_ADDENDUM_2026-09-05.zip`, SHA `f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63`;
+- detached release receipt `sop/ICF_CS_V1_1_DETACHED_RELEASE_RECEIPT_2026-09-05.json`, SHA `418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c`;
+- exact standard `state/doctrine_snapshot/INTENT_CONSTRAINT_FRONTIER_CONTINUITY_STANDARD.md`, SHA `62be845da364ae81f59b6320c9b34b136236bf5be8aa8036018da48efcb754f4`;
+- machine contract `state/doctrine_snapshot/ICF_CS_V1_1.json`, SHA `d67726aeb402c280770eeaf314068ed7a1330beb21167d9d6d9b7c4674425bb0`;
+- qualification contract `state/doctrine_snapshot/ICF_CS_QUALIFICATION_CONTRACT_V1_1.json`, SHA `7d20ed708adb4f7ee147b56da41deac77146b56fc85bd769be3a6d240b3e2029`;
+- mechanized epoch profile `state/doctrine_snapshot/ICF_CS_MECHANIZED_EPOCH_PROFILE_V1_1.md`, SHA `733b799815abdb4b1ff735635f7928953c12944ece579365b5aae138d90f90f8`;
+- v1.0 is demoted historical evidence by `state/doctrine_snapshot/ICF_CS_V1_0_DEMOTION_RECEIPT.json`, SHA `3225fd952d704d31047ffdf01bffbc0968e4428357342ccb8ce5094ae8385057`;
+- shared Commander SHA `95ff8a58543c8aa2a2f20eb98cca47a30c3b64a5e8823c5f84edd3ad25cc9761`; ingress pointer SHA `7fc1675989ec806095fbc250c9d6c6adc213c7af3ca13dc0f1f515fc44f290b3`.
 
-Core law: `DIRECTION != CONSTRAINTS != FRONTIER != HISTORY`.
-Cold-start grammar: `CURRENT STATE -> ICF-CS -> R4.4 + NEXT/DOCTRINE/REVISIT/TRACE -> LIVE SHADOW -> DTS -> LIVE READBACK BEFORE MUTATION`.
-Material disagreement uses `CONFLICT -> RECOVERY/AUDIT -> LOCALIZE -> REPAIR/SUPERSEDE -> READBACK -> RESUME`.
-
-ICF-CS is continuity/process structure only; it does not mint Forge semantic, App runtime, source, release, or recovery authority.
+ICF-CS scope remains continuity/rehydration/current-ingress/evaluation hygiene only. It does not mint semantic/product/runtime/source/recovery/security authority.
 
 ## R4.4 process delta
 R4.4 adds/promotes gate evidence surfaces, host-identity self-tests, section inventory, anti-binding/additive hostile witnesses, publication reconciliation, Global Cross-Project Scar Ledger discipline, and re-entry/historical reconstruction rules.
@@ -41,7 +43,7 @@ R4.4 adds/promotes gate evidence surfaces, host-identity self-tests, section inv
 
 ## Core semantic incumbent
 Qualified public Main:
-`a7b4511734b1a1e507230308e75b31175aef4c4a`.
+`a7b4511734b1a1e507230308e75b31175aef4c4a` remains the qualified semantic Core anchor. Live public `main` is `287c0bad0e9b3fef3002b91702e86b410cada4ce`, an authority-publication-only child with no Core source changes.
 Prior Main `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9` is its exact parent.
 
 Core evidence retained:
@@ -57,43 +59,24 @@ Canonical App-facing bridge:
 `singularity_works.semantic_field_bridge`
 schema `singularity-works.semantic-field-bridge/0.1`.
 
-## App cross-arm state — synchronized and recovery-current
-App branch `forge/app-shell-rd` is local/remote exact and clean at:
-`b674dbaaf428970c486753168e75847a345eb1c2`.
+## App cross-arm state — source preserved / Gen12 recovery-current
+App current local/remote source is `e9b81750db265a467187c61962ffab3cff98d4fe`, clean. It preserves frozen OS/process egress Attempt 0 and does not qualify that primitive.
 
-Exact merge tree:
-`a0b650d0cc367c6f575a59f41005813ccd8ac4f0`.
-Parents:
-1. prior App `328249429cc6e86e15db9797bd58eff5fabc5a2d`;
-2. qualified Main `a7b4511734b1a1e507230308e75b31175aef4c4a`.
+Main semantic integration remains anchored at `a7b4511734b1a1e507230308e75b31175aef4c4a`; public Main `287c0bad0e9b3fef3002b91702e86b410cada4ce` adds only the R4.4/ICF-CS v1.1 authority release surfaces.
 
-The merge introduces exactly the nine qualified semantic-field paths and no `forge_app/**` source changes.
-Fresh remote integration passed compile, semantic-field 8/8, App regression 94/94 with ResourceWarning-as-error, and full verify_build.
+## App current LKG — generation 12
+Generation 12 `checkpoint-app-live-0012-e9b81750db26` is the current earned LKG for `e9b81750db265a467187c61962ffab3cff98d4fe`.
+- checkpoint blob `0889dd0599355f54fcc055a86002dd6c2ac7131de7b34ec0ef11ddc4511222fb`;
+- evidence SHA `aeff0db397135d8f227f11e17c1b7b939235b6ae11ee2ae97053246d9d605e0a`;
+- VERIFIED / RESUMED / STABLE / LKG / source MATCH / NORMAL / early crash 0 / not quarantined;
+- 4 meaningful operations and >10 seconds healthy-session evidence were recorded before STABLE/LKG promotion;
+- Core contract/currentness/semantic-snapshot IDs remain null.
 
-Qualification receipt SHA `ef9cbb12293a0077e143ee8c991a466bc23019a303221a13be85bf3cc46c604e`.
-Remote closure SHA `8119f920e0c8e1c34c85ebe8e6ab5d01cbf32e5ab01309a8ede68e40145fa2ec`.
-
-## App current LKG — generation 11
-Generation 10 remains valid historical recovery evidence but is source-stale SAFE_ONLY against current App source.
-
-Current App LKG:
-`checkpoint-app-live-0011-b674dbaaf428`.
-Parent `checkpoint-app-live-0010-328249429cc6`.
-Blob `0a644a5040256482d79eb5dba23c73afb6586f95223946f1c283e6d72f22c821`.
-
-Generation 11 independently earned VERIFIED / RESUMED / STABLE / LKG / source MATCH / NORMAL / early crash 0 / not quarantined. Four meaningful operations were completed; STABLE became true only at ~10.797s and LKG promotion followed afterward.
-
-Evidence `state/live_resume_session_0011.json` SHA `817daa41119e499c3bc8cc978d0ea625be4598ef6a8263f3acf5cf84392fa3e9`, preserved as `attempt-live-resume-session-0011-lkg` with exact blob/readback.
-
-App Attempt Store: 102 blobs / 102 attempts / 169 events, integrity ok, WAL/FULL.
-
-Main awareness note:
-`notes/maintenance/APP_FORWARD_SYNC_GEN11_AWARENESS_20260904.md`
-SHA `5d469eae18ca3a78b8320086ebedb6c60fc5cc4eaab7864186c2f78f7da3d8b6`.
+Generation 11 remains historical LKG evidence for source `b674dba...` and is source-stale against current App.
 
 ## Core/App restoration boundary
 Bridge source integration is qualified. App checkpoint restoration identity is not.
-Generation 11 therefore keeps:
+Generation 12 deliberately keeps:
 - `core_contract_version = null`;
 - `core_currentness_id = null`;
 - `semantic_snapshot_id = null`.
@@ -103,29 +86,29 @@ Generation 11 therefore keeps:
 This is a separate future cross-arm interface qualification seam; Main must not infer restoration identity from source availability alone.
 
 ## RES ownership/currentness
-Main/Core RES: `continuity/research_epistemic_shadow/res.md`, authority NONE_BY_CONTENT, scope CORE_SEMANTIC_RESEARCH.
-App RES current SHA `9d4d3b56432a822354f377f9482b3e7b9e78797de34be8d675d86d80461f0218`, authority NONE_BY_CONTENT, scope PRODUCT_RUNTIME_SECURITY_RESEARCH.
+Main/Core RES: `continuity/research_epistemic_shadow/res.md`, SHA `c963e4fd011dd432e8255b793aa0f2623d7d4548f3e3eb34b4f91aa34815fbbc`, authority NONE_BY_CONTENT, scope CORE_SEMANTIC_RESEARCH.
+App RES current SHA `a476342db8d3e6eea323ec157e5e4964eb0f1a009aabcf2867927f56e8c72792`, authority NONE_BY_CONTENT, scope PRODUCT_RUNTIME_SECURITY_RESEARCH.
 
 Main research meaning now treats App synchronization/recovery currentness as closed and App OS/process egress enforcement as the active downstream product/security frontier. Main/Core semantic source ownership remains unchanged.
 
 ## Durable cross-thread control
 Latest independently verified durable control tip:
-`pcmmad/project-control@cb8d01c5e635347e038b4dffea49387945aea72d`.
-Frozen CHECKPOINT SHA `c86558c829012caf8ff8844b0d01ef8eeb2df47d4cedf86137700d9aaeb2a84a`, verifier PASS 88. Fresh single-branch clone reproduced exact HEAD, clean tree, exact CHECKPOINT, R4.4 carriers and generation-11 state.
+`pcmmad/project-control@63f7a74f47be4179b5871fd7ff9da819b54e3ab9`.
+Frozen CHECKPOINT SHA `500d7c167ff5d27e6287edf675d7bbc06a91b5a7c169ffa44df753e6af6bb049`, verifier PASS 96. Fresh single-branch clone reproduced exact HEAD, clean tree, CHECKPOINT, ICF standard/instance/ingress surfaces, R4.4 carriers and generation-11/current continuity.
 
-R4.4 + Main `a7b4511...` + App `b674dba...` + generation 11 + current Main/App RES are now durably represented across threads.
-Post-push receipt: `notes/maintenance/R4_4_GEN11_CONTROL_CHECKPOINT_20260904.md` SHA `eb58c0261efccab272d17912e9faf1f92d1e8727f6925a253535f854e94bdd14`.
+The predecessor control `63f7a74...` durably represents pre-v1.1 / pre-Gen12 state. ICF-CS v1.1, public Main `287c0bad...`, App `e9b81750...`, and Gen12 are newer server-current state requiring one successor control checkpoint before first egress execution.
+ICF closure receipt: `notes/maintenance/ICF_CS_V1_GIT_CONTROL_CLOSURE_20260905.md` SHA `e515beb3f00da247a979c83a4c0f80dc926d47f72315026fc4cedb3755c263ef`. Previous R4.4/gen11 checkpoint `cb8d01c5...` remains historical lineage.
 
 `CONTROL_CHECKPOINT != PRODUCT_PROMOTION`.
 
 ## Verified vs provisional
 Verified:
 - R4.4 process currentness;
-- qualified public Main semantic-field Core `a7b4511...`;
-- App source forward sync `b674dba...` and remote integration qualification;
-- App generation 11 current LKG/source MATCH;
+- current public Main `287c0bad...` with semantic Core qualification anchor `a7b4511...` unchanged;
+- App current source `e9b81750...` local/remote exact and clean; qualified Core integration ancestry remains `b674dba...`;
+- App generation 12 current LKG/source MATCH/NORMAL; Gen11 historical/source-stale;
 - separate Main/App RES ownership;
-- current durable control anchor `cb8d01c...` with R4.4/gen11 fresh-clone verification.
+- current durable control anchor `63f7a74...` / CHECKPOINT `500d7c16...bb049` with ICF/R4.4/gen11 fresh-clone verification.
 
 Open/provisional:
 - checkpoint semantic restoration/currentness/snapshot identity;
@@ -135,7 +118,7 @@ Open/provisional:
 - inherited packaging-description debt.
 
 ## Resume point
-First publish/read back a bounded ICF-CS adoption checkpoint on `pcmmad/project-control`. Then App may resume OS/process egress-enforcement Attempt 0 using the ICF current-ingress order and live currentness readback before mutation. Main/Core source remains unchanged unless a genuine semantic/interface requirement returns upstream.
+Publish/read back a successor `pcmmad/project-control` generation from `63f7a74f47be4179b5871fd7ff9da819b54e3ab9` containing ICF-CS v1.1, public Main `287c0bad...`, App `e9b81750...`, Gen12 and the repaired current-ingress surfaces. After fresh-clone verification, execute the exact already-preserved D0-D3 Attempt 0 tests without editing them first.
 
-## ICF-CS v1.0 adoption — 2026-09-05
-ICF-CS v1.0 is adopted as the project continuity/rehydration layer beneath R4.4. Intent, load-bearing constraints, fast-changing frontier, and history are now explicitly separated and discoverable.
+## Historical pre-official ICF-CS Git-control closure — 2026-09-05
+Durable predecessor ICF control anchor `63f7a74f47be4179b5871fd7ff9da819b54e3ab9` / CHECKPOINT `500d7c167ff5d27e6287edf675d7bbc06a91b5a7c169ffa44df753e6af6bb049` is independently verified. Receipt `e515beb3f00da247a979c83a4c0f80dc926d47f72315026fc4cedb3755c263ef`. That provisional ICF generation closed its own continuity prerequisite; the official addendum supersedes its standard/grammar identities and requires the successor control checkpoint now pending.

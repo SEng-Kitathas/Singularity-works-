@@ -16,7 +16,7 @@ Tags: BUILD-COMMIT, GIT-LINEAGE, REMOTE-SYNC, QUALIFICATION-BRANCH, RELEASE-BLOC
 
 Assistant rehydrated live project state and first repaired the stale logical baseline: map trial v2 had already completed after the previous checkpoint. v2 result is PASS/CONDITIONALLY_READY under a static Python-relation ceiling, with 15/15 hostile checks, 109 nodes, 267 edges, 171 meaningful relations, 171 paths, 29/29 output-manifest integrity, all nodes/edges source-addressable/evidenced, no runtime outcome inflation, no consequence-authority emergence, and clean old-bone worktree readback.
 
-Assistant inspected Git planes without mutating the dirty working tree. `<LOCAL_FORGE_REPO>` local main = `d56027e879a21d078a8c36f712cf7380be4c63f5`, heavily dirty; clean worktree = `b83615c47dd8b58728ebc03ca48106058a0760f9`. GitHub `main` resolved by `git ls-remote` to the same `b83615c...`. Local committed main is 28 commits ahead, merge-base exactly remote main, no remote divergence observed. `gh auth status` is unauthenticated, but `git push --dry-run origin main:main` succeeded through Git credential manager, proving Git push capability.
+Assistant inspected Git planes without mutating the dirty working tree. `<LOCAL_HISTORICAL_WORKTREE>` local main = `d56027e879a21d078a8c36f712cf7380be4c63f5`, heavily dirty; clean worktree = `b83615c47dd8b58728ebc03ca48106058a0760f9`. GitHub `main` resolved by `git ls-remote` to the same `b83615c...`. Local committed main is 28 commits ahead, merge-base exactly remote main, no remote divergence observed. `gh auth status` is unauthenticated, but `git push --dry-run origin main:main` succeeded through Git credential manager, proving Git push capability.
 
 Under R3 promotion discipline, assistant did not push local main directly. It reconstructed exact committed `d56027e` in an isolated clean clone. `compileall` passed and package imports mostly passed, but a release blocker was reproduced: committed `pyproject.toml` and README advertise `singularity_works.local_model_adapter`, while that module is absent at `d56027e`. Existing `forge`/`forge-hud` console-script declarations also target `:__main__` even though those modules lack a callable `__main__` attribute; that scar already exists at remote `b83615c`. A local untracked replacement adapter exists, but its dependent profile contains numerous absolute machine/runtime/model paths and is not publication-qualified.
 
@@ -43,7 +43,7 @@ A clean replay of committed `5cb291432dac60f7eaa18d9cdeb519213ec556ac` passed in
 
 Assistant then replayed exact `1b8f6bd...` from a fresh detached clone. Verified results: compileall PASS; project verifier rc0 and all expected semantic state transitions PASS; self-verification 0 fails / 29 warnings; full promoted-delta secret hits 0; machine-private-path hits 0; retired `forge-health` absent from executable/advised surfaces; wheel build PASS. Wheel `singularity_works-1.0.0-py3-none-any.whl` was 320862 bytes with SHA-256 `0ffe61597b78861e0e5894ade9884b57fc3ae0d955b69ad82b3cc1e9bf06daf9`, containing callable `forge`/`forge-hud` entrypoints and both config JSON files. Disposable install PASS; installed `forge --help` PASS; installed `forge safe_sample.py --target safe-sample --out reports` from outside the source tree PASS with GREEN, 0 findings, and two report files. Tracked source remained unchanged after replay.
 
-Assistant preserved non-green residuals rather than rewriting them away: full historical `b83615c..1b8f6bd` contains inherited whitespace complaints; self-audit is PASS but not CLEAN because 29 warnings remain; successful installed smoke exposed nested `.forge/.forge/cilnx_bridge` path technical debt. Dirty `<LOCAL_FORGE_REPO>` was not reset, cleaned, or bulk-staged. Clean old-bone worktree remains pinned at `b83615c...` for comparison.
+Assistant preserved non-green residuals rather than rewriting them away: full historical `b83615c..1b8f6bd` contains inherited whitespace complaints; self-audit is PASS but not CLEAN because 29 warnings remain; successful installed smoke exposed nested `.forge/.forge/cilnx_bridge` path technical debt. Dirty `<LOCAL_HISTORICAL_WORKTREE>` was not reset, cleaned, or bulk-staged. Clean old-bone worktree remains pinned at `b83615c...` for comparison.
 
 Remote promotion was then performed with exact gates. GitHub `main` was re-read at `b83615c47dd8b58728ebc03ca48106058a0760f9`; local merge-base proved fast-forward ancestry. Assistant dry-ran and non-force pushed `pcmmad/release-repair-d56027e` -> `1b8f6bd...`, read it back exactly, re-read main immediately before promotion, dry-ran the main update, then non-force pushed main `b83615c..1b8f6bd`. Final `git ls-remote` readback: `main=1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`; `pcmmad/release-repair-d56027e` same exact SHA; earlier `pcmmad/qualification-d56027e=d56027e879a21d078a8c36f712cf7380be4c63f5` preserved. No force push occurred.
 
@@ -1001,3 +1001,128 @@ USER supplied the project-agnostic Intent–Constraint–Frontier Continuity Sta
 A reusable ICF-CS v1.0 standard was created at `state/doctrine_snapshot/INTENT_CONSTRAINT_FRONTIER_CONTINUITY_STANDARD.md` SHA `e279b9412f1ba3aff3634afd2ab046db855e5ce491510b7569f83f85399c498f`. A current Singularity Works / Forge Intent/Constraints/Frontier instance was created at `state/doctrine_snapshot/PROJECT_COMMANDERS_INTENT_CURRENT.md` SHA `dc3612d9e0fc8a34a98fe56c332a7d73ac6142b63e49ecc1d57bd6078ee6171d`. A bounded ingress pointer was created at `checkpoints/PROJECT_INTENT_CURRENT.md` SHA `8d2e9a7fd9091e9970386b7d7a8398c9227bb19f26b7b700bde60d3219264e95`. All three were completely read on Main; exact bytes were mirrored to App.
 
 Cold-start grammar is now `CURRENT STATE -> ICF-CS -> R4.4 + NEXT/DOCTRINE/REVISIT/TRACE -> LIVE SHADOW -> DTS -> LIVE READBACK BEFORE MUTATION`; disagreement routes through RECOVERY/AUDIT. ICF-CS does not acquire semantic/product/source/recovery authority. A bounded Git control checkpoint is now required before egress Attempt 0 resumes.
+
+---
+
+## ICF-CS Git-control closure — 2026-09-05
+Date: 2026-09-05 UTC
+Tags: ICF-CS, GIT-CONTROL, REMOTE-READBACK, FRONTIER-RESUME
+
+After the complete ICF server/adoption read and Git-representation gate, the final self-excluded CHECKPOINT was frozen at `500d7c167ff5d27e6287edf675d7bbc06a91b5a7c169ffa44df753e6af6bb049`. CHECKPOINT self-read was deliberately modeled as an external pre-commit gate to avoid recursive self-status mutation. Verifier PASSed 96 files; privacy/path scan returned 0 findings; working/cached diff checks PASSed; all 96 staged manifest blobs matched exact hash/bytes; only 24 `project_control/` paths were staged.
+
+Commit `63f7a74f47be4179b5871fd7ff9da819b54e3ab9` (`control: adopt ICF-CS current ingress`) was created directly on `cb8d01c5e635347e038b4dffea49387945aea72d`, post-commit verifier PASSed, live remote refs were reread unchanged, dry-run and non-force push PASSed. Independent App-side remote readback and fresh control clone proved exact HEAD, clean tree, CHECKPOINT `500d7c167ff5d27e6287edf675d7bbc06a91b5a7c169ffa44df753e6af6bb049`, ICF standard/instance/pointer/receipt identities and both R4.4 carrier hashes.
+
+ICF durability prerequisite is now closed. Product/source/recovery state did not move. Frontier resumes App OS/process egress-enforcement Attempt 0. This post-push receipt/pointer update is deliberately not republished recursively.
+
+
+---
+
+## Cross-arm entry — official R4.4 ICF-CS v1.0 additive overlay qualified and reconciled — 2026-09-05
+Tags: ICF-CS, R4.4, CONTINUITY, RECOVERY-AUDIT, CURRENT-INGRESS, ADDITIVE-OVERLAY
+
+Operator supplied `RAHL_ENGINEERING_CANONICAL_SOP_R4_4_ICF_CS_V1_0_ADDENDUM_2026-09-05.zip` and identified it as updated R4.4 continuity doctrine.
+
+Exact uploaded carrier SHA `51ed7f424dff7c67534f7e53e8a7c10ebd93bf33ea575eea49dc3f05c24a92a9`, 2,546,098 bytes, 13 members, CRC PASS. Exact embedded sealed R4.4 parent SHA `04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc`, unchanged.
+
+The complete readable overlay surface was linearly read: 12/12 members, 622 source lines / 40,576 bytes, deterministic 658-line stream SHA `38d21a0af45c325370af745a3b738c2b171d781cfbe8ef651b583e2a1b8a8d92`. Exact standard SHA `b22b6ba65992bf8e235df9acfb044da772282ae3820a1359af3b5309d1e1051b`; machine contract SHA `527e4fa0926449155a8aa548656b3debc5292262f8cfaab0ca3f0470e7771f5a`.
+
+Verifier PASS / STATE ACTIVE_BINDING_ADDITIVE_DOCTRINE. Hostile suite 22/22 rejected / zero unexpected. Clean-extraction verifier + hostile replay PASS. Deterministic compression-level-9 reseal reproduced the uploaded ZIP byte-for-byte.
+
+Because chat/container `/mnt/data` was not visible to the Windows project server, the 12 exact readable member bytes were transferred explicitly and the outer ZIP reconstructed server-side using the already-present exact R4.4 parent and uploaded deterministic ZIP metadata. Server reconstruction reproduced exact SHA `51ed7f42...a92a9`; exact copies were installed in Main/App `sop/`.
+
+Live readback then discovered that ICF-CS had already been provisionally implemented and durably checkpointed concurrently at `pcmmad/project-control@63f7a74f47be4179b5871fd7ff9da819b54e3ab9`, CHECKPOINT `500d7c167ff5d27e6287edf675d7bbc06a91b5a7c169ffa44df753e6af6bb049`, verifier PASS 96. Under ICF-CS conflict rules this was treated as a material continuity conflict rather than duplicated.
+
+Localized differences:
+1. provisional project standard identity was stale versus the official exact standard;
+2. reusable project cold-start grammar pinned `R4.4` instead of `CURRENT CANONICAL SOP`;
+3. project ICF Frontier/ingress still carried older control-baseline language.
+
+Repair/supersession:
+- official exact standard installed at `state/doctrine_snapshot/INTENT_CONSTRAINT_FRONTIER_CONTINUITY_STANDARD.md`, SHA `b22b6ba6...051b`;
+- official machine contract installed at `state/doctrine_snapshot/ICF_CS_V1_0.json`, SHA `527e4fa0...71f5a`;
+- shared project ICF instance repaired to SHA `feb6d44675dc12be6cfa80f176a24e4bb4d3ca5a63ba8106a9c76a75af6036f8`;
+- discoverable ingress pointer repaired to SHA `ab01a3b0e3316bb3f7ba8b1f99d1c0ac2a3f6db5227e27b526a02bc111d17b0d`;
+- reusable cold-start grammar now exactly `CURRENT STATE -> ICF-CS -> CURRENT CANONICAL SOP + NEXT/DOCTRINE/REVISIT/TRACE -> LIVE SHADOW -> DTS -> LIVE READBACK BEFORE MUTATION`;
+- current control baseline inside ICF is `63f7a74...` / CHECKPOINT `500d7c16...bb049` pending successor official-addendum publication.
+
+Official Main adoption receipt: `notes/maintenance/ICF_CS_V1_0_OFFICIAL_ADDENDUM_ADOPTION_20260905.md`, SHA `3c06b8988460f2850aa52c48ae6ed0f0887a31551e61c3c207c803468610da37`.
+
+Authority ceiling remains continuity/process only. Main/App source, Gen11 recovery, semantic ownership and App egress frontier did not change. Immediate P0 is one successor durable `pcmmad/project-control` checkpoint containing the official addendum/repaired ingress; only after fresh-clone readback does egress-enforcement implementation resume.
+
+
+---
+
+## Cross-arm correction — official ICF project Frontier ordering repaired after semantic read — 2026-09-05
+Tags: ICF-CS, SEMANTIC-GATE, FRONTIER, SUPERSESSION, CURRENT-INGRESS
+
+Complete 18-artifact / 1,890-line project-specific semantic read of the first official-addendum repair found a material Frontier-ordering defect: the shared project ICF instance correctly installed the official standard/grammar, but its `Immediate next move` still jumped directly to App egress enforcement even though the official-addendum successor control checkpoint was the immediate continuity prerequisite.
+
+This was treated as a semantic-read finding, not a machine-verifier failure and not a reason to weaken the standard.
+
+Correction:
+- shared Project Commander’s Intent now explicitly separates **immediate continuity prerequisite** from **product/security frontier**;
+- successor official-ICF control publication from verified predecessor `63f7a74...` must complete before new egress-enforcement implementation;
+- egress enforcement remains the product frontier and resumes immediately after fresh-clone control readback;
+- final shared project ICF instance SHA is `5cf8cb6f3eb4c6011e6cd2f9dcfd6d9bd4e2a72b85def4f69c92a1c3ce20604d`;
+- final discoverable ingress pointer SHA is `f9774865f39924e1116db61941c2dc85ebba8d945426cd3f34c9e4195a734e2d`;
+- Current/Doctrine/Next/Revisit/Trace/Live were propagated to those final identities;
+- prior `63f7a74...` ICF closure is now explicitly labeled historical/pre-official rather than presented as closing the official-addendum durability gate.
+
+The earlier `feb6d446...` / `ab01a3b0...` identities remain chronological evidence of the first repair and are superseded for current ingress.
+
+No Main/App source, Gen11 recovery, RES research frontier or product authority changed.
+
+---
+
+## ICF-CS v1.1 authority reconciliation — 2026-09-06
+Date: 2026-09-06 UTC
+Tags: AUTHORITY, ICF-CS-V1.1, RELEASE-VERIFICATION, GEN12, EGRESS-ATTEMPT0
+
+USER directed inspection of `authority/rahl-sop/CURRENT.md`, exact verification of `releases/ICF_CS_V1_1/`, and reconciliation against local project authority before mutation. Audit used fresh public Main `287c0bad0e9b3fef3002b91702e86b410cada4ce`. Main movement from semantic anchor `a7b4511734b1a1e507230308e75b31175aef4c4a` is exactly one authority-publication commit adding only `authority/rahl-sop/**` surfaces.
+
+Distribution `2bb57b24967f80fc5dcf028eece142150ce5d6a1356f12e13cda26951ae19fe7` verified exact payload `f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63` and detached receipt `418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c`. Clean native payload qualification PASSed primary/meta and hostile 35/35; all 16 readable payload members received complete independent semantic read. Windows checkout receipt CRLF differed from canonical Git/distribution bytes, but CRLF->LF normalization reproduced exact receipt SHA. The detached receipt's external witness implementation is absent from all published refs, so independent authoring replay is unavailable; this is preserved as a provenance residual, not hidden.
+
+Re-grounding then found local reconciliation had partially advanced concurrently: exact v1.1 payload/receipt/machine/qualification/epoch/demotion artifacts and generic standard were already present on both arms; shared Commander and ingress were already v1.1/Gen12-aware. Read-only Gen12 evidence and Ergo confirmed `checkpoint-app-live-0012-e9b81750db26` is current LKG/source MATCH/NORMAL for App `e9b81750db265a467187c61962ffab3cff98d4fe`; Attempt 0 remains preserved/unexecuted.
+
+Remaining stale Current/Doctrine/Next/Live/Trace/Revisit/RES surfaces were reconciled without altering project Intent/Constraints, v1.0 history, Main semantic authority, App product authority, source code, recovery state, or the frozen Attempt 0. Successor control publication from `63f7a74f47be4179b5871fd7ff9da819b54e3ab9` is now the only gate before first D0-D3 execution.
+
+
+---
+
+## Cross-arm entry — ICF-CS v1.1 authority + source currentness + Gen12 reconciled — 2026-09-06
+Tags: ICF-CS-V1.1, AUTHORITY, SOURCE-CURRENTNESS, GEN12, EGRESS-ATTEMPT0, CHECKPOINT
+
+Read-only authority audit of public Main `287c0bad0e9b3fef3002b91702e86b410cada4ce` established `authority/rahl-sop/CURRENT.md` as the current universal process ingress: sealed R4.4 remains SHA `04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc`; ICF-CS v1.1 is current additive continuity/process authority; v1.0 is demoted historical.
+
+Exact v1.1 distribution SHA `2bb57b24967f80fc5dcf028eece142150ce5d6a1356f12e13cda26951ae19fe7`; payload SHA `f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63`; detached canonical receipt SHA `418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c`; standard `62be845da364ae81f59b6320c9b34b136236bf5be8aa8036018da48efcb754f4`; machine `d67726aeb402c280770eeaf314068ed7a1330beb21167d9d6d9b7c4674425bb0`; qualification contract `7d20ed708adb4f7ee147b56da41deac77146b56fc85bd769be3a6d240b3e2029`; epoch profile `733b799815abdb4b1ff735635f7928953c12944ece579365b5aae138d90f90f8`; v1.0 demotion receipt `3225fd952d704d31047ffdf01bffbc0968e4428357342ccb8ce5094ae8385057`.
+
+Complete v1.1 payload readable surface: 16/16 non-parent members, 1,002 source lines / deterministic 1,050-line stream SHA `ad1dab3444274a23c8d63a1edb3857b50f90c98efd0115d3c7c488c06fac9ec6`. Distribution verifier, primary verifier, qualification-surface meta-verifier and qualification runner PASS; hostile suite 35/35 rejected; semantic pending 0; clean extraction PASS; deterministic double seal true.
+
+Windows working-tree CRLF normalization changes the loose detached-receipt hash; the Git blob and distribution member remain exact at `418346ed...970c`. `GIT_BLOB_BYTES != WINDOWS_WORKTREE_TEXT_BYTES`.
+
+Public Main `287c0bad...` is an authority-publication-only child of semantic Core qualification anchor `a7b4511734b1a1e507230308e75b31175aef4c4a`; no Core source changed. `MAIN_BRANCH_HEAD != CORE_QUALIFICATION_ANCHOR`.
+
+Current App is `e9b81750db265a467187c61962ffab3cff98d4fe`, direct child of `b674dba...`, adding only preserved OS/process egress Attempt-0 protocol/package/implementation/frozen tests. Those four files were completely read before execution: 1,061 deterministic lines, SHA `c76cef0f136727eba61a2a4cf66d826744b44bcd60e78ea647a618b08c5900c0`. D0-D3 remain never executed/unqualified.
+
+Exact recovery readback showed Gen11 valid as an LKG object for `b674dba...` but source-MISMATCH against current App. Gen12 `checkpoint-app-live-0012-e9b81750db26` was therefore captured/resumed on the real Attempt Store, earned STABLE after ~10.218s with four meaningful read-only operations, then promoted LKG. Final Gen12: VERIFIED/RESUMED/STABLE/LKG/source MATCH/NORMAL/early crash 0/not quarantined; blob `0889dd0599355f54fcc055a86002dd6c2ac7131de7b34ec0ef11ddc4511222fb`; evidence `aeff0db397135d8f227f11e17c1b7b939235b6ae11ee2ae97053246d9d605e0a`; Attempt Store 104 blobs / 104 attempts / 175 events / integrity ok.
+
+Shared Main/App ICF instance is `759c505813f8a240bf71db6d1988442b3ac919a7685b9bbe4242c627b9c24b28`; discoverable ingress pointer is `9e5c632aa3d67753171443487def360a49b937ca42f35d17b987b1e19cef10ab`.
+
+Current durable control `63f7a74f47be4179b5871fd7ff9da819b54e3ab9` / CHECKPOINT `500d7c167ff5d27e6287edf675d7bbc06a91b5a7c169ffa44df753e6af6bb049` is a verified predecessor only. A fresh successor containing v1.1 + Main/App source currentness + Gen12 must be published/fresh-clone verified before first D0-D3 execution.
+
+`GEN12_RECOVERY_LKG != EGRESS_ENFORCEMENT_QUALIFIED`.
+`ATTEMPT_0_IS_EVIDENCE_NOT_SCRATCH_SPACE`.
+
+
+---
+
+## Cross-arm correction — v1.1/Gen12 project semantic gate repaired current-action wording — 2026-09-06
+Tags: ICF-CS-V1.1, SEMANTIC-GATE, GEN12, ATTEMPT0, SUPERSESSION
+
+Complete 21-artifact / 2,016-line project semantic read SHA `6f82c71476560601a02da7ca1c2bd7056882b6bd87a798b4c405dd7001b70ce2` found bounded representation drift: Attempt 0 was already preserved but some active ICF/Next text still instructed future preservation; two locked/current rows still used Gen11-era wording; one historical v1.0 paragraph mislabeled the v1.1 SHA; predecessor App ICF control remained current-looking in Trace.
+
+Corrections were applied without source mutation or D0-D3 execution. Final shared Project Commander’s Intent SHA `95ff8a58543c8aa2a2f20eb98cca47a30c3b64a5e8823c5f84edd3ad25cc9761`; final ingress pointer SHA `7fc1675989ec806095fbc250c9d6c6adc213c7af3ca13dc0f1f515fc44f290b3`.
+
+Current action ordering is now explicit: successor v1.1/source/Gen12 control publication + fresh-clone readback first; exact frozen D0-D3 execution second, with no edit before first run.
+
+Correction receipt SHA `538df049bcf5dfe88be93a608b4a7e502a164680e47f8d7f5eb111f2d0939150`.

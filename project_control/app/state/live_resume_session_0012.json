@@ -1,0 +1,76 @@
+{
+  "attempt_store_integrity": {
+    "counts": {
+      "attempts": 103,
+      "blobs": 103,
+      "events": 172
+    },
+    "db_path": "<LOCAL_APP_ATTEMPT_STORE_DB>",
+    "integrity": [
+      "ok"
+    ],
+    "integrity_ok": true,
+    "journal_mode": "wal",
+    "last_event": {
+      "attempt_id": "checkpoint-app-live-0012-e9b81750db26",
+      "created_at": "2026-09-06T20:49:58.233767Z",
+      "event_id": "checkpoint-resumed:checkpoint-app-live-0012-e9b81750db26:resume-app-live-0012-egress-attempt0-preserved",
+      "event_type": "checkpoint_resumed",
+      "seq": 172
+    },
+    "schema": "forge-attempt-store/0.1",
+    "synchronous": 2
+  },
+  "checkpoint_id": "checkpoint-app-live-0012-e9b81750db26",
+  "chosen": {
+    "blob_sha256": "0889dd0599355f54fcc055a86002dd6c2ac7131de7b34ec0ef11ddc4511222fb",
+    "checkpoint_id": "checkpoint-app-live-0012-e9b81750db26",
+    "early_crash_count": 0,
+    "generation": 12,
+    "lkg": true,
+    "parent_checkpoint_id": "checkpoint-app-live-0011-b674dbaaf428",
+    "quarantined": false,
+    "resume_policy": "NORMAL",
+    "resumed": true,
+    "semantic_snapshot_id": null,
+    "source_head": "e9b81750db265a467187c61962ffab3cff98d4fe",
+    "stable": true,
+    "status": "LKG",
+    "verified": true
+  },
+  "egress_attempt0_semantic_stream_sha256": "c76cef0f136727eba61a2a4cf66d826744b44bcd60e78ea647a618b08c5900c0",
+  "egress_attempt0_status": "PRESERVED_NOT_EXECUTED_NOT_QUALIFIED",
+  "healthy_seconds": 10.21799999999348,
+  "icf_cs_v1_1_payload_sha256": "f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63",
+  "icf_cs_v1_1_receipt_sha256": "418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c",
+  "meaningful_operations": 4,
+  "operations": [
+    "durable_attempt_store_integrity_and_exact_source_inspection",
+    "icf_cs_v1_1_payload_and_detached_receipt_exact_readback",
+    "egress_attempt0_four_file_complete_semantic_readback_no_execution",
+    "gen11_source_mismatch_and_parent_lineage_readback"
+  ],
+  "parent_checkpoint_id": "checkpoint-app-live-0011-b674dbaaf428",
+  "promotion_id": "promote-app-live-0012-current-source",
+  "receipt_authority": "NONE",
+  "resume_id": "resume-app-live-0012-egress-attempt0-preserved",
+  "schema": "forge-live-resume-session-evidence/0.1",
+  "source_clean": true,
+  "source_head": "e9b81750db265a467187c61962ffab3cff98d4fe",
+  "view": {
+    "blob_sha256": "0889dd0599355f54fcc055a86002dd6c2ac7131de7b34ec0ef11ddc4511222fb",
+    "checkpoint_id": "checkpoint-app-live-0012-e9b81750db26",
+    "early_crash_count": 0,
+    "generation": 12,
+    "lkg": true,
+    "parent_checkpoint_id": "checkpoint-app-live-0011-b674dbaaf428",
+    "quarantined": false,
+    "resume_policy": "NORMAL",
+    "resumed": true,
+    "semantic_snapshot_id": null,
+    "source_head": "e9b81750db265a467187c61962ffab3cff98d4fe",
+    "stable": true,
+    "status": "LKG",
+    "verified": true
+  }
+}
