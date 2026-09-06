@@ -1,10 +1,13 @@
 from __future__ import annotations
 
-"""Frozen hostile discriminators for OS/process egress enforcement Attempt 0.
+"""Hostile discriminators descended from OS/process egress Attempt 0.
 
-IMPORTANT: this file is committed/pushed before its first execution.
-No test contacts an external network endpoint. Loopback listeners are owned by the
-test parent and exist only to detect protected-domain bypass.
+The exact parent first execution is preserved at source e9b81750... and remains
+immutable evidence. This v0.1.1 descendant changes only D2 command-harness
+construction after the original D2 rc1 was localized to Windows cmd quoting.
+This descendant SHALL be committed/pushed and recovery-current before its first
+protected execution. No test contacts an external network endpoint; loopback
+listeners are parent-owned bypass detectors only.
 """
 
 import os
@@ -134,13 +137,19 @@ class OsProcessEgressEnforcementV01Tests(unittest.TestCase):
     def test_d2_protected_descendant_cannot_connect_to_parent_loopback_listener(self) -> None:
         cmd = _system_executable("cmd.exe")
         curl = _system_executable("curl.exe")
+        curl_text = str(curl)
+        self.assertNotRegex(
+            curl_text,
+            r"\s",
+            "D2 v0.1.1 deliberately requires a whitespace-free resolved curl path; do not launder shell quoting ambiguity into network-denial evidence",
+        )
         child_command = (
-            f'"{curl}" --noproxy * --connect-timeout 1 --max-time 2 --silent --show-error '
+            f'{curl_text} --noproxy * --connect-timeout 1 --max-time 2 --silent --show-error '
             f'http://127.0.0.1:{{port}}/ --output NUL'
         )
         with _LocalHttpListener() as listener:
             receipt = run_zero_network_process(
-                [str(cmd), "/d", "/s", "/c", child_command.format(port=listener.port)],
+                [str(cmd), "/d", "/c", child_command.format(port=listener.port)],
                 timeout_seconds=5.0,
                 cwd=cmd.parent,
                 profile_name=_profile_name("D2"),
