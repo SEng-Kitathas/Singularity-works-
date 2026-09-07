@@ -1,7 +1,7 @@
 # Current State — Singularity Works / Forge Core-Main
 
 Last updated: 2026-09-06 UTC
-Mode: CHECKPOINT — App v0.1.2 bounded primitive qualified; App/Gen14 newer than durable control; next normal control publication required before wider bypass attempts
+Mode: CHECKPOINT — thread rollover sealed; next thread begins RECOVERY/AUDIT before BUILD-COMMIT
 Role: R5 Reality Pressure Engine
 
 ## Project identity
@@ -89,40 +89,35 @@ This is a separate future cross-arm interface qualification seam; Main must not 
 Main/Core RES: `continuity/research_epistemic_shadow/res.md`, SHA `a9035c991e02da6081f245a83129be5291b6f8c3a9689079dba6cb36d3c411df`, authority NONE_BY_CONTENT, scope CORE_SEMANTIC_RESEARCH.
 App RES current SHA `1f25b5713788c8aad8eac0989c218a8e66c2ed54b86e0999fba84e05559eb7f6`, authority NONE_BY_CONTENT, scope PRODUCT_RUNTIME_SECURITY_RESEARCH.
 
-Main research meaning treats App source/recovery currentness and bounded protected-process v0.1.2 qualification as closed for the exact tested scope. The downstream App frontier is wider bypass resistance and production launch-site integration after the next normal control checkpoint. Main/Core semantic source ownership remains unchanged.
+Main research meaning treats App source/recovery currentness and bounded protected-process v0.1.2 qualification as closed for the exact tested scope. Durable control is closed at `bfcd19b...`; the downstream App frontier is now wider bypass resistance and production launch-site integration via NEW preserved Attempts. Main/Core semantic source ownership remains unchanged.
 
 ## Durable cross-thread control
-Latest independently verified durable control tip:
-`pcmmad/project-control@f120ff577cd3a3df438d354ae9cd0662d037663f`.
-Frozen CHECKPOINT SHA `263d3d9aec93c3f3cc037cf34de3d311bd64e0c91d6e36df5b5a68372c675dc4`, verifier PASS 115. Independent `ls-remote` and fresh single-branch clone reproduced exact HEAD, clean tree, exact v1.1 release bytes, Commander/ingress, Main/Core split, App/Gen12 and RES identities.
+Latest independently verified durable control:
+`pcmmad/project-control@bfcd19b3e91972de44fa702fe027d09dcab03249`, CHECKPOINT `cfb5a83a8f56b09720950f2706d861a1aed2e5475b591b4a3b6f92e88dcfa9dc`, verifier PASS 123, manifest 123/123, independent fresh clone exact/clean.
 
-Published from verified predecessor `63f7a74f47be4179b5871fd7ff9da819b54e3ab9` with non-force push after semantic, privacy/path, manifest/index and diff gates.
-Post-push receipt `notes/maintenance/ICF_CS_V1_1_GEN12_CONTROL_CHECKPOINT_20260906.md` SHA `08042438c687dfdcd09f585c32a5baa832168323fb8554b5fedf38b0af35fcc7`.
+Closure receipt `notes/maintenance/APP_EGRESS_V0_1_2_GOVERNANCE_CONTACT_CONTROL_CHECKPOINT_20260906.md` SHA `a33b8c41663e5063e3591a8dfad5273b2c5ac488b11dfdc474838750e47250b7`. Predecessor `f120ff577cd3a3df438d354ae9cd0662d037663f` is historical.
 
-The prior D0-D3 execution gate is closed. Current control `f120ff5...` predates App `43aa7fe...` + Gen14 + bounded qualification, so the next normal checkpoint is required before materially wider security mutation.
-
-`CONTROL_CHECKPOINT != PRODUCT_PROMOTION`.
+`CONTROL_CHECKPOINT != PRODUCT_PROMOTION`. Fixed-point post-push receipt/pointer deltas wait for the next normal checkpoint and do not block new Attempts.
 
 ## Verified vs provisional
 Verified:
-- R4.4 process currentness;
-- current public Main `6ea95275...`, authority-publication predecessor `287c0bad...`, with semantic Core qualification anchor `a7b4511...` unchanged;
-- App current source `43aa7fe...` local/remote exact and clean; bounded protected-process v0.1.2 qualified; qualified Core integration ancestry remains `b674dba...`;
-- App generation 14 current LKG/source MATCH/NORMAL/READY; Gen13 and earlier historical/source-stale;
-- separate Main/App RES ownership;
-- current durable control anchor `f120ff5...` / CHECKPOINT `263d3d9a...75dc4`, verifier PASS 115, fresh-clone exact/clean.
+- R4.4 + ICF-CS v1.1 process/continuity authority;
+- public Main `6ea95275...`, pending Governance Contact carrier/no authority effect, Core anchor `a7b4511...` unchanged;
+- App `43aa7fe...` / Gen14 / bounded protected-process v0.1.2 qualification;
+- current durable control `bfcd19b3e91972de44fa702fe027d09dcab03249` / CHECKPOINT `cfb5a83a8f56b09720950f2706d861a1aed2e5475b591b4a3b6f92e88dcfa9dc`, verifier PASS 123, fresh-clone exact/clean.
 
 Open/provisional:
+- wider external-egress bypass resistance and production launch integration;
 - checkpoint semantic restoration/currentness/snapshot identity;
-- wider App external-egress bypass resistance and production launch integration;
 - real provider/OAuth connector;
 - Vault secret/crypto implementation;
 - inherited packaging-description debt.
 
 ## Resume point
-Publish/fresh-clone verify the next normal `pcmmad/project-control` generation above `f120ff577cd3a3df438d354ae9cd0662d037663f` carrying App `43aa7feac7e8a15828116bd700b644560714496d`, Gen14 and bounded qualification `3d27639447f1d47ac71e892a766444a3e7c8627ff3120b791ecf4470ebeedda6`. Only after that continuity gate should materially wider App bypass/production-integration pressure begin.
+Preserve a NEW wider-bypass / production-integration Attempt against current App `43aa7fe...` / Gen14 under durable control `bfcd19b3e91972de44fa702fe027d09dcab03249`, then execute its first frozen discriminator without editing it first.
 
 `D0_D3_LOCAL_LOOPBACK_PASS != NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT`.
+
 ## Historical pre-official ICF-CS Git-control closure — 2026-09-05
 Durable predecessor ICF control anchor `63f7a74f47be4179b5871fd7ff9da819b54e3ab9` / CHECKPOINT `500d7c167ff5d27e6287edf675d7bbc06a91b5a7c169ffa44df753e6af6bb049` is independently verified. Receipt `e515beb3f00da247a979c83a4c0f80dc926d47f72315026fc4cedb3755c263ef`. That provisional ICF generation closed its own continuity prerequisite. Its later successor is now durably published at `f120ff5...`; this paragraph is historical only.
 
@@ -135,7 +130,7 @@ Qualified scope is only the exact tested Windows host/source/test AppContainer+J
 
 Main awareness receipt `notes/maintenance/APP_EGRESS_PRIMITIVE_V0_1_2_AWARENESS_20260906.md` SHA `ab37477b15980ef457d88bc6fe01d37321605b97163e1d0496e6ecba0074af56`. No Main/Core code change is required by current evidence.
 
-Latest durable control `f120ff577cd3a3df438d354ae9cd0662d037663f` / CHECKPOINT `263d3d9aec93c3f3cc037cf34de3d311bd64e0c91d6e36df5b5a68372c675dc4` is verified but predates App `43aa7feac7e8a15828116bd700b644560714496d`/Gen14/bounded qualification. Immediate continuity P0 is one next normal control checkpoint; product/security frontier after that is wider bypass pressure + production launch-site integration.
+Current durable control is `bfcd19b3e91972de44fa702fe027d09dcab03249` / CHECKPOINT `cfb5a83a8f56b09720950f2706d861a1aed2e5475b591b4a3b6f92e88dcfa9dc`, verifier PASS 123, non-force push + independent fresh-clone readback exact. Predecessor `f120ff577cd3a3df438d354ae9cd0662d037663f` is historical. Continuity gate is CLOSED; active product/security frontier is a NEW wider-bypass / production-integration Attempt.
 
 ## Governance Contact v1.0 pending carrier — current repository awareness
 Public Main `6ea95275cdc409ed222e4720b6b04aadaa17e6bf` publishes a detached Governance Contact v1.0 release carrier above predecessor `287c0bad0e9b3fef3002b91702e86b410cada4ce`. `authority/rahl-sop/CURRENT.md` remains unchanged SHA `b67afd696dff0687343e241fb32a0803eec2f57bd51830a8221e3707939a092a`; Core anchor remains `a7b4511734b1a1e507230308e75b31175aef4c4a`.
@@ -143,3 +138,34 @@ Public Main `6ea95275cdc409ed222e4720b6b04aadaa17e6bf` publishes a detached Gove
 Carrier ZIP `c4ab4a516e088b6c28b5240d6b3877d2e3fb889a8bbbfd406e8e0c73bebdd1ae`, detached receipt `cf2e7bd8e5ed613d3c3a99b7f8645833ddb742ac4939bd1719092b277ef286e6`, complete 18-member / 2,357-line payload semantic stream `ae5e645ffaab627ae0959bf6780591bd0dae622a91cad265b39c1885b7ac75ff`, clean-extraction verifier PASS. Target lifecycle later-state counts remain zero; authority effect is NONE.
 
 Awareness receipt SHA `90a2f20ce68f8b53fa98de3cca54a2407fbce27dd448e3bd0128f5e6d43e09b0`. `DETACHED_RELEASED != TARGET_PUBLISHED`; `POST_PUBLICATION_READBACK != ACTIVE`; `CARRIER_PRESENT != PROJECT_SPECIFIC_AUTHORITY_REWRITE`.
+
+## Durable control closure — bfcd19b
+`pcmmad/project-control@bfcd19b3e91972de44fa702fe027d09dcab03249`, CHECKPOINT `cfb5a83a8f56b09720950f2706d861a1aed2e5475b591b4a3b6f92e88dcfa9dc`, verifier PASS 123, manifest 123/123, independent fresh clone exact/clean. Closure receipt SHA `a33b8c41663e5063e3591a8dfad5273b2c5ac488b11dfdc474838750e47250b7`.
+
+`f120ff577cd3a3df438d354ae9cd0662d037663f` / `263d3d9aec93c3f3cc037cf34de3d311bd64e0c91d6e36df5b5a68372c675dc4` is the verified predecessor generation. Fixed-point post-push receipt/pointer deltas wait for the next normal checkpoint and do not recursively republish.
+
+The continuity prerequisite before wider bypass pressure / production launch-site integration is CLOSED. Next consequence-bearing security work SHALL use a NEW Attempt; Attempt-0/v0.1.1/v0.1.2 evidence remains immutable.
+
+## THREAD ROLLOVER — 2026-09-07 — CURRENT
+Canonical stable pointer: `checkpoints/THREAD_ROLLOVER_CURRENT.md`, SHA `bb74d98cc96f349d922ada3072316362a3223851f3a1b0b61e2c38127108b33f`.
+Dated checkpoint SHA `50be248ff65dbb94430dd686a7fe519f9ed03000a4d3ae95b8e958b4845ee918`; paste-ready ingress prompt SHA `6c5080d0c950297490139e7b120964dddb7936af5076a967d1200904456cb795`.
+
+This thread is paused because chat context is full, not because the project reached a technical blocker. Fresh-thread first mode is RECOVERY/AUDIT. Live currentness must be re-established before consequence-bearing work.
+
+Rollover expected fixed point, to be verified live:
+- public Main `57df8f6345e2744c04bf6882c130a06ea8528fa2`; semantic Core anchor `a7b4511734b1a1e507230308e75b31175aef4c4a`;
+- App `43aa7feac7e8a15828116bd700b644560714496d` / Gen14 `checkpoint-app-live-0014-43aa7feac7e8`;
+- durable control `bfcd19b3e91972de44fa702fe027d09dcab03249` / CHECKPOINT `cfb5a83a8f56b09720950f2706d861a1aed2e5475b591b4a3b6f92e88dcfa9dc`;
+- Governance Contact target-local resolver sees token/ACTIVE-receipt absent at both inspected Main and App targets, therefore `GOVERNANCE_CONTACT_NOT_ACTIVE_AT_THIS_TARGET`;
+- App Attempt Store rollover readback 138 blobs / 138 attempts / 217 events.
+
+Exact selected resume gate at rollover:
+`attempt-egress-wider-v0-2-1-3-descendant-udp-loopback-cwd-repair-first`
+blob `99ef2cbbc08eef598fb9c8b02ae38d5b9d88a3c4fcde576b96cf047b1942185e`, rollover metadata `executed=false`, job_id null.
+
+A separate earlier sibling repair already PASSed and was bounded-admitted (`440964f6368863adc2da0bc5f5632476ae73b8ff736e33fac7e082330b1b6a71` -> `bbf0043e0ce8793688f1f358053e790b2a73cfec2911aefa1d09e18844ffb270`). Do not transfer that PASS to the newer selected attempt.
+
+If live state is unchanged, execute the selected preserved attempt exactly once without editing first and preserve exact stdout/stderr/result before interpretation. If it has already executed, do not rerun; continue from its preserved first result.
+
+`THREAD_ROLLOVER_CURRENT != LIVE_CURRENTNESS_PROOF`.
+`HISTORICAL_HANDOFF != CURRENT_INGRESS`.

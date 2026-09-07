@@ -1,5 +1,13 @@
 # Next Steps — Singularity Works App
 
+## THREAD ROLLOVER — 2026-09-07 — CURRENT
+### Immediate P0 — fresh-thread re-entry
+1. Read `checkpoints/THREAD_ROLLOVER_CURRENT.md` + dated checkpoint completely.
+2. Re-resolve Main/App/control refs, Governance Contact locator/token state, App source cleanliness, Gen14 and Attempt Store.
+3. Confirm `attempt-egress-wider-v0-2-1-3-descendant-udp-loopback-cwd-repair-first` is still `executed=false`.
+4. If unchanged, execute it exactly once without edit and preserve first result. If changed/already executed, stay RECOVERY/AUDIT and continue from the live evidence.
+5. Do not widen into DNS/QUIC/proxy/production integration until this exact resume boundary is reconciled.
+
 Last updated: 2026-09-06 UTC
 
 ## Historical pre-official ICF-CS durable continuity publication — CLOSED
@@ -19,9 +27,9 @@ Completed at `pcmmad/project-control@f120ff577cd3a3df438d354ae9cd0662d037663f`, 
 - same-commit D0-D3 regression `1a571cae54279aa4b79646b87dfb254701957088d481bc7b0de7c832935055fa` PASS 4/4.
 - qualification receipt `3d27639447f1d47ac71e892a766444a3e7c8627ff3120b791ecf4470ebeedda6` promotes only bounded local-loopback protected-process evidence.
 
-## Immediate P0 — successor control + wider hostile bypass pressure
-1. Publish/fresh-clone verify the next normal control generation above `f120ff577cd3a3df438d354ae9cd0662d037663f` carrying source `43aa7feac7e8a15828116bd700b644560714496d`, Gen14 and bounded qualification.
-2. After that durability gate, preserve new hostile attempts before execution.
+## Immediate P0 — NEW wider hostile bypass pressure / production integration
+1. Preserve a NEW hostile Attempt before first wider-bypass / production-launch execution.
+2. Freeze each new hostile discriminator before its first execution and preserve the exact first result.
 3. Pressure Internet/DNS/UDP/QUIC/proxy/environment/helper/plugin/COM/RPC/WSL/service/breakaway paths.
 4. Define and qualify production launch-site integration separately.
 5. Keep unsupported/unknown enforcement state fail-closed for protected domains.
@@ -72,7 +80,7 @@ Completed at `pcmmad/project-control@f120ff577cd3a3df438d354ae9cd0662d037663f`, 
 - current LKG Gen14 `checkpoint-app-live-0014-43aa7feac7e8`, source MATCH/NORMAL/READY; evidence `bc4bbddd0addc9be743ca01d7f022b2d2b1228373e1eac7d181937a008a32c50`; Core IDs null.
 - D2 first committed PASS `5919cdc7af94d0e34d5884366eb3f328762422c03f2346afd332690820863b68`; D0-D3 regression 4/4 PASS `1a571cae54279aa4b79646b87dfb254701957088d481bc7b0de7c832935055fa`.
 - Attempt Store current counts 115 blobs / 115 attempts / 194 events.
-- durable control `f120ff577cd3a3df438d354ae9cd0662d037663f` / CHECKPOINT `263d3d9aec93c3f3cc037cf34de3d311bd64e0c91d6e36df5b5a68372c675dc4` remains a verified predecessor but predates `43aa7feac7e8a15828116bd700b644560714496d` + Gen14 + qualification.
+- current durable control `bfcd19b3e91972de44fa702fe027d09dcab03249` / CHECKPOINT `cfb5a83a8f56b09720950f2706d861a1aed2e5475b591b4a3b6f92e88dcfa9dc` is fresh-clone verified and includes `43aa7fe...` + Gen14 + bounded qualification; `f120ff577cd3a3df438d354ae9cd0662d037663f` is predecessor history.
 - App RES `1f25b5713788c8aad8eac0989c218a8e66c2ed54b86e0999fba84e05559eb7f6`; Main RES `a9035c991e02da6081f245a83129be5291b6f8c3a9689079dba6cb36d3c411df`; both authority NONE_BY_CONTENT.
 
 ## Closed this cycle
@@ -80,21 +88,18 @@ The early Main->App forward-sync gate is closed for qualified Main `a7b4511...` 
 Generation 10–13 are historical recovery evidence for earlier sources; Gen14 `checkpoint-app-live-0014-43aa7feac7e8` is current LKG/source MATCH/NORMAL for `43aa7feac7e8a15828116bd700b644560714496d`.
 
 ## Control-plane follow-up
-Current durable control is `pcmmad/project-control@f120ff577cd3a3df438d354ae9cd0662d037663f`, CHECKPOINT `263d3d9aec93c3f3cc037cf34de3d311bd64e0c91d6e36df5b5a68372c675dc4`, verifier PASS 115, fresh clone exact/clean. Predecessor `63f7a74...` remains historical. Fixed-point post-push receipt/pointer state waits for the next normal checkpoint.
+Current durable control is `pcmmad/project-control@bfcd19b3e91972de44fa702fe027d09dcab03249`, CHECKPOINT `cfb5a83a8f56b09720950f2706d861a1aed2e5475b591b4a3b6f92e88dcfa9dc`, verifier PASS 123, fresh clone exact/clean. `f120ff577cd3a3df438d354ae9cd0662d037663f` is predecessor history. Fixed-point post-push receipt/pointer state waits for the next normal checkpoint without blocking new Attempts.
 
 ## Historical ICF-CS v1.0 adoption — 2026-09-05
-The v1.1/source/Gen12 successor control is durable at `f120ff5...`; D0-D3 later executed and bounded v0.1.2 qualification is now closed. Current gate is the next normal control checkpoint followed by wider bypass/production-integration pressure.
+The v1.1/source/Gen12 generation at `f120ff5...` is historical predecessor continuity. Current durable control is `bfcd19b...`; bounded v0.1.2 qualification is closed and wider bypass/production-integration pressure is now active.
 
 ## Historical pre-official ICF-CS Git-control closure — 2026-09-05
-The predecessor ICF generation at `63f7a74...` is historical; current durable control is `f120ff5...`.
+The predecessor generations `63f7a74...` and `f120ff5...` are historical; current durable control is `bfcd19b...`.
 
-## Immediate P0 — next normal control for App 43aa7fe / Gen14 / bounded v0.1.2
-1. Snapshot current Main `6ea95275cdc409ed222e4720b6b04aadaa17e6bf` with pending Governance Contact carrier/no authority effect, current App `43aa7feac7e8a15828116bd700b644560714496d`, Gen14 `checkpoint-app-live-0014-43aa7feac7e8`, bounded qualification `3d27639447f1d47ac71e892a766444a3e7c8627ff3120b791ecf4470ebeedda6`, first v0.1.2 D2 PASS `5919cdc7af94d0e34d5884366eb3f328762422c03f2346afd332690820863b68`, regression `1a571cae54279aa4b79646b87dfb254701957088d481bc7b0de7c832935055fa`, final Commander `49972aad08226859105d57a2cc15e1f09d06926263ef8b07beb7ca1526507cf9` and ingress `2457d3047331a02f511b0e5c93a36dde99f2a7c91728cdd97add8beae2ad0255`.
-2. Build from exact verified control predecessor `f120ff577cd3a3df438d354ae9cd0662d037663f`.
-3. Apply complete semantic publication read, privacy/path scan, manifest/index equality, non-force push and independent fresh-clone verification.
-4. Fixed-point post-push receipt/pointer changes wait for the following normal checkpoint.
+## CLOSED P0 — durable control for App 43aa7fe / Gen14 / bounded v0.1.2
+Completed at `pcmmad/project-control@bfcd19b3e91972de44fa702fe027d09dcab03249`, CHECKPOINT `cfb5a83a8f56b09720950f2706d861a1aed2e5475b591b4a3b6f92e88dcfa9dc`, verifier PASS 123, manifest 123/123, non-force push + independent fresh-clone readback exact. `f120ff577cd3a3df438d354ae9cd0662d037663f` is the historical predecessor. Fixed-point closure metadata waits for the next normal checkpoint.
 
-## Product/security P0 after control — wider bypass pressure + production launch integration
+## Immediate P0 — NEW wider bypass pressure + production launch integration
 1. Preserve a new Attempt before first new consequence-bearing discriminator.
 2. Pressure DNS and UDP/QUIC separately from the already-qualified local TCP/loopback boundary.
 3. Pressure proxy/environment/helper/browser/plugin/import paths.

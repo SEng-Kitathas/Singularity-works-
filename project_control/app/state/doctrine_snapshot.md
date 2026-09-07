@@ -178,3 +178,10 @@ Main `6ea95275cdc409ed222e4720b6b04aadaa17e6bf` adds only `authority/rahl-sop/**
 Exact carrier ZIP `c4ab4a516e088b6c28b5240d6b3877d2e3fb889a8bbbfd406e8e0c73bebdd1ae` / detached receipt `cf2e7bd8e5ed613d3c3a99b7f8645833ddb742ac4939bd1719092b277ef286e6` / 2,357-line semantic stream `ae5e645ffaab627ae0959bf6780591bd0dae622a91cad265b39c1885b7ac75ff`; clean-extraction release verifier PASS. Release state is detached/pending with zero target-publication, repository-admission, local-reconciliation or post-publication-readback counts.
 
 This does not add current local doctrine, product authority or a ninth privileged-core function. `CARRIER_PRESENT != PROJECT_SPECIFIC_AUTHORITY_REWRITE`.
+
+## THREAD ROLLOVER — 2026-09-07 — CURRENT
+Thread rollover is a continuity event, not a doctrine promotion. `checkpoints/THREAD_ROLLOVER_CURRENT.md` SHA `bb74d98cc96f349d922ada3072316362a3223851f3a1b0b61e2c38127108b33f` is the current thread-handoff routing surface. It may supersede stale sequencing/currentness prose for re-entry, but it does not override live external readback, R4.4, ICF-CS v1.1, domain authority, source authority, recovery evidence, or security claim ceilings.
+
+Fresh thread MUST start RECOVERY/AUDIT and only return to BUILD-COMMIT after live Main/App/control/Governance/Attempt Store currentness reconciles. Governance Contact resolver status at seal was NOT ACTIVE at both inspected targets because token/ACTIVE receipt were absent.
+
+`ROLLOVER_POINTER != AUTHORITY_MINT`.

@@ -1,2 +1,5 @@
 * text eol=lf
 *.zip -text
+# Preserve sealed rollover checkpoint artifact bytes exactly; these are hash-addressed continuity records.
+main/checkpoints/THREAD_ROLLOVER_*.md -text
+app/checkpoints/THREAD_ROLLOVER_*.md -text

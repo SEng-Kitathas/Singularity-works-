@@ -1,8 +1,8 @@
 # Current State — Singularity Works App Program
 
 Last updated: 2026-09-06 UTC
-Mode: CHECKPOINT — protected-process primitive v0.1.2 bounded QUALIFIED; source/Gen14 newer than durable control; next normal control publication required before wider bypass attempts
-Role: R4 Convergence Refiner
+Mode: CHECKPOINT — thread rollover sealed; next thread begins RECOVERY/AUDIT before BUILD-COMMIT
+Role: R5 Reality Pressure Engine
 
 ## Universal process
 RAHL Engineering Canonical SOP R4.4 is current universal process/cold-start default under `CANONICAL_PROCESS_DEFAULT != UNIVERSAL_DOMAIN_TRUTH`.
@@ -97,9 +97,9 @@ Canonical bridge source integration is qualified; checkpoint restoration/current
 
 ## Durable cross-thread control
 Latest independently verified durable control anchor:
-`pcmmad/project-control@f120ff577cd3a3df438d354ae9cd0662d037663f`, CHECKPOINT SHA `263d3d9aec93c3f3cc037cf34de3d311bd64e0c91d6e36df5b5a68372c675dc4`, verifier PASS 115. Independent `ls-remote` and fresh clone reproduced exact HEAD/clean tree and the then-current v1.1/App-e9/Gen12 generation. It is now the verified durable predecessor; current App/Gen14/qualification evidence awaits the next normal control checkpoint.
+`pcmmad/project-control@bfcd19b3e91972de44fa702fe027d09dcab03249`, CHECKPOINT SHA `cfb5a83a8f56b09720950f2706d861a1aed2e5475b591b4a3b6f92e88dcfa9dc`, verifier PASS 123. Independent `ls-remote` and fresh clone reproduced exact HEAD/clean tree and current Main/App/Gen14/qualification boundaries. `f120ff577cd3a3df438d354ae9cd0662d037663f` is the historical predecessor.
 
-Post-push receipt `notes/maintenance/ICF_CS_V1_1_GEN12_CONTROL_CHECKPOINT_20260906.md` SHA `38bb39ff1ba6243de3cd2f9aa8502452efd0d1736ac28ecd97d2b53285baabe2`.
+Current closure receipt `notes/maintenance/APP_EGRESS_V0_1_2_GOVERNANCE_CONTACT_CONTROL_CHECKPOINT_20260906.md` SHA `ff516aded3dcae598bbd7b9ffc780ab6c14bd993df8b09b82f255b0dfe4e0dff`.
 Predecessor `63f7a74f47be4179b5871fd7ff9da819b54e3ab9` / CHECKPOINT `500d7c167ff5d27e6287edf675d7bbc06a91b5a7c169ffa44df753e6af6bb049` remains historical.
 
 Fixed-point post-push receipt/pointer updates wait for the next normal checkpoint; no recursive control publication.
@@ -107,9 +107,9 @@ Fixed-point post-push receipt/pointer updates wait for the next normal checkpoin
 ## Immediate frontier
 The bounded protected-process primitive is QUALIFIED at `43aa7feac7e8a15828116bd700b644560714496d` under receipt `3d27639447f1d47ac71e892a766444a3e7c8627ff3120b791ecf4470ebeedda6`.
 
-Current continuity gate: publish the next normal `pcmmad/project-control` generation above `f120ff577cd3a3df438d354ae9cd0662d037663f` carrying App `43aa7feac7e8a15828116bd700b644560714496d`, Gen14 and the bounded qualification.
+Current continuity gate: CLOSED at `pcmmad/project-control@bfcd19b3e91972de44fa702fe027d09dcab03249` / CHECKPOINT `cfb5a83a8f56b09720950f2706d861a1aed2e5475b591b4a3b6f92e88dcfa9dc`.
 
-After durable readback, widen hostile pressure through new preserved attempts: Internet/DNS/UDP/QUIC/proxy/helper/plugin/COM/RPC/WSL/breakaway and production launch-site integration.
+Active next action: preserve and execute a NEW hostile Attempt for wider bypass pressure / production launch-site integration. Keep the bounded v0.1.2 claim ceiling until new evidence qualifies more.
 
 `D0_D3_LOCAL_LOOPBACK_PASS != NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT`.
 
@@ -142,7 +142,7 @@ Bounded qualification receipt `notes/maintenance/EGRESS_PROCESS_PRIMITIVE_V0_1_2
 
 Status: **BOUNDED PROTECTED-PROCESS PRIMITIVE QUALIFIED / BROADER RUNTIME LAW UNEARNED**. General Internet/DNS/UDP/QUIC/proxy/helper/plugin/COM/RPC/WSL/breakaway containment, broker/Gate allow path and production launch integration remain unqualified.
 
-Durable control `f120ff577cd3a3df438d354ae9cd0662d037663f` / CHECKPOINT `263d3d9aec93c3f3cc037cf34de3d311bd64e0c91d6e36df5b5a68372c675dc4` is a verified predecessor to App `43aa7feac7e8a15828116bd700b644560714496d`/Gen14/bounded qualification. Immediate continuity P0: publish/fresh-clone verify the next normal control generation. Product frontier after that: wider bypass pressure + production launch-site integration through new preserved attempts.
+Current durable control `bfcd19b3e91972de44fa702fe027d09dcab03249` / CHECKPOINT `cfb5a83a8f56b09720950f2706d861a1aed2e5475b591b4a3b6f92e88dcfa9dc` is fresh-clone verified and includes App `43aa7feac7e8a15828116bd700b644560714496d`/Gen14/bounded qualification. Predecessor `f120ff577cd3a3df438d354ae9cd0662d037663f` remains historical. Product frontier is now wider bypass pressure + production launch-site integration through NEW preserved Attempts.
 
 ## Governance Contact v1.0 pending carrier — current repository awareness
 Public Main `6ea95275cdc409ed222e4720b6b04aadaa17e6bf` publishes a detached Governance Contact v1.0 release carrier above predecessor `287c0bad0e9b3fef3002b91702e86b410cada4ce`. `authority/rahl-sop/CURRENT.md` remains unchanged SHA `b67afd696dff0687343e241fb32a0803eec2f57bd51830a8221e3707939a092a`; Core anchor remains `a7b4511734b1a1e507230308e75b31175aef4c4a`.
@@ -150,3 +150,34 @@ Public Main `6ea95275cdc409ed222e4720b6b04aadaa17e6bf` publishes a detached Gove
 Carrier ZIP `c4ab4a516e088b6c28b5240d6b3877d2e3fb889a8bbbfd406e8e0c73bebdd1ae`, detached receipt `cf2e7bd8e5ed613d3c3a99b7f8645833ddb742ac4939bd1719092b277ef286e6`, complete 18-member / 2,357-line payload semantic stream `ae5e645ffaab627ae0959bf6780591bd0dae622a91cad265b39c1885b7ac75ff`, clean-extraction verifier PASS. Target lifecycle later-state counts remain zero; authority effect is NONE.
 
 Awareness receipt SHA `33930c61a7064ee1db0d5f62e6107e763b4dd738d9b0ade56e64c5fe79cb7ec2`. `DETACHED_RELEASED != TARGET_PUBLISHED`; `POST_PUBLICATION_READBACK != ACTIVE`; `CARRIER_PRESENT != PROJECT_SPECIFIC_AUTHORITY_REWRITE`.
+
+## Durable control closure — bfcd19b
+`pcmmad/project-control@bfcd19b3e91972de44fa702fe027d09dcab03249`, CHECKPOINT `cfb5a83a8f56b09720950f2706d861a1aed2e5475b591b4a3b6f92e88dcfa9dc`, verifier PASS 123, manifest 123/123, independent fresh clone exact/clean. Closure receipt SHA `ff516aded3dcae598bbd7b9ffc780ab6c14bd993df8b09b82f255b0dfe4e0dff`.
+
+`f120ff577cd3a3df438d354ae9cd0662d037663f` / `263d3d9aec93c3f3cc037cf34de3d311bd64e0c91d6e36df5b5a68372c675dc4` is the verified predecessor generation. Fixed-point post-push receipt/pointer deltas wait for the next normal checkpoint and do not recursively republish.
+
+The continuity prerequisite before wider bypass pressure / production launch-site integration is CLOSED. Next consequence-bearing security work SHALL use a NEW Attempt; Attempt-0/v0.1.1/v0.1.2 evidence remains immutable.
+
+## THREAD ROLLOVER — 2026-09-07 — CURRENT
+Canonical stable pointer: `checkpoints/THREAD_ROLLOVER_CURRENT.md`, SHA `bb74d98cc96f349d922ada3072316362a3223851f3a1b0b61e2c38127108b33f`.
+Dated checkpoint SHA `50be248ff65dbb94430dd686a7fe519f9ed03000a4d3ae95b8e958b4845ee918`; paste-ready ingress prompt SHA `6c5080d0c950297490139e7b120964dddb7936af5076a967d1200904456cb795`.
+
+This thread is paused because chat context is full, not because the project reached a technical blocker. Fresh-thread first mode is RECOVERY/AUDIT. Live currentness must be re-established before consequence-bearing work.
+
+Rollover expected fixed point, to be verified live:
+- public Main `57df8f6345e2744c04bf6882c130a06ea8528fa2`; semantic Core anchor `a7b4511734b1a1e507230308e75b31175aef4c4a`;
+- App `43aa7feac7e8a15828116bd700b644560714496d` / Gen14 `checkpoint-app-live-0014-43aa7feac7e8`;
+- durable control `bfcd19b3e91972de44fa702fe027d09dcab03249` / CHECKPOINT `cfb5a83a8f56b09720950f2706d861a1aed2e5475b591b4a3b6f92e88dcfa9dc`;
+- Governance Contact target-local resolver sees token/ACTIVE-receipt absent at both inspected Main and App targets, therefore `GOVERNANCE_CONTACT_NOT_ACTIVE_AT_THIS_TARGET`;
+- App Attempt Store rollover readback 138 blobs / 138 attempts / 217 events.
+
+Exact selected resume gate at rollover:
+`attempt-egress-wider-v0-2-1-3-descendant-udp-loopback-cwd-repair-first`
+blob `99ef2cbbc08eef598fb9c8b02ae38d5b9d88a3c4fcde576b96cf047b1942185e`, rollover metadata `executed=false`, job_id null.
+
+A separate earlier sibling repair already PASSed and was bounded-admitted (`440964f6368863adc2da0bc5f5632476ae73b8ff736e33fac7e082330b1b6a71` -> `bbf0043e0ce8793688f1f358053e790b2a73cfec2911aefa1d09e18844ffb270`). Do not transfer that PASS to the newer selected attempt.
+
+If live state is unchanged, execute the selected preserved attempt exactly once without editing first and preserve exact stdout/stderr/result before interpretation. If it has already executed, do not rerun; continue from its preserved first result.
+
+`THREAD_ROLLOVER_CURRENT != LIVE_CURRENTNESS_PROOF`.
+`HISTORICAL_HANDOFF != CURRENT_INGRESS`.

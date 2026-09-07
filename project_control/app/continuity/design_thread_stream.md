@@ -1112,3 +1112,279 @@ Current fixed point:
 - durable control predecessor remains `f120ff577cd3a3df438d354ae9cd0662d037663f` / CHECKPOINT `263d3d9aec93c3f3cc037cf34de3d311bd64e0c91d6e36df5b5a68372c675dc4`.
 
 Blocking semantic findings after correction: 0. The unstaged control candidate must be regenerated/re-read for this fixed point before publication. Wider bypass/production-integration attempts remain blocked on successor control fresh-clone verification.
+
+
+---
+
+## Entry — App egress v0.1.2 + Governance Contact pending-carrier successor control remotely closed — 2026-09-06
+Tags: CONTROL-CLOSURE, GEN14, EGRESS-V0.1.2, GOVERNANCE-CONTACT, FRESH-CLONE, NEXT-ATTEMPT
+
+Successor `pcmmad/project-control@bfcd19b3e91972de44fa702fe027d09dcab03249` is remotely durable, parent `f120ff577cd3a3df438d354ae9cd0662d037663f`, tree `2282ea4314139001e067bcce9cd8bfb38cd72258`.
+
+Frozen CHECKPOINT `cfb5a83a8f56b09720950f2706d861a1aed2e5475b591b4a3b6f92e88dcfa9dc`, 2,007 lines, verifier PASS 123. Staged manifest 123/123 and control membership 124/124 exact; committed manifest 123/123 exact; diff checks PASS; current-generation path findings 0; secrets 0. Dry-run and non-force push PASS.
+
+Independent `ls-remote` and fresh clone reproduced exact HEAD/clean tree, CHECKPOINT, verifier PASS 123, manifest 123/123, active R4.4/v1.1 carriers, current Main/Core/App/Gen14/Commander/ingress/RES, Governance Contact pending/no-authority ceiling and bounded egress qualification ceiling.
+
+App closure receipt `notes/maintenance/APP_EGRESS_V0_1_2_GOVERNANCE_CONTACT_CONTROL_CHECKPOINT_20260906.md` SHA `ff516aded3dcae598bbd7b9ffc780ab6c14bd993df8b09b82f255b0dfe4e0dff`; Main receipt SHA `a33b8c41663e5063e3591a8dfad5273b2c5ac488b11dfdc474838750e47250b7`.
+
+Current durable security state remains bounded: App `43aa7fe...` / Gen14 / protected-process primitive v0.1.2 QUALIFIED only. General egress containment, production launch integration, broker/Gate allow path, provider safety and runtime `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` remain unearned.
+
+The continuity prerequisite before wider bypass pressure / production launch-site integration is CLOSED. Next consequence-bearing work SHALL use a NEW Attempt. Prior Attempt-0/v0.1.1/v0.1.2 evidence remains immutable.
+
+Fixed-point rule: post-push receipt/pointer state waits for the next normal control checkpoint; no recursive publication.
+
+
+---
+
+## Entry — wider egress v0.2 UDP-loopback Attempt preserved before execution — 2026-09-07
+Tags: EGRESS-WIDER, UDP, ATTEMPT-PRESERVED, UNEXECUTED, BOUNDED-CLAIM
+
+Durable control prerequisite is closed at `pcmmad/project-control@bfcd19b3e91972de44fa702fe027d09dcab03249`, CHECKPOINT `cfb5a83a8f56b09720950f2706d861a1aed2e5475b591b4a3b6f92e88dcfa9dc`, fresh-clone verified. App source remains `43aa7feac7e8a15828116bd700b644560714496d`, clean; Gen14 remains current LKG.
+
+R4.4 scar query found no prior qualified UDP containment result to reuse. Existing qualified evidence remains TCP/local-listener and one validated descendant path only.
+
+A new standalone non-source discriminator was created at `state/attempt_artifacts/EGRESS_WIDER_V0_2_UDP_LOOPBACK_ATTEMPT_20260907.py`, SHA `75a3d1f7b2d6444acd1addd06e2f49612a9590f8220b3e27ab2ca1960f755e6b`, 263 lines. Syntax-only compile PASS. Complete linear semantic read 263/263 occurred before capture.
+
+Attempt Store capture:
+- Attempt ID `attempt-egress-wider-v0-2-udp-loopback-first`;
+- parent `attempt-egress-process-primitive-v0-1-2-bounded-qualification`;
+- blob SHA exact `75a3d1f7b2d6444acd1addd06e2f49612a9590f8220b3e27ab2ca1960f755e6b`;
+- exact readback true;
+- store after capture 116 blobs / 116 attempts / 195 events, integrity ok.
+
+Execution status: **PRESERVED / UNEXECUTED**.
+
+Discriminator boundary: one owned `127.0.0.1` UDP listener; exact same PowerShell UDP send command first proves an unprotected positive control, then runs as the protected AppContainer root. Listener observation is decisive. A protected datagram is BYPASS_FOUND; a non-socket PowerShell failure is HARNESS_INVALID, not PASS.
+
+Claim ceiling:
+`UDP_LOOPBACK_DENIAL != GENERAL_UDP_EGRESS_DENIAL`;
+`UDP_LOOPBACK_DENIAL != INTERNET_EGRESS_DENIAL`;
+`ROOT_UDP_RESULT != DESCENDANT_UDP_RESULT`;
+`WIDER_ATTEMPT_PASS != NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT`.
+
+No external endpoint, DNS query, provider, broker, OAuth credential, App source mutation or machine-wide firewall change is part of this Attempt.
+
+
+---
+
+## Entry — wider egress v0.2 root UDP-loopback first result bounded-admitted — 2026-09-07
+Tags: EGRESS-WIDER, UDP, FIRST-RESULT, BOUNDED-ADMISSION, NEXT-DESCENDANT
+
+Exact preserved Attempt `attempt-egress-wider-v0-2-udp-loopback-first`, artifact SHA `75a3d1f7b2d6444acd1addd06e2f49612a9590f8220b3e27ab2ca1960f755e6b`, executed once unchanged as job `job-1c375c95894f`.
+
+First result was preserved before interpretation as `attempt-egress-wider-v0-2-udp-loopback-first-result`, SHA `328e0786c4f04e9701e3d07809c5f1ca1706420308c6cf0c8980333bda3a9eca`, exact readback true. Result: `PASS_BOUNDED_UDP_LOOPBACK_DENIAL`.
+
+Observed discriminator:
+- exact unprotected PowerShell UDP command exit 0 and parent-owned listener received exact 41-byte payload;
+- identical protected command under zero-capability AppContainer + immediate Job: AppContainer true, Job true, capabilities 0, inherited handles false, timeout false, exit 0;
+- protected listener received no datagram;
+- source remained clean `43aa7feac7e8a15828116bd700b644560714496d`.
+
+Bounded admission receipt `notes/maintenance/EGRESS_WIDER_V0_2_UDP_LOOPBACK_BOUNDED_ADMISSION_20260907.md`, SHA `d5765e77f660a24d8693b265349be1b35b958cfa4cfbef61822a4a9337992269`, complete semantic read and preserved as `attempt-egress-wider-v0-2-udp-loopback-bounded-admission`.
+
+Claim admitted only: exact tested protected **root UDP loopback non-delivery** with positive control. `environment_inherited = true` remains an explicit proxy/environment bypass seam.
+
+`UDP_LOOPBACK_DENIAL != GENERAL_UDP_EGRESS_DENIAL`.
+`UDP_LOOPBACK_DENIAL != INTERNET_EGRESS_DENIAL`.
+`ROOT_UDP_RESULT != DESCENDANT_UDP_RESULT`.
+`LOCAL_LOOPBACK_RESULT != DNS_OR_QUIC_RESULT`.
+`WIDER_ATTEMPT_PASS != NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT`.
+
+Attempt Store after bounded admission: 118 blobs / 118 attempts / 197 events, integrity ok.
+
+Next locality-preserving claim class: descendant UDP loopback, requiring a NEW preserved Attempt before execution.
+
+
+---
+
+## Entry — wider egress v0.2.1 descendant UDP-loopback Attempt preserved before execution — 2026-09-07
+Tags: EGRESS-WIDER, DESCENDANT-UDP, ATTEMPT-PRESERVED, UNEXECUTED, BOUNDED-CLAIM
+
+Root UDP-loopback bounded admission remains immutable lineage: result `328e0786c4f04e9701e3d07809c5f1ca1706420308c6cf0c8980333bda3a9eca`, admission `d5765e77f660a24d8693b265349be1b35b958cfa4cfbef61822a4a9337992269`.
+
+New standalone descendant discriminator `state/attempt_artifacts/EGRESS_WIDER_V0_2_1_DESCENDANT_UDP_LOOPBACK_ATTEMPT_20260907.py`, SHA `364c5bf2335d6b284428543667167f9edb36bb64f7efb757ba797da0fe1cd82f`, 299 lines, syntax PASS and complete semantic read 299/299 before capture.
+
+Attempt `attempt-egress-wider-v0-2-1-descendant-udp-loopback-first` preserved under parent `attempt-egress-wider-v0-2-udp-loopback-bounded-admission`; exact readback true. Attempt Store after capture: 119 blobs / 119 attempts / 198 events, integrity ok.
+
+Execution status **PRESERVED / UNEXECUTED**.
+
+Discriminator uses the already-qualified PowerShell `ProcessStartInfo` / `Process.Start`, `UseShellExecute = false` descendant-launch shape with an encoded child PowerShell UDP sender. Exact unprotected root->descendant positive control must deliver the payload first. The identical root command then runs through the protected AppContainer+Job primitive. Listener receipt is decisive; root Process.Start error 191 and child non-socket harness error 190 are invalid, not green; child socket-denial 77 is classified but never substitutes for listener evidence.
+
+`DESCENDANT_UDP_LOOPBACK_DENIAL != GENERAL_DESCENDANT_EGRESS_DENIAL`.
+`DESCENDANT_UDP_LOOPBACK_DENIAL != INTERNET_UDP_DENIAL`.
+`DESCENDANT_UDP_RESULT != QUIC_OR_DNS_RESULT`.
+`DESCENDANT_UDP_RESULT != PROXY_OR_ENVIRONMENT_RESULT`.
+`WIDER_ATTEMPT_PASS != NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT`.
+
+App source remains `43aa7feac7e8a15828116bd700b644560714496d`; Gen14 and durable control `bfcd19b3e91972de44fa702fe027d09dcab03249` remain current. No source mutation or external endpoint is involved.
+
+
+---
+
+## Entry — descendant UDP v0.2.1 first result preserved as HARNESS_INVALID — 2026-09-07
+Tags: EGRESS-WIDER, DESCENDANT-UDP, FIRST-RESULT, HARNESS-INVALID, PROCESS-START
+
+Exact preserved Attempt `attempt-egress-wider-v0-2-1-descendant-udp-loopback-first`, artifact SHA `364c5bf2335d6b284428543667167f9edb36bb64f7efb757ba797da0fe1cd82f`, executed once unchanged as job `job-3271496d9422`.
+
+Exact first result preserved before diagnosis as `attempt-egress-wider-v0-2-1-descendant-udp-loopback-first-result`, SHA `3cd68bca1d43d8437043d353f776587f0fb7aa6c35798f9084e4065bbbe98122`, exact readback true. Result status `HARNESS_INVALID`.
+
+Observed:
+- unprotected PowerShell root->descendant positive control exit 0 and exact 45-byte UDP payload delivered;
+- protected root verified AppContainer+Job/zero-capability/no inherited handles and listener received no datagram;
+- protected root exit code `191`, the frozen `ROOT_PROCESS_START_ERROR_EXIT` sentinel;
+- stderr empty; source remained clean `43aa7feac7e8a15828116bd700b644560714496d`.
+
+Therefore descendant creation/launch failed before a usable child-network outcome. The result proves neither descendant UDP denial nor bypass.
+
+`PROCESS_START_FAILURE != DESCENDANT_NETWORK_DENIAL`.
+`NO_DATAGRAM_WITH_INVALID_HARNESS != CONTAINMENT_PASS`.
+
+Attempt Store after result preservation: 120 blobs / 120 attempts / 199 events, integrity ok.
+
+Next action is bounded launcher diagnosis without rerunning or editing the failed Attempt; compare the already-qualified curl-child Process.Start path with PowerShell-child launch under the same protected root, preserve diagnosis before any repair candidate.
+
+
+---
+
+## Entry — descendant launch diagnosis preserved before execution — 2026-09-07
+Tags: DESCENDANT-LAUNCH, DIAGNOSIS, NON-NETWORK, ATTEMPT-PRESERVED, UNEXECUTED
+
+First descendant-UDP Attempt/result remain immutable HARNESS_INVALID lineage. A separate non-network launcher diagnosis was created at `state/attempt_artifacts/EGRESS_WIDER_V0_2_1_DESCENDANT_LAUNCH_DIAGNOSIS_20260907.py`, SHA `346661baffc959fa9bd24cb45b40d60a305def95bfccd69731133713dc42b417`, 296 lines; complete semantic read 296/296 before capture.
+
+Attempt `attempt-egress-wider-v0-2-1-descendant-launch-diagnosis`, parent `attempt-egress-wider-v0-2-1-descendant-udp-loopback-first-result`, was captured with exact readback. Attempt Store after capture: 121 blobs / 121 attempts / 200 events, integrity ok. Execution status **PRESERVED / UNEXECUTED**.
+
+Diagnostic compares four child-launch shapes under identical PowerShell roots: `curl.exe --version`, short PowerShell `exit 0`, short encoded PowerShell, and padded encoded PowerShell. Every case must succeed unprotected before the protected comparison. Protected receipt shape must verify AppContainer+Job/zero-capability/no inherited handles/no timeout.
+
+Diagnostic-only laws: `DIAGNOSIS_RESULT != NETWORK_CONTAINMENT_RESULT`; `CHILD_EXECUTABLE_SPECIFIC_FAILURE != GENERAL_DESCENDANT_CREATION_FAILURE`; `ARGUMENT_SHAPE_FAILURE != EXECUTABLE_ACCESS_FAILURE`.
+
+No network activity is intended; no source mutation or prior Attempt rewrite occurs.
+
+
+---
+
+## Entry — descendant launch diagnosis first run HARNESS_INVALID at profile validation — 2026-09-07
+Tags: DESCENDANT-LAUNCH, DIAGNOSIS, HARNESS-INVALID, PROFILE-NAME
+
+Exact preserved diagnosis `attempt-egress-wider-v0-2-1-descendant-launch-diagnosis`, artifact `346661baffc959fa9bd24cb45b40d60a305def95bfccd69731133713dc42b417`, executed once unchanged as job `job-78d7fca2bb59`.
+
+Job failed before final diagnostic classification. Stdout was empty; exact stderr SHA `b1befb277a0fa6f213351d8d7b7464bf4d61e2a62f38461d13edb1da75cb4be8`, preserved as `attempt-egress-wider-v0-2-1-descendant-launch-diagnosis-first-stderr`. Structured first-result SHA `0748056e4901e7e2379572a173fe24e251e43388dd8083282c92067dc5d0f626`, preserved as child `attempt-egress-wider-v0-2-1-descendant-launch-diagnosis-first-result`.
+
+Failure: `_validate_profile_name` rejected an AppContainer profile name longer than 64 characters. Static localization on the frozen artifact: curl profile length 53, PowerShell-short 57, PowerShell-encoded 59, PowerShell-encoded-padded 66. Only padded case exceeds the limit.
+
+Therefore this is **HARNESS_INVALID / PROFILE-NAME-LENGTH** and earns no curl-vs-PowerShell launcher classification.
+
+`PROFILE_NAME_VALIDATION_FAILURE != DESCENDANT_LAUNCH_RESULT`.
+`PARTIAL_DIAGNOSTIC_EXECUTION != COMPLETE_DIAGNOSTIC_CLASSIFICATION`.
+
+Attempt Store after exact result preservation: 123 blobs / 123 attempts / 202 events, integrity ok. Source remains clean `43aa7fe...`.
+
+Next repair changes only ephemeral profile-name generation; child executable/arguments and classifier remain unchanged. Original diagnosis/result stay immutable.
+
+
+---
+
+## Entry — descendant launch diagnosis profile-name repair preserved — 2026-09-07
+Tags: DESCENDANT-LAUNCH, DIAGNOSIS, REPAIR, PROFILE-NAME, PRESERVED
+
+First diagnosis remains immutable HARNESS_INVALID with exact stderr `b1befb277a0fa6f213351d8d7b7464bf4d61e2a62f38461d13edb1da75cb4be8` and structured result `0748056e4901e7e2379572a173fe24e251e43388dd8083282c92067dc5d0f626`.
+
+New repair artifact `state/attempt_artifacts/EGRESS_WIDER_V0_2_1_1_DESCENDANT_LAUNCH_DIAGNOSIS_REPAIR_20260907.py`, SHA `e5203fa88ede8957525be9eb73ce707c54c5032603fa0da37bdcc1724e421348`, 309 lines; syntax PASS and complete semantic read 309/309 before capture.
+
+Repair scope is profile-name generation only: fixed aliases `cv`, `ps`, `pe`, `pp`; generated example profile names are all length 18. Child executables/arguments, positive controls, protected receipt checks and classification logic remain unchanged.
+
+Attempt `attempt-egress-wider-v0-2-1-1-descendant-launch-diagnosis-repair` preserved under first diagnosis HARNESS_INVALID result with exact readback. Store 124/124/203, integrity ok. Status **PRESERVED / UNEXECUTED**.
+
+`REPAIR_SCOPE_PROFILE_NAME_ONLY`; `DIAGNOSIS_RESULT != NETWORK_CONTAINMENT_RESULT`.
+
+
+---
+
+## Entry — repaired descendant launch diagnosis completed with curl-child contradiction — 2026-09-07
+Tags: DESCENDANT-LAUNCH, DIAGNOSIS, CONTRADICTION, CWD-HYPOTHESIS
+
+Repaired non-network diagnosis `attempt-egress-wider-v0-2-1-1-descendant-launch-diagnosis-repair`, artifact `e5203fa88ede8957525be9eb73ce707c54c5032603fa0da37bdcc1724e421348`, executed once unchanged as job `job-107cd6b22fd0`.
+
+Exact result SHA `986c1350dcee33c8f809829a3920b36b8658922d40dab4f0109a005bdb9f5145` preserved before interpretation. All four unprotected cases passed. All four protected cases verified AppContainer+Job/zero-capability/no inherited handles and returned exit 201 (`START_WIN32_OTHER`), including `curl.exe --version`. Final classification: `DIAGNOSTIC_CONTRADICTION_CURL_CHILD_NO_LONGER_STARTS`.
+
+Exact qualified v0.1.2 D2 witness was reread: protected PowerShell root used `cwd=powershell.parent` and required propagated curl exit 7/28. Both new descendant diagnostics used `cwd=SOURCE_ROOT`.
+
+Strongest provisional hypothesis: inherited/current directory accessibility under AppContainer causes descendant Process.Start to fail when root cwd is SOURCE_ROOT. This is not yet proven.
+
+`QUALIFIED_D2_CWD != NEW_DIAGNOSTIC_CWD`.
+`CWD_DIFFERENCE != ROOT_CAUSE_PROVEN`.
+`DIAGNOSTIC_CONTRADICTION != NETWORK_CONTAINMENT_RESULT`.
+
+Attempt Store after result/journal capture observed 128/128/207, integrity ok. App source remains clean.
+
+Next discriminator: non-network cwd isolation with explicit Win32 error 267 mapping before any descendant-UDP repair or security demotion.
+
+
+---
+
+## Entry — descendant launch cwd-isolation diagnosis preserved — 2026-09-07
+Tags: DESCENDANT-LAUNCH, CWD, DIAGNOSIS, NON-NETWORK, PRESERVED
+
+Repaired launcher diagnosis contradiction `986c1350dcee33c8f809829a3920b36b8658922d40dab4f0109a005bdb9f5145` remains immutable. Exact v0.1.2 D2 reread showed a material cwd difference: qualified protected root used `cwd=powershell.parent`; later failing descendant diagnostics used `cwd=SOURCE_ROOT`.
+
+New non-network artifact `state/attempt_artifacts/EGRESS_WIDER_V0_2_1_2_DESCENDANT_LAUNCH_CWD_DIAGNOSIS_20260907.py`, SHA `7330cf2506a4d5aa3b55360c53c4ed2660f446128e14771158f8df56440b5daf`, 287 lines; syntax PASS and complete semantic read 287/287 before capture.
+
+Attempt `attempt-egress-wider-v0-2-1-2-descendant-launch-cwd-diagnosis` preserved under repaired-launcher contradiction result with exact readback. Attempt Store observed 133 blobs / 133 attempts / 212 events, integrity ok. Status **PRESERVED / UNEXECUTED**.
+
+Cases compare curl and PowerShell children under root `cwd=SOURCE_ROOT` vs `cwd=powershell.parent`, with exact unprotected positive controls and verified protected AppContainer+Job shape. Win32 error 267 maps explicitly to exit 208. No network activity is intended.
+
+`CWD_DIAGNOSTIC_RESULT != NETWORK_CONTAINMENT_RESULT`; `CWD_DIFFERENCE != ROOT_CAUSE_PROVEN_UNTIL_DISCRIMINATED`.
+
+
+---
+
+## Entry — descendant launch cwd-isolation root cause localized — 2026-09-07
+Tags: DESCENDANT-LAUNCH, CWD, DIAGNOSIS, ROOT-CAUSE, NON-NETWORK
+
+Exact preserved cwd diagnosis `attempt-egress-wider-v0-2-1-2-descendant-launch-cwd-diagnosis`, artifact `7330cf2506a4d5aa3b55360c53c4ed2660f446128e14771158f8df56440b5daf`, executed once unchanged as job `job-7d128f1f3965`.
+
+Exact result SHA `fde44603c47fd0af41b65492eb163a5500d44da6972c31fea1e65a75f7a4a7ae` preserved as child Attempt before repair design. All four unprotected controls passed. All protected cases verified AppContainer+Job/zero-capability/no inherited handles/no timeout.
+
+Protected results:
+- `SOURCE_ROOT` + curl -> exit 208 = mapped Win32 267 / ERROR_DIRECTORY;
+- `SOURCE_ROOT` + PowerShell -> exit 208 = mapped Win32 267 / ERROR_DIRECTORY;
+- `powershell.parent` + curl -> exit 0;
+- `powershell.parent` + PowerShell -> exit 0.
+
+Classification `SOURCE_ROOT_CWD_INVALID_UNDER_PROTECTED_DESCENDANT_START`.
+
+This verifies the launcher harness root cause: protected descendant `Process.Start` inherited an inaccessible/invalid `SOURCE_ROOT` current directory. It is not executable-specific. The diagnosis is non-network and does not itself qualify descendant UDP.
+
+`CWD_DIAGNOSIS != DESCENDANT_UDP_RESULT`.
+
+Attempt Store after result/journal capture observed 137/137/216, integrity ok; App source remains clean `43aa7fe...`.
+
+Next repair is a NEW descendant-UDP Attempt changing only root cwd to `powershell.parent` for both positive and protected phases; original HARNESS_INVALID Attempt/result remain immutable.
+
+
+---
+
+# PHASE MARKER — Governance Contact Activation Phase 1 Resolver Propagation
+Date: 2026-09-07
+Target: `local:singularity-works-forge-app`
+Tags: GOVERNANCE-CONTACT, ACTIVATION, CURRENTNESS, RESOLVER, PHASE-1
+
+The stable Governance Contact activation locator `authority/rahl-sop/GOVERNANCE_CONTACT_V1_0_ACTIVATION.md`, SHA `380059a4e8204c35f82b3a232d45f962bb20038eec3d9eecb44f4411809346bd`, is being wired into load-bearing current ingress before any activation token is propagated. The exact token SHA expected by the locator is `b5a2e35f300c6f72d93fc80b877ef0478a3628442b705e50f6893cbceafb5094`.
+
+At Phase-1 staging/precondition time the target-local activation token and final ACTIVE receipt are absent. Historical pending/publication snapshots remain byte-preserved and are not current activation resolvers.
+
+Phase 1 does **not** activate Governance Contact. The precedence blocks are version-stable: they resolve current state from the locator rather than hard-coding token absence/presence.
+
+`SUPERSESSION != SOURCE_REWRITE`
+`ACTIVATION_LOCATOR_PRESENT != ACTIVATION_TOKEN_PRESENT`
+`CURRENT_POINTER_CORRECT_BEFORE_ACTIVATION != CURRENT_POINTER_CORRECT_AFTER_ACTIVATION`
+`DECLARATION_OF_ACTIVE != ACTIVATION_PROPAGATED`
+
+## THREAD ROLLOVER — 2026-09-07 — CURRENT
+Date: 2026-09-07
+Tags: CHECKPOINT, THREAD-ROLLOVER, RECOVERY, HANDOFF, APP
+
+USER requested a complete lossless rollover checkpoint because the current chat thread is full and a fresh thread is required.
+
+ASSISTANT re-grounded on server state rather than relying on chat summary. Live remote refs were Main `57df8f6345e2744c04bf6882c130a06ea8528fa2`, App `43aa7feac7e8a15828116bd700b644560714496d`, control `bfcd19b3e91972de44fa702fe027d09dcab03249`. Main `57df8f6345e2744c04bf6882c130a06ea8528fa2` is an authority-only Governance Contact resolver Phase-1 child; target-local activation token and ACTIVE receipt were absent at both inspected Main/App targets, resolving NOT ACTIVE at seal. App Attempt Store readback was 138/138/217. Wider-egress archaeology found the earlier sibling descendant-UDP cwd repair had already PASSed/admitted (`440964...` -> `bbf004...`), while the later stronger-lineage attempt `attempt-egress-wider-v0-2-1-3-descendant-udp-loopback-cwd-repair-first` / `99ef2cbbc08eef598fb9c8b02ae38d5b9d88a3c4fcde576b96cf047b1942185e` remained unexecuted and was selected by current Live Shadow as the exact resume gate.
+
+Canonical dated rollover checkpoint `50be248ff65dbb94430dd686a7fe519f9ed03000a4d3ae95b8e958b4845ee918`, stable pointer `bb74d98cc96f349d922ada3072316362a3223851f3a1b0b61e2c38127108b33f`, and paste-ready prompt `6c5080d0c950297490139e7b120964dddb7936af5076a967d1200904456cb795` were written identically to Main/App. Fresh thread SHALL begin RECOVERY/AUDIT and verify live state before any execution.
