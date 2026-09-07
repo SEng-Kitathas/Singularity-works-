@@ -24,27 +24,20 @@ Cross-reference is allowed; authority transfer is not.
 
 ## 2. Current verified App research baseline
 Current source:
-`forge/app-shell-rd@e9b81750db265a467187c61962ffab3cff98d4fe`, local/remote exact and clean; frozen egress Attempt 0 preserved and never executed.
-
-This is a provenance-preserving two-parent forward merge:
-- prior App `328249429cc6e86e15db9797bd58eff5fabc5a2d`;
-- qualified semantic Main `a7b4511734b1a1e507230308e75b31175aef4c4a`; public Main `287c0bad0e9b3fef3002b91702e86b410cada4ce` adds authority-release surfaces only.
-
-The merge changes exactly the nine qualified Main semantic-field paths and no `forge_app/**` source.
-Fresh remote qualification passed compile, semantic-field 8/8, App regression 94/94 with ResourceWarning-as-error, and full verify_build.
+`forge/app-shell-rd@43aa7feac7e8a15828116bd700b644560714496d`, local/remote exact and clean.
 
 Current LKG:
-`checkpoint-app-live-0012-e9b81750db26`.
-VERIFIED / RESUMED / STABLE / LKG / source MATCH / NORMAL / early crash 0 / not quarantined.
+`checkpoint-app-live-0014-43aa7feac7e8` — VERIFIED / RESUMED / STABLE / LKG / source MATCH / NORMAL / READY. Evidence `bc4bbddd0addc9be743ca01d7f022b2d2b1228373e1eac7d181937a008a32c50`. Core IDs remain null.
 
-Generation-12 evidence:
-`state/live_resume_session_0012.json`
-SHA `aeff0db397135d8f227f11e17c1b7b939235b6ae11ee2ae97053246d9d605e0a`.
+Bounded security qualification:
+- D2 first committed v0.1.2 result `5919cdc7af94d0e34d5884366eb3f328762422c03f2346afd332690820863b68` PASS;
+- same-commit D0-D3 regression `1a571cae54279aa4b79646b87dfb254701957088d481bc7b0de7c832935055fa` PASS 4/4;
+- qualification receipt `3d27639447f1d47ac71e892a766444a3e7c8627ff3120b791ecf4470ebeedda6`;
+- protected-process implementation unchanged from the original Attempt-0 primitive.
 
-Generation 11 remains historical/source-stale.
+Attempt Store current readback: 115 blobs / 115 attempts / 194 events, integrity ok, WAL/FULL.
 
-Attempt Store:
-104 blobs / 104 attempts / 175 events, integrity ok, WAL/FULL.
+Gen13 and earlier generations remain historical/source-stale against current App. Original Attempt-0 and v0.1.1 failures remain immutable evidence.
 
 ## 3. Research learning — authority and consequence
 Connection Gate / durable authority / operation-lifecycle campaigns established:
@@ -88,18 +81,17 @@ Earned distinctions:
 - `APP_SOURCE_INTEGRATED != NEW_LKG`;
 - `REMOTE_TEST_PASS != RECOVERY_CHECKPOINT_PROMOTED`.
 
-## 5. Research learning — generation 11 -> 12 recovery currentness
-Generation 10 remained historically valid but current-source mismatch correctly forced CAUTION/SAFE_ONLY.
-Generation 11 earned a new LKG after the semantic-field merge. After source later advanced to preserved Attempt 0 `e9b81750...`, Gen12 separately re-earned LKG through real >10s health evidence and four meaningful operations.
+## 5. Research learning — recovery currentness through Gen14
+Generation 10/11/12/13 remain preserved historical recovery evidence tied to their exact source generations. Source moves correctly forced SAFE_ONLY/CAUTION until a new generation re-earned stability. Gen14 `checkpoint-app-live-0014-43aa7feac7e8` independently re-earned MATCH/NORMAL/READY for `43aa7feac7e8a15828116bd700b644560714496d` after exact Gen13 parent lineage, four meaningful operations and >10 seconds healthy runtime before STABLE/LKG.
 
-Research implication: recovery currentness is a separate operational truth surface from Git/test qualification and must remain separately evidenced.
+Research implication: recovery currentness is a separate operational truth surface from Git/test/security qualification and must be re-earned after every source movement.
 
 `CHECKPOINT_VALID != CURRENT_SOURCE_COMPATIBLE`.
 `PERSISTENCE_VALID != RUNTIME_STABLE`.
 `CHECKPOINT_REPUTATION_IS_EVENT_DERIVED`.
 
 ## 6. Important open semantic bridge seam
-Bridge source availability is qualified, but generation 12 still keeps:
+Bridge source availability is qualified, but current generation 14 still keeps:
 - `core_contract_version = null`;
 - `core_currentness_id = null`;
 - `semantic_snapshot_id = null`.
@@ -110,27 +102,24 @@ Reason: App has not yet qualified checkpoint restoration/currentness semantics f
 
 This is a separate P1 interface/restoration frontier, not a reason to block the P0 security frontier.
 
-## 7. Dominant product/security frontier — OS/process egress enforcement
-The immediate integration gate is closed. The dominant research question is now:
-
-> Can Singularity Works technically enforce a protected execution domain in which code cannot open ambient network paths around Connection Gate, while preserving an explicit broker-only allow path for currently authorized prepared operations?
+## 7. Dominant product/security frontier — wider bypass resistance / production integration
+The exact local-loopback protected-process primitive is now bounded-qualified at `43aa7feac7e8a15828116bd700b644560714496d`. The dominant research question is no longer whether D0-D3 can execute; it is how far the containment survives materially different bypass classes and whether it can be integrated into real product launch paths without authority leakage.
 
 Target law remains unearned:
 `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT`.
 
-Highest-value discriminators:
-0. publish/fresh-clone verify the successor v1.1/Gen12 control generation;
-1. execute the exact frozen D0-D3 Attempt 0 without editing first;
-1. define exact protected execution-domain scope;
-2. identify Windows primitives that can enforce default-deny without falsely claiming whole-machine control;
-3. pressure raw socket access;
-4. pressure subprocess/helper-binary escape;
-5. pressure plugin/imported-code escape;
-6. pressure DNS resolution and loopback/local-service paths;
-7. pressure inherited handles/capabilities and environment/proxy paths;
-8. bind any broker allow path to current authority + exact prepared operation identity;
-9. fail closed when enforcement state/currentness is UNKNOWN;
-10. preserve manual operator visibility/revocation.
+Highest-value discriminators after the next normal control checkpoint:
+1. raw Internet socket paths and destination classes;
+2. DNS resolution behavior;
+3. UDP/QUIC;
+4. proxy/environment and local helper indirection;
+5. browser/plugin/imported-code helpers;
+6. COM/RPC/service/WSL paths;
+7. Job breakaway/descendant-tree variants beyond the exact tested path;
+8. production launch-site integration and fail-closed UNKNOWN/currentness behavior;
+9. eventual broker allow path bound to current Connection Gate authority + exact prepared operation identity.
+
+Each materially new claim requires a new preserved attempt; local-loopback D0-D3 is not generalized by rhetoric.
 
 ## 8. Active Sigma branches — enforcement frames
 Research branches, not decisions:
@@ -168,14 +157,14 @@ Machine success is supporting evidence only.
 `SEMANTIC_READ_FINDING != MACHINE_VALIDATION_FINDING`.
 
 ## 11. Revisit triggers
-Update this RES when enforcement Attempt 0 architecture is selected/preserved, a bypass is found, a Windows enforcement primitive is proven sufficient or impractical, a broker allow path is embodied, real provider transport begins, OAuth/secret-storage architecture changes, checkpoint semantic restoration/currentness is qualified, GitHome/Vault gains consequence-bearing implementation, or a security assumption is promoted/demoted/contradicted.
+Update this RES when a new wider-bypass attempt is preserved/executed, a bypass is found, the current protected-process scope is widened or demoted, production launch-site integration changes, a broker allow path is embodied, real provider transport begins, OAuth/secret-storage architecture changes, checkpoint semantic restoration/currentness is qualified, GitHome/Vault gains consequence-bearing implementation, or a security assumption is promoted/demoted/contradicted.
 
 ## 12. Current research-to-do
-1. Publish/fresh-clone verify successor v1.1/Gen12 project-control state from `63f7a74...`.
-2. Re-read App source/Gen12 and frozen D0-D3 test hash immediately before first execution.
-3. Execute exact preserved D0-D3 unchanged; preserve all failures exactly.
-4. If D0-D3 pass, widen hostile pressure only through a new preserved attempt; do not jump directly to provider integration.
-5. Keep `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` UNKNOWN until production launch integration and broader bypass pressure qualify it.
+1. Publish/fresh-clone verify the next normal project-control generation above `f120ff577cd3a3df438d354ae9cd0662d037663f` carrying source `43aa7feac7e8a15828116bd700b644560714496d`, Gen14 and bounded qualification.
+2. Preserve the first materially wider bypass attempt before execution.
+3. Pressure Internet/DNS/UDP/QUIC/proxy/helper/plugin/COM/RPC/WSL/service/breakaway paths in bounded claim classes.
+4. Define/qualify production launch-site integration separately.
+5. Keep `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` UNKNOWN until broader bypass and launch integration evidence qualify it.
 6. Keep Core checkpoint restoration identity as separate P1 with null fields until explicitly qualified.
 7. Evaluate v1.1 epoch/CAS profile separately as a project-efficacy discriminator, never as truth authority.
 
@@ -193,10 +182,10 @@ Research-method implications for the immediate App security frontier:
 - additive/synonym semantic reversals are first-class hostile cases;
 - any future publication/control materialization must reconcile `SEALED_BYTES != PUBLISHED_BYTES` rather than assuming Git checkout identity equals sealed carrier identity.
 
-This historical R4.4 process update did not itself change the then-current App source/recovery state. Current App is `e9b81750...`, Gen12 MATCH/NORMAL, and frozen Attempt 0 remains unexecuted.
+This historical R4.4 process update did not itself change the then-current App source/recovery state. Its e9/Gen12/Attempt-0 wording is historical; current App/Gen14/qualification state is governed by the later v0.1.2 block.
 
-## ICF-CS v1.1 authority reconciliation — 2026-09-06
-Truth status: VERIFIED currentness/process evidence; RES authority remains NONE_BY_CONTENT.
+## Historical ICF-CS v1.1 authority reconciliation — initial Gen12 stage — 2026-09-06
+Truth status: VERIFIED historical currentness/process evidence; superseded for App Frontier by the later Gen14 qualification block; RES authority remains NONE_BY_CONTENT.
 
 Research meaning changed only in sequencing/currentness:
 - ICF-CS v1.1 is current additive process authority; this does not make RES governing doctrine.
@@ -205,3 +194,15 @@ Research meaning changed only in sequencing/currentness:
 - Gen12 `checkpoint-app-live-0012-e9b81750db26` is current LKG/source MATCH/NORMAL; Gen11 is historical/source-stale.
 - Immediate research discriminator after successor control publication is exact first execution of frozen D0-D3.
 - v1.1 mechanized epoch/CAS profile remains a separate project-efficacy hypothesis, not automatic authority.
+
+## OS/process protected-process primitive v0.1.2 bounded qualification — 2026-09-06
+Truth status: VERIFIED bounded App/product security evidence; RES authority remains NONE_BY_CONTENT.
+
+Current research meaning:
+- App source is `43aa7feac7e8a15828116bd700b644560714496d`, local/remote exact and clean.
+- Gen14 `checkpoint-app-live-0014-43aa7feac7e8` is current LKG/source MATCH/NORMAL/READY; evidence `bc4bbddd0addc9be743ca01d7f022b2d2b1228373e1eac7d181937a008a32c50`; Core IDs remain null.
+- committed D2 v0.1.2 first result `5919cdc7af94d0e34d5884366eb3f328762422c03f2346afd332690820863b68` PASSed with a valid unprotected-positive/protected-negative descendant launcher.
+- same-commit D0-D3 regression `1a571cae54279aa4b79646b87dfb254701957088d481bc7b0de7c832935055fa` PASSed 4/4.
+- bounded qualification receipt `3d27639447f1d47ac71e892a766444a3e7c8627ff3120b791ecf4470ebeedda6` promotes only the exact protected-process primitive evidence.
+- `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` remains unearned.
+- next discriminator is wider bypass pressure and eventual production launch-site integration, but only after the next normal control checkpoint carries source `43aa7feac7e8a15828116bd700b644560714496d` + Gen14 + bounded qualification.

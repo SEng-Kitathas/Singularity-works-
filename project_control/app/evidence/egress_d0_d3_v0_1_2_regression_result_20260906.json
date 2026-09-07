@@ -1,0 +1,43 @@
+{
+  "authority": "NONE_BY_CONTENT",
+  "command": [
+    "python",
+    "-m",
+    "unittest",
+    "-v",
+    "forge_app.embodiment.test_os_process_egress_enforcement_v0_1"
+  ],
+  "control_tip": "f120ff577cd3a3df438d354ae9cd0662d037663f",
+  "egress_enforcement_qualified": false,
+  "gen14_checkpoint": "checkpoint-app-live-0014-43aa7feac7e8",
+  "gen14_evidence_sha256": "bc4bbddd0addc9be743ca01d7f022b2d2b1228373e1eac7d181937a008a32c50",
+  "job_id": "job-f094548ac3ab",
+  "laws": [
+    "D0_D3_LOCAL_LOOPBACK_PASS != NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT",
+    "LOCAL_LOOPBACK_PROCESS_CONTAINMENT != GENERAL_EXTERNAL_EGRESS_CONTAINMENT",
+    "TEST_PASS != PRODUCTION_LAUNCH_INTEGRATION"
+  ],
+  "no_external_connection_runtime_law_earned": false,
+  "protected_process_git_sha256": "80163d67a40b7604920f70d25a23d982c73dd368a62f8872c7632ca1e1904790",
+  "repair_note_git_sha256": "fa76950d39d38f7755233357ee9b25db41462f7d64e093942df447ae875556d5",
+  "results": {
+    "D0": "PASS",
+    "D1": "PASS",
+    "D2": "PASS",
+    "D3": "PASS"
+  },
+  "return_code": 0,
+  "schema": "singularity-works.egress-d0-d3-v0.1.2-regression-result/0.1",
+  "source_clean_after_run": true,
+  "source_head": "43aa7feac7e8a15828116bd700b644560714496d",
+  "source_remote_exact_after_run": true,
+  "status": "D0_D3_V0_1_2_REGRESSION_PASS_PENDING_BOUNDED_QUALIFICATION_ADMISSION",
+  "stderr_bytes": 1053,
+  "stderr_sha256": "cc4976f2cadc5560439ce56abe31061665bdd6bdef00ea111fa6a7fced808e56",
+  "stdout_bytes": 0,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "test_git_sha256": "f49f1dbc03477c42a10b9a0361ba55b4c670321102bc8e7cfc8bd0119ad9b502",
+  "tests_edited_after_d2_first_pass_before_regression": false,
+  "tests_run": 4,
+  "unittest_duration_seconds": 6.821
+}

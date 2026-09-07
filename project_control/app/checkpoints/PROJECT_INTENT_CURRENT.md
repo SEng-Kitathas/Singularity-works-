@@ -31,12 +31,13 @@ Conflict grammar:
 - ICF-CS v1.1 mechanized epoch profile SHA: `733b799815abdb4b1ff735635f7928953c12944ece579365b5aae138d90f90f8`.
 - ICF-CS v1.1 payload SHA: `f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63`.
 - Detached release receipt SHA: `418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c`.
-- Current project ICF instance SHA: `95ff8a58543c8aa2a2f20eb98cca47a30c3b64a5e8823c5f84edd3ad25cc9761`.
+- Current project ICF instance SHA: `49972aad08226859105d57a2cc15e1f09d06926263ef8b07beb7ca1526507cf9`.
 - R4.4 carrier SHA: `04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc`.
-- Current public Main branch head: `287c0bad0e9b3fef3002b91702e86b410cada4ce`; Core qualification anchor: `a7b4511734b1a1e507230308e75b31175aef4c4a`.
-- Current App source: `e9b81750db265a467187c61962ffab3cff98d4fe`, local/remote exact and clean; egress Attempt 0 is preserved but unexecuted/unqualified.
-- Current recovery ingress: generation 12 `checkpoint-app-live-0012-e9b81750db26`, source MATCH/NORMAL; Gen11 is historical/source-stale.
-- Durable control branch current verified baseline: `pcmmad/project-control@63f7a74f47be4179b5871fd7ff9da819b54e3ab9`, CHECKPOINT SHA `500d7c167ff5d27e6287edf675d7bbc06a91b5a7c169ffa44df753e6af6bb049`, verifier PASS 96; resolve the branch ref live before mutation.
+- Current public Main branch head: `6ea95275cdc409ed222e4720b6b04aadaa17e6bf`; authority-publication predecessor `287c0bad0e9b3fef3002b91702e86b410cada4ce`; Core qualification anchor: `a7b4511734b1a1e507230308e75b31175aef4c4a`.
+- Governance Contact v1.0 carrier at Main `6ea95275cdc409ed222e4720b6b04aadaa17e6bf` is detached/published but NOT ACTIVE: ZIP `c4ab4a516e088b6c28b5240d6b3877d2e3fb889a8bbbfd406e8e0c73bebdd1ae`, detached receipt `cf2e7bd8e5ed613d3c3a99b7f8645833ddb742ac4939bd1719092b277ef286e6`; `authority/rahl-sop/CURRENT.md` unchanged; authority effect NONE pending target lifecycle.
+- Current App source: `43aa7feac7e8a15828116bd700b644560714496d`, local/remote exact, clean, independently fresh-clone verified; bounded protected-process primitive v0.1.2 is qualified under receipt `3d27639447f1d47ac71e892a766444a3e7c8627ff3120b791ecf4470ebeedda6`.
+- Current recovery ingress: generation 14 `checkpoint-app-live-0014-43aa7feac7e8`, source MATCH/NORMAL/LKG; Gen13 is historical/source-stale.
+- Durable control branch current verified baseline: `pcmmad/project-control@f120ff577cd3a3df438d354ae9cd0662d037663f`, CHECKPOINT SHA `263d3d9aec93c3f3cc037cf34de3d311bd64e0c91d6e36df5b5a68372c675dc4`, verifier PASS 115, fresh-clone exact/clean; it predates App `43aa7fe...` + Gen14 + bounded qualification, which must enter the next normal control checkpoint before materially wider security mutation.
 
 These are remembered/current-ingress pointers, not permission to skip live currentness readback.
 

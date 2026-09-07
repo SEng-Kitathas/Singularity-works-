@@ -1126,3 +1126,132 @@ Corrections were applied without source mutation or D0-D3 execution. Final share
 Current action ordering is now explicit: successor v1.1/source/Gen12 control publication + fresh-clone readback first; exact frozen D0-D3 execution second, with no edit before first run.
 
 Correction receipt SHA `538df049bcf5dfe88be93a608b4a7e502a164680e47f8d7f5eb111f2d0939150`.
+
+
+---
+
+## Cross-arm entry — ICF-CS v1.1 + App Gen12 successor control published/read back — 2026-09-06
+Tags: ICF-CS-V1.1, GEN12, GIT-CONTROL, FRESH-CLONE, EGRESS-FIRST-EXECUTION-GATE
+
+Fresh successor control was built from exact verified predecessor `63f7a74f47be4179b5871fd7ff9da819b54e3ab9` after complete server-side v1.1/source/Gen12 semantic reconciliation.
+
+Publication candidate semantic gate read all fresh Git representations, repaired stale CHECKPOINT metadata, reconciled concurrent Main RES advancement to `c963e4fd011dd432e8255b793aa0f2623d7d4548f3e3eb34b4f91aa34815fbbc`, redacted current-generation machine-local paths only in Git derivatives, and completely reread the affected 4-artifact / 4,124-line correction stream SHA `d4911205d59ff751d8298267d4283108226427ebc00cf29e83fb7863dfca2b9c`. Final blocking semantic findings: 0.
+
+Mechanical gates: verifier PASS / 115, staged manifest equality 115/115, staged control membership 116/116 including self-excluded CHECKPOINT, committed manifest equality 115/115, diff checks PASS, current-generation actionable machine paths 0, secret findings 0.
+
+Detached commit `f120ff577cd3a3df438d354ae9cd0662d037663f`, parent `63f7a74f47be4179b5871fd7ff9da819b54e3ab9`, tree `971069ee39eb47226d098161240e9ef5bba69b50`, subject `control: checkpoint ICF-CS v1.1 and App generation 12`.
+
+Dry-run and non-force push PASS. Post-push `ls-remote` exact. Fresh single-branch clone exact/clean; verifier PASS 115; frozen CHECKPOINT SHA `263d3d9aec93c3f3cc037cf34de3d311bd64e0c91d6e36df5b5a68372c675dc4`; v1.1 payload/receipt, Commander/ingress, Main/Core split, App/Gen12 and current RES identities exact; current-generation path findings 0; secret findings 0.
+
+Main post-push receipt `notes/maintenance/ICF_CS_V1_1_GEN12_CONTROL_CHECKPOINT_20260906.md` SHA `08042438c687dfdcd09f585c32a5baa832168323fb8554b5fedf38b0af35fcc7`.
+
+The continuity prerequisite before first frozen D0-D3 execution is now CLOSED. The next consequence-bearing action is the exact first execution of D0-D3 unchanged.
+
+Fixed-point rule: this post-push receipt/pointer delta is not recursively republished immediately.
+
+---
+
+## OS/process protected-process primitive v0.1.2 bounded qualification — 2026-09-06
+Date: 2026-09-06 UTC
+Tags: EGRESS, APPCONTAINER, JOB, D2, GEN14, QUALIFICATION
+
+Original D0-D3 first actual execution preserved D0/D1/D3 PASS and D2 rc1 FAIL. D2 rc1 was shown to be a test-harness failure, first from `cmd /s /c` quoting and then from `cmd.exe` descendant behavior under AppContainer. v0.1.1 source `9bc35af...` preserved the first repair and its first result remained FAIL rc1.
+
+Protected local-only pressure then established that PowerShell `System.Diagnostics.Process.Start` can create descendants under the exact AppContainer root. The same PowerShell->curl shape connected to a parent loopback listener unprotected, while protected execution returned curl 28 and no listener connection.
+
+v0.1.2 was preserved/published at App `43aa7feac7e8a15828116bd700b644560714496d` with test SHA `f49f1dbc03477c42a10b9a0361ba55b4c670321102bc8e7cfc8bd0119ad9b502` and unchanged implementation `80163d67a40b7604920f70d25a23d982c73dd368a62f8872c7632ca1e1904790`. Source movement correctly invalidated Gen13 currentness; Gen14 `checkpoint-app-live-0014-43aa7feac7e8` re-earned MATCH/NORMAL/READY after exact parent lineage, four meaningful operations and >10s stability.
+
+First committed D2 v0.1.2 result `5919cdc7af94d0e34d5884366eb3f328762422c03f2346afd332690820863b68` PASSed. Same-commit D0-D3 regression `1a571cae54279aa4b79646b87dfb254701957088d481bc7b0de7c832935055fa` PASSed 4/4 with no intervening edit. App bounded qualification receipt `3d27639447f1d47ac71e892a766444a3e7c8627ff3120b791ecf4470ebeedda6` promotes only this exact protected-process/local-loopback evidence. General external egress containment and `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` remain unearned.
+
+Durable control `f120ff577cd3a3df438d354ae9cd0662d037663f` remains a verified predecessor but predates App `43aa7feac7e8a15828116bd700b644560714496d` + Gen14 + bounded qualification; the next normal checkpoint should carry this new load-bearing state before materially wider security mutation.
+
+
+---
+
+## Cross-arm entry — App protected-process primitive v0.1.2 bounded qualification admitted — 2026-09-06
+Tags: APP, EGRESS, V0.1.2, GEN14, BOUNDED-QUALIFICATION, CONTROL-PENDING
+
+App source advanced through preserved D2 repair lineage:
+- `e9b81750db265a467187c61962ffab3cff98d4fe` — original Attempt-0 preservation;
+- `9bc35af608fef5cb84cd96a9a96967d1a8117ea6` — v0.1.1 descendant harness repair, first protected D2 remained FAIL rc1 and was preserved;
+- `43aa7feac7e8a15828116bd700b644560714496d` — v0.1.2 PowerShell/Process.Start descendant harness qualification.
+
+Independent fresh clone confirmed current App `43aa7fe...` exact/clean with expected two-commit repair lineage. Protected-process implementation remained unchanged SHA `80163d67a40b7604920f70d25a23d982c73dd368a62f8872c7632ca1e1904790`.
+
+Recovery currentness advanced to Gen14 `checkpoint-app-live-0014-43aa7feac7e8`, blob `4efabde670986f65fc3e1736452300b299f79045e5b537ea46425e1dbbbd2136`, evidence SHA `bc4bbddd0addc9be743ca01d7f022b2d2b1228373e1eac7d181937a008a32c50`, VERIFIED/RESUMED/STABLE/LKG/source MATCH/NORMAL. Gen13 is historical/source-stale.
+
+Evidence lineage remains immutable: original first actual D0-D3 `a06c763d85ed605261a7624c384534b31ffd9425b42976c8f63d4d0437829a60` (D0/D1/D3 PASS, D2 FAIL); v0.1.1 first repaired D2 `11fbb751b5f6d35be296bda41b3bb0f4d5d26926b1e66e3a0a629b0dc41edeec` FAIL; first committed v0.1.2 D2 `5919cdc7af94d0e34d5884366eb3f328762422c03f2346afd332690820863b68` PASS; same-commit D0-D3 regression `1a571cae54279aa4b79646b87dfb254701957088d481bc7b0de7c832935055fa` PASS 4/4.
+
+Bounded qualification receipt `notes/maintenance/EGRESS_PROCESS_PRIMITIVE_V0_1_2_BOUNDED_QUALIFICATION_20260906.md` SHA `3d27639447f1d47ac71e892a766444a3e7c8627ff3120b791ecf4470ebeedda6` was read completely and preserved in App Attempt Store as `attempt-egress-process-primitive-v0-1-2-bounded-qualification` with exact readback.
+
+Qualified scope is the exact tested Windows/AppContainer + immediate Job / protected root loopback / positive-control-backed PowerShell descendant loopback / bounded timeout-teardown primitive only. `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` remains unearned; general external egress containment and production integration remain open.
+
+Main cross-arm awareness receipt `notes/maintenance/APP_EGRESS_PRIMITIVE_V0_1_2_AWARENESS_20260906.md` SHA `ab37477b15980ef457d88bc6fe01d37321605b97163e1d0496e6ecba0074af56`. Current evidence requires no Main/Core code change.
+
+Shared Commander advanced to `6b448e7fdf5e1f7fc5b22f833a3fdd81230cdca3c25535b90bae01a32d128b97`; ingress pointer `4eabbe1968461a15d834929fcc503e53c8e6afa224943f49cb380154f76de053`.
+
+Latest durable cross-thread control remains `f120ff577cd3a3df438d354ae9cd0662d037663f` / CHECKPOINT `263d3d9aec93c3f3cc037cf34de3d311bd64e0c91d6e36df5b5a68372c675dc4`; it is now a verified predecessor. Immediate continuity P0 is one next normal control checkpoint carrying App `43aa7fe...` + Gen14 + bounded qualification. Product/security frontier after that is wider bypass pressure + production launch-site integration via new Attempts.
+
+
+---
+
+## Cross-arm correction — v0.1.2 bounded-qualification currentness pointers reconciled — 2026-09-06
+Tags: SEMANTIC-GATE, CURRENTNESS, RES, ATTEMPT-STORE, BOUNDED-QUALIFICATION
+
+Complete initial server admission stream covered 26 artifacts / 3,168 deterministic lines, SHA `cc89f35d3558ade686d43a90a0ea444784ad5d63bc78181e4bd223bfbe6d4f3a`. Source/test/Gen14/D2/regression/qualification semantics were coherent. The read found only currentness-pointer defects: pre-qualification Attempt Store counts 114/114/193, stale RES identities, and one stale Main-awareness hash.
+
+Live readback established current Attempt Store 115 blobs / 115 attempts / 194 events, integrity ok; exact Main awareness receipt `ab37477b15980ef457d88bc6fe01d37321605b97163e1d0496e6ecba0074af56`; repaired current RES identities Main `7b76c8c605fe261bb57acd86b10820e9cebcad69c161cc1f017d5c0c8b200112`, App `d4554a866006185a2fc26f08cb7f17dc0f049afb7e292884c1eea350b5fac23a`.
+
+Active Current/Doctrine/Next/Trace/Live/RES surfaces were reconciled; targeted stale scan returned 0 findings. Correction-only semantic stream: 9 artifacts / 1,794 deterministic lines / SHA `53b64695b390cbb5395f672f3816d7d0f0eabf8474cf229509b4e32b62c55940`, read completely 1,794/1,794 with no blocking findings.
+
+Current shared Commander remains `6b448e7fdf5e1f7fc5b22f833a3fdd81230cdca3c25535b90bae01a32d128b97`; ingress pointer `10ed5d2e46cc952d42339d89017ec1d20bb9ed7c20addb9138d8161a05ad3c18`.
+
+Latest durable control `f120ff577cd3a3df438d354ae9cd0662d037663f` / CHECKPOINT `263d3d9aec93c3f3cc037cf34de3d311bd64e0c91d6e36df5b5a68372c675dc4` remains a verified predecessor. Immediate next action: one normal successor control checkpoint carrying App `43aa7fe...` + Gen14 + bounded qualification before wider bypass/production-integration attempts.
+
+
+---
+
+## Cross-arm entry — concurrent Main Governance Contact v1.0 detached carrier reconciled — 2026-09-06
+Tags: MAIN-CURRENTNESS, GOVERNANCE-CONTACT, DETACHED-RELEASE, PENDING, ZERO-AUTHORITY, CONTROL-RACE
+
+While the App v0.1.2/Gen14 successor control candidate was undergoing final CHECKPOINT semantic read, public Main advanced concurrently `287c0bad0e9b3fef3002b91702e86b410cada4ce` -> `6ea95275cdc409ed222e4720b6b04aadaa17e6bf` by one commit `chore(authority): publish Governance Contact v1.0 detached release`.
+
+Exact delta is `authority/rahl-sop/**` only. `authority/rahl-sop/CURRENT.md` is byte-identical across old/new heads, SHA `b67afd696dff0687343e241fb32a0803eec2f57bd51830a8221e3707939a092a`. Core semantic qualification anchor remains `a7b4511734b1a1e507230308e75b31175aef4c4a`.
+
+Governance Contact carrier identities: ZIP `c4ab4a516e088b6c28b5240d6b3877d2e3fb889a8bbbfd406e8e0c73bebdd1ae`, 47,754 bytes / 18 members / CRC clean; detached receipt `cf2e7bd8e5ed613d3c3a99b7f8645833ddb742ac4939bd1719092b277ef286e6`; qualification `509aba0bb859db49d9311e08acae98d8c7bdfbbb1d41cdd157d1675e70f8a302`; deterministic seal `1e77ffa3c779d6332712814dc4ba02ef9a05513eedab6f2d6935b95a49d9da8a`; target inventory `4f06428c7b57d8f134d2cf9750a80655f11bb9bcdec869445a2542dd45b8f0e9`.
+
+Exact ZIP payload received complete semantic contact: 18 readable members / 2,303 source lines / 2,357 deterministic stream lines / stream SHA `ae5e645ffaab627ae0959bf6780591bd0dae622a91cad265b39c1885b7ac75ff`. Clean extraction `VERIFY_RELEASE.py` PASS with no runtime byproducts.
+
+The package, pending marker, detached receipt, state machine and verifier all preserve the same ceiling: `DETACHED_RELEASED != TARGET_PUBLISHED`, `TARGET_PUBLISHED != REPOSITORY_ADMITTED`, `REPOSITORY_ADMITTED != LOCAL_AUTHORITY_RECONCILED`, `LOCAL_AUTHORITY_RECONCILED != POST_PUBLICATION_READBACK`, `POST_PUBLICATION_READBACK != ACTIVE`, `CARRIER_PRESENT != PROJECT_SPECIFIC_AUTHORITY_REWRITE`. Detached receipt later-state target counts are zero.
+
+Therefore R4.4 + ICF-CS v1.1 remain active universal process authority. Governance Contact v1.0 is recorded only as a published detached/pending carrier with authority effect NONE. No Main Core or App product/security authority moved.
+
+Main awareness receipt `notes/maintenance/GOVERNANCE_CONTACT_V1_0_PENDING_CARRIER_AWARENESS_20260906.md` SHA `90a2f20ce68f8b53fa98de3cca54a2407fbce27dd448e3bd0128f5e6d43e09b0`. App awareness receipt SHA `33930c61a7064ee1db0d5f62e6107e763b4dd738d9b0ade56e64c5fe79cb7ec2`.
+
+Shared Commander advanced to `49972aad08226859105d57a2cc15e1f09d06926263ef8b07beb7ca1526507cf9`; ingress pointer `2457d3047331a02f511b0e5c93a36dde99f2a7c91728cdd97add8beae2ad0255`.
+
+The in-flight control candidate based on `f120ff5...` is stale on its Main branch-head pointer and SHALL NOT be staged until regenerated/re-read with Main `6ea95275...` plus App `43aa7fe...`/Gen14/bounded qualification.
+
+
+---
+
+## Cross-arm correction closure — Governance Contact pending-carrier/Main-currentness semantic gate complete — 2026-09-06
+Tags: GOVERNANCE-CONTACT, MAIN-CURRENTNESS, SEMANTIC-GATE, ZERO-AUTHORITY, CONTROL-REGEN
+
+Main-head/pending-carrier reconciliation semantic stream: 18 artifacts / 1,912 deterministic lines / SHA `5be9ac35add00caffb27233f7dd320f1ba00fdbba698286ab5d24d2fcd2e94fb`, read completely 1,912/1,912. It found bounded representation defects only: stale current Main/Commander/ingress wording and publication-witness/current-head ambiguity.
+
+First correction stream: 6 artifacts / 903 deterministic lines / SHA `106042ca256623bf0e6ee3710dd0792d90699ea70e5d0b7d32ae6a16d3ff1940`, read completely 903/903. It exposed only historical-v1.0 currentness wording and one stale App-Live Main-RES shorthand.
+
+Final wording/currentness reread: Main Doctrine + App Doctrine + App Live, 660 deterministic lines / SHA `babbf75615579e27969599c54f302b65d1b17c07cd336bf1ade6605676974e24`, read completely 660/660 with no blocking findings.
+
+Current verified fixed point:
+- public Main `6ea95275cdc409ed222e4720b6b04aadaa17e6bf`; authority-publication predecessor `287c0bad0e9b3fef3002b91702e86b410cada4ce`; Core anchor `a7b4511734b1a1e507230308e75b31175aef4c4a` unchanged;
+- Governance Contact carrier ZIP `c4ab4a516e088b6c28b5240d6b3877d2e3fb889a8bbbfd406e8e0c73bebdd1ae`, detached receipt `cf2e7bd8e5ed613d3c3a99b7f8645833ddb742ac4939bd1719092b277ef286e6`, payload read stream `ae5e645ffaab627ae0959bf6780591bd0dae622a91cad265b39c1885b7ac75ff`, detached/pending/authority effect NONE; `CURRENT.md` unchanged;
+- shared Commander `49972aad08226859105d57a2cc15e1f09d06926263ef8b07beb7ca1526507cf9`; ingress `2457d3047331a02f511b0e5c93a36dde99f2a7c91728cdd97add8beae2ad0255`;
+- current RES Main `4afa7e609ac550249a7356c05d0b074546b203eabb1ac83607338f0d3fb5fa3a`, App `1f25b5713788c8aad8eac0989c218a8e66c2ed54b86e0999fba84e05559eb7f6`, authority NONE_BY_CONTENT;
+- App `43aa7feac7e8a15828116bd700b644560714496d`, Gen14, protected-process primitive v0.1.2 bounded QUALIFIED only;
+- durable control predecessor remains `f120ff577cd3a3df438d354ae9cd0662d037663f` / CHECKPOINT `263d3d9aec93c3f3cc037cf34de3d311bd64e0c91d6e36df5b5a68372c675dc4`.
+
+Blocking semantic findings after correction: 0.
+
+The existing unstaged control worktree remains based on exact predecessor `f120ff5...` but its pre-concurrency representation is stale. It SHALL be regenerated/re-read before staging. No wider bypass/production-integration attempt begins before successor control fresh-clone verification.

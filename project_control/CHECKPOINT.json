@@ -1,46 +1,47 @@
 {
   "app_observation": {
     "branch": "forge/app-shell-rd",
-    "commit": "e9b81750db265a467187c61962ffab3cff98d4fe",
+    "commit": "43aa7feac7e8a15828116bd700b644560714496d",
+    "fresh_clone_exact": true,
     "local_remote_exact": true,
-    "scope": "PRESERVED_EGRESS_ATTEMPT_0_ONLY__NOT_EXECUTED_NOT_QUALIFIED",
-    "subject": "forge-app: preserve egress enforcement attempt zero",
+    "scope": "D2_V0_1_2_HARNESS_QUALIFICATION_ONLY",
+    "subject": "forge-app: qualify D2 PowerShell descendant harness",
     "working_tree_clean": true
   },
   "app_recovery": {
     "attempt_store": {
-      "attempts": 104,
-      "blobs": 104,
-      "events": 175,
+      "attempts": 115,
+      "blobs": 115,
+      "events": 194,
       "integrity": "ok",
       "journal_mode": "wal",
       "synchronous": "2"
     },
-    "checkpoint_blob_sha256": "0889dd0599355f54fcc055a86002dd6c2ac7131de7b34ec0ef11ddc4511222fb",
-    "checkpoint_id": "checkpoint-app-live-0012-e9b81750db26",
+    "checkpoint_blob_sha256": "4efabde670986f65fc3e1736452300b299f79045e5b537ea46425e1dbbbd2136",
+    "checkpoint_id": "checkpoint-app-live-0014-43aa7feac7e8",
     "early_crash_count": 0,
-    "egress_attempt0_executed": false,
-    "evidence_sha256": "aeff0db397135d8f227f11e17c1b7b939235b6ae11ee2ae97053246d9d605e0a",
-    "generation": 12,
-    "healthy_seconds": 10.218,
+    "evidence_sha256": "bc4bbddd0addc9be743ca01d7f022b2d2b1228373e1eac7d181937a008a32c50",
+    "generation": 14,
     "lkg": true,
-    "meaningful_operations": 4,
-    "parent_checkpoint_id": "checkpoint-app-live-0011-b674dbaaf428",
+    "parent_checkpoint_id": "checkpoint-app-live-0013-9bc35af608fe",
     "quarantined": false,
     "resume_policy": "NORMAL",
     "resumed": true,
     "source_currentness": "MATCH",
-    "source_head": "e9b81750db265a467187c61962ffab3cff98d4fe",
+    "source_head": "43aa7feac7e8a15828116bd700b644560714496d",
     "stable": true,
     "verified": true
   },
   "app_source": {
     "branch": "forge/app-shell-rd",
-    "commit": "e9b81750db265a467187c61962ffab3cff98d4fe",
-    "delta_scope": "preserved OS/process egress Attempt-0 protocol/package/implementation/frozen tests",
-    "egress_attempt0": "PRESERVED_UNEXECUTED_UNQUALIFIED",
+    "commit": "43aa7feac7e8a15828116bd700b644560714496d",
+    "delta_scope": "D2 v0.1.2 repair note + hostile test only; protected-process implementation unchanged",
+    "fresh_clone_exact": true,
     "local_remote_exact": true,
-    "parent": "b674dbaaf428970c486753168e75847a345eb1c2",
+    "parent": "9bc35af608fef5cb84cd96a9a96967d1a8117ea6",
+    "protected_process_sha256": "80163d67a40b7604920f70d25a23d982c73dd368a62f8872c7632ca1e1904790",
+    "repair_note_sha256": "fa76950d39d38f7755233357ee9b25db41462f7d64e093942df447ae875556d5",
+    "test_sha256": "f49f1dbc03477c42a10b9a0361ba55b4c670321102bc8e7cfc8bd0119ad9b502",
     "working_tree_clean": true
   },
   "branch_base_qualified_main": "a7b4511734b1a1e507230308e75b31175aef4c4a",
@@ -93,13 +94,35 @@
       "server_source_sha256": "1910637867cc2759ab46bc8772b429abac28ca0f6d211d8ee7769eba5ee5125d"
     }
   ],
-  "egress_attempt_0": {
-    "first_execution_gate": "AFTER_SUCCESSOR_CONTROL_PUSH_AND_FRESH_CLONE_READBACK",
-    "semantic_stream_lines": 1061,
-    "semantic_stream_sha256": "c76cef0f136727eba61a2a4cf66d826744b44bcd60e78ea647a618b08c5900c0",
-    "source_head": "e9b81750db265a467187c61962ffab3cff98d4fe",
-    "status": "PRESERVED_UNEXECUTED_UNQUALIFIED",
-    "tests": "D0_D1_D2_D3_FROZEN_DO_NOT_EDIT_BEFORE_FIRST_EXECUTION"
+  "egress_protected_process_v0_1_2": {
+    "currentness_receipt_sha256": "565c62570eedf4168258bfc83a5a18ec9843e275de1d91b1b1044aab44754ccc",
+    "d0_d3_regression_sha256": "1a571cae54279aa4b79646b87dfb254701957088d481bc7b0de7c832935055fa",
+    "first_committed_d2_result_sha256": "5919cdc7af94d0e34d5884366eb3f328762422c03f2346afd332690820863b68",
+    "laws": [
+      "LOCAL_LOOPBACK_PROCESS_CONTAINMENT != GENERAL_EXTERNAL_EGRESS_CONTAINMENT",
+      "BOUNDED_PRIMITIVE_QUALIFIED != PRODUCTION_ENFORCEMENT_INTEGRATED",
+      "D0_D3_PASS != NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT"
+    ],
+    "main_awareness_receipt_sha256": "ab37477b15980ef457d88bc6fe01d37321605b97163e1d0496e6ecba0074af56",
+    "protected_process_sha256": "80163d67a40b7604920f70d25a23d982c73dd368a62f8872c7632ca1e1904790",
+    "qualification_receipt_sha256": "3d27639447f1d47ac71e892a766444a3e7c8627ff3120b791ecf4470ebeedda6",
+    "qualified_claims": [
+      "zero-capability AppContainer + immediate Job root on exact tested host",
+      "protected root parent-loopback denial under committed discriminator",
+      "positive-control-backed PowerShell/Process.Start descendant parent-loopback denial",
+      "bounded timeout/Job-close teardown"
+    ],
+    "repair_note_sha256": "fa76950d39d38f7755233357ee9b25db41462f7d64e093942df447ae875556d5",
+    "source_head": "43aa7feac7e8a15828116bd700b644560714496d",
+    "status": "QUALIFIED_BOUNDED_APP_SECURITY_PRIMITIVE",
+    "test_sha256": "f49f1dbc03477c42a10b9a0361ba55b4c670321102bc8e7cfc8bd0119ad9b502",
+    "unearned_claims": [
+      "general Internet/DNS/UDP/QUIC/proxy/helper/plugin/COM/RPC/WSL/breakaway containment",
+      "production launch-site integration",
+      "broker/Gate allow path",
+      "provider safety",
+      "NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT runtime law"
+    ]
   },
   "files": [
     {
@@ -113,9 +136,9 @@
       "sha256": "2fbf22e5e9eb92c8a72972f3d166fb97c24055c0668a37ef594fcbb4236eae02"
     },
     {
-      "bytes": 3607,
+      "bytes": 4982,
       "path": "README.md",
-      "sha256": "81ecbbb5c7f0dee19e1d093839fd02b4c59aab1d7c3828ba4fea447cf82423b2"
+      "sha256": "d71fd005177d9c9b0fc74bf6ecacbd5ac792ac31fa25a8505b122f5bd7b2e96c"
     },
     {
       "bytes": 1801,
@@ -123,29 +146,44 @@
       "sha256": "f5dba1193203a03bbce3779179ce5b6947231dff1ae65f505e5024e3ec5ee207"
     },
     {
-      "bytes": 2769,
+      "bytes": 3473,
       "path": "app/checkpoints/PROJECT_INTENT_CURRENT.md",
-      "sha256": "7fc1675989ec806095fbc250c9d6c6adc213c7af3ca13dc0f1f515fc44f290b3"
+      "sha256": "2457d3047331a02f511b0e5c93a36dde99f2a7c91728cdd97add8beae2ad0255"
     },
     {
-      "bytes": 89125,
+      "bytes": 101718,
       "path": "app/continuity/design_thread_stream.md",
-      "sha256": "a7043dbf8b19188b7ae91c1c7563b3654e54778f86c53a25f72b57c5f5c86cfc"
+      "sha256": "4999964f79754cdef2ee85a4f4449ab3fbaaa021a0f46a4dfdf4f2dd1251d77c"
     },
     {
-      "bytes": 11409,
+      "bytes": 12508,
       "path": "app/continuity/live_shadow.md",
-      "sha256": "5accb1e6abb44431a6e51639c37755a72df6d167bb8955ebe738e47f46fd782d"
+      "sha256": "0a8a3271dcff3ede553f9205d692df75ebbf671e79922a25968d82193ed12d66"
     },
     {
-      "bytes": 11939,
+      "bytes": 13433,
       "path": "app/continuity/research_epistemic_shadow.md",
-      "sha256": "a476342db8d3e6eea323ec157e5e4964eb0f1a009aabcf2867927f56e8c72792"
+      "sha256": "1f25b5713788c8aad8eac0989c218a8e66c2ed54b86e0999fba84e05559eb7f6"
+    },
+    {
+      "bytes": 1782,
+      "path": "app/evidence/egress_d0_d3_v0_1_2_regression_result_20260906.json",
+      "sha256": "ce940634fdaf82312e93e022b5d8dbf68d9a4fd53e812c3064e8ce7c9139bdc9"
+    },
+    {
+      "bytes": 2245,
+      "path": "app/evidence/egress_d2_v0_1_2_first_result_20260906.json",
+      "sha256": "d77f9a08db33a3bb34b4857fe9f195d0ac65f7ea8a8c3eb6beaa9ec28fa0baab"
     },
     {
       "bytes": 3963,
       "path": "app/evidence/live_resume_session_0011.json",
       "sha256": "cf1a0dbb25510a4b07b70757258a9c61ce3a0400846ad72743bb8dbbd920338e"
+    },
+    {
+      "bytes": 1933,
+      "path": "app/evidence/live_resume_session_0014.json",
+      "sha256": "280abcf4d0eed7461bead285144cbb9ceef57fd30cec480284dbafec89fa2744"
     },
     {
       "bytes": 3868,
@@ -158,9 +196,24 @@
       "sha256": "fd6031c7ccfb78928d90782817853c8b3735e20c134720541f78467ebd2e7761"
     },
     {
+      "bytes": 7302,
+      "path": "app/maintenance/EGRESS_PROCESS_PRIMITIVE_V0_1_2_BOUNDED_QUALIFICATION_20260906.md",
+      "sha256": "2168f21a072e5e5c90292d0e984bf9d847c3323888eebc28caba98f592b2e4de"
+    },
+    {
+      "bytes": 3317,
+      "path": "app/maintenance/EGRESS_PROCESS_PRIMITIVE_V0_1_2_CURRENTNESS_20260906.md",
+      "sha256": "91eac69bdb2fb20405f577e6012d048951813036f3679551ed902d563ee06def"
+    },
+    {
       "bytes": 2619,
       "path": "app/maintenance/GEN12_E9B81750_RECOVERY_CURRENTNESS_20260906.md",
       "sha256": "053497de9b63299386f1395e66c2f3939c83fbdb89b8dfb9b443acd325f19f69"
+    },
+    {
+      "bytes": 1903,
+      "path": "app/maintenance/GOVERNANCE_CONTACT_V1_0_PENDING_CARRIER_AWARENESS_20260906.md",
+      "sha256": "9d39a6f6302a2abbb37acbfe81a97b92937a629d9f2b2e4e10675a690d836546"
     },
     {
       "bytes": 2463,
@@ -248,9 +301,9 @@
       "sha256": "f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63"
     },
     {
-      "bytes": 9005,
+      "bytes": 12363,
       "path": "app/state/current.md",
-      "sha256": "626b87de8359e7761dff9d54cb34ea3c947d3a536e4b48315b2987f307a7832a"
+      "sha256": "57e4422d4f4db1d8ddeb23f9e2be9b91bfed304cd128cd4d1a8a0667af81f5b7"
     },
     {
       "bytes": 4215,
@@ -278,14 +331,14 @@
       "sha256": "62be845da364ae81f59b6320c9b34b136236bf5be8aa8036018da48efcb754f4"
     },
     {
-      "bytes": 11254,
+      "bytes": 13232,
       "path": "app/state/doctrine/PROJECT_COMMANDERS_INTENT_CURRENT.md",
-      "sha256": "95ff8a58543c8aa2a2f20eb98cca47a30c3b64a5e8823c5f84edd3ad25cc9761"
+      "sha256": "49972aad08226859105d57a2cc15e1f09d06926263ef8b07beb7ca1526507cf9"
     },
     {
-      "bytes": 12773,
+      "bytes": 15811,
       "path": "app/state/doctrine_snapshot.md",
-      "sha256": "6631e592cf23cb605856f2005f1cb781ba86957806c68334016803f2fb694845"
+      "sha256": "45424b5d08ae2d5fd3130c8bd4692bce45e3109adba9189bc494d45155c0457c"
     },
     {
       "bytes": 2879,
@@ -293,39 +346,44 @@
       "sha256": "b1d785fae561756b05daa3c268e0a0e13a913c0c529d8b0ba105a84e817e1b2b"
     },
     {
-      "bytes": 8958,
+      "bytes": 9363,
       "path": "app/state/next_steps.md",
-      "sha256": "076e745e0947e47e96ef54884b35be9a4125ef83a434683668323745878ecd89"
+      "sha256": "4df5ceefb8aa31d6482da8c1a379de390fc2c00b4ccd54ee656d141cccfab449"
     },
     {
-      "bytes": 9646,
+      "bytes": 13131,
       "path": "app/state/revisit_ledger.md",
-      "sha256": "a2439f2d0a17b60482fd36dc9c3f2073e8ba74ceffdc4d534329243ac2445deb"
+      "sha256": "43898ac59685f26a6c4842517ee3db78ec5e7b359286c63d793cf24da9718fec"
     },
     {
-      "bytes": 12744,
+      "bytes": 18618,
       "path": "app/state/trace_matrix.md",
-      "sha256": "5f5b837a1a2f57340178e94aa8e2c49f25f359af01a2c065f97fdb8830e7956b"
+      "sha256": "a728c75ab1e6656f172c3d759da78cf16e0207cd120d22b414d94ae968cc68be"
     },
     {
-      "bytes": 2769,
+      "bytes": 3473,
       "path": "main/checkpoints/PROJECT_INTENT_CURRENT.md",
-      "sha256": "7fc1675989ec806095fbc250c9d6c6adc213c7af3ca13dc0f1f515fc44f290b3"
+      "sha256": "2457d3047331a02f511b0e5c93a36dde99f2a7c91728cdd97add8beae2ad0255"
     },
     {
-      "bytes": 116754,
+      "bytes": 131423,
       "path": "main/continuity/design_thread_stream.md",
-      "sha256": "942d0c7581c13e37b4457078fabad10cc5ad380cd6ed21bf98f8f4b4951ac400"
+      "sha256": "6a286866140fce582172d2f9b58854ed7555b4baa06702e996ac3d18a1edf256"
     },
     {
-      "bytes": 11281,
+      "bytes": 13011,
       "path": "main/continuity/live_shadow.md",
-      "sha256": "f38a47cc6cf9cdd85950aaeceb82016c27da23743f9c9b6d9f709ed409d4e76a"
+      "sha256": "3c4c942adeebd56e11a9ec38cfcad1288e41a0671f038943ace7cdb902ee4dbc"
     },
     {
-      "bytes": 31102,
+      "bytes": 32789,
       "path": "main/continuity/research_epistemic_shadow.md",
-      "sha256": "c963e4fd011dd432e8255b793aa0f2623d7d4548f3e3eb34b4f91aa34815fbbc"
+      "sha256": "a9035c991e02da6081f245a83129be5291b6f8c3a9689079dba6cb36d3c411df"
+    },
+    {
+      "bytes": 3071,
+      "path": "main/maintenance/APP_EGRESS_PRIMITIVE_V0_1_2_AWARENESS_20260906.md",
+      "sha256": "07affc4526c76c27de77c1e61ba938d71410cff55c223b3b770e1a1fd15db137"
     },
     {
       "bytes": 3271,
@@ -346,6 +404,11 @@
       "bytes": 5403,
       "path": "main/maintenance/GIT_CROSS_THREAD_CONTROL_CHECKPOINT_20260903.md",
       "sha256": "4cf9c592db4b9669cf0b01f12f34ecddc98043bcba75659a9edae60c56a3e8c0"
+    },
+    {
+      "bytes": 2537,
+      "path": "main/maintenance/GOVERNANCE_CONTACT_V1_0_PENDING_CARRIER_AWARENESS_20260906.md",
+      "sha256": "3a0b2823a42d7af37b1af840079dd40997f45afcdd23f571e844a1a3bf5b601b"
     },
     {
       "bytes": 3968,
@@ -438,9 +501,9 @@
       "sha256": "f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63"
     },
     {
-      "bytes": 9218,
+      "bytes": 12712,
       "path": "main/state/current.md",
-      "sha256": "1c94d31f02f6ed5a292c17c1a01e74b6b47d33d81b66cd1e6ce12d9b1dd22bf3"
+      "sha256": "75ea97c09c2399a6f6b3ce872731d4b7dd545a7cfa51d594ed82d9481dc191ad"
     },
     {
       "bytes": 4215,
@@ -468,29 +531,29 @@
       "sha256": "62be845da364ae81f59b6320c9b34b136236bf5be8aa8036018da48efcb754f4"
     },
     {
-      "bytes": 11254,
+      "bytes": 13232,
       "path": "main/state/doctrine/PROJECT_COMMANDERS_INTENT_CURRENT.md",
-      "sha256": "95ff8a58543c8aa2a2f20eb98cca47a30c3b64a5e8823c5f84edd3ad25cc9761"
+      "sha256": "49972aad08226859105d57a2cc15e1f09d06926263ef8b07beb7ca1526507cf9"
     },
     {
-      "bytes": 26688,
+      "bytes": 31177,
       "path": "main/state/doctrine_snapshot.md",
-      "sha256": "9dc451cd8496fca4c08c47a6ebde21e88fd5ef9dde73c35011dcc7401ec0e8ae"
+      "sha256": "fe2dfa379419420cfd4aa90fa1b03f11c6b54cd5ed170192bcdb76e3f74dbaaf"
     },
     {
-      "bytes": 8236,
+      "bytes": 8439,
       "path": "main/state/next_steps.md",
-      "sha256": "4344a97ac1443abd0408e91dfec3de411d5647a61341d3629d0c59a8f58058c1"
+      "sha256": "769718b14ab9e6a224ba8b07c4937e54d1fae8e555155f5566276c7be04decaa"
     },
     {
-      "bytes": 18380,
+      "bytes": 21613,
       "path": "main/state/revisit_ledger.md",
-      "sha256": "beac74c24cd3f7f42257a7c2bb17a6e3e703897e10d9c09f952959a9de07ab5e"
+      "sha256": "d33b98ddb2f0ad03603a53d1f439900ca4065b7aad245486e81a85a88c157c50"
     },
     {
-      "bytes": 32262,
+      "bytes": 37768,
       "path": "main/state/trace_matrix.md",
-      "sha256": "0456edb2a5832d72299c16f609c63cdc6fd17d1c4922f074ceca4095f186d2ae"
+      "sha256": "379fe8036420edbd38e8f36974fc36b7c036e99dda6fbf8ab614bea021b30ab6"
     },
     {
       "bytes": 2383,
@@ -678,22 +741,23 @@
       "sha256": "f4177f651e00534beb5c452081c0fc3937db79fe5027b16ad19d47f1afc76639"
     }
   ],
-  "generated_utc": "2026-09-06T21:16:23Z",
+  "generated_utc": "2026-09-07T02:49:39Z",
   "git_copy_policy": {
     "binary_attribute_repair_20260904": "REPAIRED_PREEXISTING_ALL_TEXT_EOL_RULE_BEFORE_CANDIDATE_PUBLICATION_CHECKPOINT",
     "binary_carriers": "*.zip -text; exact bytes required",
     "canonical_process": "R4.4_EXACT_BINARY_CARRIER_MAIN_AND_APP",
     "checkpoint_text_line_endings": "LF",
     "credential_scan": "PASS_NO_EMAIL_TOKEN_PRIVATE_KEY_OR_ACTIONABLE_MACHINE_PATH_FINDINGS",
-    "current_app_source": "e9b81750db265a467187c61962ffab3cff98d4fe",
+    "current_app_source": "43aa7feac7e8a15828116bd700b644560714496d",
     "current_authority": "R4.4_PLUS_ICF_CS_V1_1",
-    "current_generation_semantic_gate": "PATH_REDACTION_CORRECTION_REREAD_AND_FINAL_CHECKPOINT_EXTERNAL_GATE_REQUIRED",
-    "current_ingress_instance_sha256": "95ff8a58543c8aa2a2f20eb98cca47a30c3b64a5e8823c5f84edd3ad25cc9761",
-    "current_ingress_pointer_sha256": "7fc1675989ec806095fbc250c9d6c6adc213c7af3ca13dc0f1f515fc44f290b3",
-    "current_recovery_checkpoint": "checkpoint-app-live-0012-e9b81750db26",
+    "current_generation_semantic_gate": "INITIAL_PUBLICATION_READ_COMPLETE__FINAL_CORRECTION_REREAD_REQUIRED",
+    "current_ingress_instance_sha256": "49972aad08226859105d57a2cc15e1f09d06926263ef8b07beb7ca1526507cf9",
+    "current_ingress_pointer_sha256": "2457d3047331a02f511b0e5c93a36dde99f2a7c91728cdd97add8beae2ad0255",
+    "current_main_head": "6ea95275cdc409ed222e4720b6b04aadaa17e6bf",
+    "current_recovery_checkpoint": "checkpoint-app-live-0014-43aa7feac7e8",
     "detached_receipt_sha256": "418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c",
     "dts_machine_local_paths_redacted": true,
-    "initial_generation_changed_readable_stream_sha256": "ddbc4b5b4f3d0e22f8f9cccda3fec8c5a0aa6562b5722746f2e01879c0ff355b",
+    "initial_generation_changed_readable_stream_sha256": "87735779f5051564c99bfc98c0ce30de3f17cbc12a20b4e6396941978f50aef5",
     "previous_control_generation_semantic_gate": {
       "control_tip": "a86c2e2200b5b052cc95fe3834dcfed0bc5a18ab",
       "full_tree_read": "PASS_69_OF_69_READABLE_FILES",
@@ -801,12 +865,45 @@
     },
     "publication_reconciliation": "CANONICAL_RELEASE_BYTES_EXACT; TEXT_DERIVATIVES_TRACK_SERVER_SOURCE_AND_GIT_COPY_HASHES",
     "r4_4_carrier_sha256": "04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc",
-    "semantic_gate_changed_readables": "V1_1_GEN12_FINAL_PARTITION_11_FRESH_30_EXACT_READ_REUSE_2_EXACT_BINARY",
+    "semantic_gate_changed_readables": "12_FRESH_TRANSFORMED_OR_NEW__EXACT_SERVER_READ_REUSE_AS_RECORDED__HISTORICAL_DERIVATIVE_TEMPORAL_ANNOTATION",
     "semantic_gate_exact_binary_reuse": "PASS_R4_4_CARRIER_SHA_EXACT_MAIN_AND_APP",
     "server_full_fidelity_preserved": true,
     "server_source_hashes_preserved_separately": true,
     "sop_machine_paths_and_test_fixture_literal_redacted": true,
     "v1_1_payload_sha256": "f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63"
+  },
+  "governance_contact_v1_0_pending_carrier": {
+    "app_awareness_receipt_sha256": "33930c61a7064ee1db0d5f62e6107e763b4dd738d9b0ade56e64c5fe79cb7ec2",
+    "authority_effect": "NONE_PENDING_TARGET_PUBLICATION_ADMISSION_RECONCILIATION_READBACK",
+    "clean_extraction_verifier": "PASS_GOVERNANCE_CONTACT_RELEASE_PACKAGE_QUALIFIED_INTERNAL",
+    "current_md_sha256": "b67afd696dff0687343e241fb32a0803eec2f57bd51830a8221e3707939a092a",
+    "detached_receipt_sha256": "cf2e7bd8e5ed613d3c3a99b7f8645833ddb742ac4939bd1719092b277ef286e6",
+    "deterministic_seal_sha256": "1e77ffa3c779d6332712814dc4ba02ef9a05513eedab6f2d6935b95a49d9da8a",
+    "laws": [
+      "DETACHED_RELEASED != TARGET_PUBLISHED",
+      "TARGET_PUBLISHED != REPOSITORY_ADMITTED",
+      "REPOSITORY_ADMITTED != LOCAL_AUTHORITY_RECONCILED",
+      "LOCAL_AUTHORITY_RECONCILED != POST_PUBLICATION_READBACK",
+      "POST_PUBLICATION_READBACK != ACTIVE",
+      "CARRIER_PRESENT != PROJECT_SPECIFIC_AUTHORITY_REWRITE"
+    ],
+    "main_awareness_receipt_sha256": "90a2f20ce68f8b53fa98de3cca54a2407fbce27dd448e3bd0128f5e6d43e09b0",
+    "main_head": "6ea95275cdc409ed222e4720b6b04aadaa17e6bf",
+    "main_predecessor": "287c0bad0e9b3fef3002b91702e86b410cada4ce",
+    "package_qualification_receipt_sha256": "509aba0bb859db49d9311e08acae98d8c7bdfbbb1d41cdd157d1675e70f8a302",
+    "payload_semantic_stream_lines": 2357,
+    "payload_semantic_stream_sha256": "ae5e645ffaab627ae0959bf6780591bd0dae622a91cad265b39c1885b7ac75ff",
+    "status": "PUBLISHED_DETACHED_CARRIER__NOT_ACTIVE__AUTHORITY_EFFECT_NONE",
+    "target_inventory_sha256": "4f06428c7b57d8f134d2cf9750a80655f11bb9bcdec869445a2542dd45b8f0e9",
+    "target_lifecycle_counts": {
+      "locally_reconciled": 0,
+      "post_publication_readback": 0,
+      "published": 0,
+      "repository_admitted": 0
+    },
+    "zip_bytes": 47754,
+    "zip_members": 18,
+    "zip_sha256": "c4ab4a516e088b6c28b5240d6b3877d2e3fb889a8bbbfd406e8e0c73bebdd1ae"
   },
   "icf_cs": {
     "authority_ceiling": "CONTINUITY_REHYDRATION_CURRENT_INGRESS_EVALUATION_DATA_HYGIENE_ONLY",
@@ -815,192 +912,81 @@
     "core_law": "DIRECTION != CONSTRAINTS != FRONTIER != HISTORY",
     "detached_receipt_sha256": "418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c",
     "epoch_profile_sha256": "733b799815abdb4b1ff735635f7928953c12944ece579365b5aae138d90f90f8",
-    "ingress_pointer_sha256": "7fc1675989ec806095fbc250c9d6c6adc213c7af3ca13dc0f1f515fc44f290b3",
+    "ingress_pointer_sha256": "2457d3047331a02f511b0e5c93a36dde99f2a7c91728cdd97add8beae2ad0255",
     "machine_contract_sha256": "d67726aeb402c280770eeaf314068ed7a1330beb21167d9d6d9b7c4674425bb0",
     "payload_sha256": "f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63",
-    "project_instance_sha256": "95ff8a58543c8aa2a2f20eb98cca47a30c3b64a5e8823c5f84edd3ad25cc9761",
+    "project_instance_sha256": "49972aad08226859105d57a2cc15e1f09d06926263ef8b07beb7ca1526507cf9",
     "publication_semantic_admission": {
-      "blocking_findings": 0,
-      "final_partition": {
-        "exact_sealed_binary_reuse": 2,
-        "exact_server_read_reuse": 30,
-        "fresh_transformed_or_new": 11
-      },
-      "initial_fresh_artifacts": 10,
-      "initial_fresh_stream_lines": 4253,
-      "initial_fresh_stream_sha256": "ddbc4b5b4f3d0e22f8f9cccda3fec8c5a0aa6562b5722746f2e01879c0ff355b",
-      "status": "PATH_REDACTION_CORRECTION_REREAD_AND_FINAL_CHECKPOINT_EXTERNAL_GATE_REQUIRED"
+      "blocking_findings_after_repair": 0,
+      "fresh_stream_lines": 4869,
+      "fresh_stream_sha256": "87735779f5051564c99bfc98c0ce30de3f17cbc12a20b4e6396941978f50aef5",
+      "fresh_transformed_or_new": 12,
+      "status": "INITIAL_PUBLICATION_READ_COMPLETE__FINAL_CORRECTION_REREAD_REQUIRED"
     },
     "qualification_contract_sha256": "7d20ed708adb4f7ee147b56da41deac77146b56fc85bd769be3a6d240b3e2029",
     "standard_sha256": "62be845da364ae81f59b6320c9b34b136236bf5be8aa8036018da48efcb754f4",
-    "status": "CURRENT_BINDING_ADDITIVE_CONTINUITY_DOCTRINE__PUBLICATION_ADMITTED_PENDING_FINAL_CHECKPOINT_REREAD",
+    "status": "CURRENT_BINDING_ADDITIVE_CONTINUITY_DOCTRINE__SERVER_FIXED_POINT_ADMITTED__CONTROL_PUBLICATION_PENDING",
     "v1_0_demotion_receipt_sha256": "3225fd952d704d31047ffdf01bffbc0968e4428357342ccb8ce5094ae8385057",
     "v1_0_status": "HISTORICAL_DEMOTED",
     "version": "1.1"
   },
   "linear_human_semantic_gate": {
-    "active_authority": "RAHL Engineering Canonical SOP R4.4 + ICF-CS v1.1 additive continuity/process doctrine",
-    "blocking_findings_after_correction": 0,
+    "active_authority": "RAHL Engineering Canonical SOP R4.4 + ICF-CS v1.1; Governance Contact v1.0 carrier pending/zero-authority",
     "blocking_findings_after_server_correction": 0,
-    "control_changed_readable_artifacts": {
-      "admission_strategy": "INITIAL_10_FRESH_4253_LINE_READ_PLUS_EXACT_UNCHANGED_REUSE_PLUS_COMPLETE_PATH_REDACTION_CORRECTION_REREAD_AND_FINAL_CHECKPOINT_EXTERNAL_GATE",
-      "exact_sealed_binary": 2,
-      "exact_server_read_reuse": 30,
-      "fresh_transformed_or_new": 11
-    },
     "control_publication_initial_read": {
-      "fresh_artifacts": 10,
-      "sha256": "ddbc4b5b4f3d0e22f8f9cccda3fec8c5a0aa6562b5722746f2e01879c0ff355b",
-      "status": "COMPLETE_FOUND_CHECKPOINT_AND_RES_POINTER_FINDINGS",
-      "stream_lines": 4253
+      "fresh_artifacts": 12,
+      "sha256": "87735779f5051564c99bfc98c0ce30de3f17cbc12a20b4e6396941978f50aef5",
+      "status": "COMPLETE_FOUND_ONE_HISTORICAL_TEMPORAL_SCOPE_DEFECT",
+      "stream_lines": 4869
     },
-    "control_publication_read": "INITIAL_COMPLETE_FINDINGS_REPAIRED__README_AND_CHECKPOINT_FINAL_REREAD_REQUIRED",
-    "correction_reread": {
-      "checkpoint_pre_final_status_complete_read": true,
-      "checkpoint_pre_final_status_sha256": "24581d3b391d6dd52794e7441b55281af9748329e7d1e85579cfc9214ca7ff05",
-      "main_revisit_sha256": "f4b7daa0ccfb5d169f2ae0d24679a257371f64b9b27e683c0a39f43a3fd492fe",
-      "status": "PASS_COMPLETE"
+    "control_publication_read": "INITIAL_COMPLETE_FINDING_REPAIRED__HISTORICAL_DERIVATIVE_AND_FINAL_CHECKPOINT_EXTERNAL_REREAD_REQUIRED",
+    "dts_closure_tails": "PASS_COMPLETE",
+    "final_wording_read": {
+      "artifacts": 3,
+      "sha256": "babbf75615579e27969599c54f302b65d1b17c07cd336bf1ade6605676974e24",
+      "status": "PASS_COMPLETE",
+      "stream_lines": 660
     },
-    "current_res_read": {
-      "app": {
-        "sha256": "a476342db8d3e6eea323ec157e5e4964eb0f1a009aabcf2867927f56e8c72792",
-        "status": "PASS_EXACT_UNCHANGED_REUSE_FROM_PREVIOUS_COMPLETE_READ"
-      },
-      "main": {
-        "lines": 415,
-        "sha256": "c963e4fd011dd432e8255b793aa0f2623d7d4548f3e3eb34b4f91aa34815fbbc",
-        "status": "PASS_COMPLETE_CURRENT_READ"
-      }
+    "governance_contact_payload_read": {
+      "clean_verifier": "PASS",
+      "readable_members": 18,
+      "sha256": "ae5e645ffaab627ae0959bf6780591bd0dae622a91cad265b39c1885b7ac75ff",
+      "status": "PASS_COMPLETE",
+      "stream_lines": 2357
     },
-    "machine_path_redaction_reread": {
-      "app_evidence_complete_read": true,
-      "app_evidence_git_sha256": "cf1a0dbb25510a4b07b70757258a9c61ce3a0400846ad72743bb8dbbd920338e",
-      "checkpoint_complete_read": true,
-      "checkpoint_pre_final_scan_sha256": "3d00b980ac023ffea72257a31cd02a4b5fe6e575243f8ffccb877b7cd6d2d8d1",
-      "status": "PASS_COMPLETE"
+    "main_head_correction_read": {
+      "artifacts": 6,
+      "sha256": "106042ca256623bf0e6ee3710dd0792d90699ea70e5d0b7d32ae6a16d3ff1940",
+      "status": "COMPLETE_FINDINGS_REPAIRED",
+      "stream_lines": 903
     },
-    "path_redaction_correction_gate": {
-      "artifacts": [
-        "app/continuity/design_thread_stream.md",
-        "app/state/live_resume_session_0012.json",
-        "main/continuity/design_thread_stream.md",
-        "CHECKPOINT.json"
-      ],
-      "status": "REQUIRED_EXTERNAL_PRECOMMIT_COMPLETE_REREAD"
+    "main_head_reconciliation_read": {
+      "artifacts": 18,
+      "sha256": "5be9ac35add00caffb27233f7dd320f1ba00fdbba698286ab5d24d2fcd2e94fb",
+      "status": "COMPLETE_FINDINGS_REPAIRED",
+      "stream_lines": 1912
     },
-    "pre_path_redaction_control_changed_readable_artifacts": {
-      "exact_sealed_binary": 2,
-      "exact_server_read_reuse": 31,
-      "fresh_stream_lines": 4253,
-      "fresh_stream_sha256": "ddbc4b5b4f3d0e22f8f9cccda3fec8c5a0aa6562b5722746f2e01879c0ff355b",
-      "fresh_transformed_or_new": 10
-    },
-    "previous_bilateral_res_complete_read": {
-      "lines": 628,
-      "sha256": "8b53d697d9a9afe1d1188fce3a6878969fc676b67158410b2dfe6af54a7ba388",
-      "status": "PASS"
-    },
-    "previous_r4_4_gen11_control_changed_readable_artifacts": {
-      "exact_sealed_binary": 2,
-      "exact_server_read_reuse": 13,
-      "fresh_stream_lines": 3865,
-      "fresh_stream_sha256": "c2593a7748e3e9d6a3d48314d180dfebff9c376f7717de0dc28a28cb96d4c2c1",
-      "fresh_transformed_or_new": 12
-    },
-    "project_correction_read": {
-      "artifacts": 16,
-      "lines": 1621,
-      "sha256": "db64aa422dfd1d878e3b8630be9ff12ae7a5118cb1727e2367834f3d0152f1c3",
-      "status": "COMPLETE_FINDINGS_REPAIRED"
-    },
-    "project_fixed_point_evidence": {
-      "app_receipt": "app/maintenance/RAHL_R4_4_CANONICAL_SOP_ADOPTION_20260904.md",
-      "blocking_semantic_findings": 0,
-      "final_three_artifact_reread": "PASS_COMPLETE",
-      "main_receipt": "main/maintenance/RAHL_R4_4_CANONICAL_SOP_ADOPTION_20260904.md",
-      "project_adoption_correction_stream": {
-        "artifacts": 11,
-        "lines": 1599,
-        "sha256": "afc7ec51a9fb349e41df9c187a16e5e467953f1a3fa292d47932bd3898b435b9",
-        "status": "COMPLETE_FOUND_THREE_RESIDUAL_DEFECTS"
-      },
-      "project_adoption_initial_semantic_stream": {
-        "artifacts": 18,
-        "lines": 3905,
-        "sha256": "cc8114cf4c18f90710df4027dba82d8e86213f3c5b20597efabc14e897cd9b15",
-        "status": "COMPLETE_FOUND_STALE_LABELS"
-      }
-    },
-    "project_initial_read": {
-      "artifacts": 21,
-      "lines": 2016,
-      "sha256": "6f82c71476560601a02da7ca1c2bd7056882b6bd87a798b4c405dd7001b70ce2",
-      "status": "COMPLETE_FINDINGS_REPAIRED"
-    },
-    "rule": "If an artifact can be meaningfully read, it SHALL receive a complete linear semantic read before it is promoted, sealed, published, admitted, or treated as load-bearing. Automated checks may precede and support the gate; they SHALL NOT substitute for it.",
     "semantic_findings": [
       {
-        "artifact": "CHECKPOINT.json",
-        "finding": "doctrine_addenda semantic-gate active authority still named R4.2 after R4.4 adoption",
-        "id": "checkpoint-active-gate-authority-r4-2",
-        "resolution": "active_authority and authority classification advanced to R4.4 while addendum text/provenance remain historical"
-      },
-      {
-        "artifact": "CHECKPOINT.json",
-        "finding": "git_copy_policy current-generation semantic-read/reuse fields still contained R4.2 generation evidence",
-        "id": "checkpoint-current-generation-evidence-r4-2",
-        "resolution": "R4.2 evidence moved under explicit previous_r4_2_generation_semantic_read_evidence; current R4.4 publication evidence recorded separately"
-      },
-      {
-        "artifact": "main/state/revisit_ledger.md",
-        "finding": "pre-gen11 recovery-currentness row remained ACTIVE alongside later RESOLVED gen11 row",
-        "id": "main-revisit-pre-gen11-active-row",
-        "resolution": "older row explicitly marked HISTORICAL / SUPERSEDED BY GEN11 RESOLUTION ROW"
-      },
-      {
-        "artifact": "app/evidence/live_resume_session_0011.json",
-        "finding": "Git control derivative contained an absolute local Attempt Store DB path although server evidence was valid",
-        "id": "gen11-evidence-machine-local-db-path",
-        "resolution": "redacted only the Git derivative; exact server evidence SHA remains separately recorded"
-      },
-      {
-        "artifact": "CHECKPOINT.json",
-        "finding": "top-level app_observation still named predecessor b674dba as current App after e9b81750 source advancement",
-        "id": "v1_1-checkpoint-stale-app-observation",
-        "resolution": "preserved prior object under previous_app_observation and bound app_observation to e9b81750 preserved Attempt-0 source"
-      },
-      {
-        "artifact": "CHECKPOINT.json",
-        "finding": "previous R4.4/gen11 publication evidence remained under current_r4_4_generation_semantic_read_evidence",
-        "id": "v1_1-checkpoint-old-r4_4-gen11-evidence-current-key",
-        "resolution": "moved exact evidence under previous_r4_4_gen11_generation_semantic_read_evidence"
-      },
-      {
-        "artifact": "CHECKPOINT.json",
-        "finding": "control_changed_readable_artifacts retained previous 12/13/2 R4.4-gen11 publication partition",
-        "id": "v1_1-checkpoint-old-publication-partition-current",
-        "resolution": "preserved old partition under previous_r4_4_gen11_control_changed_readable_artifacts and bound current v1.1/gen12 partition 10 fresh / 31 exact-read reuse / 2 exact binaries / 4253-line stream"
-      },
-      {
-        "artifact": "README.md + CHECKPOINT.json",
-        "finding": "Main RES advanced concurrently from aad59b85... to c963e4fd... after earlier bilateral RES read; candidate detailed source record had current bytes but README/high-level RES pointer remained stale",
-        "id": "v1_1-main-res-concurrent-currentness-advance",
-        "resolution": "fresh complete 415-line current Main RES read; README/high-level CHECKPOINT pointer advanced to c963e4fd; prior 628-line bilateral read retained explicitly as previous evidence"
-      },
-      {
-        "artifact": "App/Main DTS Git derivatives + App Gen12 evidence Git derivative",
-        "finding": "full candidate scan found actionable machine-local Windows paths in three current-generation derivatives; one additional https scanner false positive was non-actionable",
-        "id": "v1_1-current-generation-machine-local-paths",
-        "resolution": "redacted Git derivatives only; exact server-source identities retained separately; final partition advanced to 11 fresh / 30 exact-read reuse / 2 exact binaries"
+        "artifact": "main/maintenance/APP_EGRESS_PRIMITIVE_V0_1_2_AWARENESS_20260906.md",
+        "finding": "historical receipt body says public Main remains 287c0bad...; accurate at creation but current-looking when copied into newer control snapshot",
+        "id": "gen14-main-egress-awareness-historical-main-head-wording",
+        "resolution": "preserved server-source receipt unchanged; annotated Git derivative with explicit as-of-creation temporal scope superseded by current Main 6ea95275..."
       }
     ],
-    "status": "NONCHECKPOINT_PUBLICATION_READ_PASS__PATH_REDACTION_CORRECTION_AND_FINAL_CHECKPOINT_EXTERNAL_PRECOMMIT_GATE_REQUIRED",
-    "v1_1_payload_semantic_read": {
-      "readable_members": 16,
-      "sha256": "ad1dab3444274a23c8d63a1edb3857b50f90c98efd0115d3c7c488c06fac9ec6",
-      "status": "PASS",
-      "stream_lines": 1050
-    }
+    "server_app_gen14_correction_read": {
+      "artifacts": 9,
+      "sha256": "53b64695b390cbb5395f672f3816d7d0f0eabf8474cf229509b4e32b62c55940",
+      "status": "PASS_COMPLETE",
+      "stream_lines": 1794
+    },
+    "server_app_gen14_initial_read": {
+      "artifacts": 26,
+      "sha256": "cc89f35d3558ade686d43a90a0ea444784ad5d63bc78181e4bd223bfbe6d4f3a",
+      "status": "COMPLETE_FINDINGS_REPAIRED",
+      "stream_lines": 3168
+    },
+    "status": "SERVER_AND_NONCHECKPOINT_PUBLICATION_PASS__FINAL_CORRECTION_REREAD_REQUIRED"
   },
   "main_candidate": {
     "branch": "main",
@@ -1011,10 +997,13 @@
     "status": "QUALIFIED_PUBLIC_MAIN"
   },
   "main_source": {
+    "authority_publication_predecessor": "287c0bad0e9b3fef3002b91702e86b410cada4ce",
     "branch": "main",
-    "branch_head": "287c0bad0e9b3fef3002b91702e86b410cada4ce",
+    "branch_head": "6ea95275cdc409ed222e4720b6b04aadaa17e6bf",
     "core_qualification_anchor": "a7b4511734b1a1e507230308e75b31175aef4c4a",
     "core_qualification_retained": true,
+    "current_md_sha256": "b67afd696dff0687343e241fb32a0803eec2f57bd51830a8221e3707939a092a",
+    "governance_contact_carrier_status": "PUBLISHED_DETACHED_PENDING_NOT_ACTIVE",
     "head_delta_scope": "authority/rahl-sop/** only",
     "law": "MAIN_BRANCH_HEAD != CORE_QUALIFICATION_ANCHOR"
   },
@@ -1024,6 +1013,33 @@
     "local_remote_exact": true,
     "subject": "app: forward-sync qualified semantic-field core",
     "working_tree_clean": true
+  },
+  "previous_app_recovery_current": {
+    "attempt_store": {
+      "attempts": 104,
+      "blobs": 104,
+      "events": 175,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "synchronous": "2"
+    },
+    "checkpoint_blob_sha256": "0889dd0599355f54fcc055a86002dd6c2ac7131de7b34ec0ef11ddc4511222fb",
+    "checkpoint_id": "checkpoint-app-live-0012-e9b81750db26",
+    "early_crash_count": 0,
+    "egress_attempt0_executed": false,
+    "evidence_sha256": "aeff0db397135d8f227f11e17c1b7b939235b6ae11ee2ae97053246d9d605e0a",
+    "generation": 12,
+    "healthy_seconds": 10.218,
+    "lkg": true,
+    "meaningful_operations": 4,
+    "parent_checkpoint_id": "checkpoint-app-live-0011-b674dbaaf428",
+    "quarantined": false,
+    "resume_policy": "NORMAL",
+    "resumed": true,
+    "source_currentness": "MATCH",
+    "source_head": "e9b81750db265a467187c61962ffab3cff98d4fe",
+    "stable": true,
+    "verified": true
   },
   "previous_app_recovery_generation": {
     "checkpoint_blob_sha256": "0a644a5040256482d79eb5dba23c73afb6586f95223946f1c283e6d72f22c821",
@@ -1051,6 +1067,23 @@
       "events": 169
     },
     "verified": true
+  },
+  "previous_app_source_generation": {
+    "branch": "forge/app-shell-rd",
+    "commit": "e9b81750db265a467187c61962ffab3cff98d4fe",
+    "delta_scope": "preserved OS/process egress Attempt-0 protocol/package/implementation/frozen tests",
+    "egress_attempt0": "PRESERVED_UNEXECUTED_UNQUALIFIED",
+    "local_remote_exact": true,
+    "parent": "b674dbaaf428970c486753168e75847a345eb1c2",
+    "working_tree_clean": true
+  },
+  "previous_egress_attempt_0_generation": {
+    "first_execution_gate": "AFTER_SUCCESSOR_CONTROL_PUSH_AND_FRESH_CLONE_READBACK",
+    "semantic_stream_lines": 1061,
+    "semantic_stream_sha256": "c76cef0f136727eba61a2a4cf66d826744b44bcd60e78ea647a618b08c5900c0",
+    "source_head": "e9b81750db265a467187c61962ffab3cff98d4fe",
+    "status": "PRESERVED_UNEXECUTED_UNQUALIFIED",
+    "tests": "D0_D1_D2_D3_FROZEN_DO_NOT_EDIT_BEFORE_FIRST_EXECUTION"
   },
   "previous_icf_cs_generation": {
     "adoption_receipt_git_copy_sha256": "a0a192bfd27825ca023822e1a0f35ca46867c65980997caf0cc17f067fe8fc20",
@@ -1156,9 +1189,9 @@
     "status": "ADOPTED_PROJECT_LOCAL_CONTINUITY_REHYDRATION_STANDARD",
     "version": "1.0"
   },
-  "previous_verified_control_tip": "63f7a74f47be4179b5871fd7ff9da819b54e3ab9",
+  "previous_verified_control_tip": "f120ff577cd3a3df438d354ae9cd0662d037663f",
   "project": "Singularity Works / Forge \u2014 Main/Core + App project control",
-  "public_main_branch_head_observed": "287c0bad0e9b3fef3002b91702e86b410cada4ce",
+  "public_main_branch_head_observed": "6ea95275cdc409ed222e4720b6b04aadaa17e6bf",
   "qualified_public_main_observed": "a7b4511734b1a1e507230308e75b31175aef4c4a",
   "qualified_source_anchors": {
     "app": "b674dbaaf428970c486753168e75847a345eb1c2",
@@ -1213,16 +1246,16 @@
       "authority": "NONE_BY_CONTENT",
       "git_path": "app/continuity/research_epistemic_shadow.md",
       "scope": "PRODUCT_RUNTIME_SECURITY_RESEARCH",
-      "server_source_sha256": "a476342db8d3e6eea323ec157e5e4964eb0f1a009aabcf2867927f56e8c72792"
+      "server_source_sha256": "1f25b5713788c8aad8eac0989c218a8e66c2ed54b86e0999fba84e05559eb7f6"
     },
     "main": {
       "authority": "NONE_BY_CONTENT",
       "git_path": "main/continuity/research_epistemic_shadow.md",
       "scope": "CORE_SEMANTIC_RESEARCH",
-      "server_source_sha256": "c963e4fd011dd432e8255b793aa0f2623d7d4548f3e3eb34b4f91aa34815fbbc"
+      "server_source_sha256": "4afa7e609ac550249a7356c05d0b074546b203eabb1ac83607338f0d3fb5fa3a"
     }
   },
-  "resume_point": "Complete this successor control publication/fresh-clone readback; then execute exact frozen D0-D3 unchanged as first egress Attempt-0 execution.",
+  "resume_point": "Complete this successor control publication/fresh-clone readback; then preserve a NEW Attempt for wider bypass pressure / production launch-site integration. Do not reuse Attempt-0/v0.1.1/v0.1.2 evidence.",
   "schema": "singularity-works.project-control-checkpoint/0.1",
   "semantic_field_candidate": {
     "app_consumption_authority": true,
@@ -1236,16 +1269,16 @@
   },
   "source_snapshot_records": {
     "app/checkpoints/PROJECT_INTENT_CURRENT.md": {
-      "bytes": 2769,
-      "git_copy_sha256": "7fc1675989ec806095fbc250c9d6c6adc213c7af3ca13dc0f1f515fc44f290b3",
+      "bytes": 3473,
+      "git_copy_sha256": "2457d3047331a02f511b0e5c93a36dde99f2a7c91728cdd97add8beae2ad0255",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "checkpoints/PROJECT_INTENT_CURRENT.md",
-      "server_source_sha256": "7fc1675989ec806095fbc250c9d6c6adc213c7af3ca13dc0f1f515fc44f290b3"
+      "server_source_sha256": "2457d3047331a02f511b0e5c93a36dde99f2a7c91728cdd97add8beae2ad0255"
     },
     "app/continuity/design_thread_stream.md": {
-      "bytes": 89125,
-      "git_copy_sha256": "a7043dbf8b19188b7ae91c1c7563b3654e54778f86c53a25f72b57c5f5c86cfc",
+      "bytes": 101718,
+      "git_copy_sha256": "4999964f79754cdef2ee85a4f4449ab3fbaaa021a0f46a4dfdf4f2dd1251d77c",
       "git_safe_redactions": [
         {
           "count": 1,
@@ -1259,29 +1292,45 @@
         },
         {
           "count": 1,
-          "label": "historical_worktree_path",
+          "label": "historical_absolute_windows_path",
           "replacement": "<LOCAL_HISTORICAL_WORKTREE>"
         }
       ],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "continuity/design_thread_stream/design_thread_stream.md",
-      "server_source_sha256": "6c2c657686476c1c4cca24a7ae57bdddea718c8f7ac8fe162e70f744d6081336"
+      "server_source_sha256": "521f77b81c29abe1bf47d4026f08b19bdde30fbbd4193dce56dd80492a824423"
     },
     "app/continuity/live_shadow.md": {
-      "bytes": 11409,
-      "git_copy_sha256": "5accb1e6abb44431a6e51639c37755a72df6d167bb8955ebe738e47f46fd782d",
+      "bytes": 12508,
+      "git_copy_sha256": "0a8a3271dcff3ede553f9205d692df75ebbf671e79922a25968d82193ed12d66",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "continuity/live_shadow/live_shadow.md",
-      "server_source_sha256": "5accb1e6abb44431a6e51639c37755a72df6d167bb8955ebe738e47f46fd782d"
+      "server_source_sha256": "0a8a3271dcff3ede553f9205d692df75ebbf671e79922a25968d82193ed12d66"
     },
     "app/continuity/research_epistemic_shadow.md": {
-      "bytes": 11939,
-      "git_copy_sha256": "a476342db8d3e6eea323ec157e5e4964eb0f1a009aabcf2867927f56e8c72792",
+      "bytes": 13433,
+      "git_copy_sha256": "1f25b5713788c8aad8eac0989c218a8e66c2ed54b86e0999fba84e05559eb7f6",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "continuity/research_epistemic_shadow/res.md",
-      "server_source_sha256": "a476342db8d3e6eea323ec157e5e4964eb0f1a009aabcf2867927f56e8c72792"
+      "server_source_sha256": "1f25b5713788c8aad8eac0989c218a8e66c2ed54b86e0999fba84e05559eb7f6"
+    },
+    "app/evidence/egress_d0_d3_v0_1_2_regression_result_20260906.json": {
+      "bytes": 1782,
+      "git_copy_sha256": "ce940634fdaf82312e93e022b5d8dbf68d9a4fd53e812c3064e8ce7c9139bdc9",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "state/egress_d0_d3_v0_1_2_regression_result_20260906.json",
+      "server_source_sha256": "1a571cae54279aa4b79646b87dfb254701957088d481bc7b0de7c832935055fa"
+    },
+    "app/evidence/egress_d2_v0_1_2_first_result_20260906.json": {
+      "bytes": 2245,
+      "git_copy_sha256": "d77f9a08db33a3bb34b4857fe9f195d0ac65f7ea8a8c3eb6beaa9ec28fa0baab",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "state/egress_d2_v0_1_2_first_result_20260906.json",
+      "server_source_sha256": "5919cdc7af94d0e34d5884366eb3f328762422c03f2346afd332690820863b68"
     },
     "app/evidence/live_resume_session_0011.json": {
       "bytes": 3963,
@@ -1296,6 +1345,14 @@
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/live_resume_session_0011.json",
       "server_source_sha256": "817daa41119e499c3bc8cc978d0ea625be4598ef6a8263f3acf5cf84392fa3e9"
+    },
+    "app/evidence/live_resume_session_0014.json": {
+      "bytes": 1933,
+      "git_copy_sha256": "280abcf4d0eed7461bead285144cbb9ceef57fd30cec480284dbafec89fa2744",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "state/live_resume_session_0014.json",
+      "server_source_sha256": "bc4bbddd0addc9be743ca01d7f022b2d2b1228373e1eac7d181937a008a32c50"
     },
     "app/maintenance/CONNECTION_GATE_AUTHORITY_CHECKPOINT_20260903.md": {
       "bytes": 3868,
@@ -1313,6 +1370,22 @@
       "server_source_path": "notes/maintenance/CONNECTION_GATE_AUTHORITY_STATE_CHECKPOINT_20260903.md",
       "server_source_sha256": "1b2a481bf51b9df26370d666d8bac898153408455363eac6221b543debc88732"
     },
+    "app/maintenance/EGRESS_PROCESS_PRIMITIVE_V0_1_2_BOUNDED_QUALIFICATION_20260906.md": {
+      "bytes": 7302,
+      "git_copy_sha256": "2168f21a072e5e5c90292d0e984bf9d847c3323888eebc28caba98f592b2e4de",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "notes/maintenance/EGRESS_PROCESS_PRIMITIVE_V0_1_2_BOUNDED_QUALIFICATION_20260906.md",
+      "server_source_sha256": "3d27639447f1d47ac71e892a766444a3e7c8627ff3120b791ecf4470ebeedda6"
+    },
+    "app/maintenance/EGRESS_PROCESS_PRIMITIVE_V0_1_2_CURRENTNESS_20260906.md": {
+      "bytes": 3317,
+      "git_copy_sha256": "91eac69bdb2fb20405f577e6012d048951813036f3679551ed902d563ee06def",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "notes/maintenance/EGRESS_PROCESS_PRIMITIVE_V0_1_2_CURRENTNESS_20260906.md",
+      "server_source_sha256": "565c62570eedf4168258bfc83a5a18ec9843e275de1d91b1b1044aab44754ccc"
+    },
     "app/maintenance/GEN12_E9B81750_RECOVERY_CURRENTNESS_20260906.md": {
       "bytes": 2619,
       "git_copy_sha256": "053497de9b63299386f1395e66c2f3939c83fbdb89b8dfb9b443acd325f19f69",
@@ -1320,6 +1393,14 @@
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "notes/maintenance/GEN12_E9B81750_RECOVERY_CURRENTNESS_20260906.md",
       "server_source_sha256": "892a0896bdd5ae9d1fe2db085960c09467efa8cae433a4902d1515ae5c26f3dd"
+    },
+    "app/maintenance/GOVERNANCE_CONTACT_V1_0_PENDING_CARRIER_AWARENESS_20260906.md": {
+      "bytes": 1903,
+      "git_copy_sha256": "9d39a6f6302a2abbb37acbfe81a97b92937a629d9f2b2e4e10675a690d836546",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "notes/maintenance/GOVERNANCE_CONTACT_V1_0_PENDING_CARRIER_AWARENESS_20260906.md",
+      "server_source_sha256": "33930c61a7064ee1db0d5f62e6107e763b4dd738d9b0ade56e64c5fe79cb7ec2"
     },
     "app/maintenance/ICF_CS_V1_1_AUTHORITY_ADOPTION_20260906.md": {
       "bytes": 2463,
@@ -1442,7 +1523,6 @@
       "git_copy_sha256": "418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c",
       "git_safe_redactions": [],
       "line_endings": "CANONICAL_EXACT_BYTES",
-      "semantic_admission": "V1_1_CANONICAL_RELEASE_EXACT_BYTES",
       "server_source_path": "sop/ICF_CS_V1_1_DETACHED_RELEASE_RECEIPT_2026-09-05.json",
       "server_source_sha256": "418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c"
     },
@@ -1469,17 +1549,16 @@
       "git_copy_sha256": "f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63",
       "git_safe_redactions": [],
       "line_endings": "BINARY_EXACT_COPY",
-      "semantic_admission": "V1_1_CANONICAL_RELEASE_EXACT_BYTES",
       "server_source_path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_4_ICF_CS_V1_1_ADDENDUM_2026-09-05.zip",
       "server_source_sha256": "f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63"
     },
     "app/state/current.md": {
-      "bytes": 9005,
-      "git_copy_sha256": "626b87de8359e7761dff9d54cb34ea3c947d3a536e4b48315b2987f307a7832a",
+      "bytes": 12363,
+      "git_copy_sha256": "57e4422d4f4db1d8ddeb23f9e2be9b91bfed304cd128cd4d1a8a0667af81f5b7",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/current/current.md",
-      "server_source_sha256": "626b87de8359e7761dff9d54cb34ea3c947d3a536e4b48315b2987f307a7832a"
+      "server_source_sha256": "57e4422d4f4db1d8ddeb23f9e2be9b91bfed304cd128cd4d1a8a0667af81f5b7"
     },
     "app/state/doctrine/ICF_CS_MECHANIZED_EPOCH_PROFILE_V1_1.md": {
       "bytes": 4215,
@@ -1522,20 +1601,20 @@
       "server_source_sha256": "62be845da364ae81f59b6320c9b34b136236bf5be8aa8036018da48efcb754f4"
     },
     "app/state/doctrine/PROJECT_COMMANDERS_INTENT_CURRENT.md": {
-      "bytes": 11254,
-      "git_copy_sha256": "95ff8a58543c8aa2a2f20eb98cca47a30c3b64a5e8823c5f84edd3ad25cc9761",
+      "bytes": 13232,
+      "git_copy_sha256": "49972aad08226859105d57a2cc15e1f09d06926263ef8b07beb7ca1526507cf9",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/doctrine_snapshot/PROJECT_COMMANDERS_INTENT_CURRENT.md",
-      "server_source_sha256": "95ff8a58543c8aa2a2f20eb98cca47a30c3b64a5e8823c5f84edd3ad25cc9761"
+      "server_source_sha256": "49972aad08226859105d57a2cc15e1f09d06926263ef8b07beb7ca1526507cf9"
     },
     "app/state/doctrine_snapshot.md": {
-      "bytes": 12773,
-      "git_copy_sha256": "6631e592cf23cb605856f2005f1cb781ba86957806c68334016803f2fb694845",
+      "bytes": 15811,
+      "git_copy_sha256": "45424b5d08ae2d5fd3130c8bd4692bce45e3109adba9189bc494d45155c0457c",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/doctrine_snapshot/doctrine_snapshot.md",
-      "server_source_sha256": "6631e592cf23cb605856f2005f1cb781ba86957806c68334016803f2fb694845"
+      "server_source_sha256": "45424b5d08ae2d5fd3130c8bd4692bce45e3109adba9189bc494d45155c0457c"
     },
     "app/state/live_resume_session_0012.json": {
       "bytes": 2879,
@@ -1552,40 +1631,40 @@
       "server_source_sha256": "aeff0db397135d8f227f11e17c1b7b939235b6ae11ee2ae97053246d9d605e0a"
     },
     "app/state/next_steps.md": {
-      "bytes": 8958,
-      "git_copy_sha256": "076e745e0947e47e96ef54884b35be9a4125ef83a434683668323745878ecd89",
+      "bytes": 9363,
+      "git_copy_sha256": "4df5ceefb8aa31d6482da8c1a379de390fc2c00b4ccd54ee656d141cccfab449",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/next_steps/next_steps.md",
-      "server_source_sha256": "076e745e0947e47e96ef54884b35be9a4125ef83a434683668323745878ecd89"
+      "server_source_sha256": "4df5ceefb8aa31d6482da8c1a379de390fc2c00b4ccd54ee656d141cccfab449"
     },
     "app/state/revisit_ledger.md": {
-      "bytes": 9646,
-      "git_copy_sha256": "a2439f2d0a17b60482fd36dc9c3f2073e8ba74ceffdc4d534329243ac2445deb",
+      "bytes": 13131,
+      "git_copy_sha256": "43898ac59685f26a6c4842517ee3db78ec5e7b359286c63d793cf24da9718fec",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/revisit_ledger/revisit_ledger.md",
-      "server_source_sha256": "a2439f2d0a17b60482fd36dc9c3f2073e8ba74ceffdc4d534329243ac2445deb"
+      "server_source_sha256": "43898ac59685f26a6c4842517ee3db78ec5e7b359286c63d793cf24da9718fec"
     },
     "app/state/trace_matrix.md": {
-      "bytes": 12744,
-      "git_copy_sha256": "5f5b837a1a2f57340178e94aa8e2c49f25f359af01a2c065f97fdb8830e7956b",
+      "bytes": 18618,
+      "git_copy_sha256": "a728c75ab1e6656f172c3d759da78cf16e0207cd120d22b414d94ae968cc68be",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/trace_matrix/trace_matrix.md",
-      "server_source_sha256": "5f5b837a1a2f57340178e94aa8e2c49f25f359af01a2c065f97fdb8830e7956b"
+      "server_source_sha256": "a728c75ab1e6656f172c3d759da78cf16e0207cd120d22b414d94ae968cc68be"
     },
     "main/checkpoints/PROJECT_INTENT_CURRENT.md": {
-      "bytes": 2769,
-      "git_copy_sha256": "7fc1675989ec806095fbc250c9d6c6adc213c7af3ca13dc0f1f515fc44f290b3",
+      "bytes": 3473,
+      "git_copy_sha256": "2457d3047331a02f511b0e5c93a36dde99f2a7c91728cdd97add8beae2ad0255",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "checkpoints/PROJECT_INTENT_CURRENT.md",
-      "server_source_sha256": "7fc1675989ec806095fbc250c9d6c6adc213c7af3ca13dc0f1f515fc44f290b3"
+      "server_source_sha256": "2457d3047331a02f511b0e5c93a36dde99f2a7c91728cdd97add8beae2ad0255"
     },
     "main/continuity/design_thread_stream.md": {
-      "bytes": 116754,
-      "git_copy_sha256": "942d0c7581c13e37b4457078fabad10cc5ad380cd6ed21bf98f8f4b4951ac400",
+      "bytes": 131423,
+      "git_copy_sha256": "6a286866140fce582172d2f9b58854ed7555b4baa06702e996ac3d18a1edf256",
       "git_safe_redactions": [
         {
           "count": 1,
@@ -1594,29 +1673,43 @@
         },
         {
           "count": 2,
-          "label": "historical_worktree_path",
+          "label": "historical_absolute_windows_path",
           "replacement": "<LOCAL_HISTORICAL_WORKTREE>"
         }
       ],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "continuity/design_thread_stream/design_thread_stream.md",
-      "server_source_sha256": "68148141011d910cd981eff88d86e18920e8c704eb2f8da73e1682210131984b"
+      "server_source_sha256": "a4fc36aae53b032570acbe5956c270c11422a07397b1762401062642f929153f"
     },
     "main/continuity/live_shadow.md": {
-      "bytes": 11281,
-      "git_copy_sha256": "f38a47cc6cf9cdd85950aaeceb82016c27da23743f9c9b6d9f709ed409d4e76a",
+      "bytes": 13011,
+      "git_copy_sha256": "3c4c942adeebd56e11a9ec38cfcad1288e41a0671f038943ace7cdb902ee4dbc",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "continuity/live_shadow/live_shadow.md",
-      "server_source_sha256": "f38a47cc6cf9cdd85950aaeceb82016c27da23743f9c9b6d9f709ed409d4e76a"
+      "server_source_sha256": "3c4c942adeebd56e11a9ec38cfcad1288e41a0671f038943ace7cdb902ee4dbc"
     },
     "main/continuity/research_epistemic_shadow.md": {
-      "bytes": 31102,
-      "git_copy_sha256": "c963e4fd011dd432e8255b793aa0f2623d7d4548f3e3eb34b4f91aa34815fbbc",
+      "bytes": 32789,
+      "git_copy_sha256": "a9035c991e02da6081f245a83129be5291b6f8c3a9689079dba6cb36d3c411df",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "continuity/research_epistemic_shadow/res.md",
-      "server_source_sha256": "c963e4fd011dd432e8255b793aa0f2623d7d4548f3e3eb34b4f91aa34815fbbc"
+      "server_source_sha256": "a9035c991e02da6081f245a83129be5291b6f8c3a9689079dba6cb36d3c411df"
+    },
+    "main/maintenance/APP_EGRESS_PRIMITIVE_V0_1_2_AWARENESS_20260906.md": {
+      "bytes": 3071,
+      "git_copy_sha256": "07affc4526c76c27de77c1e61ba938d71410cff55c223b3b770e1a1fd15db137",
+      "git_safe_redactions": [
+        {
+          "count": 1,
+          "label": "temporal_scope_annotation",
+          "replacement": "CONTROL SNAPSHOT TEMPORAL SCOPE annotation; historical body unchanged"
+        }
+      ],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "notes/maintenance/APP_EGRESS_PRIMITIVE_V0_1_2_AWARENESS_20260906.md",
+      "server_source_sha256": "ab37477b15980ef457d88bc6fe01d37321605b97163e1d0496e6ecba0074af56"
     },
     "main/maintenance/APP_FORWARD_SYNC_GEN11_AWARENESS_20260904.md": {
       "bytes": 3271,
@@ -1649,6 +1742,14 @@
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "notes/maintenance/GIT_CROSS_THREAD_CONTROL_CHECKPOINT_20260903.md",
       "server_source_sha256": "439a5e2c82b4c3b983cbe11c665e288a1f924c20e1a7e7a5e8a606979032c765"
+    },
+    "main/maintenance/GOVERNANCE_CONTACT_V1_0_PENDING_CARRIER_AWARENESS_20260906.md": {
+      "bytes": 2537,
+      "git_copy_sha256": "3a0b2823a42d7af37b1af840079dd40997f45afcdd23f571e844a1a3bf5b601b",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "notes/maintenance/GOVERNANCE_CONTACT_V1_0_PENDING_CARRIER_AWARENESS_20260906.md",
+      "server_source_sha256": "90a2f20ce68f8b53fa98de3cca54a2407fbce27dd448e3bd0128f5e6d43e09b0"
     },
     "main/maintenance/ICF_CS_V1_1_AUTHORITY_ADOPTION_20260906.md": {
       "bytes": 3968,
@@ -1785,7 +1886,6 @@
       "git_copy_sha256": "418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c",
       "git_safe_redactions": [],
       "line_endings": "CANONICAL_EXACT_BYTES",
-      "semantic_admission": "V1_1_CANONICAL_RELEASE_EXACT_BYTES",
       "server_source_path": "sop/ICF_CS_V1_1_DETACHED_RELEASE_RECEIPT_2026-09-05.json",
       "server_source_sha256": "418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c"
     },
@@ -1812,17 +1912,16 @@
       "git_copy_sha256": "f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63",
       "git_safe_redactions": [],
       "line_endings": "BINARY_EXACT_COPY",
-      "semantic_admission": "V1_1_CANONICAL_RELEASE_EXACT_BYTES",
       "server_source_path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_4_ICF_CS_V1_1_ADDENDUM_2026-09-05.zip",
       "server_source_sha256": "f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63"
     },
     "main/state/current.md": {
-      "bytes": 9218,
-      "git_copy_sha256": "1c94d31f02f6ed5a292c17c1a01e74b6b47d33d81b66cd1e6ce12d9b1dd22bf3",
+      "bytes": 12712,
+      "git_copy_sha256": "75ea97c09c2399a6f6b3ce872731d4b7dd545a7cfa51d594ed82d9481dc191ad",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/current/current.md",
-      "server_source_sha256": "1c94d31f02f6ed5a292c17c1a01e74b6b47d33d81b66cd1e6ce12d9b1dd22bf3"
+      "server_source_sha256": "75ea97c09c2399a6f6b3ce872731d4b7dd545a7cfa51d594ed82d9481dc191ad"
     },
     "main/state/doctrine/ICF_CS_MECHANIZED_EPOCH_PROFILE_V1_1.md": {
       "bytes": 4215,
@@ -1865,44 +1964,44 @@
       "server_source_sha256": "62be845da364ae81f59b6320c9b34b136236bf5be8aa8036018da48efcb754f4"
     },
     "main/state/doctrine/PROJECT_COMMANDERS_INTENT_CURRENT.md": {
-      "bytes": 11254,
-      "git_copy_sha256": "95ff8a58543c8aa2a2f20eb98cca47a30c3b64a5e8823c5f84edd3ad25cc9761",
+      "bytes": 13232,
+      "git_copy_sha256": "49972aad08226859105d57a2cc15e1f09d06926263ef8b07beb7ca1526507cf9",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/doctrine_snapshot/PROJECT_COMMANDERS_INTENT_CURRENT.md",
-      "server_source_sha256": "95ff8a58543c8aa2a2f20eb98cca47a30c3b64a5e8823c5f84edd3ad25cc9761"
+      "server_source_sha256": "49972aad08226859105d57a2cc15e1f09d06926263ef8b07beb7ca1526507cf9"
     },
     "main/state/doctrine_snapshot.md": {
-      "bytes": 26688,
-      "git_copy_sha256": "9dc451cd8496fca4c08c47a6ebde21e88fd5ef9dde73c35011dcc7401ec0e8ae",
+      "bytes": 31177,
+      "git_copy_sha256": "fe2dfa379419420cfd4aa90fa1b03f11c6b54cd5ed170192bcdb76e3f74dbaaf",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/doctrine_snapshot/doctrine_snapshot.md",
-      "server_source_sha256": "9dc451cd8496fca4c08c47a6ebde21e88fd5ef9dde73c35011dcc7401ec0e8ae"
+      "server_source_sha256": "fe2dfa379419420cfd4aa90fa1b03f11c6b54cd5ed170192bcdb76e3f74dbaaf"
     },
     "main/state/next_steps.md": {
-      "bytes": 8236,
-      "git_copy_sha256": "4344a97ac1443abd0408e91dfec3de411d5647a61341d3629d0c59a8f58058c1",
+      "bytes": 8439,
+      "git_copy_sha256": "769718b14ab9e6a224ba8b07c4937e54d1fae8e555155f5566276c7be04decaa",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/next_steps/next_steps.md",
-      "server_source_sha256": "4344a97ac1443abd0408e91dfec3de411d5647a61341d3629d0c59a8f58058c1"
+      "server_source_sha256": "769718b14ab9e6a224ba8b07c4937e54d1fae8e555155f5566276c7be04decaa"
     },
     "main/state/revisit_ledger.md": {
-      "bytes": 18380,
-      "git_copy_sha256": "beac74c24cd3f7f42257a7c2bb17a6e3e703897e10d9c09f952959a9de07ab5e",
+      "bytes": 21613,
+      "git_copy_sha256": "d33b98ddb2f0ad03603a53d1f439900ca4065b7aad245486e81a85a88c157c50",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/revisit_ledger/revisit_ledger.md",
-      "server_source_sha256": "beac74c24cd3f7f42257a7c2bb17a6e3e703897e10d9c09f952959a9de07ab5e"
+      "server_source_sha256": "d33b98ddb2f0ad03603a53d1f439900ca4065b7aad245486e81a85a88c157c50"
     },
     "main/state/trace_matrix.md": {
-      "bytes": 32262,
-      "git_copy_sha256": "0456edb2a5832d72299c16f609c63cdc6fd17d1c4922f074ceca4095f186d2ae",
+      "bytes": 37768,
+      "git_copy_sha256": "379fe8036420edbd38e8f36974fc36b7c036e99dda6fbf8ab614bea021b30ab6",
       "git_safe_redactions": [],
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "state/trace_matrix/trace_matrix.md",
-      "server_source_sha256": "0456edb2a5832d72299c16f609c63cdc6fd17d1c4922f074ceca4095f186d2ae"
+      "server_source_sha256": "379fe8036420edbd38e8f36974fc36b7c036e99dda6fbf8ab614bea021b30ab6"
     }
   }
 }

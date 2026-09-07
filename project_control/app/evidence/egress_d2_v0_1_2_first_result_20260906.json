@@ -1,0 +1,46 @@
+{
+  "authority": "NONE_BY_CONTENT",
+  "command": [
+    "python",
+    "-m",
+    "unittest",
+    "-v",
+    "forge_app.embodiment.test_os_process_egress_enforcement_v0_1.OsProcessEgressEnforcementV01Tests.test_d2_protected_descendant_cannot_connect_to_parent_loopback_listener"
+  ],
+  "control_tip": "f120ff577cd3a3df438d354ae9cd0662d037663f",
+  "d2_bounded_loopback_descendant_result": "PASS",
+  "egress_enforcement_qualified": false,
+  "first_committed_v0_1_2_execution": true,
+  "gen14_checkpoint": "checkpoint-app-live-0014-43aa7feac7e8",
+  "gen14_evidence_sha256": "bc4bbddd0addc9be743ca01d7f022b2d2b1228373e1eac7d181937a008a32c50",
+  "job_id": "job-04e8cae5ca54",
+  "laws": [
+    "D2_V0_1_2_PASS != NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT",
+    "LOCAL_LOOPBACK_DESCENDANT_CONTAINMENT != GENERAL_EXTERNAL_EGRESS_CONTAINMENT",
+    "ENFORCEMENT_TEST_PASS != PRODUCTION_LAUNCH_INTEGRATION"
+  ],
+  "no_external_connection_runtime_law_earned": false,
+  "passed_assertion_semantics": [
+    "unprotected PowerShell Process.Start descendant curl reached the parent loopback listener",
+    "unprotected control propagated exit 0",
+    "protected root token reported AppContainer",
+    "protected root reported immediate Job membership",
+    "protected primitive reported capability count 0",
+    "protected descendant did not reach the parent loopback listener",
+    "protected descendant propagated a curl network-failure exit in the accepted set 7 or 28"
+  ],
+  "return_code": 0,
+  "schema": "singularity-works.egress-d2-v0.1.2-first-result/0.1",
+  "source_clean_after_run": true,
+  "source_head": "43aa7feac7e8a15828116bd700b644560714496d",
+  "source_remote_exact_after_run": true,
+  "status": "FIRST_COMMITTED_D2_V0_1_2_EXECUTION_PASS",
+  "stderr_bytes": 352,
+  "stderr_sha256": "fa7f8bc3ad7249f3b27a6556d8e1411d5f979bd42b00571b395d63b91737a482",
+  "stdout_bytes": 0,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "test_git_sha256": "f49f1dbc03477c42a10b9a0361ba55b4c670321102bc8e7cfc8bd0119ad9b502",
+  "protected_process_git_sha256": "80163d67a40b7604920f70d25a23d982c73dd368a62f8872c7632ca1e1904790",
+  "tests_edited_after_commit_before_execution": false,
+  "unittest_duration_seconds": 3.243
+}

@@ -54,21 +54,26 @@ The project is trying to become a durable, operator-usable software-production/r
 - Mutation/execution/push claims require consequence-bearing readback.
 
 ### Semantic-field boundary
-- Current public Main branch head is `287c0bad0e9b3fef3002b91702e86b410cada4ce`. Core semantic qualification anchor remains `a7b4511734b1a1e507230308e75b31175aef4c4a` because `287c0bad0e9b3fef3002b91702e86b410cada4ce` is an authority-publication-only child with no Core code changes. `MAIN_BRANCH_HEAD != CORE_QUALIFICATION_ANCHOR`.
+- Current public Main branch head is `6ea95275cdc409ed222e4720b6b04aadaa17e6bf`. It is a direct authority-publication-only child of `287c0bad0e9b3fef3002b91702e86b410cada4ce`; Core semantic qualification anchor remains `a7b4511734b1a1e507230308e75b31175aef4c4a` because no Core code changed. `MAIN_BRANCH_HEAD != CORE_QUALIFICATION_ANCHOR`.
+- Governance Contact v1.0 pending carrier at Main `6ea95275cdc409ed222e4720b6b04aadaa17e6bf`: ZIP `c4ab4a516e088b6c28b5240d6b3877d2e3fb889a8bbbfd406e8e0c73bebdd1ae`, detached receipt `cf2e7bd8e5ed613d3c3a99b7f8645833ddb742ac4939bd1719092b277ef286e6`, exact payload semantic stream `ae5e645ffaab627ae0959bf6780591bd0dae622a91cad265b39c1885b7ac75ff` (2,357 lines). `authority/rahl-sop/CURRENT.md` remains unchanged; target lifecycle is incomplete; authority effect remains NONE. `DETACHED_RELEASED != TARGET_PUBLISHED`; `POST_PUBLICATION_READBACK != ACTIVE`; `CARRIER_PRESENT != PROJECT_SPECIFIC_AUTHORITY_REWRITE`.
 - Canonical App-facing bridge: `singularity_works.semantic_field_bridge`, schema `singularity-works.semantic-field-bridge/0.1`.
 - Index/projection/delta authority remains NONE unless separately changed by qualified doctrine.
 - Evidence identity is not automatically semantic meaning.
 - Checkpoint semantic restoration/currentness/snapshot identity remains separate from bridge-source availability.
 
 ### Recovery / consequence boundary
-- App current source is `forge/app-shell-rd@e9b81750db265a467187c61962ffab3cff98d4fe`, local/remote exact and clean; it is the preserved egress-enforcement Attempt-0 commit and does not by itself qualify the egress primitive.
-- Generation 12 `checkpoint-app-live-0012-e9b81750db26` is the current earned LKG for `e9b81750db265a467187c61962ffab3cff98d4fe`: VERIFIED / RESUMED / STABLE / LKG / source MATCH / NORMAL / early crash 0 / not quarantined. Evidence SHA `aeff0db397135d8f227f11e17c1b7b939235b6ae11ee2ae97053246d9d605e0a`.
-- Generation 11 `checkpoint-app-live-0011-b674dbaaf428` remains historical LKG evidence for source `b674dba...` but is source-MISMATCH against current App and is not the current recovery ingress.
+- App current source is `forge/app-shell-rd@43aa7feac7e8a15828116bd700b644560714496d`, local/remote exact, clean, and independently fresh-clone verified. It descends from preserved Attempt 0 through D2 v0.1.1/v0.1.2 repair lineage.
+- Generation 14 `checkpoint-app-live-0014-43aa7feac7e8` is the current earned LKG for `43aa7feac7e8a15828116bd700b644560714496d`: VERIFIED / RESUMED / STABLE / LKG / source MATCH / NORMAL / early crash 0 / not quarantined. Blob `4efabde670986f65fc3e1736452300b299f79045e5b537ea46425e1dbbbd2136`; evidence SHA `bc4bbddd0addc9be743ca01d7f022b2d2b1228373e1eac7d181937a008a32c50`.
+- Generation 13 remains historical LKG evidence for `9bc35af...` and is source-stale against current App.
+- Protected-process primitive v0.1.2 is **BOUNDED QUALIFIED** for the exact tested Windows host/source/test boundary. Qualification receipt SHA `3d27639447f1d47ac71e892a766444a3e7c8627ff3120b791ecf4470ebeedda6`, preserved as `attempt-egress-process-primitive-v0-1-2-bounded-qualification`; first committed D2 PASS `5919cdc7af94d0e34d5884366eb3f328762422c03f2346afd332690820863b68`; same-commit D0-D3 4/4 regression PASS `1a571cae54279aa4b79646b87dfb254701957088d481bc7b0de7c832935055fa`.
+- Qualified bounded claims cover the exact zero-capability AppContainer + immediate Job root, tested root loopback denial, validated PowerShell/Process.Start descendant loopback denial, and bounded Job-close timeout teardown.
+- `LOCAL_LOOPBACK_PROCESS_CONTAINMENT != GENERAL_EXTERNAL_EGRESS_CONTAINMENT`.
+- `BOUNDED_PRIMITIVE_QUALIFIED != PRODUCTION_ENFORCEMENT_INTEGRATED`.
+- `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` remains unearned as a runtime law.
 - `APP_SOURCE_INTEGRATED != NEW_LKG`.
 - `BRIDGE_SOURCE_AVAILABLE != CHECKPOINT_SEMANTIC_RESTORATION_QUALIFIED`.
 - `OLD_ALLOW_RECEIPT != CURRENT_EXECUTION_AUTHORITY`.
 - `UNKNOWN_OUTCOME != SAFE_TO_RETRY`.
-- `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` remains unearned as a runtime fact until OS/process enforcement evidence exists.
 
 ### Continuity / re-entry
 - Git is the durable cross-thread control plane for bounded continuity snapshots.
@@ -81,47 +86,52 @@ The project is trying to become a durable, operator-usable software-production/r
 ## III. FRONTIER — fast-changing current state
 ### Earned now
 - R4.4 is current canonical process/cold-start SOP; carrier SHA `04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc`.
-- Current public Main branch head: `287c0bad0e9b3fef3002b91702e86b410cada4ce`; Core qualification anchor remains `a7b4511734b1a1e507230308e75b31175aef4c4a`.
-- App source local/remote exact and clean: `e9b81750db265a467187c61962ffab3cff98d4fe`; this preserves egress Attempt 0 but does not qualify it.
-- App generation 12 `checkpoint-app-live-0012-e9b81750db26` is current LKG/source MATCH/NORMAL; Gen11 is historical/source-stale.
-- Main->App semantic-field Core integration remains intact; the later Main head is authority-publication-only and the later App head only preserves egress Attempt 0.
-- Durable control branch current verified baseline: `pcmmad/project-control@63f7a74f47be4179b5871fd7ff9da819b54e3ab9`, frozen CHECKPOINT SHA `500d7c167ff5d27e6287edf675d7bbc06a91b5a7c169ffa44df753e6af6bb049`, verifier PASS 96, fresh-clone exact/clean. Resolve the branch ref live before mutation; newer verified generations supersede this baseline as currentness evidence.
-- ICF-CS v1.1, Main/App source currentness, and Gen12 recovery are server-current but newer than durable control `63f7a74f47be...`; one successor control checkpoint is required before executing egress Attempt 0.
+- Current public Main branch head: `6ea95275cdc409ed222e4720b6b04aadaa17e6bf`; immediate authority-publication predecessor `287c0bad0e9b3fef3002b91702e86b410cada4ce`; Core qualification anchor remains `a7b4511734b1a1e507230308e75b31175aef4c4a`.
+- App source local/remote exact, clean and independently fresh-clone verified: `43aa7feac7e8a15828116bd700b644560714496d`.
+- App Gen14 `checkpoint-app-live-0014-43aa7feac7e8` is current LKG/source MATCH/NORMAL; Gen13 is historical/source-stale.
+- Protected-process primitive v0.1.2 is bounded QUALIFIED under receipt `3d27639447f1d47ac71e892a766444a3e7c8627ff3120b791ecf4470ebeedda6`. First committed D2 v0.1.2 PASS `5919cdc7af94d0e34d5884366eb3f328762422c03f2346afd332690820863b68`; same-commit D0-D3 4/4 regression PASS `1a571cae54279aa4b79646b87dfb254701957088d481bc7b0de7c832935055fa`.
+- Main->App semantic-field Core integration remains intact; App D2 repair changes no protected-process implementation or Core semantics.
+- Latest independently verified durable control is `pcmmad/project-control@f120ff577cd3a3df438d354ae9cd0662d037663f`, CHECKPOINT `263d3d9aec93c3f3cc037cf34de3d311bd64e0c91d6e36df5b5a68372c675dc4`, verifier PASS 115, fresh-clone exact/clean.
+- App `43aa7feac7e8a15828116bd700b644560714496d` + Gen14 + bounded qualification are newer than that control generation and must enter the next normal control checkpoint before new consequence-bearing bypass attempts.
 
 These hashes are **current-ingress pointers**, not perpetual truth. Re-read live Git/recovery state before consequence-bearing mutation.
 
 ### Immediate continuity prerequisite
-**Publish and fresh-clone verify a successor `pcmmad/project-control` generation from verified predecessor `63f7a74...` containing ICF-CS v1.1 + Main/App source currentness + Gen12 recovery.**
+**Publish and fresh-clone verify the next normal `pcmmad/project-control` generation from verified predecessor `f120ff577cd3a3df438d354ae9cd0662d037663f` carrying App `43aa7feac7e8a15828116bd700b644560714496d`, Gen14, the bounded v0.1.2 qualification receipt/evidence, and the repaired current-ingress surfaces.**
 
-This is continuity durability only; it does not change the product/security frontier below.
+This is continuity durability only; it does not widen the qualification claim.
 
-### Active immediate frontier
-**App OS/process network egress enforcement — Attempt 0.**
+### Active product/security frontier after that checkpoint
+**Wider egress-bypass pressure + production launch-site integration.**
 
-Required first pressure:
-- inspect actual Windows/process-launch primitives;
-- define the protected execution-domain boundary;
-- determine where default-deny can actually be enforced;
-- attack bypasses through raw sockets, subprocesses, plugins, DNS, and loopback;
-- Attempt 0 is already preserved; after successor control readback, execute the exact frozen D0-D3 tests without editing them first;
-- do not begin with a real provider connector.
+Next attempts require separate preservation/qualification for materially new claims. Pressure targets include:
+- DNS resolution/transport behavior;
+- UDP/QUIC and non-TCP egress;
+- proxy/environment-mediated egress;
+- helper/browser/plugin/imported-code launch paths;
+- COM/RPC/service/WSL or equivalent local escape surfaces;
+- Job breakaway/process-tree semantics beyond the exact tested path;
+- actual protected launch-site wiring and broker/Gate allow-path integration.
+
+Do not promote child-process/AppContainer evidence into machine-wide firewall control. Do not start with a real provider connector.
 
 ### Open / unearned
-- OS/process egress enforcement itself;
+- general external egress containment;
+- production launch-site enforcement integration;
 - runtime truth of `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT`;
 - real provider/OAuth/GitHub connector;
 - secure Vault token/crypto implementation;
 - checkpoint semantic restoration/currentness/snapshot identity;
-- supervisor-death / whole-process-tree containment seams;
+- broader bypass classes listed above;
 - inherited package-description/counter metadata repair.
 
 ### Deferred / separate
 - Main/Core source remains unchanged unless App pressure exposes a genuine semantic/interface requirement.
-- Checkpoint restoration identity is a separate cross-arm interface qualification, not a prerequisite for starting egress-enforcement research unless the implementation actually depends on it.
-- Packaging-description debt stays separately scoped from semantic/runtime work.
+- Checkpoint restoration identity is separate from the egress primitive.
+- Packaging-description debt stays separately scoped.
 
 ### Immediate next move
-First publish/read back the successor control generation from verified predecessor `63f7a74...` containing ICF-CS v1.1, Main/App source currentness and Gen12. After fresh-clone verification, execute the exact already-preserved egress Attempt-0 hostile tests without editing them first.
+Publish/read back the next normal control checkpoint from `f120ff577cd3a3df438d354ae9cd0662d037663f` containing App `43aa7feac7e8a15828116bd700b644560714496d`, Gen14 and the bounded protected-process qualification. After fresh-clone verification, preserve a **new** Attempt for the next wider bypass/production-integration discriminator; do not reuse or rewrite Attempt-0/v0.1.1/v0.1.2 evidence.
 
 ## IV. HISTORY BOUNDARY
 The following categories are useful but are not current ingress by default:

@@ -9,28 +9,23 @@ Last updated: 2026-09-06 UTC
 - Post-push receipt/pointer delta waits for the next normal checkpoint.
 
 
-## Immediate P0 — ICF-CS v1.1 + Gen12 durable control refresh
-1. Publish exact v1.1 payload `f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63`, detached receipt `418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c`, standard `62be845da364ae81f59b6320c9b34b136236bf5be8aa8036018da48efcb754f4`, machine `d67726aeb402c280770eeaf314068ed7a1330beb21167d9d6d9b7c4674425bb0`, qualification `7d20ed708adb4f7ee147b56da41deac77146b56fc85bd769be3a6d240b3e2029`, epoch profile `733b799815abdb4b1ff735635f7928953c12944ece579365b5aae138d90f90f8` and v1.0 demotion receipt `3225fd952d704d31047ffdf01bffbc0968e4428357342ccb8ce5094ae8385057` on both control strands.
-2. Publish current Commander `95ff8a58543c8aa2a2f20eb98cca47a30c3b64a5e8823c5f84edd3ad25cc9761` and ingress pointer `7fc1675989ec806095fbc250c9d6c6adc213c7af3ca13dc0f1f515fc44f290b3`.
-3. Record live public Main `287c0bad0e9b3fef3002b91702e86b410cada4ce` while preserving semantic Core anchor `a7b4511734b1a1e507230308e75b31175aef4c4a`.
-4. Record App source `e9b81750db265a467187c61962ffab3cff98d4fe` and Gen12 `checkpoint-app-live-0012-e9b81750db26` MATCH/NORMAL; Gen11 historical/source-stale.
-5. Preserve predecessor control `63f7a74f47be4179b5871fd7ff9da819b54e3ab9` / CHECKPOINT `500d7c167ff5d27e6287edf675d7bbc06a91b5a7c169ffa44df753e6af6bb049` as prior verified generation.
-6. Complete semantic read of all changed readable control representations; verify manifest/privacy/diff/staged hashes and exact sealed binaries.
-7. Non-force push only after live remote race check; require independent ref + fresh-clone verifier/readback.
-8. After durable readback, execute exact frozen D0-D3 Attempt 0 without editing first.
+## CLOSED P0 — ICF-CS v1.1 + Gen12 durable control refresh
+Completed at `pcmmad/project-control@f120ff577cd3a3df438d354ae9cd0662d037663f`, CHECKPOINT `263d3d9aec93c3f3cc037cf34de3d311bd64e0c91d6e36df5b5a68372c675dc4`, verifier PASS 115, non-force push + independent fresh-clone readback exact. Receipt SHA `38bb39ff1ba6243de3cd2f9aa8502452efd0d1736ac28ecd97d2b53285baabe2`. Fixed-point post-push pointer state waits for the next normal checkpoint.
 
-## P0 — OS/process network egress enforcement Attempt 0
-0. Query the R4.4 Global Cross-Project Scar Ledger for relevant prior containment/network/process scars when the live registry is available; inspect provenance and re-derive under current constraints before reuse.
-1. Inspect actual Windows/process-launch topology and available enforcement primitives on the current machine.
-2. Define the exact protected execution-domain boundary: which Singularity Works child processes/plugins/imported code are denied ambient network access by default.
-3. Define the broker/Gate allow path so an approved network consequence requires current Connection Gate authority plus an exact prepared-operation/lifecycle identity.
-4. Attempt 0 is already preserved; after successor control readback, execute exact frozen D0-D3 without editing first.
-5. Hostile-test direct raw sockets, subprocess/helper-binary escape, plugin/imported-code escape, DNS, loopback/local service, inherited handles/capabilities and proxy/environment-mediated egress.
-6. Unsupported/unknown enforcement state must fail closed for the protected domain.
-7. Renderer/recovery processes that do not require network should remain network-denied by default.
-8. Manual operator inspection of active egress grants/receipts is required.
-9. Do not claim machine-wide firewall control unless that exact boundary is actually proven.
-10. Apply the R4.4 complete linear semantic-read gate to every changed readable protocol/code/test/report/evidence artifact before qualification/promotion.
+## CLOSED P0 — bounded protected-process primitive v0.1.2
+- Source `43aa7feac7e8a15828116bd700b644560714496d` remotely durable/fresh-clone exact.
+- Gen14 `checkpoint-app-live-0014-43aa7feac7e8` MATCH/NORMAL/READY; evidence `bc4bbddd0addc9be743ca01d7f022b2d2b1228373e1eac7d181937a008a32c50`.
+- D2 committed first result `5919cdc7af94d0e34d5884366eb3f328762422c03f2346afd332690820863b68` PASS.
+- same-commit D0-D3 regression `1a571cae54279aa4b79646b87dfb254701957088d481bc7b0de7c832935055fa` PASS 4/4.
+- qualification receipt `3d27639447f1d47ac71e892a766444a3e7c8627ff3120b791ecf4470ebeedda6` promotes only bounded local-loopback protected-process evidence.
+
+## Immediate P0 — successor control + wider hostile bypass pressure
+1. Publish/fresh-clone verify the next normal control generation above `f120ff577cd3a3df438d354ae9cd0662d037663f` carrying source `43aa7feac7e8a15828116bd700b644560714496d`, Gen14 and bounded qualification.
+2. After that durability gate, preserve new hostile attempts before execution.
+3. Pressure Internet/DNS/UDP/QUIC/proxy/environment/helper/plugin/COM/RPC/WSL/service/breakaway paths.
+4. Define and qualify production launch-site integration separately.
+5. Keep unsupported/unknown enforcement state fail-closed for protected domains.
+6. Do not promote `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` until those broader claims are actually earned.
 
 ## P0 — enforcement architecture safety
 11. Keep credential/token secret storage outside authority metadata; future secrets belong in the Vault boundary.
@@ -49,7 +44,7 @@ Last updated: 2026-09-06 UTC
 20. Do not copy or privately reimplement Core semantic-field logic inside `forge_app/**`.
 21. Separately qualify checkpoint `core_contract_version`, `core_currentness_id`, and `semantic_snapshot_id` restoration/currentness semantics before populating those fields.
 
-## P1 — first real provider only after egress enforcement
+## P1 — first real provider only after broader production egress enforcement + launch integration
 22. Start with exact GitHub App repo/branch read/push scope only.
 23. Admin/delete/force-push unavailable in Singularity Works policy regardless of broader token ceiling.
 24. OAuth/PKCE, provider revocation/currentness and secure token storage each receive separate qualification.
@@ -73,27 +68,38 @@ Last updated: 2026-09-06 UTC
 36. Main/Core and App maintain separate zero-authority RES surfaces and cross-reference rather than silently merging authority domains.
 
 ## Current verified baseline
-- R4.4 current process carrier SHA `04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc`;
-- App local/remote source exact `e9b81750db265a467187c61962ffab3cff98d4fe`, clean; Attempt 0 preserved/unexecuted;
-- exact merge parents `[328249429cc6e86e15db9797bd58eff5fabc5a2d, a7b4511734b1a1e507230308e75b31175aef4c4a]`;
-- forward-sync qualification receipt SHA `ef9cbb12293a0077e143ee8c991a466bc23019a303221a13be85bf3cc46c604e`;
-- remote closure SHA `8119f920e0c8e1c34c85ebe8e6ab5d01cbf32e5ab01309a8ede68e40145fa2ec`;
-- fresh remote compile PASS / semantic 8/8 / App 94/94 / full verify_build PASS;
-- canonical bridge schema `singularity-works.semantic-field-bridge/0.1`;
-- current LKG generation 12 `checkpoint-app-live-0012-e9b81750db26`, source MATCH/NORMAL; Gen11 historical/source-stale;
-- Gen12 evidence `state/live_resume_session_0012.json` SHA `aeff0db397135d8f227f11e17c1b7b939235b6ae11ee2ae97053246d9d605e0a`;
-- evidence Attempt `attempt-live-resume-session-0012-lkg`, exact blob same SHA;
-- Attempt Store 104 blobs / 104 attempts / 175 events, integrity ok, WAL/FULL.
+- App local/remote source exact `43aa7feac7e8a15828116bd700b644560714496d`, clean; bounded v0.1.2 primitive qualified.
+- current LKG Gen14 `checkpoint-app-live-0014-43aa7feac7e8`, source MATCH/NORMAL/READY; evidence `bc4bbddd0addc9be743ca01d7f022b2d2b1228373e1eac7d181937a008a32c50`; Core IDs null.
+- D2 first committed PASS `5919cdc7af94d0e34d5884366eb3f328762422c03f2346afd332690820863b68`; D0-D3 regression 4/4 PASS `1a571cae54279aa4b79646b87dfb254701957088d481bc7b0de7c832935055fa`.
+- Attempt Store current counts 115 blobs / 115 attempts / 194 events.
+- durable control `f120ff577cd3a3df438d354ae9cd0662d037663f` / CHECKPOINT `263d3d9aec93c3f3cc037cf34de3d311bd64e0c91d6e36df5b5a68372c675dc4` remains a verified predecessor but predates `43aa7feac7e8a15828116bd700b644560714496d` + Gen14 + qualification.
+- App RES `1f25b5713788c8aad8eac0989c218a8e66c2ed54b86e0999fba84e05559eb7f6`; Main RES `a9035c991e02da6081f245a83129be5291b6f8c3a9689079dba6cb36d3c411df`; both authority NONE_BY_CONTENT.
 
 ## Closed this cycle
 The early Main->App forward-sync gate is closed for qualified Main `a7b4511...` / App merge `b674dba...`.
-Generation 10 and Gen11 remain historical; Gen11 is source-stale against current App. Generation 12 is current LKG/source MATCH/NORMAL.
+Generation 10–13 are historical recovery evidence for earlier sources; Gen14 `checkpoint-app-live-0014-43aa7feac7e8` is current LKG/source MATCH/NORMAL for `43aa7feac7e8a15828116bd700b644560714496d`.
 
 ## Control-plane follow-up
-Current durable predecessor ICF/R4.4/gen11 control is `pcmmad/project-control@63f7a74f47be4179b5871fd7ff9da819b54e3ab9`, CHECKPOINT `500d7c167ff5d27e6287edf675d7bbc06a91b5a7c169ffa44df753e6af6bb049`, verifier PASS 96, fresh clone exact/clean. Previous `cb8d01c5...` remains historical. Fixed-point post-push receipt/pointer state waits for the next normal checkpoint.
+Current durable control is `pcmmad/project-control@f120ff577cd3a3df438d354ae9cd0662d037663f`, CHECKPOINT `263d3d9aec93c3f3cc037cf34de3d311bd64e0c91d6e36df5b5a68372c675dc4`, verifier PASS 115, fresh clone exact/clean. Predecessor `63f7a74...` remains historical. Fixed-point post-push receipt/pointer state waits for the next normal checkpoint.
 
 ## Historical ICF-CS v1.0 adoption — 2026-09-05
-At that historical v1.0 generation, ICF durability was the prerequisite ahead of egress Attempt 0; the current prerequisite is v1.1/source/Gen12 successor control publication. The product/security frontier itself is unchanged.
+The v1.1/source/Gen12 successor control is durable at `f120ff5...`; D0-D3 later executed and bounded v0.1.2 qualification is now closed. Current gate is the next normal control checkpoint followed by wider bypass/production-integration pressure.
 
 ## Historical pre-official ICF-CS Git-control closure — 2026-09-05
-The provisional ICF generation is durable at `63f7a74...`; official-addendum successor publication above is the current P0 before egress implementation.
+The predecessor ICF generation at `63f7a74...` is historical; current durable control is `f120ff5...`.
+
+## Immediate P0 — next normal control for App 43aa7fe / Gen14 / bounded v0.1.2
+1. Snapshot current Main `6ea95275cdc409ed222e4720b6b04aadaa17e6bf` with pending Governance Contact carrier/no authority effect, current App `43aa7feac7e8a15828116bd700b644560714496d`, Gen14 `checkpoint-app-live-0014-43aa7feac7e8`, bounded qualification `3d27639447f1d47ac71e892a766444a3e7c8627ff3120b791ecf4470ebeedda6`, first v0.1.2 D2 PASS `5919cdc7af94d0e34d5884366eb3f328762422c03f2346afd332690820863b68`, regression `1a571cae54279aa4b79646b87dfb254701957088d481bc7b0de7c832935055fa`, final Commander `49972aad08226859105d57a2cc15e1f09d06926263ef8b07beb7ca1526507cf9` and ingress `2457d3047331a02f511b0e5c93a36dde99f2a7c91728cdd97add8beae2ad0255`.
+2. Build from exact verified control predecessor `f120ff577cd3a3df438d354ae9cd0662d037663f`.
+3. Apply complete semantic publication read, privacy/path scan, manifest/index equality, non-force push and independent fresh-clone verification.
+4. Fixed-point post-push receipt/pointer changes wait for the following normal checkpoint.
+
+## Product/security P0 after control — wider bypass pressure + production launch integration
+1. Preserve a new Attempt before first new consequence-bearing discriminator.
+2. Pressure DNS and UDP/QUIC separately from the already-qualified local TCP/loopback boundary.
+3. Pressure proxy/environment/helper/browser/plugin/import paths.
+4. Pressure COM/RPC/service/WSL/equivalent local escape paths where applicable.
+5. Pressure Job breakaway/process-tree behavior beyond the exact current path.
+6. Wire and qualify real product launch sites through the protected primitive/broker boundary.
+7. Keep provider transport blocked until production enforcement and broader bypass pressure earn a stronger claim.
+8. Do not promote bounded AppContainer evidence to machine-wide firewall authority.

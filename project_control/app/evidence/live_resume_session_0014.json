@@ -1,0 +1,41 @@
+{
+  "authority": "NONE_BY_CONTENT",
+  "checkpoint_blob_sha256": "4efabde670986f65fc3e1736452300b299f79045e5b537ea46425e1dbbbd2136",
+  "checkpoint_id": "checkpoint-app-live-0014-43aa7feac7e8",
+  "core_contract_version": null,
+  "core_currentness_id": null,
+  "d2_v0_1_2_execution_status": "PRESERVED_NOT_EXECUTED",
+  "early_crash_count": 0,
+  "generation": 14,
+  "healthy_seconds_recorded": 10.25,
+  "icf_cs_version": "1.1",
+  "meaningful_operations": 4,
+  "meaningful_operation_evidence": [
+    "App source HEAD/local/remote exact and clean at 43aa7feac7e8a15828116bd700b644560714496d",
+    "exact committed v0.1.2 repair note/test hashes and unchanged protected-process implementation hash",
+    "preserved v0.1.1 first result plus PowerShell descendant diagnosis readback",
+    "durable control f120ff577cd3a3df438d354ae9cd0662d037663f plus exact Gen13 parent-lineage readback"
+  ],
+  "parent_checkpoint_id": "checkpoint-app-live-0013-9bc35af608fe",
+  "promotion_id": "promote-app-live-0014-current-source",
+  "quarantined": false,
+  "resume_id": "resume-app-live-0014-d2-v012",
+  "resume_policy": "NORMAL",
+  "schema": "singularity-works.live-resume-session/0.1",
+  "semantic_snapshot_id": null,
+  "source_branch": "forge/app-shell-rd",
+  "source_head": "43aa7feac7e8a15828116bd700b644560714496d",
+  "source_match": "MATCH",
+  "stable": true,
+  "status": "VERIFIED_RESUMED_STABLE_LKG",
+  "store_counts_before_evidence_preservation": {
+    "attempts": 111,
+    "blobs": 111,
+    "events": 190
+  },
+  "test_repair_git_sha256": {
+    "forge_app/egress/OS_PROCESS_EGRESS_D2_HARNESS_REPAIR_v0_1_2.md": "fa76950d39d38f7755233357ee9b25db41462f7d64e093942df447ae875556d5",
+    "forge_app/egress/windows_protected_process.py": "80163d67a40b7604920f70d25a23d982c73dd368a62f8872c7632ca1e1904790",
+    "forge_app/embodiment/test_os_process_egress_enforcement_v0_1.py": "f49f1dbc03477c42a10b9a0361ba55b4c670321102bc8e7cfc8bd0119ad9b502"
+  }
+}

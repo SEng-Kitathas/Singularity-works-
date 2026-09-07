@@ -1,7 +1,7 @@
 # Doctrine Snapshot — Singularity Works App
 
 Last updated: 2026-09-06 UTC
-Mode: CHECKPOINT — ICF-CS v1.1 binding; Gen12 current; successor durable-control publication pending
+Mode: CHECKPOINT — ICF-CS v1.1 binding; App Gen14 current; bounded egress primitive qualified; next normal control pending
 
 ## Universal process
 RAHL Engineering Canonical SOP R4.4 is current universal process/cold-start default under `CANONICAL_PROCESS_DEFAULT != UNIVERSAL_DOMAIN_TRUTH`.
@@ -60,21 +60,11 @@ schema `singularity-works.semantic-field-bridge/0.1`, source SHA `d8fe6650895409
 
 Bridge source availability/ancestry is qualified. Checkpoint semantic restoration identity is not.
 
-## Recovery doctrine — generation 12 current; generation 11 historical
-Generation 10 and generation 11 remain historical recovery evidence. Gen11 `checkpoint-app-live-0011-b674dbaaf428` is a valid LKG for source `b674dba...` but is source-MISMATCH against current App `e9b81750db265a467187c61962ffab3cff98d4fe`.
-
-Generation 12:
-`checkpoint-app-live-0012-e9b81750db26`
-parent `checkpoint-app-live-0011-b674dbaaf428`.
-
-Current generation 12 is VERIFIED / RESUMED / STABLE / LKG / source MATCH / NORMAL / early crash 0 / not quarantined. It earned STABLE after ~10.218s with four meaningful read-only operations, then LKG promotion.
-
-Evidence SHA:
-`aeff0db397135d8f227f11e17c1b7b939235b6ae11ee2ae97053246d9d605e0a`.
-Attempt Store: 104 blobs / 104 attempts / 175 events, integrity ok, WAL/FULL.
+## Recovery doctrine — generation 14 current
+Gen14 `checkpoint-app-live-0014-43aa7feac7e8` is current LKG for App `43aa7feac7e8a15828116bd700b644560714496d` with source MATCH/NORMAL/READY, blob `4efabde670986f65fc3e1736452300b299f79045e5b537ea46425e1dbbbd2136`, evidence `bc4bbddd0addc9be743ca01d7f022b2d2b1228373e1eac7d181937a008a32c50`. It has exact Gen13 parent, four meaningful operations and >10s healthy-session evidence before STABLE/LKG. Gen13 and earlier remain historical/source-stale against current App.
 
 ## Checkpoint Core identity remains conservative
-Generation 12 keeps `core_contract_version`, `core_currentness_id`, and `semantic_snapshot_id` null.
+Generation 14 keeps `core_contract_version`, `core_currentness_id`, and `semantic_snapshot_id` null.
 
 Reason: canonical bridge code is integrated and tested, but App checkpoint restoration/currentness/snapshot identity has not been explicitly qualified.
 
@@ -94,25 +84,25 @@ Reason: canonical bridge code is integrated and tested, but App checkpoint resto
 ## Network boundary doctrine
 `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` remains a target enforcement law, not a runtime fact.
 
-Next product/security qualification is OS/process egress enforcement. It must prove a protected execution domain cannot bypass Connection Gate through raw sockets, subprocess/helper binaries, plugins/imported code, DNS, loopback/local-service routes, inherited capabilities or equivalent escape paths.
+The bounded protected-process primitive v0.1.2 is qualified for exact local-loopback D0-D3 evidence at App `43aa7fe...`. The next product/security qualification is broader bypass resistance and production launch integration across Internet/DNS/UDP/QUIC/proxy/helper/plugin/COM/RPC/WSL/breakaway paths.
 
 Do not falsely promote child-process containment into machine-wide firewall control.
 
 `ENFORCEMENT_TEST_PASS != ENFORCEMENT_SCOPE_SEMANTICALLY_UNAMBIGUOUS`.
 
 ## RES ownership
-App RES SHA `a476342db8d3e6eea323ec157e5e4964eb0f1a009aabcf2867927f56e8c72792` owns zero-authority product/runtime/security research continuity. Main RES SHA `c963e4fd011dd432e8255b793aa0f2623d7d4548f3e3eb34b4f91aa34815fbbc` owns zero-authority Core/semantic research continuity. Cross-reference is allowed; authority transfer is not.
+App RES SHA `1f25b5713788c8aad8eac0989c218a8e66c2ed54b86e0999fba84e05559eb7f6` owns zero-authority product/runtime/security research continuity. Main RES SHA `a9035c991e02da6081f245a83129be5291b6f8c3a9689079dba6cb36d3c411df` owns zero-authority Core/semantic research continuity. Cross-reference is allowed; authority transfer is not.
 
 ## Current earned baseline
-- App source local/remote exact `e9b81750db265a467187c61962ffab3cff98d4fe`; frozen egress Attempt 0 preserved/unexecuted;
-- Main semantic-field ancestry integrated exactly;
-- generation 12 current LKG/source MATCH/NORMAL; Gen11 historical/source-stale;
-- canonical semantic bridge source available;
-- App authority/consequence stack remains qualified;
-- R4.4 remains active.
+- App source local/remote exact `43aa7feac7e8a15828116bd700b644560714496d`, clean.
+- Gen14 `checkpoint-app-live-0014-43aa7feac7e8` current LKG/source MATCH/NORMAL/READY; Core IDs null.
+- bounded protected-process receipt `3d27639447f1d47ac71e892a766444a3e7c8627ff3120b791ecf4470ebeedda6` QUALIFIED.
+- D2 first committed PASS `5919cdc7af94d0e34d5884366eb3f328762422c03f2346afd332690820863b68`; same-commit D0-D3 regression 4/4 PASS `1a571cae54279aa4b79646b87dfb254701957088d481bc7b0de7c832935055fa`.
+- App RES `1f25b5713788c8aad8eac0989c218a8e66c2ed54b86e0999fba84e05559eb7f6`; Main RES `a9035c991e02da6081f245a83129be5291b6f8c3a9689079dba6cb36d3c411df`; both zero-authority research continuity.
+- durable control `f120ff577cd3a3df438d354ae9cd0662d037663f` remains verified predecessor but predates current App/Gen14/qualification evidence.
 
 ## Not yet earned
-- OS/process network egress enforcement;
+- general external-egress containment, wider bypass resistance and production launch-site integration;
 - checkpoint semantic snapshot restoration/currentness identity;
 - real provider idempotency/reconciliation;
 - OAuth/PKCE/provider currentness/revocation;
@@ -132,10 +122,10 @@ Independent admission: complete current readable surface 46/46, deterministic 4,
 
 R4.4 adds semantic gate witness/ledger, host-identity guard self-tests, section inventory, anti-binding/additive hostile attacks, publication reconciliation, Global Cross-Project Scar Ledger discipline, and historical reconstruction/re-entry.
 
-R4.4 process promotion itself did not alter App source/recovery authority; current App `e9b81750...` and Gen12 are separately evidenced, while the OS/process egress boundary remains unearned.
+R4.4 process promotion itself did not alter the then-current App source/recovery authority; the embedded e9/Gen12 statement is historical and superseded by the later Gen14/bounded-qualification section.
 
 ## Historical ICF-CS v1.0 adoption — 2026-09-05 — DEMOTED BY v1.1
-Historical provisional ICF implementation is superseded by the qualified official R4.4 ICF-CS v1.0 additive overlay. Official standard `b22b6ba65992bf8e235df9acfb044da772282ae3820a1359af3b5309d1e1051b`; shared current project instance `5cf8cb6f3eb4c6011e6cd2f9dcfd6d9bd4e2a72b85def4f69c92a1c3ce20604d`; ingress pointer `f9774865f39924e1116db61941c2dc85ebba8d945426cd3f34c9e4195a734e2d`; machine contract `527e4fa0926449155a8aa548656b3debc5292262f8cfaab0ca3f0470e7771f5a`.
+Historical provisional ICF implementation is superseded by the qualified official R4.4 ICF-CS v1.0 additive overlay. Official standard `b22b6ba65992bf8e235df9acfb044da772282ae3820a1359af3b5309d1e1051b`; shared then-current project instance `5cf8cb6f3eb4c6011e6cd2f9dcfd6d9bd4e2a72b85def4f69c92a1c3ce20604d`; then-current ingress pointer `f9774865f39924e1116db61941c2dc85ebba8d945426cd3f34c9e4195a734e2d`; machine contract `527e4fa0926449155a8aa548656b3debc5292262f8cfaab0ca3f0470e7771f5a`.
 
 Active laws include `DIRECTION != CONSTRAINTS != FRONTIER != HISTORY`, `HISTORICAL_HANDOFF != CURRENT_INGRESS`, `DONOR != AUTHORITY`, `RECENT_TIMESTAMP != CURRENT_AUTHORITY`, `STALE_GREEN != CURRENT_EVIDENCE`, `CURRENT_POINTER != CURRENT_FACT_UNTIL_READBACK`, `INTENT != MUTATION_PERMISSION`, and `FRONTIER != DOCTRINE_AUTHORITY`.
 
@@ -156,17 +146,35 @@ The overlay does not replace/mutate R4.4 and creates no product/domain/architect
 `EXPECTED_LABEL != PROMPT_CONTENT`.
 `SEMANTIC_AGREEMENT != AUTHORITY_FIDELITY`.
 
-## ICF-CS v1.1 authority reconciliation — 2026-09-06
+## Historical ICF-CS v1.1 authority reconciliation — initial Gen12 stage — 2026-09-06
 - R4.4 remains exact sealed parent `04f3e94e...b3bbc`.
 - ICF-CS v1.1 payload `f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63` + detached receipt `418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c` are current binding additive continuity/process authority; v1.0 is demoted historical evidence by `3225fd952d704d31047ffdf01bffbc0968e4428357342ccb8ce5094ae8385057`.
 - Standard `62be845da364ae81f59b6320c9b34b136236bf5be8aa8036018da48efcb754f4`; machine `d67726aeb402c280770eeaf314068ed7a1330beb21167d9d6d9b7c4674425bb0`; qualification contract `7d20ed708adb4f7ee147b56da41deac77146b56fc85bd769be3a6d240b3e2029`; epoch profile `733b799815abdb4b1ff735635f7928953c12944ece579365b5aae138d90f90f8`.
-- Public Main `287c0bad0e9b3fef3002b91702e86b410cada4ce` is authority-publication-only above semantic Core anchor `a7b4511734b1a1e507230308e75b31175aef4c4a`; `MAIN_BRANCH_HEAD != CORE_QUALIFICATION_ANCHOR`.
-- App source `e9b81750db265a467187c61962ffab3cff98d4fe` preserves frozen egress Attempt 0; D0-D3 have not executed.
-- Gen12 `checkpoint-app-live-0012-e9b81750db26` is current LKG/source MATCH/NORMAL; Gen11 is historical/source-stale.
-- Durable control `63f7a74f47be4179b5871fd7ff9da819b54e3ab9` predates v1.1/Gen12 and requires one successor publication before first egress execution.
+- Public Main `6ea95275cdc409ed222e4720b6b04aadaa17e6bf` is authority-publication-only above predecessor `287c0bad0e9b3fef3002b91702e86b410cada4ce` and semantic Core anchor `a7b4511734b1a1e507230308e75b31175aef4c4a`; `MAIN_BRANCH_HEAD != CORE_QUALIFICATION_ANCHOR`.
+- Historical pre-repair state: App `e9b81750...` preserved original Attempt 0; subsequent D2 repair/qualification advanced current App to `43aa7feac7e8a15828116bd700b644560714496d`.
+- Historical recovery state: Gen12 was LKG for `e9b81750...`; current recovery ingress is Gen14 `checkpoint-app-live-0014-43aa7feac7e8`.
+- Historical control note: `63f7a74...` was superseded by `f120ff577cd3a3df438d354ae9cd0662d037663f`. Current App/Gen14/bounded qualification are newer than `f120ff577cd3a3df438d354ae9cd0662d037663f` and require the next normal control checkpoint before wider bypass attempts.
 - ICF-CS v1.1 does not transfer Main semantic authority or App product/runtime/recovery authority.
 
-## ICF-CS v1.1 current additive authority — 2026-09-06
+## ICF-CS v1.1 additive authority — process identity current; embedded App/Gen12 snapshot historical — 2026-09-06
 Current additive continuity/process authority above sealed R4.4 is ICF-CS v1.1 payload `f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63`, detached receipt `418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c`, standard `62be845da364ae81f59b6320c9b34b136236bf5be8aa8036018da48efcb754f4`, machine `d67726aeb402c280770eeaf314068ed7a1330beb21167d9d6d9b7c4674425bb0`, qualification contract `7d20ed708adb4f7ee147b56da41deac77146b56fc85bd769be3a6d240b3e2029`, epoch profile `733b799815abdb4b1ff735635f7928953c12944ece579365b5aae138d90f90f8`. v1.0 is historical by demotion receipt `3225fd952d704d31047ffdf01bffbc0968e4428357342ccb8ce5094ae8385057`.
 
-Payload semantic read 1,050/1,050 lines SHA `ad1dab3444274a23c8d63a1edb3857b50f90c98efd0115d3c7c488c06fac9ec6`; distribution/primary/meta/qualification PASS; hostile 35/35; semantic pending 0. Current App is `e9b81750...`, Gen12 current LKG; Attempt 0 is preserved/unexecuted/unqualified.
+Payload semantic read 1,050/1,050 lines SHA `ad1dab3444274a23c8d63a1edb3857b50f90c98efd0115d3c7c488c06fac9ec6`; distribution/primary/meta/qualification PASS; hostile 35/35; semantic pending 0. Historical pre-repair App was `e9b81750...`/Gen12; current App is `43aa7feac7e8a15828116bd700b644560714496d`/Gen14 with bounded protected-process qualification `3d27639447f1d47ac71e892a766444a3e7c8627ff3120b791ecf4470ebeedda6`.
+
+## Current App egress bounded qualification — v0.1.2 — 2026-09-06
+App source `43aa7feac7e8a15828116bd700b644560714496d` is current/clean/remote-exact/fresh-clone verified. Gen14 `checkpoint-app-live-0014-43aa7feac7e8` is current LKG/source MATCH/NORMAL; evidence `bc4bbddd0addc9be743ca01d7f022b2d2b1228373e1eac7d181937a008a32c50`.
+
+Protected-process primitive v0.1.2 is bounded QUALIFIED under receipt `3d27639447f1d47ac71e892a766444a3e7c8627ff3120b791ecf4470ebeedda6`: first committed D2 PASS `5919cdc7af94d0e34d5884366eb3f328762422c03f2346afd332690820863b68` and same-commit D0-D3 PASS 4/4 `1a571cae54279aa4b79646b87dfb254701957088d481bc7b0de7c832935055fa`. Protected-process implementation is unchanged. The qualification applies only to the exact tested Windows/AppContainer+Job/local-loopback/validated descendant/timeout-teardown boundary.
+
+`LOCAL_LOOPBACK_PROCESS_CONTAINMENT != GENERAL_EXTERNAL_EGRESS_CONTAINMENT`.
+`BOUNDED_PRIMITIVE_QUALIFIED != PRODUCTION_ENFORCEMENT_INTEGRATED`.
+`D0_D3_PASS != NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT`.
+
+`NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` remains target doctrine, not runtime fact. Durable control `f120ff577cd3a3df438d354ae9cd0662d037663f` predates this source/recovery/qualification state; the next normal control checkpoint precedes new wider-bypass attempts.
+
+## Governance Contact v1.0 detached carrier — pending / not active
+Main `6ea95275cdc409ed222e4720b6b04aadaa17e6bf` adds only `authority/rahl-sop/**` Governance Contact release-carrier files. `CURRENT.md` is unchanged; sealed R4.4 + active ICF-CS v1.1 remain the universal authority stack.
+
+Exact carrier ZIP `c4ab4a516e088b6c28b5240d6b3877d2e3fb889a8bbbfd406e8e0c73bebdd1ae` / detached receipt `cf2e7bd8e5ed613d3c3a99b7f8645833ddb742ac4939bd1719092b277ef286e6` / 2,357-line semantic stream `ae5e645ffaab627ae0959bf6780591bd0dae622a91cad265b39c1885b7ac75ff`; clean-extraction release verifier PASS. Release state is detached/pending with zero target-publication, repository-admission, local-reconciliation or post-publication-readback counts.
+
+This does not add current local doctrine, product authority or a ninth privileged-core function. `CARRIER_PRESENT != PROJECT_SPECIFIC_AUTHORITY_REWRITE`.
