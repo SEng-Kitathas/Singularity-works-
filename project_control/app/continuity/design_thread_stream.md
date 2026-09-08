@@ -21,7 +21,7 @@ Tags: BUILD-COMMIT, GIT, CONTINUITY, ISOLATION
 Commander lifted read-only: “Released, let’s stop testing fate and context windows.”
 
 Assistant switched to CHECKPOINT -> BUILD-COMMIT with continuity before creativity. Existing reality was inspected:
-- `<LOCAL_HISTORICAL_PATH>` was heavily dirty/mixed on local `main` and was not touched.
+- `<LOCAL_HISTORICAL_REPO>` was heavily dirty/mixed on local `main` and was not touched.
 - existing separate worktree remained separate.
 - live GitHub heads showed qualified public `main` at `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`; no remembered discussion branch existed as a live remote head.
 
@@ -32,7 +32,7 @@ A fresh clone of qualified GitHub `main` was created at `source/`, exact HEAD `1
 
 The GitHub-side program was physically separated under new top-level `forge_app/` with charter and domain folders for research/design/recovery/Ergo/render/shell/LBE/terminal/HUD/prototypes/embodiment/promotion. A subtree `.gitattributes` pins deterministic LF text representation.
 
-First commit attempt failed before history mutation because the fresh clone lacked Git author identity. Existing qualified history and the old repo both reported `Singularity Works <<REDACTED_EMAIL_SHAPED_IDENTIFIER>>`. That identity was copied into the new clone repository-locally only; global configuration was not changed. The exact staged commit then succeeded:
+First commit attempt failed before history mutation because the fresh clone lacked Git author identity. Existing qualified history and the old repo both reported `Singularity Works <forge@singularity.works>`. That identity was copied into the new clone repository-locally only; global configuration was not changed. The exact staged commit then succeeded:
 `a3b104174b8cb2c027eaa8e23fd602e5d2356c37` — `forge-app: establish isolated program charter`.
 
 Push/readback verified local and remote `forge/app-shell-rd` both exactly `a3b104174...`, parent `1b8f6bdc...`, working tree clean, and only `forge_app/` added relative to qualified ancestor.
@@ -1622,3 +1622,29 @@ Structured plane-currentness record `state/egress_wider_v0_2_5_2_synchronous_exe
 This is execution-plane currentness only. `SILENT_BREAKAWAY_OK_PRESENT != CREATE_BREAKAWAY_FROM_JOB_PASS`; v0.2.5.2 is NOT YET FROZEN / NOT EXECUTED.
 
 Current sequencing gate: advance `pcmmad/project-control` above `a95ec5355b6946927eec6403a1764491f837e9e2` and fresh-clone verify the successor carrying the v0.2.5.1 HARNESS_INVALID boundary + synchronous-plane record. Only afterward may a NEW v0.2.5.2 be frozen for `runSync.command`, after immediate plane remeasurement, with unchanged explicit-breakaway discriminator behavior.
+
+
+---
+
+## Entry — v0.2.5.1 harness boundary + synchronous-plane prerequisite successor control remotely closed — 2026-09-08
+Tags: CONTROL-CLOSURE, EXPLICIT-BREAKAWAY, HARNESS-INVALID, EXECUTION-PLANE, FRESH-CLONE
+
+Successor `pcmmad/project-control@56fb5b70ffee7c58d60c34118338d12c30313e46` is remotely durable, parent `a95ec5355b6946927eec6403a1764491f837e9e2`, tree `bf3d150d42457c7950dd6834d7694361b94ca4fa`.
+
+Frozen CHECKPOINT `2a4ce4baf905bd3698d228cbb9a0575dcc78efa577593a69de6118b9fa49cec6`, 2,553 lines, verifier PASS / 158, manifest 158/158. Server semantic stream 3,116/3,116 PASS; Git publication stream 5,947/5,947 PASS. Staged membership 159/159 exact; current-generation path/secret findings 0; dry-run/non-force push PASS.
+
+Independent `ls-remote` and fresh clone reproduced exact HEAD/clean tree, verifier PASS / 158, CHECKPOINT exact and all current objects: Main `e66c071...` / Core `a7b451...`; App `43aa7fe...` / Gen14; Governance Contact locally binding additive process doctrine / global ACTIVE unearned; v0.2.5.1 result `60c928...` HARNESS_INVALID / NOT_ADMITTED; synchronous `runSync.command` currentness `0a4a3b28...` at `0x3000` / silent-breakaway true / breakaway result unearned.
+
+Closure receipt `notes/maintenance/EGRESS_V0_2_5_1_SYNC_PLANE_CONTROL_CLOSURE_20260908.md` SHA `dd0dda68ced27ae17888a2e4be454d7ad50f74ebe25573fcbf24ffe39048b172`.
+
+Checkpoint prerequisite is CLOSED. Next exact action is immediate remeasurement of `runSync.command` outer Job policy. Only if silent-breakaway remains true may App freeze/read/preserve a NEW v0.2.5.2 sibling with unchanged explicit-breakaway discriminator behavior, then execute it via `runSync.command` only. v0.2.5/v0.2.5.1 remain immutable and SHALL NOT be replayed.
+
+Fixed-point: this closure delta waits for the next normal checkpoint; no recursive publication.
+
+
+---
+
+## Entry — v0.2.5.2 explicit-breakaway first execution HARNESS_INVALID — 2026-09-08
+Tags: EXPLICIT-BREAKAWAY, RUNSYNC, CHILD-MEMBERSHIP, HARNESS-INVALID
+
+After control `56fb5b70ffee7c58d60c34118338d12c30313e46` fresh-clone closure, synchronous-plane currentness `f32909d4c430a33e2eb3c80a4ea8aec0c6d6b0a6c1f73b3be3f34b2f70399f88` was preserved and v0.2.5.2 `d7f444287c6903fab28b58e9423cfc99ec53dced03457e964348eb587c1f2602` was frozen/read/captured. First synchronous execution remeasured outer Job `0x1800`, passed compatibility, and the positive helper successfully called explicit breakaway child creation. The helper root remained in a Job, so the artifact's overly strict positive criterion stopped before child membership/liveness inspection and before protected execution. Exact result `af0ce57433f71ad41dd74f06d922b88bad8fc8f69d0f8ca13496eafb47ab4601` preserved; store 172/179/258 integrity ok. No breakaway admission.

@@ -220,3 +220,7 @@ Bounded evidence now supports normal descendant termination across immediate `JO
 `OUTER_JOB_PRECHECK_FAILURE != CREATE_BREAKAWAY_FROM_JOB_DENIAL`
 `HARNESS_INVALID != SAFE_TO_REPLAY_SAME_ATTEMPT`
 A replacement execution plane must prove its own outer-Job breakaway conditions before any explicit-breakaway inference.
+
+
+## Breakaway child-membership guard — 2026-09-08
+`POSITIVE_ROOT_IN_JOB != BREAKAWAY_CHILD_IN_JOB`; `EXPLICIT_CHILD_CREATION_SUCCESS != CHILD_JOB_MEMBERSHIP_PROOF`; `PROTECTED_PHASE_NOT_REACHED != BREAKAWAY_DENIAL`. No doctrine/product promotion.

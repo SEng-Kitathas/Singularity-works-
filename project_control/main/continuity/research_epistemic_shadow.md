@@ -426,3 +426,7 @@ App bounded admission `518c15f8464ea69487a4db5b7d23605b4d18983a684c1819c3d03792d
 
 ## App v0.2.5.1 breakaway harness signal — Main RES — 2026-09-08
 Result `60c928361d0f350447d2577f671915263446f4d7e40afb5cea12161abc19add8` is verified HARNESS_INVALID before explicit-breakaway observation. Main RES authority NONE_BY_CONTENT; Core semantic state unchanged.
+
+
+## App v0.2.5.2 harness signal — Main RES — 2026-09-08
+Result `af0ce57433f71ad41dd74f06d922b88bad8fc8f69d0f8ca13496eafb47ab4601` is verified HARNESS_INVALID, no protected breakaway observation. Main RES authority NONE_BY_CONTENT; Core state unchanged.

@@ -242,3 +242,15 @@ Artifact `50095130e14f4d564dbca18cf0a6ace6c3805ffca38598856bd4a6fe4b1d9bb8` exec
 - Attempt Store current readback: **166 blobs / 172 attempts / 251 events**, integrity ok.
 - This satisfies only the execution-plane repair precondition. `SILENT_BREAKAWAY_OK_PRESENT != CREATE_BREAKAWAY_FROM_JOB_PASS`.
 - Immediate P0: publish/fresh-clone verify one successor `pcmmad/project-control` checkpoint carrying this harness-invalid boundary + plane currentness. Only after that may a NEW v0.2.5.2 be frozen for the exact synchronous `runSync.command` plane. v0.2.5.2 is **NOT YET FROZEN / NOT EXECUTED**.
+
+## V0.2.5.1 CONTROL CLOSURE / V0.2.5.2 REMEASUREMENT GATE — CURRENT
+- Current durable control `56fb5b70ffee7c58d60c34118338d12c30313e46` / CHECKPOINT `2a4ce4baf905bd3698d228cbb9a0575dcc78efa577593a69de6118b9fa49cec6`, verifier PASS 158, independent fresh clone exact/clean. Predecessor `a95ec5355b6946927eec6403a1764491f837e9e2` is historical.
+- Closure receipt `dd0dda68ced27ae17888a2e4be454d7ad50f74ebe25573fcbf24ffe39048b172`.
+- v0.2.5.1 remains immutable HARNESS_INVALID / NOT_ADMITTED; no explicit-breakaway result.
+- Stored synchronous-plane record `0a4a3b28...` proved `runSync.command` compatible at the checkpoint boundary only.
+- Immediate P0: remeasure exact `runSync.command` Job flags now. Only if silent-breakaway remains true may a NEW v0.2.5.2 be frozen/read/preserved. v0.2.5.2 is still NOT YET FROZEN / NOT EXECUTED.
+- Fixed-point post-push closure metadata waits for the next normal control checkpoint and does not block this remeasurement.
+
+
+## Current explicit-breakaway frontier — v0.2.5.2 — 2026-09-08
+Control `56fb5b70ffee7c58d60c34118338d12c30313e46` / CHECKPOINT `2a4ce4baf905bd3698d228cbb9a0575dcc78efa577593a69de6118b9fa49cec6`. Synchronous plane `f32909d4c430a33e2eb3c80a4ea8aec0c6d6b0a6c1f73b3be3f34b2f70399f88` verified compatible. v0.2.5.2 `d7f444287c6903fab28b58e9423cfc99ec53dced03457e964348eb587c1f2602` executed once; first result `af0ce57433f71ad41dd74f06d922b88bad8fc8f69d0f8ca13496eafb47ab4601` is HARNESS_INVALID because the positive helper root remained in an outer Job even though explicit child creation succeeded. Child Job membership was not measured; protected phase was not reached. Store 172/179/258 integrity ok. Explicit breakaway result remains unearned.

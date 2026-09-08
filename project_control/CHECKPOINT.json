@@ -1,4 +1,10 @@
 {
+  "app_attempt_store_current": {
+    "attempts": 179,
+    "blobs": 172,
+    "events": 258,
+    "integrity": "ok"
+  },
   "app_observation": {
     "branch": "forge/app-shell-rd",
     "commit": "43aa7feac7e8a15828116bd700b644560714496d",
@@ -160,44 +166,9 @@
       "sha256": "bf15777d3a0ce0b69e7eabd32d4d36e87faa167174208195ab1d60dcf152fa8c"
     },
     {
-      "bytes": 1161,
-      "path": "CONTINUITY_POINTER_REPAIR_20260908.md",
-      "sha256": "bf1843d045940e1c3693e43e26dd2f79cb2c13c74da10616a4398ab362e5c7fd"
-    },
-    {
-      "bytes": 4480,
-      "path": "CURRENTNESS_AFTER_V0_2_4_1_20260908.md",
-      "sha256": "ae76b5725b896f28952955a0f1135ff0976818a6047e867008a9b48ec2709aa8"
-    },
-    {
-      "bytes": 3581,
-      "path": "CURRENTNESS_AFTER_V0_2_4_20260908.md",
-      "sha256": "703c7b36ca3645533434596892f6eb87b828081ab7ee745e9940f7dabf07a9f4"
-    },
-    {
-      "bytes": 1618,
-      "path": "PUSH_RECEIPT_20260903.md",
-      "sha256": "2fbf22e5e9eb92c8a72972f3d166fb97c24055c0668a37ef594fcbb4236eae02"
-    },
-    {
-      "bytes": 3498,
-      "path": "README.md",
-      "sha256": "d833f2b8c21c676296e47debf8eab74cdc89575bdf557abd5972015a68e6e1ba"
-    },
-    {
-      "bytes": 3271,
-      "path": "RECOVERY_CURRENTNESS_20260907.md",
-      "sha256": "373845c55358b7761bc5877fee438af946899405c36ad16ec45d06077d433759"
-    },
-    {
-      "bytes": 1801,
-      "path": "VERIFY_CHECKPOINT.py",
-      "sha256": "f5dba1193203a03bbce3779179ce5b6947231dff1ae65f505e5024e3ec5ee207"
-    },
-    {
-      "bytes": 3486,
+      "bytes": 3534,
       "path": "app/authority/rahl-sop/GOVERNANCE_CONTACT_V1_0_ACTIVATION.md",
-      "sha256": "e1bf2d4214b42712ab736613030ec0307a065dea69502d6ce4c55ff488798e3f"
+      "sha256": "380059a4e8204c35f82b3a232d45f962bb20038eec3d9eecb44f4411809346bd"
     },
     {
       "bytes": 2259,
@@ -225,19 +196,19 @@
       "sha256": "6c5080d0c950297490139e7b120964dddb7936af5076a967d1200904456cb795"
     },
     {
-      "bytes": 147398,
+      "bytes": 150168,
       "path": "app/continuity/design_thread_stream.md",
-      "sha256": "a10861f8a44a92aaec9f6765b3eab13a6a3b898765c403c7024f7cb792c29262"
+      "sha256": "c2b0c32593a61c7eb93cbf0948ef0545cfacf37e463895c10c6794a8bafc20e4"
     },
     {
-      "bytes": 13062,
+      "bytes": 14827,
       "path": "app/continuity/live_shadow.md",
-      "sha256": "d51a8252d90a2ded49518e55596859303b285d70efff10d8b453f39c94281319"
+      "sha256": "2bba92845f04ea17cc7b645c3d2a3d7511f2d247d42bdc7e2055b04caba2ab89"
     },
     {
-      "bytes": 41176,
+      "bytes": 41564,
       "path": "app/continuity/research_epistemic_shadow.md",
-      "sha256": "30356c2a5f951b53597cbb67a45a0ca73c59f1885d23357f063886fd06cf7d14"
+      "sha256": "d424fd3c11dcfe731e13a5b1323b18401e12b2e9b7aaee1586ed8a10a7bceeb2"
     },
     {
       "bytes": 1782,
@@ -258,6 +229,16 @@
       "bytes": 1786,
       "path": "app/evidence/egress_wider_v0_2_5_1_explicit_job_breakaway_first_result_20260908.json",
       "sha256": "60c928361d0f350447d2577f671915263446f4d7e40afb5cea12161abc19add8"
+    },
+    {
+      "bytes": 2098,
+      "path": "app/evidence/egress_wider_v0_2_5_2_explicit_job_breakaway_first_result_20260908.json",
+      "sha256": "af0ce57433f71ad41dd74f06d922b88bad8fc8f69d0f8ca13496eafb47ab4601"
+    },
+    {
+      "bytes": 1424,
+      "path": "app/evidence/egress_wider_v0_2_5_2_post_checkpoint_runsync_plane_currentness_20260908.json",
+      "sha256": "f32909d4c430a33e2eb3c80a4ea8aec0c6d6b0a6c1f73b3be3f34b2f70399f88"
     },
     {
       "bytes": 1409,
@@ -410,6 +391,16 @@
       "sha256": "984ac7512294964085d63813476ac2174eb44e7007a468a673e6a4dfe7f9e67b"
     },
     {
+      "bytes": 3393,
+      "path": "app/notes/maintenance/EGRESS_WIDER_V0_2_5_2_EXPLICIT_JOB_BREAKAWAY_HARNESS_INVALID_20260908.md",
+      "sha256": "05d9969e76a68c8c7b8a21268c2bc9bf612c21c0c01963cb4e6b294fdff5b7a9"
+    },
+    {
+      "bytes": 1646,
+      "path": "app/notes/maintenance/EGRESS_WIDER_V0_2_5_2_EXPLICIT_JOB_BREAKAWAY_RUNSYNC_CURRENTNESS_20260908.md",
+      "sha256": "72ee1f99c98b8d6b4088ec67efb9cfde5686605ba5e83153d4cd72998df7c1d7"
+    },
+    {
       "bytes": 4555,
       "path": "app/sop/ICF_CS_V1_1_DETACHED_RELEASE_RECEIPT_2026-09-05.json",
       "sha256": "418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c"
@@ -465,9 +456,14 @@
       "sha256": "50095130e14f4d564dbca18cf0a6ace6c3805ffca38598856bd4a6fe4b1d9bb8"
     },
     {
-      "bytes": 22522,
+      "bytes": 17834,
+      "path": "app/state/attempt_artifacts/EGRESS_WIDER_V0_2_5_2_EXPLICIT_JOB_BREAKAWAY_RUNSYNC_CURRENTNESS_20260908.py",
+      "sha256": "d7f444287c6903fab28b58e9423cfc99ec53dced03457e964348eb587c1f2602"
+    },
+    {
+      "bytes": 24235,
       "path": "app/state/current.md",
-      "sha256": "aead40a2bf61bf1f61da1392963970f5f1fc160353514b88c1e967c1481dbce3"
+      "sha256": "734ea0e4458762a8ca3ec890697962ed2bf2b23cdddb153226aa9a0bb5e82be9"
     },
     {
       "bytes": 4215,
@@ -500,9 +496,9 @@
       "sha256": "e3e859989524e5900abc353cd9b7719f3d7173c8d80104b4afe30dde05c68e9d"
     },
     {
-      "bytes": 18567,
+      "bytes": 18817,
       "path": "app/state/doctrine_snapshot.md",
-      "sha256": "06e01faacf17ca7e541f13aac1e4c013c2b5b2e19e66c6e6c543439bdace494e"
+      "sha256": "35d34fb059bf53b44260230e7d698f0d962bef7220b86cf13dba14d5858b3a40"
     },
     {
       "bytes": 2879,
@@ -510,24 +506,44 @@
       "sha256": "b1d785fae561756b05daa3c268e0a0e13a913c0c529d8b0ba105a84e817e1b2b"
     },
     {
-      "bytes": 14879,
+      "bytes": 16031,
       "path": "app/state/next_steps.md",
-      "sha256": "e4dacf2bcb249d13e916e4f2d73196d5a48c7a837f2d24d0aadbd26a87db5921"
+      "sha256": "a07febb71f01b8579bf008ad86959398572d0579e980e6fb75db5fee3a42a1a6"
     },
     {
-      "bytes": 18495,
+      "bytes": 19309,
       "path": "app/state/revisit_ledger.md",
-      "sha256": "f9b4bbd45475173f7a82a0b6f709fc3c51711a8f9264c371518b0afd62d9ff69"
+      "sha256": "dd04a6ac5850ca89dddd56dc54979771d9beabd95c2618e51be702ed728fadd9"
     },
     {
-      "bytes": 27344,
+      "bytes": 28900,
       "path": "app/state/trace_matrix.md",
-      "sha256": "f972c36eda7b1b32e8c8db0288f30992bed27c6bcc35d456d80bbcf7efa9d262"
+      "sha256": "c4122984fcf0d2e7e09d3f43ba28841eef781fac7ebb2f98ebd4c0dfb765167b"
     },
     {
-      "bytes": 3486,
+      "bytes": 1161,
+      "path": "CONTINUITY_POINTER_REPAIR_20260908.md",
+      "sha256": "bf1843d045940e1c3693e43e26dd2f79cb2c13c74da10616a4398ab362e5c7fd"
+    },
+    {
+      "bytes": 4480,
+      "path": "CURRENTNESS_AFTER_V0_2_4_1_20260908.md",
+      "sha256": "ae76b5725b896f28952955a0f1135ff0976818a6047e867008a9b48ec2709aa8"
+    },
+    {
+      "bytes": 3581,
+      "path": "CURRENTNESS_AFTER_V0_2_4_20260908.md",
+      "sha256": "703c7b36ca3645533434596892f6eb87b828081ab7ee745e9940f7dabf07a9f4"
+    },
+    {
+      "bytes": 2301,
+      "path": "CURRENTNESS_AFTER_V0_2_5_2_HARNESS_20260908.md",
+      "sha256": "1e7845c42a0112d2a104d63de51199237548ba3f4159af8477827e71563f7e38"
+    },
+    {
+      "bytes": 3534,
       "path": "main/authority/rahl-sop/GOVERNANCE_CONTACT_V1_0_ACTIVATION.md",
-      "sha256": "e1bf2d4214b42712ab736613030ec0307a065dea69502d6ce4c55ff488798e3f"
+      "sha256": "380059a4e8204c35f82b3a232d45f962bb20038eec3d9eecb44f4411809346bd"
     },
     {
       "bytes": 2259,
@@ -555,19 +571,19 @@
       "sha256": "6c5080d0c950297490139e7b120964dddb7936af5076a967d1200904456cb795"
     },
     {
-      "bytes": 162575,
+      "bytes": 164499,
       "path": "main/continuity/design_thread_stream.md",
-      "sha256": "388b26f2c999c941c1140c01077775a4b12a86ff2a01b240e93e23cd268c1712"
+      "sha256": "c8b2f74aa1b085d65eb1f52695de1b13f61aa9b984393dcb977c686297fb1fc9"
     },
     {
-      "bytes": 11514,
+      "bytes": 12782,
       "path": "main/continuity/live_shadow.md",
-      "sha256": "fa267d79869cf661c5fcdb169f5bedbf55127b6b505f0d8f3b55952ea3e90b42"
+      "sha256": "7c72e91d57f22cfb403f7e1b0021d8c4b6db6942bba3457ec397fe54165fd62d"
     },
     {
-      "bytes": 33846,
+      "bytes": 34104,
       "path": "main/continuity/research_epistemic_shadow.md",
-      "sha256": "3595b6bbd46d3c812f5defe2cccbc1535c774c62561b6a141e17f2604460b83c"
+      "sha256": "782f0e7a6edff12fdfcdda52c041a1279a8f4c545020ebacd9177920b638897b"
     },
     {
       "bytes": 3071,
@@ -685,6 +701,11 @@
       "sha256": "e3ec4029b8b44abfc1c41431365fec63639a0935e167c5a8abec4b48a4ff47bd"
     },
     {
+      "bytes": 1068,
+      "path": "main/notes/maintenance/APP_V0_2_5_2_BREAKAWAY_HARNESS_INVALID_CROSS_ARM_AWARENESS_20260908.md",
+      "sha256": "f13883751bd576ef8f3f5965a32b913c9f687a411c00dfa2e7e95e2625e0f5f4"
+    },
+    {
       "bytes": 4555,
       "path": "main/sop/ICF_CS_V1_1_DETACHED_RELEASE_RECEIPT_2026-09-05.json",
       "sha256": "418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c"
@@ -705,9 +726,9 @@
       "sha256": "f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63"
     },
     {
-      "bytes": 18562,
+      "bytes": 19709,
       "path": "main/state/current.md",
-      "sha256": "f5a592b1192a6e914f3de568375381cf1bbe72251b5dc427b0702a2ad1eb7ae3"
+      "sha256": "ee4c1b36ffad3f263065bf9ff841e42137e30f964d0f844613a43af8b8663c90"
     },
     {
       "bytes": 4215,
@@ -740,39 +761,39 @@
       "sha256": "8b1bf53adf3ac3fee09a4435f1f6df4518359f767fc76fe8d99df4ed6f44e4ae"
     },
     {
-      "bytes": 32731,
+      "bytes": 32909,
       "path": "main/state/doctrine_snapshot.md",
-      "sha256": "df1816010c80dcc0f0afc7b5cc9d6b6fd21b899e5741b660838670366d84546d"
+      "sha256": "2e4fd335e87b3d020b546fbd8cb73e463cbf00d4e917579ad2f62115e2fbc810"
     },
     {
-      "bytes": 10976,
+      "bytes": 11744,
       "path": "main/state/next_steps.md",
-      "sha256": "d619d851e03ce989fbc3c7ac623154a77911c21c542731325be99c612730c4ad"
+      "sha256": "5d681f977c0e0c3ad649d8e66132fa4df869369467731efaee4d53c1d903da81"
     },
     {
-      "bytes": 24739,
+      "bytes": 25438,
       "path": "main/state/revisit_ledger.md",
-      "sha256": "6494f44c1ad7a8f0998afdd331fb26b63fb8ad3f58ca5235614432eb90b8aa03"
+      "sha256": "1d79d8abd6a968d17eeb11437e424d53d83977e2ad2b60a5c7e096dfc9b34aae"
     },
     {
-      "bytes": 43956,
+      "bytes": 44831,
       "path": "main/state/trace_matrix.md",
-      "sha256": "d1f79fe22266f450607e689d4ac8198b207628a236f1fb8089261dd69a916991"
+      "sha256": "5a510134a5ed7fa139b3ba38f88dfbf7d8d7ef1db407e97d3ea3180e481eca33"
     },
     {
-      "bytes": 2383,
-      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/GIT_SAFE_TRANSFORMS.json",
-      "sha256": "ea41e2b63392228e36fce55bc5dc541f199893777f552da8f629a09ada943736"
+      "bytes": 1618,
+      "path": "PUSH_RECEIPT_20260903.md",
+      "sha256": "2fbf22e5e9eb92c8a72972f3d166fb97c24055c0668a37ef594fcbb4236eae02"
     },
     {
-      "bytes": 5046,
-      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/SOURCE_ACTIVE_FILE_HASHES.json",
-      "sha256": "0daaa6a6508b1836a52a1c6bb41392bbdefaa1f72d6472acefb97a1caf326cc9"
+      "bytes": 3850,
+      "path": "README.md",
+      "sha256": "6ad5b7377f61690cd796aa447837b571732a34bd301f085b338080e293c136fc"
     },
     {
-      "bytes": 1154,
-      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/SOURCE_IDENTITY.md",
-      "sha256": "53ec180dd5d38bd3ec0c4f9275dd5f57c434a814a8b372e47ab46ed97dd4144a"
+      "bytes": 3271,
+      "path": "RECOVERY_CURRENTNESS_20260907.md",
+      "sha256": "373845c55358b7761bc5877fee438af946899405c36ad16ec45d06077d433759"
     },
     {
       "bytes": 4395,
@@ -810,6 +831,11 @@
       "sha256": "9cc3a1a09306195408938496554896a1fe71c7f43c4d3407b74a1cb38577e623"
     },
     {
+      "bytes": 4056,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/07_CONTINUITY_SYSTEM.md",
+      "sha256": "b917a7f76ded842000cac50e761e61e8704c0916c3228ff615e8b773724a9da9"
+    },
+    {
       "bytes": 958,
       "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/07A_LIVE_SHADOW_PROTOCOL.md",
       "sha256": "05c191e6b49ceaee0fe290e94827b204f91f0ad9cb136284aa37134d74b674f1"
@@ -823,11 +849,6 @@
       "bytes": 3354,
       "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/07C_RESEARCH_EPISTEMIC_SHADOW_PROTOCOL.md",
       "sha256": "d49bb28773d17a79abdc848624f3cbe3a7a60025ce7301bede4d7746e7e2963e"
-    },
-    {
-      "bytes": 4056,
-      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/07_CONTINUITY_SYSTEM.md",
-      "sha256": "b917a7f76ded842000cac50e761e61e8704c0916c3228ff615e8b773724a9da9"
     },
     {
       "bytes": 1563,
@@ -868,26 +889,6 @@
       "bytes": 1194,
       "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/15_CLAIM_CEILING_AND_NONCLAIMS.md",
       "sha256": "eabf6c3ddcabdb5e1ed7a364d20ecd14dc06df98e2323d0c0c25e0086fe078d4"
-    },
-    {
-      "bytes": 5683,
-      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/MANIFEST_SHA256.json",
-      "sha256": "7bd55694acaa4dcfe70e2fa7c3e723d5e501bff073145d77e0750dcd7317d499"
-    },
-    {
-      "bytes": 1969,
-      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/PROMOTION_RECEIPT.md",
-      "sha256": "d22531005742b52b0b25de1dea54283e042e57251e1265d14cc1f062511d6928"
-    },
-    {
-      "bytes": 3698,
-      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/RELEASE_VERIFICATION.md",
-      "sha256": "d2cdb3fed19cdb927108371c336c17a115db90d269c7c3098d7b633e124b21db"
-    },
-    {
-      "bytes": 8881,
-      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/VERIFY_CANONICAL_SOP.py",
-      "sha256": "17393796a07a02d590ec2b2da28e854d23fef59047c6eac5b4fda7e28d68f8fb"
     },
     {
       "bytes": 1133,
@@ -940,12 +941,52 @@
       "sha256": "0ceab6c5eaec8841277df4271f9e7769e0b836e6dd0a5467edaf8f055a0b18f8"
     },
     {
+      "bytes": 5683,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/MANIFEST_SHA256.json",
+      "sha256": "7bd55694acaa4dcfe70e2fa7c3e723d5e501bff073145d77e0750dcd7317d499"
+    },
+    {
+      "bytes": 1969,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/PROMOTION_RECEIPT.md",
+      "sha256": "d22531005742b52b0b25de1dea54283e042e57251e1265d14cc1f062511d6928"
+    },
+    {
+      "bytes": 3698,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/RELEASE_VERIFICATION.md",
+      "sha256": "d2cdb3fed19cdb927108371c336c17a115db90d269c7c3098d7b633e124b21db"
+    },
+    {
       "bytes": 5703,
       "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/tests/RUN_HOSTILE_TESTS.py",
       "sha256": "f4177f651e00534beb5c452081c0fc3937db79fe5027b16ad19d47f1afc76639"
+    },
+    {
+      "bytes": 8881,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/git_safe_active/VERIFY_CANONICAL_SOP.py",
+      "sha256": "17393796a07a02d590ec2b2da28e854d23fef59047c6eac5b4fda7e28d68f8fb"
+    },
+    {
+      "bytes": 2383,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/GIT_SAFE_TRANSFORMS.json",
+      "sha256": "ea41e2b63392228e36fce55bc5dc541f199893777f552da8f629a09ada943736"
+    },
+    {
+      "bytes": 5046,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/SOURCE_ACTIVE_FILE_HASHES.json",
+      "sha256": "0daaa6a6508b1836a52a1c6bb41392bbdefaa1f72d6472acefb97a1caf326cc9"
+    },
+    {
+      "bytes": 1154,
+      "path": "sop/RAHL_ENGINEERING_CANONICAL_SOP_R4_1_2026-09-03/SOURCE_IDENTITY.md",
+      "sha256": "53ec180dd5d38bd3ec0c4f9275dd5f57c434a814a8b372e47ab46ed97dd4144a"
+    },
+    {
+      "bytes": 1801,
+      "path": "VERIFY_CHECKPOINT.py",
+      "sha256": "f5dba1193203a03bbce3779179ce5b6947231dff1ae65f505e5024e3ec5ee207"
     }
   ],
-  "generated_utc": "2026-09-08T03:08:05Z",
+  "generated_utc": "2026-09-08T03:20:23Z",
   "git_copy_policy": {
     "binary_attribute_repair_20260904": "REPAIRED_PREEXISTING_ALL_TEXT_EOL_RULE_BEFORE_CANDIDATE_PUBLICATION_CHECKPOINT",
     "binary_carriers": "*.zip -text; exact bytes required",
@@ -2549,5 +2590,20 @@
     "runtime_law_earned": false,
     "same_attempt_replay_allowed": false,
     "status": "HARNESS_INVALID_OUTER_EXECUTION_JOB_NO_SILENT_BREAKAWAY__NOT_ADMITTED"
+  },
+  "wider_egress_v0_2_5_2_harness_invalid": {
+    "artifact_sha256": "d7f444287c6903fab28b58e9423cfc99ec53dced03457e964348eb587c1f2602",
+    "first_result_sha256": "af0ce57433f71ad41dd74f06d922b88bad8fc8f69d0f8ca13496eafb47ab4601",
+    "next": "NEW_V0_2_5_3_CHILD_MEMBERSHIP_OBSERVATION_REPAIR_ONLY",
+    "plane_breakaway_ok": true,
+    "plane_limit_flags": "0x1800",
+    "plane_silent_breakaway_ok": true,
+    "positive_child_job_membership": "UNMEASURED",
+    "positive_explicit_create": "SUCCEEDED",
+    "post_checkpoint_plane_record_sha256": "f32909d4c430a33e2eb3c80a4ea8aec0c6d6b0a6c1f73b3be3f34b2f70399f88",
+    "product_promotion": false,
+    "protected": "NOT_REACHED",
+    "same_attempt_replay_allowed": false,
+    "status": "HARNESS_INVALID_POSITIVE_ROOT_STILL_IN_OUTER_JOB__NOT_ADMITTED"
   }
 }

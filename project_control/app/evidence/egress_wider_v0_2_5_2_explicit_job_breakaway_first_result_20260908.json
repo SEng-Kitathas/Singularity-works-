@@ -1,0 +1,52 @@
+{
+  "admission_status": "NOT_ADMITTED",
+  "artifact_reason": "positive-control helper did not prove explicit breakaway creation outside any Job",
+  "artifact_sha256": "d7f444287c6903fab28b58e9423cfc99ec53dced03457e964348eb587c1f2602",
+  "artifact_status": "HARNESS_INVALID",
+  "bounded_result": "NO_PROTECTED_BREAKAWAY_OBSERVATION",
+  "claim_ceiling": "NO_EXPLICIT_BREAKAWAY_CLAIM_EARNED",
+  "classification": "HARNESS_INVALID_POSITIVE_ROOT_STILL_IN_OUTER_JOB",
+  "control_remote_exact_after_run": true,
+  "durable_control_checkpoint": "2a4ce4baf905bd3698d228cbb9a0575dcc78efa577593a69de6118b9fa49cec6",
+  "durable_control_head": "56fb5b70ffee7c58d60c34118338d12c30313e46",
+  "evidence_boundary": [
+    "RUNSYNC_OUTER_JOB_0x1800_COMPATIBLE",
+    "POSITIVE_HELPER_EXPLICIT_BREAKAWAY_CREATE_SUCCEEDED",
+    "POSITIVE_HELPER_ROOT_REPORTED_IN_JOB",
+    "POSITIVE_CHILD_JOB_MEMBERSHIP_NOT_MEASURED",
+    "PROTECTED_PHASE_NOT_REACHED",
+    "POSITIVE_ROOT_IN_JOB != BREAKAWAY_CHILD_IN_JOB",
+    "HARNESS_INVALID != CREATE_BREAKAWAY_FROM_JOB_DENIAL",
+    "SAME_ATTEMPT_NOT_REPLAYABLE"
+  ],
+  "execution_plane": "server.runSync.command",
+  "execution_return_code": 3,
+  "network_activity_intended": false,
+  "outer_execution_job": {
+    "breakaway_ok": true,
+    "kill_on_close": false,
+    "limit_flags": 6144,
+    "ok": true,
+    "silent_breakaway_ok": true
+  },
+  "positive_control": {
+    "decoded": {
+      "kind": "BREAKAWAY_CREATE_SUCCESS_IN_JOB",
+      "pid": 2332,
+      "raw": 2684356892
+    },
+    "root_exit_code": 2684356892,
+    "stderr_nonempty": false
+  },
+  "protected": null,
+  "runtime_law_earned": false,
+  "same_attempt_rerun": false,
+  "schema": "singularity-works.egress-wider-v0.2.5.2-explicit-job-breakaway-first-result/0.1",
+  "source_clean_after_run": true,
+  "source_head": "43aa7feac7e8a15828116bd700b644560714496d",
+  "source_remote_exact_after_run": true,
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 1884,
+  "stdout_sha256": "8396d1cbea2d1263a7b3a469f56e9a718840064c53d902956d701bc9da56b921"
+}

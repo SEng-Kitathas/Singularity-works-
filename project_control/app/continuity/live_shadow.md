@@ -132,3 +132,20 @@ Advance `pcmmad/project-control` from `d76299e728b5026df87c39c17ad9d723f759ce5f`
 - Store: **166 blobs / 172 attempts / 251 events**, integrity ok.
 - v0.2.5.2 is **NOT YET FROZEN / NOT EXECUTED**.
 - Next: checkpoint this boundary; after independent fresh-clone closure, remeasure exact `runSync.command` plane and only then freeze a NEW v0.2.5.2 with unchanged discriminator behavior.
+
+## V0.2.5.2 POST-CONTROL REMEASUREMENT GATE — CURRENT — 2026-09-08
+- Mode: **BUILD-COMMIT / R5**.
+- Current durable control `56fb5b70ffee7c58d60c34118338d12c30313e46` / CHECKPOINT `2a4ce4baf905bd3698d228cbb9a0575dcc78efa577593a69de6118b9fa49cec6` is fresh-clone verified; predecessor `a95ec5355b6946927eec6403a1764491f837e9e2` is history.
+- v0.2.5.1 HARNESS_INVALID remains immutable/non-admitted.
+- v0.2.5.2 remains NOT YET FROZEN / NOT EXECUTED.
+- Immediate action: remeasure exact `runSync.command` outer Job policy now; only a fresh silent-breakaway-compatible observation permits freezing a NEW v0.2.5.2 sibling.
+- Same Attempt replay and async worker execution remain forbidden.
+
+
+## V0.2.5.2 EXPLICIT BREAKAWAY — HARNESS_INVALID — CURRENT — 2026-09-08
+- Mode: **CHECKPOINT / R1**. Durable control `56fb5b70ffee7c58d60c34118338d12c30313e46` / CHECKPOINT `2a4ce4baf905bd3698d228cbb9a0575dcc78efa577593a69de6118b9fa49cec6`.
+- Post-checkpoint runSync plane record `f32909d4c430a33e2eb3c80a4ea8aec0c6d6b0a6c1f73b3be3f34b2f70399f88` measured `0x1800` with explicit+silent breakaway allowed.
+- Artifact `d7f444287c6903fab28b58e9423cfc99ec53dced03457e964348eb587c1f2602` executed once synchronously; result `af0ce57433f71ad41dd74f06d922b88bad8fc8f69d0f8ca13496eafb47ab4601` = `HARNESS_INVALID_POSITIVE_ROOT_STILL_IN_OUTER_JOB`, NOT_ADMITTED, non-replayable.
+- Positive helper explicit child creation succeeded, but the harness classified based on root Job membership and did not measure returned child's Job membership/liveness; protected phase not reached.
+- Store: **172 blobs / 179 attempts / 258 events**, integrity ok.
+- Explicit breakaway remains unearned. Next: checkpoint this boundary, then NEW v0.2.5.3 child-membership observation repair only.

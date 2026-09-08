@@ -129,3 +129,12 @@ Checkpoint App result `60c928361d0f350447d2577f671915263446f4d7e40afb5cea12161ab
 4. Complete semantic/publication/fresh-clone verification.
 5. After closure, App may remeasure `runSync.command` and freeze NEW v0.2.5.2 with unchanged discriminator behavior if silent-breakaway compatibility still holds.
 6. No network-bearing breakaway claim and no product-wide runtime-law promotion.
+
+## Coordinated state after 56fb5b7 control closure
+- `pcmmad/project-control@56fb5b70ffee7c58d60c34118338d12c30313e46` / CHECKPOINT `2a4ce4baf905bd3698d228cbb9a0575dcc78efa577593a69de6118b9fa49cec6` is current durable control, fresh-clone verified.
+- App next action is exact post-control `runSync.command` Job-policy remeasurement; only a fresh compatible observation permits NEW v0.2.5.2 freeze/preserve/execution.
+- Main/Core anchor remains unchanged; no breakaway or runtime-law claim is imported into Core.
+
+
+## Immediate coordinated step — App v0.2.5.2 harness invalid
+Checkpoint `af0ce57433f71ad41dd74f06d922b88bad8fc8f69d0f8ca13496eafb47ab4601` before NEW v0.2.5.3 child-membership/liveness observation repair. No prior Attempt replay; Main/Core unchanged.

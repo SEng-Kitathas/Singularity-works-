@@ -195,3 +195,13 @@ App v0.2.5.1 `50095130e14f4d564dbca18cf0a6ace6c3805ffca38598856bd4a6fe4b1d9bb8` 
 - App Store current readback 166 blobs / 172 attempts / 251 events, integrity ok.
 - Cross-arm effect: currentness/continuity only; no Core semantic promotion.
 - Immediate coordinated P0: successor control checkpoint above `a95ec5355b6946927eec6403a1764491f837e9e2`; only after independent fresh-clone closure may App freeze NEW v0.2.5.2 on a freshly remeasured synchronous plane.
+
+## App v0.2.5.1 successor control closure — CURRENT
+- Current durable control `56fb5b70ffee7c58d60c34118338d12c30313e46` / CHECKPOINT `2a4ce4baf905bd3698d228cbb9a0575dcc78efa577593a69de6118b9fa49cec6` is independently fresh-clone verified, verifier PASS 158. Predecessor `a95ec5355b6946927eec6403a1764491f837e9e2` is historical.
+- Main closure awareness receipt `022b8dbe11b81358a65cf852c5a8962d39ecd01d8f66031942104770b347a69a`.
+- App v0.2.5.1 remains HARNESS_INVALID / NOT_ADMITTED; synchronous-plane compatibility is prerequisite evidence only.
+- Cross-arm checkpoint gate is CLOSED. App may remeasure exact `runSync.command` and, only if compatible, freeze a NEW v0.2.5.2. Main/Core semantic authority does not move.
+
+
+## App breakaway cross-arm currentness — v0.2.5.2
+App result `af0ce57433f71ad41dd74f06d922b88bad8fc8f69d0f8ca13496eafb47ab4601` is HARNESS_INVALID / NOT_ADMITTED. Positive explicit child creation succeeded but child Job membership was unmeasured; protected phase absent. Control `56fb5b70ffee7c58d60c34118338d12c30313e46` / CHECKPOINT `2a4ce4baf905bd3698d228cbb9a0575dcc78efa577593a69de6118b9fa49cec6`; Core unchanged.

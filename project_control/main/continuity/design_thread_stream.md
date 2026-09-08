@@ -16,7 +16,7 @@ Tags: BUILD-COMMIT, GIT-LINEAGE, REMOTE-SYNC, QUALIFICATION-BRANCH, RELEASE-BLOC
 
 Assistant rehydrated live project state and first repaired the stale logical baseline: map trial v2 had already completed after the previous checkpoint. v2 result is PASS/CONDITIONALLY_READY under a static Python-relation ceiling, with 15/15 hostile checks, 109 nodes, 267 edges, 171 meaningful relations, 171 paths, 29/29 output-manifest integrity, all nodes/edges source-addressable/evidenced, no runtime outcome inflation, no consequence-authority emergence, and clean old-bone worktree readback.
 
-Assistant inspected Git planes without mutating the dirty working tree. `<LOCAL_HISTORICAL_PATH>` local main = `d56027e879a21d078a8c36f712cf7380be4c63f5`, heavily dirty; clean worktree = `b83615c47dd8b58728ebc03ca48106058a0760f9`. GitHub `main` resolved by `git ls-remote` to the same `b83615c...`. Local committed main is 28 commits ahead, merge-base exactly remote main, no remote divergence observed. `gh auth status` is unauthenticated, but `git push --dry-run origin main:main` succeeded through Git credential manager, proving Git push capability.
+Assistant inspected Git planes without mutating the dirty working tree. `<LOCAL_HISTORICAL_REPO>` local main = `d56027e879a21d078a8c36f712cf7380be4c63f5`, heavily dirty; clean worktree = `b83615c47dd8b58728ebc03ca48106058a0760f9`. GitHub `main` resolved by `git ls-remote` to the same `b83615c...`. Local committed main is 28 commits ahead, merge-base exactly remote main, no remote divergence observed. `gh auth status` is unauthenticated, but `git push --dry-run origin main:main` succeeded through Git credential manager, proving Git push capability.
 
 Under R3 promotion discipline, assistant did not push local main directly. It reconstructed exact committed `d56027e` in an isolated clean clone. `compileall` passed and package imports mostly passed, but a release blocker was reproduced: committed `pyproject.toml` and README advertise `singularity_works.local_model_adapter`, while that module is absent at `d56027e`. Existing `forge`/`forge-hud` console-script declarations also target `:__main__` even though those modules lack a callable `__main__` attribute; that scar already exists at remote `b83615c`. A local untracked replacement adapter exists, but its dependent profile contains numerous absolute machine/runtime/model paths and is not publication-qualified.
 
@@ -43,7 +43,7 @@ A clean replay of committed `5cb291432dac60f7eaa18d9cdeb519213ec556ac` passed in
 
 Assistant then replayed exact `1b8f6bd...` from a fresh detached clone. Verified results: compileall PASS; project verifier rc0 and all expected semantic state transitions PASS; self-verification 0 fails / 29 warnings; full promoted-delta secret hits 0; machine-private-path hits 0; retired `forge-health` absent from executable/advised surfaces; wheel build PASS. Wheel `singularity_works-1.0.0-py3-none-any.whl` was 320862 bytes with SHA-256 `0ffe61597b78861e0e5894ade9884b57fc3ae0d955b69ad82b3cc1e9bf06daf9`, containing callable `forge`/`forge-hud` entrypoints and both config JSON files. Disposable install PASS; installed `forge --help` PASS; installed `forge safe_sample.py --target safe-sample --out reports` from outside the source tree PASS with GREEN, 0 findings, and two report files. Tracked source remained unchanged after replay.
 
-Assistant preserved non-green residuals rather than rewriting them away: full historical `b83615c..1b8f6bd` contains inherited whitespace complaints; self-audit is PASS but not CLEAN because 29 warnings remain; successful installed smoke exposed nested `.forge/.forge/cilnx_bridge` path technical debt. Dirty `<LOCAL_HISTORICAL_PATH>` was not reset, cleaned, or bulk-staged. Clean old-bone worktree remains pinned at `b83615c...` for comparison.
+Assistant preserved non-green residuals rather than rewriting them away: full historical `b83615c..1b8f6bd` contains inherited whitespace complaints; self-audit is PASS but not CLEAN because 29 warnings remain; successful installed smoke exposed nested `.forge/.forge/cilnx_bridge` path technical debt. Dirty `<LOCAL_HISTORICAL_REPO>` was not reset, cleaned, or bulk-staged. Clean old-bone worktree remains pinned at `b83615c...` for comparison.
 
 Remote promotion was then performed with exact gates. GitHub `main` was re-read at `b83615c47dd8b58728ebc03ca48106058a0760f9`; local merge-base proved fast-forward ancestry. Assistant dry-ran and non-force pushed `pcmmad/release-repair-d56027e` -> `1b8f6bd...`, read it back exactly, re-read main immediately before promotion, dry-ran the main update, then non-force pushed main `b83615c..1b8f6bd`. Final `git ls-remote` readback: `main=1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`; `pcmmad/release-repair-d56027e` same exact SHA; earlier `pcmmad/qualification-d56027e=d56027e879a21d078a8c36f712cf7380be4c63f5` preserved. No force push occurred.
 
@@ -1620,3 +1620,25 @@ A distinct synchronous `runSync.command` plane was directly measured and reporte
 This is cross-arm currentness only; Main/Core semantic anchor `a7b4511734b1a1e507230308e75b31175aef4c4a` does not move. `EXECUTION_PLANE_CURRENTNESS != BREAKAWAY_RESULT`.
 
 Current coordinated gate: publish/fresh-clone verify one control successor above `a95ec5355b6946927eec6403a1764491f837e9e2` carrying the HARNESS_INVALID boundary + compatible synchronous-plane prerequisite. Only afterward may App freeze a NEW v0.2.5.2 bound to the exact remeasured `runSync.command` plane. No Main/Core promotion and no network/runtime-law promotion.
+
+
+---
+
+## Cross-arm entry — App v0.2.5.1 harness boundary successor control remotely closed — 2026-09-08
+Tags: APP, CONTROL-CLOSURE, EXPLICIT-BREAKAWAY, HARNESS-INVALID, EXECUTION-PLANE
+
+`pcmmad/project-control@56fb5b70ffee7c58d60c34118338d12c30313e46`, parent `a95ec5355b6946927eec6403a1764491f837e9e2`, is remotely durable and independently fresh-clone verified. Frozen CHECKPOINT `2a4ce4baf905bd3698d228cbb9a0575dcc78efa577593a69de6118b9fa49cec6`, verifier PASS / 158, manifest 158/158 exact; server semantic read 3,116/3,116 and Git publication read 5,947/5,947 completed with no blocking findings.
+
+Fresh clone reproduced Main `e66c071...` with semantic Core anchor `a7b451...` unchanged, App `43aa7fe...` / Gen14, local Governance Contact binding/global ACTIVE unearned, App v0.2.5.1 HARNESS_INVALID result `60c928...`, and synchronous execution-plane prerequisite `0a4a3b28...` at `0x3000` / silent-breakaway true. No breakaway behavior is inferred from plane currentness.
+
+Main closure receipt `notes/maintenance/APP_EGRESS_V0_2_5_1_SYNC_PLANE_CONTROL_CLOSURE_20260908.md` SHA `022b8dbe11b81358a65cf852c5a8962d39ecd01d8f66031942104770b347a69a`.
+
+Cross-thread checkpoint prerequisite is CLOSED. App's next permitted action is immediate exact `runSync.command` Job-policy remeasurement; only after compatible readback may a NEW v0.2.5.2 be frozen/read/preserved and executed on that plane. Main/Core authority remains unchanged.
+
+Fixed-point: no recursive control publication for this closure metadata.
+
+
+---
+
+## CROSS-ARM UPDATE — App v0.2.5.2 explicit-breakaway HARNESS_INVALID — 2026-09-08
+App result `af0ce57433f71ad41dd74f06d922b88bad8fc8f69d0f8ca13496eafb47ab4601` preserves a harness diagnosis only: positive explicit child creation succeeded under compatible synchronous plane, but root Job membership was mistaken for child membership; no protected observation/admission. Main records awareness only.

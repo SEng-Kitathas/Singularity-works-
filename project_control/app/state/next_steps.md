@@ -164,3 +164,17 @@ Current store: 141 blobs / 141 attempts / 220 events; durable control `f59a32946
 4. Complete semantic/publication/fresh-clone gates on the successor control.
 5. Only after durable readback create a NEW v0.2.5.2 currentness/execution-plane sibling with unchanged breakaway discriminator behavior, bound to `runSync.command`.
 6. No network-bearing breakaway pressure; product-wide runtime law remains unearned.
+
+## Immediate P0 — post-control v0.2.5.2 execution-plane remeasurement
+1. Directly remeasure exact `server.runSync.command` outer Job limits after durable control `56fb5b70ffee7c58d60c34118338d12c30313e46` closure.
+2. If and only if `SILENT_BREAKAWAY_OK=true` remains current, freeze/read/preserve a NEW v0.2.5.2 sibling with unchanged explicit-breakaway discriminator behavior and current control binding.
+3. Execute that NEW sibling via `runSync.command` only; never replay v0.2.5/v0.2.5.1 and never use async worker plane.
+4. Preserve exact first result before interpretation/admission. No network-bearing pressure and global runtime law remain unearned.
+
+
+## Immediate P0 — after v0.2.5.2 harness invalid
+1. Checkpoint `af0ce57433f71ad41dd74f06d922b88bad8fc8f69d0f8ca13496eafb47ab4601` and store 172/179/258 before new pressure.
+2. Do not rerun v0.2.5/v0.2.5.1/v0.2.5.2.
+3. NEW v0.2.5.3 repair may add child Job-membership/liveness observation only; preserve helper DLL/source and explicit breakaway call unchanged.
+4. Protected phase remains non-network and must use the same immediate Forge Job primitive.
+5. No runtime-law or network claim.

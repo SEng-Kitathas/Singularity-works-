@@ -120,3 +120,16 @@ Advance `pcmmad/project-control` from `d76299e728b5026df87c39c17ad9d723f759ce5f`
 - App Store 166/172/251, integrity ok.
 - App v0.2.5.2 is NOT YET FROZEN / NOT EXECUTED.
 - Next: successor control publication/fresh clone; then App remeasures exact synchronous plane before any NEW v0.2.5.2.
+
+## APP V0.2.5.1 SUCCESSOR CONTROL CLOSED — CURRENT — 2026-09-08
+- Mode: **BUILD-COMMIT / cross-arm awareness**.
+- Current durable control `56fb5b70ffee7c58d60c34118338d12c30313e46` / CHECKPOINT `2a4ce4baf905bd3698d228cbb9a0575dcc78efa577593a69de6118b9fa49cec6` fresh-clone verified; predecessor `a95ec5355b6946927eec6403a1764491f837e9e2` historical.
+- App v0.2.5.1 remains HARNESS_INVALID / NOT_ADMITTED; v0.2.5.2 remains unfrozen/unexecuted.
+- Next App gate: exact `runSync.command` remeasurement, then NEW sibling only if compatible.
+- Main/Core semantic anchor unchanged; no breakaway result or runtime-law promotion.
+
+
+## APP V0.2.5.2 BREAKAWAY HARNESS CURRENTNESS — 2026-09-08
+- Control `56fb5b70ffee7c58d60c34118338d12c30313e46` / CHECKPOINT `2a4ce4baf905bd3698d228cbb9a0575dcc78efa577593a69de6118b9fa49cec6`.
+- App `d7f444287c6903fab28b58e9423cfc99ec53dced03457e964348eb587c1f2602` executed once synchronously; `af0ce57433f71ad41dd74f06d922b88bad8fc8f69d0f8ca13496eafb47ab4601` is HARNESS_INVALID because positive explicit child creation succeeded but child Job membership was not measured; protected phase not reached. NOT_ADMITTED.
+- Main/Core anchor unchanged. Next coordinated gate: checkpoint, then NEW App child-membership observation repair only.
