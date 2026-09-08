@@ -181,3 +181,17 @@ Control `d76299e728b5026df87c39c17ad9d723f759ce5f` / CHECKPOINT `1f6e82c8515981b
 
 ## App redundant-sibling cross-arm currentness — 2026-09-08
 App Store current readback is 157/162/241 integrity ok. Current admitted App lifecycle lineage remains `81d8d42b... -> 709ba15e... -> 518c15f8...`; preserved siblings `1faa3725...` and `541d4710...` are redundant/unexecuted. Main/Core anchor remains unchanged.
+
+
+## App breakaway cross-arm currentness — 2026-09-08
+App v0.2.5.1 `50095130e14f4d564dbca18cf0a6ace6c3805ffca38598856bd4a6fe4b1d9bb8` -> `60c928361d0f350447d2577f671915263446f4d7e40afb5cea12161abc19add8` is HARNESS_INVALID before breakaway observation because the job-execution plane outer Job lacks SILENT_BREAKAWAY_OK. No admission/Core promotion. Durable control `a95ec5355b6946927eec6403a1764491f837e9e2` / CHECKPOINT `09bdf45b6aa912da4f97e4f142387dc80f9ac093a5fab7885f004e1ed9aecc7d`.
+
+## App v0.2.5.1 harness boundary + synchronous-plane prerequisite — CURRENT
+- Public Main `e66c071fc25f8d08bfc7ebf0551948392d652f35`; semantic Core anchor `a7b4511734b1a1e507230308e75b31175aef4c4a` unchanged.
+- App `43aa7feac7e8a15828116bd700b644560714496d` / Gen14 remains source-clean/current.
+- Durable control `a95ec5355b6946927eec6403a1764491f837e9e2` / CHECKPOINT `09bdf45b6aa912da4f97e4f142387dc80f9ac093a5fab7885f004e1ed9aecc7d` is the verified predecessor requiring one successor for this new App boundary.
+- App result `60c928361d0f350447d2577f671915263446f4d7e40afb5cea12161abc19add8` is **HARNESS_INVALID_OUTER_EXECUTION_JOB_NO_SILENT_BREAKAWAY / NOT_ADMITTED**; async worker outer Job `0x2000`; positive/protected phases not reached; no explicit-breakaway claim.
+- Exact synchronous `runSync.command` plane record `0a4a3b28386c84a172fa161a8c9f8ef2a228aaacbf2375dd0884ea717de94fb5` directly observed `0x3000`, silent-breakaway true, kill-on-close true, breakaway-ok false; raw probe `93dee7872c35cb0f646d169d46799306db9c3c62ce5c83e9e1c61141ccb4acad`.
+- App Store current readback 166 blobs / 172 attempts / 251 events, integrity ok.
+- Cross-arm effect: currentness/continuity only; no Core semantic promotion.
+- Immediate coordinated P0: successor control checkpoint above `a95ec5355b6946927eec6403a1764491f837e9e2`; only after independent fresh-clone closure may App freeze NEW v0.2.5.2 on a freshly remeasured synchronous plane.

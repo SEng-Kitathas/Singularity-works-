@@ -129,7 +129,7 @@ Current store: 141 blobs / 141 attempts / 220 events; durable control `f59a32946
 
 
 ## CONTROL DURABILITY CLOSURE — 2026-09-08
-- Durable control advanced from `f59a329...` to `d76299e728b5026df87c39c17ad9d723f759ce5f` / CHECKPOINT `1f6e82c8515981b45667899f5f1eb120247ee31805a7e401f277643c41b72c05`.
+- Durable control advanced from `f59a329...` to `5c052d8aff58fb9ab424c5907f5de217a45fe686` / CHECKPOINT `af81d7cb4c3410e8b419aecd05e7e6c453d48a952dc143ac4633020eadeb72f7`.
 - Successor was committed directly above predecessor, non-force pushed, and independently fresh-clone verified clean with verifier PASS 145.
 - Control snapshot records v0.2.2 DNS-helper admission, v0.2.3 proxy/environment admission, and immutable v0.2.4 HARNESS_INVALID first result `c6366904038e45cb0ec9712b9aeb34f016220786e731bdfb7a654097e2601710`.
 - Both local targets carry exact Governance Contact locator+token; ACTIVE receipt remains absent, so global ACTIVE remains unearned.
@@ -148,3 +148,19 @@ Current store: 141 blobs / 141 attempts / 220 events; durable control `f59a32946
 - Do not execute preserved redundant siblings `1faa3725...` or `541d4710...`.
 - Seal successor control carrying Store 157/162/241 and admission `518c15f8...`.
 - After independent fresh-clone closure, create a NEW non-network explicit `CREATE_BREAKAWAY_FROM_JOB` discriminator.
+
+
+## Immediate P0 — after v0.2.5.1 harness invalid
+1. Checkpoint result `60c928361d0f350447d2577f671915263446f4d7e40afb5cea12161abc19add8` / store 165/171/250 before another consequence-bearing Attempt.
+2. Do not rerun stale v0.2.5 `fdfad311...` or executed v0.2.5.1 `50095130e14f4d564dbca18cf0a6ace6c3805ffca38598856bd4a6fe4b1d9bb8`.
+3. Measure actual outer Job limits on any candidate replacement execution plane.
+4. Only if a plane verifies `SILENT_BREAKAWAY_OK`, create a NEW v0.2.5.2 currentness/execution-plane sibling with unchanged explicit-breakaway discriminator behavior.
+5. No network-bearing breakaway pressure; runtime law remains unearned.
+
+## Immediate P0 — v0.2.5.1 harness boundary checkpoint + v0.2.5.2 plane prerequisite
+1. Advance `pcmmad/project-control` above `a95ec5355b6946927eec6403a1764491f837e9e2` carrying result `60c928361d0f350447d2577f671915263446f4d7e40afb5cea12161abc19add8`, current Store 166/172/251 and plane-currentness `0a4a3b28386c84a172fa161a8c9f8ef2a228aaacbf2375dd0884ea717de94fb5`.
+2. Preserve stale v0.2.5 and executed v0.2.5.1 as immutable; do not replay either.
+3. Record that async execution worker plane was `0x2000` / incompatible, while exact synchronous `runSync.command` plane was directly measured `0x3000` / `SILENT_BREAKAWAY_OK=true`.
+4. Complete semantic/publication/fresh-clone gates on the successor control.
+5. Only after durable readback create a NEW v0.2.5.2 currentness/execution-plane sibling with unchanged breakaway discriminator behavior, bound to `runSync.command`.
+6. No network-bearing breakaway pressure; product-wide runtime law remains unearned.

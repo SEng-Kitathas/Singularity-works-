@@ -21,7 +21,7 @@ Tags: BUILD-COMMIT, GIT, CONTINUITY, ISOLATION
 Commander lifted read-only: “Released, let’s stop testing fate and context windows.”
 
 Assistant switched to CHECKPOINT -> BUILD-COMMIT with continuity before creativity. Existing reality was inspected:
-- `<LOCAL_HISTORICAL_REPO>` was heavily dirty/mixed on local `main` and was not touched.
+- `<LOCAL_HISTORICAL_PATH>` was heavily dirty/mixed on local `main` and was not touched.
 - existing separate worktree remained separate.
 - live GitHub heads showed qualified public `main` at `1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`; no remembered discussion branch existed as a live remote head.
 
@@ -32,7 +32,7 @@ A fresh clone of qualified GitHub `main` was created at `source/`, exact HEAD `1
 
 The GitHub-side program was physically separated under new top-level `forge_app/` with charter and domain folders for research/design/recovery/Ergo/render/shell/LBE/terminal/HUD/prototypes/embodiment/promotion. A subtree `.gitattributes` pins deterministic LF text representation.
 
-First commit attempt failed before history mutation because the fresh clone lacked Git author identity. Existing qualified history and the old repo both reported `Singularity Works <forge@singularity.works>`. That identity was copied into the new clone repository-locally only; global configuration was not changed. The exact staged commit then succeeded:
+First commit attempt failed before history mutation because the fresh clone lacked Git author identity. Existing qualified history and the old repo both reported `Singularity Works <<REDACTED_EMAIL_SHAPED_IDENTIFIER>>`. That identity was copied into the new clone repository-locally only; global configuration was not changed. The exact staged commit then succeeded:
 `a3b104174b8cb2c027eaa8e23fd602e5d2356c37` — `forge-app: establish isolated program charter`.
 
 Push/readback verified local and remote `forge/app-shell-rd` both exactly `a3b104174...`, parent `1b8f6bdc...`, working tree clean, and only `forge_app/` added relative to qualified ancestor.
@@ -1590,3 +1590,35 @@ Attempt Store current readback after redundant capture: 157 blobs / 162 attempts
 `UNEXECUTED_REDUNDANT_ATTEMPT != REPLAY_REQUIREMENT`.
 
 Immediate coordinated gate: advance `pcmmad/project-control` from `d76299e...` to a successor carrying current v0.2.4.1 result/admission + repaired arm state; only after fresh-clone closure create a NEW non-network explicit-breakaway Attempt.
+
+
+---
+
+## Entry — v0.2.4.1 successor control fresh-clone closed — 2026-09-08
+Tags: CONTROL, CHECKPOINT, FRESH-CLONE, EXPLICIT-BREAKAWAY-GATE
+
+Control `5c052d8aff58fb9ab424c5907f5de217a45fe686` / CHECKPOINT `af81d7cb4c3410e8b419aecd05e7e6c453d48a952dc143ac4633020eadeb72f7` was committed directly above `d76299e...`, non-force pushed, and independently fresh-clone verified clean with verifier PASS 153. Exact result evidence `709ba15e...` is present. The next permitted pressure is a NEW non-network explicit `CREATE_BREAKAWAY_FROM_JOB` lifecycle discriminator.
+
+
+---
+
+## Entry — v0.2.5.1 explicit-breakaway first execution HARNESS_INVALID — 2026-09-08
+Tags: EXPLICIT-BREAKAWAY, FIRST-RESULT, HARNESS-INVALID, EXECUTION-PLANE
+
+After `a95ec535...` fresh-clone closure, currentness-only v0.2.5.1 artifact `50095130e14f4d564dbca18cf0a6ace6c3805ffca38598856bd4a6fe4b1d9bb8` was preserved/read back and executed once as `job-34b75435461c`. The execution worker's own outer Job exposed only `0x2000` kill-on-close, not `SILENT_BREAKAWAY_OK`; the artifact correctly aborted before positive or protected phases. Exact stdout `abe290d86ef467c62bc8a4c17e402b00f6a8d4008f1082997387ea79c67334b0` and structured result `60c928361d0f350447d2577f671915263446f4d7e40afb5cea12161abc19add8` were preserved. Store 165/171/250 integrity ok. No breakaway observation/admission. Same Attempt is immutable and non-replayable.
+
+
+---
+
+## Entry — v0.2.5.1 HARNESS_INVALID boundary + synchronous-plane repair prerequisite verified — 2026-09-08
+Tags: EGRESS-WIDER, EXPLICIT-BREAKAWAY, HARNESS-INVALID, EXECUTION-PLANE, CHECKPOINT-GATE
+
+v0.2.5.1 artifact `50095130e14f4d564dbca18cf0a6ace6c3805ffca38598856bd4a6fe4b1d9bb8` remains immutable after one execution `job-34b75435461c`. Exact result `60c928361d0f350447d2577f671915263446f4d7e40afb5cea12161abc19add8` is `HARNESS_INVALID_OUTER_EXECUTION_JOB_NO_SILENT_BREAKAWAY` / NOT_ADMITTED because the async worker outer Job exposed only `0x2000` and the artifact aborted before positive/protected phases. No explicit-breakaway claim exists.
+
+The candidate synchronous execution plane was then measured directly rather than inferred. Exact `runSync.command` probe stdout SHA `93dee7872c35cb0f646d169d46799306db9c3c62ce5c83e9e1c61141ccb4acad` reported `0x3000`: `SILENT_BREAKAWAY_OK=true`, `KILL_ON_JOB_CLOSE=true`, `BREAKAWAY_OK=false`.
+
+Structured plane-currentness record `state/egress_wider_v0_2_5_2_synchronous_execution_plane_currentness_20260908.json`, SHA `0a4a3b28386c84a172fa161a8c9f8ef2a228aaacbf2375dd0884ea717de94fb5`, 34 lines, was read completely and preserved as `attempt-egress-wider-v0-2-5-2-synchronous-execution-plane-currentness` with exact readback. Attempt Store after capture: 166 blobs / 172 attempts / 251 events, integrity ok.
+
+This is execution-plane currentness only. `SILENT_BREAKAWAY_OK_PRESENT != CREATE_BREAKAWAY_FROM_JOB_PASS`; v0.2.5.2 is NOT YET FROZEN / NOT EXECUTED.
+
+Current sequencing gate: advance `pcmmad/project-control` above `a95ec5355b6946927eec6403a1764491f837e9e2` and fresh-clone verify the successor carrying the v0.2.5.1 HARNESS_INVALID boundary + synchronous-plane record. Only afterward may a NEW v0.2.5.2 be frozen for `runSync.command`, after immediate plane remeasurement, with unchanged explicit-breakaway discriminator behavior.

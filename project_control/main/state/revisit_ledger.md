@@ -87,3 +87,7 @@ Exact bound text governing the resolved row above: If an artifact can be meaning
 | 2026-09-08 | App explicit Job-breakaway behavior | normal-descendant kill-on-close path now qualified at `518c15f8464ea69487a4db5b7d23605b4d18983a684c1819c3d03792dbdf6085` but explicit breakaway untested | explicit-breakaway discriminator result | successor control then NEW App non-network breakaway Attempt | P0 | OPEN / APP FRONTIER | no Main/Core promotion |
 
 | 2026-09-08 | App redundant v0.2.4.1 siblings | two preserved/unexecuted siblings exist outside current qualified lineage | accidental cross-arm promotion or execution | record in successor control; keep unexecuted | P1 | RESOLVED / AWARENESS | Main/Core unchanged |
+
+| 2026-09-08 | App explicit Job-breakaway execution plane | v0.2.5.1 result `60c928361d0f350447d2577f671915263446f4d7e40afb5cea12161abc19add8` stopped at outer-Job precheck | directly measured suitable replacement plane | checkpoint then NEW App Attempt | P0 | OPEN / HARNESS_INVALID | no Core promotion |
+
+| 2026-09-08 | App v0.2.5.1 harness boundary + synchronous-plane currentness | App worker plane `0x2000` invalidated first breakaway Attempt; separate `runSync` plane now `0x3000` | cross-arm rollback or false Core/security promotion | result `60c928361d0f350447d2577f671915263446f4d7e40afb5cea12161abc19add8` + plane `0a4a3b28386c84a172fa161a8c9f8ef2a228aaacbf2375dd0884ea717de94fb5` + successor control | P0 | OPEN / CHECKPOINT REQUIRED | publish/fresh-clone successor; Main/Core unchanged |

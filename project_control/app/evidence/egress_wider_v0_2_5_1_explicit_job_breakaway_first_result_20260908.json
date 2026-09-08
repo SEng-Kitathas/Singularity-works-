@@ -1,0 +1,42 @@
+{
+  "admission_status": "NOT_ADMITTED",
+  "artifact_reason": "execution host outer Job does not provide SILENT_BREAKAWAY_OK positive-control isolation",
+  "artifact_sha256": "50095130e14f4d564dbca18cf0a6ace6c3805ffca38598856bd4a6fe4b1d9bb8",
+  "artifact_status": "HARNESS_INVALID",
+  "bounded_result": "NO_BREAKAWAY_OBSERVATION",
+  "claim_ceiling": "NO_EXPLICIT_BREAKAWAY_CLAIM_EARNED",
+  "classification": "HARNESS_INVALID_OUTER_EXECUTION_JOB_NO_SILENT_BREAKAWAY",
+  "control_remote_exact_after_run": true,
+  "durable_control_checkpoint": "09bdf45b6aa912da4f97e4f142387dc80f9ac093a5fab7885f004e1ed9aecc7d",
+  "durable_control_head": "a95ec5355b6946927eec6403a1764491f837e9e2",
+  "evidence_boundary": [
+    "EXECUTION_WORKER_OUTER_JOB_FLAGS_0x2000_ONLY",
+    "POSITIVE_CONTROL_NOT_REACHED",
+    "PROTECTED_PHASE_NOT_REACHED",
+    "HARNESS_INVALID != CREATE_BREAKAWAY_FROM_JOB_DENIAL",
+    "SAME_ATTEMPT_NOT_REPLAYABLE"
+  ],
+  "execution_return_code": 3,
+  "execution_service_status": "FAILED",
+  "job_id": "job-34b75435461c",
+  "network_activity_intended": false,
+  "outer_execution_job": {
+    "breakaway_ok": false,
+    "kill_on_close": true,
+    "limit_flags": 8192,
+    "ok": true,
+    "silent_breakaway_ok": false
+  },
+  "positive_control": null,
+  "protected": null,
+  "runtime_law_earned": false,
+  "same_attempt_rerun": false,
+  "schema": "singularity-works.egress-wider-v0.2.5.1-explicit-job-breakaway-first-result/0.1",
+  "source_clean_after_run": true,
+  "source_head": "43aa7feac7e8a15828116bd700b644560714496d",
+  "source_remote_exact_after_run": true,
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 1544,
+  "stdout_sha256": "abe290d86ef467c62bc8a4c17e402b00f6a8d4008f1082997387ea79c67334b0"
+}

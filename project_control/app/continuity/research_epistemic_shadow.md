@@ -477,3 +477,20 @@ Truth status: VERIFIED Attempt/currentness evidence; no security claim change.
 
 `PRESERVED_REDUNDANT_SIBLING != CURRENT_SECURITY_FRONTIER`.
 `UNEXECUTED_REDUNDANT_ATTEMPT != REPLAY_REQUIREMENT`.
+
+
+## v0.2.5.1 explicit-breakaway harness result — 2026-09-08
+Truth status: **VERIFIED HARNESS INVALID / NO BREAKAWAY OBSERVATION**; RES authority NONE_BY_CONTENT. Job `job-34b75435461c` ran exact `50095130e14f4d564dbca18cf0a6ace6c3805ffca38598856bd4a6fe4b1d9bb8` once. Worker outer Job limits were 0x2000 without silent breakaway, so the artifact stopped before positive/protected phases. Result `60c928361d0f350447d2577f671915263446f4d7e40afb5cea12161abc19add8` is NOT_ADMITTED. Candidate replacement execution-plane properties require direct measurement.
+
+## v0.2.5.2 synchronous execution-plane currentness prerequisite — 2026-09-08
+Truth status: **VERIFIED EXECUTION-PLANE CURRENTNESS / NO BREAKAWAY RESULT**; RES authority NONE_BY_CONTENT.
+- v0.2.5.1 result `60c928361d0f350447d2577f671915263446f4d7e40afb5cea12161abc19add8` remains immutable HARNESS_INVALID and NOT_ADMITTED.
+- exact `runSync.command` plane probe stdout `93dee7872c35cb0f646d169d46799306db9c3c62ce5c83e9e1c61141ccb4acad` directly observed flags `0x3000`: `SILENT_BREAKAWAY_OK=true`, `KILL_ON_JOB_CLOSE=true`, `BREAKAWAY_OK=false`.
+- structured record `0a4a3b28386c84a172fa161a8c9f8ef2a228aaacbf2375dd0884ea717de94fb5`, complete read 34/34, preserved as `attempt-egress-wider-v0-2-5-2-synchronous-execution-plane-currentness` with exact readback.
+- Attempt Store after capture: 166 blobs / 172 attempts / 251 events, integrity ok.
+- this satisfies the maintenance receipt's repair precondition but earns no explicit-breakaway behavior.
+- current sequencing gate remains successor control checkpoint above `a95ec5355b6946927eec6403a1764491f837e9e2` before any NEW v0.2.5.2 artifact is frozen or executed.
+
+`EXECUTION_PLANE_JOB_POLICY != FORGE_IMMEDIATE_JOB_POLICY`.
+`EXECUTION_PLANE_CURRENTNESS != BREAKAWAY_RESULT`.
+`SILENT_BREAKAWAY_OK_PRESENT != CREATE_BREAKAWAY_FROM_JOB_PASS`.

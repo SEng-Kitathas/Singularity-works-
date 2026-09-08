@@ -213,3 +213,10 @@ Bounded evidence now supports normal descendant termination across immediate `JO
 `NORMAL_DESCENDANT_JOB_CLOSE_TERMINATION != CREATE_BREAKAWAY_FROM_JOB_DENIAL`
 `JOB_MEMBERSHIP_AT_ROOT != ALL_PROCESS_TREE_ESCAPE_RESISTANCE`
 `NON_NETWORK_LIFECYCLE_PASS != NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT`
+
+
+## Execution-plane confound guard — 2026-09-08
+`EXECUTION_PLANE_JOB_POLICY != FORGE_IMMEDIATE_JOB_POLICY`
+`OUTER_JOB_PRECHECK_FAILURE != CREATE_BREAKAWAY_FROM_JOB_DENIAL`
+`HARNESS_INVALID != SAFE_TO_REPLAY_SAME_ATTEMPT`
+A replacement execution plane must prove its own outer-Job breakaway conditions before any explicit-breakaway inference.

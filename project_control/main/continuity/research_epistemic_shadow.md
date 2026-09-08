@@ -422,3 +422,7 @@ App exact first execution `job-485c0f471477` produced preserved observation byte
 
 ## App v0.2.4.1 lifecycle signal — Main RES cross-reference — 2026-09-08
 App bounded admission `518c15f8464ea69487a4db5b7d23605b4d18983a684c1819c3d03792dbdf6085` qualifies normal-descendant Job-close termination only. Main RES treats this as cross-arm research signal, authority NONE_BY_CONTENT. Explicit breakaway and Main/Core semantic state remain unchanged.
+
+
+## App v0.2.5.1 breakaway harness signal — Main RES — 2026-09-08
+Result `60c928361d0f350447d2577f671915263446f4d7e40afb5cea12161abc19add8` is verified HARNESS_INVALID before explicit-breakaway observation. Main RES authority NONE_BY_CONTENT; Core semantic state unchanged.

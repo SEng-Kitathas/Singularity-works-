@@ -117,3 +117,15 @@ Completed at `pcmmad/project-control@bfcd19b3e91972de44fa702fe027d09dcab03249`, 
 
 ## Current coordinated gate — 2026-09-08
 Seal successor control with App Store 157/162/241 and redundant-sibling classification. Do not execute either repair sibling. After fresh-clone closure App may create a NEW non-network explicit-breakaway Attempt; Main/Core remains unchanged.
+
+
+## Immediate coordinated step — App v0.2.5.1 harness invalid
+Checkpoint App result `60c928361d0f350447d2577f671915263446f4d7e40afb5cea12161abc19add8` before any replacement explicit-breakaway Attempt. Candidate execution plane must be directly measured; no same-Attempt replay; Main/Core unchanged.
+
+## Immediate coordinated P0 — v0.2.5.1 harness checkpoint
+1. Seal successor `pcmmad/project-control` above `a95ec5355b6946927eec6403a1764491f837e9e2` carrying App HARNESS_INVALID result `60c928361d0f350447d2577f671915263446f4d7e40afb5cea12161abc19add8`, Store 166/172/251, live Main `e66c071fc25f8d08bfc7ebf0551948392d652f35`, and synchronous-plane record `0a4a3b28386c84a172fa161a8c9f8ef2a228aaacbf2375dd0884ea717de94fb5`.
+2. Preserve App v0.2.5/v0.2.5.1 as immutable; no same-Attempt replay.
+3. Main/Core anchor `a7b4511734b1a1e507230308e75b31175aef4c4a` remains unchanged; this is cross-arm continuity only.
+4. Complete semantic/publication/fresh-clone verification.
+5. After closure, App may remeasure `runSync.command` and freeze NEW v0.2.5.2 with unchanged discriminator behavior if silent-breakaway compatibility still holds.
+6. No network-bearing breakaway claim and no product-wide runtime-law promotion.

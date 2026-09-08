@@ -373,3 +373,7 @@ No doctrine promotion; this is an evidence-handling constraint for the current s
 
 ## Cross-arm lifecycle evidence guard — 2026-09-08
 App admission `518c15f8464ea69487a4db5b7d23605b4d18983a684c1819c3d03792dbdf6085` is bounded process-lifecycle evidence only. `APP_LIFECYCLE_EVIDENCE != MAIN_CORE_PROMOTION`; `NORMAL_DESCENDANT_JOB_CLOSE_TERMINATION != CREATE_BREAKAWAY_FROM_JOB_DENIAL`.
+
+
+## Cross-arm execution-plane guard — 2026-09-08
+`EXECUTION_PLANE_JOB_POLICY != FORGE_IMMEDIATE_JOB_POLICY`; `OUTER_JOB_PRECHECK_FAILURE != BREAKAWAY_DENIAL`; no Main/Core promotion.

@@ -1,60 +1,34 @@
 # Singularity Works / Forge — Cross-Thread Project Control
 
-Durable continuity/control snapshot only. It does not widen product, semantic, recovery, security, or Governance Contact authority.
+Durable continuity/control snapshot only. It does not promote product/Core source or widen breakaway/network authority.
 
-## READ FIRST — current thread rollover
-1. `main/checkpoints/THREAD_ROLLOVER_CURRENT.md`
-2. `main/checkpoints/THREAD_ROLLOVER_CHECKPOINT_20260907.md`
-3. `main/checkpoints/THREAD_ROLLOVER_INGRESS_PROMPT_20260907.md`
+## Current repository / authority
+- public Main `e66c071fc25f8d08bfc7ebf0551948392d652f35`, direct authority-only child of `57df8f6345e2744c04bf6882c130a06ea8528fa2`; semantic Core anchor `a7b4511734b1a1e507230308e75b31175aef4c4a` unchanged;
+- App `43aa7feac7e8a15828116bd700b644560714496d`, local/remote exact and clean; Gen14 `checkpoint-app-live-0014-43aa7feac7e8` current LKG/source MATCH/NORMAL;
+- Governance Contact locator `380059a4e8204c35f82b3a232d45f962bb20038eec3d9eecb44f4411809346bd` + exact token `b5a2e35f300c6f72d93fc80b877ef0478a3628442b705e50f6893cbceafb5094` validate locally on both inspected project targets as `GOVERNANCE_CONTACT_LOCALLY_BINDING_ADDITIVE_PROCESS_DOCTRINE`; detached global ACTIVE receipt remains absent, so global ACTIVE is unearned;
+- target-local Commander/Ingress: Main `8b1bf53adf3ac3fee09a4435f1f6df4518359f767fc76fe8d99df4ed6f44e4ae` / `2b26df19f4721c462c7fdafc2205a9ac03722f48e7f5fd95fc0280d9f3b775dc`; App `e3e859989524e5900abc353cd9b7719f3d7173c8d80104b4afe30dde05c68e9d` / `16791dcf77cb9feef82d9a7b753a72c366c2c7f6997c449b6177b5a47debe331`;
+- Main RES `3595b6bbd46d3c812f5defe2cccbc1535c774c62561b6a141e17f2604460b83c` / App RES `30356c2a5f951b53597cbb67a45a0ca73c59f1885d23357f063886fd06cf7d14`, authority NONE_BY_CONTENT.
 
-The same three artifacts are mirrored under `app/checkpoints/` and SHALL be byte-identical. Fresh-thread mode is **RECOVERY/AUDIT** until live currentness is re-established.
+## v0.2.5.1 explicit Job-breakaway harness boundary
+- frozen artifact `50095130e14f4d564dbca18cf0a6ace6c3805ffca38598856bd4a6fe4b1d9bb8` remains immutable after one execution;
+- exact first result `60c928361d0f350447d2577f671915263446f4d7e40afb5cea12161abc19add8` = `HARNESS_INVALID_OUTER_EXECUTION_JOB_NO_SILENT_BREAKAWAY` / NOT_ADMITTED;
+- async worker outer Job `0x2000`: kill-on-close true, silent-breakaway false; positive and protected phases were not reached;
+- maintenance receipt `984ac7512294964085d63813476ac2174eb44e7007a468a673e6a4dfe7f9e67b`; same Attempt SHALL NOT be rerun.
 
-## Rollover fixed point — verify live, do not assume
-- public Main: `57df8f6345e2744c04bf6882c130a06ea8528fa2`
-- semantic Core qualification anchor: `a7b4511734b1a1e507230308e75b31175aef4c4a`
-- App: `43aa7feac7e8a15828116bd700b644560714496d`
-- predecessor control: `bfcd19b3e91972de44fa702fe027d09dcab03249`
-- Gen14: `checkpoint-app-live-0014-43aa7feac7e8`, MATCH/NORMAL/READY, Core IDs null
-- App Attempt Store at seal: 138 blobs / 138 attempts / 217 events
+`OUTER_JOB_PRECHECK_FAILURE != CREATE_BREAKAWAY_FROM_JOB_DENIAL`
+`HARNESS_INVALID != SAFE_TO_REPLAY_SAME_ATTEMPT`
 
-## Recovery currentness after rollover
-Live recovery/audit readback on 2026-09-07 resolved public Main at `e66c071fc25f8d08bfc7ebf0551948392d652f35`, a direct descendant of rollover Main `57df8f6345e2744c04bf6882c130a06ea8528fa2` containing only the Governance Contact activation-token publication delta. Semantic Core anchor remains `a7b4511734b1a1e507230308e75b31175aef4c4a`; App remains `43aa7feac7e8a15828116bd700b644560714496d`; predecessor durable control remains `bfcd19b3e91972de44fa702fe027d09dcab03249` / CHECKPOINT `cfb5a83a8f56b09720950f2706d861a1aed2e5475b591b4a3b6f92e88dcfa9dc`.
+## v0.2.5.2 execution-plane prerequisite
+- exact synchronous `runSync.command` record `0a4a3b28386c84a172fa161a8c9f8ef2a228aaacbf2375dd0884ea717de94fb5`; raw probe `93dee7872c35cb0f646d169d46799306db9c3c62ce5c83e9e1c61141ccb4acad`;
+- observed `0x3000`: silent-breakaway true, kill-on-close true, breakaway-ok false;
+- Attempt Store current readback 166 blobs / 172 attempts / 251 events, integrity ok;
+- this is execution-plane currentness only. v0.2.5.2 is **NOT YET FROZEN / NOT EXECUTED**.
 
-Governance Contact is target-local: the public-Git Main target has the exact valid token and no ACTIVE receipt, so it resolves `GOVERNANCE_CONTACT_LOCALLY_BINDING_ADDITIVE_PROCESS_DOCTRINE`; the server Main and App development-arm targets have token/ACTIVE receipt absent and resolve `GOVERNANCE_CONTACT_NOT_ACTIVE_AT_THIS_TARGET`. No global ACTIVE claim is earned. See `RECOVERY_CURRENTNESS_20260907.md`.
+`EXECUTION_PLANE_CURRENTNESS != BREAKAWAY_RESULT`
+`SILENT_BREAKAWAY_OK_PRESENT != CREATE_BREAKAWAY_FROM_JOB_PASS`
 
-## Current fixed point after v0.2.4 harness diagnosis
-This generation supersedes the previous control-currentness frontier only as an additive checkpoint. Both local development arms now carry the exact Governance Contact locator+token and no ACTIVE receipt; global ACTIVE remains unearned. App bounded security evidence has advanced through DNS-helper and proxy/environment loopback admissions, while v0.2.4 normal-descendant Job-close is HARNESS_INVALID before protected execution. See `CURRENTNESS_AFTER_V0_2_4_20260908.md`.
+## Semantic admission
+Server successor admission stream: 23 artifacts / 3,116 deterministic lines / SHA `d0c1379fbd8c01e9616a1b8fee83f975bd1670179551eb354f05c1d5e3cc128e`, complete read 3,116/3,116, blocking findings 0.
 
-## Current fixed point after v0.2.4.1 normal-descendant Job-close admission
-The current App security frontier includes a bounded normal-descendant `JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE` lifecycle admission. Explicit Job breakaway remains untested. A separately preserved currentness-only sibling is unexecuted and does not supersede the admitted lineage. See `CURRENTNESS_AFTER_V0_2_4_1_20260908.md`.
-
-## Current fixed point after v0.2.4.1 bounded Job-close qualification
-This generation records the current-control v0.2.4.1 result/admission and repaired coordinated Live Shadow state. Normal-descendant kill-on-close behavior is bounded-qualified only; explicit Job breakaway remains the next non-network prerequisite. Concurrent preserved/unexecuted repair siblings are lineage-classified rather than collapsed. See `CURRENTNESS_AFTER_V0_2_4_1_20260908.md`.
-
-## Process authority
-- sealed RAHL Engineering Canonical SOP R4.4 carrier `04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc`
-- ICF-CS v1.1 additive continuity/process payload `f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63`
-
-`AUTOMATED_CHECKS != LINEAR_HUMAN_SEMANTIC_READ`
-`CONTROL_CHECKPOINT != PRODUCT_PROMOTION`
-`MAIN_BRANCH_HEAD != CORE_QUALIFICATION_ANCHOR`
-
-## Governance Contact v1.0
-Public Main `57df8f...` wires Phase-1 activation resolution. Currentness is resolved from target-local `authority/rahl-sop/GOVERNANCE_CONTACT_V1_0_ACTIVATION.md` plus sibling token/ACTIVE-receipt validation. At rollover both inspected Main/App targets had token absent and ACTIVE receipt absent, therefore `GOVERNANCE_CONTACT_NOT_ACTIVE_AT_THIS_TARGET`.
-
-`ACTIVATION_LOCATOR_PRESENT != ACTIVATION_TOKEN_PRESENT`
-`ACTIVATION_TOKEN_PRESENT_AT_ONE_TARGET != GLOBAL_ACTIVE`
-
-## Exact selected consequence-bearing resume gate
-Attempt ID:
-`attempt-egress-wider-v0-2-1-3-descendant-udp-loopback-cwd-repair-first`
-
-Blob/artifact:
-`99ef2cbbc08eef598fb9c8b02ae38d5b9d88a3c4fcde576b96cf047b1942185e`
-
-At rollover its Attempt Store metadata was `executed=false`, `job_id=null`. A separate earlier sibling repair already PASSed/admitted (`440964f6368863adc2da0bc5f5632476ae73b8ff736e33fac7e082330b1b6a71` -> `bbf0043e0ce8793688f1f358053e790b2a73cfec2911aefa1d09e18844ffb270`). Do not transfer that PASS to this newer attempt.
-
-If live re-entry confirms the selected attempt is still unexecuted and all currentness predicates match, execute it once unchanged and preserve the exact first result before interpretation. If it has already executed, do not rerun.
-
-## Long-horizon identity
-Singularity Works is the skunkworks product whole. Forge is the language-agnostic semantic cartography/evidence/transformation kernel. LBE is the interactive logic/software map; HUD navigates it but does not own truth. Main/Core and App are coordinated research/embodiment arms with separate authority and shared canonical truth.
+## Durable predecessor / next frontier
+Verified predecessor `pcmmad/project-control@a95ec5355b6946927eec6403a1764491f837e9e2` / CHECKPOINT `09bdf45b6aa912da4f97e4f142387dc80f9ac093a5fab7885f004e1ed9aecc7d`. This generation must become remotely durable and fresh-clone verified before a NEW v0.2.5.2 may be frozen. After closure, remeasure the exact `runSync.command` plane immediately; only if silent-breakaway compatibility still holds may the new sibling use unchanged breakaway discriminator behavior.

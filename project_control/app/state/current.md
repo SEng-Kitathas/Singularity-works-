@@ -210,7 +210,7 @@ Resume point: make this load-bearing state durable before the next consequence-b
 
 
 ## CONTROL DURABILITY CLOSURE — 2026-09-08
-- Durable control advanced from `f59a329...` to `d76299e728b5026df87c39c17ad9d723f759ce5f` / CHECKPOINT `1f6e82c8515981b45667899f5f1eb120247ee31805a7e401f277643c41b72c05`.
+- Durable control advanced from `f59a329...` to `5c052d8aff58fb9ab424c5907f5de217a45fe686` / CHECKPOINT `af81d7cb4c3410e8b419aecd05e7e6c453d48a952dc143ac4633020eadeb72f7`.
 - Successor was committed directly above predecessor, non-force pushed, and independently fresh-clone verified clean with verifier PASS 145.
 - Control snapshot records v0.2.2 DNS-helper admission, v0.2.3 proxy/environment admission, and immutable v0.2.4 HARNESS_INVALID first result `c6366904038e45cb0ec9712b9aeb34f016220786e731bdfb7a654097e2601710`.
 - Both local targets carry exact Governance Contact locator+token; ACTIVE receipt remains absent, so global ACTIVE remains unearned.
@@ -218,7 +218,7 @@ Resume point: make this load-bearing state durable before the next consequence-b
 
 
 ## Current security frontier — v0.2.4.1 — 2026-09-08
-Durable control `d76299e728b5026df87c39c17ad9d723f759ce5f` / CHECKPOINT `1f6e82c8515981b45667899f5f1eb120247ee31805a7e401f277643c41b72c05`. App source remains clean/remote-exact `43aa7fe...`, Gen14 MATCH/NORMAL/READY.
+Durable control `5c052d8aff58fb9ab424c5907f5de217a45fe686` / CHECKPOINT `af81d7cb4c3410e8b419aecd05e7e6c453d48a952dc143ac4633020eadeb72f7`. App source remains clean/remote-exact `43aa7fe...`, Gen14 MATCH/NORMAL/READY.
 
 v0.2.4.1 current-control artifact `81d8d42b2280e249f13d4a5c30f588a1784d9c6bc0c60e4fee0279f611ad53c8` -> result `709ba15edfbdc640c313f236daeb8c8abe889a64e03cc8feb50aedcade2ac173` -> bounded admission `518c15f8464ea69487a4db5b7d23605b4d18983a684c1819c3d03792dbdf6085`. Positive normal descendant survived unprotected root exit; protected normal descendant was absent after immediate kill-on-close Job closure.
 
@@ -229,3 +229,16 @@ Resume point: checkpoint this load-bearing state before explicit breakaway testi
 
 ## REDUNDANT-SIBLING CURRENTNESS RECONCILIATION — 2026-09-08
 Attempt Store current readback is **157 blobs / 162 attempts / 241 events**, integrity `ok`. Current qualification lineage remains `81d8d42b... -> 709ba15e... -> 518c15f8...`. Preserved siblings `1faa3725...` and `541d4710...` are both unexecuted/redundant and SHALL NOT run. Next gate is successor control above `d76299e...`, then a NEW explicit-breakaway Attempt.
+
+
+## Current explicit-breakaway frontier — v0.2.5.1 — 2026-09-08
+Artifact `50095130e14f4d564dbca18cf0a6ace6c3805ffca38598856bd4a6fe4b1d9bb8` executed once as `job-34b75435461c` under control `a95ec5355b6946927eec6403a1764491f837e9e2` and produced result `60c928361d0f350447d2577f671915263446f4d7e40afb5cea12161abc19add8`: `HARNESS_INVALID_OUTER_EXECUTION_JOB_NO_SILENT_BREAKAWAY`. Execution worker outer Job `0x2000` prevented a valid isolated positive-control setup; positive/protected phases were not reached. Admission NOT_ADMITTED. Store 165/171/250 integrity ok. Explicit breakaway remains unearned.
+
+## V0.2.5.1 HARNESS BOUNDARY + V0.2.5.2 EXECUTION-PLANE PREREQUISITE — CURRENT
+- Public Main `e66c071fc25f8d08bfc7ebf0551948392d652f35`; App `43aa7feac7e8a15828116bd700b644560714496d` / Gen14 current; source clean/remote-exact.
+- Current durable control `a95ec5355b6946927eec6403a1764491f837e9e2` / CHECKPOINT `09bdf45b6aa912da4f97e4f142387dc80f9ac093a5fab7885f004e1ed9aecc7d` remains the verified predecessor for this new boundary.
+- v0.2.5.1 exact first result `60c928361d0f350447d2577f671915263446f4d7e40afb5cea12161abc19add8` is **HARNESS_INVALID_OUTER_EXECUTION_JOB_NO_SILENT_BREAKAWAY / NOT_ADMITTED**. Same Attempt SHALL NOT be rerun; no explicit breakaway claim is earned.
+- Exact synchronous command-plane currentness record `0a4a3b28386c84a172fa161a8c9f8ef2a228aaacbf2375dd0884ea717de94fb5` verifies `limit_flags=0x3000`, `SILENT_BREAKAWAY_OK=true`, `KILL_ON_JOB_CLOSE=true`, `BREAKAWAY_OK=false`; raw probe `93dee7872c35cb0f646d169d46799306db9c3c62ce5c83e9e1c61141ccb4acad`.
+- Attempt Store current readback: **166 blobs / 172 attempts / 251 events**, integrity ok.
+- This satisfies only the execution-plane repair precondition. `SILENT_BREAKAWAY_OK_PRESENT != CREATE_BREAKAWAY_FROM_JOB_PASS`.
+- Immediate P0: publish/fresh-clone verify one successor `pcmmad/project-control` checkpoint carrying this harness-invalid boundary + plane currentness. Only after that may a NEW v0.2.5.2 be frozen for the exact synchronous `runSync.command` plane. v0.2.5.2 is **NOT YET FROZEN / NOT EXECUTED**.

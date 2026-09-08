@@ -104,3 +104,19 @@ Advance `pcmmad/project-control` from `d76299e728b5026df87c39c17ad9d723f759ce5f`
 - `541d471035e6667be61e281e4f08078e7a22f10165cd38ee40982548f7ecee53`: preserved/unexecuted currentness-only sibling; metadata behavioral delta NONE.
 - Neither sibling supersedes or competes with the executed/admitted current lineage `81d8d42b... -> 709ba15e... -> 518c15f8...`; neither SHALL be executed.
 - Immediate gate remains successor control checkpoint above `d76299e...`, then a NEW non-network explicit-breakaway discriminator.
+
+
+## APP V0.2.5.1 BREAKAWAY HARNESS CURRENTNESS — 2026-09-08
+- Durable control `a95ec5355b6946927eec6403a1764491f837e9e2` / CHECKPOINT `09bdf45b6aa912da4f97e4f142387dc80f9ac093a5fab7885f004e1ed9aecc7d`.
+- App artifact `50095130e14f4d564dbca18cf0a6ace6c3805ffca38598856bd4a6fe4b1d9bb8` executed once; result `60c928361d0f350447d2577f671915263446f4d7e40afb5cea12161abc19add8` is HARNESS_INVALID because execution-worker outer Job lacked silent-breakaway isolation. Positive/protected phases not reached; NOT_ADMITTED.
+- Main/Core anchor unchanged. Next coordinated gate: checkpoint this harness boundary; any replacement execution plane must prove its own Job limits before NEW Attempt execution.
+
+## APP V0.2.5.2 EXECUTION-PLANE PREREQUISITE — CURRENT — 2026-09-08
+- Mode: **CHECKPOINT / R1 -> R4**.
+- Public Main `e66c071fc25f8d08bfc7ebf0551948392d652f35`; Core anchor `a7b4511734b1a1e507230308e75b31175aef4c4a` unchanged; App `43aa7feac7e8a15828116bd700b644560714496d` / Gen14 current.
+- Durable control `a95ec5355b6946927eec6403a1764491f837e9e2` / CHECKPOINT `09bdf45b6aa912da4f97e4f142387dc80f9ac093a5fab7885f004e1ed9aecc7d` is current predecessor; successor checkpoint is coordinated P0.
+- App v0.2.5.1 result `60c928361d0f350447d2577f671915263446f4d7e40afb5cea12161abc19add8` is immutable HARNESS_INVALID / NOT_ADMITTED; no breakaway observation.
+- synchronous `runSync.command` record `0a4a3b28386c84a172fa161a8c9f8ef2a228aaacbf2375dd0884ea717de94fb5` directly verifies outer Job `0x3000` with silent-breakaway allowed; this is execution-plane currentness only.
+- App Store 166/172/251, integrity ok.
+- App v0.2.5.2 is NOT YET FROZEN / NOT EXECUTED.
+- Next: successor control publication/fresh clone; then App remeasures exact synchronous plane before any NEW v0.2.5.2.
