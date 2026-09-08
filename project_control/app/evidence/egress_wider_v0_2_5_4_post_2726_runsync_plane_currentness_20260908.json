@@ -1,0 +1,29 @@
+{
+  "breakaway_result_earned": false,
+  "claim_ceiling": "EXECUTION_PLANE_JOB_POLICY_CURRENTNESS_ONLY",
+  "date": "2026-09-08 UTC",
+  "durable_control_checkpoint": "6378560c5ed9993a302fc88386cb47d789cdc01f8895fa99e460dbc0b90bd264",
+  "durable_control_head": "2726d4edbfa2d1af3977b4dda81c26da9385320d",
+  "main_head": "e66c071fc25f8d08bfc7ebf0551948392d652f35",
+  "parent_first_result": "27af68192010146a421ea95900407bdc58c47984496fba98a163bbfc069854bf",
+  "probe": {
+    "breakaway_ok": true,
+    "error": 0,
+    "kill_on_close": false,
+    "limit_flags": 6144,
+    "limit_flags_hex": "0x1800",
+    "ok": true,
+    "pid": 36576,
+    "plane": "server.runSync.command",
+    "returned_bytes": 144,
+    "schema": "singularity-works.execution-plane-job-limits/0.1",
+    "silent_breakaway_ok": true
+  },
+  "probe_stdout_bytes": 285,
+  "probe_stdout_sha256": "a2289374d970387da2ec9ed5c0e250e6d818ccfaf02b501bd33a51537495c3b8",
+  "repair_precondition_satisfied": true,
+  "runtime_law_earned": false,
+  "schema": "singularity-works.egress-wider-v0.2.5.4-execution-plane-currentness/0.1",
+  "source_head": "43aa7feac7e8a15828116bd700b644560714496d",
+  "status": "VERIFIED_SYNCHRONOUS_EXECUTION_PLANE_COMPATIBLE"
+}

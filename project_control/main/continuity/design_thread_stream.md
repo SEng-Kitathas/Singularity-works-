@@ -1654,3 +1654,9 @@ Control `8071b0945ee7f9a7709eef0ef62c42141a2ebc39` fresh-clone verified. App pla
 
 ## CROSS-ARM UPDATE — App v0.2.5.3 HARNESS_INVALID — 2026-09-08
 App result `27af68192010146a421ea95900407bdc58c47984496fba98a163bbfc069854bf` records positive explicit child creation + survival, any-Job=true, protected absent. The positive outside-all-Jobs criterion was over-strong; no breakaway admission/Core promotion.
+
+
+---
+
+## CROSS-ARM UPDATE — App v0.2.5.4 explicit-breakaway bounded admission — 2026-09-08
+App result `7ae2edac96df296f278b0a552c42cc913fd27402f65e705f2cadc7ad761cd6aa` / admission `99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8` qualifies exact explicit `CREATE_BREAKAWAY_FROM_JOB` denial only. Positive explicit create/survive/cleanup and protected Win32 5 under verified immediate Job are preserved. Main records awareness only; Core unchanged.

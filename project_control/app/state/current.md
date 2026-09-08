@@ -264,3 +264,19 @@ Control `56fb5b70ffee7c58d60c34118338d12c30313e46` / CHECKPOINT `2a4ce4baf905bd3
 
 ## Current explicit-breakaway frontier — v0.2.5.3 — 2026-09-08
 Artifact `e6913d1b923153a6943b3f3fb34e50c7054f9123a3d940e33d8719d89cf2031d` -> result `27af68192010146a421ea95900407bdc58c47984496fba98a163bbfc069854bf` is HARNESS_INVALID / NOT_ADMITTED. Positive explicit breakaway child creation succeeded and the child survived root exit, but child belonged to some Job and the harness incorrectly rejected that before protected execution. Store 177/185/264 integrity ok. Next valid repair is positive-criterion-only v0.2.5.4 after checkpoint.
+
+
+## V0.2.5.3 SUCCESSOR CONTROL CLOSURE — 2026-09-08
+- Durable control `2726d4edbfa2d1af3977b4dda81c26da9385320d` / CHECKPOINT `6378560c5ed9993a302fc88386cb47d789cdc01f8895fa99e460dbc0b90bd264` is non-force published and independently fresh-clone verified PASS 172.
+- It preserves v0.2.5.3 first result `27af6819...` and plane record `df57157d...`.
+- Next permitted pressure: NEW v0.2.5.4 positive-criterion-only repair; helper source/DLL and protected breakaway logic remain unchanged.
+
+
+## Current security frontier — v0.2.5.4 explicit breakaway — 2026-09-08
+Control `2726d4edbfa2d1af3977b4dda81c26da9385320d` / CHECKPOINT `6378560c5ed9993a302fc88386cb47d789cdc01f8895fa99e460dbc0b90bd264`. App remains `43aa7fe...` / Gen14, clean/remote-exact.
+
+Current qualified lineage: artifact `1f7db5a043a755c0598f572de8ce2da979abe2de8ec5e40d52db66a18a9eb24e` -> result `7ae2edac96df296f278b0a552c42cc913fd27402f65e705f2cadc7ad761cd6aa` -> bounded admission `99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8`. Positive explicit breakaway creation succeeds on the non-Forge lifecycle path; inside verified Forge immediate Job it fails with `ERROR_ACCESS_DENIED (5)` after normal-child baseline/cleanup.
+
+Status: **BOUNDED EXPLICIT CREATE_BREAKAWAY_FROM_JOB DENIAL QUALIFIED / GENERAL PROCESS-ESCAPE & RUNTIME LAW UNEARNED**. Store 183/192/271 integrity ok.
+
+Resume point: make this admission durable in successor project-control before another escape class.

@@ -1664,3 +1664,21 @@ Tags: EXPLICIT-BREAKAWAY, CHILD-JOB-MEMBERSHIP, HARNESS-INVALID, POSITIVE-CRITER
 Exact `e6913d1b923153a6943b3f3fb34e50c7054f9123a3d940e33d8719d89cf2031d` executed once on synchronous plane after control/plane gates. Positive explicit child creation succeeded; returned sleeping child was alive after root exit and `IsProcessInJob(child,NULL)=true`. Artifact stopped because it required outside-all-Jobs, so protected phase was not reached. Exact first result `27af68192010146a421ea95900407bdc58c47984496fba98a163bbfc069854bf` preserved; store 177/185/264 integrity ok. Independent post-run probe confirmed the positive child was cleaned up.
 
 R1 diagnosis: any-Job membership is not the relevant positive criterion on a Job-governed server plane. Positive lifecycle signal is explicit-create success + survival without Forge immediate Job. Protected child survival after `run_zero_network_process` closes Forge's immediate Job is direct bypass evidence. NEW v0.2.5.4 may remove only the over-strong positive membership rejection.
+
+
+---
+
+## Entry — v0.2.5.3 successor control closed — 2026-09-08
+Control `2726d4edbfa2d1af3977b4dda81c26da9385320d` / CHECKPOINT `6378560c5ed9993a302fc88386cb47d789cdc01f8895fa99e460dbc0b90bd264` fresh-clone verifier PASS 172. NEW v0.2.5.4 positive-membership relaxation may now be designed; no prior replay.
+
+
+---
+
+## Entry — v0.2.5.4 explicit CREATE_BREAKAWAY_FROM_JOB bounded admission — 2026-09-08
+Tags: EXPLICIT-BREAKAWAY, RUNSYNC, FIRST-RESULT, BOUNDED-ADMISSION
+
+After v0.2.5.3 checkpoint closure, synchronous plane `de4e66d5a24666dea371088290a133085566f2965b309e1f6d1d0da216d91a04` was remeasured and v0.2.5.4 `1f7db5a043a755c0598f572de8ce2da979abe2de8ec5e40d52db66a18a9eb24e` was frozen with one behavioral delta only: remove the over-strong positive outside-all-Jobs rejection while retaining membership telemetry. Full 407-line reread, syntax PASS, exact capture/readback preceded execution.
+
+First synchronous execution completed rc0. Positive helper explicitly created the sleeping child, observed it alive after root exit, then cleaned it successfully. Under verified AppContainer + immediate Job / zero capabilities / no inherited handles, the helper passed normal-child baseline/cleanup and explicit `CREATE_BREAKAWAY_FROM_JOB` creation then failed with Win32 `ERROR_ACCESS_DENIED (5)`. Exact stdout `af8ed618e9b3652207017cc5fb3e20505e4dc5c61a0d487c67738eda08314952` and result `7ae2edac96df296f278b0a552c42cc913fd27402f65e705f2cadc7ad761cd6aa` were preserved/read back before admission.
+
+R1 admitted only bounded explicit-breakaway creation denial under receipt `99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8`. Store 183/192/271 integrity ok. No broader process-tree, network, production, or runtime-law claim.

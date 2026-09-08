@@ -73,3 +73,5 @@ Last updated: 2026-09-06 UTC
 | 2026-09-08 | Explicit breakaway child membership | v0.2.5.2 positive explicit create succeeded but root Job membership caused premature HARNESS_INVALID | child Job-membership/liveness observation in NEW Attempt | checkpoint `af0ce57433f71ad41dd74f06d922b88bad8fc8f69d0f8ca13496eafb47ab4601` then v0.2.5.3 | P0 | OPEN / HARNESS_INVALID / NOT_ADMITTED | no replay |
 
 | 2026-09-08 | Explicit breakaway positive criterion | v0.2.5.3 positive explicit child succeeds/survives but belongs to some outer Job | protected phase result under relaxed positive criterion | checkpoint `27af68192010146a421ea95900407bdc58c47984496fba98a163bbfc069854bf` then v0.2.5.4 | P0 | OPEN / HARNESS_INVALID / NOT_ADMITTED | membership telemetry retained |
+
+| 2026-09-08 | Explicit `CREATE_BREAKAWAY_FROM_JOB` path | v0.2.5.4 now qualifies exact creation denial in verified immediate Job | distinct broker/service/silent-breakaway mechanisms | separate NEW non-network discriminators after control closure | P0 | RESOLVED / BOUNDED QUALIFIED at `99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8` | do not generalize or repeat |

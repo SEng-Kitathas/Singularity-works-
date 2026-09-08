@@ -146,3 +146,10 @@ Advance `pcmmad/project-control` from `d76299e728b5026df87c39c17ad9d723f759ce5f`
 - Control `8071b0945ee7f9a7709eef0ef62c42141a2ebc39` / CHECKPOINT `1002110708b3bd53db376249dd384cfe26dcfb2d6aa6340880124f8cea6cb021`. App `e6913d1b923153a6943b3f3fb34e50c7054f9123a3d940e33d8719d89cf2031d` executed once; `27af68192010146a421ea95900407bdc58c47984496fba98a163bbfc069854bf` HARNESS_INVALID/NOT_ADMITTED.
 - Positive explicit child succeeded + survived root exit; any-Job membership true; protected phase absent.
 - Any-Job membership does not identify Forge immediate Job. Next: checkpoint then NEW App v0.2.5.4 positive-criterion-only repair. Main/Core unchanged.
+
+
+## APP V0.2.5.4 CROSS-ARM CURRENTNESS — 2026-09-08
+- Control `2726d4edbfa2d1af3977b4dda81c26da9385320d` / CHECKPOINT `6378560c5ed9993a302fc88386cb47d789cdc01f8895fa99e460dbc0b90bd264`.
+- App `1f7db5a043a755c0598f572de8ce2da979abe2de8ec5e40d52db66a18a9eb24e` -> result `7ae2edac96df296f278b0a552c42cc913fd27402f65e705f2cadc7ad761cd6aa` -> bounded admission `99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8`.
+- Qualified only explicit `CREATE_BREAKAWAY_FROM_JOB` denial in exact verified immediate Forge Job; general process-tree/network escape unearned.
+- App Store 183/192/271 integrity ok. Main/Core anchor unchanged. Next: successor control checkpoint before new escape class.

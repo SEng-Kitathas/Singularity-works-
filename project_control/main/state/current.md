@@ -216,3 +216,7 @@ App result `af0ce57433f71ad41dd74f06d922b88bad8fc8f69d0f8ca13496eafb47ab4601` is
 
 ## App breakaway cross-arm currentness — v0.2.5.3
 Result `27af68192010146a421ea95900407bdc58c47984496fba98a163bbfc069854bf` HARNESS_INVALID/NOT_ADMITTED. Positive explicit child succeeds/survives but belongs to some Job; protected absent. Control `8071b0945ee7f9a7709eef0ef62c42141a2ebc39`; Core unchanged.
+
+
+## App breakaway cross-arm currentness — v0.2.5.4
+App admission `99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8` qualifies exact explicit `CREATE_BREAKAWAY_FROM_JOB` denial only. Control `2726d4edbfa2d1af3977b4dda81c26da9385320d` / CHECKPOINT `6378560c5ed9993a302fc88386cb47d789cdc01f8895fa99e460dbc0b90bd264`. Main/Core unchanged.

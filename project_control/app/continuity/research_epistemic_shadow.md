@@ -502,3 +502,7 @@ Truth status: VERIFIED HARNESS INVALID / no protected breakaway observation. Pos
 
 ## v0.2.5.3 explicit-breakaway harness result — 2026-09-08
 Truth: verified positive explicit child creation + survival; verified child belongs to some Job; protected phase absent; result `27af68192010146a421ea95900407bdc58c47984496fba98a163bbfc069854bf` NOT_ADMITTED. RES authority NONE_BY_CONTENT. Any-Job membership does not identify Forge immediate-Job membership.
+
+
+## v0.2.5.4 explicit breakaway bounded qualification — 2026-09-08
+Truth status: **VERIFIED BOUNDED NON-NETWORK APP SECURITY EVIDENCE**; RES authority NONE_BY_CONTENT. Artifact `1f7db5a043a755c0598f572de8ce2da979abe2de8ec5e40d52db66a18a9eb24e`, result `7ae2edac96df296f278b0a552c42cc913fd27402f65e705f2cadc7ad761cd6aa`, admission `99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8`. Positive explicit child creation/survival/cleanup verified; protected verified immediate Job rejects `CREATE_BREAKAWAY_FROM_JOB` with Win32 5 after normal-child baseline. No general process-tree or network/runtime law.

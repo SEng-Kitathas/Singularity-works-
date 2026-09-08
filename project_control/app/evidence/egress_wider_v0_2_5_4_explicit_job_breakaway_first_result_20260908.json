@@ -1,0 +1,100 @@
+{
+  "admission_status": "PENDING_READBACK",
+  "artifact_reason": "same in-memory helper proved normal child creation/cleanup inside the protected root, then explicit CREATE_BREAKAWAY_FROM_JOB creation failed with ERROR_ACCESS_DENIED while the root was verified in the immediate Job",
+  "artifact_sha256": "1f7db5a043a755c0598f572de8ce2da979abe2de8ec5e40d52db66a18a9eb24e",
+  "artifact_status": "PASS_BOUNDED_EXPLICIT_CREATE_BREAKAWAY_FROM_JOB_DENIED",
+  "bounded_result": "PASS",
+  "claim_ceiling": "BOUNDED_EXPLICIT_CREATE_BREAKAWAY_FROM_JOB_DENIAL_ONLY",
+  "classification": "PASS_BOUNDED_EXPLICIT_CREATE_BREAKAWAY_FROM_JOB_DENIED",
+  "control_remote_exact_after_run": true,
+  "durable_control_checkpoint": "6378560c5ed9993a302fc88386cb47d789cdc01f8895fa99e460dbc0b90bd264",
+  "durable_control_head": "2726d4edbfa2d1af3977b4dda81c26da9385320d",
+  "evidence_boundary": [
+    "RUNSYNC_OUTER_JOB_0x1800_COMPATIBLE",
+    "POSITIVE_EXPLICIT_CREATE_SUCCEEDED",
+    "POSITIVE_CHILD_ALIVE_AFTER_ROOT_EXIT",
+    "POSITIVE_CHILD_CLEANUP_CONFIRMED",
+    "PROTECTED_APPCONTAINER_VERIFIED",
+    "PROTECTED_IMMEDIATE_JOB_VERIFIED",
+    "PROTECTED_CAPABILITY_COUNT_ZERO",
+    "PROTECTED_NO_INHERITED_HANDLES",
+    "PROTECTED_EXPLICIT_CREATE_FAILED_IN_JOB",
+    "PROTECTED_BREAKAWAY_ERROR_ACCESS_DENIED_5",
+    "EXPLICIT_BREAKAWAY_DENIAL != SERVICE_WMI_COM_RPC_WSL_ESCAPE_RESISTANCE",
+    "NON_NETWORK_RESULT != NETWORK_EGRESS_RESULT",
+    "RUNTIME_LAW_UNEARNED"
+  ],
+  "execution_plane": "server.runSync.command",
+  "execution_return_code": 0,
+  "network_activity_intended": false,
+  "outer_execution_job": {
+    "breakaway_ok": true,
+    "kill_on_close": false,
+    "limit_flags": 6144,
+    "ok": true,
+    "silent_breakaway_ok": true
+  },
+  "positive_control": {
+    "child_job_membership_after_root_exit": {
+      "in_any_job": true,
+      "pid": 18484,
+      "queried": true,
+      "query_error": 0
+    },
+    "child_state_after_root_exit": {
+      "alive": true,
+      "open": true,
+      "pid": 18484,
+      "wait_result": 258
+    },
+    "cleanup": {
+      "opened": true,
+      "pid": 18484,
+      "terminated": true,
+      "wait_result": 0
+    },
+    "decoded": {
+      "kind": "BREAKAWAY_CREATE_SUCCESS_IN_JOB",
+      "pid": 18484,
+      "raw": 2684373044
+    },
+    "root_exit_code": 2684373044,
+    "stderr_nonempty": false
+  },
+  "protected": {
+    "decoded": {
+      "kind": "BREAKAWAY_CREATE_FAILURE_IN_JOB",
+      "raw": 3791650821,
+      "win32_error": 5
+    },
+    "receipt": {
+      "appcontainer_verified": true,
+      "authority": "NONE",
+      "capability_count": 0,
+      "command_sha256": "7f1270b7312ad389f36d42e4b50af7064500f985b5b35d9b4eae402e9ed9351e",
+      "elapsed_seconds": 0.2029999999795109,
+      "environment_inherited": true,
+      "executable": "<LOCAL_POWERSHELL_PATH>",
+      "exit_code": 3791650821,
+      "immediate_job_verified": true,
+      "inherited_handles": false,
+      "job_close_terminated_process": false,
+      "parent_was_in_job": true,
+      "pid": 41016,
+      "profile_created": true,
+      "profile_name": "<EPHEMERAL_APPCONTAINER_PROFILE>",
+      "schema": "singularity-protected-process/0.1",
+      "timed_out": false
+    }
+  },
+  "runtime_law_earned": false,
+  "same_attempt_rerun": false,
+  "schema": "singularity-works.egress-wider-v0.2.5.4-explicit-job-breakaway-first-result/0.1",
+  "source_clean_after_run": true,
+  "source_head": "43aa7feac7e8a15828116bd700b644560714496d",
+  "source_remote_exact_after_run": true,
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 3353,
+  "stdout_sha256": "af8ed618e9b3652207017cc5fb3e20505e4dc5c61a0d487c67738eda08314952"
+}

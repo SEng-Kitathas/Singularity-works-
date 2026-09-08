@@ -97,3 +97,5 @@ Exact bound text governing the resolved row above: If an artifact can be meaning
 | 2026-09-08 | App explicit breakaway child membership | v0.2.5.2 `af0ce57433f71ad41dd74f06d922b88bad8fc8f69d0f8ca13496eafb47ab4601` stopped before child-membership/protected observation | NEW App child-membership repair result | checkpoint then v0.2.5.3 | P0 | OPEN / HARNESS_INVALID | no Core promotion |
 
 | 2026-09-08 | App v0.2.5.3 positive criterion | `27af68192010146a421ea95900407bdc58c47984496fba98a163bbfc069854bf` proves explicit child create+survival but any-Job=true | protected result under relaxed positive criterion | checkpoint then v0.2.5.4 | P0 | OPEN / HARNESS_INVALID | no Core promotion |
+
+| 2026-09-08 | App distinct process-tree escape classes | explicit CREATE_BREAKAWAY path qualified at `99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8`, other mechanisms untested | distinct non-network discriminator | checkpoint then separately design | P1 | OPEN AFTER CURRENT BOUNDED QUALIFICATION | no Core promotion |

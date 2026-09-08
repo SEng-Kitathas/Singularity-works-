@@ -385,3 +385,7 @@ App admission `518c15f8464ea69487a4db5b7d23605b4d18983a684c1819c3d03792dbdf6085`
 
 ## Cross-arm positive-control guard — 2026-09-08
 `ANY_JOB_MEMBERSHIP != FORGE_IMMEDIATE_JOB_MEMBERSHIP`; protected survival after Forge Job close is the relevant bypass signal. No Main/Core promotion.
+
+
+## Cross-arm explicit-breakaway evidence guard — 2026-09-08
+`APP_BOUNDED_BREAKAWAY_EVIDENCE != MAIN_CORE_PROMOTION`; `EXPLICIT_CREATE_BREAKAWAY_FROM_JOB_DENIAL != ALL_PROCESS_TREE_ESCAPE_RESISTANCE`.

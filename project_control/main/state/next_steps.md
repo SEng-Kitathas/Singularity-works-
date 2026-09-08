@@ -149,3 +149,7 @@ Checkpoint `af0ce57433f71ad41dd74f06d922b88bad8fc8f69d0f8ca13496eafb47ab4601` be
 
 ## Coordinated next step — App v0.2.5.3
 Checkpoint `27af68192010146a421ea95900407bdc58c47984496fba98a163bbfc069854bf`, then NEW App v0.2.5.4 removing only over-strong positive outside-all-Jobs rejection. No prior replay; no Core promotion.
+
+
+## Coordinated next step — App v0.2.5.4
+Seal successor control containing result `7ae2edac96df296f278b0a552c42cc913fd27402f65e705f2cadc7ad761cd6aa` / admission `99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8` / Store 183/192/271 before any distinct process-tree pressure. No Core promotion.

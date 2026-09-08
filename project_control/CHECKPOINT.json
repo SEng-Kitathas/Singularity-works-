@@ -1,8 +1,8 @@
 {
   "app_attempt_store_current": {
-    "attempts": 185,
-    "blobs": 177,
-    "events": 264,
+    "attempts": 192,
+    "blobs": 183,
+    "events": 271,
     "integrity": "ok"
   },
   "app_observation": {
@@ -196,19 +196,19 @@
       "sha256": "6c5080d0c950297490139e7b120964dddb7936af5076a967d1200904456cb795"
     },
     {
-      "bytes": 151658,
+      "bytes": 153413,
       "path": "app/continuity/design_thread_stream.md",
-      "sha256": "d629792e62d2b49cc77bc3575f5a8ade9038c6b8ca56888ab8555f32562c0e86"
+      "sha256": "2ee587dd0d5644e8a7ad81e826050eacfc79945a5195ef27b8c95fe03e07232c"
     },
     {
-      "bytes": 16452,
+      "bytes": 18913,
       "path": "app/continuity/live_shadow.md",
-      "sha256": "95fec14c74694770b52acc07f1bb131b58e31eead7233db590764866b77bd606"
+      "sha256": "f3f92339741b88cbe8609abff6bd6830a1b4d5980ca6890a4d165dc6e880e159"
     },
     {
-      "bytes": 41936,
+      "bytes": 42556,
       "path": "app/continuity/research_epistemic_shadow.md",
-      "sha256": "2f006c50e786e1eaae115c3e07583d400f67184ae4ca5ea6e1de0950ddbcd30b"
+      "sha256": "3d6d9865447d1b5fc1f72c594e48c640c2523a486cd6eaf64b7679ef10c72934"
     },
     {
       "bytes": 1782,
@@ -254,6 +254,16 @@
       "bytes": 1204,
       "path": "app/evidence/egress_wider_v0_2_5_3_post_8071_runsync_plane_currentness_20260908.json",
       "sha256": "df57157d14dff5648027a7fd7d3ab1354f9c4b298f276b44098768ae705cf003"
+    },
+    {
+      "bytes": 3688,
+      "path": "app/evidence/egress_wider_v0_2_5_4_explicit_job_breakaway_first_result_20260908.json",
+      "sha256": "7ae2edac96df296f278b0a552c42cc913fd27402f65e705f2cadc7ad761cd6aa"
+    },
+    {
+      "bytes": 1204,
+      "path": "app/evidence/egress_wider_v0_2_5_4_post_2726_runsync_plane_currentness_20260908.json",
+      "sha256": "de4e66d5a24666dea371088290a133085566f2965b309e1f6d1d0da216d91a04"
     },
     {
       "bytes": 3963,
@@ -421,6 +431,16 @@
       "sha256": "6d74dc9f142fb8a5b347fb5d38f6c4dea16fe6254bfa2e49e04b02c68037a270"
     },
     {
+      "bytes": 4499,
+      "path": "app/notes/maintenance/EGRESS_WIDER_V0_2_5_4_EXPLICIT_JOB_BREAKAWAY_BOUNDED_ADMISSION_20260908.md",
+      "sha256": "99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8"
+    },
+    {
+      "bytes": 1180,
+      "path": "app/notes/maintenance/EGRESS_WIDER_V0_2_5_4_EXPLICIT_JOB_BREAKAWAY_POSITIVE_CRITERION_REPAIR_DESIGN_20260908.md",
+      "sha256": "79dca3283cfae44c440d2d197d9031558514f8283c7c81a7d903f50f61a84791"
+    },
+    {
       "bytes": 4555,
       "path": "app/sop/ICF_CS_V1_1_DETACHED_RELEASE_RECEIPT_2026-09-05.json",
       "sha256": "418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c"
@@ -486,9 +506,14 @@
       "sha256": "e6913d1b923153a6943b3f3fb34e50c7054f9123a3d940e33d8719d89cf2031d"
     },
     {
-      "bytes": 25322,
+      "bytes": 19306,
+      "path": "app/state/attempt_artifacts/EGRESS_WIDER_V0_2_5_4_EXPLICIT_JOB_BREAKAWAY_POSITIVE_CRITERION_REPAIR_20260908.py",
+      "sha256": "1f7db5a043a755c0598f572de8ce2da979abe2de8ec5e40d52db66a18a9eb24e"
+    },
+    {
+      "bytes": 26792,
       "path": "app/state/current.md",
-      "sha256": "7bbfa86aa5eba0888171bb73c52ed09ee354b3d3e677be4ef78428209d23d075"
+      "sha256": "97ab19cb6542dc32a628a301eb45938137f3a9cadd7e2c1a3e8207401a5a0956"
     },
     {
       "bytes": 4215,
@@ -521,9 +546,9 @@
       "sha256": "e3e859989524e5900abc353cd9b7719f3d7173c8d80104b4afe30dde05c68e9d"
     },
     {
-      "bytes": 19144,
+      "bytes": 19629,
       "path": "app/state/doctrine_snapshot.md",
-      "sha256": "e824dc0d7fedb0b2a44213799d404aec6a5fa140a9210de68840a827e4f8ce1d"
+      "sha256": "9906387869bf2432661b35500f430f30732720001ee790edf72a7e9d89c4cdf2"
     },
     {
       "bytes": 2879,
@@ -531,19 +556,19 @@
       "sha256": "b1d785fae561756b05daa3c268e0a0e13a913c0c529d8b0ba105a84e817e1b2b"
     },
     {
-      "bytes": 17140,
+      "bytes": 18408,
       "path": "app/state/next_steps.md",
-      "sha256": "ffb4af38f2d871f12d5cd8dbafc785f54b350b9d01adfb81c9affb13d51e6d36"
+      "sha256": "4315f69bc42331d342f44fe11af0e4b0b26eac3785a0252545845602db1fe9bf"
     },
     {
-      "bytes": 19677,
+      "bytes": 20064,
       "path": "app/state/revisit_ledger.md",
-      "sha256": "d6a5f0a49e57e20fc3bdbbf6dfdf20eb57f766cc9523d5fce010685d29a9ab42"
+      "sha256": "4187284c6a98cffe2eb9896f1940d302940019b1d75e4ca6ec4b3a31ef42a6f8"
     },
     {
-      "bytes": 29598,
+      "bytes": 30552,
       "path": "app/state/trace_matrix.md",
-      "sha256": "7f4831ddbbf5cacb3823a8343622457782ae23508fe12b3d9e90b0fe4ee4c74d"
+      "sha256": "015d9cc3605e41f96a27707a4942c810b479729f112528ee2665af4db054399c"
     },
     {
       "bytes": 1161,
@@ -569,6 +594,11 @@
       "bytes": 2584,
       "path": "CURRENTNESS_AFTER_V0_2_5_3_HARNESS_20260908.md",
       "sha256": "e5ab98c34df45f9d9cbce1faf3a6129b8d20b129092bacf59c142cf47ce55cf0"
+    },
+    {
+      "bytes": 2833,
+      "path": "CURRENTNESS_AFTER_V0_2_5_4_BOUNDED_ADMISSION_20260908.md",
+      "sha256": "9365dee3cb1f1fa2925d4b634654980a07fb71aa30c7614197879d5209aac311"
     },
     {
       "bytes": 3534,
@@ -601,19 +631,19 @@
       "sha256": "6c5080d0c950297490139e7b120964dddb7936af5076a967d1200904456cb795"
     },
     {
-      "bytes": 165225,
+      "bytes": 165696,
       "path": "main/continuity/design_thread_stream.md",
-      "sha256": "032bab8ba2647cd12e7627e86ffac7dfee9e6e611d4e49b0bdbd74814711a794"
+      "sha256": "c1bb36e2b60567e01222aa060b2e2b1ce6bf35de9adca522ebf5b9e8b1ddb7ad"
     },
     {
-      "bytes": 14083,
+      "bytes": 14783,
       "path": "main/continuity/live_shadow.md",
-      "sha256": "23911d8be6c3d683bb8dc1f6a54802f344cfce484f3a46a784c4405d4f0e84d4"
+      "sha256": "a1b0cd44bf758695af38666e4a96521263aa1b1c61eb992c28191d134a345dbd"
     },
     {
-      "bytes": 34389,
+      "bytes": 34661,
       "path": "main/continuity/research_epistemic_shadow.md",
-      "sha256": "060aec4dea5ed6dd880152be7ca7ba0358bb3b1907474bdd42c4aed307ca0dad"
+      "sha256": "77927e727ed10fe3d0c53bdc35041bd3a3a6de74f6cee8dc74a333a7eb385550"
     },
     {
       "bytes": 3071,
@@ -741,6 +771,11 @@
       "sha256": "91b38aad1ca71181648c7080397ca07530f27bc4b3e0a47718ef6f5e48c20098"
     },
     {
+      "bytes": 1192,
+      "path": "main/notes/maintenance/APP_V0_2_5_4_EXPLICIT_BREAKAWAY_BOUNDED_ADMISSION_CROSS_ARM_AWARENESS_20260908.md",
+      "sha256": "b8d0e24d11c8ba96dbb35ea544ac32fcb51c2132bed457c90bb491dc10655ff3"
+    },
+    {
       "bytes": 4555,
       "path": "main/sop/ICF_CS_V1_1_DETACHED_RELEASE_RECEIPT_2026-09-05.json",
       "sha256": "418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c"
@@ -761,9 +796,9 @@
       "sha256": "f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63"
     },
     {
-      "bytes": 20690,
+      "bytes": 21044,
       "path": "main/state/current.md",
-      "sha256": "0affe97411ca65bf7d7eb71bcd0f0621eecec73746f5fcd2e59d1d3ea258f6fe"
+      "sha256": "da0067bafca257a3dfa2b515aebd49e12969d7bd73ae0699506e7fbfdd41d598"
     },
     {
       "bytes": 4215,
@@ -796,24 +831,24 @@
       "sha256": "8b1bf53adf3ac3fee09a4435f1f6df4518359f767fc76fe8d99df4ed6f44e4ae"
     },
     {
-      "bytes": 33114,
+      "bytes": 33318,
       "path": "main/state/doctrine_snapshot.md",
-      "sha256": "fe3f7effdd98013b66fce34787dab624efa374c7c02bfe9155454c5d6cde21dc"
+      "sha256": "ecbc53d47150f7320cb14006babed926118fd853a1675c268018d4cbb1ff1da3"
     },
     {
-      "bytes": 12658,
+      "bytes": 12971,
       "path": "main/state/next_steps.md",
-      "sha256": "79ad98f653790a5cc4c811e0b919dcf6ad48e126674670b568707c2475a8b6f4"
+      "sha256": "32216d96e7d38e87ac03c639d82acedb2aee8644da19522c5cf554eedc95761d"
     },
     {
-      "bytes": 25741,
+      "bytes": 26081,
       "path": "main/state/revisit_ledger.md",
-      "sha256": "13497409bdbb437d96ab168c92143727c85a5764618b72a062f02c31a295bed6"
+      "sha256": "806a27f900f1489aac357c05317d3592da29fcbe4f67ffe2e51111d2ac17b36a"
     },
     {
-      "bytes": 45257,
+      "bytes": 45846,
       "path": "main/state/trace_matrix.md",
-      "sha256": "3f5c98a855595f098c05f6ac274ad12c5b7d40d17e5589595b1b03f681dfb055"
+      "sha256": "c1221c21b2f0aa7456d7d7627aa7f90cac160168c0042efc9e1844c59145be0d"
     },
     {
       "bytes": 1618,
@@ -821,9 +856,9 @@
       "sha256": "2fbf22e5e9eb92c8a72972f3d166fb97c24055c0668a37ef594fcbb4236eae02"
     },
     {
-      "bytes": 4195,
+      "bytes": 4595,
       "path": "README.md",
-      "sha256": "0a7730797bb32c3bc54e9c14870461d833834d100dd3e3478db886f7c0382a97"
+      "sha256": "b342498e3c46f7a33df7743aa595d3723a9ed8a9f8c6883f1056fe60d36fa65e"
     },
     {
       "bytes": 3271,
@@ -1021,7 +1056,7 @@
       "sha256": "f5dba1193203a03bbce3779179ce5b6947231dff1ae65f505e5024e3ec5ee207"
     }
   ],
-  "generated_utc": "2026-09-08T03:28:34Z",
+  "generated_utc": "2026-09-08T03:34:19Z",
   "git_copy_policy": {
     "binary_attribute_repair_20260904": "REPAIRED_PREEXISTING_ALL_TEXT_EOL_RULE_BEFORE_CANDIDATE_PUBLICATION_CHECKPOINT",
     "binary_carriers": "*.zip -text; exact bytes required",
@@ -2653,5 +2688,23 @@
     "protected": "NOT_REACHED",
     "same_attempt_replay_allowed": false,
     "status": "HARNESS_INVALID_POSITIVE_CHILD_IN_SOME_JOB__NOT_ADMITTED"
+  },
+  "wider_egress_v0_2_5_4_bounded_admission": {
+    "admission_sha256": "99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8",
+    "artifact_sha256": "1f7db5a043a755c0598f572de8ce2da979abe2de8ec5e40d52db66a18a9eb24e",
+    "claim_ceiling": "EXACT_EXPLICIT_CREATE_BREAKAWAY_FROM_JOB_PATH_ONLY",
+    "first_result_sha256": "7ae2edac96df296f278b0a552c42cc913fd27402f65e705f2cadc7ad761cd6aa",
+    "positive_child_alive": true,
+    "positive_cleanup": "CONFIRMED",
+    "positive_explicit_create": "SUCCEEDED",
+    "post_control_plane_record_sha256": "de4e66d5a24666dea371088290a133085566f2965b309e1f6d1d0da216d91a04",
+    "product_promotion": false,
+    "protected_appcontainer_verified": true,
+    "protected_capability_count": 0,
+    "protected_explicit_create": "FAILED",
+    "protected_immediate_job_verified": true,
+    "protected_inherited_handles": false,
+    "protected_win32_error": 5,
+    "status": "BOUNDED_EXPLICIT_CREATE_BREAKAWAY_FROM_JOB_DENIAL_QUALIFIED"
   }
 }

@@ -164,3 +164,25 @@ Advance `pcmmad/project-control` from `d76299e728b5026df87c39c17ad9d723f759ce5f`
 - Store: **177 blobs / 185 attempts / 264 events**, integrity ok.
 - Refined seam: positive control does not need child outside all Jobs; it needs explicit-create success + survival without Forge immediate Job. Protected survival after Forge Job close is the decisive bypass signal.
 - Next: checkpoint this boundary, then NEW v0.2.5.4 removing only the over-strong positive `in_any_job==false` requirement.
+
+
+## V0.2.5.3 SUCCESSOR CONTROL CLOSURE — 2026-09-08
+- Durable control `2726d4edbfa2d1af3977b4dda81c26da9385320d` / CHECKPOINT `6378560c5ed9993a302fc88386cb47d789cdc01f8895fa99e460dbc0b90bd264` is non-force published and independently fresh-clone verified PASS 172.
+- It preserves v0.2.5.3 first result `27af6819...` and plane record `df57157d...`.
+- Next permitted pressure: NEW v0.2.5.4 positive-criterion-only repair; helper source/DLL and protected breakaway logic remain unchanged.
+
+
+## V0.2.5.4 EXPLICIT CREATE_BREAKAWAY_FROM_JOB — CURRENT — 2026-09-08
+- Mode: **CHECKPOINT**; role: **R1 Conservative Auditor** after successful R5 first execution/readback/admission.
+- Execution binding: control `2726d4edbfa2d1af3977b4dda81c26da9385320d` / CHECKPOINT `6378560c5ed9993a302fc88386cb47d789cdc01f8895fa99e460dbc0b90bd264`; post-control synchronous plane `de4e66d5a24666dea371088290a133085566f2965b309e1f6d1d0da216d91a04` remained `0x1800` compatible.
+- Artifact `1f7db5a043a755c0598f572de8ce2da979abe2de8ec5e40d52db66a18a9eb24e` executed exactly once synchronously; same Attempt SHALL NOT be rerun.
+- Exact stdout `af8ed618e9b3652207017cc5fb3e20505e4dc5c61a0d487c67738eda08314952`; structured first result `7ae2edac96df296f278b0a552c42cc913fd27402f65e705f2cadc7ad761cd6aa`; bounded admission `99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8`.
+- Positive path: explicit `CREATE_BREAKAWAY_FROM_JOB` child creation succeeded, child survived root exit, membership telemetry any-Job=true, cleanup confirmed.
+- Protected path: AppContainer verified, immediate Job verified, zero capabilities, no inherited handles, no timeout; helper passed normal-child baseline/cleanup, then explicit `CREATE_BREAKAWAY_FROM_JOB` creation failed in the verified Job with `ERROR_ACCESS_DENIED (5)`.
+- Qualified only: **bounded denial of this explicit CREATE_BREAKAWAY_FROM_JOB path**. Service/WMI/COM/RPC/task-scheduler/WSL, silent-breakaway configurations, network egress, production integration, and product runtime law remain unearned.
+- Attempt Store: **183 blobs / 192 attempts / 271 events**, integrity `ok`.
+- Immediate next step: checkpoint this load-bearing admission across Main/App/control before any new process-tree escape class.
+
+`EXPLICIT_CREATE_BREAKAWAY_FROM_JOB_DENIAL != ALL_PROCESS_TREE_ESCAPE_RESISTANCE`
+`NON_NETWORK_BREAKAWAY_RESULT != NETWORK_EGRESS_RESULT`
+`BOUNDED_BREAKAWAY_PASS != NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT`

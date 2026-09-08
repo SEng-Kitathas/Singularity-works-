@@ -193,3 +193,17 @@ Current store: 141 blobs / 141 attempts / 220 events; durable control `f59a32946
 4. Positive requires explicit-create success + child alive after root exit + cleanup.
 5. Protected success + child alive after Forge immediate Job close => bypass; verified in-Job `ERROR_ACCESS_DENIED` => bounded denial.
 6. No network-bearing pressure or runtime-law promotion.
+
+
+## V0.2.5.3 SUCCESSOR CONTROL CLOSURE — 2026-09-08
+- Durable control `2726d4edbfa2d1af3977b4dda81c26da9385320d` / CHECKPOINT `6378560c5ed9993a302fc88386cb47d789cdc01f8895fa99e460dbc0b90bd264` is non-force published and independently fresh-clone verified PASS 172.
+- It preserves v0.2.5.3 first result `27af6819...` and plane record `df57157d...`.
+- Next permitted pressure: NEW v0.2.5.4 positive-criterion-only repair; helper source/DLL and protected breakaway logic remain unchanged.
+
+
+## Immediate P0 — after v0.2.5.4 bounded admission
+1. Seal successor `pcmmad/project-control` with result `7ae2edac96df296f278b0a552c42cc913fd27402f65e705f2cadc7ad761cd6aa` / admission `99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8` / Store 183/192/271.
+2. Do not rerun v0.2.5.4 or any prior explicit-breakaway Attempt.
+3. Only after fresh-clone control closure select a materially distinct non-network process-tree class; do not repeat `CREATE_BREAKAWAY_FROM_JOB`.
+4. Candidate later classes may include controlled silent-breakaway configuration or broker/service/task-style process creation, but require separate design/preservation before execution.
+5. Keep network-bearing escape pressure and `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` blocked.

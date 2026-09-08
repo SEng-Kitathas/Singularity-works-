@@ -228,3 +228,12 @@ A replacement execution plane must prove its own outer-Job breakaway conditions 
 
 ## Explicit-breakaway positive-control refinement — 2026-09-08
 `ANY_JOB_MEMBERSHIP != FORGE_IMMEDIATE_JOB_MEMBERSHIP`; positive outside-all-Jobs is not required on a Job-governed execution plane. Protected child survival after immediate Forge Job close is the decisive escape signal. No general doctrine/product promotion.
+
+
+## v0.2.5.4 bounded explicit-breakaway evidence — 2026-09-08
+New evidence promotion is scoped only to explicit `CREATE_BREAKAWAY_FROM_JOB` denial under the exact tested verified immediate Job.
+
+`EXPLICIT_CREATE_BREAKAWAY_FROM_JOB_DENIAL != ALL_PROCESS_TREE_ESCAPE_RESISTANCE`
+`EXPLICIT_BREAKAWAY_DENIAL != SERVICE_WMI_COM_RPC_WSL_ESCAPE_RESISTANCE`
+`NON_NETWORK_BREAKAWAY_RESULT != NETWORK_EGRESS_RESULT`
+`BOUNDED_BREAKAWAY_PASS != NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT`

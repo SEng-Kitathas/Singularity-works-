@@ -434,3 +434,7 @@ Result `af0ce57433f71ad41dd74f06d922b88bad8fc8f69d0f8ca13496eafb47ab4601` is ver
 
 ## App v0.2.5.3 signal — Main RES — 2026-09-08
 Verified App HARNESS_INVALID `27af68192010146a421ea95900407bdc58c47984496fba98a163bbfc069854bf`; positive explicit child succeeds/survives, any-Job=true, no protected observation. Main RES authority NONE_BY_CONTENT; Core unchanged.
+
+
+## App v0.2.5.4 bounded breakaway signal — Main RES — 2026-09-08
+Admission `99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8` is verified bounded App process-lifecycle evidence only. Main RES authority NONE_BY_CONTENT; Core semantic state unchanged.
