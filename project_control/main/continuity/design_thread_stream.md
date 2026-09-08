@@ -16,7 +16,7 @@ Tags: BUILD-COMMIT, GIT-LINEAGE, REMOTE-SYNC, QUALIFICATION-BRANCH, RELEASE-BLOC
 
 Assistant rehydrated live project state and first repaired the stale logical baseline: map trial v2 had already completed after the previous checkpoint. v2 result is PASS/CONDITIONALLY_READY under a static Python-relation ceiling, with 15/15 hostile checks, 109 nodes, 267 edges, 171 meaningful relations, 171 paths, 29/29 output-manifest integrity, all nodes/edges source-addressable/evidenced, no runtime outcome inflation, no consequence-authority emergence, and clean old-bone worktree readback.
 
-Assistant inspected Git planes without mutating the dirty working tree. `<LOCAL_HISTORICAL_WORKTREE>` local main = `d56027e879a21d078a8c36f712cf7380be4c63f5`, heavily dirty; clean worktree = `b83615c47dd8b58728ebc03ca48106058a0760f9`. GitHub `main` resolved by `git ls-remote` to the same `b83615c...`. Local committed main is 28 commits ahead, merge-base exactly remote main, no remote divergence observed. `gh auth status` is unauthenticated, but `git push --dry-run origin main:main` succeeded through Git credential manager, proving Git push capability.
+Assistant inspected Git planes without mutating the dirty working tree. `<LOCAL_HISTORICAL_REPO>` local main = `d56027e879a21d078a8c36f712cf7380be4c63f5`, heavily dirty; clean worktree = `b83615c47dd8b58728ebc03ca48106058a0760f9`. GitHub `main` resolved by `git ls-remote` to the same `b83615c...`. Local committed main is 28 commits ahead, merge-base exactly remote main, no remote divergence observed. `gh auth status` is unauthenticated, but `git push --dry-run origin main:main` succeeded through Git credential manager, proving Git push capability.
 
 Under R3 promotion discipline, assistant did not push local main directly. It reconstructed exact committed `d56027e` in an isolated clean clone. `compileall` passed and package imports mostly passed, but a release blocker was reproduced: committed `pyproject.toml` and README advertise `singularity_works.local_model_adapter`, while that module is absent at `d56027e`. Existing `forge`/`forge-hud` console-script declarations also target `:__main__` even though those modules lack a callable `__main__` attribute; that scar already exists at remote `b83615c`. A local untracked replacement adapter exists, but its dependent profile contains numerous absolute machine/runtime/model paths and is not publication-qualified.
 
@@ -43,7 +43,7 @@ A clean replay of committed `5cb291432dac60f7eaa18d9cdeb519213ec556ac` passed in
 
 Assistant then replayed exact `1b8f6bd...` from a fresh detached clone. Verified results: compileall PASS; project verifier rc0 and all expected semantic state transitions PASS; self-verification 0 fails / 29 warnings; full promoted-delta secret hits 0; machine-private-path hits 0; retired `forge-health` absent from executable/advised surfaces; wheel build PASS. Wheel `singularity_works-1.0.0-py3-none-any.whl` was 320862 bytes with SHA-256 `0ffe61597b78861e0e5894ade9884b57fc3ae0d955b69ad82b3cc1e9bf06daf9`, containing callable `forge`/`forge-hud` entrypoints and both config JSON files. Disposable install PASS; installed `forge --help` PASS; installed `forge safe_sample.py --target safe-sample --out reports` from outside the source tree PASS with GREEN, 0 findings, and two report files. Tracked source remained unchanged after replay.
 
-Assistant preserved non-green residuals rather than rewriting them away: full historical `b83615c..1b8f6bd` contains inherited whitespace complaints; self-audit is PASS but not CLEAN because 29 warnings remain; successful installed smoke exposed nested `.forge/.forge/cilnx_bridge` path technical debt. Dirty `<LOCAL_HISTORICAL_WORKTREE>` was not reset, cleaned, or bulk-staged. Clean old-bone worktree remains pinned at `b83615c...` for comparison.
+Assistant preserved non-green residuals rather than rewriting them away: full historical `b83615c..1b8f6bd` contains inherited whitespace complaints; self-audit is PASS but not CLEAN because 29 warnings remain; successful installed smoke exposed nested `.forge/.forge/cilnx_bridge` path technical debt. Dirty `<LOCAL_HISTORICAL_REPO>` was not reset, cleaned, or bulk-staged. Clean old-bone worktree remains pinned at `b83615c...` for comparison.
 
 Remote promotion was then performed with exact gates. GitHub `main` was re-read at `b83615c47dd8b58728ebc03ca48106058a0760f9`; local merge-base proved fast-forward ancestry. Assistant dry-ran and non-force pushed `pcmmad/release-repair-d56027e` -> `1b8f6bd...`, read it back exactly, re-read main immediately before promotion, dry-ran the main update, then non-force pushed main `b83615c..1b8f6bd`. Final `git ls-remote` readback: `main=1b8f6bdc97387ce33d15de2bd3435bbbd0ade2a9`; `pcmmad/release-repair-d56027e` same exact SHA; earlier `pcmmad/qualification-d56027e=d56027e879a21d078a8c36f712cf7380be4c63f5` preserved. No force push occurred.
 
@@ -1467,3 +1467,74 @@ USER requested a complete lossless rollover checkpoint because the current chat 
 ASSISTANT re-grounded on server state rather than relying on chat summary. Live remote refs were Main `57df8f6345e2744c04bf6882c130a06ea8528fa2`, App `43aa7feac7e8a15828116bd700b644560714496d`, control `bfcd19b3e91972de44fa702fe027d09dcab03249`. Main `57df8f6345e2744c04bf6882c130a06ea8528fa2` is an authority-only Governance Contact resolver Phase-1 child; target-local activation token and ACTIVE receipt were absent at both inspected Main/App targets, resolving NOT ACTIVE at seal. App Attempt Store readback was 138/138/217. Wider-egress archaeology found the earlier sibling descendant-UDP cwd repair had already PASSed/admitted (`440964...` -> `bbf004...`), while the later stronger-lineage attempt `attempt-egress-wider-v0-2-1-3-descendant-udp-loopback-cwd-repair-first` / `99ef2cbbc08eef598fb9c8b02ae38d5b9d88a3c4fcde576b96cf047b1942185e` remained unexecuted and was selected by current Live Shadow as the exact resume gate.
 
 Canonical dated rollover checkpoint `50be248ff65dbb94430dd686a7fe519f9ed03000a4d3ae95b8e958b4845ee918`, stable pointer `bb74d98cc96f349d922ada3072316362a3223851f3a1b0b61e2c38127108b33f`, and paste-ready prompt `6c5080d0c950297490139e7b120964dddb7936af5076a967d1200904456cb795` were written identically to Main/App. Fresh thread SHALL begin RECOVERY/AUDIT and verify live state before any execution.
+
+
+---
+
+## CROSS-ARM UPDATE — Rollover Control Closure + App v0.2.1.3 First Execution
+Date: 2026-09-07
+Tags: CONTROL-CLOSURE, APP-AWARENESS, SUPERVISION-LOST, NO-PROMOTION
+
+Control successor `f59a32946cea1af64e427a4d9db64a7075f691dd` / CHECKPOINT `64f1804e9d6ec64b1638cacbf25bd8963ad967958a1f2847e4d3a352c887a589` was published directly above `bfcd19b3...` and independently fresh-clone verified. App then executed its preserved `99ef2cbbc08eef598fb9c8b02ae38d5b9d88a3c4fcde576b96cf047b1942185e` artifact exactly once as `job-485c0f471477`. Complete stdout contains bounded PASS-shaped descendant-UDP observations, but the execution service lost final supervision and has no process return code. App preserved stdout and result `86833629ebd032f56dbc900145d40771dc38862fc1416c0ddfe88fd4e35af022` and explicitly withheld admission. Main records cross-arm currentness only; Core qualification remains `a7b4511...`.
+
+
+---
+
+## Cross-arm entry — recovery/currentness advanced; App proxy/environment v0.2.3 Attempt preserved — 2026-09-07
+Tags: RECOVERY, GOVERNANCE-CONTACT, APP, PROXY-ENV, ATTEMPT-PRESERVED
+
+Live readback superseded stale rollover assumptions. Current refs: Main `e66c071fc25f8d08bfc7ebf0551948392d652f35`; App `43aa7feac7e8a15828116bd700b644560714496d` clean/remote-exact; control `f59a32946cea1af64e427a4d9db64a7075f691dd` / CHECKPOINT `64f1804e9d6ec64b1638cacbf25bd8963ad967958a1f2847e4d3a352c887a589`.
+
+Governance Contact exact activation token resolves locally binding additive process doctrine at this Git target; global ACTIVE remains forbidden because the detached completion receipt is absent.
+
+App current bounded security evidence includes descendant DNS-helper loopback admission `63e5a830b18bb8d6c5f291468e7a6b9ed491ed580f37a0a7aceb6e584dc79225`. No Main/Core semantic source authority moves.
+
+App then created proxy/environment loopback artifact SHA `7878188e532b1828c41fb9075999425ef7ed03a9d1f11d6d3b76fe21d243577c`, 380 lines, complete semantic read before capture. Attempt `attempt-egress-wider-v0-2-3-descendant-proxy-env-loopback-first` is preserved / unexecuted; Store 146 blobs / 147 attempts / 226 events, integrity ok.
+
+The new discriminator uses only parent-owned loopback proxy + direct-target listeners and tests inherited environment-mediated proxy selection without provider/Internet transport.
+
+`LOCAL_TOKEN_VALID != GLOBAL_ACTIVE`; `PROXY_ENV_LOOPBACK_NONDELIVERY != GENERAL_PROXY_DENIAL`; runtime global egress law remains unearned.
+
+
+---
+
+## Cross-arm entry — App descendant proxy/environment loopback v0.2.3 bounded-admitted — 2026-09-08
+Tags: APP, EGRESS-WIDER, PROXY-ENV, BOUNDED-ADMISSION, NEXT-JOB-BREAKAWAY
+
+App executed exact preserved proxy/environment Attempt once unchanged as job `job-72933961f711`. Job completed normally rc0; exact stdout/result SHA `c60ee5e079b0eed9c99e7bd86142560a1d46ace1bd2a372283d3980be710e56c`, stderr empty.
+
+Unprotected descendant used inherited environment-selected parent loopback proxy: proxy listener 1 connection, direct target 0. Protected AppContainer+immediate-Job root inherited the exact environment marker/value, launched the same curl descendant, propagated exit 28, and both proxy/direct listeners observed 0 connections.
+
+Bounded admission SHA `59623224fd455cb7590d59682330740920a51a7fc2f7ab2217071d72a65227f3`, fully read and preserved. Store after admission 148/151/230, integrity ok; App source remains clean `43aa7fe...`.
+
+Qualified only: exact descendant proxy/environment loopback non-delivery. General proxy/Internet, process-tree breakaway, production integration, provider transport and runtime global egress law remain unearned.
+
+Next App-only pressure: preserve a non-network process-tree / Job-breakaway lifecycle discriminator before any network-bearing breakaway attempt. No Main/Core semantic source authority movement.
+
+
+---
+
+## Cross-arm entry — App normal descendant Job-close lifecycle v0.2.4 Attempt preserved — 2026-09-08
+Tags: APP, PROCESS-TREE, JOB, NON-NETWORK, ATTEMPT-PRESERVED
+
+App reread current protected-process Job semantics: immediate Job sets only `JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE`; the Job handle closes before `run_zero_network_process` returns. No breakaway flags are set.
+
+New non-network lifecycle artifact SHA `b3e8470932b446edc2fdcdf6f6151b8d3ffea3b2962b56114bb3423c627f52cf`, 318 lines, complete semantic read before capture. Attempt `attempt-egress-wider-v0-2-4-normal-descendant-job-close-lifecycle-first` is preserved / unexecuted with exact readback. Store 149/152/231, integrity ok.
+
+Discriminator proves only normal descendant lifecycle: unprotected child must survive root exit; protected same child PID is probed only after immediate Job close. Surviving protected child is explicit FAIL. No network activity or explicit `CREATE_BREAKAWAY_FROM_JOB` request.
+
+`NORMAL_DESCENDANT_JOB_CLOSE_TERMINATION != CREATE_BREAKAWAY_FROM_JOB_DENIAL`; global egress law remains unearned. No Main/Core semantic source authority movement.
+
+
+---
+
+## Cross-arm entry — App normal descendant Job-close v0.2.4 first result HARNESS_INVALID — 2026-09-08
+Tags: APP, PROCESS-TREE, JOB, FIRST-RESULT, HARNESS-INVALID
+
+App executed exact preserved non-network Job lifecycle Attempt once unchanged as `job-0705e689d74c`. Executor FAILED rc1 before protected phase.
+
+Exact stdout empty SHA `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`; exact stderr `934b03ff7bd0d7703ad4f260ec880df49deaea7be0fd264f51cd59e048879b67`; structured first result `c6366904038e45cb0ec9712b9aeb34f016220786e731bdfb7a654097e2601710`. Evidence preserved before repair; Store 151/155/234, integrity ok.
+
+Cause is unprotected positive-control pipe inheritance: sleeping descendant retained capture-pipe handles, so Python communicate waited EOF and timed out. Protected lifecycle phase was never reached. No Job-containment or breakaway claim is earned.
+
+Next App-only repair changes positive-control stdio to `DEVNULL` only; child/root command, protected phase, cwd, liveness probe and no-network claim ceiling remain unchanged. Original Attempt/result remain immutable. No Main/Core semantic source authority movement.

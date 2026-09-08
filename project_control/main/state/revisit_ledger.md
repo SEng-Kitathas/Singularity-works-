@@ -81,3 +81,5 @@ Exact bound text governing the resolved row above: If an artifact can be meaning
 
 ## THREAD ROLLOVER — 2026-09-07 — CURRENT
 | 2026-09-07 | Thread rollover live-currentness verification | chat thread capacity forced rollover while App security campaign and Governance resolver propagation were active | live refs, token state, Attempt Store or selected attempt status change before new thread starts | stable pointer `bb74d98cc96f349d922ada3072316362a3223851f3a1b0b61e2c38127108b33f` + fresh Git/Governance/App-store readback | P0 | OPEN ON RE-ENTRY | Begin fresh thread in RECOVERY/AUDIT; execute `attempt-egress-wider-v0-2-1-3-descendant-udp-loopback-cwd-repair-first` only if still unexecuted |
+
+| 2026-09-07 | App v0.2.1.3 execution finality | complete App observation bytes exist but executor lost process finality | independent terminal-status evidence or a new reconciliation discriminator | audit `job-485c0f471477` without replay; preserve App result `86833629ebd032f56dbc900145d40771dc38862fc1416c0ddfe88fd4e35af022` | P0 | OPEN / APP NOT_ADMITTED | no Main/Core promotion |

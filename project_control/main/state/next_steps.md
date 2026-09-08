@@ -100,3 +100,10 @@ Completed at `pcmmad/project-control@bfcd19b3e91972de44fa702fe027d09dcab03249`, 
 6. Wire and qualify real product launch sites through the protected primitive/broker boundary.
 7. Keep provider transport blocked until production enforcement and broader bypass pressure earn a stronger claim.
 8. Do not promote bounded AppContainer evidence to machine-wide firewall authority.
+
+
+## Immediate coordinated seam — App executor finality
+1. Treat `99ef2cbbc08eef598fb9c8b02ae38d5b9d88a3c4fcde576b96cf047b1942185e` as already executed; do not replay same Attempt.
+2. Preserve App classification `86833629ebd032f56dbc900145d40771dc38862fc1416c0ddfe88fd4e35af022` as NOT_ADMITTED while terminal executor status is unknown.
+3. If App cannot recover final status from persisted supervision/journal evidence, create a NEW separately identified reconciliation discriminator.
+4. Main/Core remains unchanged; do not widen semantic authority or product-security claims from cross-arm awareness.

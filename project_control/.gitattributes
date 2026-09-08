@@ -3,3 +3,6 @@
 # Preserve sealed rollover checkpoint artifact bytes exactly; these are hash-addressed continuity records.
 main/checkpoints/THREAD_ROLLOVER_*.md -text
 app/checkpoints/THREAD_ROLLOVER_*.md -text
+# Preserve hash-addressed Governance Contact activation locator bytes exactly.
+main/authority/rahl-sop/GOVERNANCE_CONTACT_V1_0_ACTIVATION.md -text
+app/authority/rahl-sop/GOVERNANCE_CONTACT_V1_0_ACTIVATION.md -text

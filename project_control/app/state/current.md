@@ -181,3 +181,29 @@ If live state is unchanged, execute the selected preserved attempt exactly once 
 
 `THREAD_ROLLOVER_CURRENT != LIVE_CURRENTNESS_PROOF`.
 `HISTORICAL_HANDOFF != CURRENT_INGRESS`.
+
+
+## POST-ROLLOVER CURRENT STATE — 2026-09-07
+Current mode: **AUDIT** after one-shot R5 execution; do not replay the same attempt.
+
+Durable control is `f59a32946cea1af64e427a4d9db64a7075f691dd` / CHECKPOINT `64f1804e9d6ec64b1638cacbf25bd8963ad967958a1f2847e4d3a352c887a589`, independently fresh-clone verified PASS 130. App source remains `43aa7feac7e8a15828116bd700b644560714496d`, clean/remote-exact; Gen14 remains MATCH/NORMAL/READY.
+
+The previously unexecuted rollover gate `99ef2cbbc08eef598fb9c8b02ae38d5b9d88a3c4fcde576b96cf047b1942185e` executed exactly once as `job-485c0f471477`. Execution service finality is `FAILED / SUPERVISION_LOST / exit_code=null`. Complete stdout contains a bounded PASS self-report and decisive listener observations, but executor exit finality is missing. Exact stdout `a7976870977a5eff67c92d9273cd63e28ab07c5e5ee6dd8a0bba56a81727af18`, stderr `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`, and uncertainty-aware result `86833629ebd032f56dbc900145d40771dc38862fc1416c0ddfe88fd4e35af022` are preserved; Attempt Store is now 141/141/220, integrity `ok`.
+
+Current decision: **NOT ADMITTED**. No new runtime law or broader egress claim is earned. The earlier `440964f6... -> bbf0043e...` sibling remains independently bounded-admitted history.
+
+Governance Contact currentness remains target-local: public-Git Main token valid/no ACTIVE receipt; this App target token/ACTIVE receipt absent; no global ACTIVE.
+
+Resume point: audit `job-485c0f471477` supervision/journal finality without rerun. If terminal exit cannot be recovered, retain permanent uncertainty for this execution and create a NEW reconciliation Attempt.
+
+
+## Wider egress current result — v0.2.2 DNS helper — 2026-09-07
+Current durable control remains `f59a32946cea1af64e427a4d9db64a7075f691dd` / CHECKPOINT `64f1804e9d6ec64b1638cacbf25bd8963ad967958a1f2847e4d3a352c887a589`; App remains `43aa7fe...` / Gen14, clean/remote-exact.
+
+The current newly qualified evidence is v0.2.2 artifact `728daddb02e092f5726d023ef2ca895b93950bba0be0c998b0797aabe6969b2f` -> first result `9f282456b99ce30a9b5f41be83bba139515353c2e2b88c0afd19dfd79f88b082` -> bounded admission `63e5a830b18bb8d6c5f291468e7a6b9ed491ed580f37a0a7aceb6e584dc79225`. Job `job-73b747f1e36d` completed rc0. Positive descendant `nslookup` produced 3 parent-observed loopback DNS queries; protected descendant produced 0 with valid AppContainer+Job receipt.
+
+Status: **BOUNDED DESCENDANT DNS-HELPER LOOPBACK NON-DELIVERY QUALIFIED / BROADER DNS AND RUNTIME LAW UNEARNED**. Attempt Store 145/146/225 integrity ok.
+
+The v0.2.1.3 supervision-lost stronger-UDP lineage remains `NOT_ADMITTED`; it is not replaced or retroactively promoted by v0.2.2.
+
+Resume point: make this load-bearing state durable before the next consequence-bearing bypass class, then move to a materially different process-tree/Job-breakaway or proxy/environment discriminator.

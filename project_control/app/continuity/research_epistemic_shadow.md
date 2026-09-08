@@ -35,7 +35,7 @@ Bounded security qualification:
 - qualification receipt `3d27639447f1d47ac71e892a766444a3e7c8627ff3120b791ecf4470ebeedda6`;
 - protected-process implementation unchanged from the original Attempt-0 primitive.
 
-Attempt Store current readback: 138 blobs / 138 attempts / 217 events, integrity ok, WAL/FULL.
+Attempt Store current readback: 151 blobs / 155 attempts / 234 events, integrity ok, WAL/FULL.
 
 Gen13 and earlier generations remain historical/source-stale against current App. Original Attempt-0 and v0.1.1 failures remain immutable evidence.
 
@@ -160,14 +160,13 @@ Machine success is supporting evidence only.
 Update this RES when a new wider-bypass attempt is preserved/executed, a bypass is found, the current protected-process scope is widened or demoted, production launch-site integration changes, a broker allow path is embodied, real provider transport begins, OAuth/secret-storage architecture changes, checkpoint semantic restoration/currentness is qualified, GitHome/Vault gains consequence-bearing implementation, or a security assumption is promoted/demoted/contradicted.
 
 ## 12. Current research-to-do
-1. Execute exact preserved descendant-UDP cwd repair `attempt-egress-wider-v0-2-1-3-descendant-udp-loopback-cwd-repair-first` without editing it first; artifact SHA `99ef2cbbc08eef598fb9c8b02ae38d5b9d88a3c4fcde576b96cf047b1942185e`.
-2. Preserve its exact first result before any admission or further repair.
-3. Require the unprotected root->descendant positive control to deliver the exact UDP payload and treat listener observation as decisive in the protected phase.
-4. If valid, admit only exact descendant UDP-loopback scope; do not generalize to Internet UDP, DNS, QUIC, proxy/environment or production integration.
-5. Continue later DNS, QUIC/UDP variants, proxy/environment, helper/plugin/browser/import, COM/RPC/service/WSL, Job breakaway and production launch-site integration as separate preserved Attempts.
-6. Keep `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` UNKNOWN until broader bypass and launch integration evidence qualify it.
-7. Keep Core checkpoint restoration identity as separate P1 with null fields until explicitly qualified.
-
+1. Create a NEW v0.2.4.1 repair Attempt changing only the unprotected positive-control stdio from capture pipes to `DEVNULL`.
+2. Preserve/read the repair artifact before execution; do not edit or rerun v0.2.4 first Attempt.
+3. Execute the repair once and preserve exact result before lifecycle admission.
+4. Keep child command, protected phase, liveness probe, claim ceiling and no-network scope unchanged.
+5. A valid PASS may qualify only normal-descendant Job-close termination; explicit breakaway remains separate.
+6. Keep provider/network/production claims unchanged and global egress law UNEARNED.
+7. Keep Core checkpoint restoration identity separate P1 with null IDs.
 ## R4.4 research-method addendum — 2026-09-04
 Truth status: VERIFIED process-package adoption; RES authority remains NONE_BY_CONTENT.
 
@@ -351,3 +350,100 @@ Truth status: VERIFIED preservation/currentness evidence; execution status **PRE
 `CWD_REPAIR != DESCENDANT_UDP_PASS`.
 `DESCENDANT_UDP_LOOPBACK_DENIAL != GENERAL_DESCENDANT_EGRESS_DENIAL`.
 `WIDER_ATTEMPT_PASS != NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT`.
+
+
+## Descendant UDP v0.2.1.3 first execution — supervision-lost evidence — 2026-09-07
+Truth status: **VERIFIED preserved observation bytes / EXECUTION FINALITY UNRESOLVED / NOT ADMITTED**. RES authority NONE_BY_CONTENT.
+
+- exact artifact `99ef2cbbc08eef598fb9c8b02ae38d5b9d88a3c4fcde576b96cf047b1942185e` executed once unchanged as `job-485c0f471477` after durable control `f59a32946cea1af64e427a4d9db64a7075f691dd` fresh-clone closure; App source remained clean `43aa7fe...`;
+- executor final state `FAILED`, failure kind `SUPERVISION_LOST`, return code unknown/null; same Attempt is not replayable as a first execution;
+- exact stdout `a7976870977a5eff67c92d9273cd63e28ab07c5e5ee6dd8a0bba56a81727af18` / 2,831 bytes self-reports `PASS_BOUNDED_DESCENDANT_UDP_LOOPBACK_DENIAL`; unprotected descendant delivered exact 45-byte UDP payload; protected listener observed no datagram with AppContainer+Job/zero-capability/no-inherited-handle/no-timeout receipt;
+- exact stderr `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855` / 0 bytes; uncertainty-aware first result `86833629ebd032f56dbc900145d40771dc38862fc1416c0ddfe88fd4e35af022` / 2,698 bytes; classification `OBSERVED_PASS_SIGNAL_WITH_SUPERVISION_LOST`, admission `NOT_ADMITTED`;
+- Attempt Store after preservation 141 blobs / 141 attempts / 220 events, integrity ok.
+
+`EXECUTOR_FINALITY_UNKNOWN != CLEAN_PASS_ADMISSION`
+`OBSERVED_PROTECTED_NONDELIVERY != INTERNET_EGRESS_DENIAL`
+`SAME_FIRST_ATTEMPT != SAFE_TO_REPLAY`
+
+Next research pressure is supervisor/journal finality recovery without network replay.
+
+
+## Descendant DNS-helper loopback qualification — v0.2.2 — 2026-09-07
+Truth status: **VERIFIED BOUNDED APP SECURITY EVIDENCE**; RES authority NONE_BY_CONTENT.
+
+- artifact `728daddb02e092f5726d023ef2ca895b93950bba0be0c998b0797aabe6969b2f`, complete 354-line semantic read + syntax/currentness/privacy gates before exact capture;
+- first execution `job-73b747f1e36d` completed rc0; exact result `9f282456b99ce30a9b5f41be83bba139515353c2e2b88c0afd19dfd79f88b082`; bounded admission `63e5a830b18bb8d6c5f291468e7a6b9ed491ed580f37a0a7aceb6e584dc79225`;
+- unprotected Process.Start descendant `nslookup` generated 3 DNS query datagrams to parent-owned `127.0.0.1:53`, all responded;
+- protected zero-capability AppContainer+immediate-Job path generated 0 observed DNS query datagrams; receipt AppContainer/job/no-inherited-handle/no-timeout shape valid;
+- Store now 145 blobs / 146 attempts / 225 events, integrity ok.
+
+Qualified only: descendant DNS-helper loopback non-delivery. System resolver, Internet DNS, DoH/DoT, QUIC, proxy/helper generality, process-tree breakaway, production integration and general runtime law remain unearned.
+
+## Descendant proxy/environment loopback Attempt preservation — v0.2.3 — 2026-09-07
+Truth status: **VERIFIED first-result evidence / HARNESS_INVALID / NO JOB-LIFECYCLE CLAIM EARNED**. RES authority NONE_BY_CONTENT.
+
+- Attempt `attempt-egress-wider-v0-2-3-descendant-proxy-env-loopback-first`, parent descendant DNS-helper bounded admission `63e5a830b18bb8d6c5f291468e7a6b9ed491ed580f37a0a7aceb6e584dc79225`.
+- artifact `state/attempt_artifacts/EGRESS_WIDER_V0_2_3_DESCENDANT_PROXY_ENV_LOOPBACK_20260907.py`, SHA `7878188e532b1828c41fb9075999425ef7ed03a9d1f11d6d3b76fe21d243577c`, 380 lines; syntax PASS and complete semantic read 380/380 before capture.
+- capture readback exact; Attempt Store now 146 blobs / 147 attempts / 226 events, integrity ok.
+- current bindings: App `43aa7feac7e8a15828116bd700b644560714496d`; Main `e66c071fc25f8d08bfc7ebf0551948392d652f35`; durable control `f59a32946cea1af64e427a4d9db64a7075f691dd` / CHECKPOINT `64f1804e9d6ec64b1638cacbf25bd8963ad967958a1f2847e4d3a352c887a589`; Gen14 current.
+- Governance Contact resolves locally binding additive process doctrine through exact token `b5a2e35f...`; global ACTIVE remains forbidden because detached completion receipt is absent.
+- discriminator uses two parent-owned `127.0.0.1` HTTP listeners: environment-selected proxy and direct target. Exact unprotected root/descendant command must hit proxy only; protected root must inherit exact marker + ALL_PROXY, launch same curl descendant, and hit neither listener.
+- no Internet/DNS/provider/system-proxy/registry/firewall mutation.
+
+`PROXY_ENV_LOOPBACK_NONDELIVERY != GENERAL_PROXY_DENIAL`.
+`ENVIRONMENT_INHERITED != ENVIRONMENT_MEDIATED_BYPASS`.
+`LOCAL_PROXY_RESULT != SYSTEM_PROXY_CONFIGURATION_RESULT`.
+`WIDER_ATTEMPT_PASS != NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT`.
+
+## Descendant proxy/environment loopback bounded qualification — v0.2.3 — 2026-09-08
+Truth status: **VERIFIED BOUNDED APP SECURITY EVIDENCE**; RES authority NONE_BY_CONTENT.
+
+- preserved artifact `7878188e532b1828c41fb9075999425ef7ed03a9d1f11d6d3b76fe21d243577c`, 380 lines, complete semantic read before first execution;
+- job `job-72933961f711` completed normally rc0;
+- exact stdout / first result `c60ee5e079b0eed9c99e7bd86142560a1d46ace1bd2a372283d3980be710e56c`, stderr empty SHA `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`;
+- bounded admission `59623224fd455cb7590d59682330740920a51a7fc2f7ab2217071d72a65227f3`, fully read before capture;
+- unprotected descendant curl used inherited proxy variables: proxy listener 1 connection with absolute proxy-form request, direct target 0;
+- protected root verified AppContainer+immediate Job/zero-capability/no inherited handles/environment inherited/no timeout, propagated curl exit 28, and produced 0 connections to both proxy and direct-target listeners;
+- root preflight would have emitted 192 if the exact marker/ALL_PROXY value was not inherited and 191 if Process.Start failed; neither occurred;
+- current Store after admission 148 blobs / 151 attempts / 230 events, integrity ok;
+- current refs remain App `43aa7fe...`, Main `e66c071f...`, control `f59a3294...`; Governance Contact is locally binding process doctrine only, global ACTIVE absent.
+
+Qualified only: **descendant proxy/environment loopback non-delivery for the exact tested path**.
+
+`PROXY_ENV_LOOPBACK_NONDELIVERY != GENERAL_PROXY_DENIAL`.
+`PROXY_ENV_LOOPBACK_NONDELIVERY != INTERNET_EGRESS_DENIAL`.
+`ENVIRONMENT_INHERITED != ENVIRONMENT_MEDIATED_BYPASS`.
+`BOUNDED_PROXY_ENV_PASS != NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT`.
+
+Next materially distinct class is process-tree / Job breakaway or equivalent descendant escape behavior, beginning with non-network lifecycle containment before any network-bearing breakaway test.
+
+## Normal descendant Job-close lifecycle Attempt preservation — v0.2.4 — 2026-09-08
+Truth status: **VERIFIED preservation/currentness evidence / PRESERVED / UNEXECUTED**. RES authority NONE_BY_CONTENT.
+
+- Attempt `attempt-egress-wider-v0-2-4-normal-descendant-job-close-lifecycle-first`, parent proxy/environment bounded admission `59623224fd455cb7590d59682330740920a51a7fc2f7ab2217071d72a65227f3`.
+- artifact `state/attempt_artifacts/EGRESS_WIDER_V0_2_4_NORMAL_DESCENDANT_JOB_CLOSE_LIFECYCLE_20260908.py`, SHA `b3e8470932b446edc2fdcdf6f6151b8d3ffea3b2962b56114bb3423c627f52cf`, 318 lines; syntax PASS and complete semantic read 318/318 before capture.
+- exact capture readback true; Store 149 blobs / 152 attempts / 231 events, integrity ok.
+- current primitive Job limit flags set only `JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE`; no `BREAKAWAY_OK` or `SILENT_BREAKAWAY_OK` flags are set.
+- positive control exact root creates sleeping PowerShell descendant, exits returning child PID, and requires the child to remain alive after root exit; harness explicitly terminates that positive child.
+- protected exact root uses qualified `cwd=powershell.parent`, returns descendant PID, and caller probes liveness only after `run_zero_network_process` has closed the immediate Job in `finally`.
+- any surviving protected descendant is explicit FAIL and cleanup; unknown liveness is HARNESS_INVALID.
+- no network activity is intended.
+
+`NORMAL_DESCENDANT_JOB_CLOSE_TERMINATION != CREATE_BREAKAWAY_FROM_JOB_DENIAL`.
+`NORMAL_DESCENDANT_TREE_CONTAINMENT != SERVICE_WMI_COM_ESCAPE_RESISTANCE`.
+`NON_NETWORK_LIFECYCLE_PASS != NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT`.
+
+## Normal descendant Job-close v0.2.4 first-result consequence — HARNESS_INVALID
+- job `job-0705e689d74c`, executor return code 1;
+- stdout empty SHA `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`;
+- exact stderr SHA `934b03ff7bd0d7703ad4f260ec880df49deaea7be0fd264f51cd59e048879b67`, 1,764 bytes;
+- structured first result `c6366904038e45cb0ec9712b9aeb34f016220786e731bdfb7a654097e2601710`;
+- all exact streams/wrapper preserved before repair; Store 151/155/234, integrity ok;
+- failure stage was unprotected positive control `subprocess.run(... capture_output=True ...)`: root launched the 30-second child, then Python `communicate()` waited on captured pipe EOF and timed out after 10 seconds because the descendant retained pipe handles;
+- executor duration ~30.6 seconds is consistent with the sleeping child keeping the pipe open; protected Job phase was never reached;
+- no normal-descendant Job-close claim and no breakaway claim earned.
+
+`POSITIVE_CONTROL_PIPE_TIMEOUT != JOB_CONTAINMENT_RESULT`.
+`UNPROTECTED_HARNESS_INVALID != PROTECTED_LIFECYCLE_FAILURE`.
+
+Repair scope SHALL be positive-control stdio only: replace captured pipes with `DEVNULL`; preserve root/child command, protected phase, liveness probe and claim ceiling unchanged.

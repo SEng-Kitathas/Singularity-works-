@@ -362,3 +362,10 @@ Thread rollover is a continuity event, not a doctrine promotion. `checkpoints/TH
 Fresh thread MUST start RECOVERY/AUDIT and only return to BUILD-COMMIT after live Main/App/control/Governance/Attempt Store currentness reconciles. Governance Contact resolver status at seal was NOT ACTIVE at both inspected targets because token/ACTIVE receipt were absent.
 
 `ROLLOVER_POINTER != AUTHORITY_MINT`.
+
+
+## Cross-arm execution-finality guard — 2026-09-07
+`APP_OBSERVATION != MAIN_CORE_PROMOTION`
+`EXECUTED_ONCE != ADMITTED`
+`SUPERVISION_LOST != SAFE_TO_RERUN_SAME_ATTEMPT`
+No doctrine promotion; this is an evidence-handling constraint for the current seam.

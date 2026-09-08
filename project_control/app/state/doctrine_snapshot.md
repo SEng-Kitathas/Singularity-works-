@@ -185,3 +185,23 @@ Thread rollover is a continuity event, not a doctrine promotion. `checkpoints/TH
 Fresh thread MUST start RECOVERY/AUDIT and only return to BUILD-COMMIT after live Main/App/control/Governance/Attempt Store currentness reconciles. Governance Contact resolver status at seal was NOT ACTIVE at both inspected targets because token/ACTIVE receipt were absent.
 
 `ROLLOVER_POINTER != AUTHORITY_MINT`.
+
+
+## Execution-finality doctrine delta — 2026-09-07 — CURRENT
+No new product/security doctrine is promoted. The current pressure rule is evidence-conservative: complete self-reported test JSON and listener observations remain evidence, but a supervision-lost executor with unknown process exit status cannot be silently upgraded into a new bounded admission.
+
+`EXECUTED_ONCE != ADMITTED`
+`SUPERVISION_LOST != SAFE_TO_RERUN_SAME_ATTEMPT`
+`ARTIFACT_SELF_REPORT_PASS != EXECUTOR_FINALITY`
+`OBSERVED_PASS_SIGNAL_WITH_SUPERVISION_LOST -> AUDIT, NOT PROMOTION`
+
+The general runtime law remains unearned.
+
+
+## v0.2.2 bounded DNS-helper evidence — 2026-09-07
+New evidence promotion is scoped only to the exact descendant `nslookup` -> parent-owned loopback DNS-server path under AppContainer+immediate-Job. It does not alter universal process doctrine or create DNS/runtime authority beyond this tested path.
+
+`DNS_HELPER_LOOPBACK_DENIAL != SYSTEM_RESOLVER_DENIAL`
+`DNS_HELPER_LOOPBACK_DENIAL != INTERNET_DNS_DENIAL`
+`DNS_HELPER_RESULT != DOH_OR_DOT_RESULT`
+`BOUNDED_DNS_HELPER_PASS != NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT`

@@ -169,3 +169,7 @@ If live state is unchanged, execute the selected preserved attempt exactly once 
 
 `THREAD_ROLLOVER_CURRENT != LIVE_CURRENTNESS_PROOF`.
 `HISTORICAL_HANDOFF != CURRENT_INGRESS`.
+
+
+## POST-ROLLOVER COORDINATED CURRENTNESS — 2026-09-07
+Durable control is `f59a32946cea1af64e427a4d9db64a7075f691dd` / CHECKPOINT `64f1804e9d6ec64b1638cacbf25bd8963ad967958a1f2847e4d3a352c887a589`, fresh-clone verified PASS 130. App source remains `43aa7fe...` / Gen14. App artifact `99ef2cbbc08eef598fb9c8b02ae38d5b9d88a3c4fcde576b96cf047b1942185e` executed once as `job-485c0f471477`; executor finality is `SUPERVISION_LOST`, exit unknown. App uncertainty-aware result `86833629ebd032f56dbc900145d40771dc38862fc1416c0ddfe88fd4e35af022` is preserved and **NOT_ADMITTED**; Store 141/141/220 integrity ok. Main/Core anchor remains `a7b4511734b1a1e507230308e75b31175aef4c4a`; no Core/product authority delta. Current mode for this seam is AUDIT.

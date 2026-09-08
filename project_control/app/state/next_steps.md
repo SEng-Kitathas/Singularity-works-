@@ -108,3 +108,21 @@ Completed at `pcmmad/project-control@bfcd19b3e91972de44fa702fe027d09dcab03249`, 
 6. Wire and qualify real product launch sites through the protected primitive/broker boundary.
 7. Keep provider transport blocked until production enforcement and broader bypass pressure earn a stronger claim.
 8. Do not promote bounded AppContainer evidence to machine-wide firewall authority.
+
+
+## Immediate P0 — post-v0.2.1.3 supervision-loss audit — CURRENT
+1. **Do not rerun** `99ef2cbbc08eef598fb9c8b02ae38d5b9d88a3c4fcde576b96cf047b1942185e`; its first execution already occurred as `job-485c0f471477`.
+2. Inspect persisted execution-supervision/journal records for `job-485c0f471477` and determine whether a trustworthy terminal process status/exit code can be recovered without replay.
+3. Keep first-result `86833629ebd032f56dbc900145d40771dc38862fc1416c0ddfe88fd4e35af022` at `NOT_ADMITTED` unless independent finality evidence closes the supervision gap.
+4. If exit finality is irrecoverable, preserve this execution as permanently uncertain and create a **new Attempt identity** for any reconciliation discriminator.
+5. Only after that audit may wider DNS/UDP/QUIC/proxy/helper/process-tree pressure advance.
+
+Current store: 141 blobs / 141 attempts / 220 events; durable control `f59a32946cea1af64e427a4d9db64a7075f691dd` / CHECKPOINT `64f1804e9d6ec64b1638cacbf25bd8963ad967958a1f2847e4d3a352c887a589`.
+
+
+## Immediate P0 — after bounded DNS-helper qualification — CURRENT
+1. Persist/checkpoint the v0.2.2 result `9f282456b99ce30a9b5f41be83bba139515353c2e2b88c0afd19dfd79f88b082` and bounded admission `63e5a830b18bb8d6c5f291468e7a6b9ed491ed580f37a0a7aceb6e584dc79225` across coordinated App/Main control surfaces before the next consequence-bearing discriminator.
+2. Do not rerun v0.2.1.3 `99ef2c...`; keep supervision-lost result `86833629...` unadmitted.
+3. Do not repeat v0.2.2 DNS-helper loopback as if it established system resolver or Internet DNS denial.
+4. Next materially different class: prefer **Job/process-tree breakaway pressure** or **proxy/environment indirection**; preserve a NEW Attempt before execution.
+5. Keep provider transport and product-wide `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` blocked.

@@ -22,6 +22,9 @@ Live recovery/audit readback on 2026-09-07 resolved public Main at `e66c071fc25f
 
 Governance Contact is target-local: the public-Git Main target has the exact valid token and no ACTIVE receipt, so it resolves `GOVERNANCE_CONTACT_LOCALLY_BINDING_ADDITIVE_PROCESS_DOCTRINE`; the server Main and App development-arm targets have token/ACTIVE receipt absent and resolve `GOVERNANCE_CONTACT_NOT_ACTIVE_AT_THIS_TARGET`. No global ACTIVE claim is earned. See `RECOVERY_CURRENTNESS_20260907.md`.
 
+## Current fixed point after v0.2.4 harness diagnosis
+This generation supersedes the previous control-currentness frontier only as an additive checkpoint. Both local development arms now carry the exact Governance Contact locator+token and no ACTIVE receipt; global ACTIVE remains unearned. App bounded security evidence has advanced through DNS-helper and proxy/environment loopback admissions, while v0.2.4 normal-descendant Job-close is HARNESS_INVALID before protected execution. See `CURRENTNESS_AFTER_V0_2_4_20260908.md`.
+
 ## Process authority
 - sealed RAHL Engineering Canonical SOP R4.4 carrier `04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc`
 - ICF-CS v1.1 additive continuity/process payload `f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63`
