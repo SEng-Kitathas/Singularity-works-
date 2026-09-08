@@ -78,8 +78,8 @@ Advance `pcmmad/project-control` from `d76299e728b5026df87c39c17ad9d723f759ce5f`
 - App RES `ac9fbb19fcead73415983ef1608e5c7af58684694e6b8a1f82094cb959a4fc0a`, authority NONE_BY_CONTENT.
 - Main Commander `8b1bf53adf3ac3fee09a4435f1f6df4518359f767fc76fe8d99df4ed6f44e4ae`; App Commander `e3e859989524e5900abc353cd9b7719f3d7173c8d80104b4afe30dde05c68e9d`. Byte difference is target-local resolver label only.
 - Main ingress `2b26df19f4721c462c7fdafc2205a9ac03722f48e7f5fd95fc0280d9f3b775dc`; App ingress `16791dcf77cb9feef82d9a7b753a72c366c2c7f6997c449b6177b5a47debe331`. Byte difference is target-local resolver label only.
-- Main DTS current SHA `de647ba9ea869f4bf15e68e52052ee49729468ec8fb336c6d49878cb572ee3e7`.
-- App DTS current SHA `b83b5980d8473b20bb24d6d44f81f823847d3ea84042b410f6b870e6ec80222e`.
+- Main DTS current SHA `59e3a181b67351fb1adece8ab200aa595f4355a8858a440ddd71f89e9b4b2154`.
+- App DTS current SHA `8743cf5f0a0415e739246c5ec13f941de58248c50997c074f4784b36f5e2482b`.
 
 
 ## APP V0.2.4.1 CROSS-ARM CURRENTNESS — 2026-09-08

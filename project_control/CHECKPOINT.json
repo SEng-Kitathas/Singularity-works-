@@ -83,6 +83,15 @@
     "semantic_read_ledger": "PASS_NO_FRESH_READ_REQUIRED",
     "sibling_donor_r4_3": "7d72e57dc2021af20753a942f87da38bf8ad31fbb89a6bd21145bd8e263d8552"
   },
+  "continuity_pointer_repair_20260908": {
+    "app_dts_sha256": "8743cf5f0a0415e739246c5ec13f941de58248c50997c074f4784b36f5e2482b",
+    "defect": "EMBEDDED_LIVE_SHADOW_DTS_POINTERS_STALE_ONE_GENERATION",
+    "evidence_mutation": false,
+    "main_dts_sha256": "59e3a181b67351fb1adece8ab200aa595f4355a8858a440ddd71f89e9b4b2154",
+    "mode": "CHECKPOINT",
+    "predecessor_control": "5c052d8aff58fb9ab424c5907f5de217a45fe686",
+    "product_promotion": false
+  },
   "control_branch": "pcmmad/project-control",
   "doctrine_addenda": [
     {
@@ -168,7 +177,7 @@
     {
       "bytes": 11044,
       "path": "app/continuity/live_shadow.md",
-      "sha256": "235fa665475eb6b01b2ed36478cf1d2af6a25f2bf765f86450ce00d468b6f409"
+      "sha256": "324d99f7e02fe560cf27afedb9f580042a39114475fb1f6e57abf8d936fdbbfc"
     },
     {
       "bytes": 39319,
@@ -441,6 +450,11 @@
       "sha256": "730e775a8915283ab4a32e75d0acaa1345e649e3a32bc6634074e5a33231cba7"
     },
     {
+      "bytes": 1161,
+      "path": "CONTINUITY_POINTER_REPAIR_20260908.md",
+      "sha256": "bf1843d045940e1c3693e43e26dd2f79cb2c13c74da10616a4398ab362e5c7fd"
+    },
+    {
       "bytes": 4480,
       "path": "CURRENTNESS_AFTER_V0_2_4_1_20260908.md",
       "sha256": "ae76b5725b896f28952955a0f1135ff0976818a6047e867008a9b48ec2709aa8"
@@ -488,7 +502,7 @@
     {
       "bytes": 9732,
       "path": "main/continuity/live_shadow.md",
-      "sha256": "6adb143dbfd6ca749a4172be275d69a89143854f141387188ae76ff1540f0619"
+      "sha256": "b41fcc07bc5606c56bf046ff3f01978cd6fc7f23b7af78e0956298606400bbfc"
     },
     {
       "bytes": 33567,
@@ -891,7 +905,7 @@
       "sha256": "f5dba1193203a03bbce3779179ce5b6947231dff1ae65f505e5024e3ec5ee207"
     }
   ],
-  "generated_utc": "2026-09-08T01:59:06Z",
+  "generated_utc": "2026-09-08T02:03:48Z",
   "git_copy_policy": {
     "binary_attribute_repair_20260904": "REPAIRED_PREEXISTING_ALL_TEXT_EOL_RULE_BEFORE_CANDIDATE_PUBLICATION_CHECKPOINT",
     "binary_carriers": "*.zip -text; exact bytes required",
