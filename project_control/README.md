@@ -30,6 +30,9 @@ Durable continuity/control snapshot only. It does not promote product/Core sourc
 ## Current fixed point after v0.2.5.2 child-membership harness diagnosis
 v0.2.5.2 remains HARNESS_INVALID/NOT_ADMITTED: positive explicit child creation succeeded on the synchronous plane, but the harness classified root Job membership and never measured the child or reached protected execution. See `CURRENTNESS_AFTER_V0_2_5_2_HARNESS_20260908.md`.
 
+## Current fixed point after v0.2.5.3 positive-criterion diagnosis
+v0.2.5.3 remains HARNESS_INVALID/NOT_ADMITTED: positive explicit child creation and survival were verified, but the harness over-constrained the positive child to be outside all Jobs and stopped before protected execution. See `CURRENTNESS_AFTER_V0_2_5_3_HARNESS_20260908.md`.
+
 ## Semantic admission
 Server successor admission stream: 23 artifacts / 3,116 deterministic lines / SHA `d0c1379fbd8c01e9616a1b8fee83f975bd1670179551eb354f05c1d5e3cc128e`, complete read 3,116/3,116, blocking findings 0.
 

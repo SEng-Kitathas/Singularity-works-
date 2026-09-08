@@ -1642,3 +1642,15 @@ Fixed-point: no recursive control publication for this closure metadata.
 
 ## CROSS-ARM UPDATE — App v0.2.5.2 explicit-breakaway HARNESS_INVALID — 2026-09-08
 App result `af0ce57433f71ad41dd74f06d922b88bad8fc8f69d0f8ca13496eafb47ab4601` preserves a harness diagnosis only: positive explicit child creation succeeded under compatible synchronous plane, but root Job membership was mistaken for child membership; no protected observation/admission. Main records awareness only.
+
+
+---
+
+## CROSS-ARM PRE-EXECUTION — App v0.2.5.3 child-membership repair — 2026-09-08
+Control `8071b0945ee7f9a7709eef0ef62c42141a2ebc39` fresh-clone verified. App plane `df57157d14dff5648027a7fd7d3ab1354f9c4b298f276b44098768ae705cf003` compatible. Artifact `e6913d1b923153a6943b3f3fb34e50c7054f9123a3d940e33d8719d89cf2031d` frozen but not executed; helper unchanged. Main/Core unchanged.
+
+
+---
+
+## CROSS-ARM UPDATE — App v0.2.5.3 HARNESS_INVALID — 2026-09-08
+App result `27af68192010146a421ea95900407bdc58c47984496fba98a163bbfc069854bf` records positive explicit child creation + survival, any-Job=true, protected absent. The positive outside-all-Jobs criterion was over-strong; no breakaway admission/Core promotion.

@@ -430,3 +430,7 @@ Result `60c928361d0f350447d2577f671915263446f4d7e40afb5cea12161abc19add8` is ver
 
 ## App v0.2.5.2 harness signal — Main RES — 2026-09-08
 Result `af0ce57433f71ad41dd74f06d922b88bad8fc8f69d0f8ca13496eafb47ab4601` is verified HARNESS_INVALID, no protected breakaway observation. Main RES authority NONE_BY_CONTENT; Core state unchanged.
+
+
+## App v0.2.5.3 signal — Main RES — 2026-09-08
+Verified App HARNESS_INVALID `27af68192010146a421ea95900407bdc58c47984496fba98a163bbfc069854bf`; positive explicit child succeeds/survives, any-Job=true, no protected observation. Main RES authority NONE_BY_CONTENT; Core unchanged.

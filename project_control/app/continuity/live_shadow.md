@@ -149,3 +149,18 @@ Advance `pcmmad/project-control` from `d76299e728b5026df87c39c17ad9d723f759ce5f`
 - Positive helper explicit child creation succeeded, but the harness classified based on root Job membership and did not measure returned child's Job membership/liveness; protected phase not reached.
 - Store: **172 blobs / 179 attempts / 258 events**, integrity ok.
 - Explicit breakaway remains unearned. Next: checkpoint this boundary, then NEW v0.2.5.3 child-membership observation repair only.
+
+
+## V0.2.5.2 SUCCESSOR CONTROL CLOSURE — 2026-09-08
+- Durable control `8071b0945ee7f9a7709eef0ef62c42141a2ebc39` / CHECKPOINT `1002110708b3bd53db376249dd384cfe26dcfb2d6aa6340880124f8cea6cb021` is non-force published and independently fresh-clone verified PASS 165.
+- It preserves v0.2.5.2 first result `af0ce574...` and post-checkpoint synchronous-plane record `f32909d4...`.
+- Next permitted pressure: NEW v0.2.5.3 child Job-membership/liveness observation repair only; helper source/DLL and explicit breakaway call remain unchanged.
+
+
+## V0.2.5.3 EXPLICIT BREAKAWAY — HARNESS_INVALID — CURRENT — 2026-09-08
+- Mode: **CHECKPOINT / R1**. Control `8071b0945ee7f9a7709eef0ef62c42141a2ebc39` / CHECKPOINT `1002110708b3bd53db376249dd384cfe26dcfb2d6aa6340880124f8cea6cb021`.
+- Artifact `e6913d1b923153a6943b3f3fb34e50c7054f9123a3d940e33d8719d89cf2031d` executed once synchronously; exact result `27af68192010146a421ea95900407bdc58c47984496fba98a163bbfc069854bf` = `HARNESS_INVALID_POSITIVE_CHILD_IN_SOME_JOB`, NOT_ADMITTED, non-replayable.
+- Positive explicit child creation succeeded; child PID was alive after root exit and belonged to some Job. Protected phase not reached. Post-run probe confirmed PID cleanup.
+- Store: **177 blobs / 185 attempts / 264 events**, integrity ok.
+- Refined seam: positive control does not need child outside all Jobs; it needs explicit-create success + survival without Forge immediate Job. Protected survival after Forge Job close is the decisive bypass signal.
+- Next: checkpoint this boundary, then NEW v0.2.5.4 removing only the over-strong positive `in_any_job==false` requirement.

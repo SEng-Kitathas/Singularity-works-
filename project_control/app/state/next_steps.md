@@ -178,3 +178,18 @@ Current store: 141 blobs / 141 attempts / 220 events; durable control `f59a32946
 3. NEW v0.2.5.3 repair may add child Job-membership/liveness observation only; preserve helper DLL/source and explicit breakaway call unchanged.
 4. Protected phase remains non-network and must use the same immediate Forge Job primitive.
 5. No runtime-law or network claim.
+
+
+## V0.2.5.2 SUCCESSOR CONTROL CLOSURE — 2026-09-08
+- Durable control `8071b0945ee7f9a7709eef0ef62c42141a2ebc39` / CHECKPOINT `1002110708b3bd53db376249dd384cfe26dcfb2d6aa6340880124f8cea6cb021` is non-force published and independently fresh-clone verified PASS 165.
+- It preserves v0.2.5.2 first result `af0ce574...` and post-checkpoint synchronous-plane record `f32909d4...`.
+- Next permitted pressure: NEW v0.2.5.3 child Job-membership/liveness observation repair only; helper source/DLL and explicit breakaway call remain unchanged.
+
+
+## Immediate P0 — after v0.2.5.3
+1. Checkpoint result `27af68192010146a421ea95900407bdc58c47984496fba98a163bbfc069854bf` / store 177/185/264 before new pressure.
+2. Do not rerun v0.2.5.3.
+3. NEW v0.2.5.4 may remove only positive `in_any_job==false` rejection; retain membership telemetry.
+4. Positive requires explicit-create success + child alive after root exit + cleanup.
+5. Protected success + child alive after Forge immediate Job close => bypass; verified in-Job `ERROR_ACCESS_DENIED` => bounded denial.
+6. No network-bearing pressure or runtime-law promotion.

@@ -138,3 +138,14 @@ Checkpoint App result `60c928361d0f350447d2577f671915263446f4d7e40afb5cea12161ab
 
 ## Immediate coordinated step — App v0.2.5.2 harness invalid
 Checkpoint `af0ce57433f71ad41dd74f06d922b88bad8fc8f69d0f8ca13496eafb47ab4601` before NEW v0.2.5.3 child-membership/liveness observation repair. No prior Attempt replay; Main/Core unchanged.
+
+
+## APP V0.2.5.3 PRE-EXECUTION CROSS-ARM CURRENTNESS — 2026-09-08
+- Durable control `8071b0945ee7f9a7709eef0ef62c42141a2ebc39` / CHECKPOINT `1002110708b3bd53db376249dd384cfe26dcfb2d6aa6340880124f8cea6cb021` fresh-clone verified PASS 165.
+- App post-control synchronous plane record `df57157d14dff5648027a7fd7d3ab1354f9c4b298f276b44098768ae705cf003` verifies `0x1800` explicit+silent breakaway compatibility.
+- NEW App artifact `e6913d1b923153a6943b3f3fb34e50c7054f9123a3d940e33d8719d89cf2031d` is frozen/syntax-read for child Job-membership/liveness repair; helper DLL/source unchanged; **not yet executed**.
+- Main/Core anchor unchanged. No breakaway admission yet.
+
+
+## Coordinated next step — App v0.2.5.3
+Checkpoint `27af68192010146a421ea95900407bdc58c47984496fba98a163bbfc069854bf`, then NEW App v0.2.5.4 removing only over-strong positive outside-all-Jobs rejection. No prior replay; no Core promotion.

@@ -133,3 +133,16 @@ Advance `pcmmad/project-control` from `d76299e728b5026df87c39c17ad9d723f759ce5f`
 - Control `56fb5b70ffee7c58d60c34118338d12c30313e46` / CHECKPOINT `2a4ce4baf905bd3698d228cbb9a0575dcc78efa577593a69de6118b9fa49cec6`.
 - App `d7f444287c6903fab28b58e9423cfc99ec53dced03457e964348eb587c1f2602` executed once synchronously; `af0ce57433f71ad41dd74f06d922b88bad8fc8f69d0f8ca13496eafb47ab4601` is HARNESS_INVALID because positive explicit child creation succeeded but child Job membership was not measured; protected phase not reached. NOT_ADMITTED.
 - Main/Core anchor unchanged. Next coordinated gate: checkpoint, then NEW App child-membership observation repair only.
+
+
+## APP V0.2.5.3 PRE-EXECUTION CROSS-ARM CURRENTNESS — 2026-09-08
+- Durable control `8071b0945ee7f9a7709eef0ef62c42141a2ebc39` / CHECKPOINT `1002110708b3bd53db376249dd384cfe26dcfb2d6aa6340880124f8cea6cb021` fresh-clone verified PASS 165.
+- App post-control synchronous plane record `df57157d14dff5648027a7fd7d3ab1354f9c4b298f276b44098768ae705cf003` verifies `0x1800` explicit+silent breakaway compatibility.
+- NEW App artifact `e6913d1b923153a6943b3f3fb34e50c7054f9123a3d940e33d8719d89cf2031d` is frozen/syntax-read for child Job-membership/liveness repair; helper DLL/source unchanged; **not yet executed**.
+- Main/Core anchor unchanged. No breakaway admission yet.
+
+
+## APP V0.2.5.3 CROSS-ARM CURRENTNESS — 2026-09-08
+- Control `8071b0945ee7f9a7709eef0ef62c42141a2ebc39` / CHECKPOINT `1002110708b3bd53db376249dd384cfe26dcfb2d6aa6340880124f8cea6cb021`. App `e6913d1b923153a6943b3f3fb34e50c7054f9123a3d940e33d8719d89cf2031d` executed once; `27af68192010146a421ea95900407bdc58c47984496fba98a163bbfc069854bf` HARNESS_INVALID/NOT_ADMITTED.
+- Positive explicit child succeeded + survived root exit; any-Job membership true; protected phase absent.
+- Any-Job membership does not identify Forge immediate Job. Next: checkpoint then NEW App v0.2.5.4 positive-criterion-only repair. Main/Core unchanged.

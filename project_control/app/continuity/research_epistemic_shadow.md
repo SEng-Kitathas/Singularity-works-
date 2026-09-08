@@ -498,3 +498,7 @@ Truth status: **VERIFIED EXECUTION-PLANE CURRENTNESS / NO BREAKAWAY RESULT**; RE
 
 ## v0.2.5.2 breakaway harness result — 2026-09-08
 Truth status: VERIFIED HARNESS INVALID / no protected breakaway observation. Positive explicit child creation succeeded under compatible runSync outer Job, but root Job membership was mistaken for child membership. Result `af0ce57433f71ad41dd74f06d922b88bad8fc8f69d0f8ca13496eafb47ab4601` NOT_ADMITTED. RES authority NONE_BY_CONTENT.
+
+
+## v0.2.5.3 explicit-breakaway harness result — 2026-09-08
+Truth: verified positive explicit child creation + survival; verified child belongs to some Job; protected phase absent; result `27af68192010146a421ea95900407bdc58c47984496fba98a163bbfc069854bf` NOT_ADMITTED. RES authority NONE_BY_CONTENT. Any-Job membership does not identify Forge immediate-Job membership.

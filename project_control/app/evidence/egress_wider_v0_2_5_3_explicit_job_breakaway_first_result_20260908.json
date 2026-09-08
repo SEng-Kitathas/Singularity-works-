@@ -1,0 +1,64 @@
+{
+  "admission_status": "NOT_ADMITTED",
+  "artifact_reason": "positive-control explicit-breakaway child was not verified outside all Jobs",
+  "artifact_sha256": "e6913d1b923153a6943b3f3fb34e50c7054f9123a3d940e33d8719d89cf2031d",
+  "artifact_status": "HARNESS_INVALID",
+  "bounded_result": "NO_PROTECTED_BREAKAWAY_OBSERVATION",
+  "claim_ceiling": "NO_EXPLICIT_BREAKAWAY_CLAIM_EARNED",
+  "classification": "HARNESS_INVALID_POSITIVE_CHILD_IN_SOME_JOB",
+  "control_remote_exact_after_run": true,
+  "durable_control_checkpoint": "1002110708b3bd53db376249dd384cfe26dcfb2d6aa6340880124f8cea6cb021",
+  "durable_control_head": "8071b0945ee7f9a7709eef0ef62c42141a2ebc39",
+  "evidence_boundary": [
+    "RUNSYNC_OUTER_JOB_0x1800_COMPATIBLE",
+    "POSITIVE_EXPLICIT_CHILD_CREATE_SUCCEEDED",
+    "POSITIVE_CHILD_ALIVE_AFTER_ROOT_EXIT",
+    "POSITIVE_CHILD_IS_IN_SOME_JOB",
+    "ANY_JOB_MEMBERSHIP_DOES_NOT_IDENTIFY_FORGE_IMMEDIATE_JOB",
+    "PROTECTED_PHASE_NOT_REACHED",
+    "HARNESS_INVALID != CREATE_BREAKAWAY_FROM_JOB_DENIAL",
+    "SAME_ATTEMPT_NOT_REPLAYABLE"
+  ],
+  "execution_plane": "server.runSync.command",
+  "execution_return_code": 3,
+  "network_activity_intended": false,
+  "outer_execution_job": {
+    "breakaway_ok": true,
+    "kill_on_close": false,
+    "limit_flags": 6144,
+    "ok": true,
+    "silent_breakaway_ok": true
+  },
+  "positive_control": {
+    "child_job_membership_after_root_exit": {
+      "in_any_job": true,
+      "pid": 9320,
+      "queried": true,
+      "query_error": 0
+    },
+    "child_state_after_root_exit": {
+      "alive": true,
+      "open": true,
+      "pid": 9320,
+      "wait_result": 258
+    },
+    "decoded": {
+      "kind": "BREAKAWAY_CREATE_SUCCESS_IN_JOB",
+      "pid": 9320,
+      "raw": 2684363880
+    },
+    "root_exit_code": 2684363880,
+    "stderr_nonempty": false
+  },
+  "protected": null,
+  "runtime_law_earned": false,
+  "same_attempt_rerun": false,
+  "schema": "singularity-works.egress-wider-v0.2.5.3-explicit-job-breakaway-first-result/0.1",
+  "source_clean_after_run": true,
+  "source_head": "43aa7feac7e8a15828116bd700b644560714496d",
+  "source_remote_exact_after_run": true,
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 2167,
+  "stdout_sha256": "25351c8c9c380a42d3e155f8cdfae3c5f9ae6928b24b0e5264f7cedbd791a701"
+}

@@ -254,3 +254,13 @@ Artifact `50095130e14f4d564dbca18cf0a6ace6c3805ffca38598856bd4a6fe4b1d9bb8` exec
 
 ## Current explicit-breakaway frontier — v0.2.5.2 — 2026-09-08
 Control `56fb5b70ffee7c58d60c34118338d12c30313e46` / CHECKPOINT `2a4ce4baf905bd3698d228cbb9a0575dcc78efa577593a69de6118b9fa49cec6`. Synchronous plane `f32909d4c430a33e2eb3c80a4ea8aec0c6d6b0a6c1f73b3be3f34b2f70399f88` verified compatible. v0.2.5.2 `d7f444287c6903fab28b58e9423cfc99ec53dced03457e964348eb587c1f2602` executed once; first result `af0ce57433f71ad41dd74f06d922b88bad8fc8f69d0f8ca13496eafb47ab4601` is HARNESS_INVALID because the positive helper root remained in an outer Job even though explicit child creation succeeded. Child Job membership was not measured; protected phase was not reached. Store 172/179/258 integrity ok. Explicit breakaway result remains unearned.
+
+
+## V0.2.5.2 SUCCESSOR CONTROL CLOSURE — 2026-09-08
+- Durable control `8071b0945ee7f9a7709eef0ef62c42141a2ebc39` / CHECKPOINT `1002110708b3bd53db376249dd384cfe26dcfb2d6aa6340880124f8cea6cb021` is non-force published and independently fresh-clone verified PASS 165.
+- It preserves v0.2.5.2 first result `af0ce574...` and post-checkpoint synchronous-plane record `f32909d4...`.
+- Next permitted pressure: NEW v0.2.5.3 child Job-membership/liveness observation repair only; helper source/DLL and explicit breakaway call remain unchanged.
+
+
+## Current explicit-breakaway frontier — v0.2.5.3 — 2026-09-08
+Artifact `e6913d1b923153a6943b3f3fb34e50c7054f9123a3d940e33d8719d89cf2031d` -> result `27af68192010146a421ea95900407bdc58c47984496fba98a163bbfc069854bf` is HARNESS_INVALID / NOT_ADMITTED. Positive explicit breakaway child creation succeeded and the child survived root exit, but child belonged to some Job and the harness incorrectly rejected that before protected execution. Store 177/185/264 integrity ok. Next valid repair is positive-criterion-only v0.2.5.4 after checkpoint.

@@ -381,3 +381,7 @@ App admission `518c15f8464ea69487a4db5b7d23605b4d18983a684c1819c3d03792dbdf6085`
 
 ## Cross-arm child-membership guard — 2026-09-08
 `POSITIVE_ROOT_IN_JOB != BREAKAWAY_CHILD_IN_JOB`; `PROTECTED_PHASE_NOT_REACHED != BREAKAWAY_DENIAL`; no Main/Core promotion.
+
+
+## Cross-arm positive-control guard — 2026-09-08
+`ANY_JOB_MEMBERSHIP != FORGE_IMMEDIATE_JOB_MEMBERSHIP`; protected survival after Forge Job close is the relevant bypass signal. No Main/Core promotion.

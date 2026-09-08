@@ -224,3 +224,7 @@ A replacement execution plane must prove its own outer-Job breakaway conditions 
 
 ## Breakaway child-membership guard — 2026-09-08
 `POSITIVE_ROOT_IN_JOB != BREAKAWAY_CHILD_IN_JOB`; `EXPLICIT_CHILD_CREATION_SUCCESS != CHILD_JOB_MEMBERSHIP_PROOF`; `PROTECTED_PHASE_NOT_REACHED != BREAKAWAY_DENIAL`. No doctrine/product promotion.
+
+
+## Explicit-breakaway positive-control refinement — 2026-09-08
+`ANY_JOB_MEMBERSHIP != FORGE_IMMEDIATE_JOB_MEMBERSHIP`; positive outside-all-Jobs is not required on a Job-governed execution plane. Protected child survival after immediate Forge Job close is the decisive escape signal. No general doctrine/product promotion.

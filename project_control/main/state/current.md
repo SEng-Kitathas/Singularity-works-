@@ -205,3 +205,14 @@ App v0.2.5.1 `50095130e14f4d564dbca18cf0a6ace6c3805ffca38598856bd4a6fe4b1d9bb8` 
 
 ## App breakaway cross-arm currentness — v0.2.5.2
 App result `af0ce57433f71ad41dd74f06d922b88bad8fc8f69d0f8ca13496eafb47ab4601` is HARNESS_INVALID / NOT_ADMITTED. Positive explicit child creation succeeded but child Job membership was unmeasured; protected phase absent. Control `56fb5b70ffee7c58d60c34118338d12c30313e46` / CHECKPOINT `2a4ce4baf905bd3698d228cbb9a0575dcc78efa577593a69de6118b9fa49cec6`; Core unchanged.
+
+
+## APP V0.2.5.3 PRE-EXECUTION CROSS-ARM CURRENTNESS — 2026-09-08
+- Durable control `8071b0945ee7f9a7709eef0ef62c42141a2ebc39` / CHECKPOINT `1002110708b3bd53db376249dd384cfe26dcfb2d6aa6340880124f8cea6cb021` fresh-clone verified PASS 165.
+- App post-control synchronous plane record `df57157d14dff5648027a7fd7d3ab1354f9c4b298f276b44098768ae705cf003` verifies `0x1800` explicit+silent breakaway compatibility.
+- NEW App artifact `e6913d1b923153a6943b3f3fb34e50c7054f9123a3d940e33d8719d89cf2031d` is frozen/syntax-read for child Job-membership/liveness repair; helper DLL/source unchanged; **not yet executed**.
+- Main/Core anchor unchanged. No breakaway admission yet.
+
+
+## App breakaway cross-arm currentness — v0.2.5.3
+Result `27af68192010146a421ea95900407bdc58c47984496fba98a163bbfc069854bf` HARNESS_INVALID/NOT_ADMITTED. Positive explicit child succeeds/survives but belongs to some Job; protected absent. Control `8071b0945ee7f9a7709eef0ef62c42141a2ebc39`; Core unchanged.
