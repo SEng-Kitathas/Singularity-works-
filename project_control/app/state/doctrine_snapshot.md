@@ -205,3 +205,11 @@ New evidence promotion is scoped only to the exact descendant `nslookup` -> pare
 `DNS_HELPER_LOOPBACK_DENIAL != INTERNET_DNS_DENIAL`
 `DNS_HELPER_RESULT != DOH_OR_DOT_RESULT`
 `BOUNDED_DNS_HELPER_PASS != NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT`
+
+
+## v0.2.4.1 lifecycle qualification — 2026-09-08
+Bounded evidence now supports normal descendant termination across immediate `JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE` closure for the exact tested root/child shape. No explicit breakaway request was made.
+
+`NORMAL_DESCENDANT_JOB_CLOSE_TERMINATION != CREATE_BREAKAWAY_FROM_JOB_DENIAL`
+`JOB_MEMBERSHIP_AT_ROOT != ALL_PROCESS_TREE_ESCAPE_RESISTANCE`
+`NON_NETWORK_LIFECYCLE_PASS != NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT`

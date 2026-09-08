@@ -369,3 +369,7 @@ Fresh thread MUST start RECOVERY/AUDIT and only return to BUILD-COMMIT after liv
 `EXECUTED_ONCE != ADMITTED`
 `SUPERVISION_LOST != SAFE_TO_RERUN_SAME_ATTEMPT`
 No doctrine promotion; this is an evidence-handling constraint for the current seam.
+
+
+## Cross-arm lifecycle evidence guard — 2026-09-08
+App admission `518c15f8464ea69487a4db5b7d23605b4d18983a684c1819c3d03792dbdf6085` is bounded process-lifecycle evidence only. `APP_LIFECYCLE_EVIDENCE != MAIN_CORE_PROMOTION`; `NORMAL_DESCENDANT_JOB_CLOSE_TERMINATION != CREATE_BREAKAWAY_FROM_JOB_DENIAL`.

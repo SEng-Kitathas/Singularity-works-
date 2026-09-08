@@ -1,0 +1,79 @@
+{
+  "artifact_sha256": "81d8d42b2280e249f13d4a5c30f588a1784d9c6bc0c60e4fee0279f611ad53c8",
+  "bounded_result": "PASS",
+  "claim_ceiling": "BOUNDED_NORMAL_DESCENDANT_JOB_CLOSE_TERMINATION_ONLY",
+  "control_remote_exact_after_run": true,
+  "durable_control_checkpoint": "1f6e82c8515981b45667899f5f1eb120247ee31805a7e401f277643c41b72c05",
+  "durable_control_head": "d76299e728b5026df87c39c17ad9d723f759ce5f",
+  "evidence_boundary": [
+    "UNPROTECTED_NORMAL_DESCENDANT_ALIVE_AFTER_ROOT_EXIT",
+    "POSITIVE_DESCENDANT_CLEANUP_CONFIRMED",
+    "PROTECTED_ROOT_RECEIPT_APPCONTAINER_AND_IMMEDIATE_JOB_VERIFIED",
+    "PROTECTED_RETURNED_DESCENDANT_PID_NOT_ALIVE_AFTER_JOB_CLOSE",
+    "NORMAL_DESCENDANT_JOB_CLOSE_TERMINATION != CREATE_BREAKAWAY_FROM_JOB_DENIAL",
+    "NON_NETWORK_LIFECYCLE_PASS != NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT"
+  ],
+  "explicit_breakaway_requested": false,
+  "job_id": "job-c4852891e585",
+  "network_activity_intended": false,
+  "positive_control": {
+    "child_pid": 40676,
+    "child_state_after_root_exit": {
+      "alive": true,
+      "open": true,
+      "pid": 40676,
+      "wait_result": 258
+    },
+    "cleanup": {
+      "opened": true,
+      "pid": 40676,
+      "terminated": true,
+      "wait_result": 0
+    },
+    "root_exit_code": 40676,
+    "stderr_nonempty": false
+  },
+  "protected": {
+    "child_pid": 28800,
+    "post_return_states": [
+      {
+        "alive": false,
+        "open": false,
+        "open_error": 87,
+        "pid": 28800,
+        "t": 401418.406
+      }
+    ],
+    "receipt": {
+      "appcontainer_verified": true,
+      "authority": "NONE",
+      "capability_count": 0,
+      "command_sha256": "04282755bb8a4a229ccef8acfba89f8d16cb1588238a8bea4277b043fb72838f",
+      "elapsed_seconds": 0.375,
+      "environment_inherited": true,
+      "executable": "<LOCAL_POWERSHELL_PATH>",
+      "exit_code": 28800,
+      "immediate_job_verified": true,
+      "inherited_handles": false,
+      "job_close_terminated_process": false,
+      "parent_was_in_job": true,
+      "pid": 35292,
+      "profile_created": true,
+      "profile_name": "<EPHEMERAL_APPCONTAINER_PROFILE>",
+      "schema": "singularity-protected-process/0.1",
+      "timed_out": false
+    }
+  },
+  "return_code": 0,
+  "root_command_sha256": "353afa3b7564f1a21e08ee17ad5251e4ce1247dffb087d4848fa94b87ea8c90c",
+  "runtime_law_earned": false,
+  "schema": "singularity-works.egress-wider-v0.2.4.1-normal-descendant-job-close-first-result/0.1",
+  "source_clean_after_run": true,
+  "source_head": "43aa7feac7e8a15828116bd700b644560714496d",
+  "source_remote_exact_after_run": true,
+  "status": "PASS_BOUNDED_NORMAL_DESCENDANT_JOB_CLOSE_TERMINATION",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 2746,
+  "stdout_sha256": "28860b0febb229c61a87003257438d33ff1de606a18d1f741cfe8166e2dca340"
+}

@@ -1502,3 +1502,91 @@ Attempt Store after exact first-result preservation: 151 blobs / 155 attempts / 
 `UNPROTECTED_HARNESS_INVALID != PROTECTED_LIFECYCLE_FAILURE`.
 
 Next repair scope is positive-control stdio only: replace captured pipes with `DEVNULL`. Child/root command, 30-second sleep, protected phase, qualified `cwd=powershell.parent`, PID liveness probe, cleanup, claim ceiling and no-network scope remain unchanged. Original Attempt/result stay immutable.
+
+
+---
+
+## Entry — durable control successor sealed before v0.2.4.1 repair — 2026-09-08
+Tags: CHECKPOINT, CONTROL, FRESH-CLONE, V0.2.4.1-GATE
+
+Control successor `d76299e728b5026df87c39c17ad9d723f759ce5f` / CHECKPOINT `1f6e82c8515981b45667899f5f1eb120247ee31805a7e401f277643c41b72c05` was committed directly above `f59a329...`, non-force pushed, then independently fresh-clone read back clean with verifier PASS 145. Exact rollover and Governance Contact locator bytes were preserved; privacy projection removed workstation paths from control DTS copies without mutating live DTS source.
+
+The checkpoint captures current v0.2.2/v0.2.3 admissions and v0.2.4 HARNESS_INVALID result. v0.2.4.1 may now be created as a NEW Attempt; execution still requires exact artifact preservation/readback.
+
+
+---
+
+## Entry — wider egress v0.2.4.1 normal-descendant Job-close harness repair preserved — 2026-09-08
+Tags: EGRESS-WIDER, JOB-TREE, HARNESS-REPAIR, DEVNULL, PRESERVED, UNEXECUTED
+
+Live recovery superseded the stale rollover execution gate. Current refs: Main `e66c071fc25f8d08bfc7ebf0551948392d652f35`, App `43aa7feac7e8a15828116bd700b644560714496d` clean, control `f59a32946cea1af64e427a4d9db64a7075f691dd` / CHECKPOINT `64f1804e9d6ec64b1638cacbf25bd8963ad967958a1f2847e4d3a352c887a589`.
+
+Original v0.2.4 Job-lifecycle Attempt `attempt-egress-wider-v0-2-4-normal-descendant-job-close-lifecycle-first` remains immutable. First result `c6366904038e45cb0ec9712b9aeb34f016220786e731bdfb7a654097e2601710` is HARNESS_INVALID / POSITIVE_CONTROL_PIPE_INHERITANCE_TIMEOUT; protected phase was not reached.
+
+New sibling repair artifact `state/attempt_artifacts/EGRESS_WIDER_V0_2_4_1_NORMAL_DESCENDANT_JOB_CLOSE_LIFECYCLE_REPAIR_20260908.py`, SHA `1faa37259781fd0b3f09b50855a27b2000c72807396701a31cbdd7d65c41194e`, 325 lines; syntax PASS and complete semantic read 325/325 before capture.
+
+Exact behavioral repair: unprotected positive-control `capture_output=True` / `text=True` becomes `stdout=subprocess.DEVNULL` / `stderr=subprocess.DEVNULL`. Root/child command, 30-second child sleep, protected phase, `cwd=powershell.parent`, PID liveness probe, cleanup, claim ceiling, non-network scope and Job semantics are unchanged. Lineage/schema metadata is advanced only so the repair is a distinct immutable Attempt.
+
+Attempt `attempt-egress-wider-v0-2-4-1-normal-descendant-job-close-lifecycle-repair-first`, parent v0.2.4 first HARNESS_INVALID result, preserved with exact readback. Attempt Store after capture: 152 blobs / 156 attempts / 235 events, integrity ok. Execution status **PRESERVED / UNEXECUTED**.
+
+`POSITIVE_CONTROL_PIPE_TIMEOUT != JOB_CONTAINMENT_RESULT`.
+`REPAIR_SCOPE == UNPROTECTED_POSITIVE_STDIO_TO_DEVNULL_ONLY`.
+`NORMAL_DESCENDANT_JOB_CLOSE_TERMINATION != CREATE_BREAKAWAY_FROM_JOB_DENIAL`.
+`NON_NETWORK_LIFECYCLE_PASS != NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT`.
+
+
+---
+
+## Entry — v0.2.4.1 stdio repair first execution bounded-admitted — 2026-09-08
+Tags: PROCESS-TREE, JOB-CLOSE, STDIO-REPAIR, FIRST-RESULT, BOUNDED-ADMISSION
+
+After durable control `d76299e728b5026df87c39c17ad9d723f759ce5f` / CHECKPOINT `1f6e82c8515981b45667899f5f1eb120247ee31805a7e401f277643c41b72c05` fresh-clone closure, a new v0.2.4.1 repair artifact `81d8d42b2280e249f13d4a5c30f588a1784d9c6bc0c60e4fee0279f611ad53c8` was created with only one behavioral delta from immutable v0.2.4: unprotected positive-control stdio changed from captured pipes to DEVNULL. Complete 323-line semantic read, syntax PASS, exact Attempt Store capture/readback preceded execution. A separately preserved stale-control sibling `1faa3725...` remains unexecuted and was not collapsed into this lineage.
+
+Exact artifact executed once as `job-c4852891e585`, executor rc0. Positive control returned PID 40676, observed it alive after root exit, then terminated/confirmed it. Protected AppContainer+immediate kill-on-close Job returned child PID 28800; immediately after the primitive returned that PID was absent with `ERROR_INVALID_PARAMETER`. Exact stdout/result were preserved before admission.
+
+Structured result `709ba15edfbdc640c313f236daeb8c8abe889a64e03cc8feb50aedcade2ac173`; bounded admission `518c15f8464ea69487a4db5b7d23605b4d18983a684c1819c3d03792dbdf6085`. Store 156/161/240 integrity ok. Qualified only normal-descendant Job-close termination. Explicit breakaway remains unearned; next consequence-bearing class requires a NEW non-network explicit-breakaway Attempt after control checkpoint.
+
+
+---
+
+## Entry — currentness-only v0.2.4.1.1 sibling reconciled — 2026-09-08
+Tags: RECOVERY, SIBLING-LINEAGE, UNEXECUTED, CHECKPOINT-GATE
+
+A concurrently preserved currentness-only sibling `541d471035e6667be61e281e4f08078e7a22f10165cd38ee40982548f7ecee53` was read completely. It is bound to control `d76299e...`, metadata says behavioral delta NONE, and no execution job exists. Diff against the stale-control DEVNULL repair changes only currentness/lineage/schema/explanatory text. It remains a separate unexecuted sibling and does not supersede the already executed/admitted current-control lineage `81d8d42b... -> 709ba15e... -> 518c15f8...`.
+
+Checkpoint frontier remains the admitted normal-descendant Job-close result; explicit breakaway remains the next unearned class after successor-control closure.
+
+
+---
+
+## Entry — v0.2.4.1 continuity header repaired; concurrent artifacts classified — 2026-09-08
+Tags: RECOVERY, LIVE-SHADOW-REPAIR, CONCURRENCY, LINEAGE
+
+R1 repaired the mutable Live Shadow header to the actual admitted fixed point: durable control `d76299e728b5026df87c39c17ad9d723f759ce5f` / CHECKPOINT `1f6e82c8515981b45667899f5f1eb120247ee31805a7e401f277643c41b72c05`; App Store 156/161/240; current-control v0.2.4.1 artifact `81d8d42b...` -> result `709ba15e...` -> admission `518c15f8...`; next gate is successor control before explicit breakaway.
+
+Concurrent stale-control sibling `1faa37259781fd0b3f09b50855a27b2000c72807396701a31cbdd7d65c41194e` remains preserved/unexecuted under predecessor control and is not current execution lineage. File `EGRESS_WIDER_V0_2_4_1_1_NORMAL_DESCENDANT_JOB_CLOSE_LIFECYCLE_CURRENTNESS_REPAIR_20260908.py`, SHA `541d471035e6667be61e281e4f08078e7a22f10165cd38ee40982548f7ecee53`, has no Attempt Store row and no execution job; it is classified unpreserved/non-authoritative scratch and is not eligible for execution by file presence alone.
+
+Exact verified v0.2.4.1 first-result blob `709ba15e...` was materialized byte-for-byte to `evidence/egress_wider_v0_2_4_1_normal_descendant_job_close_first_result_20260908.json` for durable control packaging; this does not create new evidence or authority.
+
+
+---
+
+## Entry — recovery reconciliation: v0.2.4.1 already qualified; redundant repair siblings remain unexecuted — 2026-09-08
+Tags: RECOVERY, CURRENTNESS, V0.2.4.1, CONTROL-FRONTIER, REDUNDANT-ATTEMPT
+
+Live recovery discovered stronger persisted evidence than the stale pre-execution handoff. Remote/current refs are Main `e66c071fc25f8d08bfc7ebf0551948392d652f35`, App `43aa7feac7e8a15828116bd700b644560714496d` clean, control `d76299e728b5026df87c39c17ad9d723f759ce5f` / CHECKPOINT `1f6e82c8515981b45667899f5f1eb120247ee31805a7e401f277643c41b72c05`.
+
+Current-control v0.2.4.1 lifecycle lineage had already completed before this recovery-side repair work was recognized: artifact `81d8d42b2280e249f13d4a5c30f588a1784d9c6bc0c60e4fee0279f611ad53c8`, job `job-c4852891e585` rc0, result `709ba15edfbdc640c313f236daeb8c8abe889a64e03cc8feb50aedcade2ac173`, bounded admission `518c15f8464ea69487a4db5b7d23605b4d18983a684c1819c3d03792dbdf6085`.
+
+Qualified only normal-descendant termination after immediate kill-on-close Job closure. Explicit `CREATE_BREAKAWAY_FROM_JOB`, service/WMI/COM escape, network egress, production integration and global runtime law remain unearned.
+
+Recovery-side sibling `1faa37259781fd0b3f09b50855a27b2000c72807396701a31cbdd7d65c41194e` was preserved against stale control and remains UNEXECUTED. A currentness-only sibling `541d471035e6667be61e281e4f08078e7a22f10165cd38ee40982548f7ecee53` was also preserved before the already-qualified lineage was rediscovered; it too remains UNEXECUTED and redundant. Neither SHALL be executed or treated as competing qualification lineage.
+
+Independent fresh clone of current control `d76299e...` reproduced exact HEAD/clean tree, CHECKPOINT `1f6e82c...`, verifier PASS 145.
+
+Attempt Store current readback after redundant capture: 157 blobs / 162 attempts / 241 events, integrity ok.
+
+`PRESERVED_REDUNDANT_SIBLING != CURRENT_SECURITY_FRONTIER`.
+`UNEXECUTED_REDUNDANT_ATTEMPT != REPLAY_REQUIREMENT`.
+
+Immediate coordinated gate: advance `pcmmad/project-control` from `d76299e...` to a successor carrying current v0.2.4.1 result/admission + repaired arm state; only after fresh-clone closure create a NEW non-network explicit-breakaway Attempt.

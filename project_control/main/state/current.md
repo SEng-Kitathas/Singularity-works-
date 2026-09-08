@@ -173,3 +173,11 @@ If live state is unchanged, execute the selected preserved attempt exactly once 
 
 ## POST-ROLLOVER COORDINATED CURRENTNESS — 2026-09-07
 Durable control is `f59a32946cea1af64e427a4d9db64a7075f691dd` / CHECKPOINT `64f1804e9d6ec64b1638cacbf25bd8963ad967958a1f2847e4d3a352c887a589`, fresh-clone verified PASS 130. App source remains `43aa7fe...` / Gen14. App artifact `99ef2cbbc08eef598fb9c8b02ae38d5b9d88a3c4fcde576b96cf047b1942185e` executed once as `job-485c0f471477`; executor finality is `SUPERVISION_LOST`, exit unknown. App uncertainty-aware result `86833629ebd032f56dbc900145d40771dc38862fc1416c0ddfe88fd4e35af022` is preserved and **NOT_ADMITTED**; Store 141/141/220 integrity ok. Main/Core anchor remains `a7b4511734b1a1e507230308e75b31175aef4c4a`; no Core/product authority delta. Current mode for this seam is AUDIT.
+
+
+## App lifecycle cross-arm currentness — 2026-09-08
+Control `d76299e728b5026df87c39c17ad9d723f759ce5f` / CHECKPOINT `1f6e82c8515981b45667899f5f1eb120247ee31805a7e401f277643c41b72c05`. App v0.2.4.1 result `709ba15edfbdc640c313f236daeb8c8abe889a64e03cc8feb50aedcade2ac173` / admission `518c15f8464ea69487a4db5b7d23605b4d18983a684c1819c3d03792dbdf6085` is bounded normal-descendant Job-close evidence only. Explicit breakaway remains unearned. Main/Core anchor unchanged. Next coordinated step: control successor before explicit-breakaway App pressure.
+
+
+## App redundant-sibling cross-arm currentness — 2026-09-08
+App Store current readback is 157/162/241 integrity ok. Current admitted App lifecycle lineage remains `81d8d42b... -> 709ba15e... -> 518c15f8...`; preserved siblings `1faa3725...` and `541d4710...` are redundant/unexecuted. Main/Core anchor remains unchanged.

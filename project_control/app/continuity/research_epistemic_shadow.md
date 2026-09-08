@@ -35,7 +35,7 @@ Bounded security qualification:
 - qualification receipt `3d27639447f1d47ac71e892a766444a3e7c8627ff3120b791ecf4470ebeedda6`;
 - protected-process implementation unchanged from the original Attempt-0 primitive.
 
-Attempt Store current readback: 151 blobs / 155 attempts / 234 events, integrity ok, WAL/FULL.
+Attempt Store current readback: 157 blobs / 162 attempts / 241 events, integrity ok, WAL/FULL.
 
 Gen13 and earlier generations remain historical/source-stale against current App. Original Attempt-0 and v0.1.1 failures remain immutable evidence.
 
@@ -160,13 +160,12 @@ Machine success is supporting evidence only.
 Update this RES when a new wider-bypass attempt is preserved/executed, a bypass is found, the current protected-process scope is widened or demoted, production launch-site integration changes, a broker allow path is embodied, real provider transport begins, OAuth/secret-storage architecture changes, checkpoint semantic restoration/currentness is qualified, GitHome/Vault gains consequence-bearing implementation, or a security assumption is promoted/demoted/contradicted.
 
 ## 12. Current research-to-do
-1. Create a NEW v0.2.4.1 repair Attempt changing only the unprotected positive-control stdio from capture pipes to `DEVNULL`.
-2. Preserve/read the repair artifact before execution; do not edit or rerun v0.2.4 first Attempt.
-3. Execute the repair once and preserve exact result before lifecycle admission.
-4. Keep child command, protected phase, liveness probe, claim ceiling and no-network scope unchanged.
-5. A valid PASS may qualify only normal-descendant Job-close termination; explicit breakaway remains separate.
-6. Keep provider/network/production claims unchanged and global egress law UNEARNED.
-7. Keep Core checkpoint restoration identity separate P1 with null IDs.
+1. Advance `pcmmad/project-control` from `d76299e728b5026df87c39c17ad9d723f759ce5f` to a successor carrying current v0.2.4.1 result/admission and repaired arm state.
+2. Preserve `1faa3725...` and `541d4710...` as unexecuted redundant/stale repair evidence; do not run either.
+3. Only after fresh-clone control closure create a NEW non-network explicit `CREATE_BREAKAWAY_FROM_JOB` discriminator.
+4. Keep network-bearing breakaway pressure blocked until explicit breakaway lifecycle behavior is measured.
+5. Keep provider/network/production claims unchanged and global egress law UNEARNED.
+6. Keep Core checkpoint restoration identity separate P1 with null IDs.
 ## R4.4 research-method addendum — 2026-09-04
 Truth status: VERIFIED process-package adoption; RES authority remains NONE_BY_CONTENT.
 
@@ -447,3 +446,34 @@ Truth status: **VERIFIED preservation/currentness evidence / PRESERVED / UNEXECU
 `UNPROTECTED_HARNESS_INVALID != PROTECTED_LIFECYCLE_FAILURE`.
 
 Repair scope SHALL be positive-control stdio only: replace captured pipes with `DEVNULL`; preserve root/child command, protected phase, liveness probe and claim ceiling unchanged.
+
+## Wider egress v0.2.4.1 Job-lifecycle repair preservation — 2026-09-08
+Truth status: VERIFIED preservation/currentness evidence; execution **PRESERVED / UNEXECUTED**; RES authority NONE_BY_CONTENT.
+
+- Original v0.2.4 Attempt/result remain immutable HARNESS_INVALID: artifact `b3e8470932b446edc2fdcdf6f6151b8d3ffea3b2962b56114bb3423c627f52cf`, first result `c6366904038e45cb0ec9712b9aeb34f016220786e731bdfb7a654097e2601710`.
+- New Attempt `attempt-egress-wider-v0-2-4-1-normal-descendant-job-close-lifecycle-repair-first`, parent `attempt-egress-wider-v0-2-4-normal-descendant-job-close-first-result`.
+- repair artifact `state/attempt_artifacts/EGRESS_WIDER_V0_2_4_1_NORMAL_DESCENDANT_JOB_CLOSE_LIFECYCLE_REPAIR_20260908.py`, SHA `1faa37259781fd0b3f09b50855a27b2000c72807396701a31cbdd7d65c41194e`, 325 lines; syntax PASS and complete semantic read 325/325 before capture.
+- exact diff changes only repair lineage/schema/docstring plus unprotected positive-control stdio from `capture_output=True` / `text=True` to `stdout=DEVNULL` / `stderr=DEVNULL`.
+- root/child command, 30-second sleep, protected phase, `cwd=powershell.parent`, liveness probe, cleanup, claim ceiling and non-network scope unchanged.
+- exact Attempt Store readback true; current observed store 152 blobs / 156 attempts / 235 events, integrity ok.
+
+`POSITIVE_CONTROL_PIPE_TIMEOUT != JOB_CONTAINMENT_RESULT`.
+`REPAIR_SCOPE == UNPROTECTED_POSITIVE_STDIO_TO_DEVNULL_ONLY`.
+`NORMAL_DESCENDANT_JOB_CLOSE_TERMINATION != CREATE_BREAKAWAY_FROM_JOB_DENIAL`.
+`NON_NETWORK_LIFECYCLE_PASS != NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT`.
+
+
+## v0.2.4.1 normal descendant Job-close qualification — 2026-09-08
+Truth status: **VERIFIED BOUNDED NON-NETWORK APP SECURITY EVIDENCE**; RES authority NONE_BY_CONTENT. Artifact `81d8d42b2280e249f13d4a5c30f588a1784d9c6bc0c60e4fee0279f611ad53c8`, result `709ba15edfbdc640c313f236daeb8c8abe889a64e03cc8feb50aedcade2ac173`, admission `518c15f8464ea69487a4db5b7d23605b4d18983a684c1819c3d03792dbdf6085`. Positive normal descendant survives root exit unprotected; protected normal descendant PID is absent after immediate kill-on-close Job closure. This does not test explicit `CREATE_BREAKAWAY_FROM_JOB` or establish any network/runtime law.
+
+## Recovery-side redundant repair reconciliation — 2026-09-08
+Truth status: VERIFIED Attempt/currentness evidence; no security claim change.
+
+- current qualified execution lineage remains artifact `81d8d42b2280e249f13d4a5c30f588a1784d9c6bc0c60e4fee0279f611ad53c8` -> result `709ba15edfbdc640c313f236daeb8c8abe889a64e03cc8feb50aedcade2ac173` -> admission `518c15f8464ea69487a4db5b7d23605b4d18983a684c1819c3d03792dbdf6085`.
+- stale-control repair `1faa37259781fd0b3f09b50855a27b2000c72807396701a31cbdd7d65c41194e` remains preserved/unexecuted.
+- recovery-created currentness sibling `541d471035e6667be61e281e4f08078e7a22f10165cd38ee40982548f7ecee53` is also preserved/unexecuted and redundant because the separate current-control v0.2.4.1 lineage had already executed/admitted before this recovery discovered it.
+- neither redundant sibling SHALL be executed or treated as a competing qualification lineage.
+- current Attempt Store readback after the redundant capture: 157 blobs / 162 attempts / 241 events, integrity ok.
+
+`PRESERVED_REDUNDANT_SIBLING != CURRENT_SECURITY_FRONTIER`.
+`UNEXECUTED_REDUNDANT_ATTEMPT != REPLAY_REQUIREMENT`.

@@ -418,3 +418,7 @@ Cross-arm meaning:
 
 ## App v0.2.1.3 supervision-loss signal — Main RES cross-reference — 2026-09-07
 App exact first execution `job-485c0f471477` produced preserved observation bytes but lost executor finality; App result `86833629ebd032f56dbc900145d40771dc38862fc1416c0ddfe88fd4e35af022` is `NOT_ADMITTED`. Main RES treats this only as cross-arm research signal, authority NONE_BY_CONTENT. Core semantic state is unchanged.
+
+
+## App v0.2.4.1 lifecycle signal — Main RES cross-reference — 2026-09-08
+App bounded admission `518c15f8464ea69487a4db5b7d23605b4d18983a684c1819c3d03792dbdf6085` qualifies normal-descendant Job-close termination only. Main RES treats this as cross-arm research signal, authority NONE_BY_CONTENT. Explicit breakaway and Main/Core semantic state remain unchanged.

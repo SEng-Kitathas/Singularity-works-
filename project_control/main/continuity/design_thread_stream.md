@@ -1538,3 +1538,65 @@ Exact stdout empty SHA `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b
 Cause is unprotected positive-control pipe inheritance: sleeping descendant retained capture-pipe handles, so Python communicate waited EOF and timed out. Protected lifecycle phase was never reached. No Job-containment or breakaway claim is earned.
 
 Next App-only repair changes positive-control stdio to `DEVNULL` only; child/root command, protected phase, cwd, liveness probe and no-network claim ceiling remain unchanged. Original Attempt/result remain immutable. No Main/Core semantic source authority movement.
+
+
+---
+
+## Cross-arm entry — App wider egress v0.2.4.1 normal-descendant Job-close harness repair preserved — 2026-09-08
+Tags: APP, EGRESS-WIDER, JOB-TREE, HARNESS-REPAIR, DEVNULL, PRESERVED
+
+Live recovery superseded the stale rollover execution gate. Current refs: Main `e66c071fc25f8d08bfc7ebf0551948392d652f35`, App `43aa7feac7e8a15828116bd700b644560714496d` clean, control `f59a32946cea1af64e427a4d9db64a7075f691dd` / CHECKPOINT `64f1804e9d6ec64b1638cacbf25bd8963ad967958a1f2847e4d3a352c887a589`.
+
+Original v0.2.4 first result `c6366904038e45cb0ec9712b9aeb34f016220786e731bdfb7a654097e2601710` remains immutable HARNESS_INVALID; protected phase was not reached because unprotected positive-control pipes were inherited by the 30-second descendant.
+
+New repair artifact SHA `1faa37259781fd0b3f09b50855a27b2000c72807396701a31cbdd7d65c41194e`, 325 lines, complete semantic read before capture. The only behavioral repair is positive-control stdout/stderr from captured pipes to DEVNULL; root/child command, protected phase, cwd, liveness probe, cleanup, claim ceiling and no-network scope are unchanged.
+
+Attempt `attempt-egress-wider-v0-2-4-1-normal-descendant-job-close-lifecycle-repair-first` is preserved under the immutable first HARNESS_INVALID result with exact readback. Store 152/156/235, integrity ok. Status **PRESERVED / UNEXECUTED**.
+
+No Main/Core source or authority movement. A valid PASS can qualify only normal-descendant Job-close termination; explicit breakaway and general runtime/network laws remain separate and unearned.
+
+
+---
+
+## CROSS-ARM UPDATE — App v0.2.4.1 normal descendant Job-close bounded qualification — 2026-09-08
+Tags: APP-AWARENESS, PROCESS-TREE, JOB-CLOSE, NO-CORE-PROMOTION
+
+After control `d76299e728b5026df87c39c17ad9d723f759ce5f` fresh-clone closure, App executed current-control repair artifact `81d8d42b2280e249f13d4a5c30f588a1784d9c6bc0c60e4fee0279f611ad53c8` once as `job-c4852891e585`. Exact result `709ba15edfbdc640c313f236daeb8c8abe889a64e03cc8feb50aedcade2ac173` and bounded admission `518c15f8464ea69487a4db5b7d23605b4d18983a684c1819c3d03792dbdf6085` qualify only normal-descendant termination after immediate kill-on-close Job closure. Explicit breakaway was not requested. Store 156/161/240 integrity ok. Main records awareness only; semantic Core anchor remains unchanged.
+
+
+---
+
+## Entry — currentness-only v0.2.4.1.1 sibling reconciled — 2026-09-08
+Tags: RECOVERY, SIBLING-LINEAGE, UNEXECUTED, CHECKPOINT-GATE
+
+A concurrently preserved currentness-only sibling `541d471035e6667be61e281e4f08078e7a22f10165cd38ee40982548f7ecee53` was read completely. It is bound to control `d76299e...`, metadata says behavioral delta NONE, and no execution job exists. Diff against the stale-control DEVNULL repair changes only currentness/lineage/schema/explanatory text. It remains a separate unexecuted sibling and does not supersede the already executed/admitted current-control lineage `81d8d42b... -> 709ba15e... -> 518c15f8...`.
+
+Checkpoint frontier remains the admitted normal-descendant Job-close result; explicit breakaway remains the next unearned class after successor-control closure.
+
+
+---
+
+## CROSS-ARM UPDATE — v0.2.4.1 current fixed point and concurrency classification — 2026-09-08
+Tags: APP-AWARENESS, RECOVERY, LINEAGE, NO-CORE-PROMOTION
+
+App current-control v0.2.4.1 lineage is `81d8d42b... -> 709ba15e... -> 518c15f8...`, with Store 156/161/240 integrity ok and durable control `d76299e...` / CHECKPOINT `1f6e82c8...`. Main Live Shadow header was repaired to this coordinated fixed point; semantic Core anchor remains unchanged.
+
+Concurrent stale-control sibling `1faa3725...` is preserved/unexecuted and not current execution lineage. App file `541d4710...` has no Attempt Store row/job and remains unpreserved/non-authoritative scratch. Main records these distinctions only for cross-arm currentness; no App process-lifecycle evidence is imported into Core authority.
+
+
+---
+
+## Cross-arm entry — recovery reconciliation: App v0.2.4.1 already qualified; control successor is current gate — 2026-09-08
+Tags: RECOVERY, APP, V0.2.4.1, CURRENTNESS, CONTROL-FRONTIER
+
+Live recovery superseded the stale pre-execution handoff. Current refs: Main `e66c071fc25f8d08bfc7ebf0551948392d652f35`, App `43aa7feac7e8a15828116bd700b644560714496d` clean, control `d76299e728b5026df87c39c17ad9d723f759ce5f` / CHECKPOINT `1f6e82c8515981b45667899f5f1eb120247ee31805a7e401f277643c41b72c05`, independently fresh-clone verified PASS 145.
+
+App v0.2.4.1 was already current-control qualified: artifact `81d8d42b2280e249f13d4a5c30f588a1784d9c6bc0c60e4fee0279f611ad53c8`, result `709ba15edfbdc640c313f236daeb8c8abe889a64e03cc8feb50aedcade2ac173`, admission `518c15f8464ea69487a4db5b7d23605b4d18983a684c1819c3d03792dbdf6085`. Main/Core anchor remains unchanged; cross-arm awareness does not import App authority.
+
+Recovery-side artifacts `1faa37259781fd0b3f09b50855a27b2000c72807396701a31cbdd7d65c41194e` and `541d471035e6667be61e281e4f08078e7a22f10165cd38ee40982548f7ecee53` are both preserved/unexecuted redundant siblings. They SHALL NOT be executed or treated as qualification lineage.
+
+App Attempt Store current readback after redundant capture: 157 blobs / 162 attempts / 241 events, integrity ok.
+
+Qualified only normal-descendant Job-close termination. Explicit breakaway, network egress, production integration and global runtime law remain unearned.
+
+Next coordinated gate: successor control checkpoint above `d76299e...` carrying App v0.2.4.1 result/admission and corrected arm state before App creates a NEW explicit-breakaway discriminator.

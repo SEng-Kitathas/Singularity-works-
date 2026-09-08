@@ -126,3 +126,25 @@ Current store: 141 blobs / 141 attempts / 220 events; durable control `f59a32946
 3. Do not repeat v0.2.2 DNS-helper loopback as if it established system resolver or Internet DNS denial.
 4. Next materially different class: prefer **Job/process-tree breakaway pressure** or **proxy/environment indirection**; preserve a NEW Attempt before execution.
 5. Keep provider transport and product-wide `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` blocked.
+
+
+## CONTROL DURABILITY CLOSURE — 2026-09-08
+- Durable control advanced from `f59a329...` to `d76299e728b5026df87c39c17ad9d723f759ce5f` / CHECKPOINT `1f6e82c8515981b45667899f5f1eb120247ee31805a7e401f277643c41b72c05`.
+- Successor was committed directly above predecessor, non-force pushed, and independently fresh-clone verified clean with verifier PASS 145.
+- Control snapshot records v0.2.2 DNS-helper admission, v0.2.3 proxy/environment admission, and immutable v0.2.4 HARNESS_INVALID first result `c6366904038e45cb0ec9712b9aeb34f016220786e731bdfb7a654097e2601710`.
+- Both local targets carry exact Governance Contact locator+token; ACTIVE receipt remains absent, so global ACTIVE remains unearned.
+- Immediate next step remains NEW v0.2.4.1 stdio-only repair; no replay/edit of v0.2.4 Attempt 0.
+
+
+## Immediate P0 — post-v0.2.4.1 bounded qualification
+1. Advance `pcmmad/project-control` from `d76299e728b5026df87c39c17ad9d723f759ce5f` to a successor containing result `709ba15edfbdc640c313f236daeb8c8abe889a64e03cc8feb50aedcade2ac173` / admission `518c15f8464ea69487a4db5b7d23605b4d18983a684c1819c3d03792dbdf6085` and updated arm state.
+2. Do not execute preserved repair siblings `1faa3725...` or `541d4710...`, and do not rerun qualified artifact `81d8d42b2280e249f13d4a5c30f588a1784d9c6bc0c60e4fee0279f611ad53c8`.
+3. After fresh-clone control closure, create a NEW **non-network explicit `CREATE_BREAKAWAY_FROM_JOB`** discriminator.
+4. Keep network-bearing breakaway pressure blocked until explicit breakaway lifecycle behavior is measured.
+5. Product-wide `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` remains unearned.
+
+
+## Current concurrency gate — 2026-09-08
+- Do not execute preserved redundant siblings `1faa3725...` or `541d4710...`.
+- Seal successor control carrying Store 157/162/241 and admission `518c15f8...`.
+- After independent fresh-clone closure, create a NEW non-network explicit `CREATE_BREAKAWAY_FROM_JOB` discriminator.

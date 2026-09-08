@@ -25,6 +25,12 @@ Governance Contact is target-local: the public-Git Main target has the exact val
 ## Current fixed point after v0.2.4 harness diagnosis
 This generation supersedes the previous control-currentness frontier only as an additive checkpoint. Both local development arms now carry the exact Governance Contact locator+token and no ACTIVE receipt; global ACTIVE remains unearned. App bounded security evidence has advanced through DNS-helper and proxy/environment loopback admissions, while v0.2.4 normal-descendant Job-close is HARNESS_INVALID before protected execution. See `CURRENTNESS_AFTER_V0_2_4_20260908.md`.
 
+## Current fixed point after v0.2.4.1 normal-descendant Job-close admission
+The current App security frontier includes a bounded normal-descendant `JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE` lifecycle admission. Explicit Job breakaway remains untested. A separately preserved currentness-only sibling is unexecuted and does not supersede the admitted lineage. See `CURRENTNESS_AFTER_V0_2_4_1_20260908.md`.
+
+## Current fixed point after v0.2.4.1 bounded Job-close qualification
+This generation records the current-control v0.2.4.1 result/admission and repaired coordinated Live Shadow state. Normal-descendant kill-on-close behavior is bounded-qualified only; explicit Job breakaway remains the next non-network prerequisite. Concurrent preserved/unexecuted repair siblings are lineage-classified rather than collapsed. See `CURRENTNESS_AFTER_V0_2_4_1_20260908.md`.
+
 ## Process authority
 - sealed RAHL Engineering Canonical SOP R4.4 carrier `04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc`
 - ICF-CS v1.1 additive continuity/process payload `f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63`

@@ -107,3 +107,13 @@ Completed at `pcmmad/project-control@bfcd19b3e91972de44fa702fe027d09dcab03249`, 
 2. Preserve App classification `86833629ebd032f56dbc900145d40771dc38862fc1416c0ddfe88fd4e35af022` as NOT_ADMITTED while terminal executor status is unknown.
 3. If App cannot recover final status from persisted supervision/journal evidence, create a NEW separately identified reconciliation discriminator.
 4. Main/Core remains unchanged; do not widen semantic authority or product-security claims from cross-arm awareness.
+
+
+## Immediate coordinated step — after App v0.2.4.1 admission
+1. Seal a successor `pcmmad/project-control` checkpoint containing App result `709ba15edfbdc640c313f236daeb8c8abe889a64e03cc8feb50aedcade2ac173` / admission `518c15f8464ea69487a4db5b7d23605b4d18983a684c1819c3d03792dbdf6085` and current arm state.
+2. Preserve Main/Core semantic anchor unchanged.
+3. Only after fresh-clone control closure may App create/execute a NEW non-network explicit `CREATE_BREAKAWAY_FROM_JOB` discriminator.
+
+
+## Current coordinated gate — 2026-09-08
+Seal successor control with App Store 157/162/241 and redundant-sibling classification. Do not execute either repair sibling. After fresh-clone closure App may create a NEW non-network explicit-breakaway Attempt; Main/Core remains unchanged.

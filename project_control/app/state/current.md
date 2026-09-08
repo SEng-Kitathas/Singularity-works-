@@ -207,3 +207,25 @@ Status: **BOUNDED DESCENDANT DNS-HELPER LOOPBACK NON-DELIVERY QUALIFIED / BROADE
 The v0.2.1.3 supervision-lost stronger-UDP lineage remains `NOT_ADMITTED`; it is not replaced or retroactively promoted by v0.2.2.
 
 Resume point: make this load-bearing state durable before the next consequence-bearing bypass class, then move to a materially different process-tree/Job-breakaway or proxy/environment discriminator.
+
+
+## CONTROL DURABILITY CLOSURE — 2026-09-08
+- Durable control advanced from `f59a329...` to `d76299e728b5026df87c39c17ad9d723f759ce5f` / CHECKPOINT `1f6e82c8515981b45667899f5f1eb120247ee31805a7e401f277643c41b72c05`.
+- Successor was committed directly above predecessor, non-force pushed, and independently fresh-clone verified clean with verifier PASS 145.
+- Control snapshot records v0.2.2 DNS-helper admission, v0.2.3 proxy/environment admission, and immutable v0.2.4 HARNESS_INVALID first result `c6366904038e45cb0ec9712b9aeb34f016220786e731bdfb7a654097e2601710`.
+- Both local targets carry exact Governance Contact locator+token; ACTIVE receipt remains absent, so global ACTIVE remains unearned.
+- Immediate next step remains NEW v0.2.4.1 stdio-only repair; no replay/edit of v0.2.4 Attempt 0.
+
+
+## Current security frontier — v0.2.4.1 — 2026-09-08
+Durable control `d76299e728b5026df87c39c17ad9d723f759ce5f` / CHECKPOINT `1f6e82c8515981b45667899f5f1eb120247ee31805a7e401f277643c41b72c05`. App source remains clean/remote-exact `43aa7fe...`, Gen14 MATCH/NORMAL/READY.
+
+v0.2.4.1 current-control artifact `81d8d42b2280e249f13d4a5c30f588a1784d9c6bc0c60e4fee0279f611ad53c8` -> result `709ba15edfbdc640c313f236daeb8c8abe889a64e03cc8feb50aedcade2ac173` -> bounded admission `518c15f8464ea69487a4db5b7d23605b4d18983a684c1819c3d03792dbdf6085`. Positive normal descendant survived unprotected root exit; protected normal descendant was absent after immediate kill-on-close Job closure.
+
+Status: **BOUNDED NORMAL-DESCENDANT JOB-CLOSE TERMINATION QUALIFIED / EXPLICIT BREAKAWAY UNEARNED**. Attempt Store 157/162/241 integrity ok. Stale-control repair sibling `1faa3725...` and recovery currentness sibling `541d4710...` remain preserved/unexecuted; neither is the current execution lineage.
+
+Resume point: checkpoint this load-bearing state before explicit breakaway testing.
+
+
+## REDUNDANT-SIBLING CURRENTNESS RECONCILIATION — 2026-09-08
+Attempt Store current readback is **157 blobs / 162 attempts / 241 events**, integrity `ok`. Current qualification lineage remains `81d8d42b... -> 709ba15e... -> 518c15f8...`. Preserved siblings `1faa3725...` and `541d4710...` are both unexecuted/redundant and SHALL NOT run. Next gate is successor control above `d76299e...`, then a NEW explicit-breakaway Attempt.
