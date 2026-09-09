@@ -249,3 +249,8 @@ Checkpoint `4a10e2fa70fe620ebcaed8d23163b48f2b565a4230831cbc34e771a9b0b585b5` / 
 
 ## Coordinated next step — App v0.2.7.2
 Seal successor control with result `fa355f068636714e3fc6584a2377c783dd5c23a7de369546d7b835acdfe69fb9` / admission `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca` / Store 207/220/299 before causal isolation or new broker/service pressure. No Core promotion.
+
+## V0.2.7.2 CONCURRENT DUPLICATE EXECUTION CORRECTION — CURRENT — 2026-09-09
+- P0: publish/fresh-clone verify successor control carrying App v0.2.7.2 admission + concurrency correction.
+- P0: require atomic single-Attempt execution serialization/idempotency before any new effectful discriminator.
+- P1: only after both gates, select a new causal-isolation or materially distinct broker/service process-tree class.

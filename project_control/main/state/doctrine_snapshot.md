@@ -467,3 +467,7 @@ App admission `518c15f8464ea69487a4db5b7d23605b4d18983a684c1819c3d03792dbdf6085`
 
 ## Cross-arm WMI admission guard — 2026-09-09
 `PROTECTED_WMI_CLASS_BIND_FAILURE != JOB_SPECIFIC_DENIAL`; `APP_BOUNDED_WMI_EVIDENCE != MAIN_CORE_PROMOTION`.
+
+## V0.2.7.2 CONCURRENT DUPLICATE EXECUTION CORRECTION — CURRENT — 2026-09-09
+- Verified orchestration law: result-absence preflight is insufficient against concurrent launch; immutable effectful Attempt identities require atomic reservation/lease/idempotency before execution.
+- v0.2.7.2 bounded WMI result survives provenance correction; broader causality/process/network/runtime claims remain unearned.

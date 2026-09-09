@@ -479,3 +479,6 @@ Verified positive WMI service mediation; protected outcome unadmitted due encode
 
 ## App v0.2.7.2 WMI signal — Main RES — 2026-09-09
 Verified bounded App WMI evidence at `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca`: positive service mediation + protected class-bind failure. Job-specific cause unearned. Main RES authority NONE_BY_CONTENT; Core unchanged.
+
+## V0.2.7.2 CONCURRENT DUPLICATE EXECUTION CORRECTION — CURRENT — 2026-09-09
+Cross-arm operational finding: a no-result preflight cannot serialize concurrent effectful execution. The v0.2.7.2 bounded WMI observation replicated, but immutable Attempt semantics were violated by a ~2.61s race. Treat this as orchestration evidence; require atomic Attempt-key reservation before future launches.

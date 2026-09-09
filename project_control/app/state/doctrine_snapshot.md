@@ -318,3 +318,9 @@ No Main/Core or product promotion follows.
 
 ## v0.2.7.2 WMI evidence guard — 2026-09-09
 `PROTECTED_WMI_CLASS_BIND_FAILURE != JOB_SPECIFIC_DENIAL`; `WMI_CLASS_BIND_FAILURE != WMI_CREATE_DENIAL`; `POSITIVE_WMI_SERVICE_MEDIATION != GENERAL_SERVICE_BROKER_LAW`; `NON_NETWORK_RESULT != NETWORK_EGRESS_RESULT`.
+
+## V0.2.7.2 CONCURRENT DUPLICATE EXECUTION CORRECTION — CURRENT — 2026-09-09
+- New verified orchestration law: **preflight absence of a result is not a sufficient single-execution guarantee under concurrent workers**.
+- `CONCURRENT_DUPLICATE_EXECUTION != AUTHORIZED_REPLAY`; immutable Attempt identity now requires an atomic reservation/lease/idempotency gate before effectful launch.
+- v0.2.7.2 bounded WMI result remains load-bearing: positive `WmiPrvSE.exe` service mediation plus protected WMI class-bind failure `0x20001501`; Job-specific causality and all broader process/network/runtime authority remain unearned.
+- Append-only provenance correction is required instead of rewriting the nominal later-run result/admission.

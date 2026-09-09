@@ -547,3 +547,6 @@ Verified: positive WMI service-mediated creation parent `WmiPrvSE.exe`, child al
 
 ## v0.2.7.2 WMI bounded qualification — 2026-09-09
 Truth: positive WMI service-mediated creation verified; protected local WMI class bind fails at `0x20001501` under combined protected boundary before Create. Result `fa355f068636714e3fc6584a2377c783dd5c23a7de369546d7b835acdfe69fb9`, admission `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca`. Job-specific cause unearned. RES authority NONE_BY_CONTENT.
+
+## V0.2.7.2 CONCURRENT DUPLICATE EXECUTION CORRECTION — CURRENT — 2026-09-09
+Verified operational learning: a read-only/preflight check for missing result IDs is race-prone. Two workers crossed the launch boundary for one immutable Attempt within ~2.61 seconds. This is an execution-control finding, not security-path evidence. The bounded WMI observation replicated across both runs and survives; provenance was repaired append-only under `ea2525a04df310c194eb824b4d605245270097e6f291966e7f0176075226689d`. Future effectful attempts require atomic Attempt-key serialization before launch.

@@ -393,3 +393,10 @@ Control `8da21c41eac3cc2153970341b2259f4148bf6845` / CHECKPOINT `0753ee643f38a2f
 
 ## Current WMI frontier — v0.2.7.2 bounded admission — 2026-09-09
 Control `dbe988b4a6773a79d31935b46984b17fb9c4c421` / CHECKPOINT `f84f5b8886dd56c7c9ec8baa52c34f5c08a3e1890074f76188d9e110a58e6f67`. Lineage `4bf2403ee909154172512bd0c3d0c681fe47c048ffb1eae741331005b005f9dc` -> `fa355f068636714e3fc6584a2377c783dd5c23a7de369546d7b835acdfe69fb9` -> `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca`. Positive WMI service mediation is verified via parent `WmiPrvSE.exe`; protected local `Win32_Process` class bind fails at `0x20001501` under verified AppContainer+immediate Job. `Create` not reached protected. Store 207/220/299 integrity ok. Job-specific cause/general COM-RPC/network/runtime law unearned.
+
+## V0.2.7.2 CONCURRENT DUPLICATE EXECUTION CORRECTION — CURRENT — 2026-09-09
+Control remains `dbe988b4a6773a79d31935b46984b17fb9c4c421` / CHECKPOINT `f84f5b8886dd56c7c9ec8baa52c34f5c08a3e1890074f76188d9e110a58e6f67` pending successor publication. App source remains `43aa7feac7e8a15828116bd700b644560714496d`, clean/remote-exact.
+
+The frozen v0.2.7.2 artifact `4bf2403e...` was executed **twice concurrently** under one immutable Attempt ID. Chronological-first stdout is `03bde566428ee513656267b8317d558520ed975a8dc4c4e715f9ac68826f8a68`; the nominal Store result/admission lineage (`fa355f06...` -> `e82527f7...`) uses later stdout `e7ec25ee...`. Append-only correction `ea2525a04df310c194eb824b4d605245270097e6f291966e7f0176075226689d` supersedes chronology and `same_attempt_rerun=false` only. Both runs converge on the same bounded result: positive WMI service mediation via `WmiPrvSE.exe`; protected class bind fails at `0x20001501`/low16 `0x1501` before Create. Job-specific causality/general COM-RPC/network/runtime authority remain unearned. Store **209/223/302**, integrity ok.
+
+**Resume point:** publish/fresh-clone verify a successor control checkpoint carrying the admission + concurrency correction. Before any new effectful discriminator, add a single-Attempt serialization/idempotency guard; preflight-only duplicate prevention is now disproven.

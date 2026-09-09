@@ -289,3 +289,18 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 `PROTECTED_WMI_CLASS_BIND_FAILURE != JOB_SPECIFIC_DENIAL`
 `WMI_CLASS_BIND_FAILURE != WMI_CREATE_DENIAL`
 `WMI_WIN32_PROCESS_PATH != ALL_COM_RPC_PROCESS_CREATION`
+
+## V0.2.7.2 CONCURRENT DUPLICATE EXECUTION CORRECTION — CURRENT — 2026-09-09
+- **Supersedes only chronology/counts and same-attempt replay metadata in the preceding v0.2.7.2 admission block.** The bounded WMI conclusion survives.
+- Frozen artifact `4bf2403ee909154172512bd0c3d0c681fe47c048ffb1eae741331005b005f9dc` was executed twice by concurrent workers under the same immutable Attempt identity. This was an orchestration race, not an authorized replay.
+- Chronological first stdout: `03bde566428ee513656267b8317d558520ed975a8dc4c4e715f9ac68826f8a68`, log creation `2026-09-09T21:03:42.9222286Z`, positive PID 30880. Later concurrent stdout preserved in the nominal result lineage: `e7ec25ee0e09ede487c5a71bb6c02c1bc86fd4fe74be574af34080392004e4a2`, creation `2026-09-09T21:03:45.5317191Z`, positive PID 15276.
+- Both executions independently match on artifact/command hashes, positive `WmiPrvSE.exe` mediation, child alive + cleanup, protected AppContainer/immediate Job/zero capabilities/no inherited handles, protected `WMI_CLASS_BIND_FAILURE`, and HRESULT low16 `0x1501`.
+- Existing result `fa355f068636714e3fc6584a2377c783dd5c23a7de369546d7b835acdfe69fb9` and bounded admission `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca` remain semantically valid but refer to the later concurrent execution.
+- Append-only correction `ea2525a04df310c194eb824b4d605245270097e6f291966e7f0176075226689d`; actual first stdout/stderr preserved under correction-specific Attempt IDs.
+- Attempt Store: **209 blobs / 223 attempts / 302 events**, integrity ok / WAL / FULL.
+- **Current blocker:** no further effectful discriminator execution until a single-Attempt serialization/idempotency guard exists; this frozen Attempt SHALL NOT run again.
+- Next: checkpoint this corrected admission/provenance boundary across control, then repair orchestration before selecting the next causal-isolation or distinct broker/service class.
+
+`CONCURRENT_DUPLICATE_EXECUTION != AUTHORIZED_REPLAY`  
+`BOUNDED_RESULT_SURVIVES != PROVENANCE_ERROR_IGNORED`  
+`WMI_BIND_DENIAL != JOB_SPECIFIC_DENIAL`

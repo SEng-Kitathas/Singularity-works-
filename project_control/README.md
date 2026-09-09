@@ -53,3 +53,7 @@ Server successor admission stream: 23 artifacts / 3,116 deterministic lines / SH
 
 ## Durable predecessor / next frontier
 Verified predecessor `pcmmad/project-control@a95ec5355b6946927eec6403a1764491f837e9e2` / CHECKPOINT `09bdf45b6aa912da4f97e4f142387dc80f9ac093a5fab7885f004e1ed9aecc7d`. This generation must become remotely durable and fresh-clone verified before a NEW v0.2.5.2 may be frozen. After closure, remeasure the exact `runSync.command` plane immediately; only if silent-breakaway compatibility still holds may the new sibling use unchanged breakaway discriminator behavior.
+
+
+## Current fixed point after v0.2.7.2 duplicate-execution correction
+The bounded WMI class-bind admission survives, but two concurrent workers executed the same immutable v0.2.7.2 Attempt approximately 2.61 seconds apart. The nominal Store result/admission refer to the later execution; the chronological-first stdout and an append-only correction are now preserved separately. No further effectful discriminator is permitted until atomic single-Attempt execution serialization/idempotency is implemented and race-verified. See `CURRENTNESS_AFTER_V0_2_7_2_CONCURRENT_DUPLICATE_EXECUTION_CORRECTION_20260909.md`.

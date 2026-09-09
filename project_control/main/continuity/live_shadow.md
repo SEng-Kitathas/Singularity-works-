@@ -225,3 +225,10 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 - Positive WMI service mediation verified; protected local class bind fails `0x20001501` before Create under combined protected boundary.
 - Job-specific cause/general COM-RPC/network law unearned. App Store 207/220/299 integrity ok. Main/Core unchanged.
 - Next: successor control checkpoint before causal isolation or another broker/service class.
+
+## V0.2.7.2 CONCURRENT DUPLICATE EXECUTION CORRECTION — CURRENT — 2026-09-09
+- Paired App evidence correction: frozen WMI v0.2.7.2 artifact `4bf2403ee909154172512bd0c3d0c681fe47c048ffb1eae741331005b005f9dc` was executed twice by concurrent workers under one immutable Attempt identity. This was an orchestration race, not authorized replay.
+- Chronological first stdout `03bde566428ee513656267b8317d558520ed975a8dc4c4e715f9ac68826f8a68` at `2026-09-09T21:03:42.9222286Z`; later Store stdout `e7ec25ee0e09ede487c5a71bb6c02c1bc86fd4fe74be574af34080392004e4a2` at `2026-09-09T21:03:45.5317191Z`.
+- Both executions converge on positive `WmiPrvSE.exe` service mediation and protected `WMI_CLASS_BIND_FAILURE` `0x20001501`/low16 `0x1501`; existing result `fa355f06...` and admission `e82527f7...` remain semantically valid but are later-run lineage.
+- Append-only correction `ea2525a04df310c194eb824b4d605245270097e6f291966e7f0176075226689d`; App Attempt Store **209/223/302**, integrity ok/WAL/FULL.
+- Job-specific causality/general COM-RPC/network/runtime authority remain unearned. No further effectful discriminator execution until corrected control checkpoint + single-Attempt serialization/idempotency guard.

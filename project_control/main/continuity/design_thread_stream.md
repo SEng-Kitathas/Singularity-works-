@@ -1743,3 +1743,6 @@ App positive WMI service mediation is verified; protected outcome remains unadmi
 
 ## CROSS-ARM UPDATE — App v0.2.7.2 WMI bounded admission — 2026-09-09
 App admission `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca` qualifies positive WMI service mediation plus protected local class-bind failure only. Protected Create not reached; Job-specific causality is unearned. Main records awareness only; Core unchanged.
+
+## 2026-09-09 — PAIRED APP RECOVERY — V0.2.7.2 DUPLICATE EXECUTION CORRECTION
+Fresh Forge-App work detected that two concurrent workers executed frozen v0.2.7.2 under one immutable Attempt identity. Server-log ordering proves stdout `03bde566...` was chronological first and `e7ec25ee...` was later, although the latter became the nominal Store result/admission lineage. Both executions independently reproduce the same bounded WMI service-mediation + protected class-bind failure. App preserved correction `ea2525a0...`, first stdout/stderr correction Attempts, and reached Store 209/223/302. Main paired continuity records the same correction; further effectful execution is blocked pending corrected control checkpoint and atomic Attempt-key serialization.
