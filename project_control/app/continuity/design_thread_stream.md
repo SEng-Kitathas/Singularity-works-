@@ -1787,6 +1787,13 @@ Control `dbe988b4a6773a79d31935b46984b17fb9c4c421` / CHECKPOINT `f84f5b8886dd56c
 ## Entry — v0.2.7.2 WMI class-bind bounded admission — 2026-09-09
 After encoder-only repair, exact artifact `4bf2403ee909154172512bd0c3d0c681fe47c048ffb1eae741331005b005f9dc` executed once. Positive WMI Create again proved service mediation (`WmiPrvSE.exe` parent), child liveness and cleanup. Protected receipt was valid and stage classification succeeded: local `Win32_Process` class bind failed with encoded `0x20001501` / low16 `0x1501`, before `Create`. Exact result `fa355f068636714e3fc6584a2377c783dd5c23a7de369546d7b835acdfe69fb9` reread before bounded admission `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca`. Store 207/220/299 integrity ok. No Job-specific causality, all-COM/RPC, network or runtime-law promotion.
 
+
+---
+
+## Entry — v0.2.7.2 WMI bounded-admission successor control closed — 2026-09-09
+Control `ebfbd0e0615073e36c38e97ac91929d283701925` / CHECKPOINT `609b6906e889b6f251d7110bdd59d82c32821ae917b5de1cc179e7915f371e79` fresh-clone verified PASS 207 with exact result/admission bytes. Current frontier remains bounded WMI class-bind evidence under combined protected boundary; no new class started.
+
+
 ## 2026-09-09 — ASSISTANT — RECOVERY / AUDIT — V0.2.7.2 CONCURRENCY CORRECTION
 After receiving the Forge-App handoff, the assistant advanced through the WMI v0.2.7.x frontier. A concurrent worker published control `dbe988b4...` / CHECKPOINT `f84f5b88...`, then froze v0.2.7.2 artifact `4bf2403e...`. The assistant independently verified the artifact and executed it synchronously after a clean drift gate.
 
@@ -1794,5 +1801,16 @@ A second worker executed the same immutable Attempt about 2.61 seconds later and
 
 Existing result `fa355f06...` and bounded admission `e82527f7...` remain semantically valid but are later-run evidence. Append-only correction `ea2525a0...` plus correction-specific chronological-first stdout/stderr Attempts were preserved and read back. Store became 209 blobs / 223 attempts / 302 events. The assistant blocked further effectful discriminators until a single-Attempt serialization/idempotency guard is checkpointed and verified.
 
+
 ## 2026-09-09 — ASSISTANT — AUDIT/R5 — ATTEMPT EXECUTION IDEMPOTENCY GUARD QUALIFIED
 After checkpointing the v0.2.7.2 duplicate-execution correction at control `07c0d657...` / CHECKPOINT `7657e49a...`, the assistant pressure-tested the server-native `submitProjectExecution` idempotency rail with harmless jobs. Completed same-payload resubmission returned the same job with `replayed=true`; same key with a different command failed `IDEMPOTENCY_KEY_CONFLICT`; two in-flight same-payload resubmissions failed closed as `PROJECT_MUTATION_GUARD_BUSY` while the originals remained the only jobs and later completed rc0. Historical job records showed earlier Forge-App executions already used idempotency keys, localizing v0.2.7.2 as a regression to keyless `runSync`. Evidence `f0e49f29...` and receipt `a41c2a5e...` were exact-captured/read back; Store became 211/225/304. Future immutable effectful first execution must use Attempt-bound `submitProjectExecution`; control checkpoint publication is the next gate before security work resumes.
+
+
+## 2026-09-09 — ASSISTANT — CHECKPOINT CLOSED — IDEMPOTENCY GUARD CONTROL DURABLE
+The assistant published non-force control `0f663398cd07c36637ca939a2ab42a9a2001b07e`, direct child of `07c0d657...`, carrying the Attempt execution idempotency qualification. CHECKPOINT `7f86fdff...`; committed-blob manifest 215/215 exact; remote exact; independent clean fresh clone verifier PASS 215. Main/App refs remained `e66c071...` / `43aa7fea...`; App source clean; Store 211/225/304 integrity ok. The orchestration blocker is closed bounded on the current server path. Next work returns to discriminator selection; conservative lead is a non-creating WMI combined-boundary causal-isolation design before any more invasive broker/service path.
+
+
+---
+
+## Entry — App role corrected to frontend UX arm — 2026-09-09
+User clarified that PCMMAD Lab's job is Forge itself and Singularity Works as a whole; App handles the frontend user experience. App current-looking broad product/runtime/security ownership wording is superseded for current scope while historical evidence is retained. App now routes as frontend UX/client embodiment and pressure surface consuming Forge/system contracts. Control `0f663398cd07c36637ca939a2ab42a9a2001b07e` / CHECKPOINT `7f86fdffc98d169a203cc7cccf29b13789e2118ac05d8a914a31a62cfdf13f1f`.

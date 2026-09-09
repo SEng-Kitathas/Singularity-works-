@@ -290,6 +290,14 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 `WMI_CLASS_BIND_FAILURE != WMI_CREATE_DENIAL`
 `WMI_WIN32_PROCESS_PATH != ALL_COM_RPC_PROCESS_CREATION`
 
+
+## V0.2.7.2 SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Durable control `ebfbd0e0615073e36c38e97ac91929d283701925` / CHECKPOINT `609b6906e889b6f251d7110bdd59d82c32821ae917b5de1cc179e7915f371e79` is non-force published and independently fresh-clone verified PASS 207.
+- Exact v0.2.7.2 result `fa355f06...` and bounded admission `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca` reproduce in the fresh clone.
+- Current fixed point: positive WMI service mediation + protected local WMI class-bind failure qualified; Job-specific causality/general COM-RPC/network/runtime law unearned.
+- No new causal-isolation or broker/service class has been opened by this pointer update.
+
+
 ## V0.2.7.2 CONCURRENT DUPLICATE EXECUTION CORRECTION — CURRENT — 2026-09-09
 - **Supersedes only chronology/counts and same-attempt replay metadata in the preceding v0.2.7.2 admission block.** The bounded WMI conclusion survives.
 - Frozen artifact `4bf2403ee909154172512bd0c3d0c681fe47c048ffb1eae741331005b005f9dc` was executed twice by concurrent workers under the same immutable Attempt identity. This was an orchestration race, not an authorized replay.
@@ -305,6 +313,7 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 `BOUNDED_RESULT_SURVIVES != PROVENANCE_ERROR_IGNORED`  
 `WMI_BIND_DENIAL != JOB_SPECIFIC_DENIAL`
 
+
 ## ATTEMPT EXECUTION IDEMPOTENCY GUARD — QUALIFIED — 2026-09-09
 - Server execution-control evidence `f0e49f29d6c55a03d5da16a57124340847586032aae3b96e73e41334d8db5ac2`; maintenance receipt `a41c2a5e8bacdb25c32e4bb7660d9b93d985e09be6964123a886512a60f0bbcc`; both exact-captured/read back in Attempt Store.
 - Store **211 blobs / 225 attempts / 304 events**, integrity ok / WAL / FULL.
@@ -316,3 +325,19 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 
 `EFFECTFUL_FIRST_EXECUTION_REQUIRES_IDEMPOTENT_SUBMISSION`  
 `EXECUTION_CONTROL_QUALIFICATION != SECURITY_AUTHORITY`
+
+
+## IDEMPOTENCY GUARD CONTROL — DURABLE / FRESH-CLONE VERIFIED — 2026-09-09
+- Main `e66c071fc25f8d08bfc7ebf0551948392d652f35`; App `43aa7feac7e8a15828116bd700b644560714496d`, clean/remote-exact; control **`0f663398cd07c36637ca939a2ab42a9a2001b07e`**, direct child of `07c0d657...`; CHECKPOINT **`7f86fdffc98d169a203cc7cccf29b13789e2118ac05d8a914a31a62cfdf13f1f`**; clean independent fresh clone verifier **PASS 215**.
+- Attempt Store remains **211/225/304**, integrity ok/WAL/FULL; last event is idempotency-guard receipt.
+- Execution-integrity P0 is **CLOSED BOUNDED** on current server path: immutable effectful first executions use Attempt-bound `submitProjectExecution`; keyless `runSync` remains forbidden for that role.
+- Security authority did not widen. v0.2.7.2 remains positive WMI service mediation + protected combined-boundary class-bind failure only; Job-specific causality unearned.
+- **Next frontier:** R4/R5 select/freeze/read/preserve a NEW branch. Conservative lead is a non-creating WMI boundary causal-isolation diagnostic before a more invasive task/service path; this is a next-action preference, not yet evidence. Any later effectful first execution SHALL use the qualified idempotent rail.
+
+
+## APP FRONTEND UX SCOPE — CURRENT — 2026-09-09
+- User-directed scope: App is the **frontend/user-experience arm**.
+- PCMMAD Lab primary ownership is Forge + Singularity Works whole-system work, not App-centric security/runtime development.
+- Earlier Live wording “Continue autonomous App product/runtime/security work” is superseded as the primary mandate; retain as chronology.
+- App security/runtime evidence remains valid subordinate evidence and may be used where frontend integration/system qualification requires it.
+- Current correction binds to control `0f663398cd07c36637ca939a2ab42a9a2001b07e` / CHECKPOINT `7f86fdffc98d169a203cc7cccf29b13789e2118ac05d8a914a31a62cfdf13f1f`, fresh-clone verifier PASS 215.

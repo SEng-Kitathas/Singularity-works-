@@ -218,9 +218,9 @@
       "sha256": "b5a2e35f300c6f72d93fc80b877ef0478a3628442b705e50f6893cbceafb5094"
     },
     {
-      "bytes": 5042,
+      "bytes": 7933,
       "path": "app/checkpoints/PROJECT_INTENT_CURRENT.md",
-      "sha256": "16791dcf77cb9feef82d9a7b753a72c366c2c7f6997c449b6177b5a47debe331"
+      "sha256": "51ef8ec3359ee707984d1f3d6ff85b5a03f0db42d98aaabee486ef660274b345"
     },
     {
       "bytes": 15357,
@@ -238,19 +238,19 @@
       "sha256": "6c5080d0c950297490139e7b120964dddb7936af5076a967d1200904456cb795"
     },
     {
-      "bytes": 167742,
+      "bytes": 169464,
       "path": "app/continuity/design_thread_stream.md",
-      "sha256": "10954ffad6dfb2d7b44b9bf48f2f11040eec60e3aedd8d621cd91a3089b329ca"
+      "sha256": "eaafa4c861f857be0649a94acac7bd74da26a23e0bf80aa063d5acb22300e97c"
     },
     {
-      "bytes": 35960,
+      "bytes": 38611,
       "path": "app/continuity/live_shadow.md",
-      "sha256": "54b0d5ac8717d264cc86470b8c4f5fb2e29b2d00cdb3accd729e44f334e0dad1"
+      "sha256": "c9c98ef7d85ec35780204ace7c1f08e592b4d570d2fed400fcdbb9050fde99b9"
     },
     {
-      "bytes": 48191,
+      "bytes": 48677,
       "path": "app/continuity/research_epistemic_shadow.md",
-      "sha256": "b4a29e21ce2e3f8f8dab1597689bbda4caf815c0ad0f788db15c6e9bb8d5298b"
+      "sha256": "aedef675098b92943890a6e815315431240b05a7893cfc65dee21d84a072cae8"
     },
     {
       "bytes": 3197,
@@ -441,6 +441,11 @@
       "bytes": 5613,
       "path": "app/maintenance/SEMANTIC_FIELD_MAIN_APP_FORWARD_SYNC_REMOTE_CLOSURE_20260904.md",
       "sha256": "cbebe47192ae3a8bd7e8ce8d27c0ede416ca4374f886aa64b133c60cdad56273"
+    },
+    {
+      "bytes": 1412,
+      "path": "app/notes/maintenance/APP_FRONTEND_UX_SCOPE_CORRECTION_CROSS_ARM_20260909.md",
+      "sha256": "e28c2e2e37c3f87481b3063cd714201e161fee722cf4020803a20406dc22f435"
     },
     {
       "bytes": 3917,
@@ -673,9 +678,9 @@
       "sha256": "01461d5f61a7e1cc85a8365ff11565df7ada1069c46b9a90ea036394dbc762b5"
     },
     {
-      "bytes": 43897,
+      "bytes": 45550,
       "path": "app/state/current.md",
-      "sha256": "a698f06ba3a163e8a7349db53745ec8408fffd06a1b14232f60baa6adae6abea"
+      "sha256": "d5ba0aaac05a6f414bbda46a02b18dafd34b3812e48e99d6936c41c2f36a19aa"
     },
     {
       "bytes": 4215,
@@ -708,9 +713,9 @@
       "sha256": "e3e859989524e5900abc353cd9b7719f3d7173c8d80104b4afe30dde05c68e9d"
     },
     {
-      "bytes": 30435,
+      "bytes": 31064,
       "path": "app/state/doctrine_snapshot.md",
-      "sha256": "b0c323fccd3a3d81b965282a09f61e326ca0d3fc4023db1ca8bb2da7a01a5e05"
+      "sha256": "8de57bc77ad725da9943b11f070a279a3ce6f0991fbfe335e045465b37c59e19"
     },
     {
       "bytes": 2879,
@@ -718,24 +723,34 @@
       "sha256": "b1d785fae561756b05daa3c268e0a0e13a913c0c529d8b0ba105a84e817e1b2b"
     },
     {
-      "bytes": 34274,
+      "bytes": 36450,
       "path": "app/state/next_steps.md",
-      "sha256": "354186316550ef4ed609f7ac40328aad2916e74839af6f98eeade37c0240f4f9"
+      "sha256": "38702a02c54591f7c9aedf6801ba893ad72da37a75e7522eeabcd273dd5cc793"
     },
     {
-      "bytes": 24784,
+      "bytes": 23470,
+      "path": "app/state/PROJECT_COMMANDERS_INTENT_CURRENT.md",
+      "sha256": "c2e18eba4aa0b526bd8e308d09ad3c5bb95f7c6887a5d493ec300f87d0451137"
+    },
+    {
+      "bytes": 25131,
       "path": "app/state/revisit_ledger.md",
-      "sha256": "f5f01f295bf08c405f74af4dd1eacd58ce71fae06d08fb95794c7f5374c1cb6e"
+      "sha256": "8ff0539b72d45e308c768db78f7f85686ab0fa690a9a6596a1e933176313cf01"
     },
     {
-      "bytes": 37856,
+      "bytes": 38730,
       "path": "app/state/trace_matrix.md",
-      "sha256": "22f608df9b2f6581bb8fc533bc17e5a28f03ea342f0a7947233335c8debfa066"
+      "sha256": "7c14e8174d1c13affa7d4df9d08291341c59a21a4b79dcd65731917d76b8c7cc"
     },
     {
       "bytes": 1161,
       "path": "CONTINUITY_POINTER_REPAIR_20260908.md",
       "sha256": "bf1843d045940e1c3693e43e26dd2f79cb2c13c74da10616a4398ab362e5c7fd"
+    },
+    {
+      "bytes": 1815,
+      "path": "CURRENT_SCOPE_FORGE_SINGULARITY_WORKS_PRIMARY_APP_FRONTEND_20260909.md",
+      "sha256": "172edc0d965acdabd4b6b778e0d680a1ee52ac78cee6aa2b5364c4c27f9da05d"
     },
     {
       "bytes": 2574,
@@ -803,9 +818,9 @@
       "sha256": "b5a2e35f300c6f72d93fc80b877ef0478a3628442b705e50f6893cbceafb5094"
     },
     {
-      "bytes": 5033,
+      "bytes": 8255,
       "path": "main/checkpoints/PROJECT_INTENT_CURRENT.md",
-      "sha256": "2b26df19f4721c462c7fdafc2205a9ac03722f48e7f5fd95fc0280d9f3b775dc"
+      "sha256": "c4c35b1a67efedd1be26a64bdbbf0f21ed3a6eb93357e0512b3714722b1518ab"
     },
     {
       "bytes": 15357,
@@ -823,19 +838,19 @@
       "sha256": "6c5080d0c950297490139e7b120964dddb7936af5076a967d1200904456cb795"
     },
     {
-      "bytes": 176034,
+      "bytes": 177794,
       "path": "main/continuity/design_thread_stream.md",
-      "sha256": "12b9067e37e9b14752da408e5731be754d6e4819324597c74c6447fcf6de48cb"
+      "sha256": "4bcd5a3f41026185ce2e29769d23deb91fe9a6e0a20f626ed98d6e011c94ed1c"
     },
     {
-      "bytes": 26571,
+      "bytes": 28900,
       "path": "main/continuity/live_shadow.md",
-      "sha256": "241c7baa9972a4a658eab9f80fa91fabc08dd9327dc5232e612d7a61b42351d3"
+      "sha256": "7e6e9a406aaa9c1eca5f40b6f0ccf14aaaccb564ce5b4a2d134986b9337c9c73"
     },
     {
-      "bytes": 39553,
+      "bytes": 39834,
       "path": "main/continuity/research_epistemic_shadow.md",
-      "sha256": "58d09beae2ecaa532bc2284b35eb3b70e95120e4871f1fb9d42ae6bb9ed33b0a"
+      "sha256": "03456bbf4629eaf09da63dd9f8f7c21cd71bb59398242030c600f441ab905f5b"
     },
     {
       "bytes": 3071,
@@ -998,6 +1013,11 @@
       "sha256": "595eb28639d97612653498e7158dc23d1fef88999748066715704f7f251f7acc"
     },
     {
+      "bytes": 2685,
+      "path": "main/notes/maintenance/FORGE_SINGULARITY_WORKS_PRIMARY_SCOPE_CORRECTION_20260909.md",
+      "sha256": "fb2871c868e0224cfe3754e45ee31bc58f3de6a6a45e658fa1caa6c1127b50fe"
+    },
+    {
       "bytes": 4555,
       "path": "main/sop/ICF_CS_V1_1_DETACHED_RELEASE_RECEIPT_2026-09-05.json",
       "sha256": "418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c"
@@ -1018,9 +1038,9 @@
       "sha256": "f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63"
     },
     {
-      "bytes": 35105,
+      "bytes": 36737,
       "path": "main/state/current.md",
-      "sha256": "c840809dfc0323886a6279415192733e87a1bb39c553613c673d50f3dcdfd29f"
+      "sha256": "d6e103d90df91e91bedabd5f4c310db600b03c74f57aa8a14a7742a8ec500a75"
     },
     {
       "bytes": 4215,
@@ -1053,24 +1073,29 @@
       "sha256": "8b1bf53adf3ac3fee09a4435f1f6df4518359f767fc76fe8d99df4ed6f44e4ae"
     },
     {
-      "bytes": 43262,
+      "bytes": 43853,
       "path": "main/state/doctrine_snapshot.md",
-      "sha256": "c867b8787598864f91f2ea01e4aab6275943b09f54c7717784c744826daac9ee"
+      "sha256": "8fd6c96d3869ec3802e87ad4cf73403eec6e7d7ccb8cd56873098653beaefdff"
     },
     {
-      "bytes": 25146,
+      "bytes": 26915,
       "path": "main/state/next_steps.md",
-      "sha256": "64e9426320e267f6bc859d718eada876ebb44fb82bc88434c68788469d26cde3"
+      "sha256": "7b26b524f1edab3e96e03ce0a7d3c447436feb53bbb582427ffac5044a311c15"
     },
     {
-      "bytes": 30489,
+      "bytes": 23717,
+      "path": "main/state/PROJECT_COMMANDERS_INTENT_CURRENT.md",
+      "sha256": "76514277e81fa6d81018c3cd943c917890c5e1645b22693f0ede19b77abd4578"
+    },
+    {
+      "bytes": 30774,
       "path": "main/state/revisit_ledger.md",
-      "sha256": "b03df09856448226eb7b380c61c5bbb58dc99c2dcdd0f179aaf3f46bb05b6676"
+      "sha256": "93e592d6979a45265563045a2e5a8314c391105df25ed6dc90aca875c1fef4e9"
     },
     {
-      "bytes": 52057,
+      "bytes": 52955,
       "path": "main/state/trace_matrix.md",
-      "sha256": "66e7e691e79498724fb8ddacd489afb45b86c9b6e154427593a643524353a84d"
+      "sha256": "6e0d9f5cb78827587149c7f5bf60b043e305a17fe13e1577f759a8569116a4e4"
     },
     {
       "bytes": 1618,
@@ -1078,9 +1103,9 @@
       "sha256": "2fbf22e5e9eb92c8a72972f3d166fb97c24055c0668a37ef594fcbb4236eae02"
     },
     {
-      "bytes": 6902,
+      "bytes": 7296,
       "path": "README.md",
-      "sha256": "0ae1c668837efa6e6a97b341efc9f891a6a3ff7d47cdf763d316e4454d9022ae"
+      "sha256": "5fda6d769dde86bf77d1189bd2509bd9abd965241988ac13269bccea8770e30d"
     },
     {
       "bytes": 3271,
@@ -1278,7 +1303,7 @@
       "sha256": "f5dba1193203a03bbce3779179ce5b6947231dff1ae65f505e5024e3ec5ee207"
     }
   ],
-  "generated_utc": "2026-09-09T21:05:27Z",
+  "generated_utc": "2026-09-09T21:44:48Z",
   "git_copy_policy": {
     "binary_attribute_repair_20260904": "REPAIRED_PREEXISTING_ALL_TEXT_EOL_RULE_BEFORE_CANDIDATE_PUBLICATION_CHECKPOINT",
     "binary_carriers": "*.zip -text; exact bytes required",
@@ -1853,6 +1878,20 @@
     "selected_newer_attempt_id": "attempt-egress-wider-v0-2-1-3-descendant-udp-loopback-cwd-repair-first",
     "selected_newer_attempt_sha256": "99ef2cbbc08eef598fb9c8b02ae38d5b9d88a3c4fcde576b96cf047b1942185e",
     "selected_newer_attempt_status": "PRESERVED_UNEXECUTED_AT_ROLLOVER"
+  },
+  "primary_scope_correction_20260909": {
+    "app_scope_note_sha256": "e28c2e2e37c3f87481b3063cd714201e161fee722cf4020803a20406dc22f435",
+    "app_source_unchanged": "43aa7feac7e8a15828116bd700b644560714496d",
+    "frontier_routing": "REPRIORITIZE_FORGE_MAIN_CORE_AND_WHOLE_SYSTEM_BEFORE_NEW_APP_PRESSURE",
+    "main_scope_note_sha256": "fb2871c868e0224cfe3754e45ee31bc58f3de6a6a45e658fa1caa6c1127b50fe",
+    "main_source_unchanged": "e66c071fc25f8d08bfc7ebf0551948392d652f35",
+    "predecessor_checkpoint": "7f86fdffc98d169a203cc7cccf29b13789e2118ac05d8a914a31a62cfdf13f1f",
+    "predecessor_control": "0f663398cd07c36637ca939a2ab42a9a2001b07e",
+    "product_promotion": false,
+    "runtime_law_earned": false,
+    "security_authority_widened": false,
+    "semantic_core_anchor_unchanged": "a7b4511734b1a1e507230308e75b31175aef4c4a",
+    "status": "FORGE_AND_SINGULARITY_WORKS_WHOLE_PRIMARY__APP_FRONTEND_UX_ARM"
   },
   "project": "Singularity Works / Forge \u2014 Main/Core + App project control",
   "public_main_branch_head_observed": "e66c071fc25f8d08bfc7ebf0551948392d652f35",

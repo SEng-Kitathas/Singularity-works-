@@ -1,5 +1,25 @@
 # Current Project Ingress Pointer — Singularity Works / Forge
 
+## 2026-09-09 FINAL ROLLOVER CONCURRENT-ADVANCE SUPERSESSION
+Status: **CURRENT FINAL ROLLOVER FIXED POINT / SUPERSEDES EARLIER SAME-DAY ROLLOVER POINTERS**
+
+A final live-drift gate during rollover detected a concurrent completed App/control advance. No execution is now running. The correct seal point is:
+- Main `e66c071fc25f8d08bfc7ebf0551948392d652f35`;
+- App `43aa7feac7e8a15828116bd700b644560714496d`, clean/local=remote;
+- durable control `b8c5e6f9c7032e2a25c25ac4b4e50de91183d64c` / CHECKPOINT `59643050ecd2c741ca81253c59f1ce88e9344866a683420a9f90c702d46c1520`, non-force/fresh-clone verified PASS 189;
+- Attempt Store **191 blobs / 201 attempts / 280 events**, integrity ok, WAL/FULL;
+- newest bounded admission: ShellExecuteExW child-lifecycle containment `06161c25977979e740fbc05e826f8bdc56d83759f136c2178a70f7b2a4af965f`, artifact `f649b0c341c53de9988c0bc3fdc0a0d5975904726546121569224dacceec0399`, result `4438e2e5ce5f2bdcb77d88f513af39483ec8f6e8e693ed9b100c4236a2eb2a3e`;
+- ShellExecuteExW did **not** prove an out-of-process shell broker; broker identity/general process-tree/network/runtime-law claims remain unearned.
+
+The previous same-day rollover fixed point `3b17cb3...` / 183/192/271 was accurate when written but is now historical. Fresh-thread live readback remains mandatory.
+
+Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/preserve another **materially distinct non-network process-tree escape class**. Do not repeat `CREATE_BREAKAWAY_FROM_JOB` or ShellExecuteExW lifecycle. A broker-specific branch must prove the broker mechanism itself (for example Shell.Application COM/service/task-style creation) rather than infer broker behavior from ShellExecuteExW.
+
+
+## 2026-09-09 ROLLOVER CURRENT INGRESS
+This supersedes older rollover/currentness sequencing when they disagree. Read `checkpoints/THREAD_ROLLOVER_CURRENT.md` first, then its dated checkpoint, then resume the ICF-CS order. Expected live fixed point before mutation: Main `e66c071fc25f8d08bfc7ebf0551948392d652f35`, App `43aa7feac7e8a15828116bd700b644560714496d`, control `3b17cb3ab64606b98244c979bf8cf4b023323aeb`, CHECKPOINT `defeaca590c0d62eb9c32584f1b745dce1c56fcaf0949cad0daf2ba2aaa99f06`, Gen14 `checkpoint-app-live-0014-43aa7feac7e8`, Attempt Store 183/192/271 integrity ok. Navigation is not proof; live readback remains mandatory.
+
+
 Standard: ICF-CS v1.1
 Purpose: bounded discovery pointer only; navigation is not proof.
 
@@ -67,3 +87,7 @@ This block does not assert that the token is presently present or absent. It rem
 `CURRENT_INGRESS_CONTACTS_LOCATOR != LOCATOR_RESOLVES_ACTIVE`
 `ACTIVATION_TOKEN_PRESENT_AT_ONE_TARGET != GLOBAL_ACTIVE`
 `CARRIER_PRESENT != PROJECT_SPECIFIC_AUTHORITY_REWRITE`
+
+
+## 2026-09-09 APP SCOPE SUPERSESSION — FRONTEND UX ARM
+Current user-directed ownership: PCMMAD Lab works Forge + Singularity Works as the whole system; App is the frontend/user-experience arm. Prior broad App product/runtime/security ownership wording is superseded for current scope. Historical evidence remains valid. See `notes/maintenance/APP_FRONTEND_UX_SCOPE_CORRECTION_CROSS_ARM_20260909.md`. Control `0f663398cd07c36637ca939a2ab42a9a2001b07e` / CHECKPOINT `7f86fdffc98d169a203cc7cccf29b13789e2118ac05d8a914a31a62cfdf13f1f`.

@@ -332,6 +332,14 @@ Current store: 141 blobs / 141 attempts / 220 events; durable control `f59a32946
 4. Do not call protected WMI class-bind failure Job-specific without isolation evidence.
 5. Keep network-bearing pressure and product runtime law blocked.
 
+
+## V0.2.7.2 SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Durable control `ebfbd0e0615073e36c38e97ac91929d283701925` / CHECKPOINT `609b6906e889b6f251d7110bdd59d82c32821ae917b5de1cc179e7915f371e79` is non-force published and independently fresh-clone verified PASS 207.
+- Exact v0.2.7.2 result `fa355f06...` and bounded admission `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca` reproduce in the fresh clone.
+- Current fixed point: positive WMI service mediation + protected local WMI class-bind failure qualified; Job-specific causality/general COM-RPC/network/runtime law unearned.
+- No new causal-isolation or broker/service class has been opened by this pointer update.
+
+
 ## V0.2.7.2 CONCURRENT DUPLICATE EXECUTION CORRECTION — CURRENT — 2026-09-09
 | Priority | Action | Why it matters | Dependency / trigger | Done when |
 |---|---|---|---|---|
@@ -339,9 +347,25 @@ Current store: 141 blobs / 141 attempts / 220 events; durable control `f59a32946
 | P0 | Add single-Attempt execution serialization/idempotency before another effectful discriminator | Two workers executed the same immutable Attempt ~2.61s apart despite no-result preflight | Corrected checkpoint closed | A competing execution for one Attempt key fails closed before process launch and is verified |
 | P1 | Only then select a new causal-isolation or materially distinct broker/service process-tree class | Prevent security archaeology from outrunning execution integrity | P0 orchestration gate | New branch has separate Attempt identity, exact claim ceiling, preserved artifact, and one authorized execution |
 
+
 ## ATTEMPT EXECUTION IDEMPOTENCY GUARD — QUALIFIED — 2026-09-09
 | Priority | Action | Why it matters | Dependency / trigger | Done when |
 |---|---|---|---|---|
 | P0 | Publish and fresh-clone verify successor control carrying execution-idempotency qualification | Current control predates the rail that closes the duplicate-execution seam | Evidence `f0e49f29...`, receipt `a41c2a5e...`, Store 211/225/304 | Non-force successor + exact remote + clean fresh clone + CHECKPOINT PASS |
 | P1 | Select/freeze/read/preserve a NEW causal-isolation or materially distinct broker/service process-tree discriminator | Security frontier may resume only after execution integrity is durable | P0 checkpoint closed | Separate immutable Attempt identity, exact claim ceiling, preserved artifact; no execution yet |
 | P1 | Execute that Attempt only through idempotent server submission | Prevent recurrence of v0.2.7.2 race | Frozen Attempt + current control | `submitProjectExecution` uses deterministic Attempt key; duplicate semantics fail closed/replay same job |
+
+
+## IDEMPOTENCY GUARD CONTROL — DURABLE / FRESH-CLONE VERIFIED — 2026-09-09
+| Priority | Action | Why it matters | Dependency / trigger | Done when |
+|---|---|---|---|---|
+| P0 | Select/spec a non-creating WMI boundary causal-isolation diagnostic | Current WMI result is confounded by AppContainer + immediate Job; isolate cause without another process creation | guard control `0f663398...` verified | exact boundary matrix + claim ceiling + no-Create diagnostic design preserved |
+| P1 | If causal isolation is not technically discriminating, select a materially distinct broker/service process-tree class | Avoid ritual replay of WMI/ShellExecuteExW | P0 design review | branch proves its mechanism explicitly and is separately identified |
+| P1 | For any later effectful first execution, use Attempt-bound `submitProjectExecution` only | Preserve single-Attempt semantics | frozen artifact + current control | same key cannot create second job; output/result preserved before interpretation |
+
+
+## App next-step routing after scope correction
+1. Prioritize frontend UX/interface work when App work is requested by whole-system planning.
+2. Consume qualified Forge/Singularity Works contracts; do not duplicate canonical semantic/system truth.
+3. Treat runtime/security/recovery work as supporting qualification where required, not App's autonomous primary frontier.
+4. Return UX/integration pressure to Forge/Main/Core rather than self-promoting system behavior.

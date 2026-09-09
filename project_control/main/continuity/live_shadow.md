@@ -226,6 +226,14 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 - Job-specific cause/general COM-RPC/network law unearned. App Store 207/220/299 integrity ok. Main/Core unchanged.
 - Next: successor control checkpoint before causal isolation or another broker/service class.
 
+
+## APP V0.2.7.2 SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Durable cross-thread control `ebfbd0e0615073e36c38e97ac91929d283701925` / CHECKPOINT `609b6906e889b6f251d7110bdd59d82c32821ae917b5de1cc179e7915f371e79` is non-force published and independently fresh-clone verified PASS 207.
+- App admission `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca` qualifies positive WMI service mediation plus protected local WMI class-bind failure under the combined protected boundary only.
+- Job-specific causality/general COM-RPC/network law remain unearned. Main/Core semantic anchor remains `a7b4511734b1a1e507230308e75b31175aef4c4a`; zero Core/product promotion.
+- No new class opened by this pointer update.
+
+
 ## V0.2.7.2 CONCURRENT DUPLICATE EXECUTION CORRECTION — CURRENT — 2026-09-09
 - Paired App evidence correction: frozen WMI v0.2.7.2 artifact `4bf2403ee909154172512bd0c3d0c681fe47c048ffb1eae741331005b005f9dc` was executed twice by concurrent workers under one immutable Attempt identity. This was an orchestration race, not authorized replay.
 - Chronological first stdout `03bde566428ee513656267b8317d558520ed975a8dc4c4e715f9ac68826f8a68` at `2026-09-09T21:03:42.9222286Z`; later Store stdout `e7ec25ee0e09ede487c5a71bb6c02c1bc86fd4fe74be574af34080392004e4a2` at `2026-09-09T21:03:45.5317191Z`.
@@ -233,8 +241,24 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 - Append-only correction `ea2525a04df310c194eb824b4d605245270097e6f291966e7f0176075226689d`; App Attempt Store **209/223/302**, integrity ok/WAL/FULL.
 - Job-specific causality/general COM-RPC/network/runtime authority remain unearned. No further effectful discriminator execution until corrected control checkpoint + single-Attempt serialization/idempotency guard.
 
+
 ## ATTEMPT EXECUTION IDEMPOTENCY GUARD — APP QUALIFIED — 2026-09-09
 - App execution-control evidence `f0e49f29d6c55a03d5da16a57124340847586032aae3b96e73e41334d8db5ac2`; receipt `a41c2a5e8bacdb25c32e4bb7660d9b93d985e09be6964123a886512a60f0bbcc`; Store **211/225/304**, integrity ok/WAL/FULL.
 - Current bounded rail: immutable App effectful first execution uses server `submitProjectExecution` with idempotency key deterministically bound to immutable Attempt identity and frozen payload. `runSync` is not a qualified first-execution rail for such Attempts.
 - Tested: completed duplicate -> same job/replayed; same key/different payload -> `IDEMPOTENCY_KEY_CONFLICT`; in-flight duplicates -> fail-closed `PROJECT_MUTATION_GUARD_BUSY`, no second job.
 - No Main/Core/security/product/runtime authority promotion. Current control `07c0d657...` / `7657e49a...` predates this guard qualification. Next: checkpoint guard, then App may select a new distinct discriminator.
+
+
+## IDEMPOTENCY GUARD CONTROL — APP DURABLE / FRESH-CLONE VERIFIED — 2026-09-09
+- Main `e66c071fc25f8d08bfc7ebf0551948392d652f35`; App `43aa7feac7e8a15828116bd700b644560714496d` clean; control **`0f663398cd07c36637ca939a2ab42a9a2001b07e`** / CHECKPOINT **`7f86fdffc98d169a203cc7cccf29b13789e2118ac05d8a914a31a62cfdf13f1f`**, independent clean fresh clone PASS 215.
+- App Store 211/225/304 integrity ok. Attempt-bound server submission is now durable App execution-control law; no Main/Core/security/product promotion.
+- App next frontier may resume at discriminator selection. Conservative lead is non-creating WMI boundary causal isolation before more invasive task/service creation.
+
+
+## PRIMARY SCOPE CORRECTION — CURRENT — 2026-09-09
+- User-directed governing scope: **PCMMAD Lab works Forge itself and Singularity Works as a whole**.
+- **App is the frontend/user-experience arm**, not the owner of the overall product/runtime/security program.
+- Earlier Live wording “App owns product/runtime/security pressure” is superseded for current ownership; retain it only as chronology.
+- Recent App WMI/process-execution/security results remain valid subordinate evidence, not the automatic next frontier.
+- Current control baseline at correction: `0f663398cd07c36637ca939a2ab42a9a2001b07e` / CHECKPOINT `7f86fdffc98d169a203cc7cccf29b13789e2118ac05d8a914a31a62cfdf13f1f`, fresh-clone verifier PASS 215.
+- Immediate next mode after this scope checkpoint: BUILD-PLAN/R4 across Forge/Main/Core + whole-system Singularity Works seams; App work only where UX/interface pressure is needed.

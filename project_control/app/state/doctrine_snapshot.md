@@ -319,14 +319,29 @@ No Main/Core or product promotion follows.
 ## v0.2.7.2 WMI evidence guard — 2026-09-09
 `PROTECTED_WMI_CLASS_BIND_FAILURE != JOB_SPECIFIC_DENIAL`; `WMI_CLASS_BIND_FAILURE != WMI_CREATE_DENIAL`; `POSITIVE_WMI_SERVICE_MEDIATION != GENERAL_SERVICE_BROKER_LAW`; `NON_NETWORK_RESULT != NETWORK_EGRESS_RESULT`.
 
+
 ## V0.2.7.2 CONCURRENT DUPLICATE EXECUTION CORRECTION — CURRENT — 2026-09-09
 - New verified orchestration law: **preflight absence of a result is not a sufficient single-execution guarantee under concurrent workers**.
 - `CONCURRENT_DUPLICATE_EXECUTION != AUTHORIZED_REPLAY`; immutable Attempt identity now requires an atomic reservation/lease/idempotency gate before effectful launch.
 - v0.2.7.2 bounded WMI result remains load-bearing: positive `WmiPrvSE.exe` service mediation plus protected WMI class-bind failure `0x20001501`; Job-specific causality and all broader process/network/runtime authority remain unearned.
 - Append-only provenance correction is required instead of rewriting the nominal later-run result/admission.
 
+
 ## ATTEMPT EXECUTION IDEMPOTENCY GUARD — QUALIFIED — 2026-09-09
 - New active execution-control law: `EFFECTFUL_FIRST_EXECUTION_REQUIRES_IDEMPOTENT_SUBMISSION`.
 - Qualified bounded implementation rail is current server `submitProjectExecution` with stable Attempt-bound idempotency key and frozen payload.
 - `runSync` without Attempt-key semantics is demoted for immutable effectful first execution; it remains a non-effectful/currentness tool.
 - Qualification does not widen WMI/process/network/product/runtime authority.
+
+
+## IDEMPOTENCY GUARD CONTROL — DURABLE / FRESH-CLONE VERIFIED — 2026-09-09
+- Execution-idempotency rail is now durable control, not checkpoint-pending.
+- `EFFECTFUL_FIRST_EXECUTION_REQUIRES_IDEMPOTENT_SUBMISSION` remains active.
+- Current security search posture returns to evidence discrimination: prefer causal isolation of the WMI combined-boundary result before a more invasive service/task branch.
+
+
+## App ownership guard — CURRENT — 2026-09-09
+`APP = FRONTEND_UX_ARM`
+`APP_FEEDBACK = PRESSURE_SIGNAL_NOT_CANONICAL_TRUTH`
+`APP_EVIDENCE != WHOLE_PRODUCT_AUTHORITY`
+`FRONTEND_CLIENT != SYSTEM_ARCHITECTURE_OWNER`

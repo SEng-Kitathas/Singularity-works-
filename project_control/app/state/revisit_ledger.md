@@ -107,6 +107,11 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 
 | 2026-09-09 | WMI causal isolation / broader broker paths | v0.2.7.2 class-bind boundary qualified at `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca` | AppContainer-vs-Job causality or distinct service/broker mechanism | separate NEW non-network discriminator after control closure | P1 | OPEN AFTER BOUNDED QUALIFICATION | no Job-specific overclaim |
 
+
 | 2026-09-09 | v0.2.7.2 same immutable Attempt executed twice concurrently | Single-execution invariant was violated despite preflight checks | Atomic reservation/lease proves competing worker cannot cross launch boundary | Implement and race-test Attempt-key serialization before next effectful discriminator | P0 | open | Checkpoint correction, then build/verify execution guard |
 
+
 | 2026-09-09 | Single-Attempt execution serialization after v0.2.7.2 race | Needed before another effectful discriminator | Server idempotency semantics regress or duplicate job appears under same key | Bounded probes + durable evidence + successor control checkpoint | P0 | resolved-bounded / checkpoint-pending | Publish guard checkpoint; re-open if server execution semantics change |
+
+
+| 2026-09-09 | WMI class-bind failure causality | Combined AppContainer + immediate Job boundary does not identify which component blocks WMI class binding | AppContainer-only or Job-only non-creating bind behaves differently | Design/preserve bounded no-Create causal-isolation matrix | P0 | open | R4/R5 spec next; no effectful launch yet |

@@ -322,6 +322,14 @@ Positive WMI parent `WmiPrvSE.exe` verified; protected result `4a10e2fa70fe620eb
 ## App WMI cross-arm currentness — v0.2.7.2
 Admission `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca` qualifies exact positive WMI mediation + protected class-bind failure only. Control `dbe988b4a6773a79d31935b46984b17fb9c4c421`. Main/Core unchanged.
 
+
+## APP V0.2.7.2 SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Durable cross-thread control `ebfbd0e0615073e36c38e97ac91929d283701925` / CHECKPOINT `609b6906e889b6f251d7110bdd59d82c32821ae917b5de1cc179e7915f371e79` is non-force published and independently fresh-clone verified PASS 207.
+- App admission `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca` qualifies positive WMI service mediation plus protected local WMI class-bind failure under the combined protected boundary only.
+- Job-specific causality/general COM-RPC/network law remain unearned. Main/Core semantic anchor remains `a7b4511734b1a1e507230308e75b31175aef4c4a`; zero Core/product promotion.
+- No new class opened by this pointer update.
+
+
 ## V0.2.7.2 CONCURRENT DUPLICATE EXECUTION CORRECTION — CURRENT — 2026-09-09
 - Paired App evidence correction: frozen WMI v0.2.7.2 artifact `4bf2403ee909154172512bd0c3d0c681fe47c048ffb1eae741331005b005f9dc` was executed twice by concurrent workers under one immutable Attempt identity. This was an orchestration race, not authorized replay.
 - Chronological first stdout `03bde566428ee513656267b8317d558520ed975a8dc4c4e715f9ac68826f8a68` at `2026-09-09T21:03:42.9222286Z`; later Store stdout `e7ec25ee0e09ede487c5a71bb6c02c1bc86fd4fe74be574af34080392004e4a2` at `2026-09-09T21:03:45.5317191Z`.
@@ -331,5 +339,14 @@ Admission `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca` qua
 
 Resume: checkpoint corrected v0.2.7.2 state, then repair execution serialization before another branch.
 
+
 ## ATTEMPT EXECUTION IDEMPOTENCY GUARD — APP QUALIFIED — 2026-09-09
 App has bounded-qualified the server execution idempotency rail after the v0.2.7.2 race. Evidence `f0e49f29...`, receipt `a41c2a5e...`, Store 211/225/304. Future immutable effectful App first executions use Attempt-bound `submitProjectExecution`; keyless `runSync` is demoted for that role. No Main/Core promotion. Resume: publish paired control successor carrying this guard before App resumes process-tree discrimination.
+
+
+## IDEMPOTENCY GUARD CONTROL — APP DURABLE / FRESH-CLONE VERIFIED — 2026-09-09
+Cross-arm fixed point: control `0f663398...` / `7f86fdff...` fresh-clone PASS 215; App source `43aa7fea...` clean; Store 211/225/304. Execution-idempotency blocker closed bounded. No Main/Core promotion. App resumes at discriminator selection, with WMI causal isolation preferred before invasive broker/service paths.
+
+
+## Primary program scope — CURRENT — 2026-09-09
+PCMMAD Lab's primary work surface is Forge + Singularity Works as a whole system. App is the frontend UX/client embodiment. App security/runtime evidence remains preserved but does not own canonical system direction and does not automatically determine the next project frontier. Scope correction is bound to control `0f663398cd07c36637ca939a2ab42a9a2001b07e` / CHECKPOINT `7f86fdffc98d169a203cc7cccf29b13789e2118ac05d8a914a31a62cfdf13f1f`.

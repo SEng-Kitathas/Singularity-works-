@@ -394,6 +394,14 @@ Control `8da21c41eac3cc2153970341b2259f4148bf6845` / CHECKPOINT `0753ee643f38a2f
 ## Current WMI frontier — v0.2.7.2 bounded admission — 2026-09-09
 Control `dbe988b4a6773a79d31935b46984b17fb9c4c421` / CHECKPOINT `f84f5b8886dd56c7c9ec8baa52c34f5c08a3e1890074f76188d9e110a58e6f67`. Lineage `4bf2403ee909154172512bd0c3d0c681fe47c048ffb1eae741331005b005f9dc` -> `fa355f068636714e3fc6584a2377c783dd5c23a7de369546d7b835acdfe69fb9` -> `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca`. Positive WMI service mediation is verified via parent `WmiPrvSE.exe`; protected local `Win32_Process` class bind fails at `0x20001501` under verified AppContainer+immediate Job. `Create` not reached protected. Store 207/220/299 integrity ok. Job-specific cause/general COM-RPC/network/runtime law unearned.
 
+
+## V0.2.7.2 SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Durable control `ebfbd0e0615073e36c38e97ac91929d283701925` / CHECKPOINT `609b6906e889b6f251d7110bdd59d82c32821ae917b5de1cc179e7915f371e79` is non-force published and independently fresh-clone verified PASS 207.
+- Exact v0.2.7.2 result `fa355f06...` and bounded admission `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca` reproduce in the fresh clone.
+- Current fixed point: positive WMI service mediation + protected local WMI class-bind failure qualified; Job-specific causality/general COM-RPC/network/runtime law unearned.
+- No new causal-isolation or broker/service class has been opened by this pointer update.
+
+
 ## V0.2.7.2 CONCURRENT DUPLICATE EXECUTION CORRECTION — CURRENT — 2026-09-09
 Control remains `dbe988b4a6773a79d31935b46984b17fb9c4c421` / CHECKPOINT `f84f5b8886dd56c7c9ec8baa52c34f5c08a3e1890074f76188d9e110a58e6f67` pending successor publication. App source remains `43aa7feac7e8a15828116bd700b644560714496d`, clean/remote-exact.
 
@@ -401,7 +409,16 @@ The frozen v0.2.7.2 artifact `4bf2403e...` was executed **twice concurrently** u
 
 **Resume point:** publish/fresh-clone verify a successor control checkpoint carrying the admission + concurrency correction. Before any new effectful discriminator, add a single-Attempt serialization/idempotency guard; preflight-only duplicate prevention is now disproven.
 
+
 ## ATTEMPT EXECUTION IDEMPOTENCY GUARD — QUALIFIED — 2026-09-09
 The v0.2.7.2 duplicate-execution blocker is now bounded by a verified server execution rail. Evidence `f0e49f29...`, receipt `a41c2a5e...`, Store 211/225/304 integrity ok. On tested `submitProjectExecution`: completed duplicate -> same job/replayed; same key/different command -> `IDEMPOTENCY_KEY_CONFLICT`; in-flight duplicate -> fail-closed `PROJECT_MUTATION_GUARD_BUSY`, no second job. Historical journal confirms earlier App Attempts already used idempotency keys; v0.2.7.2 raced because first execution used keyless `runSync`.
 
 Current law: immutable effectful first execution uses `submitProjectExecution` only, key deterministically bound to immutable Attempt identity, payload frozen; `runSync` forbidden for that role. Control `07c0d657...` / `7657e49a...` is verified but predates this qualification. Resume: checkpoint the guard, then select the next materially distinct process-tree/causal-isolation branch.
+
+
+## IDEMPOTENCY GUARD CONTROL — DURABLE / FRESH-CLONE VERIFIED — 2026-09-09
+Verified durable fixed point: Main `e66c071...`; App `43aa7fea...` clean; control `0f663398cd07c36637ca939a2ab42a9a2001b07e` / CHECKPOINT `7f86fdffc98d169a203cc7cccf29b13789e2118ac05d8a914a31a62cfdf13f1f`, independent clean fresh-clone PASS 215; Store 211/225/304 integrity ok. Execution-idempotency blocker closed bounded on current server path. Resume at discriminator selection, with non-creating WMI AppContainer-vs-Job causality isolation preferred before more invasive broker/service creation.
+
+
+## App role — CURRENT — 2026-09-09
+App is the frontend UX/client embodiment of Singularity Works. It consumes Forge/system contracts and produces user-facing interaction plus integration feedback. It is not the owner of canonical whole-system direction. Historical runtime/security evidence remains preserved but is supporting evidence, not the default roadmap.

@@ -131,6 +131,11 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 
 | 2026-09-09 | App WMI causal isolation | class-bind boundary qualified at `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca`; cause not isolated | AppContainer-vs-Job or distinct broker evidence | checkpoint then separately design | P1 | OPEN AFTER BOUNDED QUALIFICATION | no Core promotion |
 
+
 | 2026-09-09 | App v0.2.7.2 duplicate execution under one immutable Attempt | Concurrent workers crossed launch boundary ~2.61s apart | Atomic reservation/lease prevents second launch | Implement/race-test single-Attempt guard before next effectful discriminator | P0 | open | Corrected control checkpoint, then execution guard |
 
+
 | 2026-09-09 | App effectful first-execution idempotency | v0.2.7.2 exposed keyless-runSync race | server submit semantics regress or duplicate job appears under one key | App evidence `f0e49f29...` + receipt `a41c2a5e...` + control checkpoint | P0 | resolved-bounded / checkpoint-pending | publish successor control; reopen on execution-plane drift |
+
+
+| 2026-09-09 | App WMI combined-boundary causality | Exact class-bind failure does not distinguish AppContainer vs immediate Job | a no-Create boundary-isolation diagnostic separates behavior | App spec/preserve exact matrix before effectful work | P0 | open | R4/R5 design next |

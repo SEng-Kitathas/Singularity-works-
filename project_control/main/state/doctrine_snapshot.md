@@ -468,10 +468,25 @@ App admission `518c15f8464ea69487a4db5b7d23605b4d18983a684c1819c3d03792dbdf6085`
 ## Cross-arm WMI admission guard — 2026-09-09
 `PROTECTED_WMI_CLASS_BIND_FAILURE != JOB_SPECIFIC_DENIAL`; `APP_BOUNDED_WMI_EVIDENCE != MAIN_CORE_PROMOTION`.
 
+
 ## V0.2.7.2 CONCURRENT DUPLICATE EXECUTION CORRECTION — CURRENT — 2026-09-09
 - Verified orchestration law: result-absence preflight is insufficient against concurrent launch; immutable effectful Attempt identities require atomic reservation/lease/idempotency before execution.
 - v0.2.7.2 bounded WMI result survives provenance correction; broader causality/process/network/runtime claims remain unearned.
 
+
 ## ATTEMPT EXECUTION IDEMPOTENCY GUARD — APP QUALIFIED — 2026-09-09
 - Cross-arm execution-control law: `EFFECTFUL_FIRST_EXECUTION_REQUIRES_IDEMPOTENT_SUBMISSION` on App's tested server path.
 - This is App execution hygiene, not Main/Core semantic doctrine promotion or broader security authority.
+
+
+## IDEMPOTENCY GUARD CONTROL — APP DURABLE / FRESH-CLONE VERIFIED — 2026-09-09
+- App execution idempotency control is durable at `0f663398...`; checkpoint-pending status is retired.
+- Main/Core authority unchanged. App security search may resume under bounded evidence pressure.
+
+
+## Current ownership guard — 2026-09-09
+`FORGE_AND_SINGULARITY_WORKS_WHOLE = PRIMARY_WORK_SURFACE`
+`APP = FRONTEND_UX_ARM`
+`APP_EVIDENCE != WHOLE_PRODUCT_AUTHORITY`
+`NEWEST_APP_FRONTIER != DEFAULT_PROJECT_FRONTIER`
+Historical broad App-ownership wording is superseded for current scope, not deleted.

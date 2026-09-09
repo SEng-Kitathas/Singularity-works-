@@ -1744,8 +1744,26 @@ App positive WMI service mediation is verified; protected outcome remains unadmi
 ## CROSS-ARM UPDATE — App v0.2.7.2 WMI bounded admission — 2026-09-09
 App admission `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca` qualifies positive WMI service mediation plus protected local class-bind failure only. Protected Create not reached; Job-specific causality is unearned. Main records awareness only; Core unchanged.
 
+
+---
+
+## CROSS-ARM CONTROL CLOSURE — App v0.2.7.2 WMI bounded admission — 2026-09-09
+Control `ebfbd0e0615073e36c38e97ac91929d283701925` / CHECKPOINT `609b6906e889b6f251d7110bdd59d82c32821ae917b5de1cc179e7915f371e79` fresh-clone verified PASS 207. App admission `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca` remains bounded App WMI evidence only; Main/Core unchanged.
+
+
 ## 2026-09-09 — PAIRED APP RECOVERY — V0.2.7.2 DUPLICATE EXECUTION CORRECTION
 Fresh Forge-App work detected that two concurrent workers executed frozen v0.2.7.2 under one immutable Attempt identity. Server-log ordering proves stdout `03bde566...` was chronological first and `e7ec25ee...` was later, although the latter became the nominal Store result/admission lineage. Both executions independently reproduce the same bounded WMI service-mediation + protected class-bind failure. App preserved correction `ea2525a0...`, first stdout/stderr correction Attempts, and reached Store 209/223/302. Main paired continuity records the same correction; further effectful execution is blocked pending corrected control checkpoint and atomic Attempt-key serialization.
 
+
 ## 2026-09-09 — PAIRED APP EXECUTION CONTROL — IDEMPOTENCY RAIL QUALIFIED
 App pressure-tested server `submitProjectExecution` after the v0.2.7.2 keyless-runSync race. Same-payload completed resubmission returned the same job/replayed; payload mismatch under a reused key failed conflict; two in-flight duplicate submissions failed closed without a second job. App preserved evidence `f0e49f29...` and receipt `a41c2a5e...`, Store 211/225/304. Paired Main state records this as App execution-control currentness only. Next gate is successor control publication before App resumes effectful discriminator work.
+
+
+## 2026-09-09 — PAIRED CHECKPOINT CLOSED — APP EXECUTION IDEMPOTENCY CONTROL DURABLE
+Control `0f663398...`, direct child `07c0d657...`, was non-force published with CHECKPOINT `7f86fdff...`; committed manifest exact and independent clean fresh clone verifier PASS 215. Main/App refs remained stable and App Store 211/225/304. The App orchestration blocker is closed bounded; paired Main state records no authority promotion and points App next to WMI boundary causal isolation or, if non-discriminating, a materially distinct broker/service class.
+
+
+---
+
+## Entry — primary scope correction: Forge + Singularity Works whole; App = frontend UX — 2026-09-09
+User corrected the operational ownership model. PCMMAD Lab is responsible for Forge itself and Singularity Works as the whole system. App handles the frontend/user experience. Persisted current-looking statements that gave App broad product/runtime/security ownership were identified as conflicting and are superseded for current scope rather than rewritten. Existing App security/runtime evidence remains valid bounded evidence but no longer drives the default roadmap. Current correction binds to control `0f663398cd07c36637ca939a2ab42a9a2001b07e` / CHECKPOINT `7f86fdffc98d169a203cc7cccf29b13789e2118ac05d8a914a31a62cfdf13f1f`. Next planning returns to Forge/Main/Core + whole-system priorities.

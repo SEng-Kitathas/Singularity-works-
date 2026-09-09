@@ -48,6 +48,9 @@ Positive WMI service mediation is directly verified with a WmiPrvSE.exe parent, 
 ## Current fixed point after v0.2.7.2 WMI bounded admission
 Positive WMI service mediation is verified, while the protected local `Win32_Process` class bind fails before Create under the combined protected boundary. Job-specific causality is not inferred. See `CURRENTNESS_AFTER_V0_2_7_2_WMI_BOUNDED_ADMISSION_20260909.md`.
 
+## Current scope correction — Forge/Singularity Works primary, App frontend UX
+PCMMAD Lab's primary work surface is Forge itself and Singularity Works as a whole system. App is the frontend/user-experience arm. Historical App runtime/security evidence remains valid, but it does not own the whole-system roadmap. See `CURRENT_SCOPE_FORGE_SINGULARITY_WORKS_PRIMARY_APP_FRONTEND_20260909.md`.
+
 ## Semantic admission
 Server successor admission stream: 23 artifacts / 3,116 deterministic lines / SHA `d0c1379fbd8c01e9616a1b8fee83f975bd1670179551eb354f05c1d5e3cc128e`, complete read 3,116/3,116, blocking findings 0.
 

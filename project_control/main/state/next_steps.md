@@ -250,12 +250,35 @@ Checkpoint `4a10e2fa70fe620ebcaed8d23163b48f2b565a4230831cbc34e771a9b0b585b5` / 
 ## Coordinated next step — App v0.2.7.2
 Seal successor control with result `fa355f068636714e3fc6584a2377c783dd5c23a7de369546d7b835acdfe69fb9` / admission `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca` / Store 207/220/299 before causal isolation or new broker/service pressure. No Core promotion.
 
+
+## APP V0.2.7.2 SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Durable cross-thread control `ebfbd0e0615073e36c38e97ac91929d283701925` / CHECKPOINT `609b6906e889b6f251d7110bdd59d82c32821ae917b5de1cc179e7915f371e79` is non-force published and independently fresh-clone verified PASS 207.
+- App admission `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca` qualifies positive WMI service mediation plus protected local WMI class-bind failure under the combined protected boundary only.
+- Job-specific causality/general COM-RPC/network law remain unearned. Main/Core semantic anchor remains `a7b4511734b1a1e507230308e75b31175aef4c4a`; zero Core/product promotion.
+- No new class opened by this pointer update.
+
+
 ## V0.2.7.2 CONCURRENT DUPLICATE EXECUTION CORRECTION — CURRENT — 2026-09-09
 - P0: publish/fresh-clone verify successor control carrying App v0.2.7.2 admission + concurrency correction.
 - P0: require atomic single-Attempt execution serialization/idempotency before any new effectful discriminator.
 - P1: only after both gates, select a new causal-isolation or materially distinct broker/service process-tree class.
 
+
 ## ATTEMPT EXECUTION IDEMPOTENCY GUARD — APP QUALIFIED — 2026-09-09
 - P0: publish/fresh-clone verify successor control carrying App execution-idempotency qualification.
 - P1: after closure, App may select/freeze/read/preserve a new causal-isolation or materially distinct broker/service process-tree discriminator.
 - P1: any effectful first execution must use Attempt-bound `submitProjectExecution`; no keyless `runSync`.
+
+
+## IDEMPOTENCY GUARD CONTROL — APP DURABLE / FRESH-CLONE VERIFIED — 2026-09-09
+- App P0: select/spec a non-creating WMI AppContainer-vs-immediate-Job causal-isolation diagnostic; preserve before any execution.
+- App P1: if not discriminating, choose a materially distinct broker/service process-tree class.
+- Any later effectful first execution uses Attempt-bound `submitProjectExecution`; no keyless `runSync`.
+
+
+## P0 after scope correction — Forge / Singularity Works whole-system re-prioritization
+1. Stop auto-continuing the App process/security queue merely because it is newest.
+2. Re-audit Forge/Main/Core and Singularity Works whole-system open seams against current intent/evidence.
+3. Choose the next frontier by system value and dependency order.
+4. Treat App as frontend UX/client: consume qualified Forge/system interfaces and return UX/integration pressure; do not duplicate canonical truth.
+5. Preserve all prior App evidence and its claim ceilings; demotion from roadmap priority does not invalidate evidence.
