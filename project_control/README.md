@@ -42,6 +42,9 @@ The App process-lifecycle frontier now includes bounded containment for the exac
 ## Current fixed point after v0.2.7 WMI harness diagnosis
 v0.2.7 remains HARNESS_INVALID/NOT_ADMITTED: positive WMI Create reached success return, but a reserved `$PID` assignment prevented child-PID capture and protected execution. See `CURRENTNESS_AFTER_V0_2_7_WMI_HARNESS_INVALID_20260909.md`.
 
+## Current fixed point after v0.2.7.1 WMI encoder diagnosis
+Positive WMI service mediation is directly verified with a WmiPrvSE.exe parent, but the protected path remains HARNESS_INVALID because the HRESULT stage encoder collapsed. See `CURRENTNESS_AFTER_V0_2_7_1_WMI_HARNESS_INVALID_20260909.md`.
+
 ## Semantic admission
 Server successor admission stream: 23 artifacts / 3,116 deterministic lines / SHA `d0c1379fbd8c01e9616a1b8fee83f975bd1670179551eb354f05c1d5e3cc128e`, complete read 3,116/3,116, blocking findings 0.
 

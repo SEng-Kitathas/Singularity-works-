@@ -539,3 +539,7 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 
 ## v0.2.7 WMI harness result — 2026-09-09
 Truth: verified HARNESS_INVALID `3dbc3f7b0dda8cf13ec3f4d59933d0bdda992b914123e33ee62324fa391bf236`. WMI Create success return was reached, but returned child PID was not captured because reserved `$PID` assignment failed; protected phase absent. Diagnosis `6f0c88e6419a09c60d969a5c9ab58e04e0642898fcf3a5b9637ebda79dd07655`. RES authority NONE_BY_CONTENT.
+
+
+## v0.2.7.1 WMI harness result — 2026-09-09
+Verified: positive WMI service-mediated creation parent `WmiPrvSE.exe`, child alive, cleanup. Protected outcome remains unadmitted due HRESULT encoder defect. Result `4a10e2fa70fe620ebcaed8d23163b48f2b565a4230831cbc34e771a9b0b585b5`, diagnosis `71898d70a9fcb7758eaeffd344761d5d1f1d92d02edc198a3896bcc765abb04a`. RES authority NONE_BY_CONTENT.

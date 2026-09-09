@@ -126,3 +126,5 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 
 
 | 2026-09-09 | App WMI Win32_Process.Create | `3dbc3f7b0dda8cf13ec3f4d59933d0bdda992b914123e33ee62324fa391bf236` invalidated by reserved PID variable; protected absent | repaired App WMI lifecycle result | checkpoint then v0.2.7.1 | P0 | OPEN / HARNESS_INVALID | no Core promotion |
+
+| 2026-09-09 | App protected WMI classification | positive mediation verified; `4a10e2fa70fe620ebcaed8d23163b48f2b565a4230831cbc34e771a9b0b585b5` protected raw1 due encoder | repaired protected stage result | checkpoint then v0.2.7.2 | P0 | OPEN / HARNESS_INVALID | no Core promotion |

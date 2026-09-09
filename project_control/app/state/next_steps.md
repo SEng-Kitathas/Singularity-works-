@@ -303,3 +303,17 @@ Current store: 141 blobs / 141 attempts / 220 events; durable control `f59a32946
 3. NEW v0.2.7.1 may change only `$pid` -> non-reserved child PID variable and corresponding encoder reference.
 4. WMI class/Create path, child command, failure encodings, lineage/liveness, protected primitive, non-network scope remain unchanged.
 5. No WMI containment/denial/network/runtime-law admission yet.
+
+
+## V0.2.7 HARNESS SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Durable control `8da21c41eac3cc2153970341b2259f4148bf6845` / CHECKPOINT `0753ee643f38a2f911e1a5fe315be811d1c62d7f979a54bb3b59589f2c9c9456` is non-force published and independently fresh-clone verified PASS 195.
+- Exact v0.2.7 result `3dbc3f7b...` and diagnosis `6f0c88e6...` reproduce in the fresh clone.
+- Next permitted pressure: NEW v0.2.7.1 reserved-PID-variable repair only; same v0.2.7 Attempt is immutable/non-replayable.
+
+
+## Immediate P0 — after v0.2.7.1
+1. Checkpoint `4a10e2fa70fe620ebcaed8d23163b48f2b565a4230831cbc34e771a9b0b585b5` + `71898d70a9fcb7758eaeffd344761d5d1f1d92d02edc198a3896bcc765abb04a` / Store 202/214/293.
+2. Do not rerun v0.2.7.1.
+3. NEW v0.2.7.2 may replace only both `[uint32]$_.Exception.HResult` conversions with signed `($_.Exception.HResult -band 0xFFFF)` low16 encoding.
+4. Preserve WMI Create path, child command, stage prefixes, success/ReturnValue encodings, lineage/liveness/cleanup, protected primitive, non-network scope.
+5. Positive service mediation != protected containment; no network/runtime law.

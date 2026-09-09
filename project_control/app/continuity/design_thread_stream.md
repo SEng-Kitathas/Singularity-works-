@@ -1762,3 +1762,15 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 
 ## Entry — v0.2.7 WMI first execution HARNESS_INVALID — 2026-09-09
 Artifact `01461d5f61a7e1cc85a8365ff11565df7ada1069c46b9a90ea036394dbc762b5` executed once. Positive WMI Create reached success return, but frozen PowerShell then assigned reserved automatic `$PID`, causing unhandled root exit 1 before returned child PID could be encoded. Protected phase absent. Exact result `3dbc3f7b0dda8cf13ec3f4d59933d0bdda992b914123e33ee62324fa391bf236` and diagnosis `6f0c88e6419a09c60d969a5c9ab58e04e0642898fcf3a5b9637ebda79dd07655` preserved; Store 196/207/286 integrity ok. Same Attempt non-replayable. NEW v0.2.7.1 repair scope is variable-name-only.
+
+
+---
+
+## Entry — v0.2.7 harness successor control closed — 2026-09-09
+Control `8da21c41eac3cc2153970341b2259f4148bf6845` / CHECKPOINT `0753ee643f38a2f911e1a5fe315be811d1c62d7f979a54bb3b59589f2c9c9456` fresh-clone verifier PASS 195. NEW v0.2.7.1 variable-only repair is now permitted; no same-Attempt replay.
+
+
+---
+
+## Entry — v0.2.7.1 WMI first execution HARNESS_INVALID — 2026-09-09
+Positive WMI service mediation is now directly evidenced: PID 23160 alive after root exit, parent `WmiPrvSE.exe`, cleanup succeeded. Protected receipt was valid but raw1 unclassified. A non-creating protected class-bind diagnostic isolated the second harness defect: `[uint32]` conversion of a negative HRESULT throws under Stop; signed masking emits `0x20001501`. Exact result `4a10e2fa70fe620ebcaed8d23163b48f2b565a4230831cbc34e771a9b0b585b5` / diagnosis `71898d70a9fcb7758eaeffd344761d5d1f1d92d02edc198a3896bcc765abb04a` preserved; Store 202/214/293 integrity ok. Same Attempt non-replayable.

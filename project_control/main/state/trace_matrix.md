@@ -165,3 +165,5 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 
 
 | App v0.2.7 WMI cross-arm awareness | control `b8c5e6f9c7032e2a25c25ac4b4e50de91183d64c`; artifact `01461d5f61a7e1cc85a8365ff11565df7ada1069c46b9a90ea036394dbc762b5` | cross-arm awareness only | result `3dbc3f7b0dda8cf13ec3f4d59933d0bdda992b914123e33ee62324fa391bf236`; diagnosis `6f0c88e6419a09c60d969a5c9ab58e04e0642898fcf3a5b9637ebda79dd07655` | positive Create success return reached; PID capture failed; protected null | HARNESS_INVALID / NO CORE PROMOTION | high diagnosis | v0.2.7.1 | `PID_CAPTURE_FAILURE != WMI_DENIAL` |
+
+| App v0.2.7.1 WMI cross-arm awareness | control `8da21c41eac3cc2153970341b2259f4148bf6845`; artifact `dc4683167124b70883a6940026f28575fcaf745b51d1f4975df298f6ca36c352` | cross-arm awareness only | result `4a10e2fa70fe620ebcaed8d23163b48f2b565a4230831cbc34e771a9b0b585b5`; diagnosis `71898d70a9fcb7758eaeffd344761d5d1f1d92d02edc198a3896bcc765abb04a` | positive WmiPrvSE parent+cleanup; protected valid receipt/raw1; signed-mask probe 0x20001501 | HARNESS_INVALID / NO CORE PROMOTION | high diagnosis | v0.2.7.2 | `POSITIVE_WMI != PROTECTED_WMI` |

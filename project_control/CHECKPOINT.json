@@ -1,8 +1,8 @@
 {
   "app_attempt_store_current": {
-    "attempts": 207,
-    "blobs": 196,
-    "events": 286,
+    "attempts": 214,
+    "blobs": 202,
+    "events": 293,
     "integrity": "ok"
   },
   "app_observation": {
@@ -211,19 +211,19 @@
       "sha256": "6c5080d0c950297490139e7b120964dddb7936af5076a967d1200904456cb795"
     },
     {
-      "bytes": 163168,
+      "bytes": 164157,
       "path": "app/continuity/design_thread_stream.md",
-      "sha256": "455e50878a644085177d124b0a907611f9a756c923bad35eafcaa2ddd0d55586"
+      "sha256": "1f10c9a4b0527cc9767469dc590b86c5bb250d069ed038fecf5050e76968f739"
     },
     {
-      "bytes": 28451,
+      "bytes": 30168,
       "path": "app/continuity/live_shadow.md",
-      "sha256": "0239ae043a97db8e2fbad5ab5db9c20b6defa86523801bb017947b9f3cabf87b"
+      "sha256": "098cccfb6ff1bef5e34a290b20bb4d8ced6bc1a4011459a77de7cfe9fefdb228"
     },
     {
-      "bytes": 46342,
+      "bytes": 46733,
       "path": "app/continuity/research_epistemic_shadow.md",
-      "sha256": "299c4b5267ffe84e4214cfbc455effd777acd2e09a1a46b983f4381bcd2335d2"
+      "sha256": "65617f9306cec0835c1d1af3d9beae570b39ae4c79def03d06eb245b5d0339f1"
     },
     {
       "bytes": 1782,
@@ -284,6 +284,11 @@
       "bytes": 3464,
       "path": "app/evidence/egress_wider_v0_2_6_1_shellexecuteex_first_result_20260909.json",
       "sha256": "4438e2e5ce5f2bdcb77d88f513af39483ec8f6e8e693ed9b100c4236a2eb2a3e"
+    },
+    {
+      "bytes": 3285,
+      "path": "app/evidence/egress_wider_v0_2_7_1_wmi_first_result_20260909.json",
+      "sha256": "4a10e2fa70fe620ebcaed8d23163b48f2b565a4230831cbc34e771a9b0b585b5"
     },
     {
       "bytes": 1708,
@@ -481,6 +486,16 @@
       "sha256": "a8a83ba2856d82e18a3726e176b15bdee2f1c5fc1dda4e45744121b8bc1b6702"
     },
     {
+      "bytes": 2468,
+      "path": "app/notes/maintenance/EGRESS_WIDER_V0_2_7_1_WMI_HARNESS_INVALID_HRESULT_ENCODER_20260909.md",
+      "sha256": "71898d70a9fcb7758eaeffd344761d5d1f1d92d02edc198a3896bcc765abb04a"
+    },
+    {
+      "bytes": 904,
+      "path": "app/notes/maintenance/EGRESS_WIDER_V0_2_7_1_WMI_PID_REPAIR_DESIGN_20260909.md",
+      "sha256": "4cf53e28f7b0076a604490c170c686eb37d3c559d2c19a1f028b3e5b0245f1d3"
+    },
+    {
       "bytes": 2251,
       "path": "app/notes/maintenance/EGRESS_WIDER_V0_2_7_WMI_HARNESS_INVALID_RESERVED_PID_20260909.md",
       "sha256": "6f0c88e6419a09c60d969a5c9ab58e04e0642898fcf3a5b9637ebda79dd07655"
@@ -581,14 +596,19 @@
       "sha256": "1f2bd6a10477b3c03119420e98044068f96d7fd039b2a12c098f2312c51fff41"
     },
     {
+      "bytes": 16596,
+      "path": "app/state/attempt_artifacts/EGRESS_WIDER_V0_2_7_1_WMI_WIN32_PROCESS_CREATE_PID_REPAIR_20260909.py",
+      "sha256": "dc4683167124b70883a6940026f28575fcaf745b51d1f4975df298f6ca36c352"
+    },
+    {
       "bytes": 16120,
       "path": "app/state/attempt_artifacts/EGRESS_WIDER_V0_2_7_WMI_WIN32_PROCESS_CREATE_LIFECYCLE_20260909.py",
       "sha256": "01461d5f61a7e1cc85a8365ff11565df7ada1069c46b9a90ea036394dbc762b5"
     },
     {
-      "bytes": 39265,
+      "bytes": 40323,
       "path": "app/state/current.md",
-      "sha256": "6e6d9fd55fd254d7ec69274759eab3c7a5bb8beccbc0228a6e9bb7899e78f652"
+      "sha256": "dedb194c55785b67f7db2555b7992f6b5c96015cc00ae6c41c9f760d86c34bae"
     },
     {
       "bytes": 4215,
@@ -621,9 +641,9 @@
       "sha256": "e3e859989524e5900abc353cd9b7719f3d7173c8d80104b4afe30dde05c68e9d"
     },
     {
-      "bytes": 28688,
+      "bytes": 28908,
       "path": "app/state/doctrine_snapshot.md",
-      "sha256": "febf84f03835887e72ddf5eede2ed019ae15fb2a2f39bfac46ed2dcf1fc4818a"
+      "sha256": "50303749ed1de9579305cc4f2c65faa9c5a455b91967450181328cbc7627074c"
     },
     {
       "bytes": 2879,
@@ -631,19 +651,19 @@
       "sha256": "b1d785fae561756b05daa3c268e0a0e13a913c0c529d8b0ba105a84e817e1b2b"
     },
     {
-      "bytes": 29835,
+      "bytes": 30957,
       "path": "app/state/next_steps.md",
-      "sha256": "3d28ca2436e81a2e87e2de44bef2ff934c3dd75d9ac1e3e47a498be562ba2e45"
+      "sha256": "b08bed454c1196a2d93b919535329fe732edf5ed4b4ff618738e5829fe9718a6"
     },
     {
-      "bytes": 23261,
+      "bytes": 23638,
       "path": "app/state/revisit_ledger.md",
-      "sha256": "221c9d4cd31c375b20c80ecc7ee886b241590923922ddd59b9b1c21dd178f83e"
+      "sha256": "ef8b9a96a9ea9c746a825928966a33d71010ad4e34e88fcf7d9a85526f36254f"
     },
     {
-      "bytes": 34870,
+      "bytes": 35520,
       "path": "app/state/trace_matrix.md",
-      "sha256": "9de63f1f9c428752e061be8cab25c62d0065076cd8d3d3246e5195b73c1bb162"
+      "sha256": "25afdffb3ee6d662b3ce94a6a2e8edd753f29b2148d469432f32a0f3f230b2b4"
     },
     {
       "bytes": 1161,
@@ -681,6 +701,11 @@
       "sha256": "2fd15c75c67e9413f9b6331ec1c28aea1aa93902c86a65c08a0ce9841d7aee6b"
     },
     {
+      "bytes": 2563,
+      "path": "CURRENTNESS_AFTER_V0_2_7_1_WMI_HARNESS_INVALID_20260909.md",
+      "sha256": "b59b0563cbc3323a3ed0609186a673b7bd41ee1d7b157a7667a9f6428e5da058"
+    },
+    {
       "bytes": 2361,
       "path": "CURRENTNESS_AFTER_V0_2_7_WMI_HARNESS_INVALID_20260909.md",
       "sha256": "58825dbdfa7ae876a6a0e7e8485103c9b996cb5dcf83ffc6885077be6cf3091c"
@@ -716,19 +741,19 @@
       "sha256": "6c5080d0c950297490139e7b120964dddb7936af5076a967d1200904456cb795"
     },
     {
-      "bytes": 173900,
+      "bytes": 174295,
       "path": "main/continuity/design_thread_stream.md",
-      "sha256": "32e75802ff8736f0e9197f7c27bfe30d534e26989bfb5729f2457d9bf602425e"
+      "sha256": "dc694a688332068e870c9b00edc3b380c49d9d9cf7364507d4081d60bb10231d"
     },
     {
-      "bytes": 22937,
+      "bytes": 23625,
       "path": "main/continuity/live_shadow.md",
-      "sha256": "0a56fc2cc902f67ceff14e624e289d7282e5b56b0fb2d0a7c1980a3a9a8c463c"
+      "sha256": "66a0690c52e9f1d316c166e2c320651170af6d56a8978be2e551bb0653bc2952"
     },
     {
-      "bytes": 38162,
+      "bytes": 38514,
       "path": "main/continuity/research_epistemic_shadow.md",
-      "sha256": "166dabd1fd832ca7859d308ac8aac573f2c894cf8b9246b4624a111e6f868c24"
+      "sha256": "706b8574e4fba4f0054f0ea69949798e357129a92773d3869b8e251418d2e36c"
     },
     {
       "bytes": 3071,
@@ -866,6 +891,11 @@
       "sha256": "c62228fefc0dcc71f85db2915da1a96b3fac8c69aced9c278cfec94181ee7f8f"
     },
     {
+      "bytes": 1035,
+      "path": "main/notes/maintenance/APP_V0_2_7_1_WMI_HARNESS_INVALID_CROSS_ARM_AWARENESS_20260909.md",
+      "sha256": "d754f3a2d40da662e19311d317aebd02f6bcdb0f5e0f41cca16c3ee373f202dd"
+    },
+    {
       "bytes": 945,
       "path": "main/notes/maintenance/APP_V0_2_7_WMI_HARNESS_INVALID_CROSS_ARM_AWARENESS_20260909.md",
       "sha256": "595eb28639d97612653498e7158dc23d1fef88999748066715704f7f251f7acc"
@@ -891,9 +921,9 @@
       "sha256": "f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63"
     },
     {
-      "bytes": 32689,
+      "bytes": 33015,
       "path": "main/state/current.md",
-      "sha256": "dae3d9f58dd2ad386848a3ac4673f7ce5ff47a13beaf25fe0271d9185d7e7ca4"
+      "sha256": "1b14f9370813558966e21ff1cb3354e6cf9b9163ac10e336ca3926accddec29c"
     },
     {
       "bytes": 4215,
@@ -926,24 +956,24 @@
       "sha256": "8b1bf53adf3ac3fee09a4435f1f6df4518359f767fc76fe8d99df4ed6f44e4ae"
     },
     {
-      "bytes": 42223,
+      "bytes": 42390,
       "path": "main/state/doctrine_snapshot.md",
-      "sha256": "008cb446a06898cb9e47b4e38f4d146528c180f8f16e8ff16b3f272b08d068d7"
+      "sha256": "c76c6e598ff12cc7cb8ede04128334d4518c02435ffce81d1778af3eca93176d"
     },
     {
-      "bytes": 23697,
+      "bytes": 23979,
       "path": "main/state/next_steps.md",
-      "sha256": "dc308d7601f418dab6a90ec04318bb6f4e3853e35fccb6f9aa08c7ddb33deea0"
+      "sha256": "8425654c0927a60d5bd6a7fcd75e8430cc96bdf6c2a2f70e4004672f9fa51d17"
     },
     {
-      "bytes": 29207,
+      "bytes": 29494,
       "path": "main/state/revisit_ledger.md",
-      "sha256": "4ddb5a03df69d969955be9360b19eb60b62e7292ddfb2a556f03ca62d39a523c"
+      "sha256": "be66992587b6ea4049a9fc0417a605b26d7dd4a932eb86fc734541f6507ffada"
     },
     {
-      "bytes": 49876,
+      "bytes": 50424,
       "path": "main/state/trace_matrix.md",
-      "sha256": "8f03a04059ae7a989c1ae46e5c74d77d8a626232362196e8fda29360cb72c552"
+      "sha256": "2439c8bbb9fb5f0854af5e8f4826044a79ab00603a75ce95a1e2abda1fc520a4"
     },
     {
       "bytes": 1618,
@@ -951,9 +981,9 @@
       "sha256": "2fbf22e5e9eb92c8a72972f3d166fb97c24055c0668a37ef594fcbb4236eae02"
     },
     {
-      "bytes": 5292,
+      "bytes": 5591,
       "path": "README.md",
-      "sha256": "22e4c7f10146780dc3479c7fcb172367555c9d1fc2859151e77b09658bd273c2"
+      "sha256": "dd0d2126c5cbc68c3b7fc6a0274f4c5723944a0258008e211884209c59ebb21d"
     },
     {
       "bytes": 3271,
@@ -1151,7 +1181,7 @@
       "sha256": "f5dba1193203a03bbce3779179ce5b6947231dff1ae65f505e5024e3ec5ee207"
     }
   ],
-  "generated_utc": "2026-09-09T20:56:22Z",
+  "generated_utc": "2026-09-09T21:00:08Z",
   "git_copy_policy": {
     "binary_attribute_repair_20260904": "REPAIRED_PREEXISTING_ALL_TEXT_EOL_RULE_BEFORE_CANDIDATE_PUBLICATION_CHECKPOINT",
     "binary_carriers": "*.zip -text; exact bytes required",
@@ -2825,6 +2855,23 @@
     "stale_v0_2_6_artifact_sha256": "1f2bd6a10477b3c03119420e98044068f96d7fd039b2a12c098f2312c51fff41",
     "stale_v0_2_6_executed": false,
     "status": "BOUNDED_SHELLEXECUTEEX_CHILD_LIFECYCLE_CONTAINMENT_QUALIFIED"
+  },
+  "wider_egress_v0_2_7_1_wmi_harness_invalid": {
+    "artifact_sha256": "dc4683167124b70883a6940026f28575fcaf745b51d1f4975df298f6ca36c352",
+    "diagnosis_sha256": "71898d70a9fcb7758eaeffd344761d5d1f1d92d02edc198a3896bcc765abb04a",
+    "first_result_sha256": "4a10e2fa70fe620ebcaed8d23163b48f2b565a4230831cbc34e771a9b0b585b5",
+    "next": "NEW_V0_2_7_2_HRESULT_ENCODER_ONLY_REPAIR",
+    "positive_child_alive": true,
+    "positive_cleanup": "CONFIRMED",
+    "positive_parent_exe": "WmiPrvSE.exe",
+    "positive_wmi_create": "SUCCEEDED",
+    "product_promotion": false,
+    "protected_create_called_by_diagnostic": false,
+    "protected_exit": "RAW_1_UNCLASSIFIED",
+    "protected_noncreating_diagnostic_hex": "0x20001501",
+    "protected_receipt_valid": true,
+    "same_attempt_replay_allowed": false,
+    "status": "HARNESS_INVALID_PROTECTED_HRESULT_UINT32_ENCODER__PROTECTED_NOT_ADMITTED"
   },
   "wider_egress_v0_2_7_wmi_harness_invalid": {
     "artifact_sha256": "01461d5f61a7e1cc85a8365ff11565df7ada1069c46b9a90ea036394dbc762b5",

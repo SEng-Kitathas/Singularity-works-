@@ -1,0 +1,94 @@
+{
+  "admission_status": "NOT_ADMITTED",
+  "artifact_reason": "protected WMI path returned non-decisive classification: UNKNOWN_EXIT",
+  "artifact_sha256": "dc4683167124b70883a6940026f28575fcaf745b51d1f4975df298f6ca36c352",
+  "artifact_status": "HARNESS_INVALID",
+  "bounded_result": "POSITIVE_WMI_SERVICE_MEDIATED_CHILD_LIFECYCLE_VERIFIED__PROTECTED_UNRESOLVED",
+  "claim_ceiling": "POSITIVE_WMI_SERVICE_MEDIATION_ONLY__NO_PROTECTED_WMI_CLAIM",
+  "classification": "HARNESS_INVALID_PROTECTED_WMI_RAW_EXIT_1_AFTER_VALID_POSITIVE",
+  "control_remote_exact_after_run": true,
+  "durable_control_checkpoint": "0753ee643f38a2f911e1a5fe315be811d1c62d7f979a54bb3b59589f2c9c9456",
+  "durable_control_head": "8da21c41eac3cc2153970341b2259f4148bf6845",
+  "evidence_boundary": [
+    "POSITIVE_WMI_CREATE_SUCCESS",
+    "POSITIVE_CHILD_ALIVE_AFTER_ROOT_EXIT",
+    "POSITIVE_PARENT_EXE_WMIPRVSE_EXE",
+    "POSITIVE_CLEANUP_CONFIRMED",
+    "PROTECTED_APPCONTAINER_VERIFIED",
+    "PROTECTED_IMMEDIATE_JOB_VERIFIED",
+    "PROTECTED_RAW_EXIT_1_UNCLASSIFIED",
+    "PROTECTED_WMI_STAGE_UNRESOLVED",
+    "HARNESS_INVALID != PROTECTED_WMI_DENIAL",
+    "SAME_ATTEMPT_NOT_REPLAYABLE"
+  ],
+  "execution_plane": "server.runSync.command",
+  "execution_return_code": 3,
+  "network_activity_intended": false,
+  "positive_control": {
+    "child_state_after_root_exit": {
+      "alive": true,
+      "in_any_job": true,
+      "job_query_error": 0,
+      "job_query_ok": true,
+      "lineage": {
+        "exe": "powershell.exe",
+        "parent_exe": "WmiPrvSE.exe",
+        "parent_pid": 39080,
+        "pid": 23160,
+        "present": true,
+        "snapshot_ok": true
+      },
+      "open": true,
+      "pid": 23160,
+      "wait_result": 258
+    },
+    "cleanup": {
+      "opened": true,
+      "pid": 23160,
+      "terminated": true,
+      "wait_result": 0
+    },
+    "decoded": {
+      "kind": "WMI_CREATE_SUCCESS",
+      "pid": 23160,
+      "raw": 268458616
+    },
+    "root_exit_code": 268458616,
+    "stderr_nonempty": false
+  },
+  "protected": {
+    "decoded": {
+      "kind": "UNKNOWN_EXIT",
+      "raw": 1
+    },
+    "receipt": {
+      "appcontainer_verified": true,
+      "authority": "NONE",
+      "capability_count": 0,
+      "command_sha256": "0b5f7614c7a9c441f222bbfc52ebc430173badef74002d7bb2afb431e8983f45",
+      "elapsed_seconds": 0.21799999999348074,
+      "environment_inherited": true,
+      "executable": "<LOCAL_POWERSHELL_PATH>",
+      "exit_code": 1,
+      "immediate_job_verified": true,
+      "inherited_handles": false,
+      "job_close_terminated_process": false,
+      "parent_was_in_job": true,
+      "pid": 34184,
+      "profile_created": true,
+      "profile_name": "<EPHEMERAL_APPCONTAINER_PROFILE>",
+      "schema": "singularity-protected-process/0.1",
+      "timed_out": false
+    }
+  },
+  "runtime_law_earned": false,
+  "same_attempt_rerun": false,
+  "schema": "singularity-works.egress-wider-v0.2.7.1-wmi-first-result/0.1",
+  "source_clean_after_run": true,
+  "source_head": "43aa7feac7e8a15828116bd700b644560714496d",
+  "source_remote_exact_after_run": true,
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 2817,
+  "stdout_sha256": "173e39a197a1d80786f36ffe27d10fa7b1ae95c39b0a0eb7c9c7c3154f9e8d48"
+}

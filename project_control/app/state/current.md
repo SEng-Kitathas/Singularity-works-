@@ -373,3 +373,13 @@ Control `3b17cb3ab64606b98244c979bf8cf4b023323aeb` / CHECKPOINT `defeaca590c0d62
 
 ## Current WMI frontier — v0.2.7 HARNESS_INVALID — 2026-09-09
 Control `b8c5e6f9c7032e2a25c25ac4b4e50de91183d64c` / CHECKPOINT `59643050ecd2c741ca81253c59f1ce88e9344866a683420a9f90c702d46c1520`. WMI artifact `01461d5f61a7e1cc85a8365ff11565df7ada1069c46b9a90ea036394dbc762b5` -> result `3dbc3f7b0dda8cf13ec3f4d59933d0bdda992b914123e33ee62324fa391bf236` is HARNESS_INVALID / NOT_ADMITTED because reserved `$PID` assignment failed after WMI Create success return; no child lifecycle or protected observation. Diagnosis `6f0c88e6419a09c60d969a5c9ab58e04e0642898fcf3a5b9637ebda79dd07655`. Store 196/207/286 integrity ok.
+
+
+## V0.2.7 HARNESS SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Durable control `8da21c41eac3cc2153970341b2259f4148bf6845` / CHECKPOINT `0753ee643f38a2f911e1a5fe315be811d1c62d7f979a54bb3b59589f2c9c9456` is non-force published and independently fresh-clone verified PASS 195.
+- Exact v0.2.7 result `3dbc3f7b...` and diagnosis `6f0c88e6...` reproduce in the fresh clone.
+- Next permitted pressure: NEW v0.2.7.1 reserved-PID-variable repair only; same v0.2.7 Attempt is immutable/non-replayable.
+
+
+## Current WMI frontier — v0.2.7.1 — 2026-09-09
+Control `8da21c41eac3cc2153970341b2259f4148bf6845` / CHECKPOINT `0753ee643f38a2f911e1a5fe315be811d1c62d7f979a54bb3b59589f2c9c9456`. Positive WMI `Win32_Process.Create` service mediation verified with parent `WmiPrvSE.exe`; protected outcome unresolved because HRESULT encoder failed. Result `4a10e2fa70fe620ebcaed8d23163b48f2b565a4230831cbc34e771a9b0b585b5` HARNESS_INVALID / NOT_ADMITTED; diagnosis `71898d70a9fcb7758eaeffd344761d5d1f1d92d02edc198a3896bcc765abb04a`. Store 202/214/293 integrity ok.

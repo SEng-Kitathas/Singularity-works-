@@ -212,3 +212,9 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 - Control `b8c5e6f9c7032e2a25c25ac4b4e50de91183d64c` / CHECKPOINT `59643050ecd2c741ca81253c59f1ce88e9344866a683420a9f90c702d46c1520`. App `01461d5f61a7e1cc85a8365ff11565df7ada1069c46b9a90ea036394dbc762b5` -> `3dbc3f7b0dda8cf13ec3f4d59933d0bdda992b914123e33ee62324fa391bf236` HARNESS_INVALID/NOT_ADMITTED.
 - Positive WMI Create success return reached, but reserved `$PID` assignment prevented PID capture; protected phase absent. Diagnosis `6f0c88e6419a09c60d969a5c9ab58e04e0642898fcf3a5b9637ebda79dd07655`.
 - App Store 196/207/286 integrity ok. Main/Core unchanged. Next coordinated gate: checkpoint then variable-only App v0.2.7.1 repair.
+
+
+## APP V0.2.7.1 WMI CROSS-ARM CURRENTNESS — 2026-09-09
+- Control `8da21c41eac3cc2153970341b2259f4148bf6845` / CHECKPOINT `0753ee643f38a2f911e1a5fe315be811d1c62d7f979a54bb3b59589f2c9c9456`. App `dc4683167124b70883a6940026f28575fcaf745b51d1f4975df298f6ca36c352` -> `4a10e2fa70fe620ebcaed8d23163b48f2b565a4230831cbc34e771a9b0b585b5` HARNESS_INVALID for protected path.
+- Positive WMI service mediation verified with parent `WmiPrvSE.exe` + cleanup. Protected receipt valid, but HRESULT encoder collapsed; diagnosis `71898d70a9fcb7758eaeffd344761d5d1f1d92d02edc198a3896bcc765abb04a`.
+- App Store 202/214/293 integrity ok. Main/Core unchanged. Next: checkpoint then encoder-only v0.2.7.2.

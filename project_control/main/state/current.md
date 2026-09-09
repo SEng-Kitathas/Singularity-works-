@@ -313,3 +313,7 @@ App admission `06161c25977979e740fbc05e826f8bdc56d83759f136c2178a70f7b2a4af965f`
 
 ## App WMI cross-arm currentness — v0.2.7
 Result `3dbc3f7b0dda8cf13ec3f4d59933d0bdda992b914123e33ee62324fa391bf236` HARNESS_INVALID/NOT_ADMITTED; protected phase absent. Diagnosis `6f0c88e6419a09c60d969a5c9ab58e04e0642898fcf3a5b9637ebda79dd07655`. Control `b8c5e6f9c7032e2a25c25ac4b4e50de91183d64c`. Main/Core unchanged.
+
+
+## App WMI cross-arm currentness — v0.2.7.1
+Positive WMI parent `WmiPrvSE.exe` verified; protected result `4a10e2fa70fe620ebcaed8d23163b48f2b565a4230831cbc34e771a9b0b585b5` HARNESS_INVALID/NOT_ADMITTED due HRESULT encoder. Diagnosis `71898d70a9fcb7758eaeffd344761d5d1f1d92d02edc198a3896bcc765abb04a`. Main/Core unchanged.

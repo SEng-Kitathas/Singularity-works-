@@ -471,3 +471,7 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 
 ## App v0.2.7 WMI signal — Main RES — 2026-09-09
 Verified HARNESS_INVALID `3dbc3f7b0dda8cf13ec3f4d59933d0bdda992b914123e33ee62324fa391bf236`; no protected WMI observation. Diagnosis `6f0c88e6419a09c60d969a5c9ab58e04e0642898fcf3a5b9637ebda79dd07655`. Main RES authority NONE_BY_CONTENT; Core unchanged.
+
+
+## App v0.2.7.1 WMI signal — Main RES — 2026-09-09
+Verified positive WMI service mediation; protected outcome unadmitted due encoder defect. Result `4a10e2fa70fe620ebcaed8d23163b48f2b565a4230831cbc34e771a9b0b585b5`, diagnosis `71898d70a9fcb7758eaeffd344761d5d1f1d92d02edc198a3896bcc765abb04a`. Main RES authority NONE_BY_CONTENT; Core unchanged.

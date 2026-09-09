@@ -253,3 +253,18 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 - Diagnosis `6f0c88e6419a09c60d969a5c9ab58e04e0642898fcf3a5b9637ebda79dd07655` preserved/read back. No attributable 30-second child remained at inspection; no forced cleanup required.
 - Store: **196 blobs / 207 attempts / 286 events**, integrity ok.
 - Next: checkpoint this harness boundary; NEW v0.2.7.1 may rename only the reserved PID variable and encoding reference. No WMI containment/denial claim yet.
+
+
+## V0.2.7 HARNESS SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Durable control `8da21c41eac3cc2153970341b2259f4148bf6845` / CHECKPOINT `0753ee643f38a2f911e1a5fe315be811d1c62d7f979a54bb3b59589f2c9c9456` is non-force published and independently fresh-clone verified PASS 195.
+- Exact v0.2.7 result `3dbc3f7b...` and diagnosis `6f0c88e6...` reproduce in the fresh clone.
+- Next permitted pressure: NEW v0.2.7.1 reserved-PID-variable repair only; same v0.2.7 Attempt is immutable/non-replayable.
+
+
+## V0.2.7.1 WMI PID REPAIR — HARNESS_INVALID — CURRENT — 2026-09-09
+- Mode: **CHECKPOINT / R1**. Control `8da21c41eac3cc2153970341b2259f4148bf6845` / CHECKPOINT `0753ee643f38a2f911e1a5fe315be811d1c62d7f979a54bb3b59589f2c9c9456`.
+- Artifact `dc4683167124b70883a6940026f28575fcaf745b51d1f4975df298f6ca36c352` executed exactly once; result `4a10e2fa70fe620ebcaed8d23163b48f2b565a4230831cbc34e771a9b0b585b5` HARNESS_INVALID / protected NOT_ADMITTED / non-replayable.
+- Positive WMI Create succeeded: child PID 23160 alive after root exit; Toolhelp parent `WmiPrvSE.exe` PID 39080; any-Job=true; cleanup confirmed. This verifies positive service-mediated WMI lineage for the exact path.
+- Protected receipt valid, but raw exit 1 was unclassified. Non-creating diagnostic proved `[uint32]` conversion of negative HRESULT in the catch encoder collapses; signed low16 masking produced `0x20001501`. Diagnosis `71898d70a9fcb7758eaeffd344761d5d1f1d92d02edc198a3896bcc765abb04a`.
+- Store: **202 blobs / 214 attempts / 293 events**, integrity ok.
+- Next: checkpoint this boundary; NEW v0.2.7.2 may change only the two HRESULT catch encoders to signed low16 masking. No protected WMI denial/containment admission yet.
