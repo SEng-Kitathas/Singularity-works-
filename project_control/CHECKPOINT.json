@@ -1056,7 +1056,7 @@
       "sha256": "f5dba1193203a03bbce3779179ce5b6947231dff1ae65f505e5024e3ec5ee207"
     }
   ],
-  "generated_utc": "2026-09-08T03:34:19Z",
+  "generated_utc": "2026-09-09T20:23:23Z",
   "git_copy_policy": {
     "binary_attribute_repair_20260904": "REPAIRED_PREEXISTING_ALL_TEXT_EOL_RULE_BEFORE_CANDIDATE_PUBLICATION_CHECKPOINT",
     "binary_carriers": "*.zip -text; exact bytes required",
@@ -1065,9 +1065,9 @@
     "credential_scan": "PASS_ROLLOVER_CHANGED_GENERATION_23_OF_23_READABLE_ZERO_FINDINGS",
     "current_app_ingress_sha256": "16791dcf77cb9feef82d9a7b753a72c366c2c7f6997c449b6177b5a47debe331",
     "current_app_source": "43aa7feac7e8a15828116bd700b644560714496d",
-    "current_attempt_store": "166/172/251",
+    "current_attempt_store": "183/192/271",
     "current_authority": "R4.4_PLUS_ICF_CS_V1_1",
-    "current_generation_semantic_gate": "SERVER_STREAM_PASS__GIT_REPRESENTATION_READ_PENDING",
+    "current_generation_semantic_gate": "EXTERNAL_PRECOMMIT_SELF_READ_REQUIRED__DO_NOT_ENCODE_SELF_STATUS",
     "current_governance_local_authority": "BOTH_TARGETS_LOCALLY_BINDING__GLOBAL_ACTIVE_UNEARNED",
     "current_ingress_instance_sha256": "50be248ff65dbb94430dd686a7fe519f9ed03000a4d3ae95b8e958b4845ee918",
     "current_ingress_kind": "THREAD_ROLLOVER_CURRENT",
@@ -1276,14 +1276,14 @@
   "linear_human_semantic_gate": {
     "active_authority": "RAHL Engineering Canonical SOP R4.4 + ICF-CS v1.1 + locally valid Governance Contact additive process doctrine",
     "blocking_findings_after_server_read": 0,
-    "control_publication_read": "PENDING",
+    "control_publication_read": "EXTERNAL_PRECOMMIT_SELF_READ_REQUIRED__DO_NOT_ENCODE_SELF_STATUS",
     "server_successor_read": {
       "artifacts": 23,
       "sha256": "d0c1379fbd8c01e9616a1b8fee83f975bd1670179551eb354f05c1d5e3cc128e",
       "status": "PASS_COMPLETE_BLOCKING_FINDINGS_0",
       "stream_lines": 3116
     },
-    "status": "SERVER_SUCCESSOR_STREAM_PASS__GIT_REPRESENTATION_READ_PENDING"
+    "status": "EXTERNAL_PRECOMMIT_SELF_READ_REQUIRED__DO_NOT_ENCODE_SELF_STATUS"
   },
   "main_candidate": {
     "branch": "main",
@@ -1620,7 +1620,7 @@
     "head_delta_scope": "authority/rahl-sop/CURRENT.md + GOVERNANCE_CONTACT_V1_0_ACTIVATION.md only; no Forge Core/runtime source delta",
     "law": "MAIN_BRANCH_HEAD != CORE_QUALIFICATION_ANCHOR"
   },
-  "previous_verified_control_tip": "a95ec5355b6946927eec6403a1764491f837e9e2",
+  "previous_verified_control_tip": "8a401838b8e4d5d8b0be669ac98a9bdaec37580d",
   "previous_wider_egress_frontier_generation": {
     "cwd_diagnosis_result_sha256": "fde44603c47fd0af41b65492eb163a5500d44da6972c31fea1e65a75f7a4a7ae",
     "descendant_udp_first_result_sha256": "3cd68bca1d43d8437043d353f776587f0fb7aa6c35798f9084e4065bbbe98122",
@@ -1739,7 +1739,7 @@
       "server_source_sha256": "3595b6bbd46d3c812f5defe2cccbc1535c774c62561b6a141e17f2604460b83c"
     }
   },
-  "resume_point": "After successor control remote/fresh-clone verification, remeasure exact server.runSync.command outer Job limits. If and only if SILENT_BREAKAWAY_OK remains true, freeze/read/preserve a NEW v0.2.5.2 sibling with unchanged explicit-breakaway discriminator behavior; execute via runSync.command, never async worker; preserve exact first result before admission.",
+  "resume_point": "After this CHECKPOINT semantic-pointer repair is non-force published and independently fresh-clone verified, select a NEW materially distinct non-network process-tree escape class. Do not repeat CREATE_BREAKAWAY_FROM_JOB. Preserve/read the new Attempt before execution and preserve its exact first result before admission.",
   "schema": "singularity-works.project-control-checkpoint/0.1",
   "semantic_field_candidate": {
     "app_consumption_authority": true,
@@ -2626,14 +2626,16 @@
     "status": "SERVER_HANDOFF_ADMITTED__GIT_DTS_DERIVATIVES_ADMITTED__FINAL_CHECKPOINT_BYTES_FROZEN_FOR_COMPLETE_REREAD"
   },
   "wider_egress_frontier": {
-    "current_admitted_lifecycle_claim": "NORMAL_DESCENDANT_JOB_CLOSE_BOUNDED_ONLY",
-    "explicit_breakaway": "UNEARNED",
+    "current_admitted_lifecycle_claim": "EXPLICIT_CREATE_BREAKAWAY_FROM_JOB_DENIAL_BOUNDED_ONLY",
+    "explicit_breakaway": "BOUNDED_EXACT_PATH_QUALIFIED",
     "network_bearing_pressure": false,
-    "next_action": "fresh-clone verify this successor control; then immediately remeasure exact runSync.command Job flags and only if silent-breakaway remains true freeze/read/preserve NEW v0.2.5.2 with unchanged explicit-breakaway discriminator behavior",
+    "next_action": "after this semantic-pointer repair is non-force published and independently fresh-clone verified, select/freeze/read/preserve a NEW materially distinct non-network process-tree escape discriminator; do not repeat CREATE_BREAKAWAY_FROM_JOB; controlled SILENT_BREAKAWAY_OK or broker/service/task-style creation remain candidate classes",
     "runtime_law_earned": false,
-    "status": "CHECKPOINT_GATE_BEFORE_NEW_V0_2_5_2",
+    "status": "V0_2_5_4_BOUNDED_ADMISSION_CURRENT__NEXT_CLASS_SELECTION_AFTER_POINTER_REPAIR",
     "v0_2_5_1": "HARNESS_INVALID_NOT_ADMITTED_IMMUTABLE",
-    "v0_2_5_2": "NOT_YET_FROZEN_NOT_EXECUTED"
+    "v0_2_5_2": "HARNESS_INVALID_NOT_ADMITTED_IMMUTABLE",
+    "v0_2_5_3": "HARNESS_INVALID_NOT_ADMITTED_IMMUTABLE",
+    "v0_2_5_4": "BOUNDED_EXPLICIT_CREATE_BREAKAWAY_FROM_JOB_DENIAL_QUALIFIED"
   },
   "wider_egress_v0_2_5_1_harness_invalid": {
     "artifact_sha256": "50095130e14f4d564dbca18cf0a6ace6c3805ffca38598856bd4a6fe4b1d9bb8",
@@ -2706,5 +2708,20 @@
     "protected_inherited_handles": false,
     "protected_win32_error": 5,
     "status": "BOUNDED_EXPLICIT_CREATE_BREAKAWAY_FROM_JOB_DENIAL_QUALIFIED"
+  },
+  "checkpoint_frontier_reconciliation_20260909": {
+    "parent_control": "8a401838b8e4d5d8b0be669ac98a9bdaec37580d",
+    "defect": "top-level wider_egress_frontier/resume_point and currentness-labelled Attempt Store/semantic-gate pointers remained pre-v0.2.5.4 while exact v0.2.5.4 bounded admission was present and qualified",
+    "repair_scope": "CHECKPOINT_CURRENTNESS_POINTERS_ONLY__NO_EVIDENCE_OR_SOURCE_CHANGE",
+    "security_evidence_changed": false,
+    "app_source_changed": false,
+    "main_source_changed": false,
+    "runtime_law_earned": false,
+    "law": "MACHINE_VERIFIER_PASS != SEMANTIC_CURRENTNESS_COHERENCE",
+    "full_read_first_pass_findings": [
+      "git_copy_policy.current_attempt_store stale at 166/172/251",
+      "self-read semantic-gate labels retained old generation PENDING state",
+      "previous_verified_control_tip stale at a95ec535..."
+    ]
   }
 }
