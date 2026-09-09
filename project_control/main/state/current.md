@@ -330,3 +330,6 @@ Admission `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca` qua
 - Job-specific causality/general COM-RPC/network/runtime authority remain unearned. No further effectful discriminator execution until corrected control checkpoint + single-Attempt serialization/idempotency guard.
 
 Resume: checkpoint corrected v0.2.7.2 state, then repair execution serialization before another branch.
+
+## ATTEMPT EXECUTION IDEMPOTENCY GUARD — APP QUALIFIED — 2026-09-09
+App has bounded-qualified the server execution idempotency rail after the v0.2.7.2 race. Evidence `f0e49f29...`, receipt `a41c2a5e...`, Store 211/225/304. Future immutable effectful App first executions use Attempt-bound `submitProjectExecution`; keyless `runSync` is demoted for that role. No Main/Core promotion. Resume: publish paired control successor carrying this guard before App resumes process-tree discrimination.

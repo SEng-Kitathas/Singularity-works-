@@ -338,3 +338,10 @@ Current store: 141 blobs / 141 attempts / 220 events; durable control `f59a32946
 | P0 | Publish corrected v0.2.7.2 bounded admission/provenance in successor `pcmmad/project-control` | Current control predates the actual admission and duplicate-execution correction | App/Main continuity correction complete | Non-force successor, independent remote readback, clean fresh clone, CHECKPOINT verifier PASS |
 | P0 | Add single-Attempt execution serialization/idempotency before another effectful discriminator | Two workers executed the same immutable Attempt ~2.61s apart despite no-result preflight | Corrected checkpoint closed | A competing execution for one Attempt key fails closed before process launch and is verified |
 | P1 | Only then select a new causal-isolation or materially distinct broker/service process-tree class | Prevent security archaeology from outrunning execution integrity | P0 orchestration gate | New branch has separate Attempt identity, exact claim ceiling, preserved artifact, and one authorized execution |
+
+## ATTEMPT EXECUTION IDEMPOTENCY GUARD — QUALIFIED — 2026-09-09
+| Priority | Action | Why it matters | Dependency / trigger | Done when |
+|---|---|---|---|---|
+| P0 | Publish and fresh-clone verify successor control carrying execution-idempotency qualification | Current control predates the rail that closes the duplicate-execution seam | Evidence `f0e49f29...`, receipt `a41c2a5e...`, Store 211/225/304 | Non-force successor + exact remote + clean fresh clone + CHECKPOINT PASS |
+| P1 | Select/freeze/read/preserve a NEW causal-isolation or materially distinct broker/service process-tree discriminator | Security frontier may resume only after execution integrity is durable | P0 checkpoint closed | Separate immutable Attempt identity, exact claim ceiling, preserved artifact; no execution yet |
+| P1 | Execute that Attempt only through idempotent server submission | Prevent recurrence of v0.2.7.2 race | Frozen Attempt + current control | `submitProjectExecution` uses deterministic Attempt key; duplicate semantics fail closed/replay same job |

@@ -57,3 +57,7 @@ Verified predecessor `pcmmad/project-control@a95ec5355b6946927eec6403a1764491f83
 
 ## Current fixed point after v0.2.7.2 duplicate-execution correction
 The bounded WMI class-bind admission survives, but two concurrent workers executed the same immutable v0.2.7.2 Attempt approximately 2.61 seconds apart. The nominal Store result/admission refer to the later execution; the chronological-first stdout and an append-only correction are now preserved separately. No further effectful discriminator is permitted until atomic single-Attempt execution serialization/idempotency is implemented and race-verified. See `CURRENTNESS_AFTER_V0_2_7_2_CONCURRENT_DUPLICATE_EXECUTION_CORRECTION_20260909.md`.
+
+
+## Current fixed point after Attempt execution idempotency guard qualification
+The v0.2.7.2 duplicate-execution scar is now bounded by a verified server submission rail: immutable effectful first execution uses Attempt-bound `submitProjectExecution`; keyless `runSync` is forbidden for that role. See `CURRENTNESS_AFTER_ATTEMPT_EXECUTION_IDEMPOTENCY_GUARD_20260909.md`.

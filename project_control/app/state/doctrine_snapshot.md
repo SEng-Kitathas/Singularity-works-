@@ -324,3 +324,9 @@ No Main/Core or product promotion follows.
 - `CONCURRENT_DUPLICATE_EXECUTION != AUTHORIZED_REPLAY`; immutable Attempt identity now requires an atomic reservation/lease/idempotency gate before effectful launch.
 - v0.2.7.2 bounded WMI result remains load-bearing: positive `WmiPrvSE.exe` service mediation plus protected WMI class-bind failure `0x20001501`; Job-specific causality and all broader process/network/runtime authority remain unearned.
 - Append-only provenance correction is required instead of rewriting the nominal later-run result/admission.
+
+## ATTEMPT EXECUTION IDEMPOTENCY GUARD — QUALIFIED — 2026-09-09
+- New active execution-control law: `EFFECTFUL_FIRST_EXECUTION_REQUIRES_IDEMPOTENT_SUBMISSION`.
+- Qualified bounded implementation rail is current server `submitProjectExecution` with stable Attempt-bound idempotency key and frozen payload.
+- `runSync` without Attempt-key semantics is demoted for immutable effectful first execution; it remains a non-effectful/currentness tool.
+- Qualification does not widen WMI/process/network/product/runtime authority.

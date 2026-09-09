@@ -304,3 +304,15 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 `CONCURRENT_DUPLICATE_EXECUTION != AUTHORIZED_REPLAY`  
 `BOUNDED_RESULT_SURVIVES != PROVENANCE_ERROR_IGNORED`  
 `WMI_BIND_DENIAL != JOB_SPECIFIC_DENIAL`
+
+## ATTEMPT EXECUTION IDEMPOTENCY GUARD — QUALIFIED — 2026-09-09
+- Server execution-control evidence `f0e49f29d6c55a03d5da16a57124340847586032aae3b96e73e41334d8db5ac2`; maintenance receipt `a41c2a5e8bacdb25c32e4bb7660d9b93d985e09be6964123a886512a60f0bbcc`; both exact-captured/read back in Attempt Store.
+- Store **211 blobs / 225 attempts / 304 events**, integrity ok / WAL / FULL.
+- Qualified bounded rail: future immutable **effectful first executions SHALL use `submitProjectExecution` with `idempotency_key` deterministically bound to the immutable Attempt identity and frozen execution payload**.
+- Completed same-payload duplicate replayed the same job; same key/different payload failed `IDEMPOTENCY_KEY_CONFLICT`; two in-flight duplicate probes failed closed `PROJECT_MUTATION_GUARD_BUSY` with no second job.
+- `runSync` SHALL NOT be used as the first-execution rail for immutable effectful Attempts. It remains usable for non-effectful inspection/currentness where duplicate process launch carries no consequence.
+- Current control `07c0d657654d5f4f759dfa67bebadcea2a4d5626` / CHECKPOINT `7657e49a7d2db2c14e43f35afd9f2760268d38ceef7c02f8d5392b3b65552af9` carries the v0.2.7.2 concurrency correction but predates this guard qualification.
+- **Immediate next:** publish/fresh-clone verify one successor control checkpoint carrying this execution rail. Only then select/freeze a NEW causal-isolation or materially distinct broker/service process-tree discriminator.
+
+`EFFECTFUL_FIRST_EXECUTION_REQUIRES_IDEMPOTENT_SUBMISSION`  
+`EXECUTION_CONTROL_QUALIFICATION != SECURITY_AUTHORITY`

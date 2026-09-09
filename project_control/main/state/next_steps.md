@@ -254,3 +254,8 @@ Seal successor control with result `fa355f068636714e3fc6584a2377c783dd5c23a7de36
 - P0: publish/fresh-clone verify successor control carrying App v0.2.7.2 admission + concurrency correction.
 - P0: require atomic single-Attempt execution serialization/idempotency before any new effectful discriminator.
 - P1: only after both gates, select a new causal-isolation or materially distinct broker/service process-tree class.
+
+## ATTEMPT EXECUTION IDEMPOTENCY GUARD — APP QUALIFIED — 2026-09-09
+- P0: publish/fresh-clone verify successor control carrying App execution-idempotency qualification.
+- P1: after closure, App may select/freeze/read/preserve a new causal-isolation or materially distinct broker/service process-tree discriminator.
+- P1: any effectful first execution must use Attempt-bound `submitProjectExecution`; no keyless `runSync`.

@@ -50,6 +50,33 @@
     "test_sha256": "f49f1dbc03477c42a10b9a0361ba55b4c670321102bc8e7cfc8bd0119ad9b502",
     "working_tree_clean": true
   },
+  "attempt_execution_idempotency_guard_20260909": {
+    "app_attempt_store": {
+      "attempts": 225,
+      "blobs": 211,
+      "events": 304,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "synchronous": "FULL"
+    },
+    "app_evidence_server_sha256": "f0e49f29d6c55a03d5da16a57124340847586032aae3b96e73e41334d8db5ac2",
+    "app_maintenance_receipt_server_sha256": "a41c2a5e8bacdb25c32e4bb7660d9b93d985e09be6964123a886512a60f0bbcc",
+    "claim_ceiling": "TESTED_CURRENT_SERVER_PROJECT_SUBMIT_PROJECT_EXECUTION_PATH_ONLY",
+    "completed_duplicate": "SAME_JOB_ID_REPLAYED_TRUE",
+    "inflight_duplicate": "PROJECT_MUTATION_GUARD_BUSY_FAIL_CLOSED_NO_SECOND_JOB_OBSERVED",
+    "payload_mismatch": "IDEMPOTENCY_KEY_CONFLICT",
+    "probe_jobs": [
+      "job-a0682dc18715",
+      "job-d5dcaf349f3e",
+      "job-2800e7eea40e"
+    ],
+    "product_promotion": false,
+    "qualified_path": "submitProjectExecution",
+    "required_key_rule": "IDEMPOTENCY_KEY_DETERMINISTICALLY_BOUND_TO_IMMUTABLE_ATTEMPT_IDENTITY",
+    "runSync_effectful_first_execution_allowed": false,
+    "security_authority_widened": false,
+    "status": "BOUNDED_SERVER_EXECUTION_IDEMPOTENCY_RAIL_QUALIFIED"
+  },
   "branch_base_qualified_main": "a7b4511734b1a1e507230308e75b31175aef4c4a",
   "canonical_process": {
     "canonical_parent": {
@@ -211,19 +238,24 @@
       "sha256": "6c5080d0c950297490139e7b120964dddb7936af5076a967d1200904456cb795"
     },
     {
-      "bytes": 166694,
+      "bytes": 167742,
       "path": "app/continuity/design_thread_stream.md",
-      "sha256": "0b70b9a82459a34ad2c149e4eae40a5e3d14e0d83c07d3dd720155f7da601fd5"
+      "sha256": "10954ffad6dfb2d7b44b9bf48f2f11040eec60e3aedd8d621cd91a3089b329ca"
     },
     {
-      "bytes": 34365,
+      "bytes": 35960,
       "path": "app/continuity/live_shadow.md",
-      "sha256": "aeda05ed8b4b100e02b6b31585a0329ed7e77ec7cf0f315c33d1d6324c3a90b8"
+      "sha256": "54b0d5ac8717d264cc86470b8c4f5fb2e29b2d00cdb3accd729e44f334e0dad1"
     },
     {
-      "bytes": 47754,
+      "bytes": 48191,
       "path": "app/continuity/research_epistemic_shadow.md",
-      "sha256": "adc9047362e9cad5f870fff2790cb6d08fce23db879f2b3ccb81fd6e1bfedbc2"
+      "sha256": "b4a29e21ce2e3f8f8dab1597689bbda4caf815c0ad0f788db15c6e9bb8d5298b"
+    },
+    {
+      "bytes": 3197,
+      "path": "app/evidence/attempt_execution_idempotency_guard_qualification_20260909.json",
+      "sha256": "c6c7ea61519f4936460eebba68a1843f82213acfa250d4514b59386916bf13fd"
     },
     {
       "bytes": 1782,
@@ -409,6 +441,11 @@
       "bytes": 5613,
       "path": "app/maintenance/SEMANTIC_FIELD_MAIN_APP_FORWARD_SYNC_REMOTE_CLOSURE_20260904.md",
       "sha256": "cbebe47192ae3a8bd7e8ce8d27c0ede416ca4374f886aa64b133c60cdad56273"
+    },
+    {
+      "bytes": 3917,
+      "path": "app/notes/maintenance/ATTEMPT_EXECUTION_IDEMPOTENCY_GUARD_QUALIFICATION_20260909.md",
+      "sha256": "10e193412489310a4830394fb8a1a009d72730503da03e3f8d6331929f97b124"
     },
     {
       "bytes": 3435,
@@ -636,9 +673,9 @@
       "sha256": "01461d5f61a7e1cc85a8365ff11565df7ada1069c46b9a90ea036394dbc762b5"
     },
     {
-      "bytes": 42908,
+      "bytes": 43897,
       "path": "app/state/current.md",
-      "sha256": "898d9c72be68fddb99a09f04e8200193fcc850a1b14ff8e9af1462f056204c10"
+      "sha256": "a698f06ba3a163e8a7349db53745ec8408fffd06a1b14232f60baa6adae6abea"
     },
     {
       "bytes": 4215,
@@ -671,9 +708,9 @@
       "sha256": "e3e859989524e5900abc353cd9b7719f3d7173c8d80104b4afe30dde05c68e9d"
     },
     {
-      "bytes": 29908,
+      "bytes": 30435,
       "path": "app/state/doctrine_snapshot.md",
-      "sha256": "35adadecc860d3d747d24b0f48ec0dac73217e683c581eb6169a7b3f525ee6a7"
+      "sha256": "b0c323fccd3a3d81b965282a09f61e326ca0d3fc4023db1ca8bb2da7a01a5e05"
     },
     {
       "bytes": 2879,
@@ -681,24 +718,29 @@
       "sha256": "b1d785fae561756b05daa3c268e0a0e13a913c0c529d8b0ba105a84e817e1b2b"
     },
     {
-      "bytes": 33217,
+      "bytes": 34274,
       "path": "app/state/next_steps.md",
-      "sha256": "dee81d003fb113f4ac4503643bf58b0198577740a05fb5273985037a2a4e3742"
+      "sha256": "354186316550ef4ed609f7ac40328aad2916e74839af6f98eeade37c0240f4f9"
     },
     {
-      "bytes": 24395,
+      "bytes": 24784,
       "path": "app/state/revisit_ledger.md",
-      "sha256": "d0d8f2b027f54254432a088324f563aac83fe0c592aeb35560b9fd10473dfa88"
+      "sha256": "f5f01f295bf08c405f74af4dd1eacd58ce71fae06d08fb95794c7f5374c1cb6e"
     },
     {
-      "bytes": 37132,
+      "bytes": 37856,
       "path": "app/state/trace_matrix.md",
-      "sha256": "20e8eb8553dd1b422c0a02c2307a19835c8a51ff39402c61e6cce5b7058a50b4"
+      "sha256": "22f608df9b2f6581bb8fc533bc17e5a28f03ea342f0a7947233335c8debfa066"
     },
     {
       "bytes": 1161,
       "path": "CONTINUITY_POINTER_REPAIR_20260908.md",
       "sha256": "bf1843d045940e1c3693e43e26dd2f79cb2c13c74da10616a4398ab362e5c7fd"
+    },
+    {
+      "bytes": 2574,
+      "path": "CURRENTNESS_AFTER_ATTEMPT_EXECUTION_IDEMPOTENCY_GUARD_20260909.md",
+      "sha256": "95c201dc4cc386c3aeecd7279c1ed17a9c5357908111608b3b73bdbc56e787d6"
     },
     {
       "bytes": 4480,
@@ -781,19 +823,19 @@
       "sha256": "6c5080d0c950297490139e7b120964dddb7936af5076a967d1200904456cb795"
     },
     {
-      "bytes": 175420,
+      "bytes": 176034,
       "path": "main/continuity/design_thread_stream.md",
-      "sha256": "5e76664fc08969b1533fe0164269b45788abc701188160e689e19d1d78824adb"
+      "sha256": "12b9067e37e9b14752da408e5731be754d6e4819324597c74c6447fcf6de48cb"
     },
     {
-      "bytes": 25602,
+      "bytes": 26571,
       "path": "main/continuity/live_shadow.md",
-      "sha256": "5b718a2875fcf2156866bec5c1b681d1152fa7d004870b1e7678ff3cc0572eff"
+      "sha256": "241c7baa9972a4a658eab9f80fa91fabc08dd9327dc5232e612d7a61b42351d3"
     },
     {
-      "bytes": 39214,
+      "bytes": 39553,
       "path": "main/continuity/research_epistemic_shadow.md",
-      "sha256": "2c7a2bd73ed8b72c0478f5d39f1943e139eaebc9827f20b6ab12621d5d730488"
+      "sha256": "58d09beae2ecaa532bc2284b35eb3b70e95120e4871f1fb9d42ae6bb9ed33b0a"
     },
     {
       "bytes": 3071,
@@ -896,6 +938,11 @@
       "sha256": "6e507c5a492003d853b49d0e4f99feca9f96ea52cdddb986e2dee391c54468df"
     },
     {
+      "bytes": 1697,
+      "path": "main/notes/maintenance/APP_ATTEMPT_EXECUTION_IDEMPOTENCY_GUARD_CROSS_ARM_AWARENESS_20260909.md",
+      "sha256": "9409bd869c05e9a8469ec86646d3c20a6e02863e68478ca7448030b8df89a809"
+    },
+    {
       "bytes": 1340,
       "path": "main/notes/maintenance/APP_V0_2_1_3_SUPERVISION_LOST_CROSS_ARM_AWARENESS_20260907.md",
       "sha256": "3aef34d2d543c6e31ebbff174f6ca1b040113c100273333a30170493dd51c9bb"
@@ -971,9 +1018,9 @@
       "sha256": "f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63"
     },
     {
-      "bytes": 34608,
+      "bytes": 35105,
       "path": "main/state/current.md",
-      "sha256": "1d7e14ecb2c93a01aeb105ac86d1b136cf043915986aaefeeab3a4d5a9d98a7b"
+      "sha256": "c840809dfc0323886a6279415192733e87a1bb39c553613c673d50f3dcdfd29f"
     },
     {
       "bytes": 4215,
@@ -1006,24 +1053,24 @@
       "sha256": "8b1bf53adf3ac3fee09a4435f1f6df4518359f767fc76fe8d99df4ed6f44e4ae"
     },
     {
-      "bytes": 42960,
+      "bytes": 43262,
       "path": "main/state/doctrine_snapshot.md",
-      "sha256": "40df1ff5024b087d4339f54666c72da895f983316eac955609513447a753f391"
+      "sha256": "c867b8787598864f91f2ea01e4aab6275943b09f54c7717784c744826daac9ee"
     },
     {
-      "bytes": 24719,
+      "bytes": 25146,
       "path": "main/state/next_steps.md",
-      "sha256": "5e6d24ec02b6ac4815d0941aa88386c61d3bd60ae665e60b1a8e0ec00e6f39bf"
+      "sha256": "64e9426320e267f6bc859d718eada876ebb44fb82bc88434c68788469d26cde3"
     },
     {
-      "bytes": 30136,
+      "bytes": 30489,
       "path": "main/state/revisit_ledger.md",
-      "sha256": "3ff77400d3cad2968db8d2b9836a164741ff34775a49f5ea99e1439d65a44b84"
+      "sha256": "b03df09856448226eb7b380c61c5bbb58dc99c2dcdd0f179aaf3f46bb05b6676"
     },
     {
-      "bytes": 51633,
+      "bytes": 52057,
       "path": "main/state/trace_matrix.md",
-      "sha256": "a0aa6a6393743c72294b24e5f8992bca652b5825f487dfa9b518668c77df0fe2"
+      "sha256": "66e7e691e79498724fb8ddacd489afb45b86c9b6e154427593a643524353a84d"
     },
     {
       "bytes": 1618,
@@ -1031,9 +1078,9 @@
       "sha256": "2fbf22e5e9eb92c8a72972f3d166fb97c24055c0668a37ef594fcbb4236eae02"
     },
     {
-      "bytes": 6530,
+      "bytes": 6902,
       "path": "README.md",
-      "sha256": "0d39b0b91e62336a24f76a4b1843b329eab9c53907fdaa8490a7f5527e266ffd"
+      "sha256": "0ae1c668837efa6e6a97b341efc9f891a6a3ff7d47cdf763d316e4454d9022ae"
     },
     {
       "bytes": 3271,
@@ -1795,7 +1842,7 @@
     "head_delta_scope": "authority/rahl-sop/CURRENT.md + GOVERNANCE_CONTACT_V1_0_ACTIVATION.md only; no Forge Core/runtime source delta",
     "law": "MAIN_BRANCH_HEAD != CORE_QUALIFICATION_ANCHOR"
   },
-  "previous_verified_control_tip": "ebfbd0e0615073e36c38e97ac91929d283701925",
+  "previous_verified_control_tip": "07c0d657654d5f4f759dfa67bebadcea2a4d5626",
   "previous_wider_egress_frontier_generation": {
     "cwd_diagnosis_result_sha256": "fde44603c47fd0af41b65492eb163a5500d44da6972c31fea1e65a75f7a4a7ae",
     "descendant_udp_first_result_sha256": "3cd68bca1d43d8437043d353f776587f0fb7aa6c35798f9084e4065bbbe98122",
@@ -1914,7 +1961,7 @@
       "server_source_sha256": "3595b6bbd46d3c812f5defe2cccbc1535c774c62561b6a141e17f2604460b83c"
     }
   },
-  "resume_point": "Publish and independently fresh-clone verify this v0.2.7.2 duplicate-execution correction. Then implement and race-verify atomic single-Attempt execution serialization/idempotency before ANY new effectful discriminator. Only after that guard passes may a causal-isolation or materially distinct broker/service process-tree class be selected. Do not rerun any v0.2.7.x immutable Attempt.",
+  "resume_point": "After this execution-idempotency successor is non-force published and independently fresh-clone verified, select/freeze/read/preserve a NEW causal-isolation or materially distinct broker/service process-tree discriminator. Do not execute it until exact Attempt preservation is verified, then use submitProjectExecution with idempotency_key deterministically bound to the immutable Attempt identity. Do not use runSync for immutable effectful first execution.",
   "schema": "singularity-works.project-control-checkpoint/0.1",
   "semantic_field_candidate": {
     "app_consumption_authority": true,
@@ -2017,6 +2064,13 @@
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "continuity/research_epistemic_shadow/res.md",
       "server_source_sha256": "30356c2a5f951b53597cbb67a45a0ca73c59f1885d23357f063886fd06cf7d14"
+    },
+    "app/evidence/attempt_execution_idempotency_guard_qualification_20260909.json": {
+      "git_copy_sha256": "c6c7ea61519f4936460eebba68a1843f82213acfa250d4514b59386916bf13fd",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "state/execution_guard/ATTEMPT_EXECUTION_IDEMPOTENCY_GUARD_QUALIFICATION_20260909.json",
+      "server_source_sha256": "f0e49f29d6c55a03d5da16a57124340847586032aae3b96e73e41334d8db5ac2"
     },
     "app/evidence/egress_d0_d3_v0_1_2_regression_result_20260906.json": {
       "bytes": 1782,
@@ -2242,6 +2296,13 @@
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "notes/maintenance/SEMANTIC_FIELD_MAIN_APP_FORWARD_SYNC_REMOTE_CLOSURE_20260904.md",
       "server_source_sha256": "8119f920e0c8e1c34c85ebe8e6ab5d01cbf32e5ab01309a8ede68e40145fa2ec"
+    },
+    "app/notes/maintenance/ATTEMPT_EXECUTION_IDEMPOTENCY_GUARD_QUALIFICATION_20260909.md": {
+      "git_copy_sha256": "10e193412489310a4830394fb8a1a009d72730503da03e3f8d6331929f97b124",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "notes/maintenance/ATTEMPT_EXECUTION_IDEMPOTENCY_GUARD_QUALIFICATION_20260909.md",
+      "server_source_sha256": "a41c2a5e8bacdb25c32e4bb7660d9b93d985e09be6964123a886512a60f0bbcc"
     },
     "app/notes/maintenance/EGRESS_WIDER_V0_2_5_1_EXPLICIT_JOB_BREAKAWAY_HARNESS_INVALID_20260908.md": {
       "bytes": 2840,
@@ -2671,6 +2732,13 @@
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "notes/maintenance/SEMANTIC_FIELD_CORE_REMOTE_CANDIDATE_PUBLICATION_20260904.md",
       "server_source_sha256": "c822aab716e24ea542176440920bd93040586de6c5b3488322b41959fb583454"
+    },
+    "main/notes/maintenance/APP_ATTEMPT_EXECUTION_IDEMPOTENCY_GUARD_CROSS_ARM_AWARENESS_20260909.md": {
+      "git_copy_sha256": "9409bd869c05e9a8469ec86646d3c20a6e02863e68478ca7448030b8df89a809",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "notes/maintenance/APP_ATTEMPT_EXECUTION_IDEMPOTENCY_GUARD_CROSS_ARM_AWARENESS_20260909.md",
+      "server_source_sha256": "c62ca808104e9c84a332cdf27f8e26983f5c62db0e0b2fc90a637036717a0830"
     },
     "main/sop/ICF_CS_V1_1_DETACHED_RELEASE_RECEIPT_2026-09-05.json": {
       "bytes": 4555,

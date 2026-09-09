@@ -232,3 +232,9 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 - Both executions converge on positive `WmiPrvSE.exe` service mediation and protected `WMI_CLASS_BIND_FAILURE` `0x20001501`/low16 `0x1501`; existing result `fa355f06...` and admission `e82527f7...` remain semantically valid but are later-run lineage.
 - Append-only correction `ea2525a04df310c194eb824b4d605245270097e6f291966e7f0176075226689d`; App Attempt Store **209/223/302**, integrity ok/WAL/FULL.
 - Job-specific causality/general COM-RPC/network/runtime authority remain unearned. No further effectful discriminator execution until corrected control checkpoint + single-Attempt serialization/idempotency guard.
+
+## ATTEMPT EXECUTION IDEMPOTENCY GUARD — APP QUALIFIED — 2026-09-09
+- App execution-control evidence `f0e49f29d6c55a03d5da16a57124340847586032aae3b96e73e41334d8db5ac2`; receipt `a41c2a5e8bacdb25c32e4bb7660d9b93d985e09be6964123a886512a60f0bbcc`; Store **211/225/304**, integrity ok/WAL/FULL.
+- Current bounded rail: immutable App effectful first execution uses server `submitProjectExecution` with idempotency key deterministically bound to immutable Attempt identity and frozen payload. `runSync` is not a qualified first-execution rail for such Attempts.
+- Tested: completed duplicate -> same job/replayed; same key/different payload -> `IDEMPOTENCY_KEY_CONFLICT`; in-flight duplicates -> fail-closed `PROJECT_MUTATION_GUARD_BUSY`, no second job.
+- No Main/Core/security/product/runtime authority promotion. Current control `07c0d657...` / `7657e49a...` predates this guard qualification. Next: checkpoint guard, then App may select a new distinct discriminator.

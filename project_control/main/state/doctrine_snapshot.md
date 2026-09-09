@@ -471,3 +471,7 @@ App admission `518c15f8464ea69487a4db5b7d23605b4d18983a684c1819c3d03792dbdf6085`
 ## V0.2.7.2 CONCURRENT DUPLICATE EXECUTION CORRECTION — CURRENT — 2026-09-09
 - Verified orchestration law: result-absence preflight is insufficient against concurrent launch; immutable effectful Attempt identities require atomic reservation/lease/idempotency before execution.
 - v0.2.7.2 bounded WMI result survives provenance correction; broader causality/process/network/runtime claims remain unearned.
+
+## ATTEMPT EXECUTION IDEMPOTENCY GUARD — APP QUALIFIED — 2026-09-09
+- Cross-arm execution-control law: `EFFECTFUL_FIRST_EXECUTION_REQUIRES_IDEMPOTENT_SUBMISSION` on App's tested server path.
+- This is App execution hygiene, not Main/Core semantic doctrine promotion or broader security authority.

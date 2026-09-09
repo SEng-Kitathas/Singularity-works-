@@ -1,0 +1,67 @@
+{
+  "schema": "singularity-works.attempt-execution-idempotency-guard-qualification/0.1",
+  "date": "2026-09-09",
+  "mode": "AUDIT/R5",
+  "authority": "EXECUTION_CONTROL_EVIDENCE_ONLY",
+  "source_head": "43aa7feac7e8a15828116bd700b644560714496d",
+  "main_head": "e66c071fc25f8d08bfc7ebf0551948392d652f35",
+  "durable_control_head": "07c0d657654d5f4f759dfa67bebadcea2a4d5626",
+  "durable_control_checkpoint": "7657e49a7d2db2c14e43f35afd9f2760268d38ceef7c02f8d5392b3b65552af9",
+  "trigger": "v0.2.7.2 duplicate execution race caused by effectful runSync path without idempotency key",
+  "qualified_execution_path": "submitProjectExecution",
+  "required_key_rule": "idempotency_key SHALL be deterministically bound to the immutable Attempt identity for every effectful first execution",
+  "forbidden_for_effectful_first_execution": "runSync",
+  "probes": [
+    {
+      "name": "completed_duplicate_replay",
+      "idempotency_key": "guard-probe-attempt-idempotency-20260909-v1",
+      "job_id": "job-a0682dc18715",
+      "submission_fingerprint": "1d06387bb5ccf1d7578a7f5ec752fbb8d88b4c2e8a6d11b689ec2489cacb820a",
+      "original_status": "COMPLETED",
+      "original_return_code": 0,
+      "duplicate_after_completion": "SAME_JOB_ID_REPLAYED_TRUE",
+      "different_payload_same_key": "IDEMPOTENCY_KEY_CONFLICT",
+      "different_payload_existing_job_id": "job-a0682dc18715"
+    },
+    {
+      "name": "inflight_duplicate_fail_closed_v2",
+      "idempotency_key": "guard-probe-attempt-idempotency-20260909-v2-running",
+      "job_id": "job-d5dcaf349f3e",
+      "submission_fingerprint": "f5739ddbf546c63528c414512708294fa2acf79b00974c8da8c6ef16dca6972a",
+      "original_status": "COMPLETED",
+      "original_return_code": 0,
+      "duration_ms": 10240,
+      "duplicate_while_running": "PROJECT_MUTATION_GUARD_BUSY",
+      "duplicate_error_time_utc": "2026-09-09T21:13:22.462491Z",
+      "duplicate_after_completion": "SAME_JOB_ID_REPLAYED_TRUE"
+    },
+    {
+      "name": "inflight_duplicate_fail_closed_v3",
+      "idempotency_key": "guard-probe-attempt-idempotency-20260909-v3-inflight",
+      "job_id": "job-2800e7eea40e",
+      "submission_fingerprint": "dfb9e5cc52b856e29a68955be3f774e676c91be960993c8f8cd3dc81924027c7",
+      "original_status": "COMPLETED",
+      "original_return_code": 0,
+      "duration_ms": 20206,
+      "duplicate_while_running": "PROJECT_MUTATION_GUARD_BUSY",
+      "duplicate_error_time_utc": "2026-09-09T21:14:13.381627Z"
+    }
+  ],
+  "observed_capacity_after_probes": "0_QUEUED_0_RUNNING",
+  "qualification": "BOUNDED_SERVER_EXECUTION_IDEMPOTENCY_RAIL_QUALIFIED",
+  "claim_ceiling": "TESTED_SUBMIT_PROJECT_EXECUTION_PATH_ON_CURRENT_SERVER_PROJECT_ONLY",
+  "not_proven": [
+    "runSync idempotency",
+    "all server restart persistence semantics",
+    "all cross-host execution systems",
+    "product runtime authority",
+    "security discriminator outcome"
+  ],
+  "laws": [
+    "EFFECTFUL_FIRST_EXECUTION_REQUIRES_IDEMPOTENT_SUBMISSION",
+    "RUNSYNC_WITHOUT_ATTEMPT_KEY_IS_NOT_A_FIRST_EXECUTION_RAIL",
+    "IDEMPOTENCY_KEY_CONFLICT_FAILS_CLOSED",
+    "INFLIGHT_DUPLICATE_FAILS_CLOSED",
+    "EXECUTION_CONTROL_QUALIFICATION_DOES_NOT_WIDEN_SECURITY_AUTHORITY"
+  ]
+}

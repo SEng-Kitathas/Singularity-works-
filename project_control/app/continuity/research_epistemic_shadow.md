@@ -550,3 +550,6 @@ Truth: positive WMI service-mediated creation verified; protected local WMI clas
 
 ## V0.2.7.2 CONCURRENT DUPLICATE EXECUTION CORRECTION — CURRENT — 2026-09-09
 Verified operational learning: a read-only/preflight check for missing result IDs is race-prone. Two workers crossed the launch boundary for one immutable Attempt within ~2.61 seconds. This is an execution-control finding, not security-path evidence. The bounded WMI observation replicated across both runs and survives; provenance was repaired append-only under `ea2525a04df310c194eb824b4d605245270097e6f291966e7f0176075226689d`. Future effectful attempts require atomic Attempt-key serialization before launch.
+
+## ATTEMPT EXECUTION IDEMPOTENCY GUARD — QUALIFIED — 2026-09-09
+Verified execution-plane invariant on the current server: Attempt-bound `submitProjectExecution` is a materially stronger first-execution rail than keyless `runSync`. Same-payload duplicates did not create a second job in tested completed/in-flight cases; payload mismatch conflicts. Authority is execution-control only. Evidence `f0e49f29...`; receipt `a41c2a5e...`.
