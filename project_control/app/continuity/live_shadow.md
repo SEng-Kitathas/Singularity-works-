@@ -2,10 +2,10 @@
 
 ## Thread Identity
 - Project: `singularity-works-forge-app`
-- Last Updated: 2026-09-08 UTC
-- Mode: CHECKPOINT
+- Last Updated: 2026-09-09 UTC
+- Mode: CHECKPOINT / RECOVERY
 - Role: R1 Conservative Auditor
-- Dominant Objective: advance durable control to the admitted v0.2.4.1 normal-descendant Job-close fixed point; preserve redundant recovery-side repair Attempts unexecuted.
+- Dominant Objective: close semantic-currentness repair at durable control `3b17cb3...`; then select a NEW materially distinct non-network process-tree escape class.
 
 ## Active User Intent
 - Continue autonomous App product/runtime/security work under current RAHL process authority.
@@ -20,9 +20,9 @@
 - `GOVERNANCE_CONTACT_V1_0_ACTIVE_RECEIPT.json` is absent on both local targets; **global ACTIVE is forbidden/unearned**.
 - Public Main `e66c071fc25f8d08bfc7ebf0551948392d652f35`; semantic Core qualification anchor `a7b4511734b1a1e507230308e75b31175aef4c4a` unchanged.
 - App `43aa7feac7e8a15828116bd700b644560714496d`, local/remote exact and clean.
-- Durable control `5c052d8aff58fb9ab424c5907f5de217a45fe686` / CHECKPOINT `af81d7cb4c3410e8b419aecd05e7e6c453d48a952dc143ac4633020eadeb72f7`, current verified control generation.
+- Durable control `3b17cb3ab64606b98244c979bf8cf4b023323aeb` / CHECKPOINT `defeaca590c0d62eb9c32584f1b745dce1c56fcaf0949cad0daf2ba2aaa99f06`, current verified control generation; fresh-clone verifier PASS 179.
 - Recovery ingress `checkpoint-app-live-0014-43aa7feac7e8` is current LKG/source MATCH/NORMAL/READY; Core checkpoint IDs remain null.
-- Attempt Store: **157 blobs / 162 attempts / 241 events**, integrity `ok`, WAL/FULL.
+- App Attempt Store: **183 blobs / 192 attempts / 271 events**, integrity `ok`, WAL/FULL.
 
 ## Earned App Security State
 - Base protected-process v0.1.2 bounded qualification `3d27639447f1d47ac71e892a766444a3e7c8627ff3120b791ecf4470ebeedda6` remains exact local-loopback evidence only.
@@ -31,14 +31,14 @@
 - Rollover-selected descendant UDP Attempt result `86833629ebd032f56dbc900145d40771dc38862fc1416c0ddfe88fd4e35af022` remains **NOT_ADMITTED / supervision-lost** and is not replayable as the same Attempt.
 - Descendant DNS-helper loopback bounded admission `63e5a830b18bb8d6c5f291468e7a6b9ed491ed580f37a0a7aceb6e584dc79225`.
 - Descendant proxy/environment loopback bounded admission `59623224fd455cb7590d59682330740920a51a7fc2f7ab2217071d72a65227f3`; first result `c60ee5e079b0eed9c99e7bd86142560a1d46ace1bd2a372283d3980be710e56c`. Unprotected descendant used inherited loopback proxy; protected descendant inherited exact proxy environment and reached neither proxy nor direct-target listener.
-- Normal-descendant Job-close bounded admission `518c15f8464ea69487a4db5b7d23605b4d18983a684c1819c3d03792dbdf6085`; current-control first result `709ba15edfbdc640c313f236daeb8c8abe889a64e03cc8feb50aedcade2ac173`. Explicit breakaway remains untested.
+- Normal-descendant Job-close bounded admission `518c15f8464ea69487a4db5b7d23605b4d18983a684c1819c3d03792dbdf6085`; explicit `CREATE_BREAKAWAY_FROM_JOB` bounded admission `99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8` is current exact-path evidence only.
 - Source remained unchanged through these bounded campaigns.
 
 ## Unearned / Open Seams
 - `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` remains **UNEARNED runtime law**.
 - General Internet/direct egress, system resolver, Internet DNS, DoH/DoT, QUIC, arbitrary/system proxy/PAC/WPAD/WinHTTP/WinINET remain unqualified.
 - Helper/browser/plugin/import generality, COM/RPC/service/WSL paths remain unqualified.
-- **Normal-descendant Job-close termination is now bounded-qualified at `518c15f8464ea69487a4db5b7d23605b4d18983a684c1819c3d03792dbdf6085`; explicit `CREATE_BREAKAWAY_FROM_JOB` behavior remains unqualified.**
+- **Normal-descendant Job-close termination and the exact explicit `CREATE_BREAKAWAY_FROM_JOB` denial path are bounded-qualified; general process-tree escape remains unqualified.**
 - Production launch-site integration and broker/Gate allow path remain unqualified.
 - Real provider/OAuth transport remains blocked until broader enforcement + launch integration qualify.
 - Core snapshot restoration/currentness identity remains separate P1; checkpoint IDs stay null.
@@ -59,19 +59,19 @@
 - `PRESERVED_REDUNDANT_SIBLING != CURRENT_EXECUTION_LINEAGE`; `UNEXECUTED_REDUNDANT_ATTEMPT != REPLAY_REQUIREMENT`.
 
 ## Immediate Next Step
-Advance `pcmmad/project-control` from `d76299e728b5026df87c39c17ad9d723f759ce5f` to a successor carrying v0.2.4.1 result/admission + corrected arm state; only after fresh-clone verification create a NEW explicit-breakaway Attempt.
+Select/freeze/read/preserve a NEW materially distinct non-network process-tree escape discriminator under durable control `3b17cb3...`; do not repeat `CREATE_BREAKAWAY_FROM_JOB`.
 
 ## Last 10 Reinforcement Window
 1. Live recovery superseded the stale rollover handoff; live persisted evidence wins.
-2. Main is `e66c071fc25f8d08bfc7ebf0551948392d652f35`; App is `43aa7feac7e8a15828116bd700b644560714496d`; control is `d76299e728b5026df87c39c17ad9d723f759ce5f`.
+2. Main is `e66c071fc25f8d08bfc7ebf0551948392d652f35`; App is `43aa7feac7e8a15828116bd700b644560714496d`; control is `3b17cb3ab64606b98244c979bf8cf4b023323aeb`.
 3. Governance Contact token is locally valid on both project targets; global completion receipt is absent.
 4. Gen14 remains current LKG; Core snapshot IDs remain null.
 5. Cwd diagnosis localized `SOURCE_ROOT` as invalid for protected descendant start; `powershell.parent` is the qualified harness cwd.
 6. One descendant-UDP lineage remains NOT_ADMITTED due supervision loss; a separate sibling admission remains bounded-qualified.
 7. Descendant DNS-helper loopback is bounded-qualified only.
 8. Proxy/environment v0.2.3 is bounded-qualified only; no system-proxy or Internet claim follows.
-9. Attempt Store current readback is 157/162/241, integrity ok.
-10. Current-control v0.2.4.1 lineage `81d8d42b... -> 709ba15e... -> 518c15f8...` is executed once and bounded-admitted; stale-control sibling `1faa3725...` remains preserved/unexecuted, and currentness sibling `541d4710...` is preserved/unexecuted but redundant/non-frontier.
+9. App Attempt Store current readback is 183/192/271, integrity ok.
+10. v0.2.5.4 explicit `CREATE_BREAKAWAY_FROM_JOB` denial is bounded-admitted; control pointer repair `3b17cb3...` is fresh-clone verified; next class must be materially distinct and separately preserved.
 
 ## Current Continuity Instruments
 - App RES `ac9fbb19fcead73415983ef1608e5c7af58684694e6b8a1f82094cb959a4fc0a`, authority NONE_BY_CONTENT.
@@ -186,3 +186,31 @@ Advance `pcmmad/project-control` from `d76299e728b5026df87c39c17ad9d723f759ce5f`
 `EXPLICIT_CREATE_BREAKAWAY_FROM_JOB_DENIAL != ALL_PROCESS_TREE_ESCAPE_RESISTANCE`
 `NON_NETWORK_BREAKAWAY_RESULT != NETWORK_EGRESS_RESULT`
 `BOUNDED_BREAKAWAY_PASS != NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT`
+
+
+## V0.2.5.4 SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-08
+- Durable control `8a401838b8e4d5d8b0be669ac98a9bdaec37580d` / CHECKPOINT `28904a9d34ebc80b46eec719a1987acdebc92c476458357dbe3cf772b369b1a2` is non-force published and independently fresh-clone verified PASS 179.
+- Exact v0.2.5.4 result `7ae2edac...`, plane record `de4e66d5...`, and bounded admission `99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8` reproduce in the fresh clone.
+- Current fixed point: bounded explicit `CREATE_BREAKAWAY_FROM_JOB` denial qualified; general process-tree/network/runtime law unearned.
+- Next consequence-bearing work requires a separately designed materially distinct non-network process-tree class; none is authorized implicitly by this pointer update.
+
+## 2026-09-09 CONTROL FRONTIER POINTER RECONCILIATION CLOSURE
+- VERIFIED remote `pcmmad/project-control` = `3b17cb3ab64606b98244c979bf8cf4b023323aeb`, direct child of `8a401838b8e4d5d8b0be669ac98a9bdaec37580d`; non-force push readback exact.
+- Fresh single-branch clone exact/clean; `VERIFY_CHECKPOINT.py` PASS, files=179.
+- CHECKPOINT SHA `defeaca590c0d62eb9c32584f1b745dce1c56fcaf0949cad0daf2ba2aaa99f06`, 136377 bytes. Final candidate bytes received a complete 2727-line semantic read before commit.
+- Repaired stale currentness pointers only: v0.2.5.4 is current bounded explicit `CREATE_BREAKAWAY_FROM_JOB` denial; Attempt Store pointer 183/192/271; self-read gate labels no longer falsely carry an old PENDING generation; previous verified control tip now `8a401838...`.
+- Security evidence/source unchanged: App `43aa7fe...` clean; Main `e66c071...`; Gen14 unchanged; runtime `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` remains UNEARNED.
+- Next allowed frontier: select/freeze/read/preserve a NEW materially distinct **non-network** process-tree escape discriminator. Do not repeat `CREATE_BREAKAWAY_FROM_JOB`. Candidate classes include controlled `SILENT_BREAKAWAY_OK` or broker/service/task-style process creation.
+- `MACHINE_VERIFIER_PASS != SEMANTIC_CURRENTNESS_COHERENCE`; `STALE_RESUME_POINTER != EXECUTION_AUTHORITY`.
+
+
+## V0.2.6.1 SHELLEXECUTEEXW LIFECYCLE — CURRENT — 2026-09-09
+- Mode: **CHECKPOINT**; role: **R1 Conservative Auditor** after successful R5 first execution/readback/admission.
+- Execution binding: control `3b17cb3ab64606b98244c979bf8cf4b023323aeb` / CHECKPOINT `defeaca590c0d62eb9c32584f1b745dce1c56fcaf0949cad0daf2ba2aaa99f06`.
+- Stale-control v0.2.6 `1f2bd6a1...` is preserved/unexecuted; currentness-only live artifact `f649b0c341c53de9988c0bc3fdc0a0d5975904726546121569224dacceec0399` executed exactly once synchronously and SHALL NOT be rerun.
+- Exact stdout `554b7af88035c2ab55c2a9dd108c13600426a8291946adc3837a0fa620d5f4e9`; structured result `4438e2e5ce5f2bdcb77d88f513af39483ec8f6e8e693ed9b100c4236a2eb2a3e`; bounded admission `06161c25977979e740fbc05e826f8bdc56d83759f136c2178a70f7b2a4af965f`.
+- Positive ShellExecuteExW returned a supervised child PID that survived root exit; cleanup confirmed.
+- Protected ShellExecuteExW also returned a supervised PID under verified AppContainer+immediate Job/zero capabilities/no inherited handles; after protected return/Forge Job close that PID was absent.
+- Qualified only: **bounded ShellExecuteExW child-lifecycle containment for the exact tested path**. Out-of-process shell broker use is NOT proven; Shell.Application/COM/service/WMI/RPC/task/WSL and network/runtime law remain unearned.
+- Attempt Store: **191 blobs / 201 attempts / 280 events**, integrity `ok`.
+- Immediate next step: checkpoint this admission across Main/App/control before selecting another class.

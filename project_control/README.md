@@ -36,6 +36,9 @@ v0.2.5.3 remains HARNESS_INVALID/NOT_ADMITTED: positive explicit child creation 
 ## Current fixed point after v0.2.5.4 explicit-breakaway bounded admission
 The current App process-lifecycle evidence now includes a bounded denial of the exact `CREATE_BREAKAWAY_FROM_JOB` path inside the verified immediate Forge Job. This is not general process-tree escape resistance and carries zero Main/Core or product promotion. See `CURRENTNESS_AFTER_V0_2_5_4_BOUNDED_ADMISSION_20260908.md`.
 
+## Current fixed point after v0.2.6.1 ShellExecuteExW bounded admission
+The App process-lifecycle frontier now includes bounded containment for the exact ShellExecuteExW launch path: positive child survives root exit, while the protected returned PID is absent after immediate Forge Job close. Broker identity is not inferred. See `CURRENTNESS_AFTER_V0_2_6_1_SHELLEXECUTEEX_ADMISSION_20260909.md`.
+
 ## Semantic admission
 Server successor admission stream: 23 artifacts / 3,116 deterministic lines / SHA `d0c1379fbd8c01e9616a1b8fee83f975bd1670179551eb354f05c1d5e3cc128e`, complete read 3,116/3,116, blocking findings 0.
 

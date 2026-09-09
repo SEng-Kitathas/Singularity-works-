@@ -1682,3 +1682,55 @@ After v0.2.5.3 checkpoint closure, synchronous plane `de4e66d5a24666dea371088290
 First synchronous execution completed rc0. Positive helper explicitly created the sleeping child, observed it alive after root exit, then cleaned it successfully. Under verified AppContainer + immediate Job / zero capabilities / no inherited handles, the helper passed normal-child baseline/cleanup and explicit `CREATE_BREAKAWAY_FROM_JOB` creation then failed with Win32 `ERROR_ACCESS_DENIED (5)`. Exact stdout `af8ed618e9b3652207017cc5fb3e20505e4dc5c61a0d487c67738eda08314952` and result `7ae2edac96df296f278b0a552c42cc913fd27402f65e705f2cadc7ad761cd6aa` were preserved/read back before admission.
 
 R1 admitted only bounded explicit-breakaway creation denial under receipt `99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8`. Store 183/192/271 integrity ok. No broader process-tree, network, production, or runtime-law claim.
+
+
+---
+
+## Entry — v0.2.5.4 bounded-admission successor control closed — 2026-09-08
+Control `8a401838b8e4d5d8b0be669ac98a9bdaec37580d` / CHECKPOINT `28904a9d34ebc80b46eec719a1987acdebc92c476458357dbe3cf772b369b1a2` fresh-clone verified PASS 179 with exact result/admission evidence. Current frontier is bounded explicit CREATE_BREAKAWAY_FROM_JOB denial; no new escape class started.
+
+
+---
+
+## Entry — recovery found and repaired stale v0.2.5.4 control frontier pointers — 2026-09-09
+Tags: RECOVERY, CONTROL, CURRENTNESS, V0.2.5.4, SEMANTIC-REPAIR
+
+Live recovery found the project had advanced beyond the earlier thread boundary. Verified current fixed point before repair: public Main `e66c071fc25f8d08bfc7ebf0551948392d652f35`; App `43aa7feac7e8a15828116bd700b644560714496d` clean/remote-exact; control `8a401838b8e4d5d8b0be669ac98a9bdaec37580d`; Attempt Store 183 blobs / 192 attempts / 271 events, integrity ok. Control fresh clone verifier PASS 179.
+
+`8a401838...` correctly carried v0.2.5.4 artifact `1f7db5a0...`, first result `7ae2edac...`, bounded admission `99b28994...`, but `project_control/CHECKPOINT.json` retained stale top-level `wider_egress_frontier`, `resume_point`, current Attempt Store and semantic-gate pointer labels. Machine verifier still passed.
+
+A currentness-only repair was prepared in isolated clone. First full semantic read found additional stale currentness-labelled fields; final CHECKPOINT bytes were reread completely, 2727/2727 lines, verifier PASS 179. No App/Main source, security evidence, Attempt lineage, Gen14 or runtime-law claim changed.
+
+Remote race check remained exact at `8a401838...`. Repair commit `3b17cb3ab64606b98244c979bf8cf4b023323aeb` (`control: reconcile v0.2.5.4 frontier pointers`) was non-force pushed. Remote readback exact. Independent fresh single-branch clone exact/clean, verifier PASS 179. CHECKPOINT SHA `defeaca590c0d62eb9c32584f1b745dce1c56fcaf0949cad0daf2ba2aaa99f06`, 136377 bytes.
+
+Current admitted process-tree claim remains only bounded denial of the exact protected `CREATE_BREAKAWAY_FROM_JOB` path. General process-tree/network/runtime law remains unearned.
+
+Next permitted consequence-bearing work: select/freeze/read/preserve a NEW materially distinct non-network process-tree escape discriminator. Do not repeat `CREATE_BREAKAWAY_FROM_JOB`. Candidate classes include controlled `SILENT_BREAKAWAY_OK` or broker/service/task-style creation.
+
+`MACHINE_VERIFIER_PASS != SEMANTIC_CURRENTNESS_COHERENCE`.
+`STALE_RESUME_POINTER != EXECUTION_AUTHORITY`.
+
+---
+
+## ROLLOVER SEAL — 2026-09-09 — USER + ASSISTANT
+Tags: CHECKPOINT, LOSSLESS-ROLLOVER, RECOVERY, CURRENTNESS-REPAIR, WHOLE-PRODUCT-INTENT
+
+USER requested a complete lossless rollover checkpoint because the thread is full, explicitly requiring the next thread to understand the work in its entirety and every continuity/context surface to be fully current.
+
+ASSISTANT entered CHECKPOINT / R1->R4. Initial attempt to wait on a remembered cwd-diagnosis job returned NOT_FOUND; recovery inspection proved the persisted project was materially ahead of the visible chat tail. Recent jobs and Attempt Store showed subsequent campaigns through cwd repair, descendant UDP sibling, DNS-helper, proxy/environment, Job-close, explicit breakaway harness repairs, and final bounded v0.2.5.4 admission. Live Git readback resolved current refs to Main `e66c071fc25f8d08bfc7ebf0551948392d652f35`, App `43aa7feac7e8a15828116bd700b644560714496d`, control `3b17cb3ab64606b98244c979bf8cf4b023323aeb`. App worktree was clean; Attempt Store 183/192/271 integrity ok. Governance Contact locator/token validate locally on both targets while ACTIVE completion receipt remains absent; global ACTIVE therefore remains unearned.
+
+Strongest current Live surfaces show `3b17cb3ab64606b98244c979bf8cf4b023323aeb` is direct current control with CHECKPOINT `defeaca590c0d62eb9c32584f1b745dce1c56fcaf0949cad0daf2ba2aaa99f06`, fresh-clone verifier PASS 179; September-9 pointer repair changed currentness representation only, not source/security evidence. Current bounded security admissions: v0.1.2 `3d27639447f1d47ac71e892a766444a3e7c8627ff3120b791ecf4470ebeedda6`, root UDP `d5765e77f660a24d8693b265349be1b35b958cfa4cfbef61822a4a9337992269`, descendant UDP sibling `bbf0043e0ce8793688f1f358053e790b2a73cfec2911aefa1d09e18844ffb270`, DNS-helper `63e5a830b18bb8d6c5f291468e7a6b9ed491ed580f37a0a7aceb6e584dc79225`, proxy/env `59623224fd455cb7590d59682330740920a51a7fc2f7ab2217071d72a65227f3`, normal descendant Job-close `518c15f8464ea69487a4db5b7d23605b4d18983a684c1819c3d03792dbdf6085`, explicit `CREATE_BREAKAWAY_FROM_JOB` `99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8`. Supervision-lost descendant UDP result `86833629ebd032f56dbc900145d40771dc38862fc1416c0ddfe88fd4e35af022` remains NOT_ADMITTED/non-replayable as same Attempt. General process-tree/network/runtime law remains unearned.
+
+Rollover explicitly restores whole-product intent so archaeology cannot overwrite it: Singularity Works product whole; Forge semantic core; Main research/semantic-authority strand + App embodiment/product strand; highly interactive LBE map/puzzle/debug workspace; capability-first/ECS composability; Microseed/Starmap/SME/HSP/HELIX/OARR/Loop+/CSC/Attention Reservoir as donor mechanism families; Ergo/efficient professional renderer/Shell/HUD/SmartCanvas/CogTerm QOL; aerospace-grade zombie recovery/save-state/quarantine/manual restore; GitHome + secure Vault; manual parity for useful automation; gated/logged external capability/OAuth with least authority; classical+PQ crypto where qualified; export/reimport controls; broad local/GitHub/outside-world donor quarry and strip-for-invariants rule.
+
+The exact next frontier after fresh-thread re-entry is a NEW materially distinct non-network process-tree escape discriminator; do not repeat `CREATE_BREAKAWAY_FROM_JOB`. Fresh thread starts RECOVERY/AUDIT and must live-resolve currentness before BUILD-COMMIT.
+
+
+---
+
+## Entry — v0.2.6.1 ShellExecuteExW bounded lifecycle admission — 2026-09-09
+Tags: SHELLEXECUTEEX, PROCESS-LIFECYCLE, FIRST-RESULT, BOUNDED-ADMISSION
+
+A frozen v0.2.6 ShellExecuteExW artifact became stale before capture due control pointer repair and was preserved/unexecuted. Currentness-only v0.2.6.1 `f649b0c341c53de9988c0bc3fdc0a0d5975904726546121569224dacceec0399` changed no launch/observation behavior, was fully reread/captured, and executed once synchronously. Positive child survived root exit and cleanup succeeded. Protected ShellExecuteExW returned PID 15092 under verified AppContainer+immediate Job; after protected return/Job close the PID was absent. Exact result `4438e2e5ce5f2bdcb77d88f513af39483ec8f6e8e693ed9b100c4236a2eb2a3e` preserved/read back; bounded admission `06161c25977979e740fbc05e826f8bdc56d83759f136c2178a70f7b2a4af965f`. Store 191/201/280 integrity ok.
+
+No broker mechanism was inferred. Qualified only exact ShellExecuteExW child-lifecycle containment.

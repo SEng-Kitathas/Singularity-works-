@@ -1,0 +1,95 @@
+{
+  "admission_status": "PENDING_READBACK",
+  "artifact_reason": "protected ShellExecuteExW launched a supervised child PID that was no longer alive after run_zero_network_process closed the immediate Forge Job",
+  "artifact_sha256": "f649b0c341c53de9988c0bc3fdc0a0d5975904726546121569224dacceec0399",
+  "artifact_status": "PASS_BOUNDED_SHELLEXECUTEEX_CHILD_NOT_ALIVE_AFTER_FORGE_JOB_CLOSE",
+  "bounded_result": "PASS",
+  "claim_ceiling": "BOUNDED_SHELLEXECUTEEX_PROCESS_LIFECYCLE_ONLY",
+  "classification": "PASS_BOUNDED_SHELLEXECUTEEX_CHILD_NOT_ALIVE_AFTER_FORGE_JOB_CLOSE",
+  "control_remote_exact_after_run": true,
+  "durable_control_checkpoint": "defeaca590c0d62eb9c32584f1b745dce1c56fcaf0949cad0daf2ba2aaa99f06",
+  "durable_control_head": "3b17cb3ab64606b98244c979bf8cf4b023323aeb",
+  "evidence_boundary": [
+    "POSITIVE_SHELLEXECUTEEX_SUCCESS",
+    "POSITIVE_CHILD_ALIVE_AFTER_ROOT_EXIT",
+    "POSITIVE_CLEANUP_CONFIRMED",
+    "PROTECTED_APPCONTAINER_VERIFIED",
+    "PROTECTED_IMMEDIATE_JOB_VERIFIED",
+    "PROTECTED_SHELLEXECUTEEX_SUCCESS",
+    "PROTECTED_RETURNED_PID_NOT_ALIVE_AFTER_FORGE_JOB_CLOSE",
+    "SHELLEXECUTEEX_PATH != PROVEN_OUT_OF_PROCESS_BROKER",
+    "SHELLEXECUTEEX_CONTAINMENT != ALL_PROCESS_TREE_ESCAPE_RESISTANCE",
+    "NON_NETWORK_RESULT != NETWORK_EGRESS_RESULT"
+  ],
+  "execution_plane": "server.runSync.command",
+  "execution_return_code": 0,
+  "network_activity_intended": false,
+  "positive_control": {
+    "child_state_after_root_exit": {
+      "alive": true,
+      "in_any_job": true,
+      "job_query_error": 0,
+      "job_query_ok": true,
+      "open": true,
+      "pid": 36220,
+      "wait_result": 258
+    },
+    "cleanup": {
+      "opened": true,
+      "pid": 36220,
+      "terminated": true,
+      "wait_result": 0
+    },
+    "decoded": {
+      "kind": "SHELLEXECUTEEX_SUCCESS",
+      "pid": 36220,
+      "raw": 36220
+    },
+    "root_exit_code": 36220,
+    "stderr_nonempty": false
+  },
+  "protected": {
+    "child_state_after_protected_return": {
+      "alive": false,
+      "in_any_job": null,
+      "open": false,
+      "open_error": 87,
+      "pid": 15092
+    },
+    "decoded": {
+      "kind": "SHELLEXECUTEEX_SUCCESS",
+      "pid": 15092,
+      "raw": 15092
+    },
+    "receipt": {
+      "appcontainer_verified": true,
+      "authority": "NONE",
+      "capability_count": 0,
+      "command_sha256": "77c185e1ba281e6a4dd88c5c79d2d67d750026e5a4a771934b45a37b3e7f4210",
+      "elapsed_seconds": 0.2190000000409782,
+      "environment_inherited": true,
+      "executable": "<LOCAL_POWERSHELL_PATH>",
+      "exit_code": 15092,
+      "immediate_job_verified": true,
+      "inherited_handles": false,
+      "job_close_terminated_process": false,
+      "parent_was_in_job": true,
+      "pid": 17144,
+      "profile_created": true,
+      "profile_name": "<EPHEMERAL_APPCONTAINER_PROFILE>",
+      "schema": "singularity-protected-process/0.1",
+      "timed_out": false
+    }
+  },
+  "proven_out_of_process_broker": false,
+  "runtime_law_earned": false,
+  "same_attempt_rerun": false,
+  "schema": "singularity-works.egress-wider-v0.2.6.1-shellexecuteex-first-result/0.1",
+  "source_clean_after_run": true,
+  "source_head": "43aa7feac7e8a15828116bd700b644560714496d",
+  "source_remote_exact_after_run": true,
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 3175,
+  "stdout_sha256": "554b7af88035c2ab55c2a9dd108c13600426a8291946adc3837a0fa620d5f4e9"
+}

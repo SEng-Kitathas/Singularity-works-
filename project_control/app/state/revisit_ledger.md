@@ -75,3 +75,12 @@ Last updated: 2026-09-06 UTC
 | 2026-09-08 | Explicit breakaway positive criterion | v0.2.5.3 positive explicit child succeeds/survives but belongs to some outer Job | protected phase result under relaxed positive criterion | checkpoint `27af68192010146a421ea95900407bdc58c47984496fba98a163bbfc069854bf` then v0.2.5.4 | P0 | OPEN / HARNESS_INVALID / NOT_ADMITTED | membership telemetry retained |
 
 | 2026-09-08 | Explicit `CREATE_BREAKAWAY_FROM_JOB` path | v0.2.5.4 now qualifies exact creation denial in verified immediate Job | distinct broker/service/silent-breakaway mechanisms | separate NEW non-network discriminators after control closure | P0 | RESOLVED / BOUNDED QUALIFIED at `99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8` | do not generalize or repeat |
+
+## 2026-09-09 rollover obligations
+- **RESOLVED:** semantic-currentness/control-pointer repair; current durable control `3b17cb3ab64606b98244c979bf8cf4b023323aeb` / `defeaca590c0d62eb9c32584f1b745dce1c56fcaf0949cad0daf2ba2aaa99f06` PASS 179.
+- **OPEN P0:** select a NEW materially distinct non-network process-tree escape class; do not repeat explicit `CREATE_BREAKAWAY_FROM_JOB`.
+- **OPEN P0:** global `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` runtime law remains unearned; production launch integration/broker allow path/provider transport remain blocked.
+- **OPEN P1:** Core checkpoint restoration/currentness/snapshot IDs remain null until separately qualified.
+- **WATCH:** retained whole-product/LBE/Ergo/Vault/GitHome/QOL intent must not be displaced by security-only frontier work.
+
+| 2026-09-09 | ShellExecuteExW launch path | exact child lifecycle now bounded-contained at `06161c25977979e740fbc05e826f8bdc56d83759f136c2178a70f7b2a4af965f` | broker-specific mechanisms remain untested | separate NEW non-network broker discriminator after control closure | P1 | RESOLVED / BOUNDED QUALIFIED | do not infer broker identity |

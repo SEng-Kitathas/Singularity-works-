@@ -1,8 +1,8 @@
 {
   "app_attempt_store_current": {
-    "attempts": 192,
-    "blobs": 183,
-    "events": 271,
+    "attempts": 201,
+    "blobs": 191,
+    "events": 280,
     "integrity": "ok"
   },
   "app_observation": {
@@ -89,6 +89,21 @@
     "semantic_read_ledger": "PASS_NO_FRESH_READ_REQUIRED",
     "sibling_donor_r4_3": "7d72e57dc2021af20753a942f87da38bf8ad31fbb89a6bd21145bd8e263d8552"
   },
+  "checkpoint_frontier_reconciliation_20260909": {
+    "app_source_changed": false,
+    "defect": "top-level wider_egress_frontier/resume_point and currentness-labelled Attempt Store/semantic-gate pointers remained pre-v0.2.5.4 while exact v0.2.5.4 bounded admission was present and qualified",
+    "full_read_first_pass_findings": [
+      "git_copy_policy.current_attempt_store stale at 166/172/251",
+      "self-read semantic-gate labels retained old generation PENDING state",
+      "previous_verified_control_tip stale at a95ec535..."
+    ],
+    "law": "MACHINE_VERIFIER_PASS != SEMANTIC_CURRENTNESS_COHERENCE",
+    "main_source_changed": false,
+    "parent_control": "8a401838b8e4d5d8b0be669ac98a9bdaec37580d",
+    "repair_scope": "CHECKPOINT_CURRENTNESS_POINTERS_ONLY__NO_EVIDENCE_OR_SOURCE_CHANGE",
+    "runtime_law_earned": false,
+    "security_evidence_changed": false
+  },
   "continuity_pointer_repair_20260908": {
     "app_dts_sha256": "8743cf5f0a0415e739246c5ec13f941de58248c50997c074f4784b36f5e2482b",
     "defect": "EMBEDDED_LIVE_SHADOW_DTS_POINTERS_STALE_ONE_GENERATION",
@@ -161,9 +176,9 @@
   },
   "files": [
     {
-      "bytes": 434,
+      "bytes": 588,
       "path": ".gitattributes",
-      "sha256": "bf15777d3a0ce0b69e7eabd32d4d36e87faa167174208195ab1d60dcf152fa8c"
+      "sha256": "e820cbe096782bf353330c7819810a5ae9ba39b58c6b5567cebe33599d175d82"
     },
     {
       "bytes": 3534,
@@ -196,19 +211,19 @@
       "sha256": "6c5080d0c950297490139e7b120964dddb7936af5076a967d1200904456cb795"
     },
     {
-      "bytes": 153413,
+      "bytes": 160393,
       "path": "app/continuity/design_thread_stream.md",
-      "sha256": "2ee587dd0d5644e8a7ad81e826050eacfc79945a5195ef27b8c95fe03e07232c"
+      "sha256": "6a3a70558a03722a0006272344c9a3731562e4bdcbb70698868f92d78e9ad230"
     },
     {
-      "bytes": 18913,
+      "bytes": 22470,
       "path": "app/continuity/live_shadow.md",
-      "sha256": "f3f92339741b88cbe8609abff6bd6830a1b4d5980ca6890a4d165dc6e880e159"
+      "sha256": "3fc2857b140b042703bd943efe1320fbe67a5f96da7e58eafcd74150483a5582"
     },
     {
-      "bytes": 42556,
+      "bytes": 44227,
       "path": "app/continuity/research_epistemic_shadow.md",
-      "sha256": "3d6d9865447d1b5fc1f72c594e48c640c2523a486cd6eaf64b7679ef10c72934"
+      "sha256": "516ed143fd089395b73897042205920b777fd4038618787bc338155087d2a054"
     },
     {
       "bytes": 1782,
@@ -264,6 +279,11 @@
       "bytes": 1204,
       "path": "app/evidence/egress_wider_v0_2_5_4_post_2726_runsync_plane_currentness_20260908.json",
       "sha256": "de4e66d5a24666dea371088290a133085566f2965b309e1f6d1d0da216d91a04"
+    },
+    {
+      "bytes": 3464,
+      "path": "app/evidence/egress_wider_v0_2_6_1_shellexecuteex_first_result_20260909.json",
+      "sha256": "4438e2e5ce5f2bdcb77d88f513af39483ec8f6e8e693ed9b100c4236a2eb2a3e"
     },
     {
       "bytes": 3963,
@@ -441,6 +461,21 @@
       "sha256": "79dca3283cfae44c440d2d197d9031558514f8283c7c81a7d903f50f61a84791"
     },
     {
+      "bytes": 3623,
+      "path": "app/notes/maintenance/EGRESS_WIDER_V0_2_6_1_SHELLEXECUTEEX_BOUNDED_ADMISSION_20260909.md",
+      "sha256": "06161c25977979e740fbc05e826f8bdc56d83759f136c2178a70f7b2a4af965f"
+    },
+    {
+      "bytes": 741,
+      "path": "app/notes/maintenance/EGRESS_WIDER_V0_2_6_1_SHELLEXECUTEEX_CURRENTNESS_20260909.md",
+      "sha256": "7ff150a8a2dadd4a12045c601e9f5fb69655e64cbdc87fe861f47fc2a2932eda"
+    },
+    {
+      "bytes": 1582,
+      "path": "app/notes/maintenance/EGRESS_WIDER_V0_2_6_SHELLEXECUTEEX_PROCESS_LIFECYCLE_DESIGN_20260909.md",
+      "sha256": "a8a83ba2856d82e18a3726e176b15bdee2f1c5fc1dda4e45744121b8bc1b6702"
+    },
+    {
       "bytes": 4555,
       "path": "app/sop/ICF_CS_V1_1_DETACHED_RELEASE_RECEIPT_2026-09-05.json",
       "sha256": "418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c"
@@ -511,9 +546,29 @@
       "sha256": "1f7db5a043a755c0598f572de8ce2da979abe2de8ec5e40d52db66a18a9eb24e"
     },
     {
-      "bytes": 26792,
+      "bytes": 15324,
+      "path": "app/state/attempt_artifacts/EGRESS_WIDER_V0_2_6_1_SHELLEXECUTEEX_PROCESS_LIFECYCLE_CURRENTNESS_20260909.py",
+      "sha256": "f649b0c341c53de9988c0bc3fdc0a0d5975904726546121569224dacceec0399"
+    },
+    {
+      "bytes": 2508,
+      "path": "app/state/attempt_artifacts/EGRESS_WIDER_V0_2_6_SHELLEXECUTEEX_HELPER_LIBRARY_20260909.cs",
+      "sha256": "312d666b624bd182a4c201090cd5ecd9da5996ab96fbc5df4c799a3b7496e28d"
+    },
+    {
+      "bytes": 4608,
+      "path": "app/state/attempt_artifacts/EGRESS_WIDER_V0_2_6_SHELLEXECUTEEX_HELPER_LIBRARY_20260909.dll",
+      "sha256": "8922a45ce1814a86edbed007a6e444f0f42556b3e3e5a67f30b16552c98892b4"
+    },
+    {
+      "bytes": 14949,
+      "path": "app/state/attempt_artifacts/EGRESS_WIDER_V0_2_6_SHELLEXECUTEEX_PROCESS_LIFECYCLE_20260909.py",
+      "sha256": "1f2bd6a10477b3c03119420e98044068f96d7fd039b2a12c098f2312c51fff41"
+    },
+    {
+      "bytes": 36204,
       "path": "app/state/current.md",
-      "sha256": "97ab19cb6542dc32a628a301eb45938137f3a9cadd7e2c1a3e8207401a5a0956"
+      "sha256": "6048e4addf9eb3fa0882f536f99001416c30807b546e20526c0b0b86faa36aae"
     },
     {
       "bytes": 4215,
@@ -546,9 +601,9 @@
       "sha256": "e3e859989524e5900abc353cd9b7719f3d7173c8d80104b4afe30dde05c68e9d"
     },
     {
-      "bytes": 19629,
+      "bytes": 26764,
       "path": "app/state/doctrine_snapshot.md",
-      "sha256": "9906387869bf2432661b35500f430f30732720001ee790edf72a7e9d89c4cdf2"
+      "sha256": "ba7b99fec93d6f7f9e8b325bb856d9a52391415da12eede1971aaa98b937a190"
     },
     {
       "bytes": 2879,
@@ -556,19 +611,19 @@
       "sha256": "b1d785fae561756b05daa3c268e0a0e13a913c0c529d8b0ba105a84e817e1b2b"
     },
     {
-      "bytes": 18408,
+      "bytes": 26815,
       "path": "app/state/next_steps.md",
-      "sha256": "4315f69bc42331d342f44fe11af0e4b0b26eac3785a0252545845602db1fe9bf"
+      "sha256": "9726e23e99ea29eafe8e6b63b9b7f0569f9da33482310b60288f4a8bdcdba2a1"
     },
     {
-      "bytes": 20064,
+      "bytes": 21207,
       "path": "app/state/revisit_ledger.md",
-      "sha256": "4187284c6a98cffe2eb9896f1940d302940019b1d75e4ca6ec4b3a31ef42a6f8"
+      "sha256": "d010942ebba9bc85feb82b49aa3a54cc8a3fa2ce1030211982cdc67e36153c49"
     },
     {
-      "bytes": 30552,
+      "bytes": 32524,
       "path": "app/state/trace_matrix.md",
-      "sha256": "015d9cc3605e41f96a27707a4942c810b479729f112528ee2665af4db054399c"
+      "sha256": "fa29ef4451947c5f7f026edf6006f6a6eec5cd2e902261a5c7c79f242b3b2867"
     },
     {
       "bytes": 1161,
@@ -601,6 +656,11 @@
       "sha256": "9365dee3cb1f1fa2925d4b634654980a07fb71aa30c7614197879d5209aac311"
     },
     {
+      "bytes": 2694,
+      "path": "CURRENTNESS_AFTER_V0_2_6_1_SHELLEXECUTEEX_ADMISSION_20260909.md",
+      "sha256": "2fd15c75c67e9413f9b6331ec1c28aea1aa93902c86a65c08a0ce9841d7aee6b"
+    },
+    {
       "bytes": 3534,
       "path": "main/authority/rahl-sop/GOVERNANCE_CONTACT_V1_0_ACTIVATION.md",
       "sha256": "380059a4e8204c35f82b3a232d45f962bb20038eec3d9eecb44f4411809346bd"
@@ -631,19 +691,19 @@
       "sha256": "6c5080d0c950297490139e7b120964dddb7936af5076a967d1200904456cb795"
     },
     {
-      "bytes": 165696,
+      "bytes": 171343,
       "path": "main/continuity/design_thread_stream.md",
-      "sha256": "c1bb36e2b60567e01222aa060b2e2b1ce6bf35de9adca522ebf5b9e8b1ddb7ad"
+      "sha256": "dc12d8c0b3d35cbe72e0baa0465b276793b8e4356556a78d7ad70e970110ce24"
     },
     {
-      "bytes": 14783,
+      "bytes": 17442,
       "path": "main/continuity/live_shadow.md",
-      "sha256": "a1b0cd44bf758695af38666e4a96521263aa1b1c61eb992c28191d134a345dbd"
+      "sha256": "9643c13de69c07ed9f1026d6c8ac668a9e82efae9f21cc116becb215aa73009c"
     },
     {
-      "bytes": 34661,
+      "bytes": 36140,
       "path": "main/continuity/research_epistemic_shadow.md",
-      "sha256": "77927e727ed10fe3d0c53bdc35041bd3a3a6de74f6cee8dc74a333a7eb385550"
+      "sha256": "fa9113c0b7821aadf464147abf67d1bff9a691ce7ff623f306adb392f6b20629"
     },
     {
       "bytes": 3071,
@@ -776,6 +836,11 @@
       "sha256": "b8d0e24d11c8ba96dbb35ea544ac32fcb51c2132bed457c90bb491dc10655ff3"
     },
     {
+      "bytes": 1002,
+      "path": "main/notes/maintenance/APP_V0_2_6_1_SHELLEXECUTEEX_BOUNDED_ADMISSION_CROSS_ARM_AWARENESS_20260909.md",
+      "sha256": "c62228fefc0dcc71f85db2915da1a96b3fac8c69aced9c278cfec94181ee7f8f"
+    },
+    {
       "bytes": 4555,
       "path": "main/sop/ICF_CS_V1_1_DETACHED_RELEASE_RECEIPT_2026-09-05.json",
       "sha256": "418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c"
@@ -796,9 +861,9 @@
       "sha256": "f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63"
     },
     {
-      "bytes": 21044,
+      "bytes": 29968,
       "path": "main/state/current.md",
-      "sha256": "da0067bafca257a3dfa2b515aebd49e12969d7bd73ae0699506e7fbfdd41d598"
+      "sha256": "23006ec36c4aa9b3670f1d8a2d9068db5e609f70d1133dce9fbf8fe4d8184921"
     },
     {
       "bytes": 4215,
@@ -831,24 +896,24 @@
       "sha256": "8b1bf53adf3ac3fee09a4435f1f6df4518359f767fc76fe8d99df4ed6f44e4ae"
     },
     {
-      "bytes": 33318,
+      "bytes": 40360,
       "path": "main/state/doctrine_snapshot.md",
-      "sha256": "ecbc53d47150f7320cb14006babed926118fd853a1675c268018d4cbb1ff1da3"
+      "sha256": "4fce65a21877f079647e6c29fa281f04704170a343de434417e072882fdf5abf"
     },
     {
-      "bytes": 12971,
+      "bytes": 21016,
       "path": "main/state/next_steps.md",
-      "sha256": "32216d96e7d38e87ac03c639d82acedb2aee8644da19522c5cf554eedc95761d"
+      "sha256": "d1fff25ab729d9377dee60918d4bee05fcba51ed519cdf6a338bb0675288643c"
     },
     {
-      "bytes": 26081,
+      "bytes": 27209,
       "path": "main/state/revisit_ledger.md",
-      "sha256": "806a27f900f1489aac357c05317d3592da29fcbe4f67ffe2e51111d2ac17b36a"
+      "sha256": "4fd97fbd1d97c80632982dab102455100f43b14f795b1637a20af922db91570c"
     },
     {
-      "bytes": 45846,
+      "bytes": 47630,
       "path": "main/state/trace_matrix.md",
-      "sha256": "c1221c21b2f0aa7456d7d7627aa7f90cac160168c0042efc9e1844c59145be0d"
+      "sha256": "e2d77f774f493c01748a7eab079eccc9a3df7a9f99da53a162a339ad65af6424"
     },
     {
       "bytes": 1618,
@@ -856,9 +921,9 @@
       "sha256": "2fbf22e5e9eb92c8a72972f3d166fb97c24055c0668a37ef594fcbb4236eae02"
     },
     {
-      "bytes": 4595,
+      "bytes": 4994,
       "path": "README.md",
-      "sha256": "b342498e3c46f7a33df7743aa595d3723a9ed8a9f8c6883f1056fe60d36fa65e"
+      "sha256": "13ba61d58833b208423329f757b8786a1560a56c91cc4130c6cc0c2e037577a8"
     },
     {
       "bytes": 3271,
@@ -1056,7 +1121,7 @@
       "sha256": "f5dba1193203a03bbce3779179ce5b6947231dff1ae65f505e5024e3ec5ee207"
     }
   ],
-  "generated_utc": "2026-09-09T20:23:23Z",
+  "generated_utc": "2026-09-09T20:30:13Z",
   "git_copy_policy": {
     "binary_attribute_repair_20260904": "REPAIRED_PREEXISTING_ALL_TEXT_EOL_RULE_BEFORE_CANDIDATE_PUBLICATION_CHECKPOINT",
     "binary_carriers": "*.zip -text; exact bytes required",
@@ -2709,19 +2774,26 @@
     "protected_win32_error": 5,
     "status": "BOUNDED_EXPLICIT_CREATE_BREAKAWAY_FROM_JOB_DENIAL_QUALIFIED"
   },
-  "checkpoint_frontier_reconciliation_20260909": {
-    "parent_control": "8a401838b8e4d5d8b0be669ac98a9bdaec37580d",
-    "defect": "top-level wider_egress_frontier/resume_point and currentness-labelled Attempt Store/semantic-gate pointers remained pre-v0.2.5.4 while exact v0.2.5.4 bounded admission was present and qualified",
-    "repair_scope": "CHECKPOINT_CURRENTNESS_POINTERS_ONLY__NO_EVIDENCE_OR_SOURCE_CHANGE",
-    "security_evidence_changed": false,
-    "app_source_changed": false,
-    "main_source_changed": false,
-    "runtime_law_earned": false,
-    "law": "MACHINE_VERIFIER_PASS != SEMANTIC_CURRENTNESS_COHERENCE",
-    "full_read_first_pass_findings": [
-      "git_copy_policy.current_attempt_store stale at 166/172/251",
-      "self-read semantic-gate labels retained old generation PENDING state",
-      "previous_verified_control_tip stale at a95ec535..."
-    ]
+  "wider_egress_v0_2_6_1_shellexecuteex_bounded_admission": {
+    "admission_sha256": "06161c25977979e740fbc05e826f8bdc56d83759f136c2178a70f7b2a4af965f",
+    "artifact_sha256": "f649b0c341c53de9988c0bc3fdc0a0d5975904726546121569224dacceec0399",
+    "claim_ceiling": "EXACT_SHELLEXECUTEEX_PROCESS_LIFECYCLE_ONLY",
+    "first_result_sha256": "4438e2e5ce5f2bdcb77d88f513af39483ec8f6e8e693ed9b100c4236a2eb2a3e",
+    "helper_dll_sha256": "8922a45ce1814a86edbed007a6e444f0f42556b3e3e5a67f30b16552c98892b4",
+    "helper_source_sha256": "312d666b624bd182a4c201090cd5ecd9da5996ab96fbc5df4c799a3b7496e28d",
+    "positive_child_alive": true,
+    "positive_cleanup": "CONFIRMED",
+    "positive_launch": "SUCCEEDED",
+    "product_promotion": false,
+    "protected_appcontainer_verified": true,
+    "protected_capability_count": 0,
+    "protected_child_alive_after_return": false,
+    "protected_immediate_job_verified": true,
+    "protected_inherited_handles": false,
+    "protected_launch": "SUCCEEDED",
+    "proven_out_of_process_broker": false,
+    "stale_v0_2_6_artifact_sha256": "1f2bd6a10477b3c03119420e98044068f96d7fd039b2a12c098f2312c51fff41",
+    "stale_v0_2_6_executed": false,
+    "status": "BOUNDED_SHELLEXECUTEEX_CHILD_LIFECYCLE_CONTAINMENT_QUALIFIED"
   }
 }

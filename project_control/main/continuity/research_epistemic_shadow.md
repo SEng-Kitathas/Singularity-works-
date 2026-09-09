@@ -438,3 +438,16 @@ Verified App HARNESS_INVALID `27af68192010146a421ea95900407bdc58c47984496fba98a1
 
 ## App v0.2.5.4 bounded breakaway signal — Main RES — 2026-09-08
 Admission `99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8` is verified bounded App process-lifecycle evidence only. Main RES authority NONE_BY_CONTENT; Core semantic state unchanged.
+
+## 2026-09-09 rollover research meaning
+Authority: **NONE_BY_CONTENT**. This section synchronizes research meaning only.
+
+- semantic-currentness/control pointer repair is closed at `3b17cb3ab64606b98244c979bf8cf4b023323aeb` / `defeaca590c0d62eb9c32584f1b745dce1c56fcaf0949cad0daf2ba2aaa99f06`; security evidence itself did not change in that repair.
+- exact explicit `CREATE_BREAKAWAY_FROM_JOB` denial `99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8` is bounded-admitted; it does not establish general process-tree escape resistance.
+- next materially distinct local/non-network pressure must not repeat the same breakaway API path. Controlled silent-breakaway configuration or broker/service/task-style creation are candidate research branches, not yet Attempts or earned claims.
+- broader network/product-law and production-integration claims remain open.
+- whole-product design research remains active: interactive LBE semantic map/composition/debugging, capability-first ECS-like querying, research/embodiment double helix, Ergo/render/QOL, zombie recovery, GitHome/Vault/Connection Gate and donor-invariant quarry. Security research is additive to that product direction, not a replacement for it.
+
+
+## App v0.2.6.1 ShellExecuteExW signal — Main RES — 2026-09-09
+Admission `06161c25977979e740fbc05e826f8bdc56d83759f136c2178a70f7b2a4af965f` is verified bounded App process-lifecycle evidence only. Broker identity and Main/Core promotion are unearned.

@@ -99,3 +99,12 @@ Exact bound text governing the resolved row above: If an artifact can be meaning
 | 2026-09-08 | App v0.2.5.3 positive criterion | `27af68192010146a421ea95900407bdc58c47984496fba98a163bbfc069854bf` proves explicit child create+survival but any-Job=true | protected result under relaxed positive criterion | checkpoint then v0.2.5.4 | P0 | OPEN / HARNESS_INVALID | no Core promotion |
 
 | 2026-09-08 | App distinct process-tree escape classes | explicit CREATE_BREAKAWAY path qualified at `99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8`, other mechanisms untested | distinct non-network discriminator | checkpoint then separately design | P1 | OPEN AFTER CURRENT BOUNDED QUALIFICATION | no Core promotion |
+
+## 2026-09-09 rollover obligations
+- **RESOLVED:** semantic-currentness/control-pointer repair; current durable control `3b17cb3ab64606b98244c979bf8cf4b023323aeb` / `defeaca590c0d62eb9c32584f1b745dce1c56fcaf0949cad0daf2ba2aaa99f06` PASS 179.
+- **OPEN P0:** select a NEW materially distinct non-network process-tree escape class; do not repeat explicit `CREATE_BREAKAWAY_FROM_JOB`.
+- **OPEN P0:** global `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` runtime law remains unearned; production launch integration/broker allow path/provider transport remain blocked.
+- **OPEN P1:** Core checkpoint restoration/currentness/snapshot IDs remain null until separately qualified.
+- **WATCH:** retained whole-product/LBE/Ergo/Vault/GitHome/QOL intent must not be displaced by security-only frontier work.
+
+| 2026-09-09 | Broker-specific process creation | ShellExecuteExW lifecycle qualified at `06161c25977979e740fbc05e826f8bdc56d83759f136c2178a70f7b2a4af965f` but broker identity unproven | broker-mechanism-specific evidence | checkpoint then separately design | P1 | OPEN AFTER CURRENT BOUNDED QUALIFICATION | no Core promotion |

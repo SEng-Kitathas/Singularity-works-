@@ -1660,3 +1660,46 @@ App result `27af68192010146a421ea95900407bdc58c47984496fba98a163bbfc069854bf` re
 
 ## CROSS-ARM UPDATE — App v0.2.5.4 explicit-breakaway bounded admission — 2026-09-08
 App result `7ae2edac96df296f278b0a552c42cc913fd27402f65e705f2cadc7ad761cd6aa` / admission `99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8` qualifies exact explicit `CREATE_BREAKAWAY_FROM_JOB` denial only. Positive explicit create/survive/cleanup and protected Win32 5 under verified immediate Job are preserved. Main records awareness only; Core unchanged.
+
+
+---
+
+## CROSS-ARM CONTROL CLOSURE — App v0.2.5.4 bounded admission — 2026-09-08
+Control `8a401838b8e4d5d8b0be669ac98a9bdaec37580d` / CHECKPOINT `28904a9d34ebc80b46eec719a1987acdebc92c476458357dbe3cf772b369b1a2` fresh-clone verified PASS 179. App admission `99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8` remains bounded App process-lifecycle evidence only; Main/Core unchanged.
+
+
+---
+
+## Cross-arm entry — App/control recovery repaired stale v0.2.5.4 frontier pointers — 2026-09-09
+Tags: APP, RECOVERY, CONTROL, CURRENTNESS, V0.2.5.4
+
+Recovery verified public Main `e66c071fc25f8d08bfc7ebf0551948392d652f35`, App `43aa7feac7e8a15828116bd700b644560714496d` clean, and durable control `8a401838b8e4d5d8b0be669ac98a9bdaec37580d`. App Attempt Store 183/192/271 integrity ok.
+
+Control `8a401838...` contained qualified App v0.2.5.4 explicit `CREATE_BREAKAWAY_FROM_JOB` bounded admission `99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8`, but CHECKPOINT top-level frontier/resume/currentness pointers were stale. Verifier PASS did not detect the semantic contradiction.
+
+Isolated repair changed currentness pointers only. Final CHECKPOINT received complete 2727-line semantic read and verifier PASS 179. Race check exact; repair commit `3b17cb3ab64606b98244c979bf8cf4b023323aeb` was non-force pushed and independently fresh-clone verified exact/clean, verifier PASS 179. CHECKPOINT SHA `defeaca590c0d62eb9c32584f1b745dce1c56fcaf0949cad0daf2ba2aaa99f06`.
+
+No Main/Core source or semantic authority moved. App security claim remains bounded exact-path explicit-breakaway denial only; general process-tree/network/runtime law unearned.
+
+Next App frontier is a NEW materially distinct non-network process-tree escape class, separately preserved/read before execution.
+
+---
+
+## ROLLOVER SEAL — 2026-09-09 — USER + ASSISTANT
+Tags: CHECKPOINT, LOSSLESS-ROLLOVER, RECOVERY, CURRENTNESS-REPAIR, WHOLE-PRODUCT-INTENT
+
+USER requested a complete lossless rollover checkpoint because the thread is full, explicitly requiring the next thread to understand the work in its entirety and every continuity/context surface to be fully current.
+
+ASSISTANT entered CHECKPOINT / R1->R4. Initial attempt to wait on a remembered cwd-diagnosis job returned NOT_FOUND; recovery inspection proved the persisted project was materially ahead of the visible chat tail. Recent jobs and Attempt Store showed subsequent campaigns through cwd repair, descendant UDP sibling, DNS-helper, proxy/environment, Job-close, explicit breakaway harness repairs, and final bounded v0.2.5.4 admission. Live Git readback resolved current refs to Main `e66c071fc25f8d08bfc7ebf0551948392d652f35`, App `43aa7feac7e8a15828116bd700b644560714496d`, control `3b17cb3ab64606b98244c979bf8cf4b023323aeb`. App worktree was clean; Attempt Store 183/192/271 integrity ok. Governance Contact locator/token validate locally on both targets while ACTIVE completion receipt remains absent; global ACTIVE therefore remains unearned.
+
+Strongest current Live surfaces show `3b17cb3ab64606b98244c979bf8cf4b023323aeb` is direct current control with CHECKPOINT `defeaca590c0d62eb9c32584f1b745dce1c56fcaf0949cad0daf2ba2aaa99f06`, fresh-clone verifier PASS 179; September-9 pointer repair changed currentness representation only, not source/security evidence. Current bounded security admissions: v0.1.2 `3d27639447f1d47ac71e892a766444a3e7c8627ff3120b791ecf4470ebeedda6`, root UDP `d5765e77f660a24d8693b265349be1b35b958cfa4cfbef61822a4a9337992269`, descendant UDP sibling `bbf0043e0ce8793688f1f358053e790b2a73cfec2911aefa1d09e18844ffb270`, DNS-helper `63e5a830b18bb8d6c5f291468e7a6b9ed491ed580f37a0a7aceb6e584dc79225`, proxy/env `59623224fd455cb7590d59682330740920a51a7fc2f7ab2217071d72a65227f3`, normal descendant Job-close `518c15f8464ea69487a4db5b7d23605b4d18983a684c1819c3d03792dbdf6085`, explicit `CREATE_BREAKAWAY_FROM_JOB` `99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8`. Supervision-lost descendant UDP result `86833629ebd032f56dbc900145d40771dc38862fc1416c0ddfe88fd4e35af022` remains NOT_ADMITTED/non-replayable as same Attempt. General process-tree/network/runtime law remains unearned.
+
+Rollover explicitly restores whole-product intent so archaeology cannot overwrite it: Singularity Works product whole; Forge semantic core; Main research/semantic-authority strand + App embodiment/product strand; highly interactive LBE map/puzzle/debug workspace; capability-first/ECS composability; Microseed/Starmap/SME/HSP/HELIX/OARR/Loop+/CSC/Attention Reservoir as donor mechanism families; Ergo/efficient professional renderer/Shell/HUD/SmartCanvas/CogTerm QOL; aerospace-grade zombie recovery/save-state/quarantine/manual restore; GitHome + secure Vault; manual parity for useful automation; gated/logged external capability/OAuth with least authority; classical+PQ crypto where qualified; export/reimport controls; broad local/GitHub/outside-world donor quarry and strip-for-invariants rule.
+
+The exact next frontier after fresh-thread re-entry is a NEW materially distinct non-network process-tree escape discriminator; do not repeat `CREATE_BREAKAWAY_FROM_JOB`. Fresh thread starts RECOVERY/AUDIT and must live-resolve currentness before BUILD-COMMIT.
+
+
+---
+
+## CROSS-ARM UPDATE — App v0.2.6.1 ShellExecuteExW bounded admission — 2026-09-09
+App result `4438e2e5ce5f2bdcb77d88f513af39483ec8f6e8e693ed9b100c4236a2eb2a3e` / admission `06161c25977979e740fbc05e826f8bdc56d83759f136c2178a70f7b2a4af965f` qualifies exact ShellExecuteExW lifecycle containment only; broker identity is explicitly unearned. Main records awareness only; Core unchanged.

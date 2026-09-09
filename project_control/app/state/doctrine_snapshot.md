@@ -1,5 +1,51 @@
 # Doctrine Snapshot — Singularity Works App
 
+## 2026-09-09 LOSSLESS ROLLOVER SUPERSESSION
+Status: **CURRENT ROLLOVER OVERRIDE / OLDER CONTRADICTORY CURRENT-LOOKING TEXT BELOW IS HISTORICAL**  
+Updated: 2026-09-09 UTC
+
+### Verified fixed point
+- process base: RAHL R4.4 carrier `04f3e94efe8c901cc83a12a9c8531be8a9bb350728b8f9eba53db0fd082b3bbc`; ICF-CS v1.1 binding additive continuity doctrine;
+- Governance Contact locator `380059a4e8204c35f82b3a232d45f962bb20038eec3d9eecb44f4411809346bd` + token `b5a2e35f300c6f72d93fc80b877ef0478a3628442b705e50f6893cbceafb5094` validate locally on both project targets; ACTIVE completion receipt absent on both, therefore global ACTIVE is unearned;
+- public Main `e66c071fc25f8d08bfc7ebf0551948392d652f35`; semantic Core qualification anchor `a7b4511734b1a1e507230308e75b31175aef4c4a` unchanged;
+- App `43aa7feac7e8a15828116bd700b644560714496d`, local/remote exact and clean;
+- durable control `3b17cb3ab64606b98244c979bf8cf4b023323aeb` / CHECKPOINT `defeaca590c0d62eb9c32584f1b745dce1c56fcaf0949cad0daf2ba2aaa99f06`, direct successor lineage verified by non-force remote readback; fresh-clone verifier PASS 179; final candidate semantic read 2727 lines complete;
+- recovery `checkpoint-app-live-0014-43aa7feac7e8` = current LKG/source MATCH/NORMAL/READY; Core checkpoint IDs remain null;
+- Attempt Store = **183 blobs / 192 attempts / 271 events**, integrity `ok`, WAL/FULL.
+
+### Earned bounded App security evidence
+- protected-process v0.1.2 `3d27639447f1d47ac71e892a766444a3e7c8627ff3120b791ecf4470ebeedda6`;
+- root UDP loopback `d5765e77f660a24d8693b265349be1b35b958cfa4cfbef61822a4a9337992269`;
+- separate descendant UDP sibling `bbf0043e0ce8793688f1f358053e790b2a73cfec2911aefa1d09e18844ffb270`;
+- one supervision-lost descendant UDP result `86833629ebd032f56dbc900145d40771dc38862fc1416c0ddfe88fd4e35af022` remains NOT_ADMITTED/non-replayable as same Attempt;
+- descendant DNS-helper loopback `63e5a830b18bb8d6c5f291468e7a6b9ed491ed580f37a0a7aceb6e584dc79225`;
+- descendant proxy/environment loopback `59623224fd455cb7590d59682330740920a51a7fc2f7ab2217071d72a65227f3`;
+- normal-descendant Job-close `518c15f8464ea69487a4db5b7d23605b4d18983a684c1819c3d03792dbdf6085`;
+- exact explicit `CREATE_BREAKAWAY_FROM_JOB` denial `99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8`.
+These are exact-path/local-host bounded admissions only. `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` remains UNEARNED as a product/runtime law.
+
+### Current frontier
+The September-9 semantic-currentness/control-pointer repair is **CLOSED** at `3b17cb3ab64606b98244c979bf8cf4b023323aeb`. The next consequence-bearing security step is to **select -> freeze -> linearly read -> preserve a NEW materially distinct non-network process-tree escape discriminator**. Do not repeat `CREATE_BREAKAWAY_FROM_JOB`. Candidate families include a controlled `SILENT_BREAKAWAY_OK` discriminator or broker/service/task-style process creation. Production launch-site integration, broker/Gate allow path, broad network/Internet/DNS/DoH/DoT/QUIC/system-proxy/PAC/WPAD/WinHTTP/WinINET, helper/browser/plugin/import generality, COM/RPC/service/WSL and real provider/OAuth transport remain unqualified.
+
+### Whole-product intent preserved through rollover
+- Singularity Works is the software/product whole; Forge is its semantic/evidence/transformation core, not the product name for everything.
+- Main/Core is the conservative research/semantic-authority strand; App is the aggressive embodiment/product/runtime strand. They are two parts of one system, not rival products. `MAIN_DRIFT_SHOULD_BE_INGESTED_EARLY; APP_PROMOTION_SHOULD_BE_INGESTED_LATE`.
+- LBE is a highly interactive semantic software map / cartographer / logic-blueprint workbench: source <-> semantic map, compose/decompose like puzzle pieces, debug through topology/evidence/currentness, synchronized lenses, semantic zoom, reversible counterfactual edits, runtime overlays and source round-trip proof. The Forge produces the map; HUD/SmartCanvas/CogTerm-like surfaces navigate/manipulate it.
+- Composition is capability-first/ECS-like: query what something can do, not what abstraction/category it calls itself. Microseed composability, Starmap/SME-style mapping, semantic fact fields, HSP, HELIX/OARR/Loop+/CSC/Attention Reservoir are donor/mechanism families to use where they improve Forge, including inside Forge where qualification earns them.
+- Donor archaeology is additive, never overwriting already-good ideas. Strip invariants from all local projects, past work, GitHub repos, external systems/standards and the real world. Old Forge bones are donor/bring-forward material only when they survive current intent and qualification.
+- App product identity includes Ergo boot/launcher, efficient professional rendering (Aero/Mica/Acrylic/VSE/Voidstar/Ergo-Light donors), Shell, HUD, SmartCanvas/CogTerm-style interaction, recovery and operator QOL. Pretty must not become laggy; rendering never owns semantic truth.
+- Reliability target is aerospace-grade/zombie behavior: preserve Attempt-0, transactional writes, durable journals, LKG/checkpoints, crash quarantine, save-state-like re-entry, manual restore from any checkpoint, and no irreversible loss. Useful automatic QOL SHALL have a manual path.
+- GitHome/GitHub-style project layout is desired. Work-in-progress/completed projects live in a secure Vault, not casually in Documents. Export outside secure storage is explicit, double-confirmed/logged, and re-import cannot silently replace a secure copy; re-imported code must re-enter LBE/quality/security evaluation.
+- External capability/API/OAuth design is provider/capability-agnostic and least-authority: `VERIFIED_PLATFORM != FULL_AUTHORITY`; no external connection bypasses Connection Gate/receipts; manual allow is required at the governed boundary; secret bytes stay in Vault, not authority metadata. Encrypt eligible at-rest/in-transit material with classical + post-quantum composition where practical/qualified rather than marketing theater.
+- Security is serious and load-bearing but remains a rail/overlay, not Forge's identity. Vulnerable-repo campaigns exist to pressure LBE/generalization, not to turn Forge into a bug-bounty-only product.
+
+### Rollover rule
+Fresh thread starts **RECOVERY/AUDIT (R1 -> R4)**, reads `checkpoints/THREAD_ROLLOVER_CURRENT.md` and the dated rollover checkpoint completely, then live-resolves Main/App/control, Governance Contact target state, App cleanliness/Gen14/Attempt Store before returning to BUILD-COMMIT/R5. `STALE_CURRENT_LABEL != EXECUTION_AUTHORITY`.
+
+### Doctrine delta for rollover
+No new universal doctrine is minted by this checkpoint. Current bounded security admissions stay bounded. Product intent above is preserved as project direction/constraints, not automatically as verified embodiment. R4.4 Linear Human Read / Semantic Gate remains mandatory.
+
+
 Last updated: 2026-09-06 UTC
 Mode: CHECKPOINT — ICF-CS v1.1 binding; App Gen14 current; bounded egress primitive qualified; next normal control pending
 
@@ -237,3 +283,10 @@ New evidence promotion is scoped only to explicit `CREATE_BREAKAWAY_FROM_JOB` de
 `EXPLICIT_BREAKAWAY_DENIAL != SERVICE_WMI_COM_RPC_WSL_ESCAPE_RESISTANCE`
 `NON_NETWORK_BREAKAWAY_RESULT != NETWORK_EGRESS_RESULT`
 `BOUNDED_BREAKAWAY_PASS != NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT`
+
+
+## v0.2.6.1 ShellExecuteExW evidence — 2026-09-09
+`SHELLEXECUTEEX_PATH != PROVEN_OUT_OF_PROCESS_BROKER`
+`SHELLEXECUTEEX_CONTAINMENT != ALL_PROCESS_TREE_ESCAPE_RESISTANCE`
+`NON_NETWORK_RESULT != NETWORK_EGRESS_RESULT`
+No Main/Core or product promotion follows.

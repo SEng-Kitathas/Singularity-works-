@@ -136,3 +136,14 @@ This block does not assert that the token is presently present or absent. It rem
 | App v0.2.5.3 breakaway harness awareness | control `8071b0945ee7f9a7709eef0ef62c42141a2ebc39`; artifact `e6913d1b923153a6943b3f3fb34e50c7054f9123a3d940e33d8719d89cf2031d` | cross-arm awareness only | result `27af68192010146a421ea95900407bdc58c47984496fba98a163bbfc069854bf` | positive create/survive; any-Job=true; protected null | HARNESS_INVALID / NO CORE PROMOTION | high diagnosis | v0.2.5.4 | `ANY_JOB != FORGE_JOB` |
 
 | App v0.2.5.4 explicit breakaway cross-arm awareness | control `2726d4edbfa2d1af3977b4dda81c26da9385320d`; artifact `1f7db5a043a755c0598f572de8ce2da979abe2de8ec5e40d52db66a18a9eb24e` | cross-arm awareness only | result `7ae2edac96df296f278b0a552c42cc913fd27402f65e705f2cadc7ad761cd6aa`; admission `99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8` | positive explicit create+cleanup; protected verified Job rejects with Win325; store 183/192/271 | BOUNDED APP EVIDENCE / NO CORE PROMOTION | high exact path | distinct escape evidence | `APP_EVIDENCE != CORE_PROMOTION` |
+
+## 2026-09-09 rollover trace additions
+| Claim / artifact | Evidence | Status | Demotion / replay trigger |
+|---|---|---|---|
+| Current durable control | `3b17cb3ab64606b98244c979bf8cf4b023323aeb` / CHECKPOINT `defeaca590c0d62eb9c32584f1b745dce1c56fcaf0949cad0daf2ba2aaa99f06`; fresh-clone verifier PASS 179; 2727-line final candidate semantic read | VERIFIED CURRENT | remote ref/checkpoint/verifier contradiction |
+| Explicit `CREATE_BREAKAWAY_FROM_JOB` exact path | admission `99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8` | BOUNDED QUALIFIED ONLY | stronger exact-path contradiction/source drift |
+| General process-tree escape resistance | bounded Job-close + exact explicit breakaway path only | UNEARNED | requires distinct preserved escape classes |
+| Product runtime `NO_EXTERNAL_CONNECTION_WITHOUT_GATE_AND_RECEIPT` | current bounded loopback/process evidence | UNEARNED | production integration + broader egress/bypass qualification required |
+| Whole-product/LBE/Ergo/Vault/GitHome direction | Commander + DTS + rollover checkpoint | LOAD-BEARING PROJECT INTENT / NOT VERIFIED EMBODIMENT BY PROSE | explicit owner supersession or qualified architecture change |
+
+| App v0.2.6.1 ShellExecuteExW cross-arm awareness | control `3b17cb3ab64606b98244c979bf8cf4b023323aeb`; artifact `f649b0c341c53de9988c0bc3fdc0a0d5975904726546121569224dacceec0399` | cross-arm awareness only | result `4438e2e5ce5f2bdcb77d88f513af39483ec8f6e8e693ed9b100c4236a2eb2a3e`; admission `06161c25977979e740fbc05e826f8bdc56d83759f136c2178a70f7b2a4af965f` | positive child survives+cleanup; protected returned PID absent after Job close; store 191/201/280 | BOUNDED APP EVIDENCE / NO CORE PROMOTION | high exact path | distinct broker evidence | `SHELLEXECUTEEX != PROVEN_BROKER` |

@@ -506,3 +506,16 @@ Truth: verified positive explicit child creation + survival; verified child belo
 
 ## v0.2.5.4 explicit breakaway bounded qualification — 2026-09-08
 Truth status: **VERIFIED BOUNDED NON-NETWORK APP SECURITY EVIDENCE**; RES authority NONE_BY_CONTENT. Artifact `1f7db5a043a755c0598f572de8ce2da979abe2de8ec5e40d52db66a18a9eb24e`, result `7ae2edac96df296f278b0a552c42cc913fd27402f65e705f2cadc7ad761cd6aa`, admission `99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8`. Positive explicit child creation/survival/cleanup verified; protected verified immediate Job rejects `CREATE_BREAKAWAY_FROM_JOB` with Win32 5 after normal-child baseline. No general process-tree or network/runtime law.
+
+## 2026-09-09 rollover research meaning
+Authority: **NONE_BY_CONTENT**. This section synchronizes research meaning only.
+
+- semantic-currentness/control pointer repair is closed at `3b17cb3ab64606b98244c979bf8cf4b023323aeb` / `defeaca590c0d62eb9c32584f1b745dce1c56fcaf0949cad0daf2ba2aaa99f06`; security evidence itself did not change in that repair.
+- exact explicit `CREATE_BREAKAWAY_FROM_JOB` denial `99b28994df07e35b604865adf57ca193d19ee3991232a0e68c76b64cf3f45cd8` is bounded-admitted; it does not establish general process-tree escape resistance.
+- next materially distinct local/non-network pressure must not repeat the same breakaway API path. Controlled silent-breakaway configuration or broker/service/task-style creation are candidate research branches, not yet Attempts or earned claims.
+- broader network/product-law and production-integration claims remain open.
+- whole-product design research remains active: interactive LBE semantic map/composition/debugging, capability-first ECS-like querying, research/embodiment double helix, Ergo/render/QOL, zombie recovery, GitHome/Vault/Connection Gate and donor-invariant quarry. Security research is additive to that product direction, not a replacement for it.
+
+
+## v0.2.6.1 ShellExecuteExW bounded qualification — 2026-09-09
+Truth status: VERIFIED bounded non-network App process-lifecycle evidence; RES authority NONE_BY_CONTENT. Artifact `f649b0c341c53de9988c0bc3fdc0a0d5975904726546121569224dacceec0399`, result `4438e2e5ce5f2bdcb77d88f513af39483ec8f6e8e693ed9b100c4236a2eb2a3e`, admission `06161c25977979e740fbc05e826f8bdc56d83759f136c2178a70f7b2a4af965f`. No out-of-process broker mechanism is proven.
