@@ -1,0 +1,42 @@
+{
+  "admission_status": "NOT_ADMITTED",
+  "artifact_reason": "positive-control WMI Win32_Process.Create did not return a child PID",
+  "artifact_sha256": "01461d5f61a7e1cc85a8365ff11565df7ada1069c46b9a90ea036394dbc762b5",
+  "artifact_status": "HARNESS_INVALID",
+  "bounded_result": "NO_VALID_WMI_PROCESS_CREATE_OBSERVATION",
+  "claim_ceiling": "NO_WMI_PROCESS_CREATE_CLAIM_EARNED",
+  "classification": "HARNESS_INVALID_POSITIVE_WMI_ROOT_EXIT_1",
+  "control_remote_exact_after_run": true,
+  "durable_control_checkpoint": "59643050ecd2c741ca81253c59f1ce88e9344866a683420a9f90c702d46c1520",
+  "durable_control_head": "b8c5e6f9c7032e2a25c25ac4b4e50de91183d64c",
+  "evidence_boundary": [
+    "POSITIVE_ROOT_EXITED_1",
+    "POSITIVE_STDERR_NONEMPTY",
+    "PROTECTED_PHASE_NOT_REACHED",
+    "WMI_PROCESS_CREATE_NOT_VALIDLY_OBSERVED",
+    "HARNESS_INVALID != WMI_PATH_DENIAL",
+    "SAME_ATTEMPT_NOT_REPLAYABLE"
+  ],
+  "execution_plane": "server.runSync.command",
+  "execution_return_code": 3,
+  "network_activity_intended": false,
+  "positive_control": {
+    "decoded": {
+      "kind": "UNKNOWN_EXIT",
+      "raw": 1
+    },
+    "root_exit_code": 1,
+    "stderr_nonempty": true
+  },
+  "protected": null,
+  "runtime_law_earned": false,
+  "same_attempt_rerun": false,
+  "schema": "singularity-works.egress-wider-v0.2.7-wmi-win32-process-create-first-result/0.1",
+  "source_clean_after_run": true,
+  "source_head": "43aa7feac7e8a15828116bd700b644560714496d",
+  "source_remote_exact_after_run": true,
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 1428,
+  "stdout_sha256": "a93898b48fc9b807fc3b68a40439397b8dfdf2b7a5bfddd693aa0bdc21e2a5eb"
+}

@@ -1734,3 +1734,31 @@ Tags: SHELLEXECUTEEX, PROCESS-LIFECYCLE, FIRST-RESULT, BOUNDED-ADMISSION
 A frozen v0.2.6 ShellExecuteExW artifact became stale before capture due control pointer repair and was preserved/unexecuted. Currentness-only v0.2.6.1 `f649b0c341c53de9988c0bc3fdc0a0d5975904726546121569224dacceec0399` changed no launch/observation behavior, was fully reread/captured, and executed once synchronously. Positive child survived root exit and cleanup succeeded. Protected ShellExecuteExW returned PID 15092 under verified AppContainer+immediate Job; after protected return/Job close the PID was absent. Exact result `4438e2e5ce5f2bdcb77d88f513af39483ec8f6e8e693ed9b100c4236a2eb2a3e` preserved/read back; bounded admission `06161c25977979e740fbc05e826f8bdc56d83759f136c2178a70f7b2a4af965f`. Store 191/201/280 integrity ok.
 
 No broker mechanism was inferred. Qualified only exact ShellExecuteExW child-lifecycle containment.
+
+
+---
+
+## Entry — v0.2.6.1 ShellExecuteExW bounded-admission successor control closed — 2026-09-09
+Control `b8c5e6f9c7032e2a25c25ac4b4e50de91183d64c` / CHECKPOINT `59643050ecd2c741ca81253c59f1ce88e9344866a683420a9f90c702d46c1520` fresh-clone verified PASS 189 with exact result/admission/helper bytes. Current frontier remains bounded ShellExecuteExW lifecycle containment only; no new class started.
+
+## 2026-09-09 FINAL ROLLOVER CONCURRENT-ADVANCE SUPERSESSION
+Status: **CURRENT FINAL ROLLOVER FIXED POINT / SUPERSEDES EARLIER SAME-DAY ROLLOVER POINTERS**
+
+A final live-drift gate during rollover detected a concurrent completed App/control advance. No execution is now running. The correct seal point is:
+- Main `e66c071fc25f8d08bfc7ebf0551948392d652f35`;
+- App `43aa7feac7e8a15828116bd700b644560714496d`, clean/local=remote;
+- durable control `b8c5e6f9c7032e2a25c25ac4b4e50de91183d64c` / CHECKPOINT `59643050ecd2c741ca81253c59f1ce88e9344866a683420a9f90c702d46c1520`, non-force/fresh-clone verified PASS 189;
+- Attempt Store **191 blobs / 201 attempts / 280 events**, integrity ok, WAL/FULL;
+- newest bounded admission: ShellExecuteExW child-lifecycle containment `06161c25977979e740fbc05e826f8bdc56d83759f136c2178a70f7b2a4af965f`, artifact `f649b0c341c53de9988c0bc3fdc0a0d5975904726546121569224dacceec0399`, result `4438e2e5ce5f2bdcb77d88f513af39483ec8f6e8e693ed9b100c4236a2eb2a3e`;
+- ShellExecuteExW did **not** prove an out-of-process shell broker; broker identity/general process-tree/network/runtime-law claims remain unearned.
+
+The previous same-day rollover fixed point `3b17cb3...` / 183/192/271 was accurate when written but is now historical. Fresh-thread live readback remains mandatory.
+
+Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/preserve another **materially distinct non-network process-tree escape class**. Do not repeat `CREATE_BREAKAWAY_FROM_JOB` or ShellExecuteExW lifecycle. A broker-specific branch must prove the broker mechanism itself (for example Shell.Application COM/service/task-style creation) rather than infer broker behavior from ShellExecuteExW.
+
+
+
+---
+
+## Entry — v0.2.7 WMI first execution HARNESS_INVALID — 2026-09-09
+Artifact `01461d5f61a7e1cc85a8365ff11565df7ada1069c46b9a90ea036394dbc762b5` executed once. Positive WMI Create reached success return, but frozen PowerShell then assigned reserved automatic `$PID`, causing unhandled root exit 1 before returned child PID could be encoded. Protected phase absent. Exact result `3dbc3f7b0dda8cf13ec3f4d59933d0bdda992b914123e33ee62324fa391bf236` and diagnosis `6f0c88e6419a09c60d969a5c9ab58e04e0642898fcf3a5b9637ebda79dd07655` preserved; Store 196/207/286 integrity ok. Same Attempt non-replayable. NEW v0.2.7.1 repair scope is variable-name-only.

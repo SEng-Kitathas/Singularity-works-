@@ -39,6 +39,9 @@ The current App process-lifecycle evidence now includes a bounded denial of the 
 ## Current fixed point after v0.2.6.1 ShellExecuteExW bounded admission
 The App process-lifecycle frontier now includes bounded containment for the exact ShellExecuteExW launch path: positive child survives root exit, while the protected returned PID is absent after immediate Forge Job close. Broker identity is not inferred. See `CURRENTNESS_AFTER_V0_2_6_1_SHELLEXECUTEEX_ADMISSION_20260909.md`.
 
+## Current fixed point after v0.2.7 WMI harness diagnosis
+v0.2.7 remains HARNESS_INVALID/NOT_ADMITTED: positive WMI Create reached success return, but a reserved `$PID` assignment prevented child-PID capture and protected execution. See `CURRENTNESS_AFTER_V0_2_7_WMI_HARNESS_INVALID_20260909.md`.
+
 ## Semantic admission
 Server successor admission stream: 23 artifacts / 3,116 deterministic lines / SHA `d0c1379fbd8c01e9616a1b8fee83f975bd1670179551eb354f05c1d5e3cc128e`, complete read 3,116/3,116, blocking findings 0.
 

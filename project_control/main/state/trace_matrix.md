@@ -147,3 +147,21 @@ This block does not assert that the token is presently present or absent. It rem
 | Whole-product/LBE/Ergo/Vault/GitHome direction | Commander + DTS + rollover checkpoint | LOAD-BEARING PROJECT INTENT / NOT VERIFIED EMBODIMENT BY PROSE | explicit owner supersession or qualified architecture change |
 
 | App v0.2.6.1 ShellExecuteExW cross-arm awareness | control `3b17cb3ab64606b98244c979bf8cf4b023323aeb`; artifact `f649b0c341c53de9988c0bc3fdc0a0d5975904726546121569224dacceec0399` | cross-arm awareness only | result `4438e2e5ce5f2bdcb77d88f513af39483ec8f6e8e693ed9b100c4236a2eb2a3e`; admission `06161c25977979e740fbc05e826f8bdc56d83759f136c2178a70f7b2a4af965f` | positive child survives+cleanup; protected returned PID absent after Job close; store 191/201/280 | BOUNDED APP EVIDENCE / NO CORE PROMOTION | high exact path | distinct broker evidence | `SHELLEXECUTEEX != PROVEN_BROKER` |
+
+## 2026-09-09 FINAL ROLLOVER CONCURRENT-ADVANCE SUPERSESSION
+Status: **CURRENT FINAL ROLLOVER FIXED POINT / SUPERSEDES EARLIER SAME-DAY ROLLOVER POINTERS**
+
+A final live-drift gate during rollover detected a concurrent completed App/control advance. No execution is now running. The correct seal point is:
+- Main `e66c071fc25f8d08bfc7ebf0551948392d652f35`;
+- App `43aa7feac7e8a15828116bd700b644560714496d`, clean/local=remote;
+- durable control `b8c5e6f9c7032e2a25c25ac4b4e50de91183d64c` / CHECKPOINT `59643050ecd2c741ca81253c59f1ce88e9344866a683420a9f90c702d46c1520`, non-force/fresh-clone verified PASS 189;
+- Attempt Store **191 blobs / 201 attempts / 280 events**, integrity ok, WAL/FULL;
+- newest bounded admission: ShellExecuteExW child-lifecycle containment `06161c25977979e740fbc05e826f8bdc56d83759f136c2178a70f7b2a4af965f`, artifact `f649b0c341c53de9988c0bc3fdc0a0d5975904726546121569224dacceec0399`, result `4438e2e5ce5f2bdcb77d88f513af39483ec8f6e8e693ed9b100c4236a2eb2a3e`;
+- ShellExecuteExW did **not** prove an out-of-process shell broker; broker identity/general process-tree/network/runtime-law claims remain unearned.
+
+The previous same-day rollover fixed point `3b17cb3...` / 183/192/271 was accurate when written but is now historical. Fresh-thread live readback remains mandatory.
+
+Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/preserve another **materially distinct non-network process-tree escape class**. Do not repeat `CREATE_BREAKAWAY_FROM_JOB` or ShellExecuteExW lifecycle. A broker-specific branch must prove the broker mechanism itself (for example Shell.Application COM/service/task-style creation) rather than infer broker behavior from ShellExecuteExW.
+
+
+| App v0.2.7 WMI cross-arm awareness | control `b8c5e6f9c7032e2a25c25ac4b4e50de91183d64c`; artifact `01461d5f61a7e1cc85a8365ff11565df7ada1069c46b9a90ea036394dbc762b5` | cross-arm awareness only | result `3dbc3f7b0dda8cf13ec3f4d59933d0bdda992b914123e33ee62324fa391bf236`; diagnosis `6f0c88e6419a09c60d969a5c9ab58e04e0642898fcf3a5b9637ebda79dd07655` | positive Create success return reached; PID capture failed; protected null | HARNESS_INVALID / NO CORE PROMOTION | high diagnosis | v0.2.7.1 | `PID_CAPTURE_FAILURE != WMI_DENIAL` |

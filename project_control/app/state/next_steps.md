@@ -1,5 +1,21 @@
 # Next Steps — Singularity Works App
 
+## 2026-09-09 FINAL ROLLOVER CONCURRENT-ADVANCE SUPERSESSION
+Status: **CURRENT FINAL ROLLOVER FIXED POINT / SUPERSEDES EARLIER SAME-DAY ROLLOVER POINTERS**
+
+A final live-drift gate during rollover detected a concurrent completed App/control advance. No execution is now running. The correct seal point is:
+- Main `e66c071fc25f8d08bfc7ebf0551948392d652f35`;
+- App `43aa7feac7e8a15828116bd700b644560714496d`, clean/local=remote;
+- durable control `b8c5e6f9c7032e2a25c25ac4b4e50de91183d64c` / CHECKPOINT `59643050ecd2c741ca81253c59f1ce88e9344866a683420a9f90c702d46c1520`, non-force/fresh-clone verified PASS 189;
+- Attempt Store **191 blobs / 201 attempts / 280 events**, integrity ok, WAL/FULL;
+- newest bounded admission: ShellExecuteExW child-lifecycle containment `06161c25977979e740fbc05e826f8bdc56d83759f136c2178a70f7b2a4af965f`, artifact `f649b0c341c53de9988c0bc3fdc0a0d5975904726546121569224dacceec0399`, result `4438e2e5ce5f2bdcb77d88f513af39483ec8f6e8e693ed9b100c4236a2eb2a3e`;
+- ShellExecuteExW did **not** prove an out-of-process shell broker; broker identity/general process-tree/network/runtime-law claims remain unearned.
+
+The previous same-day rollover fixed point `3b17cb3...` / 183/192/271 was accurate when written but is now historical. Fresh-thread live readback remains mandatory.
+
+Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/preserve another **materially distinct non-network process-tree escape class**. Do not repeat `CREATE_BREAKAWAY_FROM_JOB` or ShellExecuteExW lifecycle. A broker-specific branch must prove the broker mechanism itself (for example Shell.Application COM/service/task-style creation) rather than infer broker behavior from ShellExecuteExW.
+
+
 ## 2026-09-09 LOSSLESS ROLLOVER SUPERSESSION
 Status: **CURRENT ROLLOVER OVERRIDE / OLDER CONTRADICTORY CURRENT-LOOKING TEXT BELOW IS HISTORICAL**  
 Updated: 2026-09-09 UTC
@@ -272,3 +288,18 @@ Current store: 141 blobs / 141 attempts / 220 events; durable control `f59a32946
 3. Only after fresh-clone control closure select another materially distinct non-network class.
 4. A broker-specific future test must prove its broker mechanism rather than infer it from ShellExecuteExW.
 5. Keep network-bearing escape pressure and product runtime law blocked.
+
+
+## V0.2.6.1 SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Durable control `b8c5e6f9c7032e2a25c25ac4b4e50de91183d64c` / CHECKPOINT `59643050ecd2c741ca81253c59f1ce88e9344866a683420a9f90c702d46c1520` is non-force published and independently fresh-clone verified PASS 189.
+- Exact v0.2.6.1 result `4438e2e5...`, bounded admission `06161c25977979e740fbc05e826f8bdc56d83759f136c2178a70f7b2a4af965f`, and helper DLL `8922a45c...` reproduce in the fresh clone.
+- Current fixed point: bounded ShellExecuteExW child-lifecycle containment qualified for the exact tested path; out-of-process broker identity/general process-tree/network/runtime law unearned.
+- No new process-tree class has been opened by this pointer update.
+
+
+## Immediate P0 — after v0.2.7 WMI harness invalid
+1. Checkpoint `3dbc3f7b0dda8cf13ec3f4d59933d0bdda992b914123e33ee62324fa391bf236` + `6f0c88e6419a09c60d969a5c9ab58e04e0642898fcf3a5b9637ebda79dd07655` / Store 196/207/286 before new pressure.
+2. Do not rerun v0.2.7.
+3. NEW v0.2.7.1 may change only `$pid` -> non-reserved child PID variable and corresponding encoder reference.
+4. WMI class/Create path, child command, failure encodings, lineage/liveness, protected primitive, non-network scope remain unchanged.
+5. No WMI containment/denial/network/runtime-law admission yet.
