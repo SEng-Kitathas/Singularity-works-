@@ -1,0 +1,99 @@
+{
+  "admission_status": "PENDING_READBACK",
+  "artifact_reason": "positive WMI process creation succeeded, while protected path stopped at WMI_CLASS_BIND_FAILURE under the verified AppContainer+immediate-Job boundary",
+  "artifact_sha256": "4bf2403ee909154172512bd0c3d0c681fe47c048ffb1eae741331005b005f9dc",
+  "artifact_status": "PASS_BOUNDED_PROTECTED_WMI_PROCESS_CREATE_PATH_DENIED",
+  "bounded_result": "PASS",
+  "claim_ceiling": "BOUNDED_WMI_CLASS_BIND_FAILURE_UNDER_PROTECTED_BOUNDARY_ONLY",
+  "classification": "PASS_BOUNDED_PROTECTED_WMI_CLASS_BIND_FAILURE",
+  "control_remote_exact_after_run": true,
+  "durable_control_checkpoint": "f84f5b8886dd56c7c9ec8baa52c34f5c08a3e1890074f76188d9e110a58e6f67",
+  "durable_control_head": "dbe988b4a6773a79d31935b46984b17fb9c4c421",
+  "evidence_boundary": [
+    "POSITIVE_WMI_CREATE_SUCCESS",
+    "POSITIVE_CHILD_ALIVE_AFTER_ROOT_EXIT",
+    "POSITIVE_PARENT_EXE_WMIPRVSE_EXE",
+    "POSITIVE_CLEANUP_CONFIRMED",
+    "PROTECTED_APPCONTAINER_VERIFIED",
+    "PROTECTED_IMMEDIATE_JOB_VERIFIED",
+    "PROTECTED_CAPABILITY_COUNT_ZERO",
+    "PROTECTED_NO_INHERITED_HANDLES",
+    "PROTECTED_WMI_CLASS_BIND_FAILURE",
+    "PROTECTED_HRESULT_LOW16_0x1501",
+    "PROTECTED_CLASS_BIND_FAILURE != JOB_SPECIFIC_DENIAL",
+    "WMI_CLASS_BIND_FAILURE != ALL_COM_RPC_PROCESS_CREATION",
+    "NON_NETWORK_RESULT != NETWORK_EGRESS_RESULT"
+  ],
+  "execution_plane": "server.runSync.command",
+  "execution_return_code": 0,
+  "job_specific_denial_earned": false,
+  "network_activity_intended": false,
+  "positive_control": {
+    "child_state_after_root_exit": {
+      "alive": true,
+      "in_any_job": true,
+      "job_query_error": 0,
+      "job_query_ok": true,
+      "lineage": {
+        "exe": "powershell.exe",
+        "parent_exe": "WmiPrvSE.exe",
+        "parent_pid": 31628,
+        "pid": 15276,
+        "present": true,
+        "snapshot_ok": true
+      },
+      "open": true,
+      "pid": 15276,
+      "wait_result": 258
+    },
+    "cleanup": {
+      "opened": true,
+      "pid": 15276,
+      "terminated": true,
+      "wait_result": 0
+    },
+    "decoded": {
+      "kind": "WMI_CREATE_SUCCESS",
+      "pid": 15276,
+      "raw": 268450732
+    },
+    "root_exit_code": 268450732,
+    "stderr_nonempty": false
+  },
+  "protected": {
+    "decoded": {
+      "hresult_low16": 5377,
+      "kind": "WMI_CLASS_BIND_FAILURE",
+      "raw": 536876289
+    },
+    "receipt": {
+      "appcontainer_verified": true,
+      "authority": "NONE",
+      "capability_count": 0,
+      "command_sha256": "d023b57baf116651948743bc4e5b158d49856a9ce6437c7718de0ce6ba2d89ce",
+      "elapsed_seconds": 0.18700000003445894,
+      "environment_inherited": true,
+      "executable": "<LOCAL_POWERSHELL_PATH>",
+      "exit_code": 536876289,
+      "immediate_job_verified": true,
+      "inherited_handles": false,
+      "job_close_terminated_process": false,
+      "parent_was_in_job": true,
+      "pid": 36564,
+      "profile_created": true,
+      "profile_name": "<EPHEMERAL_APPCONTAINER_PROFILE>",
+      "schema": "singularity-protected-process/0.1",
+      "timed_out": false
+    }
+  },
+  "runtime_law_earned": false,
+  "same_attempt_rerun": false,
+  "schema": "singularity-works.egress-wider-v0.2.7.2-wmi-first-result/0.1",
+  "source_clean_after_run": true,
+  "source_head": "43aa7feac7e8a15828116bd700b644560714496d",
+  "source_remote_exact_after_run": true,
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_bytes": 3035,
+  "stdout_sha256": "e7ec25ee0e09ede487c5a71bb6c02c1bc86fd4fe74be574af34080392004e4a2"
+}

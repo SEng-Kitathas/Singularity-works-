@@ -268,3 +268,24 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 - Protected receipt valid, but raw exit 1 was unclassified. Non-creating diagnostic proved `[uint32]` conversion of negative HRESULT in the catch encoder collapses; signed low16 masking produced `0x20001501`. Diagnosis `71898d70a9fcb7758eaeffd344761d5d1f1d92d02edc198a3896bcc765abb04a`.
 - Store: **202 blobs / 214 attempts / 293 events**, integrity ok.
 - Next: checkpoint this boundary; NEW v0.2.7.2 may change only the two HRESULT catch encoders to signed low16 masking. No protected WMI denial/containment admission yet.
+
+
+## V0.2.7.1 HARNESS SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Durable control `dbe988b4a6773a79d31935b46984b17fb9c4c421` / CHECKPOINT `f84f5b8886dd56c7c9ec8baa52c34f5c08a3e1890074f76188d9e110a58e6f67` is non-force published and independently fresh-clone verified PASS 201.
+- Exact v0.2.7.1 result `4a10e2fa...` and diagnosis `71898d70...` reproduce in the fresh clone.
+- Next permitted pressure: NEW v0.2.7.2 HRESULT-encoder-only repair; v0.2.7.1 is immutable/non-replayable.
+
+
+## V0.2.7.2 WMI CLASS-BIND BOUNDED ADMISSION — CURRENT — 2026-09-09
+- Mode: **CHECKPOINT**; role: **R1 Conservative Auditor** after R5 first execution/readback/admission.
+- Execution binding: control `dbe988b4a6773a79d31935b46984b17fb9c4c421` / CHECKPOINT `f84f5b8886dd56c7c9ec8baa52c34f5c08a3e1890074f76188d9e110a58e6f67`. Artifact `4bf2403ee909154172512bd0c3d0c681fe47c048ffb1eae741331005b005f9dc` executed exactly once synchronously; SHALL NOT be rerun.
+- Exact stdout `e7ec25ee0e09ede487c5a71bb6c02c1bc86fd4fe74be574af34080392004e4a2`; result `fa355f068636714e3fc6584a2377c783dd5c23a7de369546d7b835acdfe69fb9`; bounded admission `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca`.
+- Positive WMI `Win32_Process.Create`: child PID 15276 alive after root exit, Toolhelp parent `WmiPrvSE.exe` PID 31628, any-Job=true, cleanup confirmed.
+- Protected receipt: AppContainer verified, immediate Job verified, zero capabilities, no inherited handles, no timeout. Protected path stopped at **WMI_CLASS_BIND_FAILURE**, encoded `0x20001501` / low16 `0x1501`; `Create` was not reached.
+- Qualified only: positive WMI service mediation + protected WMI class-bind failure under the combined protected boundary. **Job-specific causality is unearned.**
+- Store: **207 blobs / 220 attempts / 299 events**, integrity ok.
+- Next: checkpoint this admission across App/Main/control before any causal-isolation or different broker/service class.
+
+`PROTECTED_WMI_CLASS_BIND_FAILURE != JOB_SPECIFIC_DENIAL`
+`WMI_CLASS_BIND_FAILURE != WMI_CREATE_DENIAL`
+`WMI_WIN32_PROCESS_PATH != ALL_COM_RPC_PROCESS_CREATION`

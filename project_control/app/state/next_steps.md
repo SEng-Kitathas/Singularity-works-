@@ -317,3 +317,17 @@ Current store: 141 blobs / 141 attempts / 220 events; durable control `f59a32946
 3. NEW v0.2.7.2 may replace only both `[uint32]$_.Exception.HResult` conversions with signed `($_.Exception.HResult -band 0xFFFF)` low16 encoding.
 4. Preserve WMI Create path, child command, stage prefixes, success/ReturnValue encodings, lineage/liveness/cleanup, protected primitive, non-network scope.
 5. Positive service mediation != protected containment; no network/runtime law.
+
+
+## V0.2.7.1 HARNESS SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Durable control `dbe988b4a6773a79d31935b46984b17fb9c4c421` / CHECKPOINT `f84f5b8886dd56c7c9ec8baa52c34f5c08a3e1890074f76188d9e110a58e6f67` is non-force published and independently fresh-clone verified PASS 201.
+- Exact v0.2.7.1 result `4a10e2fa...` and diagnosis `71898d70...` reproduce in the fresh clone.
+- Next permitted pressure: NEW v0.2.7.2 HRESULT-encoder-only repair; v0.2.7.1 is immutable/non-replayable.
+
+
+## Immediate P0 — after v0.2.7.2 bounded admission
+1. Seal successor project-control with result `fa355f068636714e3fc6584a2377c783dd5c23a7de369546d7b835acdfe69fb9` / admission `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca` / Store 207/220/299.
+2. Do not rerun v0.2.7/v0.2.7.1/v0.2.7.2.
+3. Only after fresh-clone closure choose either a causal-isolation branch (AppContainer vs immediate-Job dimensions) or a materially distinct broker/service creation path.
+4. Do not call protected WMI class-bind failure Job-specific without isolation evidence.
+5. Keep network-bearing pressure and product runtime law blocked.

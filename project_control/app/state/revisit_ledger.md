@@ -104,3 +104,5 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 | 2026-09-09 | WMI Win32_Process.Create lifecycle | v0.2.7 `3dbc3f7b0dda8cf13ec3f4d59933d0bdda992b914123e33ee62324fa391bf236` invalidated by reserved `$PID` assignment after success return | repaired PID capture + protected observation | checkpoint then NEW v0.2.7.1 | P0 | OPEN / HARNESS_INVALID / NOT_ADMITTED | same Attempt no replay |
 
 | 2026-09-09 | WMI protected exception classification | positive WMI service mediation verified; v0.2.7.1 `4a10e2fa70fe620ebcaed8d23163b48f2b565a4230831cbc34e771a9b0b585b5` protected raw1 due HRESULT encoder | protected stage classification after encoder-only repair | checkpoint then v0.2.7.2 | P0 | OPEN / HARNESS_INVALID / PROTECTED NOT_ADMITTED | same Attempt no replay |
+
+| 2026-09-09 | WMI causal isolation / broader broker paths | v0.2.7.2 class-bind boundary qualified at `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca` | AppContainer-vs-Job causality or distinct service/broker mechanism | separate NEW non-network discriminator after control closure | P1 | OPEN AFTER BOUNDED QUALIFICATION | no Job-specific overclaim |

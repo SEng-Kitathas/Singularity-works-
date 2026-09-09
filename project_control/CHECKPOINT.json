@@ -1,8 +1,8 @@
 {
   "app_attempt_store_current": {
-    "attempts": 214,
-    "blobs": 202,
-    "events": 293,
+    "attempts": 220,
+    "blobs": 207,
+    "events": 299,
     "integrity": "ok"
   },
   "app_observation": {
@@ -211,19 +211,19 @@
       "sha256": "6c5080d0c950297490139e7b120964dddb7936af5076a967d1200904456cb795"
     },
     {
-      "bytes": 164157,
+      "bytes": 165235,
       "path": "app/continuity/design_thread_stream.md",
-      "sha256": "1f10c9a4b0527cc9767469dc590b86c5bb250d069ed038fecf5050e76968f739"
+      "sha256": "7018a95a9129fb8da5dfad946fcb81d129a4afc0385602b37d6ed0609842f099"
     },
     {
-      "bytes": 30168,
+      "bytes": 32271,
       "path": "app/continuity/live_shadow.md",
-      "sha256": "098cccfb6ff1bef5e34a290b20bb4d8ced6bc1a4011459a77de7cfe9fefdb228"
+      "sha256": "f279614336a874f71d9177a7dab49776d9cbe6415a08e82eecac935381b7448a"
     },
     {
-      "bytes": 46733,
+      "bytes": 47159,
       "path": "app/continuity/research_epistemic_shadow.md",
-      "sha256": "65617f9306cec0835c1d1af3d9beae570b39ae4c79def03d06eb245b5d0339f1"
+      "sha256": "a7f668812cde8af6fdcb0d16545c31dbdf1d2dd988f874b7769821365b2e1ff1"
     },
     {
       "bytes": 1782,
@@ -289,6 +289,11 @@
       "bytes": 3285,
       "path": "app/evidence/egress_wider_v0_2_7_1_wmi_first_result_20260909.json",
       "sha256": "4a10e2fa70fe620ebcaed8d23163b48f2b565a4230831cbc34e771a9b0b585b5"
+    },
+    {
+      "bytes": 3581,
+      "path": "app/evidence/egress_wider_v0_2_7_2_wmi_first_result_20260909.json",
+      "sha256": "fa355f068636714e3fc6584a2377c783dd5c23a7de369546d7b835acdfe69fb9"
     },
     {
       "bytes": 1708,
@@ -496,6 +501,16 @@
       "sha256": "4cf53e28f7b0076a604490c170c686eb37d3c559d2c19a1f028b3e5b0245f1d3"
     },
     {
+      "bytes": 3527,
+      "path": "app/notes/maintenance/EGRESS_WIDER_V0_2_7_2_WMI_CLASS_BIND_BOUNDED_ADMISSION_20260909.md",
+      "sha256": "e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca"
+    },
+    {
+      "bytes": 818,
+      "path": "app/notes/maintenance/EGRESS_WIDER_V0_2_7_2_WMI_HRESULT_ENCODER_REPAIR_DESIGN_20260909.md",
+      "sha256": "197aa676afe75b3f8eab6f47879093bf272b53e3bbfa8cc7ae426dba7fdb7be3"
+    },
+    {
       "bytes": 2251,
       "path": "app/notes/maintenance/EGRESS_WIDER_V0_2_7_WMI_HARNESS_INVALID_RESERVED_PID_20260909.md",
       "sha256": "6f0c88e6419a09c60d969a5c9ab58e04e0642898fcf3a5b9637ebda79dd07655"
@@ -601,14 +616,19 @@
       "sha256": "dc4683167124b70883a6940026f28575fcaf745b51d1f4975df298f6ca36c352"
     },
     {
+      "bytes": 17141,
+      "path": "app/state/attempt_artifacts/EGRESS_WIDER_V0_2_7_2_WMI_WIN32_PROCESS_CREATE_HRESULT_ENCODER_REPAIR_20260909.py",
+      "sha256": "4bf2403ee909154172512bd0c3d0c681fe47c048ffb1eae741331005b005f9dc"
+    },
+    {
       "bytes": 16120,
       "path": "app/state/attempt_artifacts/EGRESS_WIDER_V0_2_7_WMI_WIN32_PROCESS_CREATE_LIFECYCLE_20260909.py",
       "sha256": "01461d5f61a7e1cc85a8365ff11565df7ada1069c46b9a90ea036394dbc762b5"
     },
     {
-      "bytes": 40323,
+      "bytes": 41541,
       "path": "app/state/current.md",
-      "sha256": "dedb194c55785b67f7db2555b7992f6b5c96015cc00ae6c41c9f760d86c34bae"
+      "sha256": "e21a1bf9efeaadb7820fc8d1c68df7a2c9cd1ba0cc1f1eea8f809eb3b84157b5"
     },
     {
       "bytes": 4215,
@@ -641,9 +661,9 @@
       "sha256": "e3e859989524e5900abc353cd9b7719f3d7173c8d80104b4afe30dde05c68e9d"
     },
     {
-      "bytes": 28908,
+      "bytes": 29173,
       "path": "app/state/doctrine_snapshot.md",
-      "sha256": "50303749ed1de9579305cc4f2c65faa9c5a455b91967450181328cbc7627074c"
+      "sha256": "795b847f01ea462c6e4445913dec236d9e11c5d6090db19e0b945bebc1d04a5c"
     },
     {
       "bytes": 2879,
@@ -651,19 +671,19 @@
       "sha256": "b1d785fae561756b05daa3c268e0a0e13a913c0c529d8b0ba105a84e817e1b2b"
     },
     {
-      "bytes": 30957,
+      "bytes": 32085,
       "path": "app/state/next_steps.md",
-      "sha256": "b08bed454c1196a2d93b919535329fe732edf5ed4b4ff618738e5829fe9718a6"
+      "sha256": "92db20d0ece41e089d17802c4b9605de0f78c4993dd3f980e49d1925cfbdd16c"
     },
     {
-      "bytes": 23638,
+      "bytes": 24011,
       "path": "app/state/revisit_ledger.md",
-      "sha256": "ef8b9a96a9ea9c746a825928966a33d71010ad4e34e88fcf7d9a85526f36254f"
+      "sha256": "de11e6d1d4629380e323632297220c4e12261366bea7500f40b95fbb72713799"
     },
     {
-      "bytes": 35520,
+      "bytes": 36278,
       "path": "app/state/trace_matrix.md",
-      "sha256": "25afdffb3ee6d662b3ce94a6a2e8edd753f29b2148d469432f32a0f3f230b2b4"
+      "sha256": "7ae235a1f13cd6de46a6d6da4fbe14dc9eb89e0f1b55919e6cb021cde83891e2"
     },
     {
       "bytes": 1161,
@@ -706,6 +726,11 @@
       "sha256": "b59b0563cbc3323a3ed0609186a673b7bd41ee1d7b157a7667a9f6428e5da058"
     },
     {
+      "bytes": 2602,
+      "path": "CURRENTNESS_AFTER_V0_2_7_2_WMI_BOUNDED_ADMISSION_20260909.md",
+      "sha256": "6b476797f8f57ed9aac2180ed5af5d2413031ac0bed48f83aee361b81841a165"
+    },
+    {
       "bytes": 2361,
       "path": "CURRENTNESS_AFTER_V0_2_7_WMI_HARNESS_INVALID_20260909.md",
       "sha256": "58825dbdfa7ae876a6a0e7e8485103c9b996cb5dcf83ffc6885077be6cf3091c"
@@ -741,19 +766,19 @@
       "sha256": "6c5080d0c950297490139e7b120964dddb7936af5076a967d1200904456cb795"
     },
     {
-      "bytes": 174295,
+      "bytes": 174655,
       "path": "main/continuity/design_thread_stream.md",
-      "sha256": "dc694a688332068e870c9b00edc3b380c49d9d9cf7364507d4081d60bb10231d"
+      "sha256": "d70cfe664e77218a331d91e68bbaeba5acfa30bbc280413572d4bda0ae09437e"
     },
     {
-      "bytes": 23625,
+      "bytes": 24388,
       "path": "main/continuity/live_shadow.md",
-      "sha256": "66a0690c52e9f1d316c166e2c320651170af6d56a8978be2e551bb0653bc2952"
+      "sha256": "891186ee6347becdf70e9893213fc2d48817838b18493d09813b4a3c7828438d"
     },
     {
-      "bytes": 38514,
+      "bytes": 38816,
       "path": "main/continuity/research_epistemic_shadow.md",
-      "sha256": "706b8574e4fba4f0054f0ea69949798e357129a92773d3869b8e251418d2e36c"
+      "sha256": "beaa9008f2a0d3b47d79bad198e60aad32367e59d7879af7f161bf2036de73b7"
     },
     {
       "bytes": 3071,
@@ -896,6 +921,11 @@
       "sha256": "d754f3a2d40da662e19311d317aebd02f6bcdb0f5e0f41cca16c3ee373f202dd"
     },
     {
+      "bytes": 959,
+      "path": "main/notes/maintenance/APP_V0_2_7_2_WMI_CLASS_BIND_BOUNDED_ADMISSION_CROSS_ARM_AWARENESS_20260909.md",
+      "sha256": "296228afb9c5d8a4f6f7807303b4b1dc205f9d24a2cfc65c00c25f2dff6a9322"
+    },
+    {
       "bytes": 945,
       "path": "main/notes/maintenance/APP_V0_2_7_WMI_HARNESS_INVALID_CROSS_ARM_AWARENESS_20260909.md",
       "sha256": "595eb28639d97612653498e7158dc23d1fef88999748066715704f7f251f7acc"
@@ -921,9 +951,9 @@
       "sha256": "f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63"
     },
     {
-      "bytes": 33015,
+      "bytes": 33289,
       "path": "main/state/current.md",
-      "sha256": "1b14f9370813558966e21ff1cb3354e6cf9b9163ac10e336ca3926accddec29c"
+      "sha256": "b16136b1fa852c6af9dbbabe3500a84a0a054db4aac4efc2f19d97d2f0f64160"
     },
     {
       "bytes": 4215,
@@ -956,24 +986,24 @@
       "sha256": "8b1bf53adf3ac3fee09a4435f1f6df4518359f767fc76fe8d99df4ed6f44e4ae"
     },
     {
-      "bytes": 42390,
+      "bytes": 42550,
       "path": "main/state/doctrine_snapshot.md",
-      "sha256": "c76c6e598ff12cc7cb8ede04128334d4518c02435ffce81d1778af3eca93176d"
+      "sha256": "240479a602483e2d04fbe5939bd39d3a65ce0a4a35062e3917a409abeb0af2fb"
     },
     {
-      "bytes": 23979,
+      "bytes": 24299,
       "path": "main/state/next_steps.md",
-      "sha256": "8425654c0927a60d5bd6a7fcd75e8430cc96bdf6c2a2f70e4004672f9fa51d17"
+      "sha256": "d3f31b8a275d195d6aeb4de19a93a25e107f8f57521229fc948b565a2a99d0fa"
     },
     {
-      "bytes": 29494,
+      "bytes": 29805,
       "path": "main/state/revisit_ledger.md",
-      "sha256": "be66992587b6ea4049a9fc0417a605b26d7dd4a932eb86fc734541f6507ffada"
+      "sha256": "20600d3bad0c8d9a48837368af773ebef2c633242116aafb18286c00cecc7a35"
     },
     {
-      "bytes": 50424,
+      "bytes": 50980,
       "path": "main/state/trace_matrix.md",
-      "sha256": "2439c8bbb9fb5f0854af5e8f4826044a79ab00603a75ce95a1e2abda1fc520a4"
+      "sha256": "10870776a053f5a8c7b6eacda20147a64b3f316369bb6241c3a5da1d1c321514"
     },
     {
       "bytes": 1618,
@@ -981,9 +1011,9 @@
       "sha256": "2fbf22e5e9eb92c8a72972f3d166fb97c24055c0668a37ef594fcbb4236eae02"
     },
     {
-      "bytes": 5591,
+      "bytes": 5916,
       "path": "README.md",
-      "sha256": "dd0d2126c5cbc68c3b7fc6a0274f4c5723944a0258008e211884209c59ebb21d"
+      "sha256": "aacd49597fafe511c3ec45b735e64e22bb5564f8ca6073d70f93612e7689582d"
     },
     {
       "bytes": 3271,
@@ -1181,7 +1211,7 @@
       "sha256": "f5dba1193203a03bbce3779179ce5b6947231dff1ae65f505e5024e3ec5ee207"
     }
   ],
-  "generated_utc": "2026-09-09T21:00:08Z",
+  "generated_utc": "2026-09-09T21:05:27Z",
   "git_copy_policy": {
     "binary_attribute_repair_20260904": "REPAIRED_PREEXISTING_ALL_TEXT_EOL_RULE_BEFORE_CANDIDATE_PUBLICATION_CHECKPOINT",
     "binary_carriers": "*.zip -text; exact bytes required",
@@ -2872,6 +2902,26 @@
     "protected_receipt_valid": true,
     "same_attempt_replay_allowed": false,
     "status": "HARNESS_INVALID_PROTECTED_HRESULT_UINT32_ENCODER__PROTECTED_NOT_ADMITTED"
+  },
+  "wider_egress_v0_2_7_2_wmi_bounded_admission": {
+    "admission_sha256": "e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca",
+    "artifact_sha256": "4bf2403ee909154172512bd0c3d0c681fe47c048ffb1eae741331005b005f9dc",
+    "claim_ceiling": "POSITIVE_WMI_SERVICE_MEDIATION_PLUS_PROTECTED_CLASS_BIND_FAILURE_ONLY",
+    "first_result_sha256": "fa355f068636714e3fc6584a2377c783dd5c23a7de369546d7b835acdfe69fb9",
+    "job_specific_denial_earned": false,
+    "positive_child_alive": true,
+    "positive_cleanup": "CONFIRMED",
+    "positive_parent_exe": "WmiPrvSE.exe",
+    "positive_wmi_create": "SUCCEEDED",
+    "product_promotion": false,
+    "protected_appcontainer_verified": true,
+    "protected_capability_count": 0,
+    "protected_create_reached": false,
+    "protected_hresult_low16": 5377,
+    "protected_immediate_job_verified": true,
+    "protected_inherited_handles": false,
+    "protected_stage": "WMI_CLASS_BIND_FAILURE",
+    "status": "BOUNDED_WMI_CLASS_BIND_FAILURE_QUALIFIED"
   },
   "wider_egress_v0_2_7_wmi_harness_invalid": {
     "artifact_sha256": "01461d5f61a7e1cc85a8365ff11565df7ada1069c46b9a90ea036394dbc762b5",

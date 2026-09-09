@@ -543,3 +543,7 @@ Truth: verified HARNESS_INVALID `3dbc3f7b0dda8cf13ec3f4d59933d0bdda992b914123e33
 
 ## v0.2.7.1 WMI harness result — 2026-09-09
 Verified: positive WMI service-mediated creation parent `WmiPrvSE.exe`, child alive, cleanup. Protected outcome remains unadmitted due HRESULT encoder defect. Result `4a10e2fa70fe620ebcaed8d23163b48f2b565a4230831cbc34e771a9b0b585b5`, diagnosis `71898d70a9fcb7758eaeffd344761d5d1f1d92d02edc198a3896bcc765abb04a`. RES authority NONE_BY_CONTENT.
+
+
+## v0.2.7.2 WMI bounded qualification — 2026-09-09
+Truth: positive WMI service-mediated creation verified; protected local WMI class bind fails at `0x20001501` under combined protected boundary before Create. Result `fa355f068636714e3fc6584a2377c783dd5c23a7de369546d7b835acdfe69fb9`, admission `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca`. Job-specific cause unearned. RES authority NONE_BY_CONTENT.

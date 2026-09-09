@@ -218,3 +218,10 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 - Control `8da21c41eac3cc2153970341b2259f4148bf6845` / CHECKPOINT `0753ee643f38a2f911e1a5fe315be811d1c62d7f979a54bb3b59589f2c9c9456`. App `dc4683167124b70883a6940026f28575fcaf745b51d1f4975df298f6ca36c352` -> `4a10e2fa70fe620ebcaed8d23163b48f2b565a4230831cbc34e771a9b0b585b5` HARNESS_INVALID for protected path.
 - Positive WMI service mediation verified with parent `WmiPrvSE.exe` + cleanup. Protected receipt valid, but HRESULT encoder collapsed; diagnosis `71898d70a9fcb7758eaeffd344761d5d1f1d92d02edc198a3896bcc765abb04a`.
 - App Store 202/214/293 integrity ok. Main/Core unchanged. Next: checkpoint then encoder-only v0.2.7.2.
+
+
+## APP V0.2.7.2 WMI CROSS-ARM CURRENTNESS — 2026-09-09
+- Control `dbe988b4a6773a79d31935b46984b17fb9c4c421` / CHECKPOINT `f84f5b8886dd56c7c9ec8baa52c34f5c08a3e1890074f76188d9e110a58e6f67`. App `4bf2403ee909154172512bd0c3d0c681fe47c048ffb1eae741331005b005f9dc` -> `fa355f068636714e3fc6584a2377c783dd5c23a7de369546d7b835acdfe69fb9` -> admission `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca`.
+- Positive WMI service mediation verified; protected local class bind fails `0x20001501` before Create under combined protected boundary.
+- Job-specific cause/general COM-RPC/network law unearned. App Store 207/220/299 integrity ok. Main/Core unchanged.
+- Next: successor control checkpoint before causal isolation or another broker/service class.

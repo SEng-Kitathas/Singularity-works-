@@ -1774,3 +1774,15 @@ Control `8da21c41eac3cc2153970341b2259f4148bf6845` / CHECKPOINT `0753ee643f38a2f
 
 ## Entry — v0.2.7.1 WMI first execution HARNESS_INVALID — 2026-09-09
 Positive WMI service mediation is now directly evidenced: PID 23160 alive after root exit, parent `WmiPrvSE.exe`, cleanup succeeded. Protected receipt was valid but raw1 unclassified. A non-creating protected class-bind diagnostic isolated the second harness defect: `[uint32]` conversion of a negative HRESULT throws under Stop; signed masking emits `0x20001501`. Exact result `4a10e2fa70fe620ebcaed8d23163b48f2b565a4230831cbc34e771a9b0b585b5` / diagnosis `71898d70a9fcb7758eaeffd344761d5d1f1d92d02edc198a3896bcc765abb04a` preserved; Store 202/214/293 integrity ok. Same Attempt non-replayable.
+
+
+---
+
+## Entry — v0.2.7.1 harness successor control closed — 2026-09-09
+Control `dbe988b4a6773a79d31935b46984b17fb9c4c421` / CHECKPOINT `f84f5b8886dd56c7c9ec8baa52c34f5c08a3e1890074f76188d9e110a58e6f67` fresh-clone verifier PASS 201. NEW v0.2.7.2 HRESULT-encoder-only repair is now permitted; no same-Attempt replay.
+
+
+---
+
+## Entry — v0.2.7.2 WMI class-bind bounded admission — 2026-09-09
+After encoder-only repair, exact artifact `4bf2403ee909154172512bd0c3d0c681fe47c048ffb1eae741331005b005f9dc` executed once. Positive WMI Create again proved service mediation (`WmiPrvSE.exe` parent), child liveness and cleanup. Protected receipt was valid and stage classification succeeded: local `Win32_Process` class bind failed with encoded `0x20001501` / low16 `0x1501`, before `Create`. Exact result `fa355f068636714e3fc6584a2377c783dd5c23a7de369546d7b835acdfe69fb9` reread before bounded admission `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca`. Store 207/220/299 integrity ok. No Job-specific causality, all-COM/RPC, network or runtime-law promotion.

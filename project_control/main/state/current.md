@@ -317,3 +317,7 @@ Result `3dbc3f7b0dda8cf13ec3f4d59933d0bdda992b914123e33ee62324fa391bf236` HARNES
 
 ## App WMI cross-arm currentness — v0.2.7.1
 Positive WMI parent `WmiPrvSE.exe` verified; protected result `4a10e2fa70fe620ebcaed8d23163b48f2b565a4230831cbc34e771a9b0b585b5` HARNESS_INVALID/NOT_ADMITTED due HRESULT encoder. Diagnosis `71898d70a9fcb7758eaeffd344761d5d1f1d92d02edc198a3896bcc765abb04a`. Main/Core unchanged.
+
+
+## App WMI cross-arm currentness — v0.2.7.2
+Admission `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca` qualifies exact positive WMI mediation + protected class-bind failure only. Control `dbe988b4a6773a79d31935b46984b17fb9c4c421`. Main/Core unchanged.

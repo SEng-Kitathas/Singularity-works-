@@ -383,3 +383,13 @@ Control `b8c5e6f9c7032e2a25c25ac4b4e50de91183d64c` / CHECKPOINT `59643050ecd2c74
 
 ## Current WMI frontier — v0.2.7.1 — 2026-09-09
 Control `8da21c41eac3cc2153970341b2259f4148bf6845` / CHECKPOINT `0753ee643f38a2f911e1a5fe315be811d1c62d7f979a54bb3b59589f2c9c9456`. Positive WMI `Win32_Process.Create` service mediation verified with parent `WmiPrvSE.exe`; protected outcome unresolved because HRESULT encoder failed. Result `4a10e2fa70fe620ebcaed8d23163b48f2b565a4230831cbc34e771a9b0b585b5` HARNESS_INVALID / NOT_ADMITTED; diagnosis `71898d70a9fcb7758eaeffd344761d5d1f1d92d02edc198a3896bcc765abb04a`. Store 202/214/293 integrity ok.
+
+
+## V0.2.7.1 HARNESS SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Durable control `dbe988b4a6773a79d31935b46984b17fb9c4c421` / CHECKPOINT `f84f5b8886dd56c7c9ec8baa52c34f5c08a3e1890074f76188d9e110a58e6f67` is non-force published and independently fresh-clone verified PASS 201.
+- Exact v0.2.7.1 result `4a10e2fa...` and diagnosis `71898d70...` reproduce in the fresh clone.
+- Next permitted pressure: NEW v0.2.7.2 HRESULT-encoder-only repair; v0.2.7.1 is immutable/non-replayable.
+
+
+## Current WMI frontier — v0.2.7.2 bounded admission — 2026-09-09
+Control `dbe988b4a6773a79d31935b46984b17fb9c4c421` / CHECKPOINT `f84f5b8886dd56c7c9ec8baa52c34f5c08a3e1890074f76188d9e110a58e6f67`. Lineage `4bf2403ee909154172512bd0c3d0c681fe47c048ffb1eae741331005b005f9dc` -> `fa355f068636714e3fc6584a2377c783dd5c23a7de369546d7b835acdfe69fb9` -> `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca`. Positive WMI service mediation is verified via parent `WmiPrvSE.exe`; protected local `Win32_Process` class bind fails at `0x20001501` under verified AppContainer+immediate Job. `Create` not reached protected. Store 207/220/299 integrity ok. Job-specific cause/general COM-RPC/network/runtime law unearned.

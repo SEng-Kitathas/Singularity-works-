@@ -245,3 +245,7 @@ Checkpoint `3dbc3f7b0dda8cf13ec3f4d59933d0bdda992b914123e33ee62324fa391bf236` / 
 
 ## Coordinated next step — App v0.2.7.1
 Checkpoint `4a10e2fa70fe620ebcaed8d23163b48f2b565a4230831cbc34e771a9b0b585b5` / `71898d70a9fcb7758eaeffd344761d5d1f1d92d02edc198a3896bcc765abb04a` / Store 202/214/293, then NEW App v0.2.7.2 HRESULT-encoder-only repair. No Core promotion.
+
+
+## Coordinated next step — App v0.2.7.2
+Seal successor control with result `fa355f068636714e3fc6584a2377c783dd5c23a7de369546d7b835acdfe69fb9` / admission `e82527f7d05ed8e51e355b624a47f94391738ac8cbfa7dfbdcf30a1ae2e08aca` / Store 207/220/299 before causal isolation or new broker/service pressure. No Core promotion.
