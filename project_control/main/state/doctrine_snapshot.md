@@ -509,3 +509,10 @@ Historical broad App-ownership wording is superseded for current scope, not dele
 `FROZEN_TARGET_OBJECT != MUTABLE_UPSERT_PAYLOAD`
 `BASE_THAW_PASS != TARGET_PAYLOAD_THAW_PASS`
 `HARNESS_INVALID != SEMANTIC_REPLAY_FAILURE`
+
+
+## Forge Semantic Delta Replay law — bounded current evidence
+`SEMANTIC_DELTA_REPLAY` is now qualified only as exact bundle replay on the tested PyGoat snapshots.
+`EXACT_BUNDLE_REPLAY != SOURCE_EDIT_MATERIALIZATION`
+`BUNDLE_REPLAY_PASS != ARBITRARY_PROGRAM_REFACTOR_EQUIVALENCE`
+`DELTA_AUTHORITY = NONE`

@@ -1,0 +1,64 @@
+{
+  "artifact_hashes": {
+    "fixture": "00aedb0e978bc4ab5ff79de8b5f4838bf3751f720e16afe33c14e512de2c47a9",
+    "ir": "5d019792cd72a58b261a9a7945eb23e3973befeb337a8625853f245fcd81a524",
+    "replay": "870d5c76fd555744e77206b25aedf88cfa9c359890f970524003dd93275c8818"
+  },
+  "check_count": 14,
+  "checks": {
+    "authority_none": true,
+    "comment_plan_deterministic": true,
+    "comment_replay_exact_bundle_id": true,
+    "comment_replay_exact_serialization": true,
+    "operations_nonempty": true,
+    "reverse_replay_exact_bundle_id": true,
+    "reverse_replay_exact_serialization": true,
+    "semantic_removal_replay_exact_bundle_id": true,
+    "semantic_removal_replay_exact_serialization": true,
+    "stale_base_rejected": true,
+    "tampered_precondition_rejected": true,
+    "target_clean_after": true,
+    "target_clean_before": true,
+    "target_head_unchanged": true
+  },
+  "claim_ceiling": "EXACT_SEMANTIC_BUNDLE_REPLAY_OVER_QUALIFIED_PYGOAT_SNAPSHOTS_ONLY",
+  "git": {
+    "after": {
+      "head": "19d17cc8874861142b330636d068bbde54e86b85",
+      "tracked_dirty_lines": 0
+    },
+    "before": {
+      "head": "19d17cc8874861142b330636d068bbde54e86b85",
+      "tracked_dirty_lines": 0
+    }
+  },
+  "not_proven": [
+    "source-code edit materialization",
+    "semantic-preserving refactor equivalence",
+    "cross-language transform lowering",
+    "merge/conflict algebra for concurrent semantic edits",
+    "large multi-repo replay performance"
+  ],
+  "pass_count": 14,
+  "plans": {
+    "comment": {
+      "operations": 456,
+      "plan_id": "sdelta:6024689a273f9100b90eadcb"
+    },
+    "removed": {
+      "operations": 454,
+      "plan_id": "sdelta:a972e8db6129bbdbc7b20ecd"
+    },
+    "reverse_removed_to_old": {
+      "operations": 454,
+      "plan_id": "sdelta:d540ee3bef5d8e4f97f5061b"
+    }
+  },
+  "schema": "forge.semantic-delta-replay-pygoat/0.1.3",
+  "snapshots": {
+    "comment": "bundle:40261aed9ca36002ffaf4a5b",
+    "old": "bundle:24bab65bcaa508bc81d64367",
+    "removed": "bundle:4e50e8ac5412121ff47d78e2"
+  },
+  "verdict": "PASS"
+}

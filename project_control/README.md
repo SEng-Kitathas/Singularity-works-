@@ -54,6 +54,9 @@ PCMMAD Lab's primary work surface is Forge itself and Singularity Works as a who
 ## Forge Core frontier — Semantic Delta Replay v0.1 harness boundary
 The first real PyGoat replay candidate failed before replay due MappingProxy-incompatible `asdict()` serialization. No semantic replay claim is admitted. See `CURRENTNESS_AFTER_FORGE_SEMANTIC_DELTA_REPLAY_V0_1_HARNESS_INVALID_20260909.md`.
 
+## Forge Core frontier — Semantic Delta Replay v0.1.3 bounded qualification
+Forge now has bounded evidence for exact deterministic semantic-bundle replay over qualified PyGoat snapshots, including reverse replay and stale/tamper rejection. This is not source materialization or general refactor equivalence. See `CURRENTNESS_AFTER_FORGE_SEMANTIC_DELTA_REPLAY_V0_1_3_BOUNDED_ADMISSION_20260909.md`.
+
 ## Semantic admission
 Server successor admission stream: 23 artifacts / 3,116 deterministic lines / SHA `d0c1379fbd8c01e9616a1b8fee83f975bd1670179551eb354f05c1d5e3cc128e`, complete read 3,116/3,116, blocking findings 0.
 

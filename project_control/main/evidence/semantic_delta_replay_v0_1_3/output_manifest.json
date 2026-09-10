@@ -1,0 +1,26 @@
+{
+  "count": 4,
+  "files": [
+    {
+      "bytes": 266089,
+      "path": "comment_plan.json",
+      "sha256": "e8c91926daf774486c02b75e0bf389a1d79686c70426e2aa9a93737c72fe8507"
+    },
+    {
+      "bytes": 264389,
+      "path": "removed_plan.json",
+      "sha256": "e18f8f7e0fd041cd55decd389349e03ad3e5276c276d42b110571683ae60fb5d"
+    },
+    {
+      "bytes": 265458,
+      "path": "reverse_plan.json",
+      "sha256": "48686d1ddcd040991e2b042cafd17c8955c51f2488be66b855ce6a2064bd49ea"
+    },
+    {
+      "bytes": 2124,
+      "path": "summary.json",
+      "sha256": "f49a1f61b1a8d2fd22380d9bde219cbf952147523bc7c694faa914ce43cf25a1"
+    }
+  ],
+  "schema": "forge.semantic-delta-replay-output-manifest/0.1.3"
+}

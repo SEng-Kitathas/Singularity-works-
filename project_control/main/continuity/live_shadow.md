@@ -305,3 +305,17 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 - Result `2b0d36b419b464ef1f98ead7224e2350c4bb86f975e4e3ae1dbef514060eb8b2` NOT_ADMITTED / NON-REPLAYABLE. Base workspace thaw succeeded and operation application was reached; frozen target UPSERT payloads reintroduced MappingProxy-backed values before target freeze.
 - PyGoat remained clean at `19d17cc8...`. No semantic replay claim earned.
 - Next after checkpoint: NEW v0.1.3 UPSERT-payload-thaw repair only.
+
+
+## SEMANTIC DELTA V0.1.2 SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Durable control `046378934b064627d5fd1694fea028bbd09a61ed` / CHECKPOINT `c575f9c916f98f114ae5e41f97cc01709515f358a3dfa6c3d9aa751beb095a27` fresh-clone verified PASS 238.
+- v0.1.2 remains immutable/non-replayable. NEW v0.1.3 UPSERT-payload-thaw-only repair is now permitted.
+
+
+## FORGE SEMANTIC DELTA REPLAY V0.1.3 — BOUNDED QUALIFIED — CURRENT — 2026-09-09
+- Scope: Forge/Singularity Works core transformation substrate; App frontend not involved.
+- Module `870d5c76fd555744e77206b25aedf88cfa9c359890f970524003dd93275c8818` / harness `54ebbe5bec809cc9be51fd43d4a502cdec6d310177c54cf16753335605607f6f` executed once under control `046378934b064627d5fd1694fea028bbd09a61ed` / CHECKPOINT `c575f9c916f98f114ae5e41f97cc01709515f358a3dfa6c3d9aa751beb095a27`.
+- **PASS 14/14**. Summary/stdout `f49a1f61b1a8d2fd22380d9bde219cbf952147523bc7c694faa914ce43cf25a1`; output manifest `141206785ce04072821334e75f72873a0dd09c6297ced83532cb0809f2c179a7`; admission `84c1faef40e41842549b4880459f9fa240f0b9940ee6e3e5be9c5a08a4e70bbb`.
+- Exact forward comment replay, forward semantic-removal replay and reverse replay all reproduced exact bundle IDs + canonical serialization. Stale base and tampered precondition rejected. Authority remained NONE. PyGoat head `19d17cc8...` clean before/after.
+- Qualified only exact semantic-bundle replay over this qualified PyGoat fixture. Source materialization/refactor equivalence/cross-language/concurrent merge remain unearned.
+- Next after control closure: bounded semantic-to-source materialization / reversible round-trip discriminator.

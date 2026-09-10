@@ -381,3 +381,12 @@ Result `fbb81733340c955ab1157cc016ae4a21beb2c3ffa9d6f5b1858c58ccdba0da05` shows 
 
 ## Forge Core semantic replay frontier — v0.1.2 HARNESS_INVALID
 Result `2b0d36b419b464ef1f98ead7224e2350c4bb86f975e4e3ae1dbef514060eb8b2` localizes the remaining bridge defect to UPSERT payload insertion: target objects remain frozen and reintroduce MappingProxy values after base thaw. No replay admission; PyGoat clean.
+
+
+## SEMANTIC DELTA V0.1.2 SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Durable control `046378934b064627d5fd1694fea028bbd09a61ed` / CHECKPOINT `c575f9c916f98f114ae5e41f97cc01709515f358a3dfa6c3d9aa751beb095a27` fresh-clone verified PASS 238.
+- v0.1.2 remains immutable/non-replayable. NEW v0.1.3 UPSERT-payload-thaw-only repair is now permitted.
+
+
+## Forge Core current frontier — Semantic Delta Replay v0.1.3 qualified
+Lineage `870d5c76fd555744e77206b25aedf88cfa9c359890f970524003dd93275c8818` -> summary `f49a1f61b1a8d2fd22380d9bde219cbf952147523bc7c694faa914ce43cf25a1` -> admission `84c1faef40e41842549b4880459f9fa240f0b9940ee6e3e5be9c5a08a4e70bbb` qualifies deterministic content-addressed exact semantic-bundle replay over qualified PyGoat snapshots, including reverse replay and stale/tamper rejection, without source mutation or authority minting. This is a Forge Core result; App remains frontend UX. Source materialization is the next dependency seam.

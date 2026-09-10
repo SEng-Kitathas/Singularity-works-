@@ -203,9 +203,9 @@
   },
   "files": [
     {
-      "bytes": 588,
+      "bytes": 712,
       "path": ".gitattributes",
-      "sha256": "e820cbe096782bf353330c7819810a5ae9ba39b58c6b5567cebe33599d175d82"
+      "sha256": "df4d07c2d071009d39f036f7663ad8338d8f09ff289fbbee51ac8f7c6eeb7a2a"
     },
     {
       "bytes": 3534,
@@ -768,6 +768,11 @@
       "sha256": "9976870826fb43f21022dc68c547e48e7b064f380777ffef5227520fb0c59782"
     },
     {
+      "bytes": 1931,
+      "path": "CURRENTNESS_AFTER_FORGE_SEMANTIC_DELTA_REPLAY_V0_1_3_BOUNDED_ADMISSION_20260909.md",
+      "sha256": "74358fdd85dd14bcf03f286df5d3af6c5264390eed3c54cd2a3ed2c0ad9a4829"
+    },
+    {
       "bytes": 1317,
       "path": "CURRENTNESS_AFTER_FORGE_SEMANTIC_DELTA_REPLAY_V0_1_HARNESS_INVALID_20260909.md",
       "sha256": "c6822dbb1fe21ad26c502b107e6f980399d58676ac734d740e6d64a8bde12d20"
@@ -868,6 +873,11 @@
       "sha256": "e508752b9a994a234243f686044db8e7c46a9e08a1db23854cd6e2f576c61442"
     },
     {
+      "bytes": 10807,
+      "path": "main/code/forge_semantic_delta_replay_v0_1_3.py",
+      "sha256": "870d5c76fd555744e77206b25aedf88cfa9c359890f970524003dd93275c8818"
+    },
+    {
       "bytes": 7086,
       "path": "main/code/run_semantic_delta_replay_pygoat_v0_1.py",
       "sha256": "1d781698eea684d22043d77b852a3231f90af9c11c7449dbfe9db5eac3abfb77"
@@ -883,14 +893,19 @@
       "sha256": "54aeb817bb35206a9da6b82fd68eba8a4d93460a7813f90b443fb72ecbf358d1"
     },
     {
-      "bytes": 179766,
-      "path": "main/continuity/design_thread_stream.md",
-      "sha256": "b9369ed0e30044f471c32ce026d2fabf894180226bb92358acd101ede6a745d3"
+      "bytes": 7096,
+      "path": "main/code/run_semantic_delta_replay_pygoat_v0_1_3.py",
+      "sha256": "54ebbe5bec809cc9be51fd43d4a502cdec6d310177c54cf16753335605607f6f"
     },
     {
-      "bytes": 32912,
+      "bytes": 180528,
+      "path": "main/continuity/design_thread_stream.md",
+      "sha256": "5565c6db74ce949f613b760bd08391f91700d6ece536b3f024598c9a59369895"
+    },
+    {
+      "bytes": 34563,
       "path": "main/continuity/live_shadow.md",
-      "sha256": "524f9059545fbfe3a2901dd2775f59a86511bd0ea458c5626aed385047f3a31e"
+      "sha256": "76597bc733cdb5ca9a04bd483924a18437ead3726b0189798dc3ef7ece6d0abe"
     },
     {
       "bytes": 39834,
@@ -911,6 +926,31 @@
       "bytes": 516,
       "path": "main/evidence/forge_semantic_delta_replay_v0_1_first_stderr_projection_20260909.txt",
       "sha256": "12bfe70734ba4a32bd22b02916b41b068cd4765fcc0bf558be5d613452bcdbed"
+    },
+    {
+      "bytes": 266089,
+      "path": "main/evidence/semantic_delta_replay_v0_1_3/comment_plan.json",
+      "sha256": "e8c91926daf774486c02b75e0bf389a1d79686c70426e2aa9a93737c72fe8507"
+    },
+    {
+      "bytes": 734,
+      "path": "main/evidence/semantic_delta_replay_v0_1_3/output_manifest.json",
+      "sha256": "141206785ce04072821334e75f72873a0dd09c6297ced83532cb0809f2c179a7"
+    },
+    {
+      "bytes": 264389,
+      "path": "main/evidence/semantic_delta_replay_v0_1_3/removed_plan.json",
+      "sha256": "e18f8f7e0fd041cd55decd389349e03ad3e5276c276d42b110571683ae60fb5d"
+    },
+    {
+      "bytes": 265458,
+      "path": "main/evidence/semantic_delta_replay_v0_1_3/reverse_plan.json",
+      "sha256": "48686d1ddcd040991e2b042cafd17c8955c51f2488be66b855ce6a2064bd49ea"
+    },
+    {
+      "bytes": 2124,
+      "path": "main/evidence/semantic_delta_replay_v0_1_3/summary.json",
+      "sha256": "f49a1f61b1a8d2fd22380d9bde219cbf952147523bc7c694faa914ce43cf25a1"
     },
     {
       "bytes": 3071,
@@ -1093,6 +1133,16 @@
       "sha256": "ea0b7bf702fef765ba94e4d6480af3225ddb87632962f07e4dc96ede2fd3df8b"
     },
     {
+      "bytes": 3538,
+      "path": "main/notes/maintenance/FORGE_SEMANTIC_DELTA_REPLAY_V0_1_3_BOUNDED_ADMISSION_20260909.md",
+      "sha256": "84c1faef40e41842549b4880459f9fa240f0b9940ee6e3e5be9c5a08a4e70bbb"
+    },
+    {
+      "bytes": 833,
+      "path": "main/notes/maintenance/FORGE_SEMANTIC_DELTA_REPLAY_V0_1_3_UPSERT_THAW_PREEXECUTION_20260909.md",
+      "sha256": "dd56cef5a25feffa15e9ffd0fb9009fdcd4e065fe1b3d194849a1c8dd00c7c23"
+    },
+    {
       "bytes": 1044,
       "path": "main/notes/maintenance/FORGE_SEMANTIC_DELTA_REPLAY_V0_1_HARNESS_INVALID_MAPPINGPROXY_20260909.json",
       "sha256": "d78079adf46e9e52824b9a73e314fe3ffbcb2da75c3ce710a5f33ed0b6683a7b"
@@ -1128,9 +1178,9 @@
       "sha256": "f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63"
     },
     {
-      "bytes": 39503,
+      "bytes": 40477,
       "path": "main/state/current.md",
-      "sha256": "7f23e4db23122bb248e9fa71e4dadc6bd9d86da51fc597544d78d316138dda3c"
+      "sha256": "717f764e2cb81b6d04d6e4912cdcf401e9e26f6dc0c7baa15501a12b6e64cfd8"
     },
     {
       "bytes": 4215,
@@ -1163,14 +1213,14 @@
       "sha256": "8b1bf53adf3ac3fee09a4435f1f6df4518359f767fc76fe8d99df4ed6f44e4ae"
     },
     {
-      "bytes": 44444,
+      "bytes": 44752,
       "path": "main/state/doctrine_snapshot.md",
-      "sha256": "326af57b976c5d92a341ba69051e4b03d43363107cfa9897682341f73e11e7f5"
+      "sha256": "5eff2d22c5296a61b5299ca79b5f979b3f1e709d3cebff015c8536c17aae8f44"
     },
     {
-      "bytes": 29710,
+      "bytes": 30769,
       "path": "main/state/next_steps.md",
-      "sha256": "f08cd422a8cacb6b33626f92cdd1836709db5b4ae6a361ab14da31188aa9e529"
+      "sha256": "bc419b06da6cc958e3392335e3d18bf7dadc8e93926c5a5bba21d70a1ff772af"
     },
     {
       "bytes": 24400,
@@ -1178,14 +1228,14 @@
       "sha256": "7c3effb3198eb0242092ad36d5e484e4e73e30bfc83b2b25c1ff015fd4238773"
     },
     {
-      "bytes": 31156,
+      "bytes": 31555,
       "path": "main/state/revisit_ledger.md",
-      "sha256": "7ce1da95727b9d8615f3214c5dd25f5f79c5ec3dbe505e10769a1ee2b2f3c612"
+      "sha256": "a238f057a1757f99125af0ded9943e2be122d5128d096a4ff205d43a3afd9e12"
     },
     {
-      "bytes": 53523,
+      "bytes": 54262,
       "path": "main/state/trace_matrix.md",
-      "sha256": "7eaaf40f962f81eea9e25220caa9a6732b3e7615249b635bdc653e850fe6177b"
+      "sha256": "4133cbf696b53a6326436a39b0ad42bb10f86fe3012ed639cf875f4e98d3a563"
     },
     {
       "bytes": 1618,
@@ -1193,9 +1243,9 @@
       "sha256": "2fbf22e5e9eb92c8a72972f3d166fb97c24055c0668a37ef594fcbb4236eae02"
     },
     {
-      "bytes": 7608,
+      "bytes": 8009,
       "path": "README.md",
-      "sha256": "9a82ddd0d76df6a66f3132ead9cbae0219f7eeb4a0ba1d27f89ab994d28cf9a6"
+      "sha256": "68d5a719d0433c36ef9f6ca9e85a19ccb63fdde88f7296711df4b0c5b2b93cce"
     },
     {
       "bytes": 3271,
@@ -1425,6 +1475,33 @@
     "target_freeze_completed": false,
     "target_pygoat_clean": true
   },
+  "forge_semantic_delta_replay_v0_1_3_bounded_admission": {
+    "admission_sha256": "84c1faef40e41842549b4880459f9fa240f0b9940ee6e3e5be9c5a08a4e70bbb",
+    "app_role": "FRONTEND_UX_UNCHANGED",
+    "baseline_bundle_id": "bundle:24bab65bcaa508bc81d64367",
+    "canonical_core_api_promoted": false,
+    "checks_passed": 14,
+    "checks_total": 14,
+    "claim_ceiling": "EXACT_SEMANTIC_BUNDLE_REPLAY_OVER_QUALIFIED_PYGOAT_SNAPSHOTS_ONLY",
+    "comment_bundle_id": "bundle:40261aed9ca36002ffaf4a5b",
+    "comment_plan_operations": 456,
+    "comment_plan_sha256": "e8c91926daf774486c02b75e0bf389a1d79686c70426e2aa9a93737c72fe8507",
+    "harness_sha256": "54ebbe5bec809cc9be51fd43d4a502cdec6d310177c54cf16753335605607f6f",
+    "module_sha256": "870d5c76fd555744e77206b25aedf88cfa9c359890f970524003dd93275c8818",
+    "output_manifest_sha256": "141206785ce04072821334e75f72873a0dd09c6297ced83532cb0809f2c179a7",
+    "product_promotion": false,
+    "removed_bundle_id": "bundle:4e50e8ac5412121ff47d78e2",
+    "removed_plan_sha256": "e18f8f7e0fd041cd55decd389349e03ad3e5276c276d42b110571683ae60fb5d",
+    "reverse_plan_operations": 454,
+    "reverse_plan_sha256": "48686d1ddcd040991e2b042cafd17c8955c51f2488be66b855ce6a2064bd49ea",
+    "semantic_removal_plan_operations": 454,
+    "source_materialization_qualified": false,
+    "status": "BOUNDED_EXACT_SEMANTIC_BUNDLE_REPLAY_QUALIFIED",
+    "summary_sha256": "f49a1f61b1a8d2fd22380d9bde219cbf952147523bc7c694faa914ce43cf25a1",
+    "target_pygoat_clean_after": true,
+    "target_pygoat_clean_before": true,
+    "target_pygoat_head": "19d17cc8874861142b330636d068bbde54e86b85"
+  },
   "forge_semantic_delta_replay_v0_1_harness_invalid": {
     "app_role": "FRONTEND_UX_UNCHANGED",
     "harness_sha256": "1d781698eea684d22043d77b852a3231f90af9c11c7449dbfe9db5eac3abfb77",
@@ -1442,7 +1519,7 @@
     "target_pygoat_clean": true,
     "target_pygoat_head": "19d17cc8874861142b330636d068bbde54e86b85"
   },
-  "generated_utc": "2026-09-10T01:35:18Z",
+  "generated_utc": "2026-09-10T01:39:00Z",
   "git_copy_policy": {
     "binary_attribute_repair_20260904": "REPAIRED_PREEXISTING_ALL_TEXT_EOL_RULE_BEFORE_CANDIDATE_PUBLICATION_CHECKPOINT",
     "binary_carriers": "*.zip -text; exact bytes required",

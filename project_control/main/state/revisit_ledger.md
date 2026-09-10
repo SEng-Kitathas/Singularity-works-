@@ -141,3 +141,5 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 | 2026-09-09 | App WMI combined-boundary causality | Exact class-bind failure does not distinguish AppContainer vs immediate Job | a no-Create boundary-isolation diagnostic separates behavior | App spec/preserve exact matrix before effectful work | P0 | open | R4/R5 design next |
 
 | 2026-09-09 | Forge semantic-delta replay algebra | v0.1 `d78079adf46e9e52824b9a73e314fe3ffbcb2da75c3ce710a5f33ed0b6683a7b` failed pre-replay because `asdict()` cannot deepcopy frozen MappingProxy fields | MappingProxy-safe canonical serialization then same PyGoat discriminator | checkpoint then NEW v0.1.1 | P0 | OPEN / HARNESS_INVALID / NOT_ADMITTED | no same-attempt replay |
+
+| 2026-09-09 | Forge semantic-delta replay | v0.1.3 `84c1faef40e41842549b4880459f9fa240f0b9940ee6e3e5be9c5a08a4e70bbb` qualifies exact forward/reverse replay, deterministic plan, stale/tamper rejection on real PyGoat snapshots | source materialization / broader transform algebra | semantic-to-source bounded round-trip discriminator | P0 | RESOLVED BOUNDED / NEXT BRIDGE OPEN | no App ownership |

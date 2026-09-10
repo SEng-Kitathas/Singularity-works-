@@ -317,3 +317,16 @@ Create a NEW sibling that only thaws MappingProxy-backed nested values when copy
 
 ## P0 — v0.1.3 allowed repair after v0.1.2 checkpoint
 Create a NEW sibling that only converts UPSERT payload dataclasses into mutable-safe equivalents on insertion. Preserve all other algebra/replay behavior and the exact PyGoat acceptance suite. Do not rerun v0.1.2.
+
+
+## SEMANTIC DELTA V0.1.2 SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Durable control `046378934b064627d5fd1694fea028bbd09a61ed` / CHECKPOINT `c575f9c916f98f114ae5e41f97cc01709515f358a3dfa6c3d9aa751beb095a27` fresh-clone verified PASS 238.
+- v0.1.2 remains immutable/non-replayable. NEW v0.1.3 UPSERT-payload-thaw-only repair is now permitted.
+
+
+## P0 — after Semantic Delta Replay v0.1.3 bounded qualification
+1. Publish/control-checkpoint admission `84c1faef40e41842549b4880459f9fa240f0b9940ee6e3e5be9c5a08a4e70bbb` and exact run artifacts.
+2. Do not rerun v0.1.3.
+3. Design a NEW bounded **semantic-to-source materialization + reversible round-trip** discriminator using a real qualified fixture.
+4. Require exact precondition/currentness, source diff constrained to intended span/change, reparse to target semantic bundle, rollback to exact original bytes, clean Git before/after, and no authority promotion.
+5. Keep arbitrary refactor equivalence, cross-language generality and canonical Core API promotion blocked until separately earned.
