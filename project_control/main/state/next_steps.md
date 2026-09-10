@@ -308,3 +308,12 @@ Seal successor control with result `fa355f068636714e3fc6584a2377c783dd5c23a7de36
 
 ## P0 — v0.1.2 allowed repair after v0.1.1 checkpoint
 Create a NEW sibling that only thaws MappingProxy-backed nested values when copying the frozen base into a mutable replay workspace. Preserve operation grammar, exact preconditions, target freeze, PyGoat fixture and acceptance checks. Do not rerun v0.1.1.
+
+
+## SEMANTIC DELTA V0.1.1 SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Durable control `0f493d3c48df0dad852ff90328e2d611ba3af2c8` / CHECKPOINT `cd59970210ada3f32280aa8d1fa1d0c8f580e72855798d305762733842b97475` fresh-clone verified PASS 232.
+- v0.1.1 remains immutable/non-replayable. NEW v0.1.2 mutable-workspace-thaw repair is permitted.
+
+
+## P0 — v0.1.3 allowed repair after v0.1.2 checkpoint
+Create a NEW sibling that only converts UPSERT payload dataclasses into mutable-safe equivalents on insertion. Preserve all other algebra/replay behavior and the exact PyGoat acceptance suite. Do not rerun v0.1.2.

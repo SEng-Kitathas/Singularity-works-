@@ -1785,3 +1785,9 @@ Whole-system reprioritization selected a Forge-native missing primitive: exact s
 
 ## Entry — Semantic Delta Replay v0.1.1 HARNESS_INVALID — 2026-09-09
 Serializer-only repair allowed plan construction and replay operation application, but `_copy_bundle` preserved frozen MappingProxy-backed values inside the mutable bundle; incumbent `asdict()` then failed during freeze verification. Result `fbb81733340c955ab1157cc016ae4a21beb2c3ffa9d6f5b1858c58ccdba0da05` preserved. PyGoat clean. v0.1.2 repair scope: thaw workspace values only.
+
+
+---
+
+## Entry — Semantic Delta Replay v0.1.2 HARNESS_INVALID — 2026-09-09
+v0.1.2 repaired base-workspace thawing but target UPSERT payloads remained frozen dataclass objects; insertion reintroduced MappingProxy-backed fields and target freeze failed. Result `2b0d36b419b464ef1f98ead7224e2350c4bb86f975e4e3ae1dbef514060eb8b2` preserved; PyGoat clean. v0.1.3 repair scope is UPSERT payload thaw only.

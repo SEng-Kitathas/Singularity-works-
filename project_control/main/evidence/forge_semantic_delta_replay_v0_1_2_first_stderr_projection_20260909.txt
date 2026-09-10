@@ -1,0 +1,9 @@
+Exact local stderr SHA256: 0bbd470baea46f8f9f94326aabe4ec46981dc6f5622711f8623568e0d645b0c8
+Exact local stderr bytes: 2562
+Privacy projection only; workstation paths omitted.
+
+Traceback semantic spine:
+run_semantic_delta_replay_pygoat_v0_1_2.py -> replay_plan after base thaw/UPSERT -> freeze_bundle -> verify_bundle -> SemanticFactBundle.as_dict -> dataclasses.asdict
+Failure: TypeError: cannot pickle 'mappingproxy' object
+
+Diagnosis: frozen target UPSERT dataclass values were inserted directly, reintroducing MappingProxy-backed fields. Raw stderr remains local and content-addressed above.

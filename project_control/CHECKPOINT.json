@@ -763,6 +763,11 @@
       "sha256": "e000c02a04883b5052d0f254779714a591a31e3c207053e9f52d33a3c61fe0ba"
     },
     {
+      "bytes": 881,
+      "path": "CURRENTNESS_AFTER_FORGE_SEMANTIC_DELTA_REPLAY_V0_1_2_HARNESS_INVALID_20260909.md",
+      "sha256": "9976870826fb43f21022dc68c547e48e7b064f380777ffef5227520fb0c59782"
+    },
+    {
       "bytes": 1317,
       "path": "CURRENTNESS_AFTER_FORGE_SEMANTIC_DELTA_REPLAY_V0_1_HARNESS_INVALID_20260909.md",
       "sha256": "c6822dbb1fe21ad26c502b107e6f980399d58676ac734d740e6d64a8bde12d20"
@@ -858,6 +863,11 @@
       "sha256": "9a74bd3ec787c7ccf1e4d393b9d8ccba582d7635b0a323205a183dcaf6520315"
     },
     {
+      "bytes": 8965,
+      "path": "main/code/forge_semantic_delta_replay_v0_1_2.py",
+      "sha256": "e508752b9a994a234243f686044db8e7c46a9e08a1db23854cd6e2f576c61442"
+    },
+    {
       "bytes": 7086,
       "path": "main/code/run_semantic_delta_replay_pygoat_v0_1.py",
       "sha256": "1d781698eea684d22043d77b852a3231f90af9c11c7449dbfe9db5eac3abfb77"
@@ -868,14 +878,19 @@
       "sha256": "765d45dccefa19111ede100a97242c7980c617cf114782b852ee106ff733cb79"
     },
     {
-      "bytes": 179361,
-      "path": "main/continuity/design_thread_stream.md",
-      "sha256": "5bf23716ac39876919dc86623c62363da9c18048f6ec4b544c1135444469ecd3"
+      "bytes": 7096,
+      "path": "main/code/run_semantic_delta_replay_pygoat_v0_1_2.py",
+      "sha256": "54aeb817bb35206a9da6b82fd68eba8a4d93460a7813f90b443fb72ecbf358d1"
     },
     {
-      "bytes": 31854,
+      "bytes": 179766,
+      "path": "main/continuity/design_thread_stream.md",
+      "sha256": "b9369ed0e30044f471c32ce026d2fabf894180226bb92358acd101ede6a745d3"
+    },
+    {
+      "bytes": 32912,
       "path": "main/continuity/live_shadow.md",
-      "sha256": "c1fb075620ae5e6f601aa0ae14d2de55c5ba43112808b9e80346a45c391ddc3d"
+      "sha256": "524f9059545fbfe3a2901dd2775f59a86511bd0ea458c5626aed385047f3a31e"
     },
     {
       "bytes": 39834,
@@ -886,6 +901,11 @@
       "bytes": 573,
       "path": "main/evidence/forge_semantic_delta_replay_v0_1_1_first_stderr_projection_20260909.txt",
       "sha256": "6e9db638ac3e1b43d2bbd9065c05c5d746d27b6c7e2c1a470dcb8674781eb451"
+    },
+    {
+      "bytes": 595,
+      "path": "main/evidence/forge_semantic_delta_replay_v0_1_2_first_stderr_projection_20260909.txt",
+      "sha256": "44bc6e5e84f07ae7c269c608646770beb7294818cc7bfd663bcd4bd8a8b5a2f5"
     },
     {
       "bytes": 516,
@@ -1063,6 +1083,16 @@
       "sha256": "115e808155cb0c85fda60b54e024cafd08bf256ddf1b0fd931e919d3478cc8c8"
     },
     {
+      "bytes": 1199,
+      "path": "main/notes/maintenance/FORGE_SEMANTIC_DELTA_REPLAY_V0_1_2_HARNESS_INVALID_FROZEN_UPSERT_20260909.json",
+      "sha256": "2b0d36b419b464ef1f98ead7224e2350c4bb86f975e4e3ae1dbef514060eb8b2"
+    },
+    {
+      "bytes": 820,
+      "path": "main/notes/maintenance/FORGE_SEMANTIC_DELTA_REPLAY_V0_1_2_WORKSPACE_THAW_PREEXECUTION_20260909.md",
+      "sha256": "ea0b7bf702fef765ba94e4d6480af3225ddb87632962f07e4dc96ede2fd3df8b"
+    },
+    {
       "bytes": 1044,
       "path": "main/notes/maintenance/FORGE_SEMANTIC_DELTA_REPLAY_V0_1_HARNESS_INVALID_MAPPINGPROXY_20260909.json",
       "sha256": "d78079adf46e9e52824b9a73e314fe3ffbcb2da75c3ce710a5f33ed0b6683a7b"
@@ -1098,9 +1128,9 @@
       "sha256": "f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63"
     },
     {
-      "bytes": 38827,
+      "bytes": 39503,
       "path": "main/state/current.md",
-      "sha256": "5b917553e4ecd546b70d1ba13546db4852026ac8162db53ceef53567beea8672"
+      "sha256": "7f23e4db23122bb248e9fa71e4dadc6bd9d86da51fc597544d78d316138dda3c"
     },
     {
       "bytes": 4215,
@@ -1133,14 +1163,14 @@
       "sha256": "8b1bf53adf3ac3fee09a4435f1f6df4518359f767fc76fe8d99df4ed6f44e4ae"
     },
     {
-      "bytes": 44281,
+      "bytes": 44444,
       "path": "main/state/doctrine_snapshot.md",
-      "sha256": "ab94522b7b7a9c6c6e33f26097827df55ff10ca1226d5876fdd94c3c3728da0e"
+      "sha256": "326af57b976c5d92a341ba69051e4b03d43363107cfa9897682341f73e11e7f5"
     },
     {
-      "bytes": 29088,
+      "bytes": 29710,
       "path": "main/state/next_steps.md",
-      "sha256": "b55deba56dd957280cd0e15c4c1f2e63ed0cc493b82264eaa371d662cac4f34c"
+      "sha256": "f08cd422a8cacb6b33626f92cdd1836709db5b4ae6a361ab14da31188aa9e529"
     },
     {
       "bytes": 24400,
@@ -1379,6 +1409,22 @@
     "stderr_sha256": "dde3af2d41dda0eabeca7d614d3f59023098d1ff99c8076e5a8c3197f36f5eb2",
     "target_pygoat_clean": true
   },
+  "forge_semantic_delta_replay_v0_1_2_harness_invalid": {
+    "app_role": "FRONTEND_UX_UNCHANGED",
+    "base_workspace_thaw_reached": true,
+    "harness_sha256": "54aeb817bb35206a9da6b82fd68eba8a4d93460a7813f90b443fb72ecbf358d1",
+    "module_sha256": "e508752b9a994a234243f686044db8e7c46a9e08a1db23854cd6e2f576c61442",
+    "next": "NEW_V0_1_3_UPSERT_PAYLOAD_THAW_ONLY",
+    "operation_application_reached": true,
+    "product_promotion": false,
+    "result_sha256": "2b0d36b419b464ef1f98ead7224e2350c4bb86f975e4e3ae1dbef514060eb8b2",
+    "same_attempt_replay_allowed": false,
+    "status": "HARNESS_INVALID_FROZEN_UPSERT_PAYLOAD__NOT_ADMITTED",
+    "stderr_projection_sha256": "44bc6e5e84f07ae7c269c608646770beb7294818cc7bfd663bcd4bd8a8b5a2f5",
+    "stderr_sha256": "0bbd470baea46f8f9f94326aabe4ec46981dc6f5622711f8623568e0d645b0c8",
+    "target_freeze_completed": false,
+    "target_pygoat_clean": true
+  },
   "forge_semantic_delta_replay_v0_1_harness_invalid": {
     "app_role": "FRONTEND_UX_UNCHANGED",
     "harness_sha256": "1d781698eea684d22043d77b852a3231f90af9c11c7449dbfe9db5eac3abfb77",
@@ -1396,7 +1442,7 @@
     "target_pygoat_clean": true,
     "target_pygoat_head": "19d17cc8874861142b330636d068bbde54e86b85"
   },
-  "generated_utc": "2026-09-10T01:33:02Z",
+  "generated_utc": "2026-09-10T01:35:18Z",
   "git_copy_policy": {
     "binary_attribute_repair_20260904": "REPAIRED_PREEXISTING_ALL_TEXT_EOL_RULE_BEFORE_CANDIDATE_PUBLICATION_CHECKPOINT",
     "binary_carriers": "*.zip -text; exact bytes required",

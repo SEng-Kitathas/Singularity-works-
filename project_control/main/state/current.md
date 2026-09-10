@@ -372,3 +372,12 @@ Selected whole-system/core frontier is semantic-delta replay over verified bundl
 
 ## Forge Core semantic replay frontier — v0.1.1 HARNESS_INVALID
 Result `fbb81733340c955ab1157cc016ae4a21beb2c3ffa9d6f5b1858c58ccdba0da05` shows serializer repair advanced through plan construction/application but mutable replay workspace still retained frozen MappingProxy values; freeze verification failed before target qualification. PyGoat clean; no replay admission.
+
+
+## SEMANTIC DELTA V0.1.1 SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Durable control `0f493d3c48df0dad852ff90328e2d611ba3af2c8` / CHECKPOINT `cd59970210ada3f32280aa8d1fa1d0c8f580e72855798d305762733842b97475` fresh-clone verified PASS 232.
+- v0.1.1 remains immutable/non-replayable. NEW v0.1.2 mutable-workspace-thaw repair is permitted.
+
+
+## Forge Core semantic replay frontier — v0.1.2 HARNESS_INVALID
+Result `2b0d36b419b464ef1f98ead7224e2350c4bb86f975e4e3ae1dbef514060eb8b2` localizes the remaining bridge defect to UPSERT payload insertion: target objects remain frozen and reintroduce MappingProxy values after base thaw. No replay admission; PyGoat clean.
