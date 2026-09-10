@@ -93,3 +93,11 @@ This block does not assert that the token is presently present or absent. It rem
 **CURRENT OWNERSHIP PRECEDENCE:** PCMMAD Lab owns Forge itself and Singularity Works as a whole-system technical program. App is the frontend/user-experience arm and interface consumer/pressure surface. Prior current-looking wording that assigns App broad product/runtime/security ownership or makes the newest App security chain the default project frontier is superseded for current scope. App evidence remains valid bounded evidence only. Binding scope note: `notes/maintenance/FORGE_SINGULARITY_WORKS_PRIMARY_SCOPE_CORRECTION_20260909.md`. Current control `0f663398cd07c36637ca939a2ab42a9a2001b07e` / CHECKPOINT `7f86fdffc98d169a203cc7cccf29b13789e2118ac05d8a914a31a62cfdf13f1f`.
 
 Next planning SHALL begin from Forge/Main/Core + whole-system open seams, not automatically from the App security queue.
+
+
+## PRIMARY SCOPE SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Scope correction is durably published at control `a24b5838292d27f27fb5f670246695605eee83ab` / CHECKPOINT `c47d682b22a9b618b163efbe49c1bf85fddffead4d94d3340a050643c729fd69`, direct child of `0f663398...`, independent fresh-clone verifier PASS 220.
+- Exact Main scope note `fb2871c8...` and App scope note `e28c2e2e...` reproduce.
+- Current routing: **Forge + Singularity Works whole-system primary; App frontend UX arm**.
+- No source/security/product/runtime-law promotion occurred.
+- Next planning starts from Forge/Main/Core + whole-system open seams; App is entered where UX/interface pressure is required.

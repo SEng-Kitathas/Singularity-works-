@@ -1767,3 +1767,15 @@ Control `0f663398...`, direct child `07c0d657...`, was non-force published with 
 
 ## Entry — primary scope correction: Forge + Singularity Works whole; App = frontend UX — 2026-09-09
 User corrected the operational ownership model. PCMMAD Lab is responsible for Forge itself and Singularity Works as the whole system. App handles the frontend/user experience. Persisted current-looking statements that gave App broad product/runtime/security ownership were identified as conflicting and are superseded for current scope rather than rewritten. Existing App security/runtime evidence remains valid bounded evidence but no longer drives the default roadmap. Current correction binds to control `0f663398cd07c36637ca939a2ab42a9a2001b07e` / CHECKPOINT `7f86fdffc98d169a203cc7cccf29b13789e2118ac05d8a914a31a62cfdf13f1f`. Next planning returns to Forge/Main/Core + whole-system priorities.
+
+
+---
+
+## Entry — whole-system scope correction control closed — 2026-09-09
+Control `a24b5838292d27f27fb5f670246695605eee83ab` / CHECKPOINT `c47d682b22a9b618b163efbe49c1bf85fddffead4d94d3340a050643c729fd69` fresh-clone verified PASS 220. Governing routing is now Forge + Singularity Works whole-system primary; App frontend UX arm. No technical claim promotion.
+
+
+---
+
+## Entry — Forge Semantic Delta Replay v0.1 first execution HARNESS_INVALID — 2026-09-09
+Whole-system reprioritization selected a Forge-native missing primitive: exact semantic-bundle delta replay. Frozen module `49cf44680bd022e8a63765d027d018973647178635017b402db53f08286af5c6` / real PyGoat harness `1d781698eea684d22043d77b852a3231f90af9c11c7449dbfe9db5eac3abfb77` executed once. It failed before replay because `dataclasses.asdict()` deep-copies dataclass fields and cannot pickle the frozen IR's `MappingProxyType`. Exact first-result record `d78079adf46e9e52824b9a73e314fe3ffbcb2da75c3ce710a5f33ed0b6683a7b` preserved; PyGoat remained clean. No replay claim admitted. Repair boundary is serializer-only in NEW v0.1.1.

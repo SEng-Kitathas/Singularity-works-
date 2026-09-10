@@ -282,3 +282,19 @@ Seal successor control with result `fa355f068636714e3fc6584a2377c783dd5c23a7de36
 3. Choose the next frontier by system value and dependency order.
 4. Treat App as frontend UX/client: consume qualified Forge/system interfaces and return UX/integration pressure; do not duplicate canonical truth.
 5. Preserve all prior App evidence and its claim ceilings; demotion from roadmap priority does not invalidate evidence.
+
+
+## PRIMARY SCOPE SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Scope correction is durably published at control `a24b5838292d27f27fb5f670246695605eee83ab` / CHECKPOINT `c47d682b22a9b618b163efbe49c1bf85fddffead4d94d3340a050643c729fd69`, direct child of `0f663398...`, independent fresh-clone verifier PASS 220.
+- Exact Main scope note `fb2871c8...` and App scope note `e28c2e2e...` reproduce.
+- Current routing: **Forge + Singularity Works whole-system primary; App frontend UX arm**.
+- No source/security/product/runtime-law promotion occurred.
+- Next planning starts from Forge/Main/Core + whole-system open seams; App is entered where UX/interface pressure is required.
+
+
+## P0 — Semantic Delta Replay after v0.1 harness invalid
+1. Publish/checkpoint result `d78079adf46e9e52824b9a73e314fe3ffbcb2da75c3ce710a5f33ed0b6683a7b` before repair.
+2. Do not rerun frozen v0.1 module/harness.
+3. NEW v0.1.1 may change only object digest/descriptor serialization so frozen MappingProxy-backed fields serialize canonically without deepcopy.
+4. Preserve typed REMOVE/UPSERT algebra, dependency order, exact base/target IDs, precondition digests, freeze verification, authority NONE, and the same real PyGoat discriminator.
+5. Required first valid result remains: forward exact comment replay, forward semantic-removal replay, reverse replay, deterministic plan, stale-base rejection, tamper rejection, clean target.

@@ -350,3 +350,15 @@ Cross-arm fixed point: control `0f663398...` / `7f86fdff...` fresh-clone PASS 21
 
 ## Primary program scope — CURRENT — 2026-09-09
 PCMMAD Lab's primary work surface is Forge + Singularity Works as a whole system. App is the frontend UX/client embodiment. App security/runtime evidence remains preserved but does not own canonical system direction and does not automatically determine the next project frontier. Scope correction is bound to control `0f663398cd07c36637ca939a2ab42a9a2001b07e` / CHECKPOINT `7f86fdffc98d169a203cc7cccf29b13789e2118ac05d8a914a31a62cfdf13f1f`.
+
+
+## PRIMARY SCOPE SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Scope correction is durably published at control `a24b5838292d27f27fb5f670246695605eee83ab` / CHECKPOINT `c47d682b22a9b618b163efbe49c1bf85fddffead4d94d3340a050643c729fd69`, direct child of `0f663398...`, independent fresh-clone verifier PASS 220.
+- Exact Main scope note `fb2871c8...` and App scope note `e28c2e2e...` reproduce.
+- Current routing: **Forge + Singularity Works whole-system primary; App frontend UX arm**.
+- No source/security/product/runtime-law promotion occurred.
+- Next planning starts from Forge/Main/Core + whole-system open seams; App is entered where UX/interface pressure is required.
+
+
+## Forge Core frontier — Semantic Delta Replay v0.1 HARNESS_INVALID — 2026-09-09
+Selected whole-system/core frontier is semantic-delta replay over verified bundles. First frozen candidate module `49cf44680bd022e8a63765d027d018973647178635017b402db53f08286af5c6` / harness `1d781698eea684d22043d77b852a3231f90af9c11c7449dbfe9db5eac3abfb77` failed before replay due MappingProxy-incompatible `asdict()` digest serialization. Result `d78079adf46e9e52824b9a73e314fe3ffbcb2da75c3ce710a5f33ed0b6683a7b` NOT_ADMITTED. PyGoat clean. No App dependency and no semantic replay qualification yet.

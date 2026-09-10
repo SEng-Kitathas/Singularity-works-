@@ -248,3 +248,11 @@ This block does not assert that the token is presently present or absent. It rem
 Primary mandate: **Forge itself + Singularity Works as a whole system**. App is the **frontend UX arm**. This supersedes current-looking ownership language that made App the owner of product/runtime/security as a whole. App remains a consumer/embodiment/pressure surface and may carry bounded evidence, but canonical system direction and the project frontier are set from Forge/Singularity Works whole-system needs. See `notes/maintenance/FORGE_SINGULARITY_WORKS_PRIMARY_SCOPE_CORRECTION_20260909.md`.
 
 `APP_FRONTEND != WHOLE_SYSTEM_OWNER`; `NEWEST_APP_EVIDENCE != DEFAULT_FORGE_FRONTIER`.
+
+
+## PRIMARY SCOPE SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Scope correction is durably published at control `a24b5838292d27f27fb5f670246695605eee83ab` / CHECKPOINT `c47d682b22a9b618b163efbe49c1bf85fddffead4d94d3340a050643c729fd69`, direct child of `0f663398...`, independent fresh-clone verifier PASS 220.
+- Exact Main scope note `fb2871c8...` and App scope note `e28c2e2e...` reproduce.
+- Current routing: **Forge + Singularity Works whole-system primary; App frontend UX arm**.
+- No source/security/product/runtime-law promotion occurred.
+- Next planning starts from Forge/Main/Core + whole-system open seams; App is entered where UX/interface pressure is required.

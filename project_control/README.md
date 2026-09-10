@@ -51,6 +51,9 @@ Positive WMI service mediation is verified, while the protected local `Win32_Pro
 ## Current scope correction — Forge/Singularity Works primary, App frontend UX
 PCMMAD Lab's primary work surface is Forge itself and Singularity Works as a whole system. App is the frontend/user-experience arm. Historical App runtime/security evidence remains valid, but it does not own the whole-system roadmap. See `CURRENT_SCOPE_FORGE_SINGULARITY_WORKS_PRIMARY_APP_FRONTEND_20260909.md`.
 
+## Forge Core frontier — Semantic Delta Replay v0.1 harness boundary
+The first real PyGoat replay candidate failed before replay due MappingProxy-incompatible `asdict()` serialization. No semantic replay claim is admitted. See `CURRENTNESS_AFTER_FORGE_SEMANTIC_DELTA_REPLAY_V0_1_HARNESS_INVALID_20260909.md`.
+
 ## Semantic admission
 Server successor admission stream: 23 artifacts / 3,116 deterministic lines / SHA `d0c1379fbd8c01e9616a1b8fee83f975bd1670179551eb354f05c1d5e3cc128e`, complete read 3,116/3,116, blocking findings 0.
 

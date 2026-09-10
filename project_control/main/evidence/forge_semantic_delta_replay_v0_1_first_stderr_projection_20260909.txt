@@ -1,0 +1,9 @@
+Exact local stderr SHA256: 656a8a06b7e11583e40b6de766aeaf76951910f930f3d5114a23d586408ee265
+Exact local stderr bytes: 2074
+Privacy projection only; workstation paths omitted.
+
+Traceback semantic spine:
+run_semantic_delta_replay_pygoat_v0_1.py -> main -> build_plan -> DeltaOperation.create -> _digest -> dataclasses.asdict -> copy.deepcopy
+Failure: TypeError: cannot pickle 'mappingproxy' object
+
+This projection is not byte-equivalent to raw stderr. Raw stderr remains local and content-addressed by the SHA above.

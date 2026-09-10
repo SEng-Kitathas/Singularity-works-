@@ -1,0 +1,20 @@
+{
+  "admission_status": "NOT_ADMITTED",
+  "claim_ceiling": "NO_SEMANTIC_REPLAY_CLAIM_EARNED",
+  "control_checkpoint": "c47d682b22a9b618b163efbe49c1bf85fddffead4d94d3340a050643c729fd69",
+  "control_head": "a24b5838292d27f27fb5f670246695605eee83ab",
+  "execution_return_code": 1,
+  "failure_message": "cannot pickle 'mappingproxy' object",
+  "failure_stage": "build_plan -> DeltaOperation.create -> _digest -> dataclasses.asdict",
+  "failure_type": "TypeError",
+  "harness_sha256": "1d781698eea684d22043d77b852a3231f90af9c11c7449dbfe9db5eac3abfb77",
+  "module_sha256": "49cf44680bd022e8a63765d027d018973647178635017b402db53f08286af5c6",
+  "replay_started": false,
+  "same_attempt_rerun": false,
+  "schema": "forge.semantic-delta-replay-pygoat-first-result/0.1",
+  "status": "HARNESS_INVALID_MAPPINGPROXY_ASDICT",
+  "stderr_bytes": 2074,
+  "stderr_sha256": "656a8a06b7e11583e40b6de766aeaf76951910f930f3d5114a23d586408ee265",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "target_source_mutated": false
+}

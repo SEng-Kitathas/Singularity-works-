@@ -262,3 +262,21 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 - Recent App WMI/process-execution/security results remain valid subordinate evidence, not the automatic next frontier.
 - Current control baseline at correction: `0f663398cd07c36637ca939a2ab42a9a2001b07e` / CHECKPOINT `7f86fdffc98d169a203cc7cccf29b13789e2118ac05d8a914a31a62cfdf13f1f`, fresh-clone verifier PASS 215.
 - Immediate next mode after this scope checkpoint: BUILD-PLAN/R4 across Forge/Main/Core + whole-system Singularity Works seams; App work only where UX/interface pressure is needed.
+
+
+## PRIMARY SCOPE SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Scope correction is durably published at control `a24b5838292d27f27fb5f670246695605eee83ab` / CHECKPOINT `c47d682b22a9b618b163efbe49c1bf85fddffead4d94d3340a050643c729fd69`, direct child of `0f663398...`, independent fresh-clone verifier PASS 220.
+- Exact Main scope note `fb2871c8...` and App scope note `e28c2e2e...` reproduce.
+- Current routing: **Forge + Singularity Works whole-system primary; App frontend UX arm**.
+- No source/security/product/runtime-law promotion occurred.
+- Next planning starts from Forge/Main/Core + whole-system open seams; App is entered where UX/interface pressure is required.
+
+
+## FORGE SEMANTIC DELTA REPLAY V0.1 — HARNESS_INVALID — CURRENT — 2026-09-09
+- Scope: Forge/Singularity Works core transformation kernel; App not involved.
+- Frozen module `49cf44680bd022e8a63765d027d018973647178635017b402db53f08286af5c6` + PyGoat harness `1d781698eea684d22043d77b852a3231f90af9c11c7449dbfe9db5eac3abfb77` executed once under control `a24b5838292d27f27fb5f670246695605eee83ab` / CHECKPOINT `c47d682b22a9b618b163efbe49c1bf85fddffead4d94d3340a050643c729fd69`.
+- First result `d78079adf46e9e52824b9a73e314fe3ffbcb2da75c3ce710a5f33ed0b6683a7b`: **HARNESS_INVALID_MAPPINGPROXY_ASDICT / NOT_ADMITTED / NON-REPLAYABLE**.
+- Failure occurred before replay: `dataclasses.asdict()` attempted deepcopy of frozen `MappingProxyType` properties and raised `TypeError: cannot pickle 'mappingproxy' object`.
+- PyGoat remained clean at head `19d17cc8874861142b330636d068bbde54e86b85`.
+- No semantic replay claim earned.
+- Next permitted repair after control closure: NEW v0.1.1 serializer-only repair; operation algebra/replay semantics unchanged.
