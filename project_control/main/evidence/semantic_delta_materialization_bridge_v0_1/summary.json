@@ -1,0 +1,2167 @@
+{
+  "apply_receipt": {
+    "materializer_authority": "NONE",
+    "new_bytes": 57,
+    "old_bytes": 43,
+    "patch_id": "patch:c4707f83fcfe4320daad9e9c",
+    "post_sha256": "9a3edbc40ca5813fe265254372d16f04812ce28e1feb1d8d4fc794fc6b46bb06",
+    "pre_sha256": "84353e8899d9997d4d9b0d07d4565a5e92688ade0eeae481387f98c748c3bb11",
+    "start_byte": 201
+  },
+  "artifact_hashes": {
+    "bridge": "fd478615088a3dde2b052aea41e747a00b8647700c650f8c4a1e477cdaf008c2",
+    "materializer": "00a8363cd1b01e6ef52867b1cf601b20eed5b6fb1b112b3a9ae9964fa1060a35",
+    "replay": "870d5c76fd555744e77206b25aedf88cfa9c359890f970524003dd93275c8818"
+  },
+  "bridge": {
+    "added_semantic_keys": [],
+    "ambiguous_semantic_keys": [],
+    "base_bundle_id": "bundle:24bab65bcaa508bc81d64367",
+    "bridge_authority": "NONE",
+    "bridge_plan_id": "matbridge:0bf8238ecb6fa202eb46f3b9",
+    "multiplicity_change_count": 0,
+    "removed_anchors": [
+      {
+        "anchor_id": "matanchor:15732d81bf3904d1275ac568",
+        "bridge_authority": "NONE",
+        "evidence_end_byte": 244,
+        "evidence_id": "ev:ce2d37d87f71ff4bc45cf17f",
+        "evidence_snippet_sha256": "4004e5a6f0fe8e9e173db611a023121d0edca284ee84aae0cac74a1fa3cc06df",
+        "evidence_start_byte": 201,
+        "fact_id": "fact:47c03a6ffdbbee287c3024e2",
+        "semantic_key": "sem:cbcebb9cb857a8d6962fe58f",
+        "source_path": "PyGoat/introduction/urls.py",
+        "source_sha256": "84353e8899d9997d4d9b0d07d4565a5e92688ade0eeae481387f98c748c3bb11",
+        "version": "forge.semantic-delta-materialization-bridge/0.1"
+      }
+    ],
+    "removed_semantic_keys": [
+      "sem:cbcebb9cb857a8d6962fe58f"
+    ],
+    "semantic_plan_id": "sdelta:a972e8db6129bbdbc7b20ecd",
+    "target_bundle_id": "bundle:4e50e8ac5412121ff47d78e2",
+    "version": "forge.semantic-delta-materialization-bridge/0.1"
+  },
+  "bridge_fingerprint": "e694e4992ecbd5d86e6c2342a64930db165b0b3777052d89fc8559a4003ec225",
+  "check_count": 28,
+  "checks": {
+    "anchor_evidence_matches_patch": true,
+    "anchor_fact_matches_patch": true,
+    "anchor_semantic_key_matches_patch": false,
+    "anchor_source_matches_patch": true,
+    "bridge_authority_none": true,
+    "bridge_deterministic": true,
+    "bridge_fingerprint_deterministic": true,
+    "materialized_and_replay_targets_identical": true,
+    "materialized_snapshot_exact_target": true,
+    "materialized_source_exact_target": true,
+    "no_added_semantic_keys": true,
+    "no_ambiguous_semantic_keys": true,
+    "no_multiplicity_changes": true,
+    "observed_added_keys_equal_bridge": true,
+    "observed_removed_keys_equal_bridge": true,
+    "one_exact_removed_anchor": true,
+    "one_removed_semantic_key": true,
+    "patch_authority_none": true,
+    "patch_plan_deterministic": true,
+    "replay_snapshot_exact_target": true,
+    "rollback_snapshot_exact": true,
+    "rollback_source_exact": true,
+    "sandbox_only_mutation": true,
+    "semantic_plan_authority_none": true,
+    "stale_patch_rejected": true,
+    "target_clean_after": true,
+    "target_clean_before": true,
+    "target_head_unchanged": true
+  },
+  "claim_ceiling": "EXACT_REMOVAL_DELTA_TO_EVIDENCE_PATCH_BRIDGE_ON_QUALIFIED_PYGOAT_ROUTE_ONLY",
+  "git": {
+    "after": {
+      "head": "19d17cc8874861142b330636d068bbde54e86b85",
+      "tracked_dirty_lines": 0
+    },
+    "before": {
+      "head": "19d17cc8874861142b330636d068bbde54e86b85",
+      "tracked_dirty_lines": 0
+    }
+  },
+  "not_proven": [
+    "automatic source lowering from arbitrary semantics",
+    "semantic additions/substitutions",
+    "multi-file transaction planning",
+    "cross-language lowering",
+    "concurrent edit merge",
+    "public Core API promotion"
+  ],
+  "observed_delta": {
+    "added_semantic_keys": [],
+    "added_sources": [],
+    "ambiguous_semantic_keys": [],
+    "changed_sources": [
+      {
+        "new_bytes": 7612,
+        "new_sha256": "9a3edbc40ca5813fe265254372d16f04812ce28e1feb1d8d4fc794fc6b46bb06",
+        "new_source_id": "src:58a095191083a9274a2b1d32",
+        "old_bytes": 7598,
+        "old_sha256": "84353e8899d9997d4d9b0d07d4565a5e92688ade0eeae481387f98c748c3bb11",
+        "old_source_id": "src:eb6002f5527362a60aae481f",
+        "path": "PyGoat/introduction/urls.py"
+      }
+    ],
+    "delta_authority": "NONE",
+    "delta_id": "delta:722f96bf5fd5b76fec8c6ed9",
+    "multiplicity_changes": [],
+    "new_bundle_id": "bundle:4e50e8ac5412121ff47d78e2",
+    "new_fact_ids_on_changed_sources": [
+      "fact:0197af351b6506b2b72d21c5",
+      "fact:0294b906f0b77fe94f231a81",
+      "fact:06389ecf0dd50c01fb26c833",
+      "fact:076110d347e28593e926d014",
+      "fact:084764d122b0d348ed1e659b",
+      "fact:0b3540fa0caee765f130c11a",
+      "fact:0db13cb92787611b6cc5343c",
+      "fact:1101b500a7a979d51c5ff760",
+      "fact:12e9a61b2e29a7d4a1392cdc",
+      "fact:1441b4ba3fe9251bf6b09fcd",
+      "fact:18d18570fcbbb389cdbd508e",
+      "fact:1a89d0eca51be70a50e25b90",
+      "fact:23458afb0e4f998677005779",
+      "fact:249603039237ac7aae8146db",
+      "fact:2cda63a649d576ddbc4e386d",
+      "fact:2e7406a38fe0eb298ee073f0",
+      "fact:2e8892d0816d2f63df2c2797",
+      "fact:2f2c56a10218ae68e9f2ac79",
+      "fact:2f7ea40cfb3fca63098a9ee5",
+      "fact:33487765e94bad40a51d8cab",
+      "fact:33b9691f0d9ad635d3532d27",
+      "fact:38d281a6a18eadcde925689e",
+      "fact:3ba3a3706cbec4ddabb5942b",
+      "fact:3d1ceea4b694b3cc294d3c75",
+      "fact:422a5de43d355739bfc4cd3e",
+      "fact:4267b9b4d5692537b55dc168",
+      "fact:433fb957cef89f8eaa82a475",
+      "fact:4700952ebc388d200b41389d",
+      "fact:498c35bd86bb5463194accc0",
+      "fact:4a1f169054d39b98f4cf508d",
+      "fact:4c5bbf769620b9e3ecddd791",
+      "fact:4d486675a53dc3dff0bb4931",
+      "fact:4e3bf611a29c80668ef83aba",
+      "fact:4e93b4be9327523fc58cd82e",
+      "fact:4f45924c9e18d117ff65ccdb",
+      "fact:4fbeef7153d3e5b99402f8d3",
+      "fact:4ff6081d88ebcb991810a8ea",
+      "fact:50747a1ae45da50da333a53b",
+      "fact:50760618a3de907d097e3d17",
+      "fact:561dc106db403729aeb37109",
+      "fact:5b05e402e5de348f8af773d2",
+      "fact:5b969aa22778df080b61b54e",
+      "fact:638b83b092afa13aa1284c84",
+      "fact:666c92d001511df713cb1bf2",
+      "fact:673e0dc01b3be833ef6e748f",
+      "fact:6986e7c3e38c01f1dc56e8e4",
+      "fact:6a2b515503232e23bee6d4b5",
+      "fact:6a69d066706a1f90a72761f0",
+      "fact:6cddefdbd9bdfb5fc1eaa0b8",
+      "fact:6dc78fefcb1144d78fbd7133",
+      "fact:6f26ba3e8601ad2616160827",
+      "fact:6fa3c72dff2f76e0b3ff6e1b",
+      "fact:720c7fcc8a6f35f32a081727",
+      "fact:725a82157aef37dc0ee56bc6",
+      "fact:7280b5c1031df465b1dd7242",
+      "fact:73a4a227bab2561b41e0e177",
+      "fact:7470e7426e156a32ca6ddf2e",
+      "fact:783db89ea8832c385dbafcc4",
+      "fact:79267c4c37a658526fcd77a2",
+      "fact:823823656f2f515eb502dd81",
+      "fact:83fea0fae2fa6b195fa9b2e6",
+      "fact:87ce2db2b5896adc4e148a4c",
+      "fact:88b5a52dca6402273d761683",
+      "fact:916daa5d8dd106b1a354e964",
+      "fact:9316eed3cc189a29fa553f1b",
+      "fact:94dc610fa49ade9dafbc5154",
+      "fact:96b73f8b84660f77399987e6",
+      "fact:9848e694cf71711ce59455b7",
+      "fact:98adf69008d58f60b83e335f",
+      "fact:9afe1610affad8ce8818c56c",
+      "fact:9feddaa776592f3185e605f0",
+      "fact:a0e52bd9bcaea8363dc8ccfe",
+      "fact:a75018975d0bbd15cebfbf9d",
+      "fact:aa0b8cf3e9ed880d2369ea85",
+      "fact:b0d9404e3856d2840f991535",
+      "fact:b3834c7ab41a813edb759561",
+      "fact:b4529f0eb2486089d90b3401",
+      "fact:b470d6c4fe7557e3e20895bd",
+      "fact:b76e3a9d116e3c806bc94b65",
+      "fact:b846e8e00b9d089b3f479853",
+      "fact:beccee9d11c4feed5985eb28",
+      "fact:c0072247cb5c1d56e303a1e1",
+      "fact:c33db44102054e2b02c8a14e",
+      "fact:c37844ed9416a71ade782b93",
+      "fact:c4d334f3e7efc86e87ea74e5",
+      "fact:c5104a96fcd9aabdae21e4f2",
+      "fact:c77bf42a09f47a131a69fc87",
+      "fact:caa22ef2272dbf7aff3b823d",
+      "fact:cb9264da258ba1a8248a4b26",
+      "fact:cfb3a0274f4973af61f2c814",
+      "fact:d051c76a1eb8bb74a448ffe6",
+      "fact:d56a840af61d92197d13a1b7",
+      "fact:d5bc71a37457f8f2f29e4797",
+      "fact:d7c9fafc39be2f9baea34f53",
+      "fact:dbe4a92b507e928be51e8dbd",
+      "fact:dcd9eedb99dc8410bd488bd3",
+      "fact:e37dfa6c8f61b83f1cbf11fe",
+      "fact:e52d4a265dbb81073bdbef3d",
+      "fact:e593d2a8dfee7134de94de1a",
+      "fact:e7fe411ea5fb6dbf40100ea9",
+      "fact:ebd8373436c8d282d1546716",
+      "fact:ece2b4406a4c4402623cf93c",
+      "fact:edea4c5eb5a36bc1d77c576d",
+      "fact:f10974684e9ca50a03248c73",
+      "fact:f167fd93b2e5cdabebdbfdf4",
+      "fact:f25f5b724c01932474ac816a",
+      "fact:f470fc6d9b9ba09f22628af8",
+      "fact:f5fdaf62848f64babdb3eeb8",
+      "fact:f6b4679ae518ecbc6c54fe48",
+      "fact:fa0c1a02fc7544f2cd3ba6d4",
+      "fact:fb09015fe7ce1b79937f12ac",
+      "fact:fcdd1c4f33be8cb9021ef287"
+    ],
+    "old_bundle_id": "bundle:24bab65bcaa508bc81d64367",
+    "old_invalidated_fact_ids": [
+      "fact:051afb6c5fbc28d19f4d5745",
+      "fact:07849ff08e69b866c4eb3277",
+      "fact:0800fa7debc8c8cf7db436d4",
+      "fact:0b0ff3336321f4800f820703",
+      "fact:1245eeb6ae64a24c40fe8267",
+      "fact:166ec627925635c4117ea8b2",
+      "fact:17153967cdb6469b0f75692e",
+      "fact:19ba254f106e182aada8ebaf",
+      "fact:1a2740ce0d0c580a4ae092fb",
+      "fact:20c447adfec603a00d783e80",
+      "fact:225251b227ff95773cf988ad",
+      "fact:29a49bb3143b108f962e724b",
+      "fact:2bbeb7d20a07fa30ea70d4f0",
+      "fact:2c6d9d5762bc8582ec31ded7",
+      "fact:2dadc8f020d14a44628c719d",
+      "fact:2ddee8ddb1bb3f9f0c28ce36",
+      "fact:31255634ef30d3550db4a511",
+      "fact:32b64d1de5bd61224596b2d8",
+      "fact:3587ad0c8d3dcc7dcffa660c",
+      "fact:3674e748fc272f500db0b8fa",
+      "fact:387f2cab55c5d87c18208285",
+      "fact:3929c95adfccbc1bb4bd7b40",
+      "fact:3cf30c5970b8059a88eb2602",
+      "fact:3ee98c88f45cbd0b6dc07dd2",
+      "fact:4056c905019d05481b98daae",
+      "fact:409073e6f6d2fbd67d18c4e8",
+      "fact:4574010049799481d0bd697c",
+      "fact:461d259b6935bb74f01255f1",
+      "fact:47c03a6ffdbbee287c3024e2",
+      "fact:4ba88b58fcfbf34be4a02c0b",
+      "fact:4d25a97eca4e991ffdaca5cc",
+      "fact:4d61abccdc197c5f9c4d7d31",
+      "fact:525d02d53dc91a8c5c0886cb",
+      "fact:53469019166b4c987ffff9dd",
+      "fact:583cf31eba431d66af0d5f71",
+      "fact:59ebaeaa512d7ea92b82304b",
+      "fact:5b1317ec2672f58b767b4cf0",
+      "fact:5dca224ebe3de1fa94df0f3f",
+      "fact:5f774902b17787f79e8eaa26",
+      "fact:602205b646f62bf958f787b1",
+      "fact:6133a4e201f12d7165de6812",
+      "fact:617686e15b525673072ec278",
+      "fact:619b6252995e17fe142bfb3c",
+      "fact:627b995e467cf2b7e0b5ff79",
+      "fact:631c464eedff2402d624cee4",
+      "fact:679bf24f923da274ab0a4c23",
+      "fact:6ed337e540c1bb4ef4da35c6",
+      "fact:72e3ddb1f2fc753c3190c561",
+      "fact:734824d5b9da381dc304d923",
+      "fact:77414ea6b7c8fef6eaa03df6",
+      "fact:77e91bd7148fafb45713cf4d",
+      "fact:806e8d010573207971a5276d",
+      "fact:82f75773d624f5a0b7211877",
+      "fact:86f69693accd11b9cfb0cd5a",
+      "fact:89cb4acdae3ecd028c07b488",
+      "fact:8d8028ef2b4ff12e5b18a8be",
+      "fact:8f074a539a41d18025dec31a",
+      "fact:91675907f633e5e9aff995b0",
+      "fact:94f60e48e2ced204f2063c1b",
+      "fact:95bfd8e99afc88ef9c7e425e",
+      "fact:96ac677acb67dfbaf2e46384",
+      "fact:975c32ad26f5776211efc6e7",
+      "fact:9b04cbb34100d056550f6464",
+      "fact:9e283eefbba5495a0c167ba7",
+      "fact:9ebaef9480c36243cf343ca8",
+      "fact:a302dff8254a2d0085215a6d",
+      "fact:a31662d34241c1229e36ea1f",
+      "fact:a5d573f7b5665304f88449c4",
+      "fact:a8fe107817c5d52830b9a7f8",
+      "fact:ab391aaeb6c23a1c083042b2",
+      "fact:b0a3c09b2cb0945ca25eaa80",
+      "fact:b22d06df5962feb352e19bf2",
+      "fact:b2581a0569a2e46c02dfc741",
+      "fact:b74cdf66ca9d0ccd30c0c1ee",
+      "fact:b7c71e3255371268c0cef9de",
+      "fact:ba67640465b08b195f2be97f",
+      "fact:bb1067ba86b4adae10d78480",
+      "fact:bb8167bcddf7e2745b26282a",
+      "fact:bd1f1ee1246d6cab0913ae96",
+      "fact:bde9f6b1dc44bdf6b16c83e3",
+      "fact:c218602deeb8567cb654b4dd",
+      "fact:c22ee3cd3f1fc4282bcab199",
+      "fact:c5de12b5af33eabcc3dd67ae",
+      "fact:c7fb1d14d4e163ae4a64c495",
+      "fact:d353148ee0e2bf53efcb02f2",
+      "fact:d3cd786be46c030133ac54e8",
+      "fact:d5252645bcbcc87d589aea56",
+      "fact:d5474075e3b338606de0e678",
+      "fact:d5d417855ec7aebfca574434",
+      "fact:d61df948943235f8c3c36c6b",
+      "fact:d6b99f6897a6f12c7a5baebe",
+      "fact:d73bbc0c57401f563718f864",
+      "fact:d9a6bebd980c29df3a1641d9",
+      "fact:da0d79e97cbc91150fcc8626",
+      "fact:da44e994a684e1e721a7f196",
+      "fact:dcd19fe746b5da3ccddfd6cd",
+      "fact:ddffae877055df55c1cd2a17",
+      "fact:e454ad2aea008773d2fbad68",
+      "fact:e52e3b484ad62bbeed2b5267",
+      "fact:e8ddc50fdda010dc4e800fc1",
+      "fact:e96f53beba18b8ef8cc0e9fe",
+      "fact:ed10b2251fb46ce17f53a622",
+      "fact:f0e61d341bea2bb1e01e2619",
+      "fact:f12081c0c822e10cf5b68408",
+      "fact:f12e86d123c4490c3d674528",
+      "fact:f528fcc19489e4888f59a926",
+      "fact:f67b389dc5fd977cae49cd56",
+      "fact:f70ebd2f5f9eee48fc3702ea",
+      "fact:f915c0f85dc45486256b7c5f",
+      "fact:f9685be0fca67b6cd588a3b1",
+      "fact:fd075aa1defd99023471bf53",
+      "fact:fe0303439211554c29b96813",
+      "fact:febf6895c108a713fcab1a31"
+    ],
+    "refreshed_facts": [
+      {
+        "new_fact_id": "fact:0197af351b6506b2b72d21c5",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:fd075aa1defd99023471bf53",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:0010e93e6ac971f52612afc6"
+      },
+      {
+        "new_fact_id": "fact:0db13cb92787611b6cc5343c",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:86f69693accd11b9cfb0cd5a",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:0080e3c54a4abe91f32e01da"
+      },
+      {
+        "new_fact_id": "fact:d7c9fafc39be2f9baea34f53",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:166ec627925635c4117ea8b2",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:027b56fe40969da74ceda625"
+      },
+      {
+        "new_fact_id": "fact:c33db44102054e2b02c8a14e",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:96ac677acb67dfbaf2e46384",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:02f40e8edd90b264ee44ab73"
+      },
+      {
+        "new_fact_id": "fact:23458afb0e4f998677005779",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:225251b227ff95773cf988ad",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:0557cace1e836bea44cea45c"
+      },
+      {
+        "new_fact_id": "fact:a0e52bd9bcaea8363dc8ccfe",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:31255634ef30d3550db4a511",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:06270f870f26dae97c1066ae"
+      },
+      {
+        "new_fact_id": "fact:4ff6081d88ebcb991810a8ea",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:f915c0f85dc45486256b7c5f",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:07945e9ed87f76e79081bfd8"
+      },
+      {
+        "new_fact_id": "fact:b846e8e00b9d089b3f479853",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:91675907f633e5e9aff995b0",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:136602350199947fae73a0b7"
+      },
+      {
+        "new_fact_id": "fact:498c35bd86bb5463194accc0",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:ab391aaeb6c23a1c083042b2",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:15a86d9eaeeefc9b96e50fb8"
+      },
+      {
+        "new_fact_id": "fact:6986e7c3e38c01f1dc56e8e4",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:07849ff08e69b866c4eb3277",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:162ce5b79eccffb5fbf98b68"
+      },
+      {
+        "new_fact_id": "fact:725a82157aef37dc0ee56bc6",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:4d61abccdc197c5f9c4d7d31",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:195cb8554a9a75ef12eaa577"
+      },
+      {
+        "new_fact_id": "fact:2f7ea40cfb3fca63098a9ee5",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:e454ad2aea008773d2fbad68",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:199a8a9003fdf317d8d54d81"
+      },
+      {
+        "new_fact_id": "fact:d56a840af61d92197d13a1b7",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:bde9f6b1dc44bdf6b16c83e3",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:19b78dfb891f2335c4abf3ec"
+      },
+      {
+        "new_fact_id": "fact:aa0b8cf3e9ed880d2369ea85",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:ddffae877055df55c1cd2a17",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:1ccab03d0b05688e25df5e84"
+      },
+      {
+        "new_fact_id": "fact:87ce2db2b5896adc4e148a4c",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:b0a3c09b2cb0945ca25eaa80",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:1e8257373328201e9f968391"
+      },
+      {
+        "new_fact_id": "fact:6dc78fefcb1144d78fbd7133",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:3674e748fc272f500db0b8fa",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:1e93c3f88a4bdad53e73b15e"
+      },
+      {
+        "new_fact_id": "fact:caa22ef2272dbf7aff3b823d",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:409073e6f6d2fbd67d18c4e8",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:1f34ad9c220cfb13fab4cd4f"
+      },
+      {
+        "new_fact_id": "fact:9feddaa776592f3185e605f0",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:c5de12b5af33eabcc3dd67ae",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:1f38ea6c163350a7adce3764"
+      },
+      {
+        "new_fact_id": "fact:084764d122b0d348ed1e659b",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:6133a4e201f12d7165de6812",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:2043b59e9dee90871fc37e6d"
+      },
+      {
+        "new_fact_id": "fact:4d486675a53dc3dff0bb4931",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:8d8028ef2b4ff12e5b18a8be",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:208b8aa491e7c12aef868d36"
+      },
+      {
+        "new_fact_id": "fact:9316eed3cc189a29fa553f1b",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:f9685be0fca67b6cd588a3b1",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:20b3bbad52f14215cc782b4c"
+      },
+      {
+        "new_fact_id": "fact:f5fdaf62848f64babdb3eeb8",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:53469019166b4c987ffff9dd",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:2185cf55b858cd221011e624"
+      },
+      {
+        "new_fact_id": "fact:cfb3a0274f4973af61f2c814",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:77e91bd7148fafb45713cf4d",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:235e55fa2f42521b3c73a736"
+      },
+      {
+        "new_fact_id": "fact:a75018975d0bbd15cebfbf9d",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:a5d573f7b5665304f88449c4",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:235e55fa2f42521b3c73a736"
+      },
+      {
+        "new_fact_id": "fact:1101b500a7a979d51c5ff760",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:29a49bb3143b108f962e724b",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:23d16ab0fdb4915c3f4d66c7"
+      },
+      {
+        "new_fact_id": "fact:fa0c1a02fc7544f2cd3ba6d4",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:3cf30c5970b8059a88eb2602",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:24203ef111ae47c35579b8a5"
+      },
+      {
+        "new_fact_id": "fact:b4529f0eb2486089d90b3401",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:9ebaef9480c36243cf343ca8",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:244fa1e57e4dd4b23dce55bc"
+      },
+      {
+        "new_fact_id": "fact:6a69d066706a1f90a72761f0",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:525d02d53dc91a8c5c0886cb",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:277dd3b18468496690362df1"
+      },
+      {
+        "new_fact_id": "fact:9848e694cf71711ce59455b7",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:461d259b6935bb74f01255f1",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:2854edf7437afd455b9eda2a"
+      },
+      {
+        "new_fact_id": "fact:823823656f2f515eb502dd81",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:806e8d010573207971a5276d",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:299d59af6c78393eeef4565b"
+      },
+      {
+        "new_fact_id": "fact:4e93b4be9327523fc58cd82e",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:17153967cdb6469b0f75692e",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:2bb4f0288e971b22986232af"
+      },
+      {
+        "new_fact_id": "fact:88b5a52dca6402273d761683",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:d5d417855ec7aebfca574434",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:3186caf068e78e3f4cbcda91"
+      },
+      {
+        "new_fact_id": "fact:4f45924c9e18d117ff65ccdb",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:9e283eefbba5495a0c167ba7",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:344d4fe13f08d416b9f80fb5"
+      },
+      {
+        "new_fact_id": "fact:c0072247cb5c1d56e303a1e1",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:387f2cab55c5d87c18208285",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:34a707606dbcce4c70ce726f"
+      },
+      {
+        "new_fact_id": "fact:cb9264da258ba1a8248a4b26",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:f0e61d341bea2bb1e01e2619",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:3781abcf35d8b738f302577a"
+      },
+      {
+        "new_fact_id": "fact:2f2c56a10218ae68e9f2ac79",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:19ba254f106e182aada8ebaf",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:37cc2e80cd39f68c68f28af3"
+      },
+      {
+        "new_fact_id": "fact:18d18570fcbbb389cdbd508e",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:bb8167bcddf7e2745b26282a",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:38262e290661f5a01978151a"
+      },
+      {
+        "new_fact_id": "fact:33487765e94bad40a51d8cab",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:32b64d1de5bd61224596b2d8",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:38a2684ac63fb907fe158c37"
+      },
+      {
+        "new_fact_id": "fact:b3834c7ab41a813edb759561",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:c7fb1d14d4e163ae4a64c495",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:38eb145f1a030048f5fa9bb3"
+      },
+      {
+        "new_fact_id": "fact:f10974684e9ca50a03248c73",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:4d25a97eca4e991ffdaca5cc",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:3c0afcb115639086d836302b"
+      },
+      {
+        "new_fact_id": "fact:50760618a3de907d097e3d17",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:583cf31eba431d66af0d5f71",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:41048d237a3166cb8e562d4a"
+      },
+      {
+        "new_fact_id": "fact:e7fe411ea5fb6dbf40100ea9",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:2bbeb7d20a07fa30ea70d4f0",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:41070eccdd13d1c5b1938ad7"
+      },
+      {
+        "new_fact_id": "fact:f25f5b724c01932474ac816a",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:3929c95adfccbc1bb4bd7b40",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:48f9b958a88227944147a39f"
+      },
+      {
+        "new_fact_id": "fact:0294b906f0b77fe94f231a81",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:e52e3b484ad62bbeed2b5267",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:4eca60209c9bb6c7d4112a3c"
+      },
+      {
+        "new_fact_id": "fact:e593d2a8dfee7134de94de1a",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:a302dff8254a2d0085215a6d",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:501c7de6a62e1fec8ab9c2c5"
+      },
+      {
+        "new_fact_id": "fact:433fb957cef89f8eaa82a475",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:4ba88b58fcfbf34be4a02c0b",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:503e2524249d1e128ac15528"
+      },
+      {
+        "new_fact_id": "fact:f470fc6d9b9ba09f22628af8",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:d61df948943235f8c3c36c6b",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:51b5b6a6dd2c0483009622f9"
+      },
+      {
+        "new_fact_id": "fact:e37dfa6c8f61b83f1cbf11fe",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:6ed337e540c1bb4ef4da35c6",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:54069123d5d87f534144a816"
+      },
+      {
+        "new_fact_id": "fact:b0d9404e3856d2840f991535",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:94f60e48e2ced204f2063c1b",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:5506184620ea3e955ff25ce3"
+      },
+      {
+        "new_fact_id": "fact:2e7406a38fe0eb298ee073f0",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:d3cd786be46c030133ac54e8",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:55a976e21d05557087bda211"
+      },
+      {
+        "new_fact_id": "fact:f6b4679ae518ecbc6c54fe48",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:d5474075e3b338606de0e678",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:5b58e1ed0b2cc1c1064e7e17"
+      },
+      {
+        "new_fact_id": "fact:916daa5d8dd106b1a354e964",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:febf6895c108a713fcab1a31",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:5e5cebd002857207c3d00e5a"
+      },
+      {
+        "new_fact_id": "fact:73a4a227bab2561b41e0e177",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:72e3ddb1f2fc753c3190c561",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:67045999fca9e966f4569de6"
+      },
+      {
+        "new_fact_id": "fact:6cddefdbd9bdfb5fc1eaa0b8",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:f67b389dc5fd977cae49cd56",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:6722438f205e84d463d9e5b2"
+      },
+      {
+        "new_fact_id": "fact:4fbeef7153d3e5b99402f8d3",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:5dca224ebe3de1fa94df0f3f",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:6e61663bacdcd7e878fe73b4"
+      },
+      {
+        "new_fact_id": "fact:4267b9b4d5692537b55dc168",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:5f774902b17787f79e8eaa26",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:6e898984e5f80c40c91b0a96"
+      },
+      {
+        "new_fact_id": "fact:f167fd93b2e5cdabebdbfdf4",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:619b6252995e17fe142bfb3c",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:73ad74e9e53987e2810128de"
+      },
+      {
+        "new_fact_id": "fact:3ba3a3706cbec4ddabb5942b",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:679bf24f923da274ab0a4c23",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:756c95bcb9643f48da7c7679"
+      },
+      {
+        "new_fact_id": "fact:561dc106db403729aeb37109",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:627b995e467cf2b7e0b5ff79",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:77e116271e73cc58f039227e"
+      },
+      {
+        "new_fact_id": "fact:fcdd1c4f33be8cb9021ef287",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:602205b646f62bf958f787b1",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:7843981c319371e64e36bb3e"
+      },
+      {
+        "new_fact_id": "fact:c4d334f3e7efc86e87ea74e5",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:95bfd8e99afc88ef9c7e425e",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:816298b3b4446d02edbcfc1b"
+      },
+      {
+        "new_fact_id": "fact:ece2b4406a4c4402623cf93c",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:d5252645bcbcc87d589aea56",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:868566dc68b8b0d28d374ba6"
+      },
+      {
+        "new_fact_id": "fact:2e8892d0816d2f63df2c2797",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:c218602deeb8567cb654b4dd",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:86ac0ac02d3bb886abc41657"
+      },
+      {
+        "new_fact_id": "fact:83fea0fae2fa6b195fa9b2e6",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:0800fa7debc8c8cf7db436d4",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:8b87049b5a6a372f45964cfd"
+      },
+      {
+        "new_fact_id": "fact:1a89d0eca51be70a50e25b90",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:f70ebd2f5f9eee48fc3702ea",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:92b4a4db5482056a58a7f7a2"
+      },
+      {
+        "new_fact_id": "fact:7470e7426e156a32ca6ddf2e",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:77414ea6b7c8fef6eaa03df6",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:991a9e5eddc7c123909b8219"
+      },
+      {
+        "new_fact_id": "fact:720c7fcc8a6f35f32a081727",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:4574010049799481d0bd697c",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:997aa0ba9b9da8ad9b13bc43"
+      },
+      {
+        "new_fact_id": "fact:4e3bf611a29c80668ef83aba",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:b2581a0569a2e46c02dfc741",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:9bac0cdf0d49fb3a64cee84e"
+      },
+      {
+        "new_fact_id": "fact:38d281a6a18eadcde925689e",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:1245eeb6ae64a24c40fe8267",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:9ef608cbee3aed919f1d66f7"
+      },
+      {
+        "new_fact_id": "fact:0b3540fa0caee765f130c11a",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:9b04cbb34100d056550f6464",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:9f9324b94e30a97ac019df92"
+      },
+      {
+        "new_fact_id": "fact:edea4c5eb5a36bc1d77c576d",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:e8ddc50fdda010dc4e800fc1",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:9ffc35e637c4b1245af3b121"
+      },
+      {
+        "new_fact_id": "fact:12e9a61b2e29a7d4a1392cdc",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:631c464eedff2402d624cee4",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:a021ebe5e36aee8dcaadb6f1"
+      },
+      {
+        "new_fact_id": "fact:98adf69008d58f60b83e335f",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:f528fcc19489e4888f59a926",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:a11d831da4732950e057bc2c"
+      },
+      {
+        "new_fact_id": "fact:dcd9eedb99dc8410bd488bd3",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:d353148ee0e2bf53efcb02f2",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:a70d291704a009cc1aafcc4d"
+      },
+      {
+        "new_fact_id": "fact:666c92d001511df713cb1bf2",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:2c6d9d5762bc8582ec31ded7",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:aa7a1272fe6070ebaa312e08"
+      },
+      {
+        "new_fact_id": "fact:6f26ba3e8601ad2616160827",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:b22d06df5962feb352e19bf2",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:af437fa4c926ce484c9f1e89"
+      },
+      {
+        "new_fact_id": "fact:3d1ceea4b694b3cc294d3c75",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:3587ad0c8d3dcc7dcffa660c",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:b0471905da17d6666faaba1e"
+      },
+      {
+        "new_fact_id": "fact:e52d4a265dbb81073bdbef3d",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:b7c71e3255371268c0cef9de",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:b0edc2b8c33531775469a7e4"
+      },
+      {
+        "new_fact_id": "fact:beccee9d11c4feed5985eb28",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:2ddee8ddb1bb3f9f0c28ce36",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:b351a4daa75db2234810d8d1"
+      },
+      {
+        "new_fact_id": "fact:6fa3c72dff2f76e0b3ff6e1b",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:1a2740ce0d0c580a4ae092fb",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:b3677021cce4a072cdb226b5"
+      },
+      {
+        "new_fact_id": "fact:d051c76a1eb8bb74a448ffe6",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:d9a6bebd980c29df3a1641d9",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:b65cfe7c1972b8a872b15bb3"
+      },
+      {
+        "new_fact_id": "fact:33b9691f0d9ad635d3532d27",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:ba67640465b08b195f2be97f",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:b7c2bbd841e2cc858eac3105"
+      },
+      {
+        "new_fact_id": "fact:422a5de43d355739bfc4cd3e",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:f12e86d123c4490c3d674528",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:b9131b154ee3fae37c12c593"
+      },
+      {
+        "new_fact_id": "fact:5b05e402e5de348f8af773d2",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:8f074a539a41d18025dec31a",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:bbbfb571dcda26fe79007d91"
+      },
+      {
+        "new_fact_id": "fact:06389ecf0dd50c01fb26c833",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:a8fe107817c5d52830b9a7f8",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:bfbfa98cd9b9983df3c4a85b"
+      },
+      {
+        "new_fact_id": "fact:c77bf42a09f47a131a69fc87",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:d73bbc0c57401f563718f864",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:c2b3ac8ee9e0645d43ae2471"
+      },
+      {
+        "new_fact_id": "fact:6a2b515503232e23bee6d4b5",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:5b1317ec2672f58b767b4cf0",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:c56939a2b1fce7dd99f3945c"
+      },
+      {
+        "new_fact_id": "fact:4700952ebc388d200b41389d",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:fe0303439211554c29b96813",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:c8154d356be1ddea20912c72"
+      },
+      {
+        "new_fact_id": "fact:b470d6c4fe7557e3e20895bd",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:da0d79e97cbc91150fcc8626",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:ca31caf9b80f6dc5e2982e80"
+      },
+      {
+        "new_fact_id": "fact:783db89ea8832c385dbafcc4",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:da44e994a684e1e721a7f196",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:d1195c9f96f97fcc3830ad51"
+      },
+      {
+        "new_fact_id": "fact:96b73f8b84660f77399987e6",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:82f75773d624f5a0b7211877",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:d453082d93de7531e310b0e1"
+      },
+      {
+        "new_fact_id": "fact:94dc610fa49ade9dafbc5154",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:ed10b2251fb46ce17f53a622",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:d4d04007cbb41825782a58e8"
+      },
+      {
+        "new_fact_id": "fact:2cda63a649d576ddbc4e386d",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:f12081c0c822e10cf5b68408",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:d669541d7f80901d97410032"
+      },
+      {
+        "new_fact_id": "fact:d5bc71a37457f8f2f29e4797",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:975c32ad26f5776211efc6e7",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:d9da36e742fb5fce8610fcf6"
+      },
+      {
+        "new_fact_id": "fact:638b83b092afa13aa1284c84",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:2dadc8f020d14a44628c719d",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:daf0e953ec13f9e88f13c2de"
+      },
+      {
+        "new_fact_id": "fact:fb09015fe7ce1b79937f12ac",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:e96f53beba18b8ef8cc0e9fe",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:daf0e953ec13f9e88f13c2de"
+      },
+      {
+        "new_fact_id": "fact:c5104a96fcd9aabdae21e4f2",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:b74cdf66ca9d0ccd30c0c1ee",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:dddaf90e37080531f85ad3f5"
+      },
+      {
+        "new_fact_id": "fact:50747a1ae45da50da333a53b",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:617686e15b525673072ec278",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:dfff7113b28fe0b77506bc20"
+      },
+      {
+        "new_fact_id": "fact:79267c4c37a658526fcd77a2",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:bd1f1ee1246d6cab0913ae96",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:e0970dcb20a3a23fed4ca7b1"
+      },
+      {
+        "new_fact_id": "fact:5b969aa22778df080b61b54e",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:d6b99f6897a6f12c7a5baebe",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:e468ca58064b7b3ec99be75f"
+      },
+      {
+        "new_fact_id": "fact:076110d347e28593e926d014",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:c22ee3cd3f1fc4282bcab199",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:e48921980a29e417f56d9237"
+      },
+      {
+        "new_fact_id": "fact:c37844ed9416a71ade782b93",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:0b0ff3336321f4800f820703",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:e9176ba988e9a6bf2e253c14"
+      },
+      {
+        "new_fact_id": "fact:dbe4a92b507e928be51e8dbd",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:4056c905019d05481b98daae",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:e9b7c88434ccd2e80713e130"
+      },
+      {
+        "new_fact_id": "fact:ebd8373436c8d282d1546716",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:734824d5b9da381dc304d923",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:ed8f6a05f7843a6c83ec71e3"
+      },
+      {
+        "new_fact_id": "fact:1441b4ba3fe9251bf6b09fcd",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:a31662d34241c1229e36ea1f",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:ee6e3ca2561e6cc1237fcccb"
+      },
+      {
+        "new_fact_id": "fact:249603039237ac7aae8146db",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:bb1067ba86b4adae10d78480",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:efe4b4fb3f8281f0dc1e510b"
+      },
+      {
+        "new_fact_id": "fact:4a1f169054d39b98f4cf508d",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:dcd19fe746b5da3ccddfd6cd",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:f7e1ba02f3dc261e9633a26c"
+      },
+      {
+        "new_fact_id": "fact:9afe1610affad8ce8818c56c",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:051afb6c5fbc28d19f4d5745",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:f9371ae4a6df9df36499b384"
+      },
+      {
+        "new_fact_id": "fact:7280b5c1031df465b1dd7242",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:3ee98c88f45cbd0b6dc07dd2",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:fb331ce51a280f3d9072da00"
+      },
+      {
+        "new_fact_id": "fact:673e0dc01b3be833ef6e748f",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:59ebaeaa512d7ea92b82304b",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:fbd0da03278e49b070f2a029"
+      },
+      {
+        "new_fact_id": "fact:b76e3a9d116e3c806bc94b65",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:20c447adfec603a00d783e80",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:fc5accc4d3f39b9639377cc7"
+      },
+      {
+        "new_fact_id": "fact:4c5bbf769620b9e3ecddd791",
+        "new_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "old_fact_id": "fact:89cb4acdae3ecd028c07b488",
+        "old_source_paths": [
+          "PyGoat/introduction/urls.py"
+        ],
+        "semantic_key": "sem:fccb91f159c0ec8d9b6fc4b1"
+      }
+    ],
+    "removed_semantic_keys": [
+      "sem:cbcebb9cb857a8d6962fe58f"
+    ],
+    "removed_sources": [],
+    "retained_revision_fact_ids": [
+      "fact:008fb5b2634318e5b872a38d",
+      "fact:014f1bc445a3f68cc09df590",
+      "fact:01ca5f4c8910c7713b564b5d",
+      "fact:0246ac6a46ae92a31489bcee",
+      "fact:028cb957af43f9897d54271d",
+      "fact:037c01e19092dfb0b03dab20",
+      "fact:03b92dfd18774ca636ab3ea0",
+      "fact:041181038d36fdd78f269868",
+      "fact:04147b33d13113b16ca4bc96",
+      "fact:0470c9a4e634a1c593fed7e8",
+      "fact:04a1c85342aca361ca308a12",
+      "fact:06053f577ecf1dcac62fb52b",
+      "fact:062237924732145163bea3c0",
+      "fact:072440f2b7d6f5f36751b578",
+      "fact:0786b723cb5d5a186f890802",
+      "fact:083a1b321500dfb6848e640d",
+      "fact:08aa5187648e4bf8cf84cafc",
+      "fact:08ca8c52013c3583b4e26e28",
+      "fact:093eda7c01c88e10d6e8b1dc",
+      "fact:0aabe1a95a050d0537bd3e2a",
+      "fact:0abc963f59ad2c218ac80c02",
+      "fact:0b16f192929b6fb6c762cb10",
+      "fact:0b69407413e595f102cc5812",
+      "fact:0bd7d75a0f9948a7f077cc1a",
+      "fact:0bf819827ce651c1451a03dc",
+      "fact:0c02d1e3d19db1b681aab449",
+      "fact:0c37d7985dff761f6879c67c",
+      "fact:0c492113f053c47f87565f86",
+      "fact:0c6f18be8502b6d274fe753f",
+      "fact:0cbf05849e5056df29b75460",
+      "fact:0e2bd36f6d2cee7845ed3123",
+      "fact:0eaab8b3ecb829f75f78cae1",
+      "fact:0efc881df1eb49f652017512",
+      "fact:12369d03268bb81e05b10b19",
+      "fact:125059d6480e06a1360d59da",
+      "fact:12a28d0d357632740ae03099",
+      "fact:12b0175808c51896cf8df548",
+      "fact:130f8da55c9d86974e36edf8",
+      "fact:1312b2e2d44d965a8b2ad4eb",
+      "fact:1381fbab3438155d941c0a26",
+      "fact:139035fb0c8e8d62d3a50bc1",
+      "fact:14519d4820df5bfb96f0938a",
+      "fact:14eb503cfa93856f0bb3a588",
+      "fact:1507b25ad8fb8c49d4ef88a7",
+      "fact:153def14ef7bf5fabee23c68",
+      "fact:15bd459f5a5f434a0b98b03b",
+      "fact:167bb31dbf631f3756519fdb",
+      "fact:16929e9669c92ac50cb3c012",
+      "fact:17a0f22f214cf462ab5a18ac",
+      "fact:1850cc0bbe097576823c8a6f",
+      "fact:188b92838d58d4a59102ded0",
+      "fact:18b694aa3e1cfbe86c5d13b0",
+      "fact:191c7296248f16e5c672a294",
+      "fact:1957e52dd57248eb5859de28",
+      "fact:198a37321237841d5003e2ad",
+      "fact:198fd6fcdb234614df7e0ff7",
+      "fact:1a3ce641da024e364a75c3d2",
+      "fact:1a5e1db596619977d03cd8c3",
+      "fact:1ad10fd53dbe7c854ff1464a",
+      "fact:1afd3f71223c1b51330cbce5",
+      "fact:1b95dca23d38addfa2ca5004",
+      "fact:1ba2bd785302d6cf49d570ab",
+      "fact:1c551fc40d57f38158df563d",
+      "fact:1d13c83d1e5a0be2816a6af1",
+      "fact:1d4f284b8b8198d88f947426",
+      "fact:1dcd570ab0b2840674897b01",
+      "fact:1e156c30c7ac598a0733a728",
+      "fact:1e182edf2c51aacf7aeef008",
+      "fact:1e36bfabd83a620480f53205",
+      "fact:1ea9fdacc9e9ba4a1074ade3",
+      "fact:1f0442c307379b0f85fdda61",
+      "fact:1f07fa644232e725bc71d9c3",
+      "fact:1f0beb4e2c520ce6f38ab481",
+      "fact:21246b74ef743b45cdd2dd1a",
+      "fact:21b2d60306350f65118af79d",
+      "fact:21f741fe6953f270da96c5e9",
+      "fact:224cb0948dd9c1f974588d57",
+      "fact:227d4d6f3de2b0bfbae40ac6",
+      "fact:2335742290c0a4f0ec2da9d9",
+      "fact:2340c4382b1f3d5f7c14306d",
+      "fact:23638575adb0533db1b1db9f",
+      "fact:23b55eb84dee008ac2da6ae6",
+      "fact:246e5c9a460eee82b77d1931",
+      "fact:24c839a89d8e0f7d0bfd2ebc",
+      "fact:254cd9e06d2dcada7a91547c",
+      "fact:2682010122583f2350727528",
+      "fact:26861c67c150aa8e32b51fdc",
+      "fact:27445b92f4abae25a1eded0e",
+      "fact:286fb46bd202d1f466e1dc38",
+      "fact:28b6b3e58d1a73c338edf9d7",
+      "fact:28c26dc005e18da94116b378",
+      "fact:28fca13d1a19168af6928fb7",
+      "fact:293d791b886076c4cd13f3c8",
+      "fact:293fe49041690f9c1b2efb6f",
+      "fact:29919aa1840a652296057c6e",
+      "fact:2a34c9dec92c4600f816488d",
+      "fact:2a6d96a608b7eb8553c43cb2",
+      "fact:2a6eaa0acac7eace520a36e0",
+      "fact:2be063540c5577ffcfdef484",
+      "fact:2ce1b59cf34ba5339d232ce9",
+      "fact:2d0300e0a69a1caa5e0a9709",
+      "fact:2d99d84bd989bc9a894193c2",
+      "fact:2df9383f2aae46042ad5c060",
+      "fact:2f80604b86db4172b864a8a8",
+      "fact:2ffa4e4892f798b9b30bd77f",
+      "fact:3197cececebae9e39b0401c6",
+      "fact:31e711f2f7d81816efef7a35",
+      "fact:32315a3ee52f194c9270256d",
+      "fact:3258bc845c34bbd5e6a5de21",
+      "fact:32a97082b666d1647c2ec7f3",
+      "fact:341a756abd0cd0022d9af006",
+      "fact:342604dfe72aed826ebe86c4",
+      "fact:346accca2ef37a7f63842675",
+      "fact:34bfbcc6aa0afec4563cb4f0",
+      "fact:3514af8e02a2b2de2e0fe062",
+      "fact:3707f62cd14f22fcee61d707",
+      "fact:3753a31b0ce4490195602074",
+      "fact:38c4fa94e57be6103cf04654",
+      "fact:39da87210ddbd0989903d74e",
+      "fact:39e01edfd7650881cee43b11",
+      "fact:3a4115dddb60dedd691f460d",
+      "fact:3aa78963b503aacd79e80ee3",
+      "fact:3ab03f138cff2bc378a4302f",
+      "fact:3bad992b15750cba4537e2ed",
+      "fact:3c37c74392cd1f8d25c67d7f",
+      "fact:3c904651b79476ae3d474f4c",
+      "fact:3c954f0585331b42e78e1410",
+      "fact:3cca512db816a45331b2eaaa",
+      "fact:3d128b790c484989675dfd6f",
+      "fact:3d53c1f3063a12aa54fc3310",
+      "fact:3da16591fc53d311c166657c",
+      "fact:3e7d9775b35c4dfff51eea70",
+      "fact:3eac47f571cfdce28c9a71ab",
+      "fact:3f8a7ffd318c5088105d129b",
+      "fact:3fbbe5119f61ee7f4ab5a78f",
+      "fact:41120ee217404c807a95033b",
+      "fact:414503025f29e043fbc6b14c",
+      "fact:41b7f0b5acbd1c00b8bc07e4",
+      "fact:4338612d6ebf594d83ddd3b7",
+      "fact:43797d16cf5b89e717f6b48d",
+      "fact:43837883bcee29f76211fdc2",
+      "fact:4411e0c01989aef038e27793",
+      "fact:443b7ab2a80a619c96398694",
+      "fact:4513d283480d45c9294cccdf",
+      "fact:45306175d38ca143aca6ee62",
+      "fact:45acc2455da49d48d952ba23",
+      "fact:4623b92c7535ccfcdb943c67",
+      "fact:4666166e2c5bc1962ba58652",
+      "fact:466bed86042cb88b3117cc31",
+      "fact:46cbf10833fdbfd29d5d594a",
+      "fact:471f62951892be77cd2dcf65",
+      "fact:47b9b4bfc6a2bad90ee63079",
+      "fact:498862327edc2cb0dc47142e",
+      "fact:49e0aa13379b2e404dc2369e",
+      "fact:4a045cee6c9b22319aa812e5",
+      "fact:4a2ee2c1fcada28b330dd819",
+      "fact:4a8f10d1b6a5a369c7a24287",
+      "fact:4aba8f971bbfde4a4db0490f",
+      "fact:4b3e4872bce9aefa2ed1bd75",
+      "fact:4b6320e6f8de5f711a3065a0",
+      "fact:4c0974ee835bcddae0f395df",
+      "fact:4cc158cd1e143d0007d8d0d4",
+      "fact:4ccedea45b379da1c6597d03",
+      "fact:4e96dced9d2914fcc622191a",
+      "fact:4f1e3ab4bd737f6322c47d60",
+      "fact:4f94080173a6dcfee7d02a9b",
+      "fact:4fb30974d72a4bfe8c24a237",
+      "fact:503f364b8f7e5c5b68bf8e53",
+      "fact:5077af39a5d1033ef087f315",
+      "fact:509f25f7698701466178fd94",
+      "fact:512e82abe9d8afc9ff2a2a88",
+      "fact:516d74cf2b98c5ba515c2e90",
+      "fact:5219e8413722c833e82c8201",
+      "fact:52cc4b2d8737c1bd88d53fc7",
+      "fact:5341f533355cee431b0fdc38",
+      "fact:53681cd5d4c6daab1ab8009f",
+      "fact:5382a7ad69063324c7501f6a",
+      "fact:53917083000718a7745391d3",
+      "fact:5399cd5cee83b371588838ca",
+      "fact:539febdfccbb6ac387533b80",
+      "fact:53a47bc4ef96274a1756c83e",
+      "fact:53affa2d9de4db53a52ab680",
+      "fact:53de1916aad7adbe37cbda88",
+      "fact:5421c86162f4b85d377794f3",
+      "fact:54584a6a43ed263816f57fe5",
+      "fact:5475779b40b11f5ef41135ce",
+      "fact:5483c049d10d10f793adf2d7",
+      "fact:5498a67881b4084e16ad1b1b",
+      "fact:5515745845fdc2be3a9e68f2",
+      "fact:5515d9dad2284d5072b0616c",
+      "fact:556842aea984e1ff381d3d6d",
+      "fact:55daa0fac38154df52e3a2e6",
+      "fact:56bc27044e0112f66027998c",
+      "fact:56ec4dd7583f7b55b9b59b74",
+      "fact:5727f82f56e8accbfb05c677",
+      "fact:575e9cfdedf79f29fbeda494",
+      "fact:57708d38210c49c731f413ae",
+      "fact:588d091b75cd2f089e7e47e6",
+      "fact:58a33a64f33ecb0b9b5153ae",
+      "fact:58fc152cccd3fcd824a29b56",
+      "fact:593ae1a913b4e4344dac39b0",
+      "fact:59acbc5803277c26f04df6d7",
+      "fact:5a51bdd97a1e158f959721c2",
+      "fact:5aca38e5af8fee5e8382802d",
+      "fact:5ca8b73e39cefd576cd7b034",
+      "fact:5daca1eab1b6800e5d3235f5",
+      "fact:5db179c918d8a729c6b4da55",
+      "fact:5de3d5de07ec9d209bdc0f16",
+      "fact:5ed62964076bb078b6404771",
+      "fact:5ef3ad750249cc03f2bcd792",
+      "fact:5f58adbcef919b3294f53fb3",
+      "fact:5f65806f8c5d7959aed70d48",
+      "fact:60722047cbb5b744ba397cef",
+      "fact:60b96ab1f59614937c00bb1e",
+      "fact:6129797264ccf39945573208",
+      "fact:61f8220bf8650e9660fd82a7",
+      "fact:62306251534d06a6599329fc",
+      "fact:626b22b59a0957a4ea59e6dd",
+      "fact:627e27426349dc49377d307b",
+      "fact:630140d6a81e96140ae3764d",
+      "fact:634b1fc15b6ef768f8227cc1",
+      "fact:6398bc19c86c7c2d7d432010",
+      "fact:63f22c4a67cb9d776407dec0",
+      "fact:63f637d1f2850c0ab6b69c10",
+      "fact:63ff3de5e3e280a0ef9484c8",
+      "fact:642fd001a76212375bc39a19",
+      "fact:644a1dd435e4f34d44c55aa4",
+      "fact:6568a9f1e95007962fab5d9d",
+      "fact:66808742804cc427a9ce12d8",
+      "fact:66db6d14514143530fff1259",
+      "fact:672218a555481b05211b1340",
+      "fact:6885647018a9a32de14a0ae3",
+      "fact:68b0e1083e24b082e56e71ce",
+      "fact:68b5eff4567643ae50df696e",
+      "fact:69a3f178efca6ea88d304587",
+      "fact:69f8d27520b4fdecf3fbf0e3",
+      "fact:6a0bedc020f36f03097665a8",
+      "fact:6ab3602bd5736946ab0a5b8f",
+      "fact:6b6f252de0fb3ebcd2f4b850",
+      "fact:6b877c715317161372751264",
+      "fact:6b98c5cf4aef35e290236e1c",
+      "fact:6bf5e40c0f92ab7ef1b2acd5",
+      "fact:6bf8d318cc68384e9cb151ce",
+      "fact:6c3b5d41137564b2757f2749",
+      "fact:6c731aa0bdc6becc51b7b641",
+      "fact:6d2bd29826c0a996e62ca5db",
+      "fact:6d324f6f5702ea814216ea6f",
+      "fact:6df936c84073d281c612ae62",
+      "fact:6ebb2aa3e6e5bfa925bc9e2a",
+      "fact:6f352fa89257bb4f8fe8cd55",
+      "fact:6fbb868fbb063ca425a8803a",
+      "fact:70694a887b7b0e5973ef9c7d",
+      "fact:706e4f69fa045bd26408edcf",
+      "fact:710d58be9721e2821ab5f95c",
+      "fact:72468ae74bfa3a17447b5475",
+      "fact:728fb569f0f332aea4f89f99",
+      "fact:72c88f6670f27b1859256deb",
+      "fact:7413315ee3f266e17911fdf1",
+      "fact:7418fde05b103353c6cd2c36",
+      "fact:76fee2199d933fbc4d91045c",
+      "fact:78a17cbe6322c77d78a12528",
+      "fact:78ed4625573ee7b2fc5a81ca",
+      "fact:79b258196a2315cd6c68e935",
+      "fact:7ab3281a4a0146ef3c864df4",
+      "fact:7b050900346dd7f60143a47e",
+      "fact:7b9542b0b9e0e8d52058b6fd",
+      "fact:7b98d0c5a1a20a57c82458ee",
+      "fact:7bcf7f91a22d960eaad54511",
+      "fact:7c6a3284fbc1f35d780f6b12",
+      "fact:7c705c7424165db2eca382a4",
+      "fact:7c8faf36969f1f3ae71c691a",
+      "fact:7cdde70f35b51f5ab62ffca7",
+      "fact:7cf2f8b86e488ddf10a6ccb2",
+      "fact:7dc71b76dc87089e339ffb58",
+      "fact:7e1836d3673bdea3400e40a5",
+      "fact:7e230d28b79b754b07f34e5a",
+      "fact:7e5b0fb7e69a49e18962d231",
+      "fact:7f1624b18b1914643980b2c4",
+      "fact:8023435cee520861383f3927",
+      "fact:81a4dedcae01f0c7a5393d2d",
+      "fact:81c96627dd41aed813748a12",
+      "fact:824665c2898e01ba5d3aae66",
+      "fact:835ee9dd5a24bb4a6018540c",
+      "fact:83644eb38307543911b1c6ef",
+      "fact:8366aa4f818f61b17f8332bb",
+      "fact:8397e6c9170f7b214274f967",
+      "fact:83d19ec144b3660cbc0b25f8",
+      "fact:844374ce695dea80a5d227fa",
+      "fact:84ae38df496163236b81824b",
+      "fact:850df88eee2e8c6f44f001f1",
+      "fact:853c72a519e30e7134f77383",
+      "fact:858300d84d086c3ecc7f8bd2",
+      "fact:8595034acd646c1ee5c29ed2",
+      "fact:8639084d7a5aad951e5ed26b",
+      "fact:87402db299119abb43af5ee4",
+      "fact:875c476ff3f123913e0b36fc",
+      "fact:8832e40888c45b6af43a2935",
+      "fact:88375237bba00f8c98db79f7",
+      "fact:88490bf5b61b20ffc2507d19",
+      "fact:88948eba0727c6d17560a6bc",
+      "fact:88f92faf49021dc45e2c17a4",
+      "fact:8908e6ce16db6e243d74570b",
+      "fact:8a09d73dba8281e1f01895c9",
+      "fact:8b1a6c466f12a83deaba981a",
+      "fact:8b44c91e0fe0d2991fa9c525",
+      "fact:8b95acce391fab7d00c6eec1",
+      "fact:8ba0e87123f6bef944392c0c",
+      "fact:8c26cd85c31efd2bba1cf626",
+      "fact:8c84a02affc58fe94454a913",
+      "fact:8c9dcabcb17dce7e9f155064",
+      "fact:8ec56aad4cbfe185aa796c90",
+      "fact:901315259ef467f89d097a04",
+      "fact:905e61e5031d085aaca0da7d",
+      "fact:90c63b39a83f13d62bdbbe50",
+      "fact:91327fc105e80482d4a0e649",
+      "fact:91e61e2b001b6a300c12e575",
+      "fact:92857b7807b71fd9296025e6",
+      "fact:92e182929f6f7cea9bd50210",
+      "fact:9309ec1e8c6d6223e722fb59",
+      "fact:934b3dcabbd2afe76623884f",
+      "fact:93a83767e6f47a61bb3fc233",
+      "fact:9435325ba6064470518ee8be",
+      "fact:950070f2a9144649589faabb",
+      "fact:95d2efd850d4738b315393ae",
+      "fact:962bd84f8df0d11ec3ae487b",
+      "fact:966ba421c2f0ef21bbb50ce3",
+      "fact:96a6dcf195aa09b26c058e27",
+      "fact:9870b480238cf8bd1708ca05",
+      "fact:987c090fb35667f11fe83ccc",
+      "fact:9890ff8122b9bae0bf20de12",
+      "fact:98eab07e7bbb7b1ffbfea10c",
+      "fact:99a011ba5546ebf96ad5016b",
+      "fact:9a3d8000322c36c6981f62a1",
+      "fact:9a4978bd01cf5b8a717ea1dc",
+      "fact:9a7c2b7edd2ccb0f95e70897",
+      "fact:9b60e7c676d6795bb2bbbc47",
+      "fact:9b8c2bf0dc20b27b509ae08a",
+      "fact:9c06dc096cb7f46b0294c186",
+      "fact:9e452b72382947ddcaae06cf",
+      "fact:9e4bd7542ed695627a34f5e4",
+      "fact:9efff186b57d05969563cb2f",
+      "fact:9f293cad0c6e6ed978385404",
+      "fact:9f2d16fa2ed64b418b5d6c68",
+      "fact:a00ea306f052f27a51d057aa",
+      "fact:a0a836bee503ff23caaa01b6",
+      "fact:a0cdcf7d7d2cc0cf68836702",
+      "fact:a0dbab7f94e031628a5e55a6",
+      "fact:a138eba56e117240e28784ab",
+      "fact:a19926fcbec839902d57071d",
+      "fact:a1ac3a75298815885a3d1f72",
+      "fact:a1b755a3f057a8037cf7428e",
+      "fact:a1f7e453f4fd5bf4a1549a07",
+      "fact:a202bf50c1098140eae57288",
+      "fact:a22d0b9be10c0badd2a60d20",
+      "fact:a246ffeb4d5b2a1f4dfc5358",
+      "fact:a25780c78d107585f220a0fe",
+      "fact:a34063cdeda7038379c1c546",
+      "fact:a38c8bac7d833450f8b9a0dd",
+      "fact:a3a4b10deeff310b52df7207",
+      "fact:a40aafc62731d648280ec543",
+      "fact:a429b3b4b418ef98b12361a2",
+      "fact:a4ab07a42d0f578e25e91be6",
+      "fact:a54e664c7fef2d8ea017cc50",
+      "fact:a54ec7fc90cb9c3c8431152c",
+      "fact:a6d9ba67baeb0cfc77b04648",
+      "fact:a6f0de112402aa9050455f4c",
+      "fact:a6f57ddd298a15a89860ff02",
+      "fact:a8411daa94703b14a28cc852",
+      "fact:a86756cba66f4fd33688ca47",
+      "fact:a9eeab939154bdcada07a19c",
+      "fact:aa7932944c0b15bf6c721a87",
+      "fact:ab499b457520ec1188d14905",
+      "fact:ab92efba9a2e5144b33b6ccf",
+      "fact:abae32dac8409e623af486ea",
+      "fact:acc223f1c9cef8a2fbe95eab",
+      "fact:aecc34e6fec5b7eacc09a7c5",
+      "fact:af2d78c20d3ceef163dcf88e",
+      "fact:affecbcef95d3e9d20a4645d",
+      "fact:b0595b3e9d71c5276ddd0a0b",
+      "fact:b160880c419deb842637cf25",
+      "fact:b1bf91924dc2147a8b3387ca",
+      "fact:b22bf21ca0cf14b46910db04",
+      "fact:b2b458c3e1d46d8308012505",
+      "fact:b328a83960044e7742710a08",
+      "fact:b32cca18cec28ba12c06c792",
+      "fact:b331b8f12b8687abab0e5239",
+      "fact:b33b0583c57a35a18836e022",
+      "fact:b3e62f3ca592978e59c4954a",
+      "fact:b64462f954ff23a53741ec69",
+      "fact:b65165e143b176182990f95c",
+      "fact:b760f48dc1fd239c264920ee",
+      "fact:b79a68b820b04aabca01f7f8",
+      "fact:b7f47ab0754d0058d81763c1",
+      "fact:b80accadd8d109d3728fd8fa",
+      "fact:ba6abaa06d852864e6590f24",
+      "fact:bb0bb248a75328ba3c002eb4",
+      "fact:bba33ea4d111df74cfb128a8",
+      "fact:bc0da1378f409a0e458be910",
+      "fact:bc5bfe21deef43cd2a5734da",
+      "fact:bc70710e0268f0fe5ce2340a",
+      "fact:bd0e7def8aa5e131f2b9c28c",
+      "fact:bd2eb40f261b9ad65463be64",
+      "fact:bd65464d238f992ac18816c4",
+      "fact:bee2930d54e3d476b1f167bb",
+      "fact:bef007648d980e02f20af6d4",
+      "fact:bef4eea5e06d860fa522820f",
+      "fact:befc853d7942a6a84c68cee5",
+      "fact:bf22c3e34b2956bf8afd6c22",
+      "fact:bfaa5b444ac8eb9ad6428d45",
+      "fact:c00df7193985a06bf75f4c9e",
+      "fact:c043cd5f3a6403b14798bca1",
+      "fact:c09d135cc9cb5137af4e383a",
+      "fact:c14ae167cd38cd679b3f5dcf",
+      "fact:c1e6f6fa8837279af2f8e5a5",
+      "fact:c28d44ea157f199a4be35599",
+      "fact:c2b056a18d5f4d7a15a2f2e8",
+      "fact:c33f4eee18b554f70be83d7a",
+      "fact:c4d44fa69675fb8052ba7455",
+      "fact:c60a000deefe2be7fae637be",
+      "fact:c60a3bebf86f520d95637fe4",
+      "fact:c62f52832dcee8528badc590",
+      "fact:c66a7743328907faaab961cf",
+      "fact:c8548e9df4e00e07813c3d5e",
+      "fact:c909b7a54327974d07ee3b0a",
+      "fact:c92fae5240558bcfcdddf8f5",
+      "fact:c9c9262ec33e3adc0ebc5fd1",
+      "fact:ca165125d5424c62ed44d25c",
+      "fact:cbf7cf794fe09ccb7b0d8f70",
+      "fact:cd74e050014ad7276369bbd9",
+      "fact:ce022a786875f64dac049c97",
+      "fact:ce072d985f80cbceb28414b3",
+      "fact:ce5995fb07d91a31d863cee7",
+      "fact:cee42a5b6854f045149b811a",
+      "fact:cf84825b56b2d0c3dafa065d",
+      "fact:cfe01546cbce78c035b66d5d",
+      "fact:d0303cb27fc4bf18d91357bf",
+      "fact:d06a632a9b24a491ba76b7cc",
+      "fact:d0939894f114f7d5d9957abf",
+      "fact:d0fc51a5be66dc8bd4af563b",
+      "fact:d1636057eb913ee7088a05e2",
+      "fact:d1da21f2244a503735fa42a6",
+      "fact:d1f573ce6007df0a6d48f17e",
+      "fact:d336918c57642a8910f731ce",
+      "fact:d350f7f5686021b13e5d42b4",
+      "fact:d35ec2b592ac4ade7b951bae",
+      "fact:d3b17269f747eb8c592fe598",
+      "fact:d3cceea5d9896d495929846a",
+      "fact:d4438ded4389046738a7ee05",
+      "fact:d463db38fab876a085e5dcf4",
+      "fact:d5cdccc15535e7eb0f008ac8",
+      "fact:d6050de8878c40bacf028d00",
+      "fact:d86ce6ef48b1510ee9e77772",
+      "fact:d89bfb03e283ab344c7bfa42",
+      "fact:d8bbd5d7b354469a692079a3",
+      "fact:d8cbf5b0ae7ab801b8a408f1",
+      "fact:d8fdb117ef6c8699827826cd",
+      "fact:d942e0914c0196e738540abc",
+      "fact:db0c3dd3f617efd9dee240f3",
+      "fact:db23b2fb4de0d74932b1aef5",
+      "fact:dc7697e4912da613b5cb582f",
+      "fact:dcfefccc9d2bbe81177a211b",
+      "fact:dd69247119c8736a4cd07b90",
+      "fact:dde4333b0ce0e8a814e7952d",
+      "fact:dec83abc7b50b5e2d4c3afeb",
+      "fact:df2b163aa47a1138194b8a21",
+      "fact:df78aede9e46923793a00b98",
+      "fact:dff86b599acec64b04bece4b",
+      "fact:e07fb30b0af96b0906ca5732",
+      "fact:e10f49c97f01609e26dcdd98",
+      "fact:e1df15fd91bd2117fb44f4a2",
+      "fact:e20b200a4d74f19b4bac4061",
+      "fact:e2681d6129bc7285f9a3a914",
+      "fact:e269196f3dc2e33e74b3ee30",
+      "fact:e2c8c7b9a0354fac9394da89",
+      "fact:e33f03c60496543d64327e74",
+      "fact:e416a284dfdc749cba51fc4c",
+      "fact:e4ac0eb70fa6073341e6f0f3",
+      "fact:e63daed73da419da94a5a3e0",
+      "fact:e6aa4d6788efa5c625e28885",
+      "fact:e7560aafd62c402a710399dd",
+      "fact:e75c2d630125e26d914fb9cd",
+      "fact:e7d8c46a2bfae256069af1ce",
+      "fact:e8242a2323127e83a4777623",
+      "fact:e852d17e1b0e58cde003de0f",
+      "fact:e865a90b5f07742f63af9739",
+      "fact:e8e32f91470c2f6e624d3251",
+      "fact:e904d65c63979ececad0a8f0",
+      "fact:e963ea64e4c659209617fc8d",
+      "fact:e99b93380888643a9a0d1d7b",
+      "fact:ea2d4fad203ffe6b33bab123",
+      "fact:eb481fcaffda881a33571419",
+      "fact:ebbbbdf013f22fcfd1322f92",
+      "fact:ec6e5c6bf1b7fa268789de97",
+      "fact:ec91ce3f8164fdb9ed4f6d2c",
+      "fact:ecafdc6a2f62acd14a6aae46",
+      "fact:ecc6b88babd57f3a95151317",
+      "fact:ecf16976f3aa3290c5b4d2fd",
+      "fact:ed4f2afee89d5c386fa1c111",
+      "fact:ed6a8ac4ec5b441fa2b6bea3",
+      "fact:ed899cf024075beba4d1eabb",
+      "fact:ee30433e0ebfc1856bbe5977",
+      "fact:ef48752f7baf4344aedc527f",
+      "fact:ef604a5740fc3c1a5aab29db",
+      "fact:ef834f75aa9398523d10da57",
+      "fact:ef871c5f20ee05c847681606",
+      "fact:f0d266c924f97571416047bb",
+      "fact:f0dcad34a1d3f40b9a9a61fc",
+      "fact:f0e8dc11de5d6783cfbb726d",
+      "fact:f181a241dbe4ed6a5237afca",
+      "fact:f1aefdf1260b74a66766f0b8",
+      "fact:f1e6097e9e7768c9d5455de6",
+      "fact:f1fc5206036710e6e2bf3be3",
+      "fact:f2823d3e2c514751391e1fbc",
+      "fact:f292b20b6d750e2504cb6dfc",
+      "fact:f29eaa59c24242231391e3f3",
+      "fact:f31127bc9a9f3a012d5529fd",
+      "fact:f3f8529dcb8499eb60082829",
+      "fact:f48fdacc93b162f1c168c937",
+      "fact:f4f37a50e90a075addf016cf",
+      "fact:f4f7f309abfa6e7b81fdcc6b",
+      "fact:f5cec662e44df58bc646906e",
+      "fact:f5fafee8a45e1a4278c0763d",
+      "fact:f63a38242019ad0286e158bc",
+      "fact:f8d0239e89d57da11757b6db",
+      "fact:f906388d09082eea7942eb44",
+      "fact:f941469444e69ce7f9546acf",
+      "fact:f94245123a254f82235f793e",
+      "fact:f957127cf6002f1c60cdcc2e",
+      "fact:fa15239cb8d11f75534fa3d5",
+      "fact:faf772d3aeec042fbe63e388",
+      "fact:fb868942bec0e0723e06e266",
+      "fact:fb893385623c75edfd2ec676",
+      "fact:fbd0fd37b1d8fe95687ecd9e",
+      "fact:fc14a0049afe22d9ea1c633b",
+      "fact:fc3f1e14aab34495f0e8e692",
+      "fact:fc7ecdfb736ec8ab4b5e58b4",
+      "fact:fc886103a77c39c61dc59231",
+      "fact:fc8a3b1b88a3490adaa9b97d",
+      "fact:fcd0923b6b7a502ee774ee09",
+      "fact:fd90415deb331eaa00d05be7",
+      "fact:fea68850092363bb241d7cb6",
+      "fact:ff0f85175144cae085a1814f",
+      "fact:ff52790173a228ce84a776e1",
+      "fact:ff8f32631eac90f912505239",
+      "fact:ffd83ca8dce6c2781b965e7b"
+    ],
+    "version": "forge.semantic-snapshot-delta/0.4"
+  },
+  "pass_count": 27,
+  "patch": {
+    "end_byte": 244,
+    "expected_post_sha256": "9a3edbc40ca5813fe265254372d16f04812ce28e1feb1d8d4fc794fc6b46bb06",
+    "expected_snippet_sha256": "4004e5a6f0fe8e9e173db611a023121d0edca284ee84aae0cac74a1fa3cc06df",
+    "expected_source_sha256": "84353e8899d9997d4d9b0d07d4565a5e92688ade0eeae481387f98c748c3bb11",
+    "explicit_apply_required": true,
+    "intended_fact_id": "fact:47c03a6ffdbbee287c3024e2",
+    "intended_operation": "semantic_plan:sdelta:a972e8db6129bbdbc7b20ecd:remove:sem:cbcebb9cb857a8d6962fe58f",
+    "intended_semantic_key": "sem:eead6942606ea7baa9605bd2",
+    "materializer_authority": "NONE",
+    "new_text": "    # homepage route removed by in-memory counterfactual\n",
+    "old_text": "    path('', views.home, name='homepage'),\n",
+    "patch_id": "patch:c4707f83fcfe4320daad9e9c",
+    "source_path": "PyGoat/introduction/urls.py",
+    "start_byte": 201,
+    "version": "forge.semantic-materializer/0.1"
+  },
+  "rollback_receipt": {
+    "materializer_authority": "NONE",
+    "new_bytes": 43,
+    "old_bytes": 57,
+    "patch_id": "patch:cd076247d20f34b24a560c76",
+    "post_sha256": "84353e8899d9997d4d9b0d07d4565a5e92688ade0eeae481387f98c748c3bb11",
+    "pre_sha256": "9a3edbc40ca5813fe265254372d16f04812ce28e1feb1d8d4fc794fc6b46bb06",
+    "start_byte": 201
+  },
+  "schema": "forge.semantic-delta-materialization-bridge-pygoat/0.1",
+  "semantic_plan": {
+    "base_bundle_id": "bundle:24bab65bcaa508bc81d64367",
+    "operations": 454,
+    "plan_id": "sdelta:a972e8db6129bbdbc7b20ecd",
+    "target_bundle_id": "bundle:4e50e8ac5412121ff47d78e2"
+  },
+  "verdict": "FAIL"
+}

@@ -331,7 +331,24 @@ Create a NEW sibling that only converts UPSERT payload dataclasses into mutable-
 4. Require exact precondition/currentness, source diff constrained to intended span/change, reparse to target semantic bundle, rollback to exact original bytes, clean Git before/after, and no authority promotion.
 5. Keep arbitrary refactor equivalence, cross-language generality and canonical Core API promotion blocked until separately earned.
 
+
+## SEMANTIC DELTA REPLAY V0.1.3 SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Durable project-control `d9b7c5e8b1854b705f134a2d6e1dca6acc9a1a47` / CHECKPOINT `b8333e3758cc98edb14c1302744bc3ef44210678dd1122e27648c51def6b588e` is non-force published and independently fresh-clone verified PASS 248.
+- Exact module `870d5c76...`, summary `f49a1f61...`, output manifest `14120678...`, and admission `84c1faef40e41842549b4880459f9fa240f0b9940ee6e3e5be9c5a08a4e70bbb` reproduce.
+- Current Forge Core fixed point: bounded exact semantic-bundle replay qualified over the tested PyGoat snapshots; source materialization remains unearned.
+- App remains frontend UX arm and was not mutated by this Core qualification.
+- Next Forge dependency frontier: bounded semantic-to-source materialization / reversible source round-trip, to be designed as a NEW attempt after re-grounding.
+
+
 ## APP FRONTEND WORKBENCH + GITHOME — BOUNDED ADMITTED — 2026-09-09
 - P0 control: admit/checkpoint App Workbench + GitHome bounded frontend currentness without promoting Main/Core semantics.
 - P0 App: compose GitHome + Workbench + Ergo recovery/currentness into Forge Shell Workspace; preserve authority domains.
 - Main/Core semantic materialization work remains independently governed; App `materialize` stays disabled until a later qualified Core contract explicitly earns it.
+
+
+## P0 — repair semantic-key version contract
+1. Checkpoint Delta->Patch v0.1 27/28 mismatch; do not rerun it.
+2. NEW `forge_semantic_materializer_v0_1_1.py`: change semantic-key import v0.3 -> v0.4 only, plus version label.
+3. Run NEW PyGoat materializer regression sibling; require incumbent 26/26 exact source/semantic/rollback gates.
+4. Only if regression passes, run NEW Delta->Patch bridge v0.1.1 using materializer v0.1.1; require 28/28.
+5. Do not widen to automatic source lowering, additions, multi-file transactions, or cross-language materialization.

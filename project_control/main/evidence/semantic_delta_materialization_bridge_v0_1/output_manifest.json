@@ -1,0 +1,26 @@
+{
+  "count": 4,
+  "files": [
+    {
+      "bytes": 1182,
+      "path": "bridge_plan.json",
+      "sha256": "250682e76fefdb7323151ae7d97279cadddd8344b2ea4d6e88ce1010e31f84f6"
+    },
+    {
+      "bytes": 923,
+      "path": "patch_plan.json",
+      "sha256": "3991e491f6a653b1d297c98e3a8607d49555aa7545ae165984b738a6df407d9a"
+    },
+    {
+      "bytes": 264389,
+      "path": "semantic_plan.json",
+      "sha256": "e18f8f7e0fd041cd55decd389349e03ad3e5276c276d42b110571683ae60fb5d"
+    },
+    {
+      "bytes": 77365,
+      "path": "summary.json",
+      "sha256": "dd93df1d6ec662763ac5d20a9ed25ace4f514a43d706e1294683d0a73d6efce5"
+    }
+  ],
+  "schema": "forge.semantic-delta-materialization-bridge-output-manifest/0.1"
+}

@@ -391,5 +391,18 @@ Result `2b0d36b419b464ef1f98ead7224e2350c4bb86f975e4e3ae1dbef514060eb8b2` locali
 ## Forge Core current frontier — Semantic Delta Replay v0.1.3 qualified
 Lineage `870d5c76fd555744e77206b25aedf88cfa9c359890f970524003dd93275c8818` -> summary `f49a1f61b1a8d2fd22380d9bde219cbf952147523bc7c694faa914ce43cf25a1` -> admission `84c1faef40e41842549b4880459f9fa240f0b9940ee6e3e5be9c5a08a4e70bbb` qualifies deterministic content-addressed exact semantic-bundle replay over qualified PyGoat snapshots, including reverse replay and stale/tamper rejection, without source mutation or authority minting. This is a Forge Core result; App remains frontend UX. Source materialization is the next dependency seam.
 
+
+## SEMANTIC DELTA REPLAY V0.1.3 SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Durable project-control `d9b7c5e8b1854b705f134a2d6e1dca6acc9a1a47` / CHECKPOINT `b8333e3758cc98edb14c1302744bc3ef44210678dd1122e27648c51def6b588e` is non-force published and independently fresh-clone verified PASS 248.
+- Exact module `870d5c76...`, summary `f49a1f61...`, output manifest `14120678...`, and admission `84c1faef40e41842549b4880459f9fa240f0b9940ee6e3e5be9c5a08a4e70bbb` reproduce.
+- Current Forge Core fixed point: bounded exact semantic-bundle replay qualified over the tested PyGoat snapshots; source materialization remains unearned.
+- App remains frontend UX arm and was not mutated by this Core qualification.
+- Next Forge dependency frontier: bounded semantic-to-source materialization / reversible source round-trip, to be designed as a NEW attempt after re-grounding.
+
+
 ## APP FRONTEND WORKBENCH + GITHOME — BOUNDED ADMITTED — 2026-09-09
 App product/frontend advanced to source `c0877964...` with bounded Workbench `ad1e85f2...` and GitHome `3dd26813...` admissions. Workbench carries read-only semantic/evidence/currentness + exact Core replay preview; GitHome carries complete read-only project/Git navigation. App Store 225/244/323. No Main/Core authority promotion. Resume cross-arm at checkpointing this frontend fixed point; App next composes GitHome + Workbench + Ergo into Forge Shell Workspace.
+
+
+## Forge Core bridge frontier — semantic-key contract mismatch
+Delta->Patch v0.1 first run `dd93df1d6ec662763ac5d20a9ed25ace4f514a43d706e1294683d0a73d6efce5` achieved exact replay/materialization/rollback equivalence but failed 1/28 because materializer v0.1 computes semantic keys with snapshot-delta v0.3 while replay/bridge uses v0.4. Diagnosis `08e451c3052ac2516adf0a8e5c5e9404e6a0f5ff9efe9f5e701d67f7989fe297`. No bridge admission until identity version is unified.

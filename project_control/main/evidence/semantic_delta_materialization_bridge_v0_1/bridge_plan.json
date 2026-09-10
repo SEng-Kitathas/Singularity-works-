@@ -1,0 +1,29 @@
+{
+  "added_semantic_keys": [],
+  "ambiguous_semantic_keys": [],
+  "base_bundle_id": "bundle:24bab65bcaa508bc81d64367",
+  "bridge_authority": "NONE",
+  "bridge_plan_id": "matbridge:0bf8238ecb6fa202eb46f3b9",
+  "multiplicity_change_count": 0,
+  "removed_anchors": [
+    {
+      "anchor_id": "matanchor:15732d81bf3904d1275ac568",
+      "bridge_authority": "NONE",
+      "evidence_end_byte": 244,
+      "evidence_id": "ev:ce2d37d87f71ff4bc45cf17f",
+      "evidence_snippet_sha256": "4004e5a6f0fe8e9e173db611a023121d0edca284ee84aae0cac74a1fa3cc06df",
+      "evidence_start_byte": 201,
+      "fact_id": "fact:47c03a6ffdbbee287c3024e2",
+      "semantic_key": "sem:cbcebb9cb857a8d6962fe58f",
+      "source_path": "PyGoat/introduction/urls.py",
+      "source_sha256": "84353e8899d9997d4d9b0d07d4565a5e92688ade0eeae481387f98c748c3bb11",
+      "version": "forge.semantic-delta-materialization-bridge/0.1"
+    }
+  ],
+  "removed_semantic_keys": [
+    "sem:cbcebb9cb857a8d6962fe58f"
+  ],
+  "semantic_plan_id": "sdelta:a972e8db6129bbdbc7b20ecd",
+  "target_bundle_id": "bundle:4e50e8ac5412121ff47d78e2",
+  "version": "forge.semantic-delta-materialization-bridge/0.1"
+}

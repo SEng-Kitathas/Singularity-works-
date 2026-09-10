@@ -226,9 +226,9 @@
   },
   "files": [
     {
-      "bytes": 712,
+      "bytes": 860,
       "path": ".gitattributes",
-      "sha256": "df4d07c2d071009d39f036f7663ad8338d8f09ff289fbbee51ac8f7c6eeb7a2a"
+      "sha256": "a1293a9e972643dbcef3a473c5ab3e3538269c6171ae7be8b1efbb26e2f5f470"
     },
     {
       "bytes": 3534,
@@ -801,6 +801,11 @@
       "sha256": "95c201dc4cc386c3aeecd7279c1ed17a9c5357908111608b3b73bdbc56e787d6"
     },
     {
+      "bytes": 1719,
+      "path": "CURRENTNESS_AFTER_FORGE_DELTA_TO_PATCH_BRIDGE_V0_1_VERSION_MISMATCH_20260909.md",
+      "sha256": "d8dea6a81fd2c2da728f4e7dd3d9dc892b30d2d56830532a5570350f9164a983"
+    },
+    {
       "bytes": 1060,
       "path": "CURRENTNESS_AFTER_FORGE_SEMANTIC_DELTA_REPLAY_V0_1_1_HARNESS_INVALID_20260909.md",
       "sha256": "e000c02a04883b5052d0f254779714a591a31e3c207053e9f52d33a3c61fe0ba"
@@ -901,6 +906,11 @@
       "sha256": "6c5080d0c950297490139e7b120964dddb7936af5076a967d1200904456cb795"
     },
     {
+      "bytes": 6076,
+      "path": "main/code/forge_semantic_delta_materialization_bridge_v0_1.py",
+      "sha256": "fd478615088a3dde2b052aea41e747a00b8647700c650f8c4a1e477cdaf008c2"
+    },
+    {
       "bytes": 7160,
       "path": "main/code/forge_semantic_delta_replay_v0_1.py",
       "sha256": "49cf44680bd022e8a63765d027d018973647178635017b402db53f08286af5c6"
@@ -941,19 +951,24 @@
       "sha256": "54ebbe5bec809cc9be51fd43d4a502cdec6d310177c54cf16753335605607f6f"
     },
     {
-      "bytes": 181418,
+      "bytes": 10017,
+      "path": "main/code/run_semantic_delta_to_materialization_pygoat_v0_1.py",
+      "sha256": "7b2c2adb8e92049645248cd8f253b89b7e697bfdffadaf02cbf1d1d261ed2858"
+    },
+    {
+      "bytes": 182818,
       "path": "main/continuity/design_thread_stream.md",
-      "sha256": "9f71965443f912be37e0809f8a1467c8f522a6fc52ddfcebf01cda3977dc733d"
+      "sha256": "ee33ca733740d9242584b2d1f1422fb164cd4fccb6c2c28665d2f10b5c3460ec"
     },
     {
-      "bytes": 35642,
+      "bytes": 37628,
       "path": "main/continuity/live_shadow.md",
-      "sha256": "6debf1c1e9fda0335ac37fc9f637a7b88f3ce443a7d1a53a8b90aa68e1ea78e2"
+      "sha256": "e4778bca50b7e6dc94f76b5403c6e5a68620f731c3c83d4b2d225d7169573ae1"
     },
     {
-      "bytes": 40312,
+      "bytes": 40313,
       "path": "main/continuity/research_epistemic_shadow.md",
-      "sha256": "761899fcc4b96ce5b228f285ab984e1dd096d252b8c32cbb43c67d62914c13c5"
+      "sha256": "c61d285e32f4ca71be69ea29257552b50df2a498c57c26d165af1e7acae7651f"
     },
     {
       "bytes": 573,
@@ -969,6 +984,31 @@
       "bytes": 516,
       "path": "main/evidence/forge_semantic_delta_replay_v0_1_first_stderr_projection_20260909.txt",
       "sha256": "12bfe70734ba4a32bd22b02916b41b068cd4765fcc0bf558be5d613452bcdbed"
+    },
+    {
+      "bytes": 1182,
+      "path": "main/evidence/semantic_delta_materialization_bridge_v0_1/bridge_plan.json",
+      "sha256": "250682e76fefdb7323151ae7d97279cadddd8344b2ea4d6e88ce1010e31f84f6"
+    },
+    {
+      "bytes": 742,
+      "path": "main/evidence/semantic_delta_materialization_bridge_v0_1/output_manifest.json",
+      "sha256": "b3d6c868656d34ae667afc1a63b74dbe54d966b689f6fb3ef22afe83489de823"
+    },
+    {
+      "bytes": 923,
+      "path": "main/evidence/semantic_delta_materialization_bridge_v0_1/patch_plan.json",
+      "sha256": "3991e491f6a653b1d297c98e3a8607d49555aa7545ae165984b738a6df407d9a"
+    },
+    {
+      "bytes": 264389,
+      "path": "main/evidence/semantic_delta_materialization_bridge_v0_1/semantic_plan.json",
+      "sha256": "e18f8f7e0fd041cd55decd389349e03ad3e5276c276d42b110571683ae60fb5d"
+    },
+    {
+      "bytes": 77365,
+      "path": "main/evidence/semantic_delta_materialization_bridge_v0_1/summary.json",
+      "sha256": "dd93df1d6ec662763ac5d20a9ed25ace4f514a43d706e1294683d0a73d6efce5"
     },
     {
       "bytes": 266089,
@@ -1161,6 +1201,16 @@
       "sha256": "595eb28639d97612653498e7158dc23d1fef88999748066715704f7f251f7acc"
     },
     {
+      "bytes": 2552,
+      "path": "main/notes/maintenance/FORGE_DELTA_TO_PATCH_BRIDGE_V0_1_INTERFACE_VERSION_MISMATCH_20260909.md",
+      "sha256": "08e451c3052ac2516adf0a8e5c5e9404e6a0f5ff9efe9f5e701d67f7989fe297"
+    },
+    {
+      "bytes": 1188,
+      "path": "main/notes/maintenance/FORGE_SEMANTIC_DELTA_MATERIALIZATION_BRIDGE_V0_1_PREEXECUTION_20260909.md",
+      "sha256": "cb8f5cf070921dd2d8b33b965c2111c5731fabd06562024c6375fa3971ecc48c"
+    },
+    {
       "bytes": 1169,
       "path": "main/notes/maintenance/FORGE_SEMANTIC_DELTA_REPLAY_V0_1_1_HARNESS_INVALID_FROZEN_COPY_20260909.json",
       "sha256": "fbb81733340c955ab1157cc016ae4a21beb2c3ffa9d6f5b1858c58ccdba0da05"
@@ -1226,9 +1276,9 @@
       "sha256": "f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63"
     },
     {
-      "bytes": 41016,
+      "bytes": 42371,
       "path": "main/state/current.md",
-      "sha256": "f2402cbc40adfd3714a5cbe10c893b450597994c5262419767e67cde31902ee1"
+      "sha256": "c3bcb37de222f1b8badd7dc98554ce787081ee60e2c6b4ae337f0ed723810483"
     },
     {
       "bytes": 4215,
@@ -1261,14 +1311,14 @@
       "sha256": "8b1bf53adf3ac3fee09a4435f1f6df4518359f767fc76fe8d99df4ed6f44e4ae"
     },
     {
-      "bytes": 45110,
+      "bytes": 45384,
       "path": "main/state/doctrine_snapshot.md",
-      "sha256": "a2649ebb05e1c5833a0704b4aab57d7e382780f25bec573294b743d6f221a9a4"
+      "sha256": "bda2bad835c5d0abdbf8366968025085f5b04138a544bdcc2b3d46c7529057f5"
     },
     {
-      "bytes": 31253,
+      "bytes": 32698,
       "path": "main/state/next_steps.md",
-      "sha256": "29c4785fecd25ff76faa530299e265e774ec79c8c52593f999a75175265d5f52"
+      "sha256": "f817b10b89de57d2d105b89352840c2ff9c9f51b52e402aca34f10e7932fe5c0"
     },
     {
       "bytes": 24400,
@@ -1276,14 +1326,14 @@
       "sha256": "7c3effb3198eb0242092ad36d5e484e4e73e30bfc83b2b25c1ff015fd4238773"
     },
     {
-      "bytes": 31873,
+      "bytes": 32271,
       "path": "main/state/revisit_ledger.md",
-      "sha256": "b06fbd1c53e80a53fe81cbd26580d3094bcbbe9d7f91de25c358471f6e4524b8"
+      "sha256": "32932b3ff0f3dfcded29e623659f458b9556b61b519b692eee8ceb5aca6e2d8b"
     },
     {
-      "bytes": 54743,
+      "bytes": 55415,
       "path": "main/state/trace_matrix.md",
-      "sha256": "930f3687980fe86884b14aa4df626e39a3c808576a4f6b637be154b2be8404c2"
+      "sha256": "6f6db954e1e17e37f03e771646d653b05a0105a15214ae24debdaf3375c014c8"
     },
     {
       "bytes": 1618,
@@ -1291,9 +1341,9 @@
       "sha256": "2fbf22e5e9eb92c8a72972f3d166fb97c24055c0668a37ef594fcbb4236eae02"
     },
     {
-      "bytes": 8395,
+      "bytes": 8774,
       "path": "README.md",
-      "sha256": "a058793b911eaeca072cc482791db7988a50c467437aee968f3fa0d5ec38cb6d"
+      "sha256": "0a7147702a926fef3d2a4dfa6a08cdaf915f7a14f6dda654c156480b1f6d0c99"
     },
     {
       "bytes": 3271,
@@ -1491,6 +1541,30 @@
       "sha256": "f5dba1193203a03bbce3779179ce5b6947231dff1ae65f505e5024e3ec5ee207"
     }
   ],
+  "forge_delta_to_patch_bridge_v0_1_interface_mismatch": {
+    "app_role": "FRONTEND_UX_UNCHANGED",
+    "bridge_plan_sha256": "250682e76fefdb7323151ae7d97279cadddd8344b2ea4d6e88ce1010e31f84f6",
+    "bridge_semantic_key_v0_4": "sem:cbcebb9cb857a8d6962fe58f",
+    "bridge_sha256": "fd478615088a3dde2b052aea41e747a00b8647700c650f8c4a1e477cdaf008c2",
+    "checks_passed": 27,
+    "checks_total": 28,
+    "diagnosis_sha256": "08e451c3052ac2516adf0a8e5c5e9404e6a0f5ff9efe9f5e701d67f7989fe297",
+    "failed_check": "anchor_semantic_key_matches_patch",
+    "harness_sha256": "7b2c2adb8e92049645248cd8f253b89b7e697bfdffadaf02cbf1d1d261ed2858",
+    "materialized_equals_replay": true,
+    "materialized_target_exact": true,
+    "materializer_semantic_key_v0_3": "sem:eead6942606ea7baa9605bd2",
+    "next": "MATERIALIZER_V0_1_1_KEY_VERSION_ONLY_REPAIR_THEN_REGRESSION",
+    "patch_plan_sha256": "3991e491f6a653b1d297c98e3a8607d49555aa7545ae165984b738a6df407d9a",
+    "product_promotion": false,
+    "replay_target_exact": true,
+    "rollback_exact": true,
+    "same_attempt_replay_allowed": false,
+    "semantic_plan_sha256": "e18f8f7e0fd041cd55decd389349e03ad3e5276c276d42b110571683ae60fb5d",
+    "status": "INTERFACE_VERSION_MISMATCH__NOT_ADMITTED",
+    "summary_sha256": "dd93df1d6ec662763ac5d20a9ed25ace4f514a43d706e1294683d0a73d6efce5",
+    "target_pygoat_clean": true
+  },
   "forge_semantic_delta_replay_v0_1_1_harness_invalid": {
     "app_role": "FRONTEND_UX_UNCHANGED",
     "freeze_verification_completed": false,
@@ -1567,7 +1641,7 @@
     "target_pygoat_clean": true,
     "target_pygoat_head": "19d17cc8874861142b330636d068bbde54e86b85"
   },
-  "generated_utc": "2026-09-10T01:39:00Z",
+  "generated_utc": "2026-09-10T03:47:36Z",
   "git_copy_policy": {
     "binary_attribute_repair_20260904": "REPAIRED_PREEXISTING_ALL_TEXT_EOL_RULE_BEFORE_CANDIDATE_PUBLICATION_CHECKPOINT",
     "binary_carriers": "*.zip -text; exact bytes required",

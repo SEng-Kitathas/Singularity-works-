@@ -10,3 +10,5 @@ app/authority/rahl-sop/GOVERNANCE_CONTACT_V1_0_ACTIVATION.md -text
 app/state/attempt_artifacts/EGRESS_WIDER_V0_2_6_SHELLEXECUTEEX_HELPER_LIBRARY_20260909.dll -text
 # Preserve hash-addressed semantic-delta replay evidence bytes exactly.
 main/evidence/semantic_delta_replay_v0_1_3/** -text
+# Preserve hash-addressed delta-to-materialization bridge evidence bytes exactly.
+main/evidence/semantic_delta_materialization_bridge_v0_1/** -text

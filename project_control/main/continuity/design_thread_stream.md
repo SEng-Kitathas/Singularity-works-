@@ -1798,5 +1798,18 @@ v0.1.2 repaired base-workspace thawing but target UPSERT payloads remained froze
 ## Entry — Forge Semantic Delta Replay v0.1.3 bounded qualification — 2026-09-09
 After three preserved harness-invalid generations localized frozen/mutable serialization boundaries, v0.1.3 repaired only frozen UPSERT insertion and executed once. All 14 acceptance checks passed on the real qualified PyGoat snapshots: exact forward comment replay, exact semantic-removal replay, exact reverse replay, deterministic plan, stale-base rejection, tampered-precondition rejection, authority NONE, target Git clean/unchanged. Summary `f49a1f61b1a8d2fd22380d9bde219cbf952147523bc7c694faa914ce43cf25a1`, admission `84c1faef40e41842549b4880459f9fa240f0b9940ee6e3e5be9c5a08a4e70bbb`. Claim remains bounded to semantic-bundle replay; source materialization is next.
 
+
+---
+
+## Entry — Semantic Delta Replay v0.1.3 successor control closed — 2026-09-09
+Control `d9b7c5e8b1854b705f134a2d6e1dca6acc9a1a47` / CHECKPOINT `b8333e3758cc98edb14c1302744bc3ef44210678dd1122e27648c51def6b588e` fresh-clone verifier PASS 248. Exact bounded replay admission `84c1faef40e41842549b4880459f9fa240f0b9940ee6e3e5be9c5a08a4e70bbb` reproduced. Forge Core now has a qualified exact semantic-bundle replay primitive on the tested PyGoat snapshots. Source materialization is explicitly the next open bridge; App remains frontend UX and was not mutated.
+
+
 ## 2026-09-09 — PAIRED APP FRONTEND ADVANCE — WORKBENCH + GITHOME BOUNDED ADMISSIONS
 The active Forge-App thread shifted from historical security frontier to the explicit frontend/user-experience role. Workbench v0.1 was preserved before execution, retained its first HARNESS_INVALID result, repaired only the test expectation, passed 11/11 unit pressure, then consumed the actual qualified Core semantic-delta replay v0.1.3 summary/plan in a 14/14 read-only integration; bounded admission `ad1e85f2...`. GitHome v0.1 was then preserved before execution, passed 9/9 disposable Git pressure and 18/18 real App-repo integration over 596 project entries with no source mutation; bounded admission `3dd26813...`. App Store 225/244/323. Main paired state records these as App frontend progress only. Next App embodiment is Forge Shell Workspace composition over GitHome + Workbench + Ergo.
+
+
+---
+
+## Entry — Forge Delta->Patch Bridge v0.1 exposes semantic-key version mismatch — 2026-09-09
+Audit found source materialization was already qualified, so the true missing primitive was replay-plan -> materialization integration. Frozen bridge v0.1 executed once: 27/28 checks passed. Source materialization exactly matched the replay target, re-lowered bundle matched exactly, rollback was exact, target untouched. Sole failure was identity-contract disagreement: bridge/replay use snapshot-delta v0.4 semantic key `sem:cbcebb9...`; incumbent materializer v0.1 still imports v0.3 and emits `sem:eead6942...`. Result `dd93df1d6ec662763ac5d20a9ed25ace4f514a43d706e1294683d0a73d6efce5`, diagnosis `08e451c3052ac2516adf0a8e5c5e9404e6a0f5ff9efe9f5e701d67f7989fe297`. No bridge admission; repair materializer key version only.

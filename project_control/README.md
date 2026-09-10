@@ -57,6 +57,9 @@ The first real PyGoat replay candidate failed before replay due MappingProxy-inc
 ## Forge Core frontier — Semantic Delta Replay v0.1.3 bounded qualification
 Forge now has bounded evidence for exact deterministic semantic-bundle replay over qualified PyGoat snapshots, including reverse replay and stale/tamper rejection. This is not source materialization or general refactor equivalence. See `CURRENTNESS_AFTER_FORGE_SEMANTIC_DELTA_REPLAY_V0_1_3_BOUNDED_ADMISSION_20260909.md`.
 
+## Forge Core frontier — Delta->Patch semantic-key version mismatch
+The first replay-plan-to-materializer bridge achieved exact source/replay/rollback effect but was not admitted because materializer v0.1 still uses snapshot-delta v0.3 semantic keys while current replay/bridge uses v0.4. See `CURRENTNESS_AFTER_FORGE_DELTA_TO_PATCH_BRIDGE_V0_1_VERSION_MISMATCH_20260909.md`.
+
 ## Semantic admission
 Server successor admission stream: 23 artifacts / 3,116 deterministic lines / SHA `d0c1379fbd8c01e9616a1b8fee83f975bd1670179551eb354f05c1d5e3cc128e`, complete read 3,116/3,116, blocking findings 0.
 

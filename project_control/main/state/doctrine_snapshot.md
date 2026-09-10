@@ -517,7 +517,15 @@ Historical broad App-ownership wording is superseded for current scope, not dele
 `BUNDLE_REPLAY_PASS != ARBITRARY_PROGRAM_REFACTOR_EQUIVALENCE`
 `DELTA_AUTHORITY = NONE`
 
+
 ## APP FRONTEND WORKBENCH + GITHOME — BOUNDED ADMITTED — 2026-09-09
 - `APP_FRONTEND_PRESENTATION != CORE_SEMANTIC_AUTHORITY`.
 - `GITHOME_OWNS_PROJECT_NAVIGATION`; `FORGE_OWNS_PROJECT_UNDERSTANDING`.
 - Workbench/GitHome bounded admissions are product-surface progress, not semantic doctrine promotion. Shell composition is the next App pressure surface.
+
+
+## Semantic identity version scar — 2026-09-09
+`V0_3_CONTINUITY_KEY != V0_4_CONTINUITY_KEY`
+`SEMANTIC_KEY_VERSION_MISMATCH != MATERIALIZATION_FAILURE`
+`EXACT_EFFECT != CONTRACT_COHERENCE`
+Qualified components must agree on semantic identity version before composition.

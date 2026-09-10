@@ -144,4 +144,7 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 
 | 2026-09-09 | Forge semantic-delta replay | v0.1.3 `84c1faef40e41842549b4880459f9fa240f0b9940ee6e3e5be9c5a08a4e70bbb` qualifies exact forward/reverse replay, deterministic plan, stale/tamper rejection on real PyGoat snapshots | source materialization / broader transform algebra | semantic-to-source bounded round-trip discriminator | P0 | RESOLVED BOUNDED / NEXT BRIDGE OPEN | no App ownership |
 
+
 | 2026-09-09 | App Workbench/GitHome frontend admissions | Product surfaces are qualified independently but not yet composed into one shell | composition breaks authority separation or real-repo currentness | Forge Shell Workspace Attempt-0 + hostile integration | P0 | open | checkpoint currentness then App build |
+
+| 2026-09-09 | Replay->materializer identity contract | v0.1 bridge `dd93df1d6ec662763ac5d20a9ed25ace4f514a43d706e1294683d0a73d6efce5` 27/28; exact materialization/replay effect but v0.3/v0.4 semantic key mismatch | unify materializer on current v0.4 key then regress+bridge | checkpoint -> materializer v0.1.1 -> bridge v0.1.1 | P0 | OPEN / INTERFACE_VERSION_MISMATCH | no same-attempt replay |

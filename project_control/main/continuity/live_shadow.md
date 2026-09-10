@@ -320,9 +320,26 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 - Qualified only exact semantic-bundle replay over this qualified PyGoat fixture. Source materialization/refactor equivalence/cross-language/concurrent merge remain unearned.
 - Next after control closure: bounded semantic-to-source materialization / reversible round-trip discriminator.
 
+
+## SEMANTIC DELTA REPLAY V0.1.3 SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Durable project-control `d9b7c5e8b1854b705f134a2d6e1dca6acc9a1a47` / CHECKPOINT `b8333e3758cc98edb14c1302744bc3ef44210678dd1122e27648c51def6b588e` is non-force published and independently fresh-clone verified PASS 248.
+- Exact module `870d5c76...`, summary `f49a1f61...`, output manifest `14120678...`, and admission `84c1faef40e41842549b4880459f9fa240f0b9940ee6e3e5be9c5a08a4e70bbb` reproduce.
+- Current Forge Core fixed point: bounded exact semantic-bundle replay qualified over the tested PyGoat snapshots; source materialization remains unearned.
+- App remains frontend UX arm and was not mutated by this Core qualification.
+- Next Forge dependency frontier: bounded semantic-to-source materialization / reversible source round-trip, to be designed as a NEW attempt after re-grounding.
+
+
 ## APP FRONTEND WORKBENCH + GITHOME — BOUNDED ADMITTED — 2026-09-09
 - App remains frontend/user-experience embodiment arm; Main/Core whole-system and semantic authority unchanged.
 - App source **`c0877964d793fcaf524f130fa745f3d172c17601`** at bounded admission closure. Workbench v0.1 admission `ad1e85f27e8ed61db5777341aaa3efe502988ba2a3dfc8897766d99129bacaea`; GitHome v0.1 admission `3dd2681344f3d0591d22a5d8f543b365ae056733423698e9d7760eb515ef749e`.
 - Workbench: repaired unit 11/11 + actual Core v0.1.3 replay integration 14/14, authority NONE, materialization disabled. GitHome: 9/9 fixture + 18/18 real App repo, complete 596-entry non-.git snapshot, no source mutation.
 - App Store **225/244/323**, integrity ok/WAL/FULL. Cross-arm receipt `5a0183b605ca1720705b9b029cfc8c435a82e802b9b19e304988161a925c20c2`.
 - Current control/Core binding `d9b7c5e8b1854b705f134a2d6e1dca6acc9a1a47` / CHECKPOINT `b8333e3758cc98edb14c1302744bc3ef44210678dd1122e27648c51def6b588e`. Next App cut: Forge Shell Workspace composition of GitHome + Workbench + Ergo without authority merge.
+
+
+## FORGE DELTA->PATCH BRIDGE V0.1 — INTERFACE VERSION MISMATCH — CURRENT — 2026-09-09
+- Control `4783bf040546d0ba331879a104006540030d51fc` / CHECKPOINT `a537abe0c6b98ef5393b5fd0a8ea14cd5c7e270da1f3d8f46155419f189b0a26`. Bridge `fd478615088a3dde2b052aea41e747a00b8647700c650f8c4a1e477cdaf008c2` + harness `7b2c2adb8e92049645248cd8f253b89b7e697bfdffadaf02cbf1d1d261ed2858` executed once.
+- Exact summary `dd93df1d6ec662763ac5d20a9ed25ace4f514a43d706e1294683d0a73d6efce5`: **27/28 PASS**, NOT_ADMITTED as bridge qualification.
+- Materialized source exactly matched replay target; re-lowered bundle exactly matched replay target; rollback exact; target Git clean. Sole failure: bridge v0.4 semantic key `sem:cbcebb9...` != materializer v0.3 key `sem:eead6942...`.
+- Root cause: materializer v0.1 is pinned to snapshot-delta v0.3 semantic continuity identity; current replay/bridge uses qualified v0.4.
+- Diagnosis `08e451c3052ac2516adf0a8e5c5e9404e6a0f5ff9efe9f5e701d67f7989fe297`. Next after checkpoint: materializer v0.1.1 key-version-only repair, regress old 26/26 contract, then NEW bridge v0.1.1.
