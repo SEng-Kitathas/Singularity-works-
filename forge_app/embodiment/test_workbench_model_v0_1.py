@@ -190,7 +190,7 @@ class ForgeWorkbenchModelV01Tests(unittest.TestCase):
         self.assertEqual([node.entity_id for node in capability_model.nodes], [capability])
         unknown_model = build_workbench_model(bundle, state=WorkbenchInteractionState(lens="unknown"))
         self.assertEqual([node.entity_id for node in unknown_model.nodes], [route])
-        search_model = build_workbench_model(bundle, state=WorkbenchInteractionState(query="request.user.name"))
+        search_model = build_workbench_model(bundle, state=WorkbenchInteractionState(query="reads_value"))
         self.assertEqual({node.entity_id for node in search_model.nodes}, {route})
         for model in (capability_model, unknown_model, search_model):
             self.assertTrue({node.entity_id for node in model.nodes}.issubset(all_ids))
