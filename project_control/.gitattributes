@@ -12,3 +12,5 @@ app/state/attempt_artifacts/EGRESS_WIDER_V0_2_6_SHELLEXECUTEEX_HELPER_LIBRARY_20
 main/evidence/semantic_delta_replay_v0_1_3/** -text
 # Preserve hash-addressed delta-to-materialization bridge evidence bytes exactly.
 main/evidence/semantic_delta_materialization_bridge_v0_1/** -text
+# Preserve hash-addressed materializer v0.1.1 regression evidence exactly.
+main/evidence/semantic_materializer_v0_1_1_regression/** -text

@@ -1,0 +1,114 @@
+{
+  "apply_receipt": {
+    "materializer_authority": "NONE",
+    "new_bytes": 59,
+    "old_bytes": 43,
+    "patch_id": "patch:05a6050909b331ed81c43b36",
+    "post_sha256": "1e50080282ce58b43915b178cdc851d3036d397da57102d7ffe5cc0a73531af8",
+    "pre_sha256": "84353e8899d9997d4d9b0d07d4565a5e92688ade0eeae481387f98c748c3bb11",
+    "start_byte": 201
+  },
+  "artifact_hashes": {
+    "adapters": "d99b1c5196f5ff2c79819fc83b01144f6935879a9ecb2535986895d0c5674e72",
+    "delta": "d7c71ee3ce6d3db4bdd227d4696cad526721462814a15a6908d80d5ce6c1c0cb",
+    "index": "b8744b0825acf45c5943dec70b9fb44c1d8828ab462301e0eb3a29cdcc12c7d8",
+    "ir": "5d019792cd72a58b261a9a7945eb23e3973befeb337a8625853f245fcd81a524",
+    "materializer": "904adf12d86a32a64cf74a42e297e2c6029282cd79c6abd89eb77374b1fcf089",
+    "python_security": "c40f8082a096fabc34e75abeae1539b92a711159d648273b2337a86575dd83ef",
+    "relation": "a06193536fbebd56e47cce8a293f9752c99f2fd150a3ef388cde06a1656e89f4"
+  },
+  "check_count": 26,
+  "checks": {
+    "drifted_precondition_rejected": true,
+    "explicit_apply_required": true,
+    "inverse_precondition_matches_post": true,
+    "observed_delta_authority_none": true,
+    "observed_has_no_ambiguity": true,
+    "observed_has_no_multiplicity_change": true,
+    "observed_has_no_semantic_additions": true,
+    "observed_removed_exact_intended_key": true,
+    "old_index_rejects_post_snapshot": true,
+    "patch_authority_none": true,
+    "patch_intent_key_matches_selected_fact": true,
+    "patch_plan_deterministic": true,
+    "patch_readback_post_hash_exact": true,
+    "post_snapshot_differs_from_old": true,
+    "rollback_route_count_exact": true,
+    "rollback_snapshot_exact": true,
+    "rollback_source_exact": true,
+    "route_count_decreases_exactly_one": true,
+    "sandbox_only_mutation": true,
+    "sandbox_pre_snapshot_exactly_matches_original": true,
+    "selected_fact_exact_evidence_path": true,
+    "selected_fact_unique": true,
+    "target_clean_after": true,
+    "target_clean_before": true,
+    "target_file_hash_unchanged": true,
+    "target_head_unchanged": true
+  },
+  "not_proven": [
+    "semantic substitution/addition materialization",
+    "multi-file patch transactions",
+    "language-agnostic syntax lowering",
+    "capability/provider substitution round trip",
+    "concurrent source edits / optimistic transaction conflict resolution",
+    "public/source promotion readiness"
+  ],
+  "observed_delta": {
+    "added_semantic_keys": [],
+    "ambiguous_semantic_keys": [],
+    "changed_sources": 1,
+    "delta_id": "delta:d9e2a6fedd41fb6acf3c0adf",
+    "multiplicity_changes": [],
+    "refreshed_facts": 112,
+    "removed_semantic_keys": [
+      "sem:cbcebb9cb857a8d6962fe58f"
+    ],
+    "retained_revision_facts": 545
+  },
+  "pass_count": 26,
+  "rollback_receipt": {
+    "materializer_authority": "NONE",
+    "new_bytes": 43,
+    "old_bytes": 59,
+    "patch_id": "patch:714bc8be589e0dbee13aad5e",
+    "post_sha256": "84353e8899d9997d4d9b0d07d4565a5e92688ade0eeae481387f98c748c3bb11",
+    "pre_sha256": "1e50080282ce58b43915b178cdc851d3036d397da57102d7ffe5cc0a73531af8",
+    "start_byte": 201
+  },
+  "route_counts": {
+    "old": 136,
+    "post": 135,
+    "rollback": 136
+  },
+  "schema": "forge.semantic-materialization-pygoat-route/0.1.1",
+  "selected": {
+    "evidence_end_byte": 244,
+    "evidence_id": "ev:ce2d37d87f71ff4bc45cf17f",
+    "evidence_snippet_sha256": "4004e5a6f0fe8e9e173db611a023121d0edca284ee84aae0cac74a1fa3cc06df",
+    "evidence_start_byte": 201,
+    "fact_id": "fact:47c03a6ffdbbee287c3024e2",
+    "new_text": "    # LBE semantic materialization: homepage route removed\n",
+    "old_text": "    path('', views.home, name='homepage'),\n",
+    "semantic_key": "sem:cbcebb9cb857a8d6962fe58f",
+    "source_path": "PyGoat/introduction/urls.py",
+    "source_sha256": "84353e8899d9997d4d9b0d07d4565a5e92688ade0eeae481387f98c748c3bb11"
+  },
+  "snapshots": {
+    "old": "bundle:24bab65bcaa508bc81d64367",
+    "post": "bundle:e3281f4d3e0541092eb5ea44",
+    "rollback": "bundle:24bab65bcaa508bc81d64367",
+    "sandbox_pre": "bundle:24bab65bcaa508bc81d64367"
+  },
+  "target_git": {
+    "after": {
+      "head": "19d17cc8874861142b330636d068bbde54e86b85",
+      "tracked_dirty_lines": 0
+    },
+    "before": {
+      "head": "19d17cc8874861142b330636d068bbde54e86b85",
+      "tracked_dirty_lines": 0
+    }
+  },
+  "verdict": "PASS"
+}

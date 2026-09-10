@@ -226,9 +226,9 @@
   },
   "files": [
     {
-      "bytes": 860,
+      "bytes": 998,
       "path": ".gitattributes",
-      "sha256": "a1293a9e972643dbcef3a473c5ab3e3538269c6171ae7be8b1efbb26e2f5f470"
+      "sha256": "463274765ed4578aa5b2955e02075f1987b5ad227d2ebd41ead6f44401e0e5a6"
     },
     {
       "bytes": 3534,
@@ -806,6 +806,11 @@
       "sha256": "d8dea6a81fd2c2da728f4e7dd3d9dc892b30d2d56830532a5570350f9164a983"
     },
     {
+      "bytes": 1310,
+      "path": "CURRENTNESS_AFTER_FORGE_MATERIALIZER_V0_1_1_KEY_MIGRATION_PASS_20260909.md",
+      "sha256": "1b701ab54f0d41e0f185c4bba528b87477bfe1a2acedeff8a75ef5997415150b"
+    },
+    {
       "bytes": 1060,
       "path": "CURRENTNESS_AFTER_FORGE_SEMANTIC_DELTA_REPLAY_V0_1_1_HARNESS_INVALID_20260909.md",
       "sha256": "e000c02a04883b5052d0f254779714a591a31e3c207053e9f52d33a3c61fe0ba"
@@ -931,6 +936,11 @@
       "sha256": "870d5c76fd555744e77206b25aedf88cfa9c359890f970524003dd93275c8818"
     },
     {
+      "bytes": 6290,
+      "path": "main/code/forge_semantic_materializer_v0_1_1.py",
+      "sha256": "904adf12d86a32a64cf74a42e297e2c6029282cd79c6abd89eb77374b1fcf089"
+    },
+    {
       "bytes": 7086,
       "path": "main/code/run_semantic_delta_replay_pygoat_v0_1.py",
       "sha256": "1d781698eea684d22043d77b852a3231f90af9c11c7449dbfe9db5eac3abfb77"
@@ -956,14 +966,19 @@
       "sha256": "7b2c2adb8e92049645248cd8f253b89b7e697bfdffadaf02cbf1d1d261ed2858"
     },
     {
-      "bytes": 182818,
-      "path": "main/continuity/design_thread_stream.md",
-      "sha256": "ee33ca733740d9242584b2d1f1422fb164cd4fccb6c2c28665d2f10b5c3460ec"
+      "bytes": 15430,
+      "path": "main/code/run_semantic_materialization_pygoat_route_v0_1_1.py",
+      "sha256": "d8f98002d16cba7a54f51c9bea1a7d286a482a5cb6bc6303924efa8805763e26"
     },
     {
-      "bytes": 37628,
+      "bytes": 183471,
+      "path": "main/continuity/design_thread_stream.md",
+      "sha256": "c0938c5cc52b701ae18ec26cd304a9b7e6534e94414855b7a639ce7180f53192"
+    },
+    {
+      "bytes": 38855,
       "path": "main/continuity/live_shadow.md",
-      "sha256": "e4778bca50b7e6dc94f76b5403c6e5a68620f731c3c83d4b2d225d7169573ae1"
+      "sha256": "80759d6a058533658a53349cdcc77774b49a0ffaa2799d1a74d9a9c983eec86e"
     },
     {
       "bytes": 40313,
@@ -1034,6 +1049,46 @@
       "bytes": 2124,
       "path": "main/evidence/semantic_delta_replay_v0_1_3/summary.json",
       "sha256": "f49a1f61b1a8d2fd22380d9bde219cbf952147523bc7c694faa914ce43cf25a1"
+    },
+    {
+      "bytes": 324,
+      "path": "main/evidence/semantic_materializer_v0_1_1_regression/apply_receipt.json",
+      "sha256": "2679a2b7e2aa528ba9e860856ec7c0920b7883ef7240a4270ba2f7db3aeb0c7e"
+    },
+    {
+      "bytes": 894,
+      "path": "main/evidence/semantic_materializer_v0_1_1_regression/inverse_patch_plan.json",
+      "sha256": "f20371e4fd2378d62a97f06a31934a710582fb4d78c4c16c977b6be04bbbbf14"
+    },
+    {
+      "bytes": 67825,
+      "path": "main/evidence/semantic_materializer_v0_1_1_regression/observed_delta.json",
+      "sha256": "63177ad4e183b3e369e1b258b8e931595f64e735700ab8c2a742c5bd5e829641"
+    },
+    {
+      "bytes": 1200,
+      "path": "main/evidence/semantic_materializer_v0_1_1_regression/output_manifest.json",
+      "sha256": "61efadcf5dd651097f7392e7bef49356e2f351c96172e0cba156e17b63fed652"
+    },
+    {
+      "bytes": 189,
+      "path": "main/evidence/semantic_materializer_v0_1_1_regression/patch.diff",
+      "sha256": "73455c0cfcce69b2cfdc56db9a08d7bdd6b971f0f30b4cfe8859fc3855385cbb"
+    },
+    {
+      "bytes": 886,
+      "path": "main/evidence/semantic_materializer_v0_1_1_regression/patch_plan.json",
+      "sha256": "f4a67db37713f282ec1990f141a4fdb653c34bf9b91f66c1c6716fdb96c95e42"
+    },
+    {
+      "bytes": 324,
+      "path": "main/evidence/semantic_materializer_v0_1_1_regression/rollback_receipt.json",
+      "sha256": "535e7bfe5482370d5732a888c745a8ed6fca4186471f167cd2cf1804d3916150"
+    },
+    {
+      "bytes": 4484,
+      "path": "main/evidence/semantic_materializer_v0_1_1_regression/summary.json",
+      "sha256": "20ce4577eda90690147f919f532cbea803ec97552b3a71775f4c726661916604"
     },
     {
       "bytes": 3071,
@@ -1251,6 +1306,16 @@
       "sha256": "dd571a6a172fac025b3dcc281d3819c6b255f3ada236f8776b943b3d02c41051"
     },
     {
+      "bytes": 1318,
+      "path": "main/notes/maintenance/FORGE_SEMANTIC_MATERIALIZER_V0_1_1_KEY_VERSION_REPAIR_PREEXECUTION_20260909.md",
+      "sha256": "e12983d1e5a47a55d4f755cc60ee23c5c6f4d896fa88288d0bf1435d161b3ce9"
+    },
+    {
+      "bytes": 1577,
+      "path": "main/notes/maintenance/FORGE_SEMANTIC_MATERIALIZER_V0_1_1_V0_4_KEY_REGRESSION_ADMISSION_20260909.md",
+      "sha256": "2db1b63f2e66ef3e6f23e9bbc1e1125aab6c035531fcf8bece7f77f364fbdea2"
+    },
+    {
       "bytes": 2685,
       "path": "main/notes/maintenance/FORGE_SINGULARITY_WORKS_PRIMARY_SCOPE_CORRECTION_20260909.md",
       "sha256": "fb2871c868e0224cfe3754e45ee31bc58f3de6a6a45e658fa1caa6c1127b50fe"
@@ -1276,9 +1341,9 @@
       "sha256": "f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63"
     },
     {
-      "bytes": 42371,
+      "bytes": 43223,
       "path": "main/state/current.md",
-      "sha256": "c3bcb37de222f1b8badd7dc98554ce787081ee60e2c6b4ae337f0ed723810483"
+      "sha256": "f39735ba65115baeecc62fbaeb764733d21d31f718322a65814af388f27ef2b0"
     },
     {
       "bytes": 4215,
@@ -1311,14 +1376,14 @@
       "sha256": "8b1bf53adf3ac3fee09a4435f1f6df4518359f767fc76fe8d99df4ed6f44e4ae"
     },
     {
-      "bytes": 45384,
+      "bytes": 45625,
       "path": "main/state/doctrine_snapshot.md",
-      "sha256": "bda2bad835c5d0abdbf8366968025085f5b04138a544bdcc2b3d46c7529057f5"
+      "sha256": "b82fc485b9c7768aa5b2b9faacfcbf62acb57c471933e4a846d24363b72db851"
     },
     {
-      "bytes": 32698,
+      "bytes": 33500,
       "path": "main/state/next_steps.md",
-      "sha256": "f817b10b89de57d2d105b89352840c2ff9c9f51b52e402aca34f10e7932fe5c0"
+      "sha256": "7ce8650b0bbb0887dd77b40e80be05baa99f5860854adc396c6b1f3e2615437c"
     },
     {
       "bytes": 24400,
@@ -1326,14 +1391,14 @@
       "sha256": "7c3effb3198eb0242092ad36d5e484e4e73e30bfc83b2b25c1ff015fd4238773"
     },
     {
-      "bytes": 32271,
+      "bytes": 32570,
       "path": "main/state/revisit_ledger.md",
-      "sha256": "32932b3ff0f3dfcded29e623659f458b9556b61b519b692eee8ceb5aca6e2d8b"
+      "sha256": "909bd30f548e0100c06856cb36924b33a87ecf3d52eed9f6afa1591934e9695d"
     },
     {
-      "bytes": 55415,
+      "bytes": 56008,
       "path": "main/state/trace_matrix.md",
-      "sha256": "6f6db954e1e17e37f03e771646d653b05a0105a15214ae24debdaf3375c014c8"
+      "sha256": "3978aab6540c440bb30ef909b78251c1193f59e7646edd19d47d9482aec4b735"
     },
     {
       "bytes": 1618,
@@ -1641,7 +1706,24 @@
     "target_pygoat_clean": true,
     "target_pygoat_head": "19d17cc8874861142b330636d068bbde54e86b85"
   },
-  "generated_utc": "2026-09-10T03:47:36Z",
+  "forge_semantic_materializer_v0_1_1_v0_4_key_regression": {
+    "admission_sha256": "2db1b63f2e66ef3e6f23e9bbc1e1125aab6c035531fcf8bece7f77f364fbdea2",
+    "app_role": "FRONTEND_UX_UNCHANGED",
+    "bridge_qualified": false,
+    "checks_passed": 26,
+    "checks_total": 26,
+    "harness_sha256": "d8f98002d16cba7a54f51c9bea1a7d286a482a5cb6bc6303924efa8805763e26",
+    "materializer_sha256": "904adf12d86a32a64cf74a42e297e2c6029282cd79c6abd89eb77374b1fcf089",
+    "next": "NEW_DELTA_TO_PATCH_BRIDGE_V0_1_1",
+    "product_promotion": false,
+    "rollback_exact": true,
+    "semantic_key": "sem:cbcebb9cb857a8d6962fe58f",
+    "snapshot_delta_contract": "v0.4",
+    "status": "BOUNDED_MATERIALIZER_V0_4_KEY_MIGRATION_QUALIFIED",
+    "summary_sha256": "20ce4577eda90690147f919f532cbea803ec97552b3a71775f4c726661916604",
+    "target_pygoat_clean": true
+  },
+  "generated_utc": "2026-09-10T03:51:44Z",
   "git_copy_policy": {
     "binary_attribute_repair_20260904": "REPAIRED_PREEXISTING_ALL_TEXT_EOL_RULE_BEFORE_CANDIDATE_PUBLICATION_CHECKPOINT",
     "binary_carriers": "*.zip -text; exact bytes required",

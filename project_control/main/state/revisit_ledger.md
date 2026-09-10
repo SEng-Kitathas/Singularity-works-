@@ -148,3 +148,5 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 | 2026-09-09 | App Workbench/GitHome frontend admissions | Product surfaces are qualified independently but not yet composed into one shell | composition breaks authority separation or real-repo currentness | Forge Shell Workspace Attempt-0 + hostile integration | P0 | open | checkpoint currentness then App build |
 
 | 2026-09-09 | Replay->materializer identity contract | v0.1 bridge `dd93df1d6ec662763ac5d20a9ed25ace4f514a43d706e1294683d0a73d6efce5` 27/28; exact materialization/replay effect but v0.3/v0.4 semantic key mismatch | unify materializer on current v0.4 key then regress+bridge | checkpoint -> materializer v0.1.1 -> bridge v0.1.1 | P0 | OPEN / INTERFACE_VERSION_MISMATCH | no same-attempt replay |
+
+| 2026-09-09 | materializer semantic-key version | v0.1.1 `20ce4577eda90690147f919f532cbea803ec97552b3a71775f4c726661916604` 26/26 PASS on current v0.4 identity | replay->materializer bridge coherence | checkpoint then bridge v0.1.1 | P0 | RESOLVED BOUNDED / BRIDGE OPEN | no lowering generality |

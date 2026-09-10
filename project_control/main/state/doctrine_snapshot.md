@@ -529,3 +529,9 @@ Historical broad App-ownership wording is superseded for current scope, not dele
 `SEMANTIC_KEY_VERSION_MISMATCH != MATERIALIZATION_FAILURE`
 `EXACT_EFFECT != CONTRACT_COHERENCE`
 Qualified components must agree on semantic identity version before composition.
+
+
+## Current materializer identity contract
+For new Forge integration work, semantic materializer key identity is bound to snapshot-delta v0.4.
+`V0_3_KEY_HISTORY != CURRENT_V0_4_KEY_CONTRACT`
+`MATERIALIZER_KEY_MIGRATION_PASS != BRIDGE_PASS`

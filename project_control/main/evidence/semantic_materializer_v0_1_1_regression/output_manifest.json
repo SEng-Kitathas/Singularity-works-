@@ -1,0 +1,41 @@
+{
+  "count": 7,
+  "files": [
+    {
+      "bytes": 324,
+      "path": "apply_receipt.json",
+      "sha256": "2679a2b7e2aa528ba9e860856ec7c0920b7883ef7240a4270ba2f7db3aeb0c7e"
+    },
+    {
+      "bytes": 894,
+      "path": "inverse_patch_plan.json",
+      "sha256": "f20371e4fd2378d62a97f06a31934a710582fb4d78c4c16c977b6be04bbbbf14"
+    },
+    {
+      "bytes": 67825,
+      "path": "observed_delta.json",
+      "sha256": "63177ad4e183b3e369e1b258b8e931595f64e735700ab8c2a742c5bd5e829641"
+    },
+    {
+      "bytes": 189,
+      "path": "patch.diff",
+      "sha256": "73455c0cfcce69b2cfdc56db9a08d7bdd6b971f0f30b4cfe8859fc3855385cbb"
+    },
+    {
+      "bytes": 886,
+      "path": "patch_plan.json",
+      "sha256": "f4a67db37713f282ec1990f141a4fdb653c34bf9b91f66c1c6716fdb96c95e42"
+    },
+    {
+      "bytes": 324,
+      "path": "rollback_receipt.json",
+      "sha256": "535e7bfe5482370d5732a888c745a8ed6fca4186471f167cd2cf1804d3916150"
+    },
+    {
+      "bytes": 4484,
+      "path": "summary.json",
+      "sha256": "20ce4577eda90690147f919f532cbea803ec97552b3a71775f4c726661916604"
+    }
+  ],
+  "schema": "forge.semantic-materialization-output-manifest/0.1"
+}

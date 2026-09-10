@@ -406,3 +406,12 @@ App product/frontend advanced to source `c0877964...` with bounded Workbench `ad
 
 ## Forge Core bridge frontier — semantic-key contract mismatch
 Delta->Patch v0.1 first run `dd93df1d6ec662763ac5d20a9ed25ace4f514a43d706e1294683d0a73d6efce5` achieved exact replay/materialization/rollback equivalence but failed 1/28 because materializer v0.1 computes semantic keys with snapshot-delta v0.3 while replay/bridge uses v0.4. Diagnosis `08e451c3052ac2516adf0a8e5c5e9404e6a0f5ff9efe9f5e701d67f7989fe297`. No bridge admission until identity version is unified.
+
+
+## DELTA->PATCH V0.1 MISMATCH SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Durable control `83a3a9479282ef76984df3a028de561f04b76189` / CHECKPOINT `b5fb165270e11853cc86071c77868ab05eabdc4edf9e5f2ca852736695e6f8da` fresh-clone verified PASS 263.
+- v0.1 bridge remains immutable/non-replayable. Materializer v0.1.1 key-version-only repair is now permitted.
+
+
+## Forge materializer identity migration — qualified bounded regression
+Materializer v0.1.1 `904adf12d86a32a64cf74a42e297e2c6029282cd79c6abd89eb77374b1fcf089` now uses snapshot-delta v0.4 semantic identity. Regression `20ce4577eda90690147f919f532cbea803ec97552b3a71775f4c726661916604` is 26/26 PASS with semantic key `sem:cbcebb9...`, exact rollback and clean PyGoat. Admission `2db1b63f2e66ef3e6f23e9bbc1e1125aab6c035531fcf8bece7f77f364fbdea2`. Bridge qualification remains open.

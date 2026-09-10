@@ -352,3 +352,15 @@ Create a NEW sibling that only converts UPSERT payload dataclasses into mutable-
 3. Run NEW PyGoat materializer regression sibling; require incumbent 26/26 exact source/semantic/rollback gates.
 4. Only if regression passes, run NEW Delta->Patch bridge v0.1.1 using materializer v0.1.1; require 28/28.
 5. Do not widen to automatic source lowering, additions, multi-file transactions, or cross-language materialization.
+
+
+## DELTA->PATCH V0.1 MISMATCH SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Durable control `83a3a9479282ef76984df3a028de561f04b76189` / CHECKPOINT `b5fb165270e11853cc86071c77868ab05eabdc4edf9e5f2ca852736695e6f8da` fresh-clone verified PASS 263.
+- v0.1 bridge remains immutable/non-replayable. Materializer v0.1.1 key-version-only repair is now permitted.
+
+
+## P0 — after materializer v0.1.1 regression
+1. Checkpoint admission `2db1b63f2e66ef3e6f23e9bbc1e1125aab6c035531fcf8bece7f77f364fbdea2` + exact 26/26 artifacts.
+2. Do not rerun this regression attempt.
+3. Create NEW Delta->Patch bridge v0.1.1 harness importing materializer v0.1.1; preserve bridge semantics and same 28 checks.
+4. Require semantic anchor/patch key agreement plus exact replay/materialization/rollback equivalence.

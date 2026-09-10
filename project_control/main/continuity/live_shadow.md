@@ -343,3 +343,15 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 - Materialized source exactly matched replay target; re-lowered bundle exactly matched replay target; rollback exact; target Git clean. Sole failure: bridge v0.4 semantic key `sem:cbcebb9...` != materializer v0.3 key `sem:eead6942...`.
 - Root cause: materializer v0.1 is pinned to snapshot-delta v0.3 semantic continuity identity; current replay/bridge uses qualified v0.4.
 - Diagnosis `08e451c3052ac2516adf0a8e5c5e9404e6a0f5ff9efe9f5e701d67f7989fe297`. Next after checkpoint: materializer v0.1.1 key-version-only repair, regress old 26/26 contract, then NEW bridge v0.1.1.
+
+
+## DELTA->PATCH V0.1 MISMATCH SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Durable control `83a3a9479282ef76984df3a028de561f04b76189` / CHECKPOINT `b5fb165270e11853cc86071c77868ab05eabdc4edf9e5f2ca852736695e6f8da` fresh-clone verified PASS 263.
+- v0.1 bridge remains immutable/non-replayable. Materializer v0.1.1 key-version-only repair is now permitted.
+
+
+## MATERIALIZER V0.1.1 V0.4 KEY MIGRATION — BOUNDED PASS — CURRENT — 2026-09-09
+- Control `83a3a9479282ef76984df3a028de561f04b76189` / CHECKPOINT `b5fb165270e11853cc86071c77868ab05eabdc4edf9e5f2ca852736695e6f8da`. Materializer `904adf12d86a32a64cf74a42e297e2c6029282cd79c6abd89eb77374b1fcf089` + regression `d8f98002d16cba7a54f51c9bea1a7d286a482a5cb6bc6303924efa8805763e26` executed once.
+- Exact summary `20ce4577eda90690147f919f532cbea803ec97552b3a71775f4c726661916604`: **26/26 PASS**. Current semantic key `sem:cbcebb9...`; PyGoat clean/unchanged. Admission `2db1b63f2e66ef3e6f23e9bbc1e1125aab6c035531fcf8bece7f77f364fbdea2`.
+- This closes the v0.3->v0.4 identity migration without materialization regression. It does not yet admit the Delta->Patch bridge.
+- Next after control closure: NEW bridge v0.1.1 using materializer v0.1.1, same 28 checks.

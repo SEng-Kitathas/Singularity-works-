@@ -1,0 +1,5 @@
+--- a/PyGoat/introduction/urls.py
++++ b/PyGoat/introduction/urls.py
+@@ -1 +1 @@
+-    path('', views.home, name='homepage'),
++    # LBE semantic materialization: homepage route removed

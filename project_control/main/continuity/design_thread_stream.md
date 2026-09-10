@@ -1813,3 +1813,9 @@ The active Forge-App thread shifted from historical security frontier to the exp
 
 ## Entry — Forge Delta->Patch Bridge v0.1 exposes semantic-key version mismatch — 2026-09-09
 Audit found source materialization was already qualified, so the true missing primitive was replay-plan -> materialization integration. Frozen bridge v0.1 executed once: 27/28 checks passed. Source materialization exactly matched the replay target, re-lowered bundle matched exactly, rollback was exact, target untouched. Sole failure was identity-contract disagreement: bridge/replay use snapshot-delta v0.4 semantic key `sem:cbcebb9...`; incumbent materializer v0.1 still imports v0.3 and emits `sem:eead6942...`. Result `dd93df1d6ec662763ac5d20a9ed25ace4f514a43d706e1294683d0a73d6efce5`, diagnosis `08e451c3052ac2516adf0a8e5c5e9404e6a0f5ff9efe9f5e701d67f7989fe297`. No bridge admission; repair materializer key version only.
+
+
+---
+
+## Entry — Materializer v0.1.1 current-key migration regression PASS — 2026-09-09
+After the Delta->Patch v0.1 interface mismatch exposed materializer v0.3 semantic-key drift, v0.1.1 changed only the materializer key dependency to qualified snapshot-delta v0.4. The regression oracle was also bound to v0.4 while preserving the same 26 checks. First execution passed 26/26; selected key now `sem:cbcebb9...`, exact rollback and clean target preserved. Summary `20ce4577eda90690147f919f532cbea803ec97552b3a71775f4c726661916604`, admission `2db1b63f2e66ef3e6f23e9bbc1e1125aab6c035531fcf8bece7f77f364fbdea2`. Bridge still requires a new attempt.

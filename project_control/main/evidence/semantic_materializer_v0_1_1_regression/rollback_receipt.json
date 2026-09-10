@@ -1,0 +1,9 @@
+{
+  "materializer_authority": "NONE",
+  "new_bytes": 43,
+  "old_bytes": 59,
+  "patch_id": "patch:714bc8be589e0dbee13aad5e",
+  "post_sha256": "84353e8899d9997d4d9b0d07d4565a5e92688ade0eeae481387f98c748c3bb11",
+  "pre_sha256": "1e50080282ce58b43915b178cdc851d3036d397da57102d7ffe5cc0a73531af8",
+  "start_byte": 201
+}

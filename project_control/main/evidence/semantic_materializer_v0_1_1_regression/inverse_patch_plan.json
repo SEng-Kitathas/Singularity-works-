@@ -1,0 +1,17 @@
+{
+  "end_byte": 260,
+  "expected_post_sha256": "84353e8899d9997d4d9b0d07d4565a5e92688ade0eeae481387f98c748c3bb11",
+  "expected_snippet_sha256": "c7ef30e8c4931f7a0e0080a85fa135de959da18f603795d1edc4e713f2781e6c",
+  "expected_source_sha256": "1e50080282ce58b43915b178cdc851d3036d397da57102d7ffe5cc0a73531af8",
+  "explicit_apply_required": true,
+  "intended_fact_id": "fact:47c03a6ffdbbee287c3024e2",
+  "intended_operation": "inverse:remove_semantic_relation:passes_callable",
+  "intended_semantic_key": "sem:cbcebb9cb857a8d6962fe58f",
+  "materializer_authority": "NONE",
+  "new_text": "    path('', views.home, name='homepage'),\n",
+  "old_text": "    # LBE semantic materialization: homepage route removed\n",
+  "patch_id": "patch:714bc8be589e0dbee13aad5e",
+  "source_path": "PyGoat/introduction/urls.py",
+  "start_byte": 201,
+  "version": "forge.semantic-materializer/0.1.1"
+}
