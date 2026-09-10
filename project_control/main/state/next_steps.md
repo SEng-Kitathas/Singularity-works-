@@ -298,3 +298,13 @@ Seal successor control with result `fa355f068636714e3fc6584a2377c783dd5c23a7de36
 3. NEW v0.1.1 may change only object digest/descriptor serialization so frozen MappingProxy-backed fields serialize canonically without deepcopy.
 4. Preserve typed REMOVE/UPSERT algebra, dependency order, exact base/target IDs, precondition digests, freeze verification, authority NONE, and the same real PyGoat discriminator.
 5. Required first valid result remains: forward exact comment replay, forward semantic-removal replay, reverse replay, deterministic plan, stale-base rejection, tamper rejection, clean target.
+
+
+## SEMANTIC DELTA V0.1 HARNESS SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Durable control `59edf0de14ebcb688c037611f72cba992ac51b4e` / CHECKPOINT `f3bb263e862db2aad798f7ca8df60d1a54f4987a54d23eb4b29ca50d13ce460d` is non-force published and independently fresh-clone verified PASS 226.
+- Exact frozen v0.1 module/result reproduce. Same v0.1 attempt remains non-replayable.
+- NEW v0.1.1 serializer-only repair is now permitted.
+
+
+## P0 — v0.1.2 allowed repair after v0.1.1 checkpoint
+Create a NEW sibling that only thaws MappingProxy-backed nested values when copying the frozen base into a mutable replay workspace. Preserve operation grammar, exact preconditions, target freeze, PyGoat fixture and acceptance checks. Do not rerun v0.1.1.

@@ -1,0 +1,9 @@
+Exact local stderr SHA256: dde3af2d41dda0eabeca7d614d3f59023098d1ff99c8076e5a8c3197f36f5eb2
+Exact local stderr bytes: 2562
+Privacy projection only; workstation paths omitted.
+
+Traceback semantic spine:
+run_semantic_delta_replay_pygoat_v0_1_1.py -> replay_plan -> freeze_bundle -> verify_bundle -> SemanticFactBundle.bundle_id -> as_dict -> dataclasses.asdict
+Failure: TypeError: cannot pickle 'mappingproxy' object
+
+Plan construction and operation application were reached; target freeze verification did not complete. Raw stderr remains local and content-addressed above.

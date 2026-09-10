@@ -1,0 +1,22 @@
+{
+  "admission_status": "NOT_ADMITTED",
+  "claim_ceiling": "NO_SEMANTIC_REPLAY_CLAIM_EARNED",
+  "control_checkpoint": "f3bb263e862db2aad798f7ca8df60d1a54f4987a54d23eb4b29ca50d13ce460d",
+  "control_head": "59edf0de14ebcb688c037611f72cba992ac51b4e",
+  "execution_return_code": 1,
+  "failure_message": "cannot pickle 'mappingproxy' object",
+  "failure_stage": "replay_plan -> freeze_bundle -> verify_bundle -> mutable SemanticFactBundle.as_dict",
+  "failure_type": "TypeError",
+  "freeze_verification_completed": false,
+  "harness_sha256": "765d45dccefa19111ede100a97242c7980c617cf114782b852ee106ff733cb79",
+  "module_sha256": "9a74bd3ec787c7ccf1e4d393b9d8ccba582d7635b0a323205a183dcaf6520315",
+  "plan_construction_succeeded": true,
+  "replay_apply_reached": true,
+  "same_attempt_rerun": false,
+  "schema": "forge.semantic-delta-replay-pygoat-first-result/0.1.1",
+  "status": "HARNESS_INVALID_FROZEN_OBJECTS_COPIED_INTO_MUTABLE_BUNDLE",
+  "stderr_bytes": 2562,
+  "stderr_sha256": "dde3af2d41dda0eabeca7d614d3f59023098d1ff99c8076e5a8c3197f36f5eb2",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "target_source_mutated": false
+}

@@ -362,3 +362,13 @@ PCMMAD Lab's primary work surface is Forge + Singularity Works as a whole system
 
 ## Forge Core frontier — Semantic Delta Replay v0.1 HARNESS_INVALID — 2026-09-09
 Selected whole-system/core frontier is semantic-delta replay over verified bundles. First frozen candidate module `49cf44680bd022e8a63765d027d018973647178635017b402db53f08286af5c6` / harness `1d781698eea684d22043d77b852a3231f90af9c11c7449dbfe9db5eac3abfb77` failed before replay due MappingProxy-incompatible `asdict()` digest serialization. Result `d78079adf46e9e52824b9a73e314fe3ffbcb2da75c3ce710a5f33ed0b6683a7b` NOT_ADMITTED. PyGoat clean. No App dependency and no semantic replay qualification yet.
+
+
+## SEMANTIC DELTA V0.1 HARNESS SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Durable control `59edf0de14ebcb688c037611f72cba992ac51b4e` / CHECKPOINT `f3bb263e862db2aad798f7ca8df60d1a54f4987a54d23eb4b29ca50d13ce460d` is non-force published and independently fresh-clone verified PASS 226.
+- Exact frozen v0.1 module/result reproduce. Same v0.1 attempt remains non-replayable.
+- NEW v0.1.1 serializer-only repair is now permitted.
+
+
+## Forge Core semantic replay frontier — v0.1.1 HARNESS_INVALID
+Result `fbb81733340c955ab1157cc016ae4a21beb2c3ffa9d6f5b1858c58ccdba0da05` shows serializer repair advanced through plan construction/application but mutable replay workspace still retained frozen MappingProxy values; freeze verification failed before target qualification. PyGoat clean; no replay admission.

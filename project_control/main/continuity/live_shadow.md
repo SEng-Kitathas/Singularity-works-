@@ -280,3 +280,16 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 - PyGoat remained clean at head `19d17cc8874861142b330636d068bbde54e86b85`.
 - No semantic replay claim earned.
 - Next permitted repair after control closure: NEW v0.1.1 serializer-only repair; operation algebra/replay semantics unchanged.
+
+
+## SEMANTIC DELTA V0.1 HARNESS SUCCESSOR CONTROL CLOSURE — CURRENT — 2026-09-09
+- Durable control `59edf0de14ebcb688c037611f72cba992ac51b4e` / CHECKPOINT `f3bb263e862db2aad798f7ca8df60d1a54f4987a54d23eb4b29ca50d13ce460d` is non-force published and independently fresh-clone verified PASS 226.
+- Exact frozen v0.1 module/result reproduce. Same v0.1 attempt remains non-replayable.
+- NEW v0.1.1 serializer-only repair is now permitted.
+
+
+## FORGE SEMANTIC DELTA REPLAY V0.1.1 — HARNESS_INVALID — CURRENT — 2026-09-09
+- Control `59edf0de14ebcb688c037611f72cba992ac51b4e` / CHECKPOINT `f3bb263e862db2aad798f7ca8df60d1a54f4987a54d23eb4b29ca50d13ce460d`. v0.1.1 module `9a74bd3e...` + harness `765d45dc...` executed exactly once.
+- Result `fbb81733340c955ab1157cc016ae4a21beb2c3ffa9d6f5b1858c58ccdba0da05` NOT_ADMITTED / NON-REPLAYABLE. Plan construction and operation application were reached; freeze verification failed because frozen MappingProxy-backed objects had been copied into a mutable `SemanticFactBundle`, whose incumbent `as_dict()` uses `asdict()`.
+- PyGoat remained clean at `19d17cc8...`. No semantic replay claim earned.
+- Next after checkpoint: NEW v0.1.2 mutable-workspace-thaw repair only.
