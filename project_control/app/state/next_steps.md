@@ -369,3 +369,10 @@ Current store: 141 blobs / 141 attempts / 220 events; durable control `f59a32946
 2. Consume qualified Forge/Singularity Works contracts; do not duplicate canonical semantic/system truth.
 3. Treat runtime/security/recovery work as supporting qualification where required, not App's autonomous primary frontier.
 4. Return UX/integration pressure to Forge/Main/Core rather than self-promoting system behavior.
+
+## FRONTEND WORKBENCH + GITHOME — BOUNDED ADMITTED — 2026-09-09
+| Priority | Action | Why it matters | Dependency / trigger | Done when |
+|---|---|---|---|---|
+| P0 | Publish/fresh-clone verify successor control carrying Workbench + GitHome admissions | Continuity/control is behind actual frontend state | admissions `ad1e85f2...`, `3dd26813...`; App `c0877964...` | non-force successor + exact remote + clean fresh clone + checkpoint verifier PASS |
+| P0 | Compose GitHome + Workbench + Ergo into renderer-neutral Forge Shell Workspace | Converts isolated frontend models into one operator surface | control closure | focus/layout/currentness composition model preserves each authority boundary; hostile tests pass |
+| P1 | Pressure real App workspace rendering and operator navigation | Move toward useful product, not backend-only contracts | workspace Attempt-0 preserved | actual App repo + recovery summary + Workbench binding render without source mutation |

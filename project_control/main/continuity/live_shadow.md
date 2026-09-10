@@ -319,3 +319,10 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 - Exact forward comment replay, forward semantic-removal replay and reverse replay all reproduced exact bundle IDs + canonical serialization. Stale base and tampered precondition rejected. Authority remained NONE. PyGoat head `19d17cc8...` clean before/after.
 - Qualified only exact semantic-bundle replay over this qualified PyGoat fixture. Source materialization/refactor equivalence/cross-language/concurrent merge remain unearned.
 - Next after control closure: bounded semantic-to-source materialization / reversible round-trip discriminator.
+
+## APP FRONTEND WORKBENCH + GITHOME — BOUNDED ADMITTED — 2026-09-09
+- App remains frontend/user-experience embodiment arm; Main/Core whole-system and semantic authority unchanged.
+- App source **`c0877964d793fcaf524f130fa745f3d172c17601`** at bounded admission closure. Workbench v0.1 admission `ad1e85f27e8ed61db5777341aaa3efe502988ba2a3dfc8897766d99129bacaea`; GitHome v0.1 admission `3dd2681344f3d0591d22a5d8f543b365ae056733423698e9d7760eb515ef749e`.
+- Workbench: repaired unit 11/11 + actual Core v0.1.3 replay integration 14/14, authority NONE, materialization disabled. GitHome: 9/9 fixture + 18/18 real App repo, complete 596-entry non-.git snapshot, no source mutation.
+- App Store **225/244/323**, integrity ok/WAL/FULL. Cross-arm receipt `5a0183b605ca1720705b9b029cfc8c435a82e802b9b19e304988161a925c20c2`.
+- Current control/Core binding `d9b7c5e8b1854b705f134a2d6e1dca6acc9a1a47` / CHECKPOINT `b8333e3758cc98edb14c1302744bc3ef44210678dd1122e27648c51def6b588e`. Next App cut: Forge Shell Workspace composition of GitHome + Workbench + Ergo without authority merge.

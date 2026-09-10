@@ -330,3 +330,8 @@ Create a NEW sibling that only converts UPSERT payload dataclasses into mutable-
 3. Design a NEW bounded **semantic-to-source materialization + reversible round-trip** discriminator using a real qualified fixture.
 4. Require exact precondition/currentness, source diff constrained to intended span/change, reparse to target semantic bundle, rollback to exact original bytes, clean Git before/after, and no authority promotion.
 5. Keep arbitrary refactor equivalence, cross-language generality and canonical Core API promotion blocked until separately earned.
+
+## APP FRONTEND WORKBENCH + GITHOME — BOUNDED ADMITTED — 2026-09-09
+- P0 control: admit/checkpoint App Workbench + GitHome bounded frontend currentness without promoting Main/Core semantics.
+- P0 App: compose GitHome + Workbench + Ergo recovery/currentness into Forge Shell Workspace; preserve authority domains.
+- Main/Core semantic materialization work remains independently governed; App `materialize` stays disabled until a later qualified Core contract explicitly earns it.

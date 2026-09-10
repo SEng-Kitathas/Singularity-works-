@@ -70,3 +70,7 @@ The bounded WMI class-bind admission survives, but two concurrent workers execut
 
 ## Current fixed point after Attempt execution idempotency guard qualification
 The v0.2.7.2 duplicate-execution scar is now bounded by a verified server submission rail: immutable effectful first execution uses Attempt-bound `submitProjectExecution`; keyless `runSync` is forbidden for that role. See `CURRENTNESS_AFTER_ATTEMPT_EXECUTION_IDEMPOTENCY_GUARD_20260909.md`.
+
+
+## Current fixed point after App Workbench + GitHome frontend admissions
+App frontend currentness now includes bounded-admitted Workbench v0.1 and GitHome v0.1 at App `c0877964...`. These are presentation/navigation advances only; Main/Core authority is unchanged. Next App cut is Forge Shell Workspace composition. See `CURRENTNESS_AFTER_APP_FRONTEND_WORKBENCH_GITHOME_20260909.md`.

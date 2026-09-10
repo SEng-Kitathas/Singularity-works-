@@ -390,3 +390,6 @@ Result `2b0d36b419b464ef1f98ead7224e2350c4bb86f975e4e3ae1dbef514060eb8b2` locali
 
 ## Forge Core current frontier — Semantic Delta Replay v0.1.3 qualified
 Lineage `870d5c76fd555744e77206b25aedf88cfa9c359890f970524003dd93275c8818` -> summary `f49a1f61b1a8d2fd22380d9bde219cbf952147523bc7c694faa914ce43cf25a1` -> admission `84c1faef40e41842549b4880459f9fa240f0b9940ee6e3e5be9c5a08a4e70bbb` qualifies deterministic content-addressed exact semantic-bundle replay over qualified PyGoat snapshots, including reverse replay and stale/tamper rejection, without source mutation or authority minting. This is a Forge Core result; App remains frontend UX. Source materialization is the next dependency seam.
+
+## APP FRONTEND WORKBENCH + GITHOME — BOUNDED ADMITTED — 2026-09-09
+App product/frontend advanced to source `c0877964...` with bounded Workbench `ad1e85f2...` and GitHome `3dd26813...` admissions. Workbench carries read-only semantic/evidence/currentness + exact Core replay preview; GitHome carries complete read-only project/Git navigation. App Store 225/244/323. No Main/Core authority promotion. Resume cross-arm at checkpointing this frontend fixed point; App next composes GitHome + Workbench + Ergo into Forge Shell Workspace.

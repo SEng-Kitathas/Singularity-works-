@@ -345,3 +345,8 @@ No Main/Core or product promotion follows.
 `APP_FEEDBACK = PRESSURE_SIGNAL_NOT_CANONICAL_TRUTH`
 `APP_EVIDENCE != WHOLE_PRODUCT_AUTHORITY`
 `FRONTEND_CLIENT != SYSTEM_ARCHITECTURE_OWNER`
+
+## FRONTEND WORKBENCH + GITHOME — BOUNDED ADMITTED — 2026-09-09
+- App is frontend/user-experience embodiment arm; security archaeology is subordinate evidence work, not App identity.
+- Workbench and GitHome are now bounded load-bearing frontend primitives. `FIELD != MAP`; `GIT_STATUS != SEMANTIC_VERDICT`; selection/focus never promote truth.
+- Next architecture pressure is composition, not another isolated subsystem: Forge Shell Workspace SHALL bind GitHome, Workbench, and Ergo while keeping authority domains distinct.

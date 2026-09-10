@@ -559,3 +559,6 @@ Verified execution-plane invariant on the current server: Attempt-bound `submitP
 
 ## IDEMPOTENCY GUARD CONTROL — DURABLE / FRESH-CLONE VERIFIED — 2026-09-09
 The execution-control qualification is now remotely durable and fresh-clone verified at control `0f663398...` / `7f86fdff...`. This closes the duplicate-launch orchestration seam on the tested server submission path. It does not answer WMI causality; the next high-value question is whether protected WMI class-bind failure arises from AppContainer context, immediate Job context, or their combination.
+
+## FRONTEND WORKBENCH + GITHOME — BOUNDED ADMITTED — 2026-09-09
+App product evidence now supports two frontend primitives: Workbench read-only semantic/evidence/currentness presentation with exact Core v0.1.3 replay preview, and GitHome read-only complete project/Git observation. The useful next experiment is composition into one shell workspace. Do not infer source materialization, Git mutation authority, native usability, or semantic authority from these bounded passes.

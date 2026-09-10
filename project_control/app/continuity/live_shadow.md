@@ -341,3 +341,14 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 - Earlier Live wording “Continue autonomous App product/runtime/security work” is superseded as the primary mandate; retain as chronology.
 - App security/runtime evidence remains valid subordinate evidence and may be used where frontend integration/system qualification requires it.
 - Current correction binds to control `0f663398cd07c36637ca939a2ab42a9a2001b07e` / CHECKPOINT `7f86fdffc98d169a203cc7cccf29b13789e2118ac05d8a914a31a62cfdf13f1f`, fresh-clone verifier PASS 215.
+
+## FRONTEND WORKBENCH + GITHOME — BOUNDED ADMITTED — 2026-09-09
+- Active mode **BUILD-COMMIT**; active role **R5 Reality Pressure Engine**. App role remains the **frontend / user-experience embodiment arm**; PCMMAD Lab/Main owns whole-system program and Core semantic authority.
+- App source advanced from historical `43aa7fea...` to **`c0877964d793fcaf524f130fa745f3d172c17601`**, remote-exact/clean at admission closure. Main remains `e66c071fc25f8d08bfc7ebf0551948392d652f35`. Current Core/control binding remains `d9b7c5e8b1854b705f134a2d6e1dca6acc9a1a47` / CHECKPOINT `b8333e3758cc98edb14c1302744bc3ef44210678dd1122e27648c51def6b588e`, clean fresh-clone PASS 248.
+- **Workbench v0.1 bounded admission `ad1e85f27e8ed61db5777341aaa3efe502988ba2a3dfc8897766d99129bacaea`.** Attempt-0 preserved first; first suite 10/11 exposed HARNESS_INVALID search expectation and result `ad36a614...`; test-only repair; repaired suite 11/11 `bfdf87fb...`; actual Core replay v0.1.3 integration 14/14 `ae88c1f6...`. Qualified only renderer-neutral read-only semantic/evidence/UNKNOWN/currentness model + bounded replay preview; source materialization/native UI/operator usability unearned.
+- **GitHome v0.1 bounded admission `3dd2681344f3d0591d22a5d8f543b365ae056733423698e9d7760eb515ef749e`.** Disposable Git pressure 9/9 `fdb0c564...`; real App repo pressure 18/18 `0d89b5d2...`; observed 536 files + 60 dirs = 596 project entries, 458 tracked, 78 ignored retained, zero scan errors, source clean before/after. Qualified only read-only project/Git observation/navigation + Workbench hash binding.
+- App Attempt Store **225 blobs / 244 attempts / 323 events**, integrity ok / WAL / FULL. Maintenance receipt `27fb75d4194be2d10dc88ceeb5646a31101175e957f6a2d97b2ce42fdc8c6860`.
+- **Immediate next:** checkpoint these product-facing admissions across paired control, then compose qualified GitHome + Workbench + Ergo recovery/currentness into one renderer-neutral **Forge Shell Workspace**. Shell may route focus/layout; it SHALL NOT merge authority domains.
+
+`APP_FRONTEND_PRESENTATION != CORE_SEMANTIC_AUTHORITY`  
+`SHELL_COMPOSITION != AUTHORITY_MERGE`

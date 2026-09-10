@@ -5,6 +5,29 @@
     "events": 299,
     "integrity": "ok"
   },
+  "app_frontend_workbench_githome_20260909": {
+    "app_attempt_store": {
+      "attempts": 244,
+      "blobs": 225,
+      "events": 323,
+      "integrity": "ok",
+      "journal_mode": "wal",
+      "synchronous": "FULL"
+    },
+    "app_source_commit": "c0877964d793fcaf524f130fa745f3d172c17601",
+    "git_mutation_earned": false,
+    "githome_admission_sha256": "3dd2681344f3d0591d22a5d8f543b365ae056733423698e9d7760eb515ef749e",
+    "githome_real_repo_result_sha256": "0d89b5d244b9d79f420ddd2cb44c9febc48028197aa10a0ed769b44668ab7598",
+    "githome_unit_result_sha256": "fdb0c564b8490a6cf7c22084b0bd9ea979d87623817d9a92e9330c8e0fba683e",
+    "main_core_authority_promoted": false,
+    "next_app_cut": "FORGE_SHELL_WORKSPACE_COMPOSITION",
+    "source_materialization_earned_by_app": false,
+    "status": "APP_FRONTEND_WORKBENCH_GITHOME_BOUNDED_ADMITTED",
+    "workbench_admission_sha256": "ad1e85f27e8ed61db5777341aaa3efe502988ba2a3dfc8897766d99129bacaea",
+    "workbench_core_integration_result_sha256": "ae88c1f62fe9135e7cee83999b09109e2cb3f403e981c84b6caec02d3a3a4117",
+    "workbench_first_harness_invalid_result_sha256": "ad36a6145abd809fe0d72abd07d183aafa3abec73df6f731759f36a82cf6bb1c",
+    "workbench_unit_pass_result_sha256": "bfdf87fb8ca70e4949d21b20ca8b15e1c28e1e1c517794178767400886f58327"
+  },
   "app_observation": {
     "branch": "forge/app-shell-rd",
     "commit": "43aa7feac7e8a15828116bd700b644560714496d",
@@ -238,19 +261,19 @@
       "sha256": "6c5080d0c950297490139e7b120964dddb7936af5076a967d1200904456cb795"
     },
     {
-      "bytes": 169464,
+      "bytes": 171053,
       "path": "app/continuity/design_thread_stream.md",
-      "sha256": "eaafa4c861f857be0649a94acac7bd74da26a23e0bf80aa063d5acb22300e97c"
+      "sha256": "13d9204d26410b1183e41de0ee6539a6a102a26d3f57ef85974239a5e87493d5"
     },
     {
-      "bytes": 38611,
+      "bytes": 40757,
       "path": "app/continuity/live_shadow.md",
-      "sha256": "c9c98ef7d85ec35780204ace7c1f08e592b4d570d2fed400fcdbb9050fde99b9"
+      "sha256": "20d2882a469ccc81f250fd51a0f6436ff04e796a2357fe992a4c00c7dda2cb4a"
     },
     {
-      "bytes": 48677,
+      "bytes": 49159,
       "path": "app/continuity/research_epistemic_shadow.md",
-      "sha256": "aedef675098b92943890a6e815315431240b05a7893cfc65dee21d84a072cae8"
+      "sha256": "129fc471312023d63cd39da14195d1a011ea84cd2767a514352fc8774956b466"
     },
     {
       "bytes": 3197,
@@ -338,6 +361,11 @@
       "sha256": "3dbc3f7b0dda8cf13ec3f4d59933d0bdda992b914123e33ee62324fa391bf236"
     },
     {
+      "bytes": 4589,
+      "path": "app/evidence/GITHOME_PROJECT_CONTEXT_V0_1_QUALIFICATION_20260909.md",
+      "sha256": "5b3858ff61ae0a9cb116a730bc66934b7ae672043c96ee7ff78ff173a59ef932"
+    },
+    {
       "bytes": 3963,
       "path": "app/evidence/live_resume_session_0011.json",
       "sha256": "cf1a0dbb25510a4b07b70757258a9c61ce3a0400846ad72743bb8dbbd920338e"
@@ -346,6 +374,11 @@
       "bytes": 1933,
       "path": "app/evidence/live_resume_session_0014.json",
       "sha256": "280abcf4d0eed7461bead285144cbb9ceef57fd30cec480284dbafec89fa2744"
+    },
+    {
+      "bytes": 5550,
+      "path": "app/evidence/WORKBENCH_FRONTEND_V0_1_QUALIFICATION_20260909.md",
+      "sha256": "69886bd55d343683460460760ae4a1d6e5a39e3668043f60b2f710e8ebe8acd4"
     },
     {
       "bytes": 3868,
@@ -573,6 +606,11 @@
       "sha256": "31579eaf66c7272ce3db7f1f1d4309233b16d04ddd2f925428f394838f54e8f8"
     },
     {
+      "bytes": 3273,
+      "path": "app/notes/maintenance/FRONTEND_WORKBENCH_GITHOME_BOUNDED_ADMISSIONS_20260909.md",
+      "sha256": "53b3abac70f72a211a4bb456eb9475950f409f98350f462c5d7baac93f2f3372"
+    },
+    {
       "bytes": 4555,
       "path": "app/sop/ICF_CS_V1_1_DETACHED_RELEASE_RECEIPT_2026-09-05.json",
       "sha256": "418346ed6373887b5b924e71ca2bf4b83effad20b7269ab40607f5d2750b970c"
@@ -678,9 +716,9 @@
       "sha256": "01461d5f61a7e1cc85a8365ff11565df7ada1069c46b9a90ea036394dbc762b5"
     },
     {
-      "bytes": 45550,
+      "bytes": 46286,
       "path": "app/state/current.md",
-      "sha256": "d5ba0aaac05a6f414bbda46a02b18dafd34b3812e48e99d6936c41c2f36a19aa"
+      "sha256": "34e231c2ad9fa37922160e1c75e8671f01ec06c4991abc1b152cec2a24767b96"
     },
     {
       "bytes": 4215,
@@ -713,9 +751,9 @@
       "sha256": "e3e859989524e5900abc353cd9b7719f3d7173c8d80104b4afe30dde05c68e9d"
     },
     {
-      "bytes": 31064,
+      "bytes": 31594,
       "path": "app/state/doctrine_snapshot.md",
-      "sha256": "8de57bc77ad725da9943b11f070a279a3ce6f0991fbfe335e045465b37c59e19"
+      "sha256": "8d9a7e9e2003558e6f5638204667fee5376cf5fa712c449398598739b6910e76"
     },
     {
       "bytes": 2879,
@@ -723,9 +761,9 @@
       "sha256": "b1d785fae561756b05daa3c268e0a0e13a913c0c529d8b0ba105a84e817e1b2b"
     },
     {
-      "bytes": 36450,
+      "bytes": 37422,
       "path": "app/state/next_steps.md",
-      "sha256": "38702a02c54591f7c9aedf6801ba893ad72da37a75e7522eeabcd273dd5cc793"
+      "sha256": "aec9fb6147507cf211b13f996c444629ceb1a1f515f62892144b516bbfb7223c"
     },
     {
       "bytes": 23470,
@@ -733,14 +771,14 @@
       "sha256": "c2e18eba4aa0b526bd8e308d09ad3c5bb95f7c6887a5d493ec300f87d0451137"
     },
     {
-      "bytes": 25131,
+      "bytes": 25773,
       "path": "app/state/revisit_ledger.md",
-      "sha256": "8ff0539b72d45e308c768db78f7f85686ab0fa690a9a6596a1e933176313cf01"
+      "sha256": "86733c56266de27e2b442a6a80c224f2b2a78d3e9878268647db5a4e48becc95"
     },
     {
-      "bytes": 38730,
+      "bytes": 39668,
       "path": "app/state/trace_matrix.md",
-      "sha256": "7c14e8174d1c13affa7d4df9d08291341c59a21a4b79dcd65731917d76b8c7cc"
+      "sha256": "61c57f45ba7c10cc42f7ca9339fb2f41d83d655cc288dea99af219c3f635e9fe"
     },
     {
       "bytes": 1161,
@@ -751,6 +789,11 @@
       "bytes": 1815,
       "path": "CURRENT_SCOPE_FORGE_SINGULARITY_WORKS_PRIMARY_APP_FRONTEND_20260909.md",
       "sha256": "172edc0d965acdabd4b6b778e0d680a1ee52ac78cee6aa2b5364c4c27f9da05d"
+    },
+    {
+      "bytes": 2874,
+      "path": "CURRENTNESS_AFTER_APP_FRONTEND_WORKBENCH_GITHOME_20260909.md",
+      "sha256": "1f5c9214c317c54297b153152c6a754b608fb248da7792f493b2f1e5e1b5c32f"
     },
     {
       "bytes": 2574,
@@ -898,19 +941,19 @@
       "sha256": "54ebbe5bec809cc9be51fd43d4a502cdec6d310177c54cf16753335605607f6f"
     },
     {
-      "bytes": 180528,
+      "bytes": 181418,
       "path": "main/continuity/design_thread_stream.md",
-      "sha256": "5565c6db74ce949f613b760bd08391f91700d6ece536b3f024598c9a59369895"
+      "sha256": "9f71965443f912be37e0809f8a1467c8f522a6fc52ddfcebf01cda3977dc733d"
     },
     {
-      "bytes": 34563,
+      "bytes": 35642,
       "path": "main/continuity/live_shadow.md",
-      "sha256": "76597bc733cdb5ca9a04bd483924a18437ead3726b0189798dc3ef7ece6d0abe"
+      "sha256": "6debf1c1e9fda0335ac37fc9f637a7b88f3ce443a7d1a53a8b90aa68e1ea78e2"
     },
     {
-      "bytes": 39834,
+      "bytes": 40312,
       "path": "main/continuity/research_epistemic_shadow.md",
-      "sha256": "03456bbf4629eaf09da63dd9f8f7c21cd71bb59398242030c600f441ab905f5b"
+      "sha256": "761899fcc4b96ce5b228f285ab984e1dd096d252b8c32cbb43c67d62914c13c5"
     },
     {
       "bytes": 573,
@@ -1058,6 +1101,11 @@
       "sha256": "9409bd869c05e9a8469ec86646d3c20a6e02863e68478ca7448030b8df89a809"
     },
     {
+      "bytes": 1912,
+      "path": "main/notes/maintenance/APP_FRONTEND_WORKBENCH_GITHOME_CROSS_ARM_AWARENESS_20260909.md",
+      "sha256": "6d5d8dcd631a488c87f4fddfb7d4ac84b58a12954c82040c9bb6b639a7649f5b"
+    },
+    {
       "bytes": 1340,
       "path": "main/notes/maintenance/APP_V0_2_1_3_SUPERVISION_LOST_CROSS_ARM_AWARENESS_20260907.md",
       "sha256": "3aef34d2d543c6e31ebbff174f6ca1b040113c100273333a30170493dd51c9bb"
@@ -1178,9 +1226,9 @@
       "sha256": "f6f4ab2bafdb0ef2a7db1622a00462990baf980284d5b33827807caea1d41f63"
     },
     {
-      "bytes": 40477,
+      "bytes": 41016,
       "path": "main/state/current.md",
-      "sha256": "717f764e2cb81b6d04d6e4912cdcf401e9e26f6dc0c7baa15501a12b6e64cfd8"
+      "sha256": "f2402cbc40adfd3714a5cbe10c893b450597994c5262419767e67cde31902ee1"
     },
     {
       "bytes": 4215,
@@ -1213,14 +1261,14 @@
       "sha256": "8b1bf53adf3ac3fee09a4435f1f6df4518359f767fc76fe8d99df4ed6f44e4ae"
     },
     {
-      "bytes": 44752,
+      "bytes": 45110,
       "path": "main/state/doctrine_snapshot.md",
-      "sha256": "5eff2d22c5296a61b5299ca79b5f979b3f1e709d3cebff015c8536c17aae8f44"
+      "sha256": "a2649ebb05e1c5833a0704b4aab57d7e382780f25bec573294b743d6f221a9a4"
     },
     {
-      "bytes": 30769,
+      "bytes": 31253,
       "path": "main/state/next_steps.md",
-      "sha256": "bc419b06da6cc958e3392335e3d18bf7dadc8e93926c5a5bba21d70a1ff772af"
+      "sha256": "29c4785fecd25ff76faa530299e265e774ec79c8c52593f999a75175265d5f52"
     },
     {
       "bytes": 24400,
@@ -1228,14 +1276,14 @@
       "sha256": "7c3effb3198eb0242092ad36d5e484e4e73e30bfc83b2b25c1ff015fd4238773"
     },
     {
-      "bytes": 31555,
+      "bytes": 31873,
       "path": "main/state/revisit_ledger.md",
-      "sha256": "a238f057a1757f99125af0ded9943e2be122d5128d096a4ff205d43a3afd9e12"
+      "sha256": "b06fbd1c53e80a53fe81cbd26580d3094bcbbe9d7f91de25c358471f6e4524b8"
     },
     {
-      "bytes": 54262,
+      "bytes": 54743,
       "path": "main/state/trace_matrix.md",
-      "sha256": "4133cbf696b53a6326436a39b0ad42bb10f86fe3012ed639cf875f4e98d3a563"
+      "sha256": "930f3687980fe86884b14aa4df626e39a3c808576a4f6b637be154b2be8404c2"
     },
     {
       "bytes": 1618,
@@ -1243,9 +1291,9 @@
       "sha256": "2fbf22e5e9eb92c8a72972f3d166fb97c24055c0668a37ef594fcbb4236eae02"
     },
     {
-      "bytes": 8009,
+      "bytes": 8395,
       "path": "README.md",
-      "sha256": "68d5a719d0433c36ef9f6ca9e85a19ccb63fdde88f7296711df4b0c5b2b93cce"
+      "sha256": "a058793b911eaeca072cc482791db7988a50c467437aee968f3fa0d5ec38cb6d"
     },
     {
       "bytes": 3271,
@@ -2083,7 +2131,7 @@
     "head_delta_scope": "authority/rahl-sop/CURRENT.md + GOVERNANCE_CONTACT_V1_0_ACTIVATION.md only; no Forge Core/runtime source delta",
     "law": "MAIN_BRANCH_HEAD != CORE_QUALIFICATION_ANCHOR"
   },
-  "previous_verified_control_tip": "07c0d657654d5f4f759dfa67bebadcea2a4d5626",
+  "previous_verified_control_tip": "d9b7c5e8b1854b705f134a2d6e1dca6acc9a1a47",
   "previous_wider_egress_frontier_generation": {
     "cwd_diagnosis_result_sha256": "fde44603c47fd0af41b65492eb163a5500d44da6972c31fea1e65a75f7a4a7ae",
     "descendant_udp_first_result_sha256": "3cd68bca1d43d8437043d353f776587f0fb7aa6c35798f9084e4065bbbe98122",
@@ -2216,7 +2264,7 @@
       "server_source_sha256": "3595b6bbd46d3c812f5defe2cccbc1535c774c62561b6a141e17f2604460b83c"
     }
   },
-  "resume_point": "After this execution-idempotency successor is non-force published and independently fresh-clone verified, select/freeze/read/preserve a NEW causal-isolation or materially distinct broker/service process-tree discriminator. Do not execute it until exact Attempt preservation is verified, then use submitProjectExecution with idempotency_key deterministically bound to the immutable Attempt identity. Do not use runSync for immutable effectful first execution.",
+  "resume_point": "After this App frontend successor is non-force published and independently fresh-clone verified, build/preserve Forge Shell Workspace composition over bounded GitHome + Workbench + Ergo recovery/currentness. Shell may route focus/layout/navigation only; do not merge authority domains. Main/Core semantic-to-source materialization remains independently governed; App materialize remains disabled until explicitly qualified upstream.",
   "schema": "singularity-works.project-control-checkpoint/0.1",
   "semantic_field_candidate": {
     "app_consumption_authority": true,
@@ -2319,6 +2367,20 @@
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "continuity/research_epistemic_shadow/res.md",
       "server_source_sha256": "30356c2a5f951b53597cbb67a45a0ca73c59f1885d23357f063886fd06cf7d14"
+    },
+    "app/evidence/GITHOME_PROJECT_CONTEXT_V0_1_QUALIFICATION_20260909.md": {
+      "git_copy_sha256": "5b3858ff61ae0a9cb116a730bc66934b7ae672043c96ee7ff78ff173a59ef932",
+      "git_safe_redactions": [],
+      "line_endings": "GIT_COMMITTED_BYTES",
+      "server_source_path": "forge_app/embodiment/GITHOME_PROJECT_CONTEXT_V0_1_QUALIFICATION_20260909.md",
+      "server_source_sha256": "5b3858ff61ae0a9cb116a730bc66934b7ae672043c96ee7ff78ff173a59ef932"
+    },
+    "app/evidence/WORKBENCH_FRONTEND_V0_1_QUALIFICATION_20260909.md": {
+      "git_copy_sha256": "69886bd55d343683460460760ae4a1d6e5a39e3668043f60b2f710e8ebe8acd4",
+      "git_safe_redactions": [],
+      "line_endings": "GIT_COMMITTED_BYTES",
+      "server_source_path": "forge_app/embodiment/WORKBENCH_FRONTEND_V0_1_QUALIFICATION_20260909.md",
+      "server_source_sha256": "69886bd55d343683460460760ae4a1d6e5a39e3668043f60b2f710e8ebe8acd4"
     },
     "app/evidence/attempt_execution_idempotency_guard_qualification_20260909.json": {
       "git_copy_sha256": "c6c7ea61519f4936460eebba68a1843f82213acfa250d4514b59386916bf13fd",
@@ -2573,6 +2635,13 @@
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "notes/maintenance/EGRESS_WIDER_V0_2_7_2_CONCURRENT_DUPLICATE_EXECUTION_LINEAGE_CORRECTION_20260909.md",
       "server_source_sha256": "ea2525a04df310c194eb824b4d605245270097e6f291966e7f0176075226689d"
+    },
+    "app/notes/maintenance/FRONTEND_WORKBENCH_GITHOME_BOUNDED_ADMISSIONS_20260909.md": {
+      "git_copy_sha256": "53b3abac70f72a211a4bb456eb9475950f409f98350f462c5d7baac93f2f3372",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "FRONTEND_WORKBENCH_GITHOME_BOUNDED_ADMISSIONS_20260909.md",
+      "server_source_sha256": "27fb75d4194be2d10dc88ceeb5646a31101175e957f6a2d97b2ce42fdc8c6860"
     },
     "app/sop/ICF_CS_V1_1_DETACHED_RELEASE_RECEIPT_2026-09-05.json": {
       "bytes": 4555,
@@ -2994,6 +3063,13 @@
       "line_endings": "LF_PORTABLE_GIT_COPY",
       "server_source_path": "notes/maintenance/APP_ATTEMPT_EXECUTION_IDEMPOTENCY_GUARD_CROSS_ARM_AWARENESS_20260909.md",
       "server_source_sha256": "c62ca808104e9c84a332cdf27f8e26983f5c62db0e0b2fc90a637036717a0830"
+    },
+    "main/notes/maintenance/APP_FRONTEND_WORKBENCH_GITHOME_CROSS_ARM_AWARENESS_20260909.md": {
+      "git_copy_sha256": "6d5d8dcd631a488c87f4fddfb7d4ac84b58a12954c82040c9bb6b639a7649f5b",
+      "git_safe_redactions": [],
+      "line_endings": "LF_PORTABLE_GIT_COPY",
+      "server_source_path": "APP_FRONTEND_WORKBENCH_GITHOME_CROSS_ARM_AWARENESS_20260909.md",
+      "server_source_sha256": "5a0183b605ca1720705b9b029cfc8c435a82e802b9b19e304988161a925c20c2"
     },
     "main/sop/ICF_CS_V1_1_DETACHED_RELEASE_RECEIPT_2026-09-05.json": {
       "bytes": 4555,

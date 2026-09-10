@@ -115,3 +115,6 @@ Next consequence-bearing frontier after RECOVERY/AUDIT: select/freeze/read/prese
 
 
 | 2026-09-09 | WMI class-bind failure causality | Combined AppContainer + immediate Job boundary does not identify which component blocks WMI class binding | AppContainer-only or Job-only non-creating bind behaves differently | Design/preserve bounded no-Create causal-isolation matrix | P0 | open | R4/R5 spec next; no effectful launch yet |
+
+| 2026-09-09 | Workbench native/UI usability beyond renderer-neutral model | model + Core replay preview qualified but no native shell/operator task evidence | shell composition or operator pressure exposes missing state | compose into Forge Shell Workspace then pressure real App repo | P0 | open | build/preserve workspace Attempt-0 |
+| 2026-09-09 | GitHome mutation/provider/Vault expansion | read-only project context qualified; mutation and remote authority intentionally absent | safe transactional Git/Vault contracts become qualified upstream | keep disabled; first compose read-only shell | P1 | blocked | shell composition first |

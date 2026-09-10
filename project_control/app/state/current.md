@@ -422,3 +422,6 @@ Verified durable fixed point: Main `e66c071...`; App `43aa7fea...` clean; contro
 
 ## App role — CURRENT — 2026-09-09
 App is the frontend UX/client embodiment of Singularity Works. It consumes Forge/system contracts and produces user-facing interaction plus integration feedback. It is not the owner of canonical whole-system direction. Historical runtime/security evidence remains preserved but is supporting evidence, not the default roadmap.
+
+## FRONTEND WORKBENCH + GITHOME — BOUNDED ADMITTED — 2026-09-09
+App frontend now has two bounded product-facing primitives. Workbench v0.1 admission `ad1e85f2...` is qualified after repaired 11/11 unit pressure plus actual Core replay 14/14. GitHome v0.1 admission `3dd26813...` is qualified after 9/9 Git fixture pressure plus 18/18 current App repository integration (536 files, 60 dirs, 596 entries, 458 tracked, 78 ignored retained). App source is `c0877964d793fcaf524f130fa745f3d172c17601`; Store 225/244/323 integrity ok. Control/Core binding is `d9b7c5e8...` / `b8333e37...`. Resume: checkpoint this frontend fixed point, then build Forge Shell Workspace composition over GitHome + Workbench + Ergo without authority merge.

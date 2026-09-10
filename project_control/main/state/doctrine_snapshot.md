@@ -516,3 +516,8 @@ Historical broad App-ownership wording is superseded for current scope, not dele
 `EXACT_BUNDLE_REPLAY != SOURCE_EDIT_MATERIALIZATION`
 `BUNDLE_REPLAY_PASS != ARBITRARY_PROGRAM_REFACTOR_EQUIVALENCE`
 `DELTA_AUTHORITY = NONE`
+
+## APP FRONTEND WORKBENCH + GITHOME — BOUNDED ADMITTED — 2026-09-09
+- `APP_FRONTEND_PRESENTATION != CORE_SEMANTIC_AUTHORITY`.
+- `GITHOME_OWNS_PROJECT_NAVIGATION`; `FORGE_OWNS_PROJECT_UNDERSTANDING`.
+- Workbench/GitHome bounded admissions are product-surface progress, not semantic doctrine promotion. Shell composition is the next App pressure surface.

@@ -491,3 +491,6 @@ Operational cross-arm learning: App's current server exposes a bounded idempoten
 
 ## IDEMPOTENCY GUARD CONTROL — APP DURABLE / FRESH-CLONE VERIFIED — 2026-09-09
 App execution idempotency control is now durable and fresh-clone verified. Next epistemic seam is WMI causality under the combined protected boundary, not further execution-control archaeology.
+
+## APP FRONTEND WORKBENCH + GITHOME — BOUNDED ADMITTED — 2026-09-09
+Cross-arm evidence now supports real read-only frontend primitives rather than README-only promises. Workbench consumes exact qualified Core replay evidence without enabling materialization; GitHome models the complete current App project tree/Git dimension. Next question is whether a single shell workspace can compose these with Ergo currentness/recovery without collapsing their authority boundaries.
